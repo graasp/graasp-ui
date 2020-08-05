@@ -1,13 +1,13 @@
-# graasp-ui
+# Graasp UI
 
 > React components for the Graasp ecosystem.
 
-[![NPM](https://img.shields.io/npm/v/graasp-ui.svg)](https://www.npmjs.com/package/graasp-ui) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+[![NPM](https://img.shields.io/npm/v/@graasp/ui.svg)](https://www.npmjs.com/package/graasp-ui) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 ## Install
 
 ```bash
-npm install --save graasp-ui
+npm install --save @graasp/ui
 ```
 
 ## Usage
@@ -15,8 +15,8 @@ npm install --save graasp-ui
 ```tsx
 import React, { Component } from 'react'
 
-import MyComponent from 'graasp-ui'
-import 'graasp-ui/dist/index.css'
+import MyComponent from '@graasp/ui'
+import '@graasp/ui/dist/index.css'
 
 class Example extends Component {
   render() {
@@ -27,4 +27,4 @@ class Example extends Component {
 
 ## License
 
-MIT © [juancarlosfarah](https://github.com/juancarlosfarah)
+MIT © [Graasp Association](https://graasp.org)
