@@ -4,7 +4,7 @@ import { ExampleComponent } from '@graasp/ui'
 import '@graasp/ui/dist/index.css'
 
 const App = () => {
-  return <ExampleComponent text="Create React Library Example 😄" />
+  return <ExampleComponent message='Create React Library Example 😄' />
 }
 
 export default App
