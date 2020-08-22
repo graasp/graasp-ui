@@ -1,10 +1,5 @@
-import * as React from 'react'
-import styles from './styles.module.css'
+export { default as Loader } from './Loader';
+export * from './Loader';
 
-interface Props {
-  message: string
-}
-
-export const ExampleComponent = ({ message }: Props) => {
-  return <div className={styles.test}>Example Component: {message}</div>
-}
+export { default as Header } from './Header';
+export * from './Header';

@@ -18,6 +18,8 @@
     "build": "microbundle-crl --no-compress --format modern,cjs",
     "start": "microbundle-crl watch --no-compress --format modern,cjs",
     "prepare": "run-s build",
+    "prettier:check": "prettier --check \"{src,example,test}/**/*.{js,ts}\"",
+    "prettier:write": "prettier --write \"{src,example,test}/**/*.{js,ts}\"",
     "test": "run-s test:unit test:lint test:build",
     "test:build": "run-s build",
     "test:lint": "eslint .",
@@ -28,6 +30,8 @@
     "release": "standard-version"
   },
   "peerDependencies": {
+    "@material-ui/core": "4.11.0",
+    "@material-ui/icons": "4.9.1",
     "react": "^16.0.0"
   },
   "devDependencies": {
@@ -56,13 +60,16 @@
     "microbundle-crl": "^0.13.10",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.0.4",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-scripts": "^3.4.1",
     "standard-version": "8.0.2",
     "typescript": "^3.7.5"
   },
   "files": [
     "dist"
-  ]
+  ],
+  "dependencies": {
+    "@material-ui/core": "4.11.0",
+    "@material-ui/icons": "4.9.1",
+    "clsx": "1.1.1",
+    "react-loading": "2.0.3"
+  }
 }
