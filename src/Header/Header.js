@@ -31,7 +31,13 @@ const styles = (theme) => ({
   }
 })
 
-const Header = ({ id, classes, handleDrawerOpen, isSidebarOpen }) => {
+export const Header = ({
+  id,
+  classes,
+  hasSidebar,
+  handleDrawerOpen,
+  isSidebarOpen = false
+}) => {
   return (
     <AppBar
       position='fixed'
@@ -40,15 +46,17 @@ const Header = ({ id, classes, handleDrawerOpen, isSidebarOpen }) => {
       })}
     >
       <Toolbar disableGutters={!isSidebarOpen}>
-        <IconButton
-          id={id}
-          color='inherit'
-          aria-label='Open drawer'
-          onClick={handleDrawerOpen}
-          className={clsx(classes.menuButton, isSidebarOpen && classes.hide)}
-        >
-          <MenuIcon />
-        </IconButton>
+        {hasSidebar && (
+          <IconButton
+            id={id}
+            color='inherit'
+            aria-label='Open drawer'
+            onClick={handleDrawerOpen}
+            className={clsx(classes.menuButton, isSidebarOpen && classes.hide)}
+          >
+            <MenuIcon />
+          </IconButton>
+        )}
       </Toolbar>
     </AppBar>
   )

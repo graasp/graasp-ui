@@ -1,10 +1,9 @@
 import React from 'react'
-
-import { Header } from '@graasp/ui'
+import { Main } from '@graasp/ui'
 import '@graasp/ui/dist/index.css'
 
 const App = () => {
-  return <Header/>
+  return <Main />
 }
 
 export default App
