@@ -1,3 +1,5 @@
+export * from './styles.module.css'
+
 export { default as Loader } from './Loader';
 export * from './Loader';
 
