@@ -7,12 +7,12 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight'
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction'
 import { DEFAULT_DIRECTION, DRAWER_HEADER_HEIGHT } from '../constants'
 
-const styles = () => ({
+const styles = (theme) => ({
   drawerHeader: {
     height: DRAWER_HEADER_HEIGHT
   },
   secondaryAction: {
-    right: '5px'
+    right: theme.spacing(1)
   }
 })
 

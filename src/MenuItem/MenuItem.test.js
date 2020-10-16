@@ -70,23 +70,4 @@ describe('MenuItem', () => {
       expect(text.prop('primary')).toEqual('text')
     })
   })
-
-  // describe('menu is defined with custom component', () => {
-  //   beforeAll(() => {
-  //     const props = createMenuItemProps({menu: menuWithCustomMenuItems})
-  //     // eslint-disable-next-line react/jsx-props-no-spreading
-  //     wrapper = shallow(<MenuItem {...props} />)
-  //   })
-
-  //   it('renders correctly', () => {
-  //     expect(wrapper).toMatchSnapshot()
-  //   })
-
-  //   it('renders one <List /> component with custom menu', () => {
-  //     const list = wrapper.find(List)
-  //     expect(list).toHaveLength(1)
-  //     const items = list.find('div')
-  //     expect(items).toHaveLength(menuWithCustomMenuItems.length)
-  //   })
-  // })
 })

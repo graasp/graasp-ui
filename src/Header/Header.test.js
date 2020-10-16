@@ -4,8 +4,14 @@ import IconButton from '@material-ui/core/IconButton'
 import MenuIcon from '@material-ui/icons/Menu'
 import { shallow } from 'enzyme'
 import { Header } from './Header'
+import { OPEN_DRAWER_LABEL } from '../texts'
 
-const createHeaderProps = ({ id, isSidebarOpen, hasSidebar } = {}) => {
+const createHeaderProps = ({
+  id,
+  isSidebarOpen,
+  hasSidebar,
+  openDrawerAriaLabel
+} = {}) => {
   return {
     id,
     classes: {
@@ -16,7 +22,8 @@ const createHeaderProps = ({ id, isSidebarOpen, hasSidebar } = {}) => {
     },
     hasSidebar,
     handleDrawerOpen: jest.fn(),
-    isSidebarOpen
+    isSidebarOpen,
+    openDrawerAriaLabel
   }
 }
 
@@ -47,7 +54,8 @@ describe('Header', () => {
       beforeAll(() => {
         const props = createHeaderProps({
           hasSidebar: true,
-          isSidebarOpen: false
+          isSidebarOpen: false,
+          openDrawerAriaLabel: 'sometext'
         })
         // eslint-disable-next-line react/jsx-props-no-spreading
         wrapper = shallow(<Header {...props} />)
@@ -62,6 +70,7 @@ describe('Header', () => {
         expect(appBar).toHaveLength(1)
         const icon = wrapper.find(IconButton)
         expect(icon).toHaveLength(1)
+        expect(icon.prop('aria-label')).toEqual('sometext')
         expect(icon.hasClass('hide')).toEqual(false)
         const menuIcon = icon.find(MenuIcon)
         expect(menuIcon).toHaveLength(1)
@@ -84,6 +93,7 @@ describe('Header', () => {
         expect(appBar).toHaveLength(1)
         const icon = wrapper.find(IconButton)
         expect(icon).toHaveLength(1)
+        expect(icon.prop('aria-label')).toEqual(OPEN_DRAWER_LABEL)
         expect(icon.prop('id')).toEqual('id')
         expect(icon.hasClass('hide')).toEqual(true)
         const menuIcon = icon.find(MenuIcon)

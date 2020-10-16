@@ -20,7 +20,7 @@ exports[`Header hasSidebar = true isSidebarOpen = false renders correctly 1`] = 
     disableGutters={true}
   >
     <WithStyles(ForwardRef(IconButton))
-      aria-label="Open drawer"
+      aria-label="sometext"
       className=""
       color="inherit"
       onClick={[MockFunction]}

@@ -19,7 +19,8 @@ export const Sidebar = ({
   classes,
   isSidebarOpen = false,
   handleDrawerClose,
-  children
+  children,
+  drawerHeaderContent
 }) => {
   return (
     <Drawer
@@ -31,7 +32,9 @@ export const Sidebar = ({
         paper: classes.drawerPaper
       }}
     >
-      <DrawerHeader handleDrawerClose={handleDrawerClose} />
+      <DrawerHeader handleDrawerClose={handleDrawerClose}>
+        {drawerHeaderContent}
+      </DrawerHeader>
       {children}
     </Drawer>
   )

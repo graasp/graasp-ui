@@ -9,6 +9,7 @@ interface SidebarProps {
   isSidebarOpen?: boolean
   handleDrawerClose: () => {}
   children?: React.ReactElement
+  drawerHeaderContent?: React.ReactElement
 }
 
 declare const Sidebar: React.FC<SidebarProps>

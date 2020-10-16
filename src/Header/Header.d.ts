@@ -11,6 +11,7 @@ interface HeaderProps {
   isSidebarOpen?: boolean
   handleDrawerOpen?: () => {}
   hasSidebar: Boolean
+  openDrawerAriaLabel?: string
 }
 
 declare const Header: React.FC<HeaderProps>
