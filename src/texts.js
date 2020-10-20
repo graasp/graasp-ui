@@ -1,1 +1,1 @@
-export const OPEN_DRAWER_LABEL = 'Open drawer'
+export const OPEN_DRAWER_LABEL = 'Open Drawer'
