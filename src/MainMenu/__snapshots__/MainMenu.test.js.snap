@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MainMenu default values renders correctly 1`] = `<WithStyles(ForwardRef(List)) />`;
+
+exports[`MainMenu menu is defined with custom component renders correctly 1`] = `
+<WithStyles(ForwardRef(List))>
+  <div
+    key="one"
+    text="one"
+  />
+  ,
+  <div
+    key="two"
+    text="two"
+  />
+  ,
+  <div
+    key="three"
+    text="three"
+  />
+  ,
+</WithStyles(ForwardRef(List))>
+`;
+
+exports[`MainMenu menu is defined with graasp MenuItem renders correctly 1`] = `
+<WithStyles(ForwardRef(List))
+  id="id"
+>
+  <MenuItem
+    key="one"
+    text="one"
+  />
+  ,
+  <MenuItem
+    key="two"
+    text="two"
+  />
+  ,
+  <MenuItem
+    key="three"
+    text="three"
+  />
+  ,
+</WithStyles(ForwardRef(List))>
+`;

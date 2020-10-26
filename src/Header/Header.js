@@ -6,6 +6,7 @@ import Toolbar from '@material-ui/core/Toolbar'
 import IconButton from '@material-ui/core/IconButton'
 import MenuIcon from '@material-ui/icons/Menu'
 import { DRAWER_WIDTH } from '../constants'
+import { OPEN_DRAWER_LABEL } from '../texts'
 
 const styles = (theme) => ({
   appBar: {
@@ -31,7 +32,14 @@ const styles = (theme) => ({
   }
 })
 
-const Header = ({ id, classes, handleDrawerOpen, isSidebarOpen }) => {
+export const Header = ({
+  id,
+  classes,
+  hasSidebar,
+  handleDrawerOpen,
+  isSidebarOpen = false,
+  openDrawerAriaLabel = OPEN_DRAWER_LABEL
+}) => {
   return (
     <AppBar
       position='fixed'
@@ -40,15 +48,17 @@ const Header = ({ id, classes, handleDrawerOpen, isSidebarOpen }) => {
       })}
     >
       <Toolbar disableGutters={!isSidebarOpen}>
-        <IconButton
-          id={id}
-          color='inherit'
-          aria-label='Open drawer'
-          onClick={handleDrawerOpen}
-          className={clsx(classes.menuButton, isSidebarOpen && classes.hide)}
-        >
-          <MenuIcon />
-        </IconButton>
+        {hasSidebar && (
+          <IconButton
+            id={id}
+            color='inherit'
+            aria-label={openDrawerAriaLabel}
+            onClick={handleDrawerOpen}
+            className={clsx(classes.menuButton, isSidebarOpen && classes.hide)}
+          >
+            <MenuIcon />
+          </IconButton>
+        )}
       </Toolbar>
     </AppBar>
   )

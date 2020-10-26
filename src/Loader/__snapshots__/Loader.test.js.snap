@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Loader default values renders correctly 1`] = `
+<div>
+  <Loading
+    color="#5050d2"
+    delay={0}
+    height={64}
+    type="bubbles"
+    width={64}
+  />
+</div>
+`;
+
+exports[`Loader prop values renders correctly 1`] = `
+<div
+  className="someclass"
+>
+  <Loading
+    color="red"
+    delay={0}
+    height={64}
+    type="sometype"
+    width={64}
+  />
+</div>
+`;
