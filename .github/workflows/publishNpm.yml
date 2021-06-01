@@ -1,8 +1,9 @@
 on:
   push:
-    # Sequence of patterns matched against refs/tags
+    # sequence of patterns matched against refs/tags
     tags:
-      - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
+      # push events to matching v*, i.e. v1.0, v20.15.10
+      - 'v*' 
 
 jobs:
   publish:
@@ -15,7 +16,7 @@ jobs:
       - run: yarn install
       - run: yarn test
 
-      - name: Publish to NPM
+      - name: publish to npm
       - uses: JS-DevTools/npm-publish@v1
         with:
           token: ${{ secrets.NPM_TOKEN }}
