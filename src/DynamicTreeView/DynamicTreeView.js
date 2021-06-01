@@ -32,7 +32,6 @@ const DynamicTreeView = ({
   rootLabel,
   rootId,
   rootClassName,
-  prevent,
   useItem,
   useChildren,
   initialExpendedItems,
@@ -40,7 +39,7 @@ const DynamicTreeView = ({
   items,
   showItemFilter,
   selectedId,
-  setSelectedId,
+  onTreeItemSelect,
   shouldFetchChildrenForItem,
   isTreeItemDisabled,
   buildTreeItemClass,
@@ -50,12 +49,12 @@ const DynamicTreeView = ({
 
   const onSelect = (event, value) => {
     if (!showCheckbox) {
-      return setSelectedId(value);
+      return onTreeItemSelect?.(value);
     }
 
     // select the tree item only when clicking on the checkbox/input
     if (event.target.nodeName.toLowerCase() === 'input') {
-      return setSelectedId(value);
+      return onTreeItemSelect?.(value);
     }
 
     return false;
@@ -98,7 +97,6 @@ const DynamicTreeView = ({
           <CustomTreeItem
             key={itemId}
             itemId={itemId}
-            prevent={prevent}
             expandedItems={expandedItems}
             selectedId={selectedId}
             useItem={useItem}
@@ -118,6 +116,10 @@ const DynamicTreeView = ({
 DynamicTreeView.defaultProps = {
   showItemFilter: () => true,
   showCheckbox: true,
+  initialExpendedItems: [],
+  shouldFetchChildrenForItem: () => true,
+  isTreeItemDisabled: () => false,
+  buildTreeItemClass: () => '',
 };
 
 export default DynamicTreeView;

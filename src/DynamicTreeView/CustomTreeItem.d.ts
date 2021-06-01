@@ -2,17 +2,22 @@ import React from 'react';
 
 interface CustomItemTreeProps {
   id: string;
-  disabled?: boolean;
-  prevent?: string;
+  parentIsDisabled?: boolean;
   expandedItems: string[];
   selectedId: string;
-  targetId: string;
-  buildTreeItemClass: () => {};
-  isTreeItemDisabled: boolean;
-  useChildren: () => {};
-  useItem: () => {};
-  showItemFilter?: () => {};
-  shouldFetchChildrenForItem?: () => {};
+  buildTreeItemClass?: (id: string) => string;
+  isTreeItemDisabled?: (args: {
+    parentIsDisabled: boolean;
+    itemId: string;
+  }) => boolean;
+  useChildren: (
+    id: string,
+    options: { enabled: boolean = true },
+  ) => UseQueryData;
+  useItem: (id: string) => UseQueryData;
+  showItemFilter?: (item: Item) => boolean;
+  shouldFetchChildrenForItem?: (item: Item) => boolean;
+  showCheckbox?: boolean;
 }
 
 declare const CustomItemTree: React.Component<DynamicTreeViewProps>;

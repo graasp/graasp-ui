@@ -2,7 +2,7 @@ import React from 'react';
 import Checkbox from '@material-ui/core/Checkbox';
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   label: {
     display: 'flex',
     alignItems: 'center',
@@ -26,6 +26,12 @@ const TreeItemLabel = ({ showCheckbox, checked, className, name }) => {
   }
 
   return name;
+};
+
+TreeItemLabel.defaultProps = {
+  checked: false,
+  showCheckbox: false,
+  className: null,
 };
 
 export default TreeItemLabel;

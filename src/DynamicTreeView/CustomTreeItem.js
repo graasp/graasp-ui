@@ -178,6 +178,7 @@ CustomTreeItem.defaultProps = {
   selectedId: null,
   buildTreeItemClass: () => '',
   shouldFetchChildrenForItem: () => true,
+  showCheckbox: false,
 };
 
 export default CustomTreeItem;

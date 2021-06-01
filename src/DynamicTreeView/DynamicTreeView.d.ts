@@ -1,5 +1,5 @@
 import React from 'react';
-import { Map } from 'immutable';
+import { List } from 'immutable';
 
 type Item = {
   id: string;
@@ -12,18 +12,23 @@ interface DynamicTreeViewProps {
   rootLabel: string;
   rootId: string;
   rootClassName: string;
-  initialExpendedItems: string[];
-  showCheckbox: Item[];
-  items: Map;
+  items: List<Item>;
+  initialExpendedItems?: string[];
+  showCheckbox?: boolean;
   selectedId: string;
-  setSelectedId: () => {};
-  prevent: () => {};
-  useItem: () => {};
-  useChildren: () => {};
-  showItemFilter: () => {};
-  shouldFetchChildrenForItem: (item: Item) => {};
-  isTreeItemDisabled: () => {};
-  buildTreeItemClass: () => {};
+  onTreeItemSelect?: (id: string) => void;
+  useItem: (id: string) => UseQueryData;
+  useChildren: (
+    id: string,
+    options: { enabled: boolean = true },
+  ) => UseQueryData;
+  showItemFilter?: (item: Item) => boolean;
+  shouldFetchChildrenForItem?: (item: Item) => boolean;
+  isTreeItemDisabled?: (args: {
+    parentIsDisabled: boolean;
+    itemId: string;
+  }) => boolean;
+  buildTreeItemClass?: (id: string) => string;
 }
 
 declare const DynamicTreeView: React.Component<DynamicTreeViewProps>;
