@@ -21,7 +21,7 @@
     "lint": "eslint .",
     "prettier:check": "prettier --check \"{src,example}/**/*.{js,ts,tsx}\"",
     "prettier:write": "prettier --write \"{src,example}/**/*.{js,ts,tsx}\"",
-    "pretest-1": "cd example && yarn",
+    "pretest": "cd example && yarn",
     "test": "run-s test:unit test:lint test:build",
     "test:build": "run-s build",
     "test:lint": "eslint .",

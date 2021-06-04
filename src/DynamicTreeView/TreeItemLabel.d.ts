@@ -1,8 +1,8 @@
 import React from 'react';
 
 interface TreeItemLabelProps {
-  className?: string;
   name: string;
+  className?: string;
   showCheckbox?: boolean;
   checked?: boolean;
 }
