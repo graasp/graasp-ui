@@ -36,6 +36,7 @@
   "peerDependencies": {
     "@material-ui/core": "4.11.0",
     "@material-ui/icons": "4.9.1",
+    "@material-ui/lab": "4.0.0-alpha.58",
     "react": "^16.13.1",
     "react-dom": "16.13.1"
   },
@@ -73,17 +74,22 @@
     "npm-run-all": "^4.1.5",
     "prettier": "^2.0.4",
     "pretty-quick": "3.0.2",
-    "react-scripts": "3.4.3",
     "standard-version": "8.0.2",
     "typescript": "^3.7.5"
+  },
+  "dependencies": {
+    "clsx": "1.1.1",
+    "immutable": "4.0.0-rc.12",
+    "react-loading": "2.0.3"
+  },
+  "localDependencies": {
+    "react": "./example/node_modules/react",
+    "react-dom": "./example/node_modules/react-dom",
+    "react-scripts": "./example/node_modules/react-scripts"
   },
   "files": [
     "dist"
   ],
-  "dependencies": {
-    "clsx": "1.1.1",
-    "react-loading": "2.0.3"
-  },
   "jest": {
     "snapshotSerializers": [
       "enzyme-to-json/serializer"
@@ -91,6 +97,8 @@
     "moduleNameMapper": {
       "@material-ui/core/(.*)": "<rootDir>/example/node_modules/@material-ui/core/$1",
       "@material-ui/icons/(.*)": "<rootDir>/example/node_modules/@material-ui/icons/$1",
+      "@material-ui/lab/(.*)": "<rootDir>/example/node_modules/@material-ui/lab/$1",
+      "immutable": "<rootDir>/node_modules/immutable",
       "^react$": "<rootDir>/example/node_modules/react",
       "^react-dom$": "<rootDir>/example/node_modules/react-dom",
       "^react-dom/(.*)": "<rootDir>/example/node_modules/react-dom/$1"
