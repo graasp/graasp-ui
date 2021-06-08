@@ -23,3 +23,7 @@ export * from './Main';
 
 export { default as DynamicTreeView } from './DynamicTreeView';
 export * from './DynamicTreeView';
+
+export * from './items';
+
+export { default as TextEditor } from './TextEditor';

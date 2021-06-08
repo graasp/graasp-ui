@@ -80,7 +80,9 @@
   "dependencies": {
     "clsx": "1.1.1",
     "immutable": "4.0.0-rc.12",
-    "react-loading": "2.0.3"
+    "katex": "0.13.11",
+    "react-loading": "2.0.3",
+    "react-quill": "1.3.5"
   },
   "localDependencies": {
     "react": "./example/node_modules/react",
