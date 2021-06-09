@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { Map } from 'immutable';
-import PropTypes from 'prop-types';
 import { MIME_TYPES } from '../constants';
 import FileImage from './FileImage';
 import FileVideo from './FileVideo';
 import FilePdf from './FilePdf';
 import { getS3FileExtra } from '../utils/itemExtra';
+import DownloadButtonFileItem from './DownloadButtonFileItem';
 
-const S3FileItem = ({ item, content }) => {
+const S3FileItem = ({ item, content, defaultItem, defaultText, maxHeight }) => {
   const [url, setUrl] = useState();
-  const { contenttype } = getS3FileExtra(item.get('extra'));
+  const { contenttype, name: originalFileName } = getS3FileExtra(
+    item.get('extra'),
+  );
   const id = item.get('id');
   const name = item.get('name');
 
@@ -43,16 +44,27 @@ const S3FileItem = ({ item, content }) => {
   }
 
   if (MIME_TYPES.PDF.includes(contenttype)) {
-    return <FilePdf id={id} url={url} />;
+    return <FilePdf id={id} url={url} height={maxHeight} />;
   }
 
   // todo: add more file extension
 
-  return false;
+  if (defaultItem) {
+    return defaultItem;
+  }
+
+  return (
+    <DownloadButtonFileItem
+      name={originalFileName}
+      url={url}
+      defaultText={defaultText}
+    />
+  );
 };
 
-S3FileItem.propTypes = {
-  item: PropTypes.instanceOf(Map).isRequired,
+S3FileItem.defaultProps = {
+  defaultItem: null,
+  defaultText: 'No preview available for this file',
 };
 
 export default S3FileItem;

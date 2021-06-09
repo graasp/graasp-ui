@@ -1,7 +1,6 @@
-import React, { useRef, useEffect } from 'react';
-import PropTypes from 'prop-types';
-import { Map } from 'immutable';
+import React, { useRef, useEffect, useState } from 'react';
 import { getAppExtra } from '../utils/itemExtra';
+import Loader from '../Loader';
 
 export const GET_AUTH_TOKEN = 'GET_AUTH_TOKEN';
 export const GET_AUTH_TOKEN_SUCCEEDED = 'GET_AUTH_TOKEN_SUCCEEDED';
@@ -18,15 +17,12 @@ const requestApiAccessToken = async ({ id, origin, app, apiHost }) => {
     body: JSON.stringify({ origin, app }),
   });
 
-  if (!res.ok) {
-    throw new Error(res.statusText);
-  }
-
   return res.json();
 };
 
 const AppItem = ({ item, user, apiHost }) => {
   const iframeRef = useRef();
+  const [iframeIsLoading, setIframeIsLoading] = useState(true);
   const url = getAppExtra(item?.get('extra'))?.url;
 
   const channel = new MessageChannel();
@@ -67,7 +63,6 @@ const AppItem = ({ item, user, apiHost }) => {
 
   const windowOnMessage = async (e) => {
     const { data, origin: requestOrigin } = e;
-    const { type } = JSON.parse(data);
 
     // responds only to corresponding app
     if (!url.includes(requestOrigin)) {
@@ -75,6 +70,7 @@ const AppItem = ({ item, user, apiHost }) => {
     }
 
     // return context data and message channel port to app
+    const { type } = JSON.parse(data);
     if (type === GET_CONTEXT) {
       // Listen for messages on port1
       port1.onmessage = onMessage;
@@ -106,19 +102,19 @@ const AppItem = ({ item, user, apiHost }) => {
   }, []);
 
   return (
-    <iframe
-      title={item?.get('name')}
-      ref={iframeRef}
-      width='100%'
-      height={300}
-      src={url}
-      frameBorder={0}
-    />
+    <React.Fragment>
+      {iframeIsLoading && <Loader />}
+      <iframe
+        title={item?.get('name')}
+        onLoad={() => setIframeIsLoading(false)}
+        ref={iframeRef}
+        width='100%'
+        height={300}
+        src={url}
+        frameBorder={0}
+      />
+    </React.Fragment>
   );
-};
-
-AppItem.propTypes = {
-  item: PropTypes.instanceOf(Map).isRequired,
 };
 
 export default AppItem;

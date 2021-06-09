@@ -4,10 +4,11 @@ import FileImage from './FileImage';
 import FileVideo from './FileVideo';
 import FilePdf from './FilePdf';
 import { getFileExtra } from '../utils/itemExtra';
+import DownloadButtonFileItem from './DownloadButtonFileItem';
 
-const FileItem = ({ item, content }) => {
+const FileItem = ({ item, content, defaultItem, defaultText, maxHeight }) => {
   const [url, setUrl] = useState();
-  const { mimetype } = getFileExtra(item.get('extra'));
+  const { mimetype, name: originalFileName } = getFileExtra(item.get('extra'));
   const id = item.get('id');
   const name = item.get('name');
 
@@ -41,12 +42,27 @@ const FileItem = ({ item, content }) => {
   }
 
   if (MIME_TYPES.PDF.includes(mimetype)) {
-    return <FilePdf id={id} url={url} />;
+    return <FilePdf id={id} url={url} height={maxHeight} />;
   }
 
   // todo: add more file extensions
 
-  return null;
+  if (defaultItem) {
+    return defaultItem;
+  }
+
+  return (
+    <DownloadButtonFileItem
+      name={originalFileName}
+      url={url}
+      defaultText={defaultText}
+    />
+  );
+};
+
+FileItem.defaultProps = {
+  defaultItem: null,
+  defaultText: 'No preview available for this file',
 };
 
 export default FileItem;

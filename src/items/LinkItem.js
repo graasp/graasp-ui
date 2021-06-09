@@ -1,18 +1,15 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core';
-import { Map } from 'immutable';
 import { getEmbeddedLinkExtra } from '../utils/itemExtra';
 
 const useStyles = makeStyles(() => ({
   iframe: {
     width: '100%',
-    height: '100%',
     border: 'none',
   },
 }));
 
-const LinkItem = ({ item }) => {
+const LinkItem = ({ item, height }) => {
   const classes = useStyles();
 
   const id = item.get('id');
@@ -28,11 +25,15 @@ const LinkItem = ({ item }) => {
   // default case is an iframe with given link
   const url = extra?.url;
   const name = item.get('name');
-  return <iframe id={id} className={classes.iframe} title={name} src={url} />;
-};
-
-LinkItem.propTypes = {
-  item: PropTypes.instanceOf(Map).isRequired,
+  return (
+    <iframe
+      id={id}
+      className={classes.iframe}
+      title={name}
+      src={url}
+      height={height || '100%'}
+    />
+  );
 };
 
 export default LinkItem;

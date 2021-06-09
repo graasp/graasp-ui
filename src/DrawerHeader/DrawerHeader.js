@@ -1,26 +1,26 @@
-import React from 'react'
-import { withStyles } from '@material-ui/core/styles'
-import IconButton from '@material-ui/core/IconButton'
-import ListItem from '@material-ui/core/ListItem'
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
-import ChevronRightIcon from '@material-ui/icons/ChevronRight'
-import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction'
-import { DEFAULT_DIRECTION, DRAWER_HEADER_HEIGHT } from '../constants'
+import React from 'react';
+import { withStyles } from '@material-ui/core/styles';
+import IconButton from '@material-ui/core/IconButton';
+import ListItem from '@material-ui/core/ListItem';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
+import { DEFAULT_DIRECTION, DRAWER_HEADER_HEIGHT } from '../constants';
 
 const styles = (theme) => ({
   drawerHeader: {
-    height: DRAWER_HEADER_HEIGHT
+    height: DRAWER_HEADER_HEIGHT,
   },
   secondaryAction: {
-    right: theme.spacing(1)
-  }
-})
+    right: theme.spacing(1),
+  },
+});
 
 export const DrawerHeader = ({
   classes,
   handleDrawerClose,
   children,
-  theme: { direction = DEFAULT_DIRECTION }
+  theme: { direction = DEFAULT_DIRECTION },
 }) => {
   return (
     <ListItem
@@ -35,9 +35,9 @@ export const DrawerHeader = ({
         </IconButton>
       </ListItemSecondaryAction>
     </ListItem>
-  )
-}
+  );
+};
 
-const StyledComponent = withStyles(styles, { withTheme: true })(DrawerHeader)
+const StyledComponent = withStyles(styles, { withTheme: true })(DrawerHeader);
 
-export default StyledComponent
+export default StyledComponent;

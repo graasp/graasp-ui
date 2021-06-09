@@ -11,15 +11,19 @@ import 'katex/dist/katex.min.css';
 
 window.katex = katex;
 
-const useStyles = makeStyles(() => ({
-  wrapper: {
-    '& .ql-editor': {
-      minHeight: TEXT_EDITOR_MIN_HEIGHT,
-    },
-  },
-}));
-
 const TextEditor = ({ id, onChange, value, readOnly, placeholderText }) => {
+  const useStyles = makeStyles(() => ({
+    wrapper: {
+      '& .ql-editor': {
+        // adapt height if read only
+        minHeight: readOnly ? 0 : TEXT_EDITOR_MIN_HEIGHT,
+      },
+      '& .ql-container': {
+        border: readOnly ? 'none' : undefined,
+      },
+    },
+  }));
+
   const classes = useStyles();
 
   const placeholder = !readOnly && placeholderText ? 'Write something' : null;
