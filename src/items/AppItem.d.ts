@@ -5,6 +5,7 @@ interface AppItemProps {
   item: Map;
   user: Map;
   apiHost: string;
+  id?: string;
 }
 
 declare const AppItem: React.FC<AppItemProps>;

@@ -6,12 +6,18 @@ import FilePdf from './FilePdf';
 import { getS3FileExtra } from '../utils/itemExtra';
 import DownloadButtonFileItem from './DownloadButtonFileItem';
 
-const S3FileItem = ({ item, content, defaultItem, defaultText, maxHeight }) => {
+const S3FileItem = ({
+  id,
+  item,
+  content,
+  defaultItem,
+  defaultText,
+  maxHeight,
+}) => {
   const [url, setUrl] = useState();
   const { contenttype, name: originalFileName } = getS3FileExtra(
     item.get('extra'),
   );
-  const id = item.get('id');
   const name = item.get('name');
 
   useEffect(() => {
@@ -55,6 +61,7 @@ const S3FileItem = ({ item, content, defaultItem, defaultText, maxHeight }) => {
 
   return (
     <DownloadButtonFileItem
+      id={id}
       name={originalFileName}
       url={url}
       defaultText={defaultText}

@@ -1,7 +1,7 @@
 interface TextEditorProps {
-  id: string;
   onChange: () => void;
   value: string | null;
+  id?: string;
   readOnly?: boolean;
   placeholderText?: string;
 }

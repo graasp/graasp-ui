@@ -3,17 +3,18 @@ import Button from '@material-ui/core/Button';
 import GetAppIcon from '@material-ui/icons/GetApp';
 import { makeStyles } from '@material-ui/styles';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   link: {
     textDecoration: 'none',
   },
 }));
 
-const DownloadButtonFileItem = ({ name, url }) => {
+const DownloadButtonFileItem = ({ id, name, url }) => {
   const classes = useStyles();
 
   return (
     <a
+      id={id}
       className={classes.link}
       href={url}
       target='_blank'
@@ -28,6 +29,10 @@ const DownloadButtonFileItem = ({ name, url }) => {
       >{`Download ${name}`}</Button>
     </a>
   );
+};
+
+DownloadButtonFileItem.defaultProps = {
+  id: null,
 };
 
 export default DownloadButtonFileItem;

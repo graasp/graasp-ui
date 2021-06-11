@@ -20,7 +20,7 @@ const requestApiAccessToken = async ({ id, origin, app, apiHost }) => {
   return res.json();
 };
 
-const AppItem = ({ item, user, apiHost }) => {
+const AppItem = ({ id, item, user, apiHost }) => {
   const iframeRef = useRef();
   const [iframeIsLoading, setIframeIsLoading] = useState(true);
   const url = getAppExtra(item?.get('extra'))?.url;
@@ -105,6 +105,7 @@ const AppItem = ({ item, user, apiHost }) => {
     <React.Fragment>
       {iframeIsLoading && <Loader />}
       <iframe
+        id={id}
         title={item?.get('name')}
         onLoad={() => setIframeIsLoading(false)}
         ref={iframeRef}

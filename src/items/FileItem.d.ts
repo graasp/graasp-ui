@@ -4,6 +4,7 @@ import React from 'react';
 interface FileItemProps {
   item: Map;
   content: Blob;
+  id?: string;
   defaultItem?: React.FC;
   defaultText?: string;
   maxHeight?: number;

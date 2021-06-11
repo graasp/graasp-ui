@@ -6,10 +6,16 @@ import FilePdf from './FilePdf';
 import { getFileExtra } from '../utils/itemExtra';
 import DownloadButtonFileItem from './DownloadButtonFileItem';
 
-const FileItem = ({ item, content, defaultItem, defaultText, maxHeight }) => {
+const FileItem = ({
+  id,
+  item,
+  content,
+  defaultItem,
+  defaultText,
+  maxHeight,
+}) => {
   const [url, setUrl] = useState();
   const { mimetype, name: originalFileName } = getFileExtra(item.get('extra'));
-  const id = item.get('id');
   const name = item.get('name');
 
   useEffect(() => {
@@ -53,6 +59,7 @@ const FileItem = ({ item, content, defaultItem, defaultText, maxHeight }) => {
 
   return (
     <DownloadButtonFileItem
+      id={id}
       name={originalFileName}
       url={url}
       defaultText={defaultText}
