@@ -5,6 +5,7 @@ import FileVideo from './FileVideo';
 import FilePdf from './FilePdf';
 import { getFileExtra } from '../utils/itemExtra';
 import DownloadButtonFileItem from './DownloadButtonFileItem';
+import withCaption from './withCaption';
 
 const FileItem = ({
   id,
@@ -13,6 +14,9 @@ const FileItem = ({
   defaultItem,
   downloadText,
   maxHeight,
+  onSaveCaption,
+  editCaption,
+  showCaption,
 }) => {
   const [url, setUrl] = useState();
   const { mimetype, name: originalFileName } = getFileExtra(item.get('extra'));
@@ -39,19 +43,27 @@ const FileItem = ({
     return null;
   }
 
+  let component;
   if (MIME_TYPES.IMAGE.includes(mimetype)) {
-    return <FileImage id={id} url={url} alt={name} />;
-  }
-
-  if (MIME_TYPES.VIDEO.includes(mimetype)) {
-    return <FileVideo id={id} url={url} type={mimetype} />;
-  }
-
-  if (MIME_TYPES.PDF.includes(mimetype)) {
-    return <FilePdf id={id} url={url} height={maxHeight} />;
+    component = <FileImage id={id} url={url} alt={name} />;
+  } else if (MIME_TYPES.VIDEO.includes(mimetype)) {
+    component = <FileVideo id={id} url={url} type={mimetype} />;
+  } else if (MIME_TYPES.PDF.includes(mimetype)) {
+    component = <FilePdf id={id} url={url} height={maxHeight} />;
   }
 
   // todo: add more file extensions
+
+  if (component) {
+    // display element with caption
+    if (showCaption) {
+      return withCaption({ item, onSave: onSaveCaption, edit: editCaption })(
+        component,
+      );
+    }
+
+    return component;
+  }
 
   if (defaultItem) {
     return defaultItem;
@@ -72,6 +84,9 @@ FileItem.defaultProps = {
   downloadText: null,
   maxHeight: '100%',
   id: null,
+  editCaption: false,
+  onSaveCaption: null,
+  showCaption: true,
 };
 
 export default FileItem;

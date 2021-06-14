@@ -8,6 +8,9 @@ interface S3FileItemProps {
   defaultItem?: React.FC;
   downloadText?: string;
   maxHeight?: number;
+  onSaveCaption?: (string) => void;
+  editCaption?: boolean;
+  showCaption?: boolean;
 }
 
 declare const S3FileItem: React.FC<S3FileItemProps>;

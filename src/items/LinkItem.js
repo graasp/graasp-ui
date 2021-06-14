@@ -1,6 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core';
 import { getEmbeddedLinkExtra } from '../utils/itemExtra';
+import withCaption from './withCaption';
 
 const useStyles = makeStyles(() => ({
   iframe: {
@@ -9,7 +10,13 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const LinkItem = ({ item, height }) => {
+const LinkItem = ({
+  item,
+  height,
+  onSaveCaption,
+  editCaption,
+  showCaption,
+}) => {
   const classes = useStyles();
 
   const id = item.get('id');
@@ -25,15 +32,31 @@ const LinkItem = ({ item, height }) => {
   // default case is an iframe with given link
   const url = extra?.url;
   const name = item.get('name');
-  return (
+
+  const component = (
     <iframe
       id={id}
       className={classes.iframe}
       title={name}
       src={url}
-      height={height || '100%'}
+      height={height}
     />
   );
+
+  if (showCaption) {
+    return withCaption({ item, onSave: onSaveCaption, edit: editCaption })(
+      component,
+    );
+  }
+
+  return component;
+};
+
+LinkItem.defaultProps = {
+  height: '100%',
+  onSaveCaption: () => {},
+  editCaption: false,
+  showCaption: true,
 };
 
 export default LinkItem;

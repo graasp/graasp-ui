@@ -1,9 +1,9 @@
 interface TextEditorProps {
-  onChange: () => void;
+  onSave: (string) => void;
   value: string | null;
   id?: string;
-  readOnly?: boolean;
   placeholderText?: string;
+  edit?: boolean;
 }
 
 declare const TextEditor: React.FC<TextEditorProps>;

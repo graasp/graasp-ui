@@ -8,6 +8,9 @@ interface FileItemProps {
   defaultItem?: React.FC;
   downloadText?: string;
   maxHeight?: number;
+  onSaveCaption?: (string) => void;
+  editCaption?: boolean;
+  showCaption?: boolean;
 }
 
 declare const FileItem: React.FC<FileItemProps>;

@@ -6,6 +6,9 @@ interface AppItemProps {
   user: Map;
   apiHost: string;
   id?: string;
+  onSaveCaption?: (string) => void;
+  editCaption?: boolean;
+  showCaption?: boolean;
 }
 
 declare const AppItem: React.FC<AppItemProps>;
