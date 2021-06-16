@@ -9,8 +9,9 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const DownloadButtonFileItem = ({ id, name, url }) => {
+const DownloadButtonFileItem = ({ id, name, url, text }) => {
   const classes = useStyles();
+  const buttonText = text || `Download ${name}`;
 
   return (
     <a
@@ -26,7 +27,9 @@ const DownloadButtonFileItem = ({ id, name, url }) => {
         variant='contained'
         size='large'
         startIcon={<GetAppIcon />}
-      >{`Download ${name}`}</Button>
+      >
+        {buttonText}
+      </Button>
     </a>
   );
 };

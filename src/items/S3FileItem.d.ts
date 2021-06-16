@@ -6,7 +6,7 @@ interface S3FileItemProps {
   content: Blob;
   id?: string;
   defaultItem?: React.FC;
-  defaultText?: string;
+  downloadText?: string;
   maxHeight?: number;
 }
 

@@ -11,7 +11,7 @@ const FileItem = ({
   item,
   content,
   defaultItem,
-  defaultText,
+  downloadText,
   maxHeight,
 }) => {
   const [url, setUrl] = useState();
@@ -62,14 +62,16 @@ const FileItem = ({
       id={id}
       name={originalFileName}
       url={url}
-      defaultText={defaultText}
+      text={downloadText}
     />
   );
 };
 
 FileItem.defaultProps = {
   defaultItem: null,
-  defaultText: 'No preview available for this file',
+  downloadText: null,
+  maxHeight: '100%',
+  id: null,
 };
 
 export default FileItem;

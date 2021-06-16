@@ -1,6 +1,11 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { getAppExtra } from '../utils/itemExtra';
 import Loader from '../Loader';
+import {
+  APP_ITEM_FRAME_BORDER,
+  APP_ITEM_HEIGHT,
+  APP_ITEM_WIDTH,
+} from '../constants';
 
 export const GET_AUTH_TOKEN = 'GET_AUTH_TOKEN';
 export const GET_AUTH_TOKEN_SUCCEEDED = 'GET_AUTH_TOKEN_SUCCEEDED';
@@ -109,10 +114,11 @@ const AppItem = ({ id, item, user, apiHost }) => {
         title={item?.get('name')}
         onLoad={() => setIframeIsLoading(false)}
         ref={iframeRef}
-        width='100%'
-        height={300}
+        width={APP_ITEM_WIDTH}
+        // todo: dynamic height depending on app
+        height={APP_ITEM_HEIGHT}
         src={url}
-        frameBorder={0}
+        frameBorder={APP_ITEM_FRAME_BORDER}
       />
     </React.Fragment>
   );

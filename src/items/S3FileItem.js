@@ -11,7 +11,7 @@ const S3FileItem = ({
   item,
   content,
   defaultItem,
-  defaultText,
+  downloadText,
   maxHeight,
 }) => {
   const [url, setUrl] = useState();
@@ -64,14 +64,14 @@ const S3FileItem = ({
       id={id}
       name={originalFileName}
       url={url}
-      defaultText={defaultText}
+      text={downloadText}
     />
   );
 };
 
 S3FileItem.defaultProps = {
   defaultItem: null,
-  defaultText: 'No preview available for this file',
+  downloadText: null,
 };
 
 export default S3FileItem;
