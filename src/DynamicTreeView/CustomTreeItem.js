@@ -105,11 +105,11 @@ const CustomTreeItem = ({
       return LoadingTreeItem;
     }
 
-    const filteredChildren = children.filter((item) =>
+    const filteredChildren = children?.filter((item) =>
       showItemFilter(Map(item)),
     );
 
-    if (!filteredChildren.size) {
+    if (!filteredChildren?.size) {
       return null;
     }
 
