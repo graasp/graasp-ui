@@ -22,11 +22,23 @@ const LinkItem = ({
   const id = item.get('id');
   const extra = getEmbeddedLinkExtra(item.get('extra'));
 
+  const Wrapper = withCaption({
+    item,
+    onBlur: onSaveCaption,
+    edit: editCaption,
+  });
+
   // if available, display specific player
   const html = extra?.html;
   if (html) {
     // eslint-disable-next-line react/no-danger
-    return <div id={id} dangerouslySetInnerHTML={{ __html: html }} />;
+    const component = (
+      <div id={id} dangerouslySetInnerHTML={{ __html: html }} />
+    );
+    if (showCaption) {
+      return Wrapper(component);
+    }
+    return component;
   }
 
   // default case is an iframe with given link
@@ -44,9 +56,7 @@ const LinkItem = ({
   );
 
   if (showCaption) {
-    return withCaption({ item, onSave: onSaveCaption, edit: editCaption })(
-      component,
-    );
+    return Wrapper(component);
   }
 
   return component;
@@ -54,7 +64,7 @@ const LinkItem = ({
 
 LinkItem.defaultProps = {
   height: '100%',
-  onSaveCaption: () => {},
+  onSaveCaption: null,
   editCaption: false,
   showCaption: true,
 };

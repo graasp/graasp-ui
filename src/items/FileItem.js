@@ -57,7 +57,7 @@ const FileItem = ({
   if (component) {
     // display element with caption
     if (showCaption) {
-      return withCaption({ item, onSave: onSaveCaption, edit: editCaption })(
+      return withCaption({ item, onBlur: onSaveCaption, edit: editCaption })(
         component,
       );
     }

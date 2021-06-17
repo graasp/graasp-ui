@@ -133,7 +133,7 @@ const AppItem = ({
   );
 
   if (showCaption) {
-    return withCaption({ item, onSave: onSaveCaption, edit: editCaption })(
+    return withCaption({ item, onBlur: onSaveCaption, edit: editCaption })(
       component,
     );
   }
@@ -142,7 +142,7 @@ const AppItem = ({
 };
 
 AppItem.defaultProps = {
-  onSaveCaption: () => {},
+  onSaveCaption: null,
   editCaption: false,
   showCaption: true,
 };

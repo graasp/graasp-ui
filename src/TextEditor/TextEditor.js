@@ -3,7 +3,6 @@ import { makeStyles } from '@material-ui/core';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import PropTypes from 'prop-types';
-// import Button from '@material-ui/core/Button';
 import { TEXT_EDITOR_MIN_HEIGHT, TEXT_EDITOR_TOOLBAR } from '../constants';
 
 // formula dependencies
@@ -17,7 +16,8 @@ const TextEditor = ({
   value: initialValue,
   edit,
   placeholderText,
-  onSave,
+  onBlur,
+  onChange,
 }) => {
   // keep current content
   const [value, setValue] = useState(initialValue);
@@ -34,11 +34,13 @@ const TextEditor = ({
     },
   }));
 
-  const onChange = (v) => {
+  const onTextChange = (v) => {
     // keep track of the current content
     if (edit) {
       setValue(v);
     }
+    // eslint-disable-next-line no-unused-expressions
+    onChange?.(v);
   };
 
   const classes = useStyles();
@@ -50,7 +52,7 @@ const TextEditor = ({
       className={classes.wrapper}
       onBlur={() => {
         // eslint-disable-next-line no-unused-expressions
-        onSave?.(value);
+        onBlur?.(value);
       }}
     >
       <ReactQuill
@@ -59,7 +61,7 @@ const TextEditor = ({
         readOnly={!edit}
         theme='snow'
         value={value}
-        onChange={onChange}
+        onChange={onTextChange}
         modules={{
           toolbar: edit ? TEXT_EDITOR_TOOLBAR : null,
         }}

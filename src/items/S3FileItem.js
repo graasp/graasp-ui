@@ -62,7 +62,7 @@ const S3FileItem = ({
 
   if (component) {
     if (showCaption) {
-      return withCaption({ item, onSave: onSaveCaption, edit: editCaption })(
+      return withCaption({ item, onBlur: onSaveCaption, edit: editCaption })(
         component,
       );
     }
@@ -87,7 +87,7 @@ S3FileItem.defaultProps = {
   defaultItem: null,
   downloadText: null,
   showCaption: true,
-  onSaveCaption: () => {},
+  onSaveCaption: null,
   maxHeight: '100%',
   id: null,
   editCaption: false,

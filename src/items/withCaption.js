@@ -3,7 +3,7 @@ import { Grid } from '@material-ui/core';
 import TextEditor from '../TextEditor';
 
 const withCaption =
-  ({ item, onSave, edit }) =>
+  ({ item, onBlur, edit }) =>
   (component) => {
     return (
       <Grid container>
@@ -12,7 +12,7 @@ const withCaption =
         </Grid>
         <Grid item xs={12}>
           <TextEditor
-            onSave={onSave}
+            onBlur={onBlur}
             value={item.get('description')}
             edit={edit}
           />
