@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
@@ -11,34 +11,49 @@ import 'katex/dist/katex.min.css';
 
 window.katex = katex;
 
-const TextEditor = ({ id, onChange, value, readOnly, placeholderText }) => {
+const TextEditor = ({
+  id,
+  value: initialValue,
+  edit,
+  placeholderText,
+  onChange,
+}) => {
+  // keep current content
+  const [content, setContent] = useState(initialValue);
   const useStyles = makeStyles(() => ({
     wrapper: {
       '& .ql-editor': {
         // adapt height if read only
-        minHeight: readOnly ? 0 : TEXT_EDITOR_MIN_HEIGHT,
+        minHeight: !edit ? 0 : TEXT_EDITOR_MIN_HEIGHT,
       },
       '& .ql-container': {
-        border: readOnly ? 'none' : undefined,
+        border: !edit ? 'none' : undefined,
       },
     },
   }));
 
+  const onTextChange = (v) => {
+    // keep track of the current content
+    setContent(v);
+    // eslint-disable-next-line no-unused-expressions
+    onChange?.(v);
+  };
+
   const classes = useStyles();
 
-  const placeholder = !readOnly && placeholderText ? 'Write something' : null;
+  const placeholder = edit ? placeholderText : null;
 
   return (
     <div className={classes.wrapper}>
       <ReactQuill
         id={id}
         placeholder={placeholder}
-        readOnly={readOnly}
+        readOnly={!edit}
         theme='snow'
-        value={value}
-        onChange={onChange}
+        value={content}
+        onChange={onTextChange}
         modules={{
-          toolbar: readOnly ? null : TEXT_EDITOR_TOOLBAR,
+          toolbar: edit ? TEXT_EDITOR_TOOLBAR : null,
         }}
       />
     </div>
@@ -47,18 +62,16 @@ const TextEditor = ({ id, onChange, value, readOnly, placeholderText }) => {
 
 TextEditor.propTypes = {
   id: PropTypes.string,
-  onChange: PropTypes.func,
   value: PropTypes.string,
-  readOnly: PropTypes.bool,
+  edit: PropTypes.bool,
   placeholderText: PropTypes.string,
 };
 
 TextEditor.defaultProps = {
   id: null,
   value: '',
-  onChange: () => null,
-  readOnly: false,
-  placeholderText: null,
+  edit: false,
+  placeholderText: 'Write something...',
 };
 
 export default TextEditor;

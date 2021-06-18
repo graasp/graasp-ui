@@ -6,6 +6,7 @@ import {
   APP_ITEM_HEIGHT,
   APP_ITEM_WIDTH,
 } from '../constants';
+import withCaption from './withCaption';
 
 export const GET_AUTH_TOKEN = 'GET_AUTH_TOKEN';
 export const GET_AUTH_TOKEN_SUCCEEDED = 'GET_AUTH_TOKEN_SUCCEEDED';
@@ -25,7 +26,16 @@ const requestApiAccessToken = async ({ id, origin, app, apiHost }) => {
   return res.json();
 };
 
-const AppItem = ({ id, item, user, apiHost }) => {
+const AppItem = ({
+  id,
+  item,
+  user,
+  apiHost,
+  onSaveCaption,
+  editCaption,
+  showCaption,
+  saveButtonId,
+}) => {
   const iframeRef = useRef();
   const [iframeIsLoading, setIframeIsLoading] = useState(true);
   const url = getAppExtra(item?.get('extra'))?.url;
@@ -106,7 +116,7 @@ const AppItem = ({ id, item, user, apiHost }) => {
     window.addEventListener('message', windowOnMessage);
   }, []);
 
-  return (
+  const component = (
     <React.Fragment>
       {iframeIsLoading && <Loader />}
       <iframe
@@ -122,6 +132,24 @@ const AppItem = ({ id, item, user, apiHost }) => {
       />
     </React.Fragment>
   );
+
+  if (showCaption) {
+    return withCaption({
+      item,
+      onSave: onSaveCaption,
+      edit: editCaption,
+      saveButtonId,
+    })(component);
+  }
+
+  return component;
+};
+
+AppItem.defaultProps = {
+  onSaveCaption: null,
+  editCaption: false,
+  showCaption: true,
+  saveButtonId: null,
 };
 
 export default AppItem;
