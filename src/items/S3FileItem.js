@@ -17,6 +17,7 @@ const S3FileItem = ({
   onSaveCaption,
   editCaption,
   showCaption,
+  saveButtonId,
 }) => {
   const [url, setUrl] = useState();
   const { contenttype, name: originalFileName } = getS3FileExtra(
@@ -62,9 +63,12 @@ const S3FileItem = ({
 
   if (component) {
     if (showCaption) {
-      return withCaption({ item, onBlur: onSaveCaption, edit: editCaption })(
-        component,
-      );
+      return withCaption({
+        item,
+        onSave: onSaveCaption,
+        saveButtonId,
+        edit: editCaption,
+      })(component);
     }
     return component;
   }
@@ -91,6 +95,7 @@ S3FileItem.defaultProps = {
   maxHeight: '100%',
   id: null,
   editCaption: false,
+  saveButtonId: null,
 };
 
 export default S3FileItem;

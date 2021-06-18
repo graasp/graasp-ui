@@ -17,6 +17,7 @@ const FileItem = ({
   onSaveCaption,
   editCaption,
   showCaption,
+  saveButtonId,
 }) => {
   const [url, setUrl] = useState();
   const { mimetype, name: originalFileName } = getFileExtra(item.get('extra'));
@@ -57,9 +58,12 @@ const FileItem = ({
   if (component) {
     // display element with caption
     if (showCaption) {
-      return withCaption({ item, onBlur: onSaveCaption, edit: editCaption })(
-        component,
-      );
+      return withCaption({
+        item,
+        onSave: onSaveCaption,
+        edit: editCaption,
+        saveButtonId,
+      })(component);
     }
 
     return component;
@@ -87,6 +91,7 @@ FileItem.defaultProps = {
   editCaption: false,
   onSaveCaption: null,
   showCaption: true,
+  saveButtonId: null,
 };
 
 export default FileItem;

@@ -16,12 +16,10 @@ const TextEditor = ({
   value: initialValue,
   edit,
   placeholderText,
-  onBlur,
   onChange,
 }) => {
   // keep current content
-  const [value, setValue] = useState(initialValue);
-
+  const [content, setContent] = useState(initialValue);
   const useStyles = makeStyles(() => ({
     wrapper: {
       '& .ql-editor': {
@@ -36,31 +34,23 @@ const TextEditor = ({
 
   const onTextChange = (v) => {
     // keep track of the current content
-    if (edit) {
-      setValue(v);
-    }
+    setContent(v);
     // eslint-disable-next-line no-unused-expressions
     onChange?.(v);
   };
 
   const classes = useStyles();
 
-  const placeholder = edit && placeholderText ? 'Write something' : null;
+  const placeholder = edit ? placeholderText : null;
 
   return (
-    <div
-      className={classes.wrapper}
-      onBlur={() => {
-        // eslint-disable-next-line no-unused-expressions
-        onBlur?.(value);
-      }}
-    >
+    <div className={classes.wrapper}>
       <ReactQuill
         id={id}
         placeholder={placeholder}
         readOnly={!edit}
         theme='snow'
-        value={value}
+        value={content}
         onChange={onTextChange}
         modules={{
           toolbar: edit ? TEXT_EDITOR_TOOLBAR : null,
@@ -81,7 +71,7 @@ TextEditor.defaultProps = {
   id: null,
   value: '',
   edit: false,
-  placeholderText: null,
+  placeholderText: 'Write something...',
 };
 
 export default TextEditor;

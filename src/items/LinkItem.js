@@ -16,15 +16,17 @@ const LinkItem = ({
   onSaveCaption,
   editCaption,
   showCaption,
+  saveButtonId,
 }) => {
   const classes = useStyles();
 
   const id = item.get('id');
   const extra = getEmbeddedLinkExtra(item.get('extra'));
 
-  const Wrapper = withCaption({
+  const CaptionWrapper = withCaption({
     item,
-    onBlur: onSaveCaption,
+    onSave: onSaveCaption,
+    saveButtonId,
     edit: editCaption,
   });
 
@@ -36,7 +38,7 @@ const LinkItem = ({
       <div id={id} dangerouslySetInnerHTML={{ __html: html }} />
     );
     if (showCaption) {
-      return Wrapper(component);
+      return CaptionWrapper(component);
     }
     return component;
   }
@@ -56,7 +58,7 @@ const LinkItem = ({
   );
 
   if (showCaption) {
-    return Wrapper(component);
+    return CaptionWrapper(component);
   }
 
   return component;
@@ -67,6 +69,7 @@ LinkItem.defaultProps = {
   onSaveCaption: null,
   editCaption: false,
   showCaption: true,
+  saveButtonId: null,
 };
 
 export default LinkItem;

@@ -34,6 +34,7 @@ const AppItem = ({
   onSaveCaption,
   editCaption,
   showCaption,
+  saveButtonId,
 }) => {
   const iframeRef = useRef();
   const [iframeIsLoading, setIframeIsLoading] = useState(true);
@@ -133,9 +134,12 @@ const AppItem = ({
   );
 
   if (showCaption) {
-    return withCaption({ item, onBlur: onSaveCaption, edit: editCaption })(
-      component,
-    );
+    return withCaption({
+      item,
+      onSave: onSaveCaption,
+      edit: editCaption,
+      saveButtonId,
+    })(component);
   }
 
   return component;
@@ -145,6 +149,7 @@ AppItem.defaultProps = {
   onSaveCaption: null,
   editCaption: false,
   showCaption: true,
+  saveButtonId: null,
 };
 
 export default AppItem;
