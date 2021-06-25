@@ -11,6 +11,7 @@ interface S3FileItemProps {
   onSaveCaption?: (string) => void;
   editCaption?: boolean;
   showCaption?: boolean;
+  errorMessage?: string;
 }
 
 declare const S3FileItem: React.FC<S3FileItemProps>;

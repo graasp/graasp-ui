@@ -27,3 +27,4 @@ export const TEXT_EDITOR_MIN_HEIGHT = 200;
 export const APP_ITEM_HEIGHT = 300;
 export const APP_ITEM_WIDTH = '100%';
 export const APP_ITEM_FRAME_BORDER = 0;
+export const UNEXPECTED_ERROR_MESSAGE = 'An unexpected error occurred';

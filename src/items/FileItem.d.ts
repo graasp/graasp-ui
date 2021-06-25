@@ -11,6 +11,7 @@ interface FileItemProps {
   onSaveCaption?: (string) => void;
   editCaption?: boolean;
   showCaption?: boolean;
+  errorMessage?: string;
 }
 
 declare const FileItem: React.FC<FileItemProps>;

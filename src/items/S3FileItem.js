@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { MIME_TYPES } from '../constants';
+import Alert from '@material-ui/lab/Alert';
+import { MIME_TYPES, UNEXPECTED_ERROR_MESSAGE } from '../constants';
 import FileImage from './FileImage';
 import FileVideo from './FileVideo';
 import FilePdf from './FilePdf';
@@ -18,6 +19,7 @@ const S3FileItem = ({
   editCaption,
   showCaption,
   saveButtonId,
+  errorMessage,
 }) => {
   const [url, setUrl] = useState();
   const { contenttype, name: originalFileName } = getS3FileExtra(
@@ -43,7 +45,7 @@ const S3FileItem = ({
   }, [content]);
 
   if (!url) {
-    return null;
+    return <Alert severity='error'>{errorMessage}</Alert>;
   }
 
   let component;
@@ -96,6 +98,7 @@ S3FileItem.defaultProps = {
   id: null,
   editCaption: false,
   saveButtonId: null,
+  errorMessage: UNEXPECTED_ERROR_MESSAGE,
 };
 
 export default S3FileItem;

@@ -11,4 +11,4 @@ interface AppItemProps {
   showCaption?: boolean;
 }
 
-declare const AppItem: React.FC<AppItemProps>;
+declare const AppItem: React.Component<AppItemProps>;

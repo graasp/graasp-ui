@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { Component } from 'react';
 import { getAppExtra } from '../utils/itemExtra';
 import Loader from '../Loader';
 import {
@@ -26,24 +26,49 @@ const requestApiAccessToken = async ({ id, origin, app, apiHost }) => {
   return res.json();
 };
 
-const AppItem = ({
-  id,
-  item,
-  user,
-  apiHost,
-  onSaveCaption,
-  editCaption,
-  showCaption,
-  saveButtonId,
-}) => {
-  const iframeRef = useRef();
-  const [iframeIsLoading, setIframeIsLoading] = useState(true);
-  const url = getAppExtra(item?.get('extra'))?.url;
+class AppItem extends Component {
+  static defaultProps = {
+    onSaveCaption: null,
+    editCaption: false,
+    showCaption: true,
+    saveButtonId: null,
+  };
 
-  const channel = new MessageChannel();
-  const { port1 } = channel;
+  state = {
+    channel: null,
+    iframeIsLoading: true,
+    url: null,
+  };
 
-  const getToken = async ({ app, origin }) => {
+  constructor(props) {
+    super(props);
+    this.iframeRef = React.createRef();
+  }
+
+  componentDidMount() {
+    window.addEventListener('message', this.windowOnMessage);
+    this.setState({ url: getAppExtra(this.props.item?.get('extra'))?.url });
+  }
+
+  componentDidUpdate(prevProps) {
+    const { item } = this.props;
+    const { item: nextItem } = prevProps;
+    if (item !== nextItem) {
+      // eslint-disable-next-line react/no-did-update-set-state
+      this.setState({ url: getAppExtra(item?.get('extra'))?.url });
+    }
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    if (nextState.channel !== this.state.channel) {
+      return false;
+    }
+    return true;
+  }
+
+  getToken = async ({ app, origin }) => {
+    const { item, apiHost } = this.props;
+
     // get token from backend
     const { token } = await requestApiAccessToken({
       id: item.get('id'),
@@ -59,8 +84,9 @@ const AppItem = ({
   };
 
   // receive message from app through MessageChannel
-  const onMessage = async (e) => {
+  onMessage = async (e) => {
     const { data, origin: requestOrigin } = e;
+    const { channel, url } = this.state;
 
     // responds only to corresponding app
     if (!url.includes(requestOrigin)) {
@@ -69,14 +95,16 @@ const AppItem = ({
 
     const { type, payload } = JSON.parse(data);
     if (type === GET_AUTH_TOKEN) {
-      const token = await getToken(payload);
-      port1.postMessage(
+      const token = await this.getToken(payload);
+      channel.port1.postMessage(
         JSON.stringify({ type: GET_AUTH_TOKEN_SUCCEEDED, payload: { token } }),
       );
     }
   };
 
-  const windowOnMessage = async (e) => {
+  windowOnMessage = async (e) => {
+    const { item, user, apiHost } = this.props;
+    const { url } = this.state;
     const { data, origin: requestOrigin } = e;
 
     // responds only to corresponding app
@@ -87,12 +115,16 @@ const AppItem = ({
     // return context data and message channel port to app
     const { type } = JSON.parse(data);
     if (type === GET_CONTEXT) {
+      // create/reset channel and
       // Listen for messages on port1
-      port1.onmessage = onMessage;
+      const channel = new MessageChannel();
+      const { port1 } = channel;
+      this.setState({ channel });
+      port1.onmessage = this.onMessage;
 
       // Transfer port2 to the iframe
       // provide port2 to app and item's data
-      iframeRef.current.contentWindow.postMessage(
+      this.iframeRef.current.contentWindow.postMessage(
         {
           type: GET_CONTEXT_SUCCEEDED,
           payload: {
@@ -106,50 +138,47 @@ const AppItem = ({
         [channel.port2],
       );
     }
-
-    // further communication will pass through message channel
-    // so we can stop listening on message
-    window.removeEventListener('message', windowOnMessage);
   };
 
-  useEffect(() => {
-    window.addEventListener('message', windowOnMessage);
-  }, []);
+  render() {
+    const { item, id, showCaption, onSaveCaption, saveButtonId, editCaption } =
+      this.props;
+    const { iframeIsLoading, url } = this.state;
 
-  const component = (
-    <React.Fragment>
-      {iframeIsLoading && <Loader />}
-      <iframe
-        id={id}
-        title={item?.get('name')}
-        onLoad={() => setIframeIsLoading(false)}
-        ref={iframeRef}
-        width={APP_ITEM_WIDTH}
-        // todo: dynamic height depending on app
-        height={APP_ITEM_HEIGHT}
-        src={url}
-        frameBorder={APP_ITEM_FRAME_BORDER}
-      />
-    </React.Fragment>
-  );
+    const onLoad = iframeIsLoading
+      ? () => {
+          this.setState({ iframeIsLoading: false });
+        }
+      : null;
 
-  if (showCaption) {
-    return withCaption({
-      item,
-      onSave: onSaveCaption,
-      edit: editCaption,
-      saveButtonId,
-    })(component);
+    const component = (
+      <React.Fragment>
+        {iframeIsLoading && <Loader />}
+        <iframe
+          id={id}
+          title={item?.get('name')}
+          onLoad={onLoad}
+          ref={this.iframeRef}
+          width={APP_ITEM_WIDTH}
+          // todo: dynamic height depending on app
+          height={APP_ITEM_HEIGHT}
+          src={url}
+          frameBorder={APP_ITEM_FRAME_BORDER}
+        />
+      </React.Fragment>
+    );
+
+    if (showCaption) {
+      return withCaption({
+        item,
+        onSave: onSaveCaption,
+        edit: editCaption,
+        saveButtonId,
+      })(component);
+    }
+
+    return component;
   }
-
-  return component;
-};
-
-AppItem.defaultProps = {
-  onSaveCaption: null,
-  editCaption: false,
-  showCaption: true,
-  saveButtonId: null,
-};
+}
 
 export default AppItem;
