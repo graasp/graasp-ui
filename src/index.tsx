@@ -27,3 +27,5 @@ export * from './DynamicTreeView';
 export * from './items';
 
 export { default as TextEditor } from './TextEditor';
+
+export { default as PermissionedComponent } from './PermissionedComponent';

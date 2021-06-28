@@ -1,36 +1,39 @@
-import React from 'react'
-import { withStyles } from '@material-ui/core/styles'
-import clsx from 'clsx'
-import AppBar from '@material-ui/core/AppBar'
-import Toolbar from '@material-ui/core/Toolbar'
-import IconButton from '@material-ui/core/IconButton'
-import MenuIcon from '@material-ui/icons/Menu'
-import { DRAWER_WIDTH } from '../constants'
-import { OPEN_DRAWER_LABEL } from '../texts'
+import React from 'react';
+import { withStyles } from '@material-ui/core/styles';
+import clsx from 'clsx';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
+import { DRAWER_WIDTH } from '../constants';
+import { OPEN_DRAWER_LABEL } from '../texts';
 
 const styles = (theme) => ({
   appBar: {
     transition: theme.transitions.create(['margin', 'width'], {
       easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen
-    })
+      duration: theme.transitions.duration.leavingScreen,
+    }),
   },
   appBarShift: {
     width: `calc(100% - ${DRAWER_WIDTH}px)`,
     marginLeft: DRAWER_WIDTH,
     transition: theme.transitions.create(['margin', 'width'], {
       easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen
-    })
+      duration: theme.transitions.duration.enteringScreen,
+    }),
   },
   menuButton: {
     marginLeft: theme.spacing(2),
-    marginRight: theme.spacing(3)
+    marginRight: theme.spacing(3),
   },
   hide: {
-    display: 'none'
-  }
-})
+    display: 'none',
+  },
+  toolbar: {
+    justifyContent: 'space-between',
+  },
+});
 
 export const Header = ({
   id,
@@ -38,16 +41,18 @@ export const Header = ({
   hasSidebar,
   handleDrawerOpen,
   isSidebarOpen = false,
-  openDrawerAriaLabel = OPEN_DRAWER_LABEL
+  openDrawerAriaLabel = OPEN_DRAWER_LABEL,
+  leftContent = null,
+  rightContent = null,
 }) => {
   return (
     <AppBar
       position='fixed'
       className={clsx(classes.appBar, {
-        [classes.appBarShift]: isSidebarOpen
+        [classes.appBarShift]: isSidebarOpen,
       })}
     >
-      <Toolbar disableGutters={!isSidebarOpen}>
+      <Toolbar disableGutters={!isSidebarOpen} className={classes.toolbar}>
         {hasSidebar && (
           <IconButton
             id={id}
@@ -59,11 +64,13 @@ export const Header = ({
             <MenuIcon />
           </IconButton>
         )}
+        {leftContent}
+        {rightContent}
       </Toolbar>
     </AppBar>
-  )
-}
+  );
+};
 
-const StyledComponent = withStyles(styles, { withTheme: true })(Header)
+const StyledComponent = withStyles(styles, { withTheme: true })(Header);
 
-export default StyledComponent
+export default StyledComponent;

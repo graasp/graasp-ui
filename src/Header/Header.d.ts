@@ -1,17 +1,19 @@
-import React from 'react'
+import React from 'react';
 
 interface HeaderProps {
-  id?: string
+  id?: string;
   classes: {
-    appBar: string
-    appBarShift: string
-    menuButton: string
-    hide: string
-  }
-  isSidebarOpen?: boolean
-  handleDrawerOpen?: () => {}
-  hasSidebar: Boolean
-  openDrawerAriaLabel?: string
+    appBar: string;
+    appBarShift: string;
+    menuButton: string;
+    hide: string;
+  };
+  isSidebarOpen?: boolean;
+  handleDrawerOpen?: () => {};
+  hasSidebar: boolean;
+  openDrawerAriaLabel?: string;
+  leftContent?: React.ReactElement;
+  rightContent?: React.ReactElement;
 }
 
-declare const Header: React.FC<HeaderProps>
+declare const Header: React.FC<HeaderProps>;
