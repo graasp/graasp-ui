@@ -12,6 +12,8 @@ interface MainProps {
   children?: React.ReactElement;
   sidebar?: React.ReactElement;
   open?: boolean;
+  headerLeftContent?: React.ReactElement;
+  headerRightContent?: React.ReactElement;
 }
 
 declare const Main: React.Component<MainProps>;

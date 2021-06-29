@@ -59,7 +59,14 @@ export class Main extends Component {
   };
 
   render() {
-    const { classes, children, fullScreen, sidebar } = this.props;
+    const {
+      classes,
+      children,
+      fullScreen,
+      sidebar,
+      headerLeftContent,
+      headerRightContent,
+    } = this.props;
     const { open } = this.state;
     const hasSidebar = Boolean(sidebar);
 
@@ -70,6 +77,8 @@ export class Main extends Component {
           hasSidebar={hasSidebar}
           isSidebarOpen={open}
           handleDrawerOpen={this.handleDrawerOpen}
+          leftContent={headerLeftContent}
+          rightContent={headerRightContent}
         />
 
         {hasSidebar && (
@@ -94,6 +103,11 @@ export class Main extends Component {
     );
   }
 }
+
+Main.defaultProps = {
+  headerLeftContent: null,
+  headerRightContent: null,
+};
 
 const StyledComponent = withStyles(styles, { withTheme: true })(Main);
 
