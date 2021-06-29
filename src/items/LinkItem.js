@@ -3,6 +3,13 @@ import { IconButton, makeStyles } from '@material-ui/core';
 import { getEmbeddedLinkExtra } from '../utils/itemExtra';
 import OpenInNewIcon from '@material-ui/icons/OpenInNew';
 import withCaption from './withCaption';
+import {
+  LINK_BUTTON_CONTAINER_BACKGROUND_COLOR,
+  LINK_BUTTON_CONTAINER_HEIGHT,
+  LINK_BUTTON_CONTAINER_WIDTH,
+  LINK_BUTTON_ICON_COLOR,
+  LINK_BUTTON_ICON_FONT_SIZE,
+} from '../constants';
 
 const useStyles = makeStyles(() => ({
   iframe: {
@@ -13,9 +20,9 @@ const useStyles = makeStyles(() => ({
     position: 'absolute',
     bottom: 0,
     right: 0,
-    width: 50,
-    height: 50,
-    backgroundColor: 'rgba(62,62,62,0.55)',
+    width: LINK_BUTTON_CONTAINER_WIDTH,
+    height: LINK_BUTTON_CONTAINER_HEIGHT,
+    backgroundColor: LINK_BUTTON_CONTAINER_BACKGROUND_COLOR,
   },
   linkButton: {
     padding: 2,
@@ -23,8 +30,11 @@ const useStyles = makeStyles(() => ({
     marginRight: 'auto',
   },
   linkButtonIcon: {
-    color: 'white',
-    fontSize: 46,
+    color: LINK_BUTTON_ICON_COLOR,
+    fontSize: LINK_BUTTON_ICON_FONT_SIZE,
+  },
+  iframeContainer: {
+    position: 'relative',
   },
 }));
 
@@ -38,7 +48,7 @@ const LinkItem = ({
 }) => {
   const classes = useStyles();
 
-  const [loaded, setLoaded] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   const id = item.get('id');
   const extra = getEmbeddedLinkExtra(item.get('extra'));
@@ -68,21 +78,23 @@ const LinkItem = ({
   const name = item.get('name');
 
   const handleLoad = () => {
-    setLoaded(true);
+    setIsLoading(false);
   };
 
   const component = (
     <React.Fragment>
       <div
-        hidden={loaded}
-        style={{ position: 'relative', height: height || '100%' }}
+        hidden={!isLoading}
+        className={classes.iframeContainer}
+        style={{ height: height || '100%' }}
       >
         Link is Loading.
         <a href={url}> Click here to open link manually.</a>
       </div>
       <div
-        hidden={!loaded}
-        style={{ position: 'relative', height: height || '100%' }}
+        hidden={isLoading}
+        className={classes.iframeContainer}
+        style={{ height: height || '100%' }}
       >
         <iframe
           id={id}

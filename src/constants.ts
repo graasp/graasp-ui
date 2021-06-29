@@ -30,3 +30,10 @@ export const APP_ITEM_FRAME_BORDER = 0;
 export const UNEXPECTED_ERROR_MESSAGE = 'An unexpected error occurred';
 export const SMALL_AVATAR_SIZE = 40;
 export const SHORT_TEXT_WIDTH = 60;
+
+export const LINK_BUTTON_CONTAINER_HEIGHT = 50;
+export const LINK_BUTTON_CONTAINER_WIDTH = 50;
+export const LINK_BUTTON_CONTAINER_BACKGROUND_COLOR = 'rgba(62,62,62,0.55)';
+
+export const LINK_BUTTON_ICON_COLOR = 'white';
+export const LINK_BUTTON_ICON_FONT_SIZE = 46;
