@@ -11,7 +11,7 @@ import {
   LINK_BUTTON_ICON_FONT_SIZE,
 } from '../constants';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   iframe: {
     width: '100%',
     border: 'none',
@@ -25,7 +25,7 @@ const useStyles = makeStyles(() => ({
     backgroundColor: LINK_BUTTON_CONTAINER_BACKGROUND_COLOR,
   },
   linkButton: {
-    padding: 2,
+    padding: theme.spacing(0.25),
     marginLeft: 'auto',
     marginRight: 'auto',
   },
@@ -45,6 +45,8 @@ const LinkItem = ({
   editCaption,
   showCaption,
   saveButtonId,
+  loadingMessage,
+  openLinkMessage,
 }) => {
   const classes = useStyles();
 
@@ -88,8 +90,8 @@ const LinkItem = ({
         className={classes.iframeContainer}
         style={{ height: height || '100%' }}
       >
-        Link is Loading.
-        <a href={url}> Click here to open link manually.</a>
+        {loadingMessage}
+        <a href={url}>{openLinkMessage}</a>
       </div>
       <div
         hidden={isLoading}
@@ -128,6 +130,8 @@ LinkItem.defaultProps = {
   editCaption: false,
   showCaption: true,
   saveButtonId: null,
+  loadingMessage: 'Link is Loading.',
+  openLinkMessage: 'Click here to open link manually.',
 };
 
 export default LinkItem;
