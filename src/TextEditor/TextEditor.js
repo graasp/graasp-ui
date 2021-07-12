@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import PropTypes from 'prop-types';
+import SaveButton from '../SaveButton';
 import { TEXT_EDITOR_MIN_HEIGHT, TEXT_EDITOR_TOOLBAR } from '../constants';
 
 // formula dependencies
@@ -17,6 +18,10 @@ const TextEditor = ({
   edit,
   placeholderText,
   onChange,
+  saveButtonId,
+  saveButtonText,
+  onSave,
+  showSaveButton = true,
 }) => {
   // keep current content
   const [content, setContent] = useState(initialValue);
@@ -44,19 +49,32 @@ const TextEditor = ({
   const placeholder = edit ? placeholderText : null;
 
   return (
-    <div className={classes.wrapper}>
-      <ReactQuill
-        id={id}
-        placeholder={placeholder}
-        readOnly={!edit}
-        theme='snow'
-        value={content}
-        onChange={onTextChange}
-        modules={{
-          toolbar: edit ? TEXT_EDITOR_TOOLBAR : null,
-        }}
-      />
-    </div>
+    <React.Fragment>
+      <div className={classes.wrapper}>
+        <ReactQuill
+          id={id}
+          placeholder={placeholder}
+          readOnly={!edit}
+          theme='snow'
+          value={content}
+          onChange={onTextChange}
+          modules={{
+            toolbar: edit ? TEXT_EDITOR_TOOLBAR : null,
+          }}
+        />
+      </div>
+      {showSaveButton && edit && (
+        <SaveButton
+          id={saveButtonId}
+          onClick={() => {
+            // eslint-disable-next-line no-unused-expressions
+            onSave?.(content);
+          }}
+          text={saveButtonText}
+          hasChanges={content !== initialValue}
+        />
+      )}
+    </React.Fragment>
   );
 };
 
