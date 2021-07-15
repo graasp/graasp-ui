@@ -32,6 +32,8 @@ class AppItem extends Component {
     editCaption: false,
     showCaption: true,
     saveButtonId: null,
+    // todo: get this value from common graasp constants
+    mode: 'student',
   };
 
   state = {
@@ -103,7 +105,7 @@ class AppItem extends Component {
   };
 
   windowOnMessage = async (e) => {
-    const { item, user, apiHost } = this.props;
+    const { item, user, apiHost, mode } = this.props;
     const { url } = this.state;
     const { data, origin: requestOrigin } = e;
 
@@ -124,14 +126,15 @@ class AppItem extends Component {
 
       // Transfer port2 to the iframe
       // provide port2 to app and item's data
-      this.iframeRef.current.contentWindow.postMessage(
+      // eslint-disable-next-line no-unused-expressions
+      this.iframeRef?.current.contentWindow.postMessage(
         {
           type: GET_CONTEXT_SUCCEEDED,
           payload: {
             itemId: item.get('id'),
             userId: user?.get('id'),
             apiHost,
-            mode: 'student', // todo: to change
+            mode,
           },
         },
         '*',
