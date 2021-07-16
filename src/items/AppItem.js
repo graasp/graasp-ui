@@ -16,7 +16,7 @@ export const GET_CONTEXT = 'GET_CONTEXT';
 export const GET_CONTEXT_SUCCEEDED = 'GET_CONTEXT_SUCCEEDED';
 
 const requestApiAccessToken = async ({ id, origin, app, apiHost }) => {
-  const res = await fetch(`${apiHost}/items/${id}/app-api-access-token`, {
+  const res = await fetch(`${apiHost}/app-items/${id}/api-access-token`, {
     method: 'POST',
     credentials: 'include',
     headers: { 'Content-Type': 'application/json' },
