@@ -31,3 +31,5 @@ export { default as TextEditor } from './TextEditor';
 export { default as PermissionedComponent } from './PermissionedComponent';
 
 export { default as HeaderUserInformation } from './HeaderUserInformation';
+
+export { default as ItemIcon } from './ItemIcon';
