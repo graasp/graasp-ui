@@ -37,3 +37,5 @@ export const LINK_BUTTON_CONTAINER_BACKGROUND_COLOR = 'rgba(62,62,62,0.55)';
 
 export const LINK_BUTTON_ICON_COLOR = 'white';
 export const LINK_BUTTON_ICON_FONT_SIZE = 46;
+
+export const ITEM_ICON_MAX_SIZE = 25;
