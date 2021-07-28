@@ -17,7 +17,8 @@
   "scripts": {
     "build": "microbundle-crl --no-compress --format modern,cjs",
     "start": "microbundle-crl watch --no-compress --format modern,cjs",
-    "prepare": "run-s build",
+    "prepack": "run-s build",
+    "prepare":"yarn prepack",
     "lint": "eslint .",
     "prettier:check": "prettier --check \"{src,example}/**/*.{js,ts,tsx}\"",
     "prettier:write": "prettier --write \"{src,example}/**/*.{js,ts,tsx}\"",
