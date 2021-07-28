@@ -1,14 +1,14 @@
-import React from 'react'
+import React from 'react';
 
 interface DrawerHeaderProps {
   classes: {
-    secondaryAction: string
-    drawerHeader: string
-  }
+    secondaryAction: string;
+    drawerHeader: string;
+  };
   theme: {
-    direction?: string
-  }
-  handleDrawerClose: () => {}
+    direction?: string;
+  };
+  handleDrawerClose: () => {};
 }
 
-declare const DrawerHeader: React.FC<DrawerHeaderProps>
+declare const DrawerHeader: React.FC<DrawerHeaderProps>;

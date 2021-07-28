@@ -1,18 +1,18 @@
-import React from 'react'
-import { withStyles } from '@material-ui/core/styles'
-import Drawer from '@material-ui/core/Drawer'
-import DrawerHeader from '../DrawerHeader'
-import { DRAWER_WIDTH } from '../constants'
+import React from 'react';
+import { withStyles } from '@material-ui/core/styles';
+import Drawer from '@material-ui/core/Drawer';
+import DrawerHeader from '../DrawerHeader';
+import { DRAWER_WIDTH } from '../constants';
 
 const styles = () => ({
   drawer: {
     width: DRAWER_WIDTH,
-    flexShrink: 0
+    flexShrink: 0,
   },
   drawerPaper: {
-    width: DRAWER_WIDTH
-  }
-})
+    width: DRAWER_WIDTH,
+  },
+});
 
 export const Sidebar = ({
   className,
@@ -20,7 +20,7 @@ export const Sidebar = ({
   isSidebarOpen = false,
   handleDrawerClose,
   children,
-  drawerHeaderContent
+  drawerHeaderContent,
 }) => {
   return (
     <Drawer
@@ -29,7 +29,7 @@ export const Sidebar = ({
       anchor='left'
       open={isSidebarOpen}
       classes={{
-        paper: classes.drawerPaper
+        paper: classes.drawerPaper,
       }}
     >
       <DrawerHeader handleDrawerClose={handleDrawerClose}>
@@ -37,9 +37,9 @@ export const Sidebar = ({
       </DrawerHeader>
       {children}
     </Drawer>
-  )
-}
+  );
+};
 
-const StyledComponent = withStyles(styles, { withTheme: true })(Sidebar)
+const StyledComponent = withStyles(styles, { withTheme: true })(Sidebar);
 
-export default StyledComponent
+export default StyledComponent;
