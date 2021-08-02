@@ -16,7 +16,6 @@ export const GET_CONTEXT = 'GET_CONTEXT';
 export const GET_CONTEXT_SUCCEEDED = 'GET_CONTEXT_SUCCEEDED';
 
 const requestApiAccessToken = async ({ id, origin, app, apiHost }) => {
-  // eslint-disable-next-line no-undef
   const res = await fetch(`${apiHost}/app-items/${id}/api-access-token`, {
     method: 'POST',
     credentials: 'include',
@@ -120,7 +119,6 @@ class AppItem extends Component {
     if (type === GET_CONTEXT) {
       // create/reset channel and
       // Listen for messages on port1
-      // eslint-disable-next-line no-undef
       const channel = new MessageChannel();
       const { port1 } = channel;
       this.setState({ channel });

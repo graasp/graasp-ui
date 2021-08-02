@@ -18,7 +18,7 @@
     "build": "microbundle-crl --no-compress --format modern,cjs",
     "start": "microbundle-crl watch --no-compress --format modern,cjs",
     "prepack": "run-s build",
-    "prepare":"yarn prepack",
+    "prepare": "yarn prepack",
     "lint": "eslint .",
     "prettier:check": "prettier --check \"{src,example}/**/*.{js,ts,tsx}\"",
     "prettier:write": "prettier --write \"{src,example}/**/*.{js,ts,tsx}\"",
@@ -106,5 +106,6 @@
       "^react-dom$": "<rootDir>/example/node_modules/react-dom",
       "^react-dom/(.*)": "<rootDir>/example/node_modules/react-dom/$1"
     }
-  }
+  },
+  "packageManager": "yarn@3.0.1-rc.1"
 }
