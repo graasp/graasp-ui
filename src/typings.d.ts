@@ -7,6 +7,7 @@ declare module '*.css' {
   export default content;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
 interface SvgrComponent
   extends React.StatelessComponent<React.SVGAttributes<SVGElement>> {}
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import MusicNoteIcon from '@material-ui/icons/MusicNote';
 import InsertDriveFileIcon from '@material-ui/icons/InsertDriveFile';
-import { makeStyles } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 import FolderIcon from '@material-ui/icons/Folder';
 import PictureAsPdfIcon from '@material-ui/icons/PictureAsPdf';
 import LinkIcon from '@material-ui/icons/Link';
