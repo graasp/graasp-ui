@@ -42,10 +42,7 @@ class AppItem extends Component {
     url: null,
   };
 
-  constructor(props) {
-    super(props);
-    this.iframeRef = React.createRef();
-  }
+  iframeRef = React.createRef();
 
   componentDidMount() {
     window.addEventListener('message', this.windowOnMessage);
