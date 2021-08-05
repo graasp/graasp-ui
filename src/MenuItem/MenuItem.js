@@ -1,7 +1,7 @@
-import React from 'react'
-import MaterialMenuItem from '@material-ui/core/MenuItem'
-import ListItemIcon from '@material-ui/core/ListItemIcon'
-import ListItemText from '@material-ui/core/ListItemText'
+import React from 'react';
+import MaterialMenuItem from '@material-ui/core/MenuItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
 
 export const MenuItem = ({ id, text, icon, onClick }) => {
   return (
@@ -9,7 +9,7 @@ export const MenuItem = ({ id, text, icon, onClick }) => {
       {icon && <ListItemIcon>{icon}</ListItemIcon>}
       {text && <ListItemText primary={text} />}
     </MaterialMenuItem>
-  )
-}
+  );
+};
 
-export default MenuItem
+export default MenuItem;

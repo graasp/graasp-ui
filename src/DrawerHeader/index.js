@@ -1,1 +1,1 @@
-export { default } from './DrawerHeader'
+export { default } from './DrawerHeader';

@@ -25,3 +25,11 @@ yarn-error.log*
 # react-app-env
 src/react-app-env.d.ts
 example/src/react-app-env.d.ts
+
+# yarn
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions

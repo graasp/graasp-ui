@@ -9,6 +9,8 @@ exports[`Main children is defined renders correctly 1`] = `
     handleDrawerOpen={[Function]}
     hasSidebar={false}
     isSidebarOpen={false}
+    leftContent={null}
+    rightContent={null}
   />
   <main
     className=""
@@ -32,6 +34,8 @@ exports[`Main default values renders correctly 1`] = `
     handleDrawerOpen={[Function]}
     hasSidebar={false}
     isSidebarOpen={false}
+    leftContent={null}
+    rightContent={null}
   />
   <main
     className=""
@@ -52,6 +56,8 @@ exports[`Main fullScreen = true renders correctly 1`] = `
     handleDrawerOpen={[Function]}
     hasSidebar={false}
     isSidebarOpen={false}
+    leftContent={null}
+    rightContent={null}
   />
   <main
     className="fullScreen"
@@ -72,6 +78,8 @@ exports[`Main sidebar is defined renders correctly 1`] = `
     handleDrawerOpen={[Function]}
     hasSidebar={true}
     isSidebarOpen={false}
+    leftContent={null}
+    rightContent={null}
   />
   <WithStyles(Sidebar)
     handleDrawerClose={[Function]}
