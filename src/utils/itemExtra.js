@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import { ITEM_TYPES } from '../enums';
 
 export const getItemCaption = (extra) => extra?.caption;
@@ -23,18 +22,6 @@ export const buildShortcutExtra = (target) => ({
 
 export const getShortcutTarget = (extra) =>
   extra?.[ITEM_TYPES.SHORTCUT]?.target;
-
-export const fileExtraPropTypes = PropTypes.shape({
-  mimetype: PropTypes.string.isRequired,
-});
-
-export const s3FileExtraPropTypes = PropTypes.shape({
-  contenttype: PropTypes.string.isRequired,
-});
-
-export const linkExtraPropTypes = PropTypes.shape({
-  icons: PropTypes.arrayOf(PropTypes.string),
-});
 
 export const buildItemLoginSchemaExtra = (schema) => {
   if (schema) {

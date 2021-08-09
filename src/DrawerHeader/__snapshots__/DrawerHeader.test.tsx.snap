@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DrawerHeader default values renders correctly 1`] = `
+<WithStyles(ForwardRef(ListItem))
+  ContainerComponent="div"
+  classes={
+    Object {
+      "root": "makeStyles-drawerHeader-1",
+    }
+  }
+  divider={true}
+>
+  <WithStyles(ForwardRef(ListItemSecondaryAction))
+    classes={
+      Object {
+        "root": "makeStyles-secondaryAction-2",
+      }
+    }
+  >
+    <WithStyles(ForwardRef(IconButton))
+      onClick={[MockFunction]}
+    >
+      <ChevronLeftIcon />
+    </WithStyles(ForwardRef(IconButton))>
+  </WithStyles(ForwardRef(ListItemSecondaryAction))>
+</WithStyles(ForwardRef(ListItem))>
+`;
