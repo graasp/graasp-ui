@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export interface DrawerHeaderProps {
-  theme: {
+  theme?: {
     direction?: string;
   };
   children?: JSX.Element;
@@ -29,9 +29,10 @@ export interface DrawerHeaderProps {
 export const DrawerHeader: FC<DrawerHeaderProps> = ({
   handleDrawerClose,
   children,
-  theme: { direction = DEFAULT_DIRECTION },
+  theme,
 }) => {
   const classes = useStyles();
+  const direction = theme?.direction ?? DEFAULT_DIRECTION;
   return (
     <ListItem
       classes={{ root: classes.drawerHeader }}
