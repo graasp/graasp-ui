@@ -13,6 +13,7 @@ export type Item = {
   path: string;
   extra: ItemExtra;
   description?: string;
+  type: string;
 };
 
 export class ImmutableItem extends Record({
@@ -21,6 +22,7 @@ export class ImmutableItem extends Record({
   path: '',
   description: '',
   extra: {},
+  type: '',
 }) {}
 
 export type Member = {
