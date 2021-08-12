@@ -13,7 +13,7 @@ window.katex = katex;
 
 interface TextEditorProps {
   onSave?: (text: string) => void;
-  value: string;
+  value?: string;
   id?: string;
   placeholderText?: string;
   edit?: boolean;

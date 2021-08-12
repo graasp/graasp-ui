@@ -3,6 +3,7 @@ import { Record } from 'immutable';
 import Grid from '@material-ui/core/Grid';
 import TextEditor from '../TextEditor';
 import type { Item } from '../types';
+import { DEFAULT_ITEM_DESCRIPTION } from '../constants';
 
 interface WithCaptionProps {
   item: Record<Item>;
@@ -24,9 +25,8 @@ const withCaption =
             </Grid>
             <Grid item xs={12}>
               <TextEditor
-                value={item.get('description') ?? ''}
+                value={item.get('description', DEFAULT_ITEM_DESCRIPTION)}
                 edit={edit}
-                // onChange={this.onChange}
                 onSave={onSave}
                 saveButtonId={saveButtonId}
                 saveButtonText={saveButtonText}
