@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Alert from '@material-ui/lab/Alert';
 import { MIME_TYPES, UNEXPECTED_ERROR_MESSAGE } from '../constants';
+import FileAudio from './FileAudio';
 import FileImage from './FileImage';
 import FileVideo from './FileVideo';
 import FilePdf from './FilePdf';
@@ -51,6 +52,10 @@ const S3FileItem = ({
   let component;
   if (MIME_TYPES.IMAGE.includes(contenttype)) {
     component = <FileImage id={id} url={url} alt={name} />;
+  }
+
+  if (MIME_TYPES.AUDIO.includes(contenttype)) {
+    component = <FileAudio id={id} url={url} type={contenttype} />;
   }
 
   if (MIME_TYPES.VIDEO.includes(contenttype)) {

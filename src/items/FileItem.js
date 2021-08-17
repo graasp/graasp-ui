@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Alert from '@material-ui/lab/Alert';
 import { MIME_TYPES, UNEXPECTED_ERROR_MESSAGE } from '../constants';
 import FileImage from './FileImage';
+import FileAudio from './FileAudio';
 import FileVideo from './FileVideo';
 import FilePdf from './FilePdf';
 import { getFileExtra } from '../utils/itemExtra';
@@ -49,6 +50,8 @@ const FileItem = ({
   let component;
   if (MIME_TYPES.IMAGE.includes(mimetype)) {
     component = <FileImage id={id} url={url} alt={name} />;
+  } else if (MIME_TYPES.AUDIO.includes(mimetype)) {
+    component = <FileAudio id={id} url={url} type={mimetype} />;
   } else if (MIME_TYPES.VIDEO.includes(mimetype)) {
     component = <FileVideo id={id} url={url} type={mimetype} />;
   } else if (MIME_TYPES.PDF.includes(mimetype)) {
