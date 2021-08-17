@@ -7,7 +7,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const FileVideo = ({ id, url, type }) => {
+const FileAudio = ({ id, url, type }) => {
   const classes = useStyles();
   return (
     <audio className={classes.audio} id={id} controls>
@@ -16,4 +16,4 @@ const FileVideo = ({ id, url, type }) => {
   );
 };
 
-export default FileVideo;
+export default FileAudio;

@@ -4,4 +4,4 @@ interface FileAudioProps {
   type: string;
 }
 
-declare const FileVideo: React.FC<FileAudioProps>;
+declare const FileAudio: React.FC<FileAudioProps>;
