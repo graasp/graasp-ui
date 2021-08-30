@@ -3,6 +3,7 @@ import typescript from '@rollup/plugin-typescript';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import scss from 'rollup-plugin-scss';
 import commonjs from '@rollup/plugin-commonjs';
+import copy from 'rollup-plugin-copy';
 
 export default {
   input: './src/index.ts',
@@ -18,6 +19,19 @@ export default {
     typescript({ tsconfig: './tsconfig.json', sourceMap: false }),
     scss({ outputStyle: 'compressed', output: 'dist/bundle.css' }),
     commonjs(),
+    // import katex fonts
+    copy({
+      targets: [
+        {
+          src: [
+            'node_modules/katex/dist/fonts/**/*.ttf',
+            'node_modules/katex/dist/fonts/**/*.woff2',
+            'node_modules/katex/dist/fonts/**/*.woff',
+          ],
+          dest: 'dist/fonts',
+        },
+      ],
+    }),
   ],
   external: [
     'react',
