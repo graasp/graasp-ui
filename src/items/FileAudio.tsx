@@ -8,7 +8,7 @@ const useStyles = makeStyles(() => ({
 }));
 
 interface FileAudioProps {
-  id: string;
+  id?: string;
   url: string;
   type: string;
 }
