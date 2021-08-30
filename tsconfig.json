@@ -1,12 +1,14 @@
 {
   "compilerOptions": {
     "outDir": "dist",
+    "rootDir": "./src",
     "module": "esnext",
-    "lib": ["dom", "esnext"],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "moduleResolution": "node",
     "jsx": "react",
     "sourceMap": true,
     "declaration": true,
+    "declarationDir": "dist",
     "esModuleInterop": true,
     "noImplicitReturns": true,
     "noImplicitThis": true,
@@ -26,6 +28,6 @@
     "noEmit": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src", "test/setupTests.js"],
+  "include": ["src", "index.ts"],
   "exclude": ["node_modules", "dist", "example"]
 }

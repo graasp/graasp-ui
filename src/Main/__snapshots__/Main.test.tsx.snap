@@ -1,0 +1,96 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Main children is defined renders correctly 1`] = `
+<div
+  className=""
+>
+  <WithStyles(CssBaseline) />
+  <Header
+    handleDrawerOpen={[Function]}
+    hasSidebar={false}
+    isSidebarOpen={false}
+  />
+  <main
+    className=""
+  >
+    <div
+      className=""
+    />
+    <div
+      className="test-child"
+    >
+      some child
+    </div>
+  </main>
+</div>
+`;
+
+exports[`Main default values renders correctly 1`] = `
+<div
+  className=""
+>
+  <WithStyles(CssBaseline) />
+  <Header
+    handleDrawerOpen={[Function]}
+    hasSidebar={false}
+    isSidebarOpen={false}
+  />
+  <main
+    className=""
+  >
+    <div
+      className=""
+    />
+  </main>
+</div>
+`;
+
+exports[`Main fullScreen = true renders correctly 1`] = `
+<div
+  className=""
+>
+  <WithStyles(CssBaseline) />
+  <Header
+    handleDrawerOpen={[Function]}
+    hasSidebar={false}
+    isSidebarOpen={false}
+  />
+  <main
+    className="fullScreen"
+  >
+    <div
+      className=""
+    />
+  </main>
+</div>
+`;
+
+exports[`Main sidebar is defined renders correctly 1`] = `
+<div
+  className=""
+>
+  <WithStyles(CssBaseline) />
+  <Header
+    handleDrawerOpen={[Function]}
+    hasSidebar={true}
+    isSidebarOpen={false}
+  />
+  <Sidebar
+    handleDrawerClose={[Function]}
+    isSidebarOpen={false}
+  >
+    <div
+      className="test-child"
+    >
+      some child
+    </div>
+  </Sidebar>
+  <main
+    className=""
+  >
+    <div
+      className=""
+    />
+  </main>
+</div>
+`;

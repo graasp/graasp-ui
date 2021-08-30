@@ -1,21 +1,14 @@
 import React from 'react';
-import type { LoadingType } from 'react-loading';
-import ReactLoading from 'react-loading';
-import { PRIMARY_COLOR } from '../theme';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
-type Props = {
-  type?: LoadingType;
+export interface LoaderProps {
   color?: string;
   className?: string;
-};
+}
 
-export const Loader: React.FC<Props> = ({
-  type = 'bubbles',
-  color = PRIMARY_COLOR,
-  className,
-}) => (
+export const Loader: React.FC<LoaderProps> = ({ className }) => (
   <div className={className}>
-    <ReactLoading type={type} color={color} />
+    <CircularProgress color='primary' />
   </div>
 );
 

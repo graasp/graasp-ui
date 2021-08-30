@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header default props renders correctly 1`] = `
+<WithStyles(ForwardRef(AppBar))
+  className="makeStyles-appBar-1"
+  position="fixed"
+>
+  <WithStyles(ForwardRef(Toolbar))
+    className="makeStyles-toolbar-5"
+    disableGutters={true}
+  />
+</WithStyles(ForwardRef(AppBar))>
+`;
+
+exports[`Header hasSidebar = true isSidebarOpen = false renders correctly 1`] = `
+<WithStyles(ForwardRef(AppBar))
+  className="makeStyles-appBar-1"
+  position="fixed"
+>
+  <WithStyles(ForwardRef(Toolbar))
+    className="makeStyles-toolbar-5"
+    disableGutters={true}
+  >
+    <WithStyles(ForwardRef(IconButton))
+      aria-label="sometext"
+      className="makeStyles-menuButton-3"
+      color="inherit"
+      onClick={[MockFunction]}
+    >
+      <MenuIcon />
+    </WithStyles(ForwardRef(IconButton))>
+  </WithStyles(ForwardRef(Toolbar))>
+</WithStyles(ForwardRef(AppBar))>
+`;
