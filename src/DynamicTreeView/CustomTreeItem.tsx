@@ -7,7 +7,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import TreeItem from '@material-ui/lab/TreeItem';
 import TreeItemLabel from './TreeItemLabel';
 import { getParentsIdsFromPath } from '../utils/utils';
-import { ImmutableItem, Item } from '../types';
+import { ImmutableItemClass, Item } from '../types';
 
 const LoadingTreeItem = <Skeleton variant='text' />;
 
@@ -135,7 +135,7 @@ const CustomTreeItem: FC<CustomItemTreeProps> = ({
     }
 
     const filteredChildren = children?.filter((item) =>
-      showItemFilter?.(new ImmutableItem(item)),
+      showItemFilter?.(new ImmutableItemClass(item)),
     );
 
     if (!filteredChildren?.size) {

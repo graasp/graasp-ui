@@ -35,3 +35,5 @@ export { default as HeaderUserInformation } from './HeaderUserInformation';
 export { default as ItemIcon } from './ItemIcon';
 
 export { default as GraaspLogo } from './GraaspLogo';
+
+export { default as ItemLoginAuthorization } from './itemLogin';
