@@ -14,9 +14,10 @@ const useStyles = makeStyles(() => ({
 interface Props {
   signOut: Function;
   user: ImmutableMember;
+  id?: string;
 }
 
-const ForbiddenContent: FC<Props> = ({ signOut, user }) => {
+const ForbiddenContent: FC<Props> = ({ signOut, user, id }) => {
   const classes = useStyles();
 
   const { t } = useTranslation();
@@ -38,7 +39,7 @@ const ForbiddenContent: FC<Props> = ({ signOut, user }) => {
   );
 
   return (
-    <Container className={classes.container}>
+    <Container className={classes.container} id={id}>
       <ForbiddenText />
       {user && !user.isEmpty() && renderAuthenticatedAlternative()}
     </Container>

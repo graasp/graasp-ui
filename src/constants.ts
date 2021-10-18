@@ -50,8 +50,9 @@ export const SETTINGS = {
       USERNAME_AND_PASSWORD: 'username+password',
     },
     SIGN_IN_MODE: {
-      USERNAME: 'username',
+      PSEUDONYME: 'pseudonyme',
       MEMBER_ID: 'memberId',
     },
   },
 };
+export const FORBIDDEN_TEXT = 'You cannot access this item';

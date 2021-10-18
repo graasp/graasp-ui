@@ -21,6 +21,8 @@ const useStyles = makeStyles((theme: Theme) => ({
     display: 'flex',
     flexDirection: 'column',
     textAlign: 'center',
+    justifyContent: 'center',
+    height: '100vh',
   },
   input: {
     margin: theme.spacing(1, 0),
@@ -76,7 +78,7 @@ const ItemLoginScreen: FC<ItemLoginScreenProps> = ({
   const [username, setUsername] = useState<string | undefined>(undefined);
   const [memberId, setMemberId] = useState<string | undefined>(undefined);
   const [signInMode, setSignInMode] = useState<string>(
-    SETTINGS.ITEM_LOGIN.SIGN_IN_MODE.USERNAME,
+    SETTINGS.ITEM_LOGIN.SIGN_IN_MODE.PSEUDONYME,
   );
   const loginSchema = itemLogin?.get('loginSchema');
 
@@ -103,7 +105,7 @@ const ItemLoginScreen: FC<ItemLoginScreenProps> = ({
       case SETTINGS.ITEM_LOGIN.SIGN_IN_MODE.MEMBER_ID:
         signInProperties.memberId = memberId;
         break;
-      case SETTINGS.ITEM_LOGIN.SIGN_IN_MODE.USERNAME:
+      case SETTINGS.ITEM_LOGIN.SIGN_IN_MODE.PSEUDONYME:
       default:
         signInProperties.username = username;
     }
@@ -135,7 +137,7 @@ const ItemLoginScreen: FC<ItemLoginScreenProps> = ({
 
   const shouldSignInBeDisabled = (): boolean => {
     const usernameError =
-      signInMode === SETTINGS.ITEM_LOGIN.SIGN_IN_MODE.USERNAME &&
+      signInMode === SETTINGS.ITEM_LOGIN.SIGN_IN_MODE.PSEUDONYME &&
       (!username?.length || isMemberIdValid(username));
     const memberIdError =
       signInMode === SETTINGS.ITEM_LOGIN.SIGN_IN_MODE.MEMBER_ID &&
@@ -177,11 +179,11 @@ const ItemLoginScreen: FC<ItemLoginScreenProps> = ({
   };
 
   const renderUsernameTextField = (): ReactNode => {
-    if (signInMode !== SETTINGS.ITEM_LOGIN.SIGN_IN_MODE.USERNAME) {
+    if (signInMode !== SETTINGS.ITEM_LOGIN.SIGN_IN_MODE.PSEUDONYME) {
       return null;
     }
     const isMemberId = isMemberIdValid(username);
-    const error = username?.length && isMemberId;
+    const error = Boolean(username?.length && isMemberId);
     const helperText = isMemberId
       ? t('This is a member id. You should switch the sign in mode.')
       : null;
@@ -190,7 +192,7 @@ const ItemLoginScreen: FC<ItemLoginScreenProps> = ({
         error={error}
         autoFocus
         onChange={onUsernameChange}
-        label={t('Username')}
+        label={t('Pseudonyme')}
         color='primary'
         variant='outlined'
         fullWidth
@@ -203,13 +205,13 @@ const ItemLoginScreen: FC<ItemLoginScreenProps> = ({
     );
   };
 
-  const renderUsernameAndMemberIdField = (): ReactNode => {
+  const renderUsernameOrMemberIdField = (): ReactNode => {
     const select = (
       <>
         <Tooltip
           placement='right-end'
           title={t(
-            'You can create a new account with a given username or use your member id from a previous item to reuse your account.',
+            'You can create a new account with a pseudonyme or use your member id from a previous item to reuse your account.',
           )}
         >
           <InfoIcon color='primary' className={classes.usernameInfo} />
@@ -254,7 +256,7 @@ const ItemLoginScreen: FC<ItemLoginScreenProps> = ({
 
   return (
     <Container maxWidth='xs' className={classes.wrapper}>
-      {renderUsernameAndMemberIdField()}
+      {renderUsernameOrMemberIdField()}
       {withPassword && (
         <TextField
           onChange={onPasswordChange}
