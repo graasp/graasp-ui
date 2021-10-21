@@ -1,4 +1,4 @@
-import { Record } from 'immutable';
+import { Map, Record } from 'immutable';
 
 export type UUID = string;
 
@@ -16,7 +16,19 @@ export type Item = {
   type: string;
 };
 
-export class ImmutableItem extends Record({
+export type Member = {
+  id: string;
+  name: string;
+  email: string;
+};
+
+// todo: better solution?
+// conflict between isEmpty which only exists in Map, List of objects and the fact
+// we cannot create a Record from data
+export type ImmutableItem = Map<string, any>;
+export type ImmutableMember = Map<string, any>;
+export type ItemLogin = Map<string, any>;
+export class ImmutableItemClass extends Record({
   id: '',
   name: '',
   path: '',
@@ -24,8 +36,3 @@ export class ImmutableItem extends Record({
   extra: {},
   type: '',
 }) {}
-
-export type Member = {
-  id: string;
-  name: string;
-};

@@ -40,3 +40,19 @@ export const LINK_BUTTON_ICON_FONT_SIZE = 46;
 
 export const ITEM_ICON_MAX_SIZE = 25;
 export const DEFAULT_ITEM_DESCRIPTION = '';
+
+// todo: factor out in graasp constants
+export const SETTINGS = {
+  ITEM_LOGIN: {
+    name: 'item-login',
+    OPTIONS: {
+      USERNAME: 'username',
+      USERNAME_AND_PASSWORD: 'username+password',
+    },
+    SIGN_IN_MODE: {
+      PSEUDONYME: 'pseudonyme',
+      MEMBER_ID: 'memberId',
+    },
+  },
+};
+export const FORBIDDEN_TEXT = 'You cannot access this item';
