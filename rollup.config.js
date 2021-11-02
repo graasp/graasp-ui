@@ -4,11 +4,13 @@ import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import scss from 'rollup-plugin-scss';
 import commonjs from '@rollup/plugin-commonjs';
 import copy from 'rollup-plugin-copy';
+import { babel } from '@rollup/plugin-babel';
 
 export default {
   input: './src/index.ts',
   output: {
     dir: './dist',
+    format: 'cjs',
   },
   plugins: [
     peerDepsExternal(),
@@ -19,6 +21,7 @@ export default {
     typescript({ tsconfig: './tsconfig.json', sourceMap: false }),
     scss({ outputStyle: 'compressed', output: 'dist/bundle.css' }),
     commonjs(),
+    babel({ babelHelpers: 'bundled' }),
     // import katex fonts
     copy({
       targets: [
