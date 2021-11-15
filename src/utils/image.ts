@@ -1,18 +1,15 @@
-import { DEFAULT_IMAGE_SRC } from '../constants';
 import { EmbeddedLinkItemExtra } from '../types';
 import { getEmbeddedLinkExtra } from './itemExtra';
 
 export const getItemImage = ({
   url,
   extra,
-  useDefault = true,
   defaultImage,
 }: {
   url?: string;
   extra: EmbeddedLinkItemExtra;
-  useDefault?: boolean;
   defaultImage?: string;
-}): string | null => {
+}): string | null | undefined => {
   if (url) {
     return url;
   }
@@ -21,8 +18,8 @@ export const getItemImage = ({
     return linkThumbnail;
   }
 
-  if (useDefault) {
-    return defaultImage ?? DEFAULT_IMAGE_SRC;
+  if (defaultImage) {
+    return defaultImage;
   }
 
   return null;

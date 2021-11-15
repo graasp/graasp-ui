@@ -9,22 +9,22 @@ type ThumbnailProps = {
   extra: UnknownExtra;
   maxWidth?: string | number;
   maxHeight?: string | number;
-  useDefault?: boolean;
+  defaultImage?: string;
   variant?: string;
   alt: string;
   useAvatar: Function;
-  useItemThumbnail: Function;
+  useThumbnail: Function;
 };
 
 const Thumbnail: FC<ThumbnailProps> = ({
   id,
   extra,
+  defaultImage,
+  alt,
+  useThumbnail,
   maxWidth = '100%',
   maxHeight = '100%',
-  useDefault = true,
   variant = 'rect',
-  alt,
-  useItemThumbnail,
 }) => {
   const [thumbnailUrl, setThumbnailUrl] = useState<string | undefined>(
     undefined,
@@ -33,7 +33,7 @@ const Thumbnail: FC<ThumbnailProps> = ({
     data: thumbnailData,
     isLoading,
     isFetching,
-  } = useItemThumbnail({
+  } = useThumbnail({
     id,
   });
 
@@ -65,7 +65,7 @@ const Thumbnail: FC<ThumbnailProps> = ({
   const thumbnail = getItemImage({
     url: thumbnailUrl,
     extra: embeddedLinkExtra,
-    useDefault,
+    defaultImage,
   });
 
   if (!thumbnail) {

@@ -12,7 +12,7 @@ type AvatarProps = {
   extra: object;
   maxWidth?: string | number;
   maxHeight?: string | number;
-  useDefault?: boolean;
+  defaultImage?: string;
   variant?: string;
   alt: string;
   component?: string;
@@ -25,10 +25,10 @@ const Avatar: FC<AvatarProps> = ({
   extra,
   className,
   alt,
+  defaultImage,
   useAvatar,
   maxWidth = '100%',
   maxHeight = '100%',
-  useDefault = true,
   variant = 'rect',
   component = 'img',
 }) => {
@@ -77,7 +77,7 @@ const Avatar: FC<AvatarProps> = ({
   const thumbnail = getItemImage({
     url: thumbnailUrl,
     extra: embeddedLinkExtra,
-    useDefault,
+    defaultImage,
   });
 
   if (component === 'avatar') {
