@@ -39,3 +39,5 @@ export { default as GraaspLogo } from './GraaspLogo';
 export { default as ItemLoginAuthorization } from './itemLogin';
 
 export { default as Card } from './Card';
+export { default as Thumbnail } from './Thumbnail';
+export { default as Avatar } from './Avatar';
