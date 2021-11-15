@@ -9,10 +9,10 @@ import FilePdf from './FilePdf';
 import { getFileExtra } from '../utils/itemExtra';
 import DownloadButtonFileItem from './DownloadButtonFileItem';
 import withCaption from './withCaption';
-import { Item } from '../types';
+import { FileItemExtra, Item } from '../types';
 
 interface FileItemProps {
-  item: Record<Item>;
+  item: Record<Item<FileItemExtra>>;
   content: Blob;
   id?: string;
   defaultItem?: JSX.Element;
@@ -39,7 +39,8 @@ const FileItem: FC<FileItemProps> = ({
   errorMessage = UNEXPECTED_ERROR_MESSAGE,
 }) => {
   const [url, setUrl] = useState<string>();
-  const { mimetype, name: originalFileName } = getFileExtra(item.get('extra'));
+  const extra = getFileExtra(item.get('extra'));
+  const { mimetype, name: originalFileName } = extra ?? {};
   const name = item.get('name');
 
   useEffect(() => {
@@ -64,14 +65,16 @@ const FileItem: FC<FileItemProps> = ({
   }
 
   let component;
-  if (MIME_TYPES.IMAGE.includes(mimetype)) {
-    component = <FileImage id={id} url={url} alt={name} />;
-  } else if (MIME_TYPES.AUDIO.includes(mimetype)) {
-    component = <FileAudio id={id} url={url} type={mimetype} />;
-  } else if (MIME_TYPES.VIDEO.includes(mimetype)) {
-    component = <FileVideo id={id} url={url} type={mimetype} />;
-  } else if (MIME_TYPES.PDF.includes(mimetype)) {
-    component = <FilePdf id={id} url={url} height={maxHeight} />;
+  if (mimetype) {
+    if (MIME_TYPES.IMAGE.includes(mimetype)) {
+      component = <FileImage id={id} url={url} alt={name} />;
+    } else if (MIME_TYPES.AUDIO.includes(mimetype)) {
+      component = <FileAudio id={id} url={url} type={mimetype} />;
+    } else if (MIME_TYPES.VIDEO.includes(mimetype)) {
+      component = <FileVideo id={id} url={url} type={mimetype} />;
+    } else if (MIME_TYPES.PDF.includes(mimetype)) {
+      component = <FilePdf id={id} url={url} height={maxHeight} />;
+    }
   }
 
   // todo: add more file extensions

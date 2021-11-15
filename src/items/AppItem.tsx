@@ -9,7 +9,7 @@ import {
   ITEM_MAX_HEIGHT,
 } from '../constants';
 import withCaption from './withCaption';
-import type { Item, Member, UUID } from '../types';
+import type { AppItemExtra, Item, Member, UUID } from '../types';
 
 export const GET_AUTH_TOKEN = 'GET_AUTH_TOKEN';
 export const GET_AUTH_TOKEN_SUCCEEDED = 'GET_AUTH_TOKEN_SUCCEEDED';
@@ -25,7 +25,7 @@ type TokenResponse = {
 };
 
 interface AppItemProps {
-  item: Record<Item>;
+  item: Record<Item<AppItemExtra>>;
   user: Record<Member>;
   apiHost: string;
   id?: string;

@@ -12,10 +12,11 @@ import {
   LINK_BUTTON_ICON_COLOR,
   LINK_BUTTON_ICON_FONT_SIZE,
 } from '../constants';
-import type { Item } from '../types';
+import type { EmbeddedLinkItemExtra, Item } from '../types';
 
 interface LinkItemProps {
-  item: Record<Item>;
+  item: Record<Item<EmbeddedLinkItemExtra>>;
+  height?: number | string;
   onSaveCaption?: (text: string) => void;
   editCaption?: boolean;
   showCaption?: boolean;

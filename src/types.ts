@@ -2,16 +2,27 @@ import { Map, Record } from 'immutable';
 
 export type UUID = string;
 
-type ItemExtra = {};
+export type Anything =
+  | string
+  | number
+  | boolean
+  | null
+  | undefined
+  | Anything[]
+  | { [key: string]: Anything };
+
+export interface UnknownExtra {
+  [key: string]: Anything;
+}
 
 // create immutable items using record
 // https://medium.com/@dyskplus/not-sure-if-that-wasnt-possible-as-of-writing-this-article-but-right-now-i-think-you-could-simply-ecafc50d06
 // we won't need Item anymore once all levels are immutable (List<Record<Item>>)
-export type Item = {
+export interface Item<T = UnknownExtra> {
   id: UUID;
   name: string;
   path: string;
-  extra: ItemExtra;
+  extra: T;
   description?: string;
   type: string;
   creator: string;
@@ -42,3 +53,41 @@ export class ImmutableItemClass extends Record({
   type: '',
   creator: '',
 }) { }
+
+export type EmbeddedLinkItemExtraProp = {
+  thumbnails: string[];
+  html: string;
+  url: string;
+  icons: string[];
+};
+export interface EmbeddedLinkItemExtra extends UnknownExtra {
+  embeddedLink: EmbeddedLinkItemExtraProp;
+}
+export type S3FileItemExtraProp = {
+  contenttype: string;
+  name: string;
+};
+export interface S3FileItemExtra extends UnknownExtra {
+  s3File: S3FileItemExtraProp;
+}
+
+export type FileItemProp = {
+  mimetype: string;
+  name: string;
+};
+
+export interface FileItemExtra extends UnknownExtra {
+  file: FileItemProp;
+}
+export type DocumentItemExtraProp = {
+  content: string;
+};
+export interface DocumentItemExtra extends UnknownExtra {
+  document: DocumentItemExtraProp;
+}
+export type AppItemExtraProp = {
+  url: string;
+};
+export interface AppItemExtra extends UnknownExtra {
+  app: AppItemExtraProp;
+}

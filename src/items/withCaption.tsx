@@ -2,20 +2,25 @@ import React from 'react';
 import { Record } from 'immutable';
 import Grid from '@material-ui/core/Grid';
 import TextEditor from '../TextEditor';
-import type { Item } from '../types';
+import type { Item, UnknownExtra } from '../types';
 import { DEFAULT_ITEM_DESCRIPTION } from '../constants';
 
-interface WithCaptionProps {
-  item: Record<Item>;
+interface WithCaptionProps<T> {
+  item: Record<Item<T>>;
   edit?: boolean;
   onSave?: (text: string) => void;
   saveButtonText?: string;
   saveButtonId?: string;
 }
 
-const withCaption =
-  ({ item, edit, onSave, saveButtonText, saveButtonId }: WithCaptionProps) =>
-  (component: JSX.Element): JSX.Element => {
+function withCaption<T extends UnknownExtra>({
+  item,
+  edit,
+  onSave,
+  saveButtonText,
+  saveButtonId,
+}: WithCaptionProps<T>) {
+  return (component: JSX.Element): JSX.Element => {
     class ComponentWithCaption extends React.Component {
       render(): JSX.Element {
         return (
@@ -39,5 +44,6 @@ const withCaption =
 
     return <ComponentWithCaption />;
   };
+}
 
 export default withCaption;

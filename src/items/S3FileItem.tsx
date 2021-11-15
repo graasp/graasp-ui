@@ -9,11 +9,11 @@ import FilePdf from './FilePdf';
 import { getS3FileExtra } from '../utils/itemExtra';
 import DownloadButtonFileItem from './DownloadButtonFileItem';
 import withCaption from './withCaption';
-import type { Item } from '../types';
+import type { Item, S3FileItemExtra } from '../types';
 
 interface S3FileItemProps {
   id?: string;
-  item: Record<Item>;
+  item: Record<Item<S3FileItemExtra>>;
   content: Blob;
   defaultItem?: JSX.Element;
   downloadText?: string;
@@ -39,9 +39,8 @@ const S3FileItem = ({
   errorMessage = UNEXPECTED_ERROR_MESSAGE,
 }: S3FileItemProps): JSX.Element => {
   const [url, setUrl] = useState<string>();
-  const { contenttype, name: originalFileName } = getS3FileExtra(
-    item.get('extra'),
-  );
+  const { contenttype, name: originalFileName } =
+    getS3FileExtra(item.get('extra')) ?? {};
   const name = item.get('name');
 
   useEffect(() => {
@@ -66,20 +65,22 @@ const S3FileItem = ({
   }
 
   let component;
-  if (MIME_TYPES.IMAGE.includes(contenttype)) {
-    component = <FileImage id={id} url={url} alt={name} />;
-  }
+  if (contenttype) {
+    if (MIME_TYPES.IMAGE.includes(contenttype)) {
+      component = <FileImage id={id} url={url} alt={name} />;
+    }
 
-  if (MIME_TYPES.AUDIO.includes(contenttype)) {
-    component = <FileAudio id={id} url={url} type={contenttype} />;
-  }
+    if (MIME_TYPES.AUDIO.includes(contenttype)) {
+      component = <FileAudio id={id} url={url} type={contenttype} />;
+    }
 
-  if (MIME_TYPES.VIDEO.includes(contenttype)) {
-    component = <FileVideo id={id} url={url} type={contenttype} />;
-  }
+    if (MIME_TYPES.VIDEO.includes(contenttype)) {
+      component = <FileVideo id={id} url={url} type={contenttype} />;
+    }
 
-  if (MIME_TYPES.PDF.includes(contenttype)) {
-    component = <FilePdf id={id} url={url} height={maxHeight} />;
+    if (MIME_TYPES.PDF.includes(contenttype)) {
+      component = <FilePdf id={id} url={url} height={maxHeight} />;
+    }
   }
 
   // todo: add more file extension

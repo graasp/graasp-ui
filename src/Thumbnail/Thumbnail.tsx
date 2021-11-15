@@ -2,10 +2,11 @@ import React, { FC, useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Skeleton from '@material-ui/lab/Skeleton';
 import { getItemImage } from '../utils/image';
+import { EmbeddedLinkItemExtra, UnknownExtra } from '../types';
 
 type ThumbnailProps = {
   id: string;
-  extra: object;
+  extra: UnknownExtra;
   maxWidth?: string | number;
   maxHeight?: string | number;
   useDefault?: boolean;
@@ -60,9 +61,10 @@ const Thumbnail: FC<ThumbnailProps> = ({
     return <Skeleton variant={variant} width={maxWidth} height={maxHeight} />;
   }
 
+  const embeddedLinkExtra = extra as unknown as EmbeddedLinkItemExtra;
   const thumbnail = getItemImage({
     url: thumbnailUrl,
-    extra,
+    extra: embeddedLinkExtra,
     useDefault,
   });
 
