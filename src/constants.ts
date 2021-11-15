@@ -58,4 +58,3 @@ export const FORBIDDEN_TEXT = 'You cannot access this item';
 
 export const ITEM_MAX_HEIGHT = '70vh';
 export const DEFAULT_CARD_HEIGHT = 130;
-export const DEFAULT_IMAGE_SRC = './assets/logo.jpeg';

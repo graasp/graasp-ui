@@ -1,4 +1,5 @@
 import React, { FC, useState, useEffect } from 'react';
+import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import Skeleton from '@material-ui/lab/Skeleton';
 import { getItemImage } from '../utils/image';
@@ -12,8 +13,8 @@ type ThumbnailProps = {
   defaultImage?: string;
   variant?: string;
   alt: string;
-  useAvatar: Function;
   useThumbnail: Function;
+  className?: string;
 };
 
 const Thumbnail: FC<ThumbnailProps> = ({
@@ -22,6 +23,7 @@ const Thumbnail: FC<ThumbnailProps> = ({
   defaultImage,
   alt,
   useThumbnail,
+  className,
   maxWidth = '100%',
   maxHeight = '100%',
   variant = 'rect',
@@ -72,7 +74,9 @@ const Thumbnail: FC<ThumbnailProps> = ({
     return null;
   }
 
-  return <img src={thumbnail} alt={alt} className={classes.img} />;
+  return (
+    <img src={thumbnail} alt={alt} className={clsx(classes.img, className)} />
+  );
 };
 
 export default Thumbnail;
