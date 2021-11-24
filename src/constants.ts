@@ -24,7 +24,6 @@ export const TEXT_EDITOR_TOOLBAR = [
   [{ list: 'ordered' }, { list: 'bullet' }, 'code-block', 'link', 'formula'],
 ];
 export const TEXT_EDITOR_MIN_HEIGHT = 200;
-export const APP_ITEM_HEIGHT = 500;
 export const APP_ITEM_WIDTH = '100%';
 export const APP_ITEM_FRAME_BORDER = 0;
 export const UNEXPECTED_ERROR_MESSAGE = 'An unexpected error occurred';
@@ -56,3 +55,5 @@ export const SETTINGS = {
   },
 };
 export const FORBIDDEN_TEXT = 'You cannot access this item';
+
+export const ITEM_MAX_HEIGHT = '70vh';

@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { Record } from 'immutable';
+import { withStyles } from '@material-ui/core/styles';
 import { getAppExtra } from '../utils/itemExtra';
 import Loader from '../Loader';
 import {
   APP_ITEM_FRAME_BORDER,
-  APP_ITEM_HEIGHT,
   APP_ITEM_WIDTH,
+  ITEM_MAX_HEIGHT,
 } from '../constants';
 import withCaption from './withCaption';
 import type { Item, Member, UUID } from '../types';
@@ -34,13 +35,23 @@ interface AppItemProps {
   // todo: one of enum
   mode?: string;
   saveButtonId?: string;
+  classes: {
+    iframe: string;
+  };
 }
 
 interface AppItemState {
   channel?: MessageChannel;
   iframeIsLoading: boolean;
   url?: string;
+  height: number | string;
 }
+
+const styles = {
+  iframe: {
+    maxHeight: ITEM_MAX_HEIGHT,
+  },
+};
 
 const requestApiAccessToken = async ({
   id,
@@ -75,6 +86,7 @@ class AppItem extends Component<AppItemProps> {
 
   state: AppItemState = {
     iframeIsLoading: true,
+    height: '100%',
   };
 
   iframeRef: React.RefObject<HTMLIFrameElement>;
@@ -188,13 +200,26 @@ class AppItem extends Component<AppItemProps> {
   };
 
   render(): JSX.Element {
-    const { item, id, showCaption, onSaveCaption, saveButtonId, editCaption } =
-      this.props;
-    const { iframeIsLoading, url } = this.state;
+    const {
+      item,
+      id,
+      showCaption,
+      onSaveCaption,
+      saveButtonId,
+      editCaption,
+      classes,
+    } = this.props;
+    const { iframeIsLoading, url, height } = this.state;
 
     const onLoad = iframeIsLoading
       ? (): void => {
           this.setState({ iframeIsLoading: false });
+          if (this.iframeRef?.current?.contentWindow) {
+            this.setState({
+              height:
+                this.iframeRef.current.contentWindow.document.body.scrollHeight,
+            });
+          }
         }
       : undefined;
 
@@ -207,10 +232,10 @@ class AppItem extends Component<AppItemProps> {
           onLoad={onLoad}
           ref={this.iframeRef}
           width={APP_ITEM_WIDTH}
-          // todo: dynamic height depending on app
-          height={APP_ITEM_HEIGHT}
+          height={height}
           src={url}
           frameBorder={APP_ITEM_FRAME_BORDER}
+          className={classes.iframe}
         />
       </React.Fragment>
     );
@@ -228,4 +253,4 @@ class AppItem extends Component<AppItemProps> {
   }
 }
 
-export default AppItem;
+export default withStyles(styles)(AppItem);

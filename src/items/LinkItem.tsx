@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useState, useRef } from 'react';
 import { Record } from 'immutable';
 import IconButton from '@material-ui/core/IconButton';
 import { makeStyles } from '@material-ui/core/styles';
@@ -6,8 +6,8 @@ import { getEmbeddedLinkExtra } from '../utils/itemExtra';
 import OpenInNewIcon from '@material-ui/icons/OpenInNew';
 import withCaption from './withCaption';
 import {
+  ITEM_MAX_HEIGHT,
   LINK_BUTTON_CONTAINER_BACKGROUND_COLOR,
-  LINK_BUTTON_CONTAINER_HEIGHT,
   LINK_BUTTON_CONTAINER_WIDTH,
   LINK_BUTTON_ICON_COLOR,
   LINK_BUTTON_ICON_FONT_SIZE,
@@ -16,7 +16,6 @@ import type { Item } from '../types';
 
 interface LinkItemProps {
   item: Record<Item>;
-  height?: number | string;
   onSaveCaption?: (text: string) => void;
   editCaption?: boolean;
   showCaption?: boolean;
@@ -29,13 +28,13 @@ const useStyles = makeStyles((theme) => ({
   iframe: {
     width: '100%',
     border: 'none',
+    maxHeight: ITEM_MAX_HEIGHT,
   },
   linkButtonContainer: {
-    position: 'absolute',
-    bottom: 0,
+    position: 'fixed',
+    top: 0,
     right: 0,
     width: LINK_BUTTON_CONTAINER_WIDTH,
-    height: LINK_BUTTON_CONTAINER_HEIGHT,
     backgroundColor: LINK_BUTTON_CONTAINER_BACKGROUND_COLOR,
   },
   linkButton: {
@@ -49,12 +48,13 @@ const useStyles = makeStyles((theme) => ({
   },
   iframeContainer: {
     position: 'relative',
+    maxHeight: ITEM_MAX_HEIGHT,
+    overflow: 'auto',
   },
 }));
 
 const LinkItem: FC<LinkItemProps> = ({
   item,
-  height = '100%',
   onSaveCaption,
   saveButtonId,
   editCaption = false,
@@ -65,6 +65,8 @@ const LinkItem: FC<LinkItemProps> = ({
   const classes = useStyles();
 
   const [isLoading, setIsLoading] = useState(true);
+  const [height, setHeight] = useState<string | number>('100%');
+  const iframeRef = useRef<HTMLIFrameElement>(null);
 
   const id = item.get('id');
   const extra = getEmbeddedLinkExtra(item.get('extra'));
@@ -95,6 +97,10 @@ const LinkItem: FC<LinkItemProps> = ({
 
   const handleLoad = (): void => {
     setIsLoading(false);
+    // set dynamic height
+    if (iframeRef?.current?.contentWindow) {
+      setHeight(iframeRef.current.contentWindow.document.body.scrollHeight);
+    }
   };
 
   const component = (
@@ -119,6 +125,7 @@ const LinkItem: FC<LinkItemProps> = ({
           src={url}
           onLoad={handleLoad}
           height='100%'
+          ref={iframeRef}
         />
         <div className={classes.linkButtonContainer}>
           <IconButton className={classes.linkButton}>
