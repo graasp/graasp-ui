@@ -14,12 +14,17 @@ export type Item = {
   extra: ItemExtra;
   description?: string;
   type: string;
+  creator: string;
 };
 
 export type Member = {
   id: string;
   name: string;
   email: string;
+};
+
+export type ItemMembership = {
+  id: string;
 };
 
 // todo: better solution?
@@ -35,4 +40,5 @@ export class ImmutableItemClass extends Record({
   description: '',
   extra: {},
   type: '',
-}) {}
+  creator: '',
+}) { }
