@@ -1,4 +1,4 @@
-import React, { FC, useRef, useState } from 'react';
+import React, { FC, useRef, useState, ReactEventHandler } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { ITEM_MAX_HEIGHT } from '../constants';
 
@@ -21,9 +21,11 @@ const FilePdf: FC<FilePdfProps> = ({ url, id, height: defaultHeight }) => {
     defaultHeight ?? '100%',
   );
 
-  const onLoad = (e): void => {
+  const onLoad: ReactEventHandler<HTMLEmbedElement> = (e) => {
     // set pdf height -> probably very high
-    setHeight(e.target?.offsetParent?.scrollHeight);
+    const newHeight = (e.target as HTMLEmbedElement)?.offsetParent
+      ?.scrollHeight;
+    newHeight && setHeight(newHeight);
   };
 
   return (
