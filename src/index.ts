@@ -37,3 +37,5 @@ export { default as ItemIcon } from './ItemIcon';
 export { default as GraaspLogo } from './GraaspLogo';
 
 export { default as ItemLoginAuthorization } from './itemLogin';
+
+export { default as Card } from './Card';
