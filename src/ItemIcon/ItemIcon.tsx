@@ -17,6 +17,12 @@ import {
   getS3FileExtra,
 } from '../utils/itemExtra';
 import { ITEM_TYPES } from '../enums';
+import {
+  EmbeddedLinkItemExtra,
+  FileItemExtra,
+  S3FileItemExtra,
+  UnknownExtra,
+} from '../types';
 
 const useStyles = makeStyles({
   imageIcon: {
@@ -30,7 +36,7 @@ interface ItemIconProps {
   name?: string;
   // todo: check is valid type
   type: string;
-  extra: object;
+  extra?: UnknownExtra;
   color?: string;
   className?: string;
   iconClass?: string;
@@ -46,8 +52,10 @@ const ItemIcon: FC<ItemIconProps> = ({
   const classes = useStyles();
 
   const mimetype =
-    getFileExtra(extra)?.mimetype || getS3FileExtra(extra)?.contenttype;
-  const icon = getEmbeddedLinkExtra(extra)?.icons?.[0];
+    getFileExtra(extra as unknown as FileItemExtra)?.mimetype ||
+    getS3FileExtra(extra as unknown as S3FileItemExtra)?.contenttype;
+  const icon = getEmbeddedLinkExtra(extra as unknown as EmbeddedLinkItemExtra)
+    ?.icons?.[0];
 
   if (icon) {
     return <img className={classes.imageIcon} alt={name} src={icon} />;
@@ -67,21 +75,23 @@ const ItemIcon: FC<ItemIconProps> = ({
     }
     case ITEM_TYPES.FILE:
     case ITEM_TYPES.S3_FILE: {
-      if (MIME_TYPES.IMAGE.includes(mimetype)) {
-        Icon = ImageIcon;
-        break;
-      }
-      if (MIME_TYPES.VIDEO.includes(mimetype)) {
-        Icon = MovieIcon;
-        break;
-      }
-      if (MIME_TYPES.AUDIO.includes(mimetype)) {
-        Icon = MusicNoteIcon;
-        break;
-      }
-      if (MIME_TYPES.PDF.includes(mimetype)) {
-        Icon = PictureAsPdfIcon;
-        break;
+      if (mimetype) {
+        if (MIME_TYPES.IMAGE.includes(mimetype)) {
+          Icon = ImageIcon;
+          break;
+        }
+        if (MIME_TYPES.VIDEO.includes(mimetype)) {
+          Icon = MovieIcon;
+          break;
+        }
+        if (MIME_TYPES.AUDIO.includes(mimetype)) {
+          Icon = MusicNoteIcon;
+          break;
+        }
+        if (MIME_TYPES.PDF.includes(mimetype)) {
+          Icon = PictureAsPdfIcon;
+          break;
+        }
       }
 
       Icon = InsertDriveFileIcon;

@@ -2,10 +2,10 @@ import React, { FC } from 'react';
 import { Record } from 'immutable';
 import TextEditor from '../TextEditor';
 import { getDocumentExtra } from '../utils/itemExtra';
-import type { Item } from '../types';
+import type { DocumentItemExtra, Item } from '../types';
 
 interface DocumentItemProps {
-  item: Record<Item>;
+  item: Record<Item<DocumentItemExtra>>;
   id?: string;
   edit?: boolean;
   saveButtonId?: string;

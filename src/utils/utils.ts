@@ -1,7 +1,10 @@
 import { validate } from 'uuid';
 
 // todo: use graasp-utils repo
-export const getParentsIdsFromPath = (path, { ignoreSelf = false } = {}) => {
+export const getParentsIdsFromPath = (
+  path?: string,
+  { ignoreSelf = false } = {},
+) => {
   if (!path) {
     return [];
   }
@@ -22,4 +25,9 @@ export const getParentsIdsFromPath = (path, { ignoreSelf = false } = {}) => {
   return ids;
 };
 
-export const isMemberIdValid = (memberId) => validate(memberId?.trim());
+export const isMemberIdValid = (memberId?: string): boolean => {
+  if (!memberId) {
+    return false;
+  }
+  return validate(memberId?.trim());
+};

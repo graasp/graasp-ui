@@ -18,9 +18,13 @@ export default {
       mainFields: ['module', 'main', 'jsnext:main', 'browser'],
       extensions: ['.js', '.jsx', '.ts', '.tsx'],
     }),
-    typescript({ tsconfig: './tsconfig.json', sourceMap: false }),
-    scss({ outputStyle: 'compressed', output: 'dist/bundle.css' }),
+    typescript({
+      tsconfig: './tsconfig.json',
+      sourceMap: false,
+      exclude: ['**/*.test.ts'],
+    }),
     commonjs(),
+    scss({ outputStyle: 'compressed', output: 'dist/bundle.css' }),
     babel({ babelHelpers: 'bundled' }),
     // import katex fonts
     copy({

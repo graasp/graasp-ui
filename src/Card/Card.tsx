@@ -15,10 +15,11 @@ type CardProps = {
   name: string;
   creator?: string;
   ItemMenu?: ReactElement;
-  image: string;
+  image?: string;
   cardId?: string;
   NameWrapper?: FC;
   className?: string;
+  Thumbnail?: ReactElement;
 };
 
 const Item: FC<CardProps> = ({
@@ -32,6 +33,7 @@ const Item: FC<CardProps> = ({
   image,
   cardId,
   NameWrapper,
+  Thumbnail,
 }) => {
   const useStyles = makeStyles((theme) => ({
     media: {
@@ -66,11 +68,19 @@ const Item: FC<CardProps> = ({
 
   const classes = useStyles();
 
+  const renderImage = (): ReactElement => {
+    if (!Thumbnail) {
+      return <img className={classes.media} src={image} alt={name} />;
+    }
+
+    return Thumbnail;
+  };
+
   return (
     <Card id={cardId} className={className}>
       <Grid container className={classes.container}>
         <Grid item xs={5} className={classes.imageContainer}>
-          <img className={classes.media} src={image} alt={name} />
+          {renderImage()}
         </Grid>
 
         <Grid item xs={7}>
