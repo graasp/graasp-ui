@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Skeleton from '@material-ui/lab/Skeleton';
 import { getItemImage } from '../utils/image';
 import { EmbeddedLinkItemExtra, UnknownExtra } from '../types';
+import { DEFAULT_THUMBNAIL_SIZE } from '../constants';
 
 type ThumbnailProps = {
   id: string;
@@ -15,6 +16,8 @@ type ThumbnailProps = {
   alt: string;
   useThumbnail: Function;
   className?: string;
+  // todo: enforce sizes strings
+  size?: string;
 };
 
 const Thumbnail: FC<ThumbnailProps> = ({
@@ -27,6 +30,7 @@ const Thumbnail: FC<ThumbnailProps> = ({
   maxWidth = '100%',
   maxHeight = '100%',
   variant = 'rect',
+  size = DEFAULT_THUMBNAIL_SIZE,
 }) => {
   const [thumbnailUrl, setThumbnailUrl] = useState<string | undefined>(
     undefined,
@@ -37,6 +41,7 @@ const Thumbnail: FC<ThumbnailProps> = ({
     isFetching,
   } = useThumbnail({
     id,
+    size,
   });
 
   const classes = makeStyles({

@@ -6,6 +6,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Skeleton from '@material-ui/lab/Skeleton';
 import { getItemImage } from '../utils/image';
 import { EmbeddedLinkItemExtra } from '../types';
+import { DEFAULT_THUMBNAIL_SIZE } from '../constants';
 
 type AvatarProps = {
   id: string;
@@ -18,6 +19,8 @@ type AvatarProps = {
   component?: string;
   className?: string;
   useAvatar: Function;
+  // todo: enforce size strings
+  size?: string;
 };
 
 const Avatar: FC<AvatarProps> = ({
@@ -31,6 +34,7 @@ const Avatar: FC<AvatarProps> = ({
   maxHeight = '100%',
   variant = 'rect',
   component = 'img',
+  size = DEFAULT_THUMBNAIL_SIZE,
 }) => {
   const [thumbnailUrl, setThumbnailUrl] = useState<string | undefined>(
     undefined,
@@ -41,6 +45,7 @@ const Avatar: FC<AvatarProps> = ({
     isFetching,
   } = useAvatar({
     id,
+    size,
   });
 
   const classes = makeStyles({

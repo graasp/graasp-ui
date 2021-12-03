@@ -58,3 +58,12 @@ export const FORBIDDEN_TEXT = 'You cannot access this item';
 
 export const ITEM_MAX_HEIGHT = '70vh';
 export const DEFAULT_CARD_HEIGHT = 130;
+
+export const THUMBNAIL_SIZES = {
+  SMALL: 'small',
+  MEDIUM: 'medium',
+  LARGE: 'large',
+  ORIGINAL: 'original',
+};
+
+export const DEFAULT_THUMBNAIL_SIZE = THUMBNAIL_SIZES.SMALL;
