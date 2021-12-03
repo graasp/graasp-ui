@@ -62,11 +62,12 @@ const LinkItem: FC<LinkItemProps> = ({
   showCaption = true,
   loadingMessage = 'Link is Loading.',
   openLinkMessage = 'Click here to open link manually.',
+  height: defaultHeight,
 }) => {
   const classes = useStyles();
 
   const [isLoading, setIsLoading] = useState(true);
-  const [height, setHeight] = useState<string | number>('100%');
+  const [height] = useState<string | number>(defaultHeight ?? '100%');
   const iframeRef = useRef<HTMLIFrameElement>(null);
 
   const id = item.get('id');
@@ -98,10 +99,10 @@ const LinkItem: FC<LinkItemProps> = ({
 
   const handleLoad = (): void => {
     setIsLoading(false);
-    // set dynamic height
-    if (iframeRef?.current?.contentWindow) {
-      setHeight(iframeRef.current.contentWindow.document.body.scrollHeight);
-    }
+    // TODO: set dynamic height
+    // if (iframeRef?.current?.contentWindow) {
+    //   setHeight(iframeRef.current.contentWindow.document.body.scrollHeight);
+    // }
   };
 
   const component = (
@@ -109,7 +110,7 @@ const LinkItem: FC<LinkItemProps> = ({
       <div
         hidden={!isLoading}
         className={classes.iframeContainer}
-        style={{ height: height || '100%' }}
+        style={{ height: height }}
       >
         {loadingMessage}
         <a href={url}>{openLinkMessage}</a>
@@ -117,7 +118,7 @@ const LinkItem: FC<LinkItemProps> = ({
       <div
         hidden={isLoading}
         className={classes.iframeContainer}
-        style={{ height: height || '100%' }}
+        style={{ height: height }}
       >
         <iframe
           id={id}

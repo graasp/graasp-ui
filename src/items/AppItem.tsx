@@ -38,6 +38,7 @@ interface AppItemProps {
   classes: {
     iframe: string;
   };
+  height?: number | string;
 }
 
 interface AppItemState {
@@ -49,6 +50,7 @@ interface AppItemState {
 
 const styles = {
   iframe: {
+    height: ITEM_MAX_HEIGHT,
     maxHeight: ITEM_MAX_HEIGHT,
   },
 };
@@ -86,7 +88,7 @@ class AppItem extends Component<AppItemProps> {
 
   state: AppItemState = {
     iframeIsLoading: true,
-    height: '100%',
+    height: this.props.height ?? '100%',
   };
 
   iframeRef: React.RefObject<HTMLIFrameElement>;
@@ -214,12 +216,13 @@ class AppItem extends Component<AppItemProps> {
     const onLoad = iframeIsLoading
       ? (): void => {
           this.setState({ iframeIsLoading: false });
-          if (this.iframeRef?.current?.contentWindow) {
-            this.setState({
-              height:
-                this.iframeRef.current.contentWindow.document.body.scrollHeight,
-            });
-          }
+          // TODO: set dynamic height
+          // if (this.iframeRef?.current?.contentWindow) {
+          // this.setState({
+          //   height:
+          //     this.iframeRef.current.contentWindow.document.body.scrollHeight,
+          // });
+          // }
         }
       : undefined;
 
