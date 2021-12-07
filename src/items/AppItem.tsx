@@ -17,6 +17,8 @@ export const GET_ITEM_DATA = 'GET_ITEM_DATA';
 export const GET_ITEM_DATA_SUCCEEDED = 'GET_ITEM_DATA_SUCCEEDED';
 export const GET_CONTEXT = 'GET_CONTEXT';
 export const GET_CONTEXT_SUCCEEDED = 'GET_CONTEXT_SUCCEEDED';
+export const UPDATE_SETTINGS = '';
+export const UPDATE_SETTINGS_SUCCEEDED = '';
 
 type Token = string;
 
@@ -28,6 +30,8 @@ interface AppItemProps {
   onSaveCaption?: (text: string) => void;
   editCaption?: boolean;
   showCaption?: boolean;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  onSettingsUpdate: any;
   // todo: one of enum
   mode?: string;
   saveButtonId?: string;
@@ -130,12 +134,35 @@ class AppItem extends Component<AppItemProps> {
     }
 
     const { type, payload } = JSON.parse(data);
-    if (type === GET_AUTH_TOKEN) {
-      const token = await this.getToken(payload);
-      // eslint-disable-next-line no-unused-expressions
-      channel?.port1.postMessage(
-        JSON.stringify({ type: GET_AUTH_TOKEN_SUCCEEDED, payload: { token } }),
-      );
+    switch (type) {
+      case GET_AUTH_TOKEN:
+        // eslint-disable-next-line no-unused-expressions
+        channel?.port1.postMessage(
+          JSON.stringify({
+            type: GET_AUTH_TOKEN_SUCCEEDED,
+            payload: {
+              token: await this.getToken(payload),
+            },
+          }),
+        );
+        break;
+      case UPDATE_SETTINGS:
+        // eslint-disable-next-line no-unused-expressions
+        channel?.port1.postMessage(
+          JSON.stringify({
+            type: UPDATE_SETTINGS_SUCCEEDED,
+            payload: {
+              settings: await this.props.onSettingsUpdate({
+                id: this.props.item.get('id'),
+                extra: {
+                  ...this.props.item.get('extra'),
+                  settings: payload,
+                },
+              }),
+            },
+          }),
+        );
+        break;
     }
   };
 
