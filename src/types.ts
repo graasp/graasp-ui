@@ -64,7 +64,7 @@ export interface EmbeddedLinkItemExtra extends UnknownExtra {
   embeddedLink: EmbeddedLinkItemExtraProp;
 }
 export type S3FileItemExtraProp = {
-  contenttype: string;
+  mimetype: string;
   name: string;
 };
 export interface S3FileItemExtra extends UnknownExtra {

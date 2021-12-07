@@ -53,7 +53,7 @@ const ItemIcon: FC<ItemIconProps> = ({
 
   const mimetype =
     getFileExtra(extra as unknown as FileItemExtra)?.mimetype ||
-    getS3FileExtra(extra as unknown as S3FileItemExtra)?.contenttype;
+    getS3FileExtra(extra as unknown as S3FileItemExtra)?.mimetype;
   const icon = getEmbeddedLinkExtra(extra as unknown as EmbeddedLinkItemExtra)
     ?.icons?.[0];
 
