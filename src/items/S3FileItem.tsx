@@ -25,6 +25,7 @@ interface S3FileItemProps {
   saveButtonId?: string;
 }
 
+// DEPRECATED
 const S3FileItem = ({
   id,
   item,
