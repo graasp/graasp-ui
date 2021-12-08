@@ -17,8 +17,8 @@ export const GET_ITEM_DATA = 'GET_ITEM_DATA';
 export const GET_ITEM_DATA_SUCCEEDED = 'GET_ITEM_DATA_SUCCEEDED';
 export const GET_CONTEXT = 'GET_CONTEXT';
 export const GET_CONTEXT_SUCCEEDED = 'GET_CONTEXT_SUCCEEDED';
-export const UPDATE_SETTINGS = '';
-export const UPDATE_SETTINGS_SUCCEEDED = '';
+export const UPDATE_SETTINGS = 'UPDATE_SETTINGS';
+export const UPDATE_SETTINGS_SUCCEEDED = 'UPDATE_SETTINGS_SUCCEEDED';
 
 type Token = string;
 
@@ -134,6 +134,8 @@ class AppItem extends Component<AppItemProps> {
     }
 
     const { type, payload } = JSON.parse(data);
+    console.log('-------------aaaa');
+    console.log(payload);
     switch (type) {
       case GET_AUTH_TOKEN:
         // eslint-disable-next-line no-unused-expressions
@@ -155,8 +157,13 @@ class AppItem extends Component<AppItemProps> {
               settings: await this.props.onSettingsUpdate({
                 id: this.props.item.get('id'),
                 extra: {
-                  ...this.props.item.get('extra'),
-                  settings: payload,
+                  app: {
+                    ...this.props.item.get('extra').app,
+                    settings: {
+                      ...this.props.item.get('extra').app.settings,
+                      ...payload,
+                    },
+                  },
                 },
               }),
             },
