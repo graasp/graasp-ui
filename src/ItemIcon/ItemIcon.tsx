@@ -10,6 +10,7 @@ import DescriptionIcon from '@material-ui/icons/Description';
 import ImageIcon from '@material-ui/icons/Image';
 import ShortcutIcon from '@material-ui/icons/Input';
 import AppsIcon from '@material-ui/icons/Apps';
+import ArchiveIcon from '@material-ui/icons/Archive';
 import { MIME_TYPES, ITEM_ICON_MAX_SIZE } from '../constants';
 import {
   getEmbeddedLinkExtra,
@@ -90,6 +91,10 @@ const ItemIcon: FC<ItemIconProps> = ({
         }
         if (MIME_TYPES.PDF.includes(mimetype)) {
           Icon = PictureAsPdfIcon;
+          break;
+        }
+        if (MIME_TYPES.ZIP.includes(mimetype)) {
+          Icon = ArchiveIcon;
           break;
         }
       }
