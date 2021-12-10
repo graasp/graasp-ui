@@ -25,6 +25,7 @@ interface S3FileItemProps {
   saveButtonId?: string;
 }
 
+// DEPRECATED
 const S3FileItem = ({
   id,
   item,
@@ -39,7 +40,7 @@ const S3FileItem = ({
   errorMessage = UNEXPECTED_ERROR_MESSAGE,
 }: S3FileItemProps): JSX.Element => {
   const [url, setUrl] = useState<string>();
-  const { contenttype, name: originalFileName } =
+  const { mimetype, name: originalFileName } =
     getS3FileExtra(item.get('extra')) ?? {};
   const name = item.get('name');
 
@@ -65,20 +66,20 @@ const S3FileItem = ({
   }
 
   let component;
-  if (contenttype) {
-    if (MIME_TYPES.IMAGE.includes(contenttype)) {
+  if (mimetype) {
+    if (MIME_TYPES.IMAGE.includes(mimetype)) {
       component = <FileImage id={id} url={url} alt={name} />;
     }
 
-    if (MIME_TYPES.AUDIO.includes(contenttype)) {
-      component = <FileAudio id={id} url={url} type={contenttype} />;
+    if (MIME_TYPES.AUDIO.includes(mimetype)) {
+      component = <FileAudio id={id} url={url} type={mimetype} />;
     }
 
-    if (MIME_TYPES.VIDEO.includes(contenttype)) {
-      component = <FileVideo id={id} url={url} type={contenttype} />;
+    if (MIME_TYPES.VIDEO.includes(mimetype)) {
+      component = <FileVideo id={id} url={url} type={mimetype} />;
     }
 
-    if (MIME_TYPES.PDF.includes(contenttype)) {
+    if (MIME_TYPES.PDF.includes(mimetype)) {
       component = <FilePdf id={id} url={url} height={maxHeight} />;
     }
   }

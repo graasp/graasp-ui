@@ -6,13 +6,13 @@ import FileImage from './FileImage';
 import FileAudio from './FileAudio';
 import FileVideo from './FileVideo';
 import FilePdf from './FilePdf';
-import { getFileExtra } from '../utils/itemExtra';
+import { getFileExtra, getS3FileExtra } from '../utils/itemExtra';
 import DownloadButtonFileItem from './DownloadButtonFileItem';
 import withCaption from './withCaption';
-import { FileItemExtra, Item } from '../types';
+import { FileItemExtra, Item, S3FileItemExtra, UnknownExtra } from '../types';
 
 interface FileItemProps {
-  item: Record<Item<FileItemExtra>>;
+  item: Record<Item<UnknownExtra>>;
   content: Blob;
   id?: string;
   defaultItem?: JSX.Element;
@@ -39,7 +39,9 @@ const FileItem: FC<FileItemProps> = ({
   errorMessage = UNEXPECTED_ERROR_MESSAGE,
 }) => {
   const [url, setUrl] = useState<string>();
-  const extra = getFileExtra(item.get('extra'));
+  const extra =
+    getFileExtra(item.get('extra') as FileItemExtra) ??
+    getS3FileExtra(item.get('extra') as S3FileItemExtra);
   const { mimetype, name: originalFileName } = extra ?? {};
   const name = item.get('name');
 
