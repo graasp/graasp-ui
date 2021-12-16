@@ -8,6 +8,7 @@ export const MIME_TYPES = {
   VIDEO: ['video/mp4'],
   AUDIO: ['audio/mpeg', 'audio/mp3'],
   PDF: ['application/pdf'],
+  ZIP: ['application/zip'],
 };
 
 export const TEXT_EDITOR_TOOLBAR = [
