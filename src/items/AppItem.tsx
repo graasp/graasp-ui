@@ -9,7 +9,7 @@ import {
   ITEM_MAX_HEIGHT,
 } from '../constants';
 import withCaption from './withCaption';
-import type { AppItemExtra, Item, Member, UUID } from '../types';
+import type { AppItemExtra, Item, Member } from '../types';
 
 export const GET_AUTH_TOKEN = 'GET_AUTH_TOKEN';
 export const GET_AUTH_TOKEN_SUCCEEDED = 'GET_AUTH_TOKEN_SUCCEEDED';
@@ -19,10 +19,6 @@ export const GET_CONTEXT = 'GET_CONTEXT';
 export const GET_CONTEXT_SUCCEEDED = 'GET_CONTEXT_SUCCEEDED';
 
 type Token = string;
-
-type TokenResponse = {
-  token: Token;
-};
 
 interface AppItemProps {
   item: Record<Item<AppItemExtra>>;
@@ -39,6 +35,7 @@ interface AppItemProps {
     iframe: string;
   };
   height?: number | string;
+  requestApiAccessToken: Function;
 }
 
 interface AppItemState {
@@ -53,27 +50,6 @@ const styles = {
     height: ITEM_MAX_HEIGHT,
     maxHeight: ITEM_MAX_HEIGHT,
   },
-};
-
-const requestApiAccessToken = async ({
-  id,
-  origin,
-  app,
-  apiHost,
-}: {
-  id: UUID;
-  origin: string;
-  app: string;
-  apiHost: string;
-}): Promise<TokenResponse> => {
-  const res = await fetch(`${apiHost}/app-items/${id}/api-access-token`, {
-    method: 'POST',
-    credentials: 'include',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ origin, app }),
-  });
-
-  return res.json();
 };
 
 class AppItem extends Component<AppItemProps> {
@@ -126,18 +102,21 @@ class AppItem extends Component<AppItemProps> {
     app: string;
     origin: string;
   }): Promise<Token> => {
-    const { item, apiHost } = this.props;
+    const { item, apiHost, requestApiAccessToken } = this.props;
 
     // get token from backend
-    const { token } = await requestApiAccessToken({
-      id: item.get('id'),
-      apiHost,
-      // the app should provide this (in the message)
-      // this id is "manually" added as a "registered" app id.
-      // each app that uses the API needs one.
-      app,
-      origin,
-    });
+    const { token } = await requestApiAccessToken(
+      {
+        id: item.get('id'),
+
+        // the app should provide this (in the message)
+        // this id is "manually" added as a "registered" app id.
+        // each app that uses the API needs one.
+        app,
+        origin,
+      },
+      { API_HOST: apiHost },
+    );
 
     return token;
   };
