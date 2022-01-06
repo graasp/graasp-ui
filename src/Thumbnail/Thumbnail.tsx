@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import Skeleton from '@material-ui/lab/Skeleton';
 import { getItemImage } from '../utils/image';
-import { EmbeddedLinkItemExtra, UnknownExtra } from '../types';
+import { EmbeddedLinkItemExtra, UnknownExtra, Variant } from '../types';
 import { DEFAULT_THUMBNAIL_SIZE } from '../constants';
 
 type ThumbnailProps = {
@@ -12,7 +12,7 @@ type ThumbnailProps = {
   maxWidth?: string | number;
   maxHeight?: string | number;
   defaultImage?: string;
-  variant?: string;
+  variant?: Variant;
   alt: string;
   useThumbnail: Function;
   className?: string;
@@ -29,7 +29,7 @@ const Thumbnail: FC<ThumbnailProps> = ({
   className,
   maxWidth = '100%',
   maxHeight = '100%',
-  variant = 'rect',
+  variant = Variant.RECT,
   size = DEFAULT_THUMBNAIL_SIZE,
 }) => {
   const [thumbnailUrl, setThumbnailUrl] = useState<string | undefined>(

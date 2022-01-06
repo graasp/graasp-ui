@@ -164,7 +164,7 @@ const ItemLoginScreen: FC<ItemLoginScreenProps> = ({
         </InputLabel>
         <OutlinedInput
           autoFocus
-          error={error}
+          error={Boolean(error)}
           onChange={onMemberIdChange}
           label={t('Member Id')}
           inputComponent={MemberIdTextField}

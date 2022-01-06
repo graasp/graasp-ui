@@ -5,7 +5,7 @@ import { default as AvatarComponent } from '@material-ui/core/Avatar';
 import { makeStyles } from '@material-ui/core/styles';
 import Skeleton from '@material-ui/lab/Skeleton';
 import { getItemImage } from '../utils/image';
-import { EmbeddedLinkItemExtra } from '../types';
+import { EmbeddedLinkItemExtra, Variant } from '../types';
 import { DEFAULT_THUMBNAIL_SIZE } from '../constants';
 
 type AvatarProps = {
@@ -14,7 +14,7 @@ type AvatarProps = {
   maxWidth?: string | number;
   maxHeight?: string | number;
   defaultImage?: string;
-  variant?: string;
+  variant?: Variant;
   alt: string;
   component?: string;
   className?: string;
@@ -32,7 +32,7 @@ const Avatar: FC<AvatarProps> = ({
   useAvatar,
   maxWidth = '100%',
   maxHeight = '100%',
-  variant = 'rect',
+  variant = Variant.RECT,
   component = 'img',
   size = DEFAULT_THUMBNAIL_SIZE,
 }) => {
@@ -85,12 +85,12 @@ const Avatar: FC<AvatarProps> = ({
     defaultImage,
   });
 
-  if (component === 'avatar') {
-    return <AvatarComponent alt={alt} src={thumbnail} className={className} />;
-  }
-
   if (!thumbnail) {
     return null;
+  }
+
+  if (component === 'avatar') {
+    return <AvatarComponent alt={alt} src={thumbnail} className={className} />;
   }
 
   return (

@@ -54,10 +54,8 @@ const styles = {
 
 class AppItem extends Component<AppItemProps> {
   static defaultProps = {
-    onSaveCaption: null,
     editCaption: false,
     showCaption: true,
-    saveButtonId: null,
     // todo: get this value from common graasp constants
     mode: 'student',
   };

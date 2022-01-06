@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import MaskedInput from 'react-text-mask';
 
 interface Props {
-  showMask: boolean;
+  showMask?: boolean;
 }
 
 const MemberIdTextField: FC<Props> = (props) => {
