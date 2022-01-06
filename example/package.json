@@ -27,7 +27,7 @@
     "@types/react-dom": "link:../node_modules/@types/react-dom",
     "immutable": "4.0.0",
     "react": "17.0.1",
-    "react-dom": "17.0.1",
+    "react-dom": "17.0.2",
     "react-scripts": "3.4.3",
     "typescript": "4.1.3"
   },
