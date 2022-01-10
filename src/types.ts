@@ -26,7 +26,7 @@ export interface Item<T = UnknownExtra> {
   description?: string;
   type: string;
   creator: string;
-};
+}
 
 export type Member = {
   id: string;
@@ -52,7 +52,7 @@ export class ImmutableItemClass extends Record({
   extra: {},
   type: '',
   creator: '',
-}) { }
+}) {}
 
 export type EmbeddedLinkItemExtraProp = {
   thumbnails: string[];
@@ -90,4 +90,10 @@ export type AppItemExtraProp = {
 };
 export interface AppItemExtra extends UnknownExtra {
   app: AppItemExtraProp;
+}
+
+export enum Variant {
+  TEXT = 'text',
+  RECT = 'rect',
+  CIRCLE = 'circle',
 }

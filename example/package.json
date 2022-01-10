@@ -25,17 +25,17 @@
     "@types/node": "link:../node_modules/@types/node",
     "@types/react": "link:../node_modules/@types/react",
     "@types/react-dom": "link:../node_modules/@types/react-dom",
-    "immutable": "4.0.0-rc.12",
+    "immutable": "4.0.0",
     "react": "17.0.1",
-    "react-dom": "17.0.1",
+    "react-dom": "17.0.2",
     "react-scripts": "3.4.3",
     "typescript": "4.1.3"
   },
   "devDependencies": {
     "@babel/plugin-syntax-object-rest-spread": "^7.8.3",
-    "@material-ui/core": "4.11.0",
-    "@material-ui/icons": "4.9.1",
-    "@material-ui/lab": "4.0.0-alpha.58"
+    "@material-ui/core": "4.12.3",
+    "@material-ui/icons": "4.11.2",
+    "@material-ui/lab": "4.0.0-alpha.60"
   },
   "eslintConfig": {
     "extends": "react-app"

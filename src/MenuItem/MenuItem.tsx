@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, SyntheticEvent, ReactElement } from 'react';
 import MaterialMenuItem from '@material-ui/core/MenuItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -6,10 +6,10 @@ import ListItemText from '@material-ui/core/ListItemText';
 export interface MenuItemProps {
   id?: string;
   text?: string;
-  icon?: React.ReactElement;
+  icon?: ReactElement;
   path?: string;
   key?: string;
-  onClick?: (path?: string) => void;
+  onClick?: (event?: SyntheticEvent) => void;
 }
 
 export const MenuItem: FC<MenuItemProps> = ({ id, text, icon, onClick }) => {
