@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, MouseEventHandler } from 'react';
 import { useTranslation } from 'react-i18next';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -27,7 +27,7 @@ const useStyles = makeStyles(() => ({
 
 export interface ItemFlagDialogProps {
   flags: Flag[];
-  onFlag: Function;
+  onFlag: MouseEventHandler;
   open: boolean;
   setOpen: Function;
   selectedFlag: Flag;
