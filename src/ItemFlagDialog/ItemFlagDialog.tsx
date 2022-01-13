@@ -11,16 +11,30 @@ import Typography from '@material-ui/core/Typography';
 import { FLAG_LIST_MAX_HEIGHT } from '../constants';
 import { Flag } from '../types';
 
-export interface ItemFlagMenuProps {
+const useStyles = makeStyles(() => ({
+  list: {
+    width: '100%',
+    overflow: 'auto',
+    maxHeight: FLAG_LIST_MAX_HEIGHT,
+  },
+  listTitle: {
+    fontSize: 'small',
+  },
+  flagItemButton: {
+    color: 'red',
+  },
+}));
+
+export interface ItemFlagDialogProps {
   flags: Flag[];
-  onFlag: any;
+  onFlag: Function;
   open: boolean;
-  setOpen: any;
+  setOpen: Function;
   selectedFlag: Flag;
-  setSelectedFlag: any;
+  setSelectedFlag: Function;
 }
 
-export const ItemFlagMenu: FC<ItemFlagMenuProps> = ({
+export const ItemFlagDialog: FC<ItemFlagDialogProps> = ({
   flags,
   onFlag,
   open,
@@ -28,20 +42,6 @@ export const ItemFlagMenu: FC<ItemFlagMenuProps> = ({
   selectedFlag,
   setSelectedFlag,
 }) => {
-  const useStyles = makeStyles(() => ({
-    list: {
-      width: '100%',
-      overflow: 'auto',
-      maxHeight: FLAG_LIST_MAX_HEIGHT,
-    },
-    listTitle: {
-      fontSize: 'small',
-    },
-    flagItemButton: {
-      color: 'red',
-    },
-  }));
-
   const { t } = useTranslation();
   const classes = useStyles();
 
@@ -89,4 +89,4 @@ export const ItemFlagMenu: FC<ItemFlagMenuProps> = ({
   );
 };
 
-export default ItemFlagMenu;
+export default ItemFlagDialog;

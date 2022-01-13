@@ -42,4 +42,4 @@ export { default as Card } from './Card';
 export { default as Thumbnail } from './Thumbnail';
 export { default as Avatar } from './Avatar';
 
-export { default as ItemFlagMenu } from './ItemFlagMenu';
+export { default as ItemFlagDialog } from './ItemFlagDialog';
