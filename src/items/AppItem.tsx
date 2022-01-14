@@ -10,6 +10,7 @@ import {
 } from '../constants';
 import withCaption from './withCaption';
 import type { AppItemExtra, Item, Member } from '../types';
+import { UseMutateAsyncFunction } from 'react-query';
 
 export const GET_AUTH_TOKEN = 'GET_AUTH_TOKEN';
 export const GET_AUTH_TOKEN_SUCCEEDED = 'GET_AUTH_TOKEN_SUCCEEDED';
@@ -30,8 +31,12 @@ interface AppItemProps {
   onSaveCaption?: (text: string) => void;
   editCaption?: boolean;
   showCaption?: boolean;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  onSettingsUpdate: any;
+  onSettingsUpdate: UseMutateAsyncFunction<
+    Item<AppItemExtra>,
+    unknown,
+    Partial<Item<AppItemExtra>>,
+    unknown
+  >;
   // todo: one of enum
   mode?: string;
   saveButtonId?: string;
@@ -134,8 +139,7 @@ class AppItem extends Component<AppItemProps> {
     }
 
     const { type, payload } = JSON.parse(data);
-    console.log('-------------aaaa');
-    console.log(payload);
+
     switch (type) {
       case GET_AUTH_TOKEN:
         // eslint-disable-next-line no-unused-expressions
