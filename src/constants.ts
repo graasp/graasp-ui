@@ -68,3 +68,5 @@ export const THUMBNAIL_SIZES = {
 };
 
 export const DEFAULT_THUMBNAIL_SIZE = THUMBNAIL_SIZES.SMALL;
+
+export const FLAG_LIST_MAX_HEIGHT = 250;

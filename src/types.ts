@@ -98,3 +98,16 @@ export enum Variant {
   RECT = 'rect',
   CIRCLE = 'circle',
 }
+
+export type ItemFlag = {
+  id: string;
+  flagId: string;
+  itemId: string;
+  creator: string;
+  createdAt: string;
+};
+
+export type Flag = {
+  id: string;
+  name: string;
+};
