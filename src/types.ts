@@ -87,6 +87,7 @@ export interface DocumentItemExtra extends UnknownExtra {
 }
 export type AppItemExtraProp = {
   url: string;
+  settings: UnknownExtra;
 };
 export interface AppItemExtra extends UnknownExtra {
   app: AppItemExtraProp;
