@@ -4,10 +4,16 @@ import { IconButton, Tooltip } from '@material-ui/core';
 import ReportIcon from '@material-ui/icons/Report';
 
 export interface FlagItemButtonProps {
-  setOpen: Function;
+  setOpen: (arg: boolean) => void;
+  buttonColor: 'primary' | 'secondary' | 'default' | undefined;
+  iconSize: 'default' | 'small' | 'large' | 'inherit' | 'medium' | undefined;
 }
 
-export const FlagItemButton: FC<FlagItemButtonProps> = ({ setOpen }) => {
+export const FlagItemButton: FC<FlagItemButtonProps> = ({
+  setOpen,
+  buttonColor = 'primary',
+  iconSize = 'large',
+}) => {
   const { t } = useTranslation();
 
   const openItemFlagDialog = (): void => {
@@ -16,8 +22,8 @@ export const FlagItemButton: FC<FlagItemButtonProps> = ({ setOpen }) => {
 
   return (
     <Tooltip title={t('Report')}>
-      <IconButton color='primary' onClick={openItemFlagDialog}>
-        <ReportIcon fontSize='large' />
+      <IconButton color={buttonColor} onClick={openItemFlagDialog}>
+        <ReportIcon fontSize={iconSize} />
       </IconButton>
     </Tooltip>
   );
