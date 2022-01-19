@@ -47,6 +47,7 @@
     "pre-commit": "yarn prettier:check && yarn lint"
   },
   "dependencies": {
+    "@graasp/utils": "github:graasp/graasp-utils.git#1/init",
     "clsx": "1.1.1",
     "http-status-codes": "2.2.0",
     "immutable": "4.0.0",
@@ -128,5 +129,5 @@
   "files": [
     "dist"
   ],
-  "packageManager": "yarn@3.0.1-rc.1"
+  "packageManager": "yarn@3.2.0-rc.11"
 }
