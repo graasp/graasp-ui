@@ -2234,6 +2234,7 @@ __metadata:
     npm-run-all: 4.1.5
     pinst: ^2.1.6
     prettier: ^2.5.1
+    react-cookie-consent: 7.2.1
     react-i18next: 11.15.3
     react-query: 3.34.7
     react-quill: 1.3.5
@@ -12337,6 +12338,13 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
+"js-cookie@npm:^2.2.1":
+  version: 2.2.1
+  resolution: "js-cookie@npm:2.2.1"
+  checksum: 9b1fb980a1c5e624fd4b28ea4867bb30c71e04c4484bb3a42766344c533faa684de9498e443425479ec68609e96e27b60614bfe354877c449c631529b6d932f2
+  languageName: node
+  linkType: hard
+
 "js-sha3@npm:0.8.0":
   version: 0.8.0
   resolution: "js-sha3@npm:0.8.0"
@@ -16240,6 +16248,18 @@ fsevents@^1.2.7:
     regenerator-runtime: ^0.13.3
     whatwg-fetch: ^3.0.0
   checksum: d38fb0e5f773eb618e39832e78e34b2382a33a2f633ecbc7aba3af819134938f25f4b6915f40dcbb46efa1096efdfabe44030165142000dcf522f564db7cb3b9
+  languageName: node
+  linkType: hard
+
+"react-cookie-consent@npm:7.2.1":
+  version: 7.2.1
+  resolution: "react-cookie-consent@npm:7.2.1"
+  dependencies:
+    js-cookie: ^2.2.1
+    prop-types: ^15.7.2
+  peerDependencies:
+    react: ^16.13.1 || ^17.0.0
+  checksum: 9676e9611998f58e43ae76721f33b80eb95be37ad3937de0fd4f623ac5e7c72573d45cc36ca5e0c6b9d494a09a8aea1aea7ba8ae5ad0ebb2b692837ef78a561e
   languageName: node
   linkType: hard
 
