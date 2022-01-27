@@ -1,4 +1,4 @@
-import React, { FC, useState, useRef } from 'react';
+import React, { FC, useState, useRef, Fragment } from 'react';
 import { Record } from 'immutable';
 import Alert from '@material-ui/lab/Alert';
 import { redirect } from '@graasp/utils';
@@ -100,7 +100,7 @@ const LinkItem: FC<LinkItemProps> = ({
   };
 
   const component = (
-    <React.Fragment>
+    <Fragment>
       <div
         hidden={!isLoading}
         className={classes.iframeContainer}
@@ -132,7 +132,7 @@ const LinkItem: FC<LinkItemProps> = ({
       >
         {openLinkMessage}
       </Button>
-    </React.Fragment>
+    </Fragment>
   );
 
   if (showCaption) {
