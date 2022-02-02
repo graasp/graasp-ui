@@ -43,3 +43,5 @@ export { default as Thumbnail } from './Thumbnail';
 export { default as Avatar } from './Avatar';
 
 export * from './ItemFlag';
+
+export { default as CookiesBanner } from './CookiesBanner';
