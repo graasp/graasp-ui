@@ -25,7 +25,9 @@ type Token = string;
 
 interface AppItemProps {
   item: Record<Item<AppItemExtra>>;
-  user: Record<Member>;
+  member: Record<Member>;
+  lang?: string;
+  context?: string;
   apiHost: string;
   id?: string;
   onSaveCaption?: (text: string) => void;
@@ -66,7 +68,7 @@ class AppItem extends Component<AppItemProps> {
     editCaption: false,
     showCaption: true,
     // todo: get this value from common graasp constants
-    mode: 'student',
+    permission: 'read',
   };
 
   state: AppItemState = {
@@ -146,31 +148,9 @@ class AppItem extends Component<AppItemProps> {
         channel?.port1.postMessage(
           JSON.stringify({
             type: GET_AUTH_TOKEN_SUCCEEDED,
-            payload: {
+            payload: JSON.stringify({
               token: await this.getToken(payload),
-            },
-          }),
-        );
-        break;
-      case UPDATE_SETTINGS:
-        // eslint-disable-next-line no-unused-expressions
-        channel?.port1.postMessage(
-          JSON.stringify({
-            type: UPDATE_SETTINGS_SUCCEEDED,
-            payload: {
-              settings: await this.props.onSettingsUpdate({
-                id: this.props.item.get('id'),
-                extra: {
-                  app: {
-                    ...this.props.item.get('extra').app,
-                    settings: {
-                      ...this.props.item.get('extra').app.settings,
-                      ...payload,
-                    },
-                  },
-                },
-              }),
-            },
+            }),
           }),
         );
         break;
@@ -178,7 +158,7 @@ class AppItem extends Component<AppItemProps> {
   };
 
   windowOnMessage = (e: MessageEvent): void => {
-    const { item, user, apiHost, mode } = this.props;
+    const { item, member, apiHost, lang, context } = this.props;
     const { url } = this.state;
     const { data, origin: requestOrigin } = e;
 
@@ -203,12 +183,15 @@ class AppItem extends Component<AppItemProps> {
       this.iframeRef?.current?.contentWindow?.postMessage(
         {
           type: GET_CONTEXT_SUCCEEDED,
-          payload: {
+          payload: JSON.stringify({
             itemId: item.get('id'),
-            userId: user?.get('id'),
+            memberId: member?.get('id'),
             apiHost,
-            mode,
-          },
+            permission: 'admin',
+            settings: item.get('settings'),
+            lang,
+            context,
+          }),
         },
         '*',
         [channel.port2],

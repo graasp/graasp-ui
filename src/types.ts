@@ -26,6 +26,7 @@ export interface Item<T = UnknownExtra> {
   description?: string;
   type: string;
   creator: string;
+  settings?: unknown;
 }
 
 export type Member = {
