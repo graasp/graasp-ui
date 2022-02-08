@@ -181,9 +181,9 @@ class AppItem extends Component<AppItemProps> {
       // provide port2 to app and item's data
       // eslint-disable-next-line no-unused-expressions
       this.iframeRef?.current?.contentWindow?.postMessage(
-        {
+        JSON.stringify({
           type: GET_CONTEXT_SUCCEEDED,
-          payload: JSON.stringify({
+          payload: {
             itemId: item.get('id'),
             memberId: member?.get('id'),
             apiHost,
@@ -191,8 +191,8 @@ class AppItem extends Component<AppItemProps> {
             settings: item.get('settings'),
             lang,
             context,
-          }),
-        },
+          },
+        }),
         '*',
         [channel.port2],
       );
