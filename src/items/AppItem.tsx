@@ -6,6 +6,7 @@ import Loader from '../Loader';
 import {
   APP_ITEM_FRAME_BORDER,
   APP_ITEM_WIDTH,
+  DEFAULT_PERMISSION,
   ITEM_MAX_HEIGHT,
 } from '../constants';
 import withCaption from './withCaption';
@@ -28,6 +29,7 @@ interface AppItemProps {
   member: Record<Member>;
   lang?: string;
   context?: string;
+  permission?: string;
   apiHost: string;
   id?: string;
   onSaveCaption?: (text: string) => void;
@@ -68,7 +70,7 @@ class AppItem extends Component<AppItemProps> {
     editCaption: false,
     showCaption: true,
     // todo: get this value from common graasp constants
-    permission: 'read',
+    permission: DEFAULT_PERMISSION,
   };
 
   state: AppItemState = {
@@ -148,9 +150,9 @@ class AppItem extends Component<AppItemProps> {
         channel?.port1.postMessage(
           JSON.stringify({
             type: GET_AUTH_TOKEN_SUCCEEDED,
-            payload: JSON.stringify({
+            payload: {
               token: await this.getToken(payload),
-            }),
+            },
           }),
         );
         break;
@@ -158,7 +160,7 @@ class AppItem extends Component<AppItemProps> {
   };
 
   windowOnMessage = (e: MessageEvent): void => {
-    const { item, member, apiHost, lang, context } = this.props;
+    const { item, member, apiHost, lang, context, permission } = this.props;
     const { url } = this.state;
     const { data, origin: requestOrigin } = e;
 
@@ -184,11 +186,11 @@ class AppItem extends Component<AppItemProps> {
         JSON.stringify({
           type: GET_CONTEXT_SUCCEEDED,
           payload: {
-            itemId: item.get('id'),
-            memberId: member?.get('id'),
             apiHost,
-            permission: 'admin',
+            itemId: item.get('id'),
             settings: item.get('settings'),
+            memberId: member?.get('id'),
+            permission,
             lang,
             context,
           },
