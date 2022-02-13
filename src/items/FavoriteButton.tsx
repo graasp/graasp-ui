@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 import { IconButton, Tooltip } from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+import StarIcon from '@material-ui/icons/Star';
+import StarBorderIcon from '@material-ui/icons/StarBorder';
 import { FAVORITE_ITEM_BUTTON_CLASS } from '../constants';
 
 export interface FavoriteButtonProps {
@@ -13,13 +13,13 @@ export interface FavoriteButtonProps {
 }
 
 const FavoriteButton: FC<FavoriteButtonProps> = ({
-  isFavorite,
+  isFavorite = false,
   handleUnfavorite,
   handleFavorite,
   size = 'large',
 }) => {
   const { t } = useTranslation();
-
+  console.log('in component');
   return (
     <Tooltip
       title={isFavorite ? t('Remove from Favorites') : t('Add to Favorites')}
@@ -30,9 +30,9 @@ const FavoriteButton: FC<FavoriteButtonProps> = ({
         onClick={isFavorite ? handleUnfavorite : handleFavorite}
       >
         {isFavorite ? (
-          <FavoriteIcon fontSize={size} />
+          <StarIcon fontSize={size} />
         ) : (
-          <FavoriteBorderIcon fontSize={size} />
+          <StarBorderIcon fontSize={size} />
         )}
       </IconButton>
     </Tooltip>
