@@ -7,3 +7,5 @@ export { default as DocumentItem } from './DocumentItem';
 export { default as LinkItem } from './LinkItem';
 
 export { default as AppItem } from './AppItem';
+
+export { default as FavoriteButton } from './FavoriteButton';

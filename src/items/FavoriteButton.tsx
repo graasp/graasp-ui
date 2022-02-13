@@ -12,7 +12,7 @@ export interface FavoriteButtonProps {
   size: 'default' | 'small' | 'large' | 'inherit' | 'medium' | undefined;
 }
 
-export const FlagItemButton: FC<FavoriteButtonProps> = ({
+const FavoriteButton: FC<FavoriteButtonProps> = ({
   isFavorite,
   handleUnfavorite,
   handleFavorite,
@@ -38,3 +38,5 @@ export const FlagItemButton: FC<FavoriteButtonProps> = ({
     </Tooltip>
   );
 };
+
+export default FavoriteButton;
