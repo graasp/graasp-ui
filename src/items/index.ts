@@ -9,3 +9,5 @@ export { default as LinkItem } from './LinkItem';
 export { default as AppItem } from './AppItem';
 
 export { default as FavoriteButton } from './FavoriteButton';
+
+export { default as LikeButton } from './LikeButton';

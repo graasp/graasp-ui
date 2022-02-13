@@ -72,3 +72,5 @@ export const DEFAULT_THUMBNAIL_SIZE = THUMBNAIL_SIZES.SMALL;
 export const FLAG_LIST_MAX_HEIGHT = 250;
 
 export const FAVORITE_ITEM_BUTTON_CLASS = 'favoriteButton';
+
+export const LIKE_ITEM_BUTTON_CLASS = 'likeButton';
