@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, MouseEventHandler } from 'react';
 import { IconButton, Tooltip } from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
 import StarIcon from '@material-ui/icons/Star';
@@ -7,9 +7,10 @@ import { FAVORITE_ITEM_BUTTON_CLASS } from '../constants';
 
 export interface FavoriteButtonProps {
   isFavorite: boolean;
-  handleUnfavorite: any;
-  handleFavorite: any;
+  handleUnfavorite: MouseEventHandler;
+  handleFavorite: MouseEventHandler;
   size: 'default' | 'small' | 'large' | 'inherit' | 'medium' | undefined;
+  color: 'primary' | 'secondary' | 'default' | undefined;
 }
 
 const FavoriteButton: FC<FavoriteButtonProps> = ({
@@ -17,9 +18,9 @@ const FavoriteButton: FC<FavoriteButtonProps> = ({
   handleUnfavorite,
   handleFavorite,
   size = 'large',
+  color = 'default',
 }) => {
   const { t } = useTranslation();
-  console.log('in component');
   return (
     <Tooltip
       title={isFavorite ? t('Remove from Favorites') : t('Add to Favorites')}
@@ -27,6 +28,7 @@ const FavoriteButton: FC<FavoriteButtonProps> = ({
       <IconButton
         aria-label='favorite'
         className={FAVORITE_ITEM_BUTTON_CLASS}
+        color={color}
         onClick={isFavorite ? handleUnfavorite : handleFavorite}
       >
         {isFavorite ? (
