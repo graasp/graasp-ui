@@ -14,13 +14,9 @@ import type { AppItemExtra, Item, Member } from '../types';
 import { UseMutateAsyncFunction } from 'react-query';
 
 export const GET_AUTH_TOKEN = 'GET_AUTH_TOKEN';
-export const GET_AUTH_TOKEN_SUCCEEDED = 'GET_AUTH_TOKEN_SUCCEEDED';
-export const GET_ITEM_DATA = 'GET_ITEM_DATA';
-export const GET_ITEM_DATA_SUCCEEDED = 'GET_ITEM_DATA_SUCCEEDED';
+export const GET_AUTH_TOKEN_SUCCESS = 'GET_AUTH_TOKEN_SUCCESS';
 export const GET_CONTEXT = 'GET_CONTEXT';
-export const GET_CONTEXT_SUCCEEDED = 'GET_CONTEXT_SUCCEEDED';
-export const UPDATE_SETTINGS = 'UPDATE_SETTINGS';
-export const UPDATE_SETTINGS_SUCCEEDED = 'UPDATE_SETTINGS_SUCCEEDED';
+export const GET_CONTEXT_SUCCESS = 'GET_CONTEXT_SUCCESS';
 
 type Token = string;
 
@@ -149,7 +145,7 @@ class AppItem extends Component<AppItemProps> {
         // eslint-disable-next-line no-unused-expressions
         channel?.port1.postMessage(
           JSON.stringify({
-            type: GET_AUTH_TOKEN_SUCCEEDED,
+            type: GET_AUTH_TOKEN_SUCCESS,
             payload: {
               token: await this.getToken(payload),
             },
@@ -184,7 +180,7 @@ class AppItem extends Component<AppItemProps> {
       // eslint-disable-next-line no-unused-expressions
       this.iframeRef?.current?.contentWindow?.postMessage(
         JSON.stringify({
-          type: GET_CONTEXT_SUCCEEDED,
+          type: GET_CONTEXT_SUCCESS,
           payload: {
             apiHost,
             itemId: item.get('id'),
