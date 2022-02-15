@@ -1,16 +1,16 @@
 import React, { FC, MouseEventHandler } from 'react';
-import { IconButton, Tooltip } from '@material-ui/core';
+import { IconButton, IconButtonProps, SvgIconProps, Tooltip } from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
-import { LIKE_ITEM_BUTTON_CLASS } from '../constants';
 
 export interface LikeButtonProps {
   isLiked: boolean;
   handleUnlike: MouseEventHandler;
   handleLike: MouseEventHandler;
-  size: 'default' | 'small' | 'large' | 'inherit' | 'medium' | undefined;
-  color: 'primary' | 'secondary' | 'default' | undefined;
+  size: SvgIconProps['fontSize'];
+  color: IconButtonProps['color'];
+  className: string;
 }
 
 const LikeButton: FC<LikeButtonProps> = ({
@@ -19,13 +19,14 @@ const LikeButton: FC<LikeButtonProps> = ({
   handleLike,
   size = 'large',
   color = 'default',
+  className,
 }) => {
   const { t } = useTranslation();
   return (
     <Tooltip title={isLiked ? t('Like it') : t('Unlike')}>
       <IconButton
         aria-label='like-item'
-        className={LIKE_ITEM_BUTTON_CLASS}
+        className={className}
         color={color}
         onClick={isLiked ? handleUnlike : handleLike}
       >

@@ -1,16 +1,17 @@
 import React, { FC, MouseEventHandler } from 'react';
-import { IconButton, Tooltip } from '@material-ui/core';
+import { IconButton, SvgIconProps, Tooltip } from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
 import StarIcon from '@material-ui/icons/Star';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
-import { FAVORITE_ITEM_BUTTON_CLASS } from '../constants';
+import { IconButtonProps } from '@material-ui/core';
 
 export interface FavoriteButtonProps {
   isFavorite: boolean;
   handleUnfavorite: MouseEventHandler;
   handleFavorite: MouseEventHandler;
-  size: 'default' | 'small' | 'large' | 'inherit' | 'medium' | undefined;
-  color: 'primary' | 'secondary' | 'default' | undefined;
+  size: SvgIconProps['fontSize'];
+  color: IconButtonProps['color'];
+  className: string;
 }
 
 const FavoriteButton: FC<FavoriteButtonProps> = ({
@@ -19,6 +20,7 @@ const FavoriteButton: FC<FavoriteButtonProps> = ({
   handleFavorite,
   size = 'large',
   color = 'default',
+  className,
 }) => {
   const { t } = useTranslation();
   return (
@@ -27,7 +29,7 @@ const FavoriteButton: FC<FavoriteButtonProps> = ({
     >
       <IconButton
         aria-label='favorite'
-        className={FAVORITE_ITEM_BUTTON_CLASS}
+        className={className}
         color={color}
         onClick={isFavorite ? handleUnfavorite : handleFavorite}
       >
