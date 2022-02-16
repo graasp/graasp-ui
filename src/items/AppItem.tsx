@@ -6,6 +6,7 @@ import Loader from '../Loader';
 import {
   APP_ITEM_FRAME_BORDER,
   APP_ITEM_WIDTH,
+  DEFAULT_PERMISSION,
   ITEM_MAX_HEIGHT,
 } from '../constants';
 import withCaption from './withCaption';
@@ -13,19 +14,18 @@ import type { AppItemExtra, Item, Member } from '../types';
 import { UseMutateAsyncFunction } from 'react-query';
 
 export const GET_AUTH_TOKEN = 'GET_AUTH_TOKEN';
-export const GET_AUTH_TOKEN_SUCCEEDED = 'GET_AUTH_TOKEN_SUCCEEDED';
-export const GET_ITEM_DATA = 'GET_ITEM_DATA';
-export const GET_ITEM_DATA_SUCCEEDED = 'GET_ITEM_DATA_SUCCEEDED';
+export const GET_AUTH_TOKEN_SUCCESS = 'GET_AUTH_TOKEN_SUCCESS';
 export const GET_CONTEXT = 'GET_CONTEXT';
-export const GET_CONTEXT_SUCCEEDED = 'GET_CONTEXT_SUCCEEDED';
-export const UPDATE_SETTINGS = 'UPDATE_SETTINGS';
-export const UPDATE_SETTINGS_SUCCEEDED = 'UPDATE_SETTINGS_SUCCEEDED';
+export const GET_CONTEXT_SUCCESS = 'GET_CONTEXT_SUCCESS';
 
 type Token = string;
 
 interface AppItemProps {
   item: Record<Item<AppItemExtra>>;
-  user: Record<Member>;
+  member: Record<Member>;
+  lang?: string;
+  context?: string;
+  permission?: string;
   apiHost: string;
   id?: string;
   onSaveCaption?: (text: string) => void;
@@ -66,7 +66,7 @@ class AppItem extends Component<AppItemProps> {
     editCaption: false,
     showCaption: true,
     // todo: get this value from common graasp constants
-    mode: 'student',
+    permission: DEFAULT_PERMISSION,
   };
 
   state: AppItemState = {
@@ -145,31 +145,9 @@ class AppItem extends Component<AppItemProps> {
         // eslint-disable-next-line no-unused-expressions
         channel?.port1.postMessage(
           JSON.stringify({
-            type: GET_AUTH_TOKEN_SUCCEEDED,
+            type: GET_AUTH_TOKEN_SUCCESS,
             payload: {
               token: await this.getToken(payload),
-            },
-          }),
-        );
-        break;
-      case UPDATE_SETTINGS:
-        // eslint-disable-next-line no-unused-expressions
-        channel?.port1.postMessage(
-          JSON.stringify({
-            type: UPDATE_SETTINGS_SUCCEEDED,
-            payload: {
-              settings: await this.props.onSettingsUpdate({
-                id: this.props.item.get('id'),
-                extra: {
-                  app: {
-                    ...this.props.item.get('extra').app,
-                    settings: {
-                      ...this.props.item.get('extra').app.settings,
-                      ...payload,
-                    },
-                  },
-                },
-              }),
             },
           }),
         );
@@ -178,7 +156,7 @@ class AppItem extends Component<AppItemProps> {
   };
 
   windowOnMessage = (e: MessageEvent): void => {
-    const { item, user, apiHost, mode } = this.props;
+    const { item, member, apiHost, lang, context, permission } = this.props;
     const { url } = this.state;
     const { data, origin: requestOrigin } = e;
 
@@ -201,15 +179,18 @@ class AppItem extends Component<AppItemProps> {
       // provide port2 to app and item's data
       // eslint-disable-next-line no-unused-expressions
       this.iframeRef?.current?.contentWindow?.postMessage(
-        {
-          type: GET_CONTEXT_SUCCEEDED,
+        JSON.stringify({
+          type: GET_CONTEXT_SUCCESS,
           payload: {
-            itemId: item.get('id'),
-            userId: user?.get('id'),
             apiHost,
-            mode,
+            itemId: item.get('id'),
+            settings: item.get('settings'),
+            memberId: member?.get('id'),
+            permission,
+            lang,
+            context,
           },
-        },
+        }),
         '*',
         [channel.port2],
       );
