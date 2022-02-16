@@ -13,7 +13,8 @@ export const MIME_TYPES = {
 
 export const TEXT_EDITOR_TOOLBAR = [
   [
-    { header: [] },
+    { header: [1, 2, 3, 4, 5, 6, false] },
+    { font: [] },
     'bold',
     'italic',
     'underline',
@@ -70,3 +71,4 @@ export const THUMBNAIL_SIZES = {
 export const DEFAULT_THUMBNAIL_SIZE = THUMBNAIL_SIZES.SMALL;
 
 export const FLAG_LIST_MAX_HEIGHT = 250;
+export const DEFAULT_PERMISSION = 'read';
