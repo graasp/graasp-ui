@@ -1,5 +1,10 @@
 import React, { FC, MouseEventHandler } from 'react';
-import { IconButton, IconButtonProps, SvgIconProps, Tooltip } from '@material-ui/core';
+import {
+  IconButton,
+  IconButtonProps,
+  SvgIconProps,
+  Tooltip,
+} from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
@@ -23,7 +28,7 @@ const LikeButton: FC<LikeButtonProps> = ({
 }) => {
   const { t } = useTranslation();
   return (
-    <Tooltip title={isLiked ? t('Like it') : t('Unlike')}>
+    <Tooltip title={isLiked ? t('Unlike') : t('Like it')}>
       <IconButton
         aria-label='like-item'
         className={className}
