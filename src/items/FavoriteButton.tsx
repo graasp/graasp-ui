@@ -1,9 +1,13 @@
 import React, { FC, MouseEventHandler } from 'react';
-import { IconButton, SvgIconProps, Tooltip } from '@material-ui/core';
+import {
+  IconButton,
+  SvgIconProps,
+  Tooltip,
+  IconButtonProps,
+} from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
 import StarIcon from '@material-ui/icons/Star';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
-import { IconButtonProps } from '@material-ui/core';
 
 export interface FavoriteButtonProps {
   isFavorite: boolean;
