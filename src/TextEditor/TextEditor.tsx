@@ -3,7 +3,11 @@ import { makeStyles } from '@material-ui/core/styles';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import SaveButton from '../SaveButton';
-import { TEXT_EDITOR_MIN_HEIGHT, TEXT_EDITOR_TOOLBAR } from '../constants';
+import {
+  TEXT_EDITOR_MAX_HEIGHT,
+  TEXT_EDITOR_MIN_HEIGHT,
+  TEXT_EDITOR_TOOLBAR,
+} from '../constants';
 
 // formula dependencies
 import katex from 'katex';
@@ -21,6 +25,7 @@ interface TextEditorProps {
   saveButtonId?: string;
   saveButtonText?: string;
   showSaveButton?: boolean;
+  maxHeight?: string | number;
 }
 
 const TextEditor: FC<TextEditorProps> = ({
@@ -33,6 +38,7 @@ const TextEditor: FC<TextEditorProps> = ({
   showSaveButton = true,
   edit = false,
   placeholderText = 'Write something...',
+  maxHeight,
 }) => {
   // keep current content
   const [content, setContent] = useState(initialValue ?? '');
@@ -41,6 +47,10 @@ const TextEditor: FC<TextEditorProps> = ({
       '& .ql-editor': {
         // adapt height if read only
         minHeight: !edit ? 0 : TEXT_EDITOR_MIN_HEIGHT,
+        // necessary styles to avoid window scrolling top on paste
+        // set a max height only on edition
+        maxHeight: edit ? maxHeight ?? TEXT_EDITOR_MAX_HEIGHT : '100%',
+        overflow: 'auto',
       },
       '& .ql-container': {
         border: !edit ? 'none' : undefined,
