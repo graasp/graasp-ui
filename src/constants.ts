@@ -13,7 +13,8 @@ export const MIME_TYPES = {
 
 export const TEXT_EDITOR_TOOLBAR = [
   [
-    { header: [] },
+    { header: [1, 2, 3, 4, 5, 6, false] },
+    { font: [] },
     'bold',
     'italic',
     'underline',
@@ -25,6 +26,7 @@ export const TEXT_EDITOR_TOOLBAR = [
   [{ list: 'ordered' }, { list: 'bullet' }, 'code-block', 'link', 'formula'],
 ];
 export const TEXT_EDITOR_MIN_HEIGHT = 200;
+export const TEXT_EDITOR_MAX_HEIGHT = 400;
 export const APP_ITEM_WIDTH = '100%';
 export const APP_ITEM_FRAME_BORDER = 0;
 export const UNEXPECTED_ERROR_MESSAGE = 'An unexpected error occurred';

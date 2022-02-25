@@ -11,6 +11,7 @@ interface DocumentItemProps {
   saveButtonId?: string;
   saveButtonText?: string;
   onSave: () => void;
+  maxHeight?: string | number;
 }
 
 const DocumentItem: FC<DocumentItemProps> = ({
@@ -20,6 +21,7 @@ const DocumentItem: FC<DocumentItemProps> = ({
   onSave,
   saveButtonId,
   saveButtonText,
+  maxHeight,
 }) => (
   <TextEditor
     id={id}
@@ -28,6 +30,7 @@ const DocumentItem: FC<DocumentItemProps> = ({
     onSave={onSave}
     saveButtonId={saveButtonId}
     saveButtonText={saveButtonText}
+    maxHeight={maxHeight}
   />
 );
 
