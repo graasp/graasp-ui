@@ -8,7 +8,7 @@ type Props = {
 /**
  * @param className this property should contain 'fill' to define a color to the logo
  * */
-const GraaspLogo: FC<Props> = ({ adaption, className }) => {
+const CCLicenseIcon: FC<Props> = ({ adaption, className }) => {
   if (adaption === 'allow') {
     return (
       <a rel='license' href='http://creativecommons.org/licenses/by-nc/4.0/'>
@@ -34,4 +34,4 @@ const GraaspLogo: FC<Props> = ({ adaption, className }) => {
   return null;
 };
 
-export default GraaspLogo;
+export default CCLicenseIcon;
