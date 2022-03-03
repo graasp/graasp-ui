@@ -45,3 +45,5 @@ export { default as Avatar } from './Avatar';
 export * from './ItemFlag';
 
 export { default as CookiesBanner } from './CookiesBanner';
+
+export { default as CCLicenseIcon } from './CCLicense';
