@@ -73,3 +73,8 @@ export const DEFAULT_THUMBNAIL_SIZE = THUMBNAIL_SIZES.SMALL;
 
 export const FLAG_LIST_MAX_HEIGHT = 250;
 export const DEFAULT_PERMISSION = 'read';
+
+export enum CC_LICENSE_ADAPTION_OPTIONS {
+  ALLOW = 'allow',
+  ALIKE = 'alike',
+}

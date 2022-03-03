@@ -1,15 +1,13 @@
 import React, { FC } from 'react';
+import { CC_LICENSE_ADAPTION_OPTIONS } from '../constants';
 
 type Props = {
   adaption: string;
   className?: string;
 };
 
-/**
- * @param className this property should contain 'fill' to define a color to the logo
- * */
 const CCLicenseIcon: FC<Props> = ({ adaption, className }) => {
-  if (adaption === 'allow') {
+  if (adaption === CC_LICENSE_ADAPTION_OPTIONS.ALLOW) {
     return (
       <a rel='license' href='http://creativecommons.org/licenses/by-nc/4.0/'>
         <img
@@ -20,7 +18,7 @@ const CCLicenseIcon: FC<Props> = ({ adaption, className }) => {
       </a>
     );
   }
-  if (adaption === 'alike') {
+  if (adaption === CC_LICENSE_ADAPTION_OPTIONS.ALIKE) {
     return (
       <a rel='license' href='http://creativecommons.org/licenses/by-nc-sa/4.0/'>
         <img
