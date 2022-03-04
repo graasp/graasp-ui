@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Record } from 'immutable';
 import { withStyles } from '@material-ui/core/styles';
 import { getAppExtra } from '../utils/itemExtra';
+import qs from 'qs';
 import Loader from '../Loader';
 import {
   APP_ITEM_FRAME_BORDER,
@@ -10,13 +11,17 @@ import {
   ITEM_MAX_HEIGHT,
 } from '../constants';
 import withCaption from './withCaption';
-import type { AppItemExtra, Item, Member } from '../types';
+import type { AppItemExtra, Item, Member, UUID } from '../types';
 import { UseMutateAsyncFunction } from 'react-query';
 
-export const GET_AUTH_TOKEN = 'GET_AUTH_TOKEN';
-export const GET_AUTH_TOKEN_SUCCESS = 'GET_AUTH_TOKEN_SUCCESS';
-export const GET_CONTEXT = 'GET_CONTEXT';
-export const GET_CONTEXT_SUCCESS = 'GET_CONTEXT_SUCCESS';
+const buildPostMessageKeys = (itemId: UUID) => ({
+  GET_CONTEXT_SUCCESS: `GET_CONTEXT_SUCCESS_${itemId}`,
+  GET_CONTEXT_FAILURE: `GET_CONTEXT_FAILURE_${itemId}`,
+  GET_CONTEXT: `GET_CONTEXT_${itemId}`,
+  GET_AUTH_TOKEN: `GET_AUTH_TOKEN_${itemId}`,
+  GET_AUTH_TOKEN_SUCCESS: `GET_AUTH_TOKEN_SUCCESS_${itemId}`,
+  GET_AUTH_TOKEN_FAILURE: `GET_AUTH_TOKEN_FAILURE_${itemId}`,
+});
 
 type Token = string;
 
@@ -132,6 +137,9 @@ class AppItem extends Component<AppItemProps> {
   onMessage = async (e: MessageEvent): Promise<void> => {
     const { data, origin: requestOrigin } = e;
     const { channel, url } = this.state;
+    const { item } = this.props;
+
+    const POST_MESSAGE_KEYS = buildPostMessageKeys(item.get('id'));
 
     // responds only to corresponding app
     if (!url?.includes(requestOrigin)) {
@@ -141,11 +149,11 @@ class AppItem extends Component<AppItemProps> {
     const { type, payload } = JSON.parse(data);
 
     switch (type) {
-      case GET_AUTH_TOKEN:
+      case POST_MESSAGE_KEYS.GET_AUTH_TOKEN:
         // eslint-disable-next-line no-unused-expressions
         channel?.port1.postMessage(
           JSON.stringify({
-            type: GET_AUTH_TOKEN_SUCCESS,
+            type: POST_MESSAGE_KEYS.GET_AUTH_TOKEN_SUCCESS,
             payload: {
               token: await this.getToken(payload),
             },
@@ -160,6 +168,8 @@ class AppItem extends Component<AppItemProps> {
     const { url } = this.state;
     const { data, origin: requestOrigin } = e;
 
+    const POST_MESSAGE_KEYS = buildPostMessageKeys(item.get('id'));
+
     // responds only to corresponding app
     if (!url?.includes(requestOrigin)) {
       return;
@@ -167,7 +177,7 @@ class AppItem extends Component<AppItemProps> {
 
     // return context data and message channel port to app
     const { type } = JSON.parse(data);
-    if (type === GET_CONTEXT) {
+    if (type === POST_MESSAGE_KEYS.GET_CONTEXT) {
       // create/reset channel and
       // Listen for messages on port1
       const channel = new MessageChannel();
@@ -180,7 +190,7 @@ class AppItem extends Component<AppItemProps> {
       // eslint-disable-next-line no-unused-expressions
       this.iframeRef?.current?.contentWindow?.postMessage(
         JSON.stringify({
-          type: GET_CONTEXT_SUCCESS,
+          type: POST_MESSAGE_KEYS.GET_CONTEXT_SUCCESS,
           payload: {
             apiHost,
             itemId: item.get('id'),
@@ -222,6 +232,13 @@ class AppItem extends Component<AppItemProps> {
         }
       : undefined;
 
+    const appUrl = `${url}${qs.stringify(
+      { itemId: item?.get('id') },
+      {
+        addQueryPrefix: true,
+      },
+    )}`;
+
     const component = (
       <React.Fragment>
         {iframeIsLoading && <Loader />}
@@ -232,7 +249,7 @@ class AppItem extends Component<AppItemProps> {
           ref={this.iframeRef}
           width={APP_ITEM_WIDTH}
           height={height}
-          src={url}
+          src={appUrl}
           frameBorder={APP_ITEM_FRAME_BORDER}
           className={classes.iframe}
         />
