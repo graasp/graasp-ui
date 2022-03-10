@@ -1,4 +1,4 @@
-import React, { useState, FC } from 'react';
+import React, { useState, useEffect, FC } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
@@ -64,6 +64,11 @@ const TextEditor: FC<TextEditorProps> = ({
     // eslint-disable-next-line no-unused-expressions
     onChange?.(text);
   };
+
+  useEffect(() => {
+    // update the content with initialValue only when initialValue changes
+    setContent(initialValue);
+  }, [initialValue]);
 
   const classes = useStyles();
 
