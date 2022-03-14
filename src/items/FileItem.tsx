@@ -23,6 +23,7 @@ interface FileItemProps {
   showCaption?: boolean;
   errorMessage?: string;
   saveButtonId?: string;
+  className?: string;
 }
 
 const FileItem: FC<FileItemProps> = ({
@@ -37,6 +38,7 @@ const FileItem: FC<FileItemProps> = ({
   showCaption = true,
   saveButtonId,
   errorMessage = UNEXPECTED_ERROR_MESSAGE,
+  className,
 }) => {
   const [url, setUrl] = useState<string>();
   const extra =
@@ -69,14 +71,20 @@ const FileItem: FC<FileItemProps> = ({
   let component;
   if (mimetype) {
     if (MIME_TYPES.IMAGE.includes(mimetype)) {
-      component = <FileImage id={id} url={url} alt={name} />;
+      component = (
+        <FileImage id={id} url={url} alt={name} className={className} />
+      );
     } else if (MIME_TYPES.AUDIO.includes(mimetype)) {
-      component = <FileAudio id={id} url={url} type={mimetype} />;
+      component = (
+        <FileAudio id={id} url={url} type={mimetype} className={className} />
+      );
     } else if (MIME_TYPES.VIDEO.includes(mimetype)) {
       // does not specify mimetype in video source, this way, it works with more container formats in more browsers (especially Chrome with video/quicktime)
-      component = <FileVideo id={id} url={url} />;
+      component = <FileVideo id={id} url={url} className={className} />;
     } else if (MIME_TYPES.PDF.includes(mimetype)) {
-      component = <FilePdf id={id} url={url} height={maxHeight} />;
+      component = (
+        <FilePdf id={id} url={url} height={maxHeight} className={className} />
+      );
     }
   }
 

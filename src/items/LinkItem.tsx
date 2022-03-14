@@ -123,7 +123,7 @@ const LinkItem: FC<LinkItemProps> = ({
           ref={iframeRef}
         />
       </div>
-      {isLoading &&
+      {isLoading && (
         <Button
           variant='contained'
           color='primary'
@@ -133,7 +133,7 @@ const LinkItem: FC<LinkItemProps> = ({
         >
           {openLinkMessage}
         </Button>
-      }
+      )}
     </Fragment>
   );
 

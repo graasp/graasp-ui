@@ -23,6 +23,7 @@ interface S3FileItemProps {
   showCaption?: boolean;
   errorMessage?: string;
   saveButtonId?: string;
+  className?: string;
 }
 
 // DEPRECATED
@@ -38,6 +39,7 @@ const S3FileItem = ({
   showCaption = true,
   saveButtonId,
   errorMessage = UNEXPECTED_ERROR_MESSAGE,
+  className,
 }: S3FileItemProps): JSX.Element => {
   const [url, setUrl] = useState<string>();
   const { mimetype, name: originalFileName } =
@@ -68,19 +70,25 @@ const S3FileItem = ({
   let component;
   if (mimetype) {
     if (MIME_TYPES.IMAGE.includes(mimetype)) {
-      component = <FileImage id={id} url={url} alt={name} />;
+      component = (
+        <FileImage id={id} url={url} alt={name} className={className} />
+      );
     }
 
     if (MIME_TYPES.AUDIO.includes(mimetype)) {
-      component = <FileAudio id={id} url={url} type={mimetype} />;
+      component = (
+        <FileAudio id={id} url={url} type={mimetype} className={className} />
+      );
     }
 
     if (MIME_TYPES.VIDEO.includes(mimetype)) {
-      component = <FileVideo id={id} url={url} />;
+      component = <FileVideo id={id} url={url} className={className} />;
     }
 
     if (MIME_TYPES.PDF.includes(mimetype)) {
-      component = <FilePdf id={id} url={url} height={maxHeight} />;
+      component = (
+        <FilePdf id={id} url={url} height={maxHeight} className={className} />
+      );
     }
   }
 
