@@ -76,7 +76,7 @@ const S3FileItem = ({
     }
 
     if (MIME_TYPES.VIDEO.includes(mimetype)) {
-      component = <FileVideo id={id} url={url} type={mimetype} />;
+      component = <FileVideo id={id} url={url} />;
     }
 
     if (MIME_TYPES.PDF.includes(mimetype)) {

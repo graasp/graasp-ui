@@ -73,7 +73,7 @@ const FileItem: FC<FileItemProps> = ({
     } else if (MIME_TYPES.AUDIO.includes(mimetype)) {
       component = <FileAudio id={id} url={url} type={mimetype} />;
     } else if (MIME_TYPES.VIDEO.includes(mimetype)) {
-      component = <FileVideo id={id} url={url} type={mimetype} />;
+      component = <FileVideo id={id} url={url} />;
     } else if (MIME_TYPES.PDF.includes(mimetype)) {
       component = <FilePdf id={id} url={url} height={maxHeight} />;
     }

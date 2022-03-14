@@ -123,15 +123,17 @@ const LinkItem: FC<LinkItemProps> = ({
           ref={iframeRef}
         />
       </div>
-      <Button
-        variant='contained'
-        color='primary'
-        onClick={onClick}
-        className={classes.linkButton}
-        startIcon={<OpenInNewIcon />}
-      >
-        {openLinkMessage}
-      </Button>
+      {isLoading &&
+        <Button
+          variant='contained'
+          color='primary'
+          onClick={onClick}
+          className={classes.linkButton}
+          startIcon={<OpenInNewIcon />}
+        >
+          {openLinkMessage}
+        </Button>
+      }
     </Fragment>
   );
 

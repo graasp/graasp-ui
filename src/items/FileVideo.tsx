@@ -10,14 +10,13 @@ const useStyles = makeStyles(() => ({
 interface FileVideoProps {
   id?: string;
   url: string;
-  type: string;
 }
 
-const FileVideo: FC<FileVideoProps> = ({ id, url, type }) => {
+const FileVideo: FC<FileVideoProps> = ({ id, url }) => {
   const classes = useStyles();
   return (
     <video className={classes.video} id={id} controls>
-      <source src={url} type={type} />
+      <source src={url} />
     </video>
   );
 };
