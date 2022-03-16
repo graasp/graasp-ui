@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import CookieConsent from 'react-cookie-consent';
-import Button from '@material-ui/core/Button';
+import Button from '../Button';
 import { makeStyles, Theme } from '@material-ui/core';
 
 // used to keep track of the decline button internally
@@ -19,6 +19,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 interface CookieButtonProps {
   id: string;
+  onClick: React.MouseEventHandler<HTMLButtonElement>;
 }
 const CookieButton: FC<CookieButtonProps> = (props: CookieButtonProps) => {
   const { id } = props;

@@ -47,3 +47,5 @@ export * from './ItemFlag';
 export { default as CookiesBanner } from './CookiesBanner';
 
 export { default as CCLicenseIcon } from './CCLicense';
+
+export { default as Button } from './Button';

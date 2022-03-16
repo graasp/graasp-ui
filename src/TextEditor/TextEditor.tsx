@@ -8,11 +8,11 @@ import {
   TEXT_EDITOR_MIN_HEIGHT,
   TEXT_EDITOR_TOOLBAR,
 } from '../constants';
+import Button from '../Button';
 
 // formula dependencies
 import katex from 'katex';
 import 'katex/dist/katex.min.css';
-import Button from '../Button';
 
 window.katex = katex;
 
@@ -40,7 +40,7 @@ const TextEditor: FC<TextEditorProps> = ({
   saveButtonText,
   savedButtonText,
   cancelButtonId,
-  cancelButtonText,
+  cancelButtonText = 'Cancel',
   onSave,
   onCancel,
   value: initialValue = '',
@@ -74,6 +74,12 @@ const TextEditor: FC<TextEditorProps> = ({
     onChange?.(text);
   };
 
+  const onCancelClick = (): void => {
+    // eslint-disable-next-line no-unused-expressions
+    onCancel?.(content);
+    setContent(initialValue);
+  };
+
   useEffect(() => {
     // update the content with initialValue only when initialValue changes
     setContent(initialValue);
@@ -103,14 +109,9 @@ const TextEditor: FC<TextEditorProps> = ({
       </div>
       {showActions && edit && (
         <>
-          <Button
-            id={cancelButtonId}
-            onClick={() => {
-              // eslint-disable-next-line no-unused-expressions
-              onCancel?.(content);
-            }}
-            text={cancelButtonText}
-          />
+          <Button id={cancelButtonId} onClick={onCancelClick}>
+            {cancelButtonText}
+          </Button>
           <SaveButton
             id={saveButtonId}
             onClick={() => {
@@ -118,7 +119,7 @@ const TextEditor: FC<TextEditorProps> = ({
               onSave?.(content);
             }}
             text={saveButtonText}
-            noChangeText={savedButtonText}
+            savedText={savedButtonText}
             hasChanges={content !== initialValue}
           />
         </>

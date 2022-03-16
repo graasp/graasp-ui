@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
-import Button from '@material-ui/core/Button';
 import GetAppIcon from '@material-ui/icons/GetApp';
 import { makeStyles } from '@material-ui/core/styles';
+import Button from '../Button';
 
 const useStyles = makeStyles(() => ({
   link: {
@@ -34,12 +34,7 @@ const DownloadButtonFileItem: FC<DownloadButtonFileItemProps> = ({
       rel='noreferrer'
       download={name}
     >
-      <Button
-        color='primary'
-        variant='contained'
-        size='large'
-        startIcon={<GetAppIcon />}
-      >
+      <Button size='large' startIcon={<GetAppIcon />}>
         {buttonText}
       </Button>
     </a>

@@ -8,7 +8,7 @@ interface SaveButtonProps {
   hasChanges: boolean;
   id?: string;
   text?: string;
-  noChangeText?: string;
+  savedText?: string;
   color?: PropTypes.Color;
   variant?: ButtonVariant;
 }
@@ -19,7 +19,7 @@ const SaveButton: FC<SaveButtonProps> = ({
   variant,
   color,
   text = 'Save',
-  noChangeText = 'Saved',
+  savedText = 'Saved',
   hasChanges,
 }) => {
   return (
@@ -28,9 +28,9 @@ const SaveButton: FC<SaveButtonProps> = ({
       variant={variant}
       color={color}
       onClick={onClick}
-      disabled={hasChanges}
+      disabled={!hasChanges}
     >
-      {hasChanges ? text : noChangeText}
+      {hasChanges ? text : savedText}
     </GraaspButton>
   );
 };
