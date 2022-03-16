@@ -73,6 +73,7 @@ const FileItem: FC<FileItemProps> = ({
     } else if (MIME_TYPES.AUDIO.includes(mimetype)) {
       component = <FileAudio id={id} url={url} type={mimetype} />;
     } else if (MIME_TYPES.VIDEO.includes(mimetype)) {
+      // does not specify mimetype in video source, this way, it works with more container formats in more browsers (especially Chrome with video/quicktime)
       component = <FileVideo id={id} url={url} />;
     } else if (MIME_TYPES.PDF.includes(mimetype)) {
       component = <FilePdf id={id} url={url} height={maxHeight} />;
