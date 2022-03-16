@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(() => ({
@@ -10,12 +11,13 @@ const useStyles = makeStyles(() => ({
 interface FileVideoProps {
   id?: string;
   url: string;
+  className?: string;
 }
 
-const FileVideo: FC<FileVideoProps> = ({ id, url }) => {
+const FileVideo: FC<FileVideoProps> = ({ id, url, className }) => {
   const classes = useStyles();
   return (
-    <video className={classes.video} id={id} controls>
+    <video className={clsx(classes.video, className)} id={id} controls>
       <source src={url} />
     </video>
   );
