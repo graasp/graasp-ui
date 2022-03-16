@@ -112,3 +112,5 @@ export type Flag = {
   id: string;
   name: string;
 };
+
+export type ButtonVariant = 'text' | 'contained' | 'outlined';

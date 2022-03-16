@@ -12,6 +12,7 @@ import {
 // formula dependencies
 import katex from 'katex';
 import 'katex/dist/katex.min.css';
+import Button from '../Button';
 
 window.katex = katex;
 
@@ -22,9 +23,13 @@ interface TextEditorProps {
   placeholderText?: string;
   edit?: boolean;
   onChange?: (text: string) => void;
-  saveButtonId?: string;
+  onCancel?: (text: string) => void;
+  savedButtonText?: string;
   saveButtonText?: string;
-  showSaveButton?: boolean;
+  saveButtonId?: string;
+  cancelButtonText?: string;
+  cancelButtonId?: string;
+  showActions?: boolean;
   maxHeight?: string | number;
 }
 
@@ -33,9 +38,13 @@ const TextEditor: FC<TextEditorProps> = ({
   onChange,
   saveButtonId,
   saveButtonText,
+  savedButtonText,
+  cancelButtonId,
+  cancelButtonText,
   onSave,
+  onCancel,
   value: initialValue = '',
-  showSaveButton = true,
+  showActions = true,
   edit = false,
   placeholderText = 'Write something...',
   maxHeight,
@@ -86,19 +95,33 @@ const TextEditor: FC<TextEditorProps> = ({
           onChange={onTextChange}
           modules={{
             toolbar: edit ? TEXT_EDITOR_TOOLBAR : null,
+            clipboard: {
+              matchVisual: false,
+            },
           }}
         />
       </div>
-      {showSaveButton && edit && (
-        <SaveButton
-          id={saveButtonId}
-          onClick={() => {
-            // eslint-disable-next-line no-unused-expressions
-            onSave?.(content);
-          }}
-          text={saveButtonText}
-          hasChanges={content !== initialValue}
-        />
+      {showActions && edit && (
+        <>
+          <Button
+            id={cancelButtonId}
+            onClick={() => {
+              // eslint-disable-next-line no-unused-expressions
+              onCancel?.(content);
+            }}
+            text={cancelButtonText}
+          />
+          <SaveButton
+            id={saveButtonId}
+            onClick={() => {
+              // eslint-disable-next-line no-unused-expressions
+              onSave?.(content);
+            }}
+            text={saveButtonText}
+            noChangeText={savedButtonText}
+            hasChanges={content !== initialValue}
+          />
+        </>
       )}
     </React.Fragment>
   );
