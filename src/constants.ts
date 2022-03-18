@@ -84,3 +84,5 @@ export enum CC_LICENSE_ADAPTION_OPTIONS {
   ALLOW = 'allow',
   ALIKE = 'alike',
 }
+
+export const DEFAULT_LOADER_SIZE = 20;
