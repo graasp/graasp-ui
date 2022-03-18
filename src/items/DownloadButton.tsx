@@ -1,31 +1,33 @@
 import React, { FC, MouseEventHandler } from 'react';
 import { IconButton, Tooltip, CircularProgressProps } from '@material-ui/core';
-import { useTranslation } from 'react-i18next';
 import GetAppIcon from '@material-ui/icons/GetApp';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import { DEFAULT_LOADER_SIZE } from '../constants';
 
 export interface DownloadButtonProps {
   isLoading: boolean;
   handleDownload: MouseEventHandler;
+  title: string;
   loaderSize: number;
   loaderColor: CircularProgressProps['color'];
+  ariaLabel: string;
 }
 
 const DownloadButton: FC<DownloadButtonProps> = ({
   isLoading = false,
   handleDownload,
-  loaderSize = 20,
+  title,
+  loaderSize = DEFAULT_LOADER_SIZE,
   loaderColor = 'primary',
+  ariaLabel = 'download',
 }) => {
-  const { t } = useTranslation();
-
   if (isLoading) {
     return <CircularProgress color={loaderColor} size={loaderSize} />;
   }
 
   return (
-    <Tooltip title={t('Download')}>
-      <IconButton onClick={handleDownload} aria-label='download'>
+    <Tooltip title={title}>
+      <IconButton onClick={handleDownload} aria-label={ariaLabel}>
         <GetAppIcon />
       </IconButton>
     </Tooltip>
