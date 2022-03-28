@@ -15,6 +15,7 @@ interface GraaspButtonProps {
   className?: string;
   size?: 'medium' | 'large' | 'small';
   startIcon?: ReactNode;
+  endIcon?: ReactNode;
   autoFocus?: boolean;
 }
 const useStyles = makeStyles((theme) => ({
@@ -34,6 +35,7 @@ const GraaspButton: FC<GraaspButtonProps> = ({
   size = 'medium',
   startIcon,
   autoFocus,
+  endIcon,
 }) => {
   const classes = useStyles();
   return (
@@ -46,6 +48,7 @@ const GraaspButton: FC<GraaspButtonProps> = ({
       className={clsx(classes.button, className)}
       size={size}
       startIcon={startIcon}
+      endIcon={endIcon}
       autoFocus={autoFocus}
     >
       {children}
