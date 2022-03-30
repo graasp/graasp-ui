@@ -4,8 +4,8 @@ import Alert from '@material-ui/lab/Alert';
 import { redirect } from '@graasp/utils';
 import { makeStyles } from '@material-ui/core/styles';
 import { getEmbeddedLinkExtra } from '../utils/itemExtra';
-import Button from '@material-ui/core/Button';
 import OpenInNewIcon from '@material-ui/icons/OpenInNew';
+import Button from '../Button';
 import withCaption from './withCaption';
 import { ITEM_MAX_HEIGHT } from '../constants';
 import type { EmbeddedLinkItemExtra, Item } from '../types';
@@ -125,8 +125,6 @@ const LinkItem: FC<LinkItemProps> = ({
       </div>
       {isLoading && (
         <Button
-          variant='contained'
-          color='primary'
           onClick={onClick}
           className={classes.linkButton}
           startIcon={<OpenInNewIcon />}

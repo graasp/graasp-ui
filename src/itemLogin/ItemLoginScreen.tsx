@@ -1,5 +1,5 @@
 import React, { FC, ReactNode, useRef, useState } from 'react';
-import { Container, TextField, Button, Tooltip } from '@material-ui/core';
+import { Container, TextField, Tooltip } from '@material-ui/core';
 import { makeStyles, Theme } from '@material-ui/core/styles';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -10,6 +10,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import { useTranslation } from 'react-i18next';
 import { SETTINGS } from '../constants';
+import Button from '../Button';
 import ForbiddenText from './ForbiddenText';
 import { isMemberIdValid } from '../utils/utils';
 import MemberIdTextField from './MemberIdTextField';
@@ -270,8 +271,6 @@ const ItemLoginScreen: FC<ItemLoginScreenProps> = ({
         />
       )}
       <Button
-        variant='contained'
-        color='primary'
         onClick={onClickSignIn}
         id={signInButtonId}
         disabled={shouldSignInBeDisabled()}

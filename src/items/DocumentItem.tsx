@@ -10,7 +10,10 @@ interface DocumentItemProps {
   edit?: boolean;
   saveButtonId?: string;
   saveButtonText?: string;
-  onSave: () => void;
+  cancelButtonText?: string;
+  cancelButtonId?: string;
+  onSave: (text: string) => void;
+  onCancel?: (text: string) => void;
   maxHeight?: string | number;
 }
 
@@ -19,8 +22,11 @@ const DocumentItem: FC<DocumentItemProps> = ({
   id,
   edit,
   onSave,
+  onCancel,
   saveButtonId,
   saveButtonText,
+  cancelButtonText,
+  cancelButtonId,
   maxHeight,
 }) => (
   <TextEditor
@@ -28,9 +34,12 @@ const DocumentItem: FC<DocumentItemProps> = ({
     value={getDocumentExtra(item.get('extra'))?.content}
     edit={edit}
     onSave={onSave}
+    onCancel={onCancel}
     saveButtonId={saveButtonId}
     saveButtonText={saveButtonText}
     maxHeight={maxHeight}
+    cancelButtonText={cancelButtonText}
+    cancelButtonId={cancelButtonId}
   />
 );
 

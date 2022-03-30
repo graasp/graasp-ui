@@ -1,7 +1,8 @@
 import React, { FC, ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 import { makeStyles } from '@material-ui/core/styles';
-import { Button, Container, Typography } from '@material-ui/core';
+import { Container, Typography } from '@material-ui/core';
+import Button from '../Button';
 import { ImmutableMember } from '../types';
 import ForbiddenText from './ForbiddenText';
 
@@ -28,7 +29,7 @@ const ForbiddenContent: FC<Props> = ({ signOut, user, id }) => {
 
   const renderAuthenticatedAlternative = (): ReactNode => (
     <>
-      <Button color='primary' onClick={handleSignOut}>
+      <Button onClick={handleSignOut}>
         {t('sign out to access as light user')}
       </Button>
       <Typography>{t('or')}</Typography>
