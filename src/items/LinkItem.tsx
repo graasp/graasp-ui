@@ -142,4 +142,4 @@ const LinkItem: FC<LinkItemProps> = ({
   return component;
 };
 
-export default LinkItem;
+export default React.memo(LinkItem);

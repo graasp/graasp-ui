@@ -118,4 +118,4 @@ const FileItem: FC<FileItemProps> = ({
   );
 };
 
-export default FileItem;
+export default React.memo(FileItem);
