@@ -269,4 +269,4 @@ class AppItem extends Component<AppItemProps> {
   }
 }
 
-export default withStyles(styles)(AppItem);
+export default withStyles(styles)(React.memo(AppItem));
