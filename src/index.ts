@@ -49,3 +49,7 @@ export { default as CookiesBanner } from './CookiesBanner';
 export { default as CCLicenseIcon } from './CCLicense';
 
 export { default as Button } from './Button';
+
+export { default as Navigation } from './Navigation';
+
+export * from './icons';

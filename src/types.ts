@@ -1,4 +1,5 @@
 import { Map, Record } from 'immutable';
+import { Context } from '@graasp/utils';
 
 export type UUID = string;
 
@@ -114,3 +115,5 @@ export type Flag = {
 };
 
 export type ButtonVariant = 'text' | 'contained' | 'outlined';
+
+export type HostMap = { [name in Context]: string };

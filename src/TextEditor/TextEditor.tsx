@@ -14,6 +14,11 @@ import Button from '../Button';
 import katex from 'katex';
 import 'katex/dist/katex.min.css';
 
+declare const window: Window &
+  typeof globalThis & {
+    katex: any;
+  };
+
 window.katex = katex;
 
 interface TextEditorProps {
