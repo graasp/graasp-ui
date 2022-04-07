@@ -48,32 +48,32 @@ const ContextMenuItem: React.FC<ContextMenuItemProps> = ({
 }) => {
   const classes = useStyles();
   switch (value) {
-    case Context.BUILD:
+    case Context.BUILDER:
       return (
         <>
           <BuildIcon className={classes.icon} disabled={disabled} />
-          {Context.BUILD}
+          {Context.BUILDER}
         </>
       );
-    case Context.EXPLORE:
+    case Context.EXPLORER:
       return (
         <>
           <ExploreIcon className={classes.icon} disabled={disabled} />
-          {Context.EXPLORE}
+          {Context.EXPLORER}
         </>
       );
-    case Context.PLAY:
+    case Context.PLAYER:
       return (
         <>
           <PlayIcon className={classes.icon} disabled={disabled} />
-          {Context.PLAY}
+          {Context.PLAYER}
         </>
       );
-    case Context.ANALYZE:
+    case Context.ANALYZER:
       return (
         <>
           <AnalyzeIcon className={classes.analyzeIcon} disabled={disabled} />
-          {Context.ANALYZE}
+          {Context.ANALYZER}
         </>
       );
     default:
@@ -143,25 +143,25 @@ const Navigation: React.FC<NavigationProps> = ({
         }}
       >
         <MenuItem
-          onClick={onClick(Context.BUILD)}
-          disabled={currentValue === Context.BUILD}
+          onClick={onClick(Context.BUILDER)}
+          disabled={currentValue === Context.BUILDER}
         >
-          <ContextMenuItem value={Context.BUILD} />
+          <ContextMenuItem value={Context.BUILDER} />
         </MenuItem>
         <MenuItem
-          onClick={onClick(Context.EXPLORE)}
-          disabled={currentValue === Context.EXPLORE}
+          onClick={onClick(Context.EXPLORER)}
+          disabled={currentValue === Context.EXPLORER}
         >
-          <ContextMenuItem value={Context.EXPLORE} />
+          <ContextMenuItem value={Context.EXPLORER} />
         </MenuItem>
         <MenuItem
-          onClick={onClick(Context.PLAY)}
-          disabled={currentValue === Context.PLAY}
+          onClick={onClick(Context.PLAYER)}
+          disabled={currentValue === Context.PLAYER}
         >
-          <ContextMenuItem value={Context.PLAY} />
+          <ContextMenuItem value={Context.PLAYER} />
         </MenuItem>
         <MenuItem disabled>
-          <ContextMenuItem value={Context.ANALYZE} />
+          <ContextMenuItem value={Context.ANALYZER} />
         </MenuItem>
       </Menu>
     </>

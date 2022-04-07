@@ -2023,8 +2023,8 @@ __metadata:
 
 "@graasp/utils@github:graasp/graasp-utils.git#2/contexts":
   version: 0.1.0
-  resolution: "@graasp/utils@https://github.com/graasp/graasp-utils.git#commit=ee3af67034a8815ec2720002e17959c3e8a6669e"
-  checksum: 4f39ce936d4a485157262bda446eeed9c15f3162293f035e86d0ca8082aeed7c29305cbd33066f1ff95a825b7c0cbc083978cac8a2856b76f3a80512753b28bb
+  resolution: "@graasp/utils@https://github.com/graasp/graasp-utils.git#commit=402507079f4119488c30c6b3da71c0a512710c02"
+  checksum: b8a9546e57c6603891cf221edc76b3373614735c96b688ab3a2fb8d72845a304f2aee15b292cdf99918fc0e191ec51977dbc2c48d6564190d03dc33bb5453085
   languageName: node
   linkType: hard
 
