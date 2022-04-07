@@ -82,6 +82,7 @@ const ContextMenuItem: React.FC<ContextMenuItemProps> = ({
 };
 
 interface NavigationProps {
+  id?: string;
   currentValue: Context;
   hostMap: HostMap;
 }
@@ -89,8 +90,8 @@ interface NavigationProps {
 const Navigation: React.FC<NavigationProps> = ({
   currentValue,
   hostMap = {},
+  id,
 }) => {
-  console.log(currentValue, hostMap);
   const classes = useStyles();
 
   const [anchorEl, setAnchorEl] = React.useState<Element | null>(null);
@@ -114,6 +115,7 @@ const Navigation: React.FC<NavigationProps> = ({
   return (
     <>
       <Button
+        id={id}
         aria-controls='navigation-menu'
         aria-haspopup='true'
         onClick={handleClick}
