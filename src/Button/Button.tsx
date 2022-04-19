@@ -8,6 +8,7 @@ import clsx from 'clsx';
 interface GraaspButtonProps {
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
   id?: string;
+  dataCy?: string;
   children?: ReactNode;
   color?: PropTypes.Color;
   variant?: ButtonVariant;
@@ -26,6 +27,7 @@ const useStyles = makeStyles((theme) => ({
 
 const GraaspButton: FC<GraaspButtonProps> = ({
   id,
+  dataCy,
   onClick,
   children,
   color = 'primary',
@@ -41,6 +43,7 @@ const GraaspButton: FC<GraaspButtonProps> = ({
   return (
     <Button
       id={id}
+      data-cy={dataCy}
       variant={variant}
       color={color}
       onClick={onClick}
