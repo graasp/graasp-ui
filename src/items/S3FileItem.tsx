@@ -73,7 +73,7 @@ const S3FileItem = ({
     return <Loader />;
   }
 
-  if (url == ERRORS.BLOB_URL) {
+  if (url === ERRORS.BLOB_URL) {
     return <Alert severity='error'>{errorMessage}</Alert>;
   }
 

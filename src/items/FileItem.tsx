@@ -74,7 +74,7 @@ const FileItem: FC<FileItemProps> = ({
     return <Skeleton variant='rect' width={210} height={118} />;
   }
 
-  if (url == ERRORS.BLOB_URL) {
+  if (url === ERRORS.BLOB_URL) {
     return <Alert severity='error'>{errorMessage}</Alert>;
   }
 
