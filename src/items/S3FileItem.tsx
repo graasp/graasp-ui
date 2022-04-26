@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Record } from 'immutable';
 import Alert from '@material-ui/lab/Alert';
 import { MIME_TYPES, UNEXPECTED_ERROR_MESSAGE } from '../constants';
+import Loader from '../Loader';
 import FileAudio from './FileAudio';
 import FileImage from './FileImage';
 import FileVideo from './FileVideo';
@@ -51,7 +52,11 @@ const S3FileItem = ({
       if (content) {
         // Build a URL from the file
         const fileURL = URL.createObjectURL(content);
-        setUrl(fileURL);
+        if (fileURL) {
+          setUrl(fileURL);
+        } else {
+          setUrl("error");
+        }
       }
 
       return () => {
@@ -64,6 +69,10 @@ const S3FileItem = ({
   }, [content]);
 
   if (!url) {
+    return <Loader />;
+  }
+  
+  if (url == "error") {
     return <Alert severity='error'>{errorMessage}</Alert>;
   }
 
