@@ -1,8 +1,8 @@
 import React, { FC, useEffect, useState } from 'react';
 import Alert from '@material-ui/lab/Alert';
+import Skeleton from '@material-ui/lab/Skeleton';
 import { Record } from 'immutable';
 import { MIME_TYPES, UNEXPECTED_ERROR_MESSAGE } from '../constants';
-import Loader from '../Loader';
 import FileImage from './FileImage';
 import FileAudio from './FileAudio';
 import FileVideo from './FileVideo';
@@ -11,6 +11,7 @@ import { getFileExtra, getS3FileExtra } from '../utils/itemExtra';
 import DownloadButtonFileItem from './DownloadButtonFileItem';
 import withCaption from './withCaption';
 import { FileItemExtra, Item, S3FileItemExtra, UnknownExtra } from '../types';
+import { ERRORS } from '../enums';
 
 interface FileItemProps {
   item: Record<Item<UnknownExtra>>;
@@ -56,7 +57,7 @@ const FileItem: FC<FileItemProps> = ({
         if (fileURL) {
           setUrl(fileURL);
         } else {
-          setUrl("error");
+          setUrl(ERRORS.BLOB_URL);
         }
       }
 
@@ -70,10 +71,10 @@ const FileItem: FC<FileItemProps> = ({
   }, [content]);
 
   if (!url) {
-    return <Loader />;
+    return <Skeleton variant='rect' width={210} height={118} />;
   }
-  
-  if (url == "error") {
+
+  if (url == ERRORS.BLOB_URL) {
     return <Alert severity='error'>{errorMessage}</Alert>;
   }
 

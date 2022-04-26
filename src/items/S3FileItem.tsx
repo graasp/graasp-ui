@@ -11,6 +11,7 @@ import { getS3FileExtra } from '../utils/itemExtra';
 import DownloadButtonFileItem from './DownloadButtonFileItem';
 import withCaption from './withCaption';
 import type { Item, S3FileItemExtra } from '../types';
+import { ERRORS } from '../enums';
 
 interface S3FileItemProps {
   id?: string;
@@ -55,7 +56,7 @@ const S3FileItem = ({
         if (fileURL) {
           setUrl(fileURL);
         } else {
-          setUrl("error");
+          setUrl(ERRORS.BLOB_URL);
         }
       }
 
@@ -71,8 +72,8 @@ const S3FileItem = ({
   if (!url) {
     return <Loader />;
   }
-  
-  if (url == "error") {
+
+  if (url == ERRORS.BLOB_URL) {
     return <Alert severity='error'>{errorMessage}</Alert>;
   }
 
