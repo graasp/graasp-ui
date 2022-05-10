@@ -1,10 +1,11 @@
 import React, { FC, ReactElement, useState } from 'react';
-import { makeStyles, createStyles } from '@material-ui/core/styles';
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import { COLLAPSE_MIN_HEIGHT } from '../constants';
 
 type CollapseProps = {
   title: string;
@@ -12,7 +13,7 @@ type CollapseProps = {
   className?: string;
 };
 
-const useStyles = makeStyles(() =>
+const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       border: '1px solid rgba(0, 0, 0, .125)',
@@ -29,21 +30,15 @@ const useStyles = makeStyles(() =>
     },
     expanded: {},
     rootAccordionSummary: {
-      borderBottom: '1px solid rgba(0, 0, 0, .125)',
       marginBottom: -1,
-      minHeight: 56,
+      minHeight: COLLAPSE_MIN_HEIGHT,
       flexDirection: 'row-reverse',
       '&$expanded': {
-        minHeight: 56,
+        minHeight: COLLAPSE_MIN_HEIGHT,
       },
       '& .MuiIconButton-edgeEnd': {
-        marginRight: '4px',
-        marginLeft: '4px',
-      },
-    },
-    contentAccordionSummary: {
-      '&$expanded': {
-        margin: '12px 0',
+        marginRight: theme.spacing(0.5),
+        marginLeft: theme.spacing(0.5),
       },
     },
     expandedAccordionSummary: {},
@@ -55,7 +50,7 @@ const Collapse: FC<CollapseProps> = ({ title, content }) => {
   const classes = useStyles();
 
   const handleChange = (expanded: boolean) => () => {
-    setExpanded(expanded ? false : true);
+    setExpanded(!expanded);
   };
 
   return (
@@ -74,7 +69,6 @@ const Collapse: FC<CollapseProps> = ({ title, content }) => {
         classes={{
           root: classes.rootAccordionSummary,
           expanded: classes.expandedAccordionSummary,
-          content: classes.contentAccordionSummary,
         }}
       >
         <Typography>{title}</Typography>
