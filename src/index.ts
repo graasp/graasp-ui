@@ -28,7 +28,7 @@ export * from './items';
 
 export { default as TextEditor } from './TextEditor';
 
-export { default as Collapse } from './Collapse';
+export { default as withCollapse } from './Collapse';
 
 export { default as PermissionedComponent } from './PermissionedComponent';
 
