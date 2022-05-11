@@ -18,6 +18,7 @@ interface GraaspButtonProps {
   startIcon?: ReactNode;
   endIcon?: ReactNode;
   autoFocus?: boolean;
+  fullWidth?: boolean;
 }
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -30,14 +31,15 @@ const GraaspButton: FC<GraaspButtonProps> = ({
   dataCy,
   onClick,
   children,
-  color = 'primary',
-  variant = 'contained',
-  disabled = false,
   className,
-  size = 'medium',
   startIcon,
   autoFocus,
   endIcon,
+  fullWidth,
+  color = 'primary',
+  variant = 'contained',
+  disabled = false,
+  size = 'medium',
 }) => {
   const classes = useStyles();
   return (
@@ -53,6 +55,7 @@ const GraaspButton: FC<GraaspButtonProps> = ({
       startIcon={startIcon}
       endIcon={endIcon}
       autoFocus={autoFocus}
+      fullWidth={fullWidth}
     >
       {children}
     </Button>
