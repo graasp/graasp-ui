@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Record } from 'immutable';
 import Alert from '@material-ui/lab/Alert';
 import { MIME_TYPES, UNEXPECTED_ERROR_MESSAGE } from '../constants';
+import Loader from '../Loader';
 import FileAudio from './FileAudio';
 import FileImage from './FileImage';
 import FileVideo from './FileVideo';
@@ -10,6 +11,7 @@ import { getS3FileExtra } from '../utils/itemExtra';
 import DownloadButtonFileItem from './DownloadButtonFileItem';
 import withCaption from './withCaption';
 import type { Item, S3FileItemExtra } from '../types';
+import { ERRORS } from '../enums';
 
 interface S3FileItemProps {
   id?: string;
@@ -51,7 +53,11 @@ const S3FileItem = ({
       if (content) {
         // Build a URL from the file
         const fileURL = URL.createObjectURL(content);
-        setUrl(fileURL);
+        if (fileURL) {
+          setUrl(fileURL);
+        } else {
+          setUrl(ERRORS.BLOB_URL);
+        }
       }
 
       return () => {
@@ -64,6 +70,10 @@ const S3FileItem = ({
   }, [content]);
 
   if (!url) {
+    return <Loader />;
+  }
+
+  if (url === ERRORS.BLOB_URL) {
     return <Alert severity='error'>{errorMessage}</Alert>;
   }
 
