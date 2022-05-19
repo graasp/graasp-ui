@@ -48,6 +48,8 @@
   },
   "dependencies": {
     "@graasp/utils": "github:graasp/graasp-utils.git#8/objectEnum",
+    "ag-grid-community": "27.3.0",
+    "ag-grid-react": "27.3.0",
     "clsx": "1.1.1",
     "http-status-codes": "2.2.0",
     "immutable": "4.0.0",

@@ -86,3 +86,5 @@ export enum CC_LICENSE_ADAPTION_OPTIONS {
 }
 
 export const DEFAULT_LOADER_SIZE = 20;
+
+export const DRAG_ICON_SIZE = 18;

@@ -2200,6 +2200,8 @@ __metadata:
     "@types/uuid": 8.3.4
     "@typescript-eslint/eslint-plugin": ^2.34.0
     "@typescript-eslint/parser": ^5.23.0
+    ag-grid-community: 27.3.0
+    ag-grid-react: 27.3.0
     babel-jest: 28.1.0
     clsx: 1.1.1
     cross-env: 7.0.3
@@ -4237,6 +4239,26 @@ __metadata:
     loader-utils: ^2.0.0
     regex-parser: ^2.2.11
   checksum: 5ceabea85219fcafed06f7d1aafb37dc761c6435e4ded2a8c6b01c69844250aa94ef65a4d07210dc7566c2d8b4c9ba8897518db596a550461eed26fbeb76b96f
+  languageName: node
+  linkType: hard
+
+"ag-grid-community@npm:27.3.0":
+  version: 27.3.0
+  resolution: "ag-grid-community@npm:27.3.0"
+  checksum: 3041c188239c50b875d45f82e4de1adfc7170c7338d0c18e504bc4d57bf71906bf291aaee0c59149ad65900e7308268ed5db32ad7f5f2368ef8e9e6b2c156a02
+  languageName: node
+  linkType: hard
+
+"ag-grid-react@npm:27.3.0":
+  version: 27.3.0
+  resolution: "ag-grid-react@npm:27.3.0"
+  dependencies:
+    prop-types: ^15.8.1
+  peerDependencies:
+    ag-grid-community: ~27.3.0
+    react: ^16.3.0 || ^17.0.0 || ^18.0.0
+    react-dom: ^16.3.0 || ^17.0.0 || ^18.0.0
+  checksum: 9e4b7dd3649fb9ff2e4f0c63d273c7e76b076c5329812e775e43a0bf367b315e34968874d041001f0f29976160aa4dc62626c60ce4e6fd4f6d4d00f468a54810
   languageName: node
   linkType: hard
 
