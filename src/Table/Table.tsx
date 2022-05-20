@@ -1,4 +1,4 @@
-import React, { ReactElement, useMemo, useState } from 'react';
+import React, { ReactElement, useState } from 'react';
 import { makeStyles } from '@material-ui/core';
 import clsx from 'clsx';
 import { GridApi, RowNode, ColDef, IRowDragItem } from 'ag-grid-community';
@@ -17,7 +17,6 @@ interface Props {
   rowData: unknown[];
   NoRowsComponent?: ReactElement;
   onDragEnd: (nodes: RowNode[]) => void;
-  renderActions?: (args: { selectedIds: string[] }) => ReactElement;
   className?: string;
   onSelectionChanged: () => void;
   columnDefs: ColDef[];
@@ -26,7 +25,8 @@ interface Props {
   getRowId: () => string;
   onRowDataChanged: () => void;
   rowSelection?: string;
-  NoSelectionToolbarComponent: ReactElement;
+  ToolbarActions?: React.FC<{ selectedIds: string[] }>;
+  NoSelectionToolbar: React.FC;
   suppressCellFocus?: boolean;
   suppressRowClickSelection?: boolean;
   rowDragManaged?: boolean;
@@ -35,6 +35,7 @@ interface Props {
   rowHeight: number;
   emptyMessage?: string;
   countTextFunction?: (selected: string[]) => string;
+  dragClassName?: string;
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -70,8 +71,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const defaultColDef = {
+  resizable: true,
+  sortable: true,
+};
+
 const GraaspTable: React.FC<Props> = ({
-  renderActions,
+  ToolbarActions,
   emptyMessage,
   onRowDataChanged,
   id,
@@ -82,7 +88,7 @@ const GraaspTable: React.FC<Props> = ({
   columnDefs,
   onCellClicked,
   getRowId,
-  NoSelectionToolbarComponent,
+  NoSelectionToolbar,
   rowDragText,
   rowHeight,
   countTextFunction,
@@ -94,6 +100,7 @@ const GraaspTable: React.FC<Props> = ({
   suppressRowClickSelection = true,
   rowDragManaged = true,
   enableDrag = false,
+  dragClassName,
 }) => {
   const [gridApi, setGridApi] = useState<GridApi>();
   const [selected, setSelected] = useState<string[]>([]);
@@ -102,15 +109,6 @@ const GraaspTable: React.FC<Props> = ({
   const onGridReady = (params: { api: GridApi }): void => {
     setGridApi(params.api);
   };
-
-  // never changes, so we can use useMemo
-  const defaultColDef = useMemo(
-    () => ({
-      resizable: true,
-      sortable: true,
-    }),
-    [],
-  );
 
   const changeSelection = (): void => {
     setSelected(gridApi?.getSelectedRows().map((r) => r.id) ?? []);
@@ -137,25 +135,39 @@ const GraaspTable: React.FC<Props> = ({
     onDragEnd?.(nodes);
   };
 
-  const dragColumn: ColDef = {
-    hide: !enableDrag,
-    cellRenderer: DragCellRenderer,
-    cellClass: classes.dragCell,
-    headerClass: classes.dragCell,
-    rowDragText,
-    sortable: false,
-    maxWidth: DRAG_ICON_SIZE,
+  const buildColumnDefs = (): ColDef[] => {
+    if (!enableDrag) {
+      return columnDefs;
+    }
+
+    // adds the column drag on the left of the table
+    const dragCellClasses = [classes.dragCell];
+    if (dragClassName) {
+      dragCellClasses.push(dragClassName);
+    }
+    const dragColumn: ColDef = {
+      cellRenderer: DragCellRenderer,
+      rowDragText,
+      cellClass: dragCellClasses,
+      headerClass: classes.dragCell,
+      maxWidth: DRAG_ICON_SIZE,
+      sortable: false,
+    };
+
+    // adds the drag column
+    return [dragColumn, ...columnDefs];
   };
 
-  const colDefs: ColDef[] = [dragColumn, ...columnDefs];
+  const EmptyTableComponent = (): JSX.Element => (
+    <TableNoRowsContent emptyMessage={emptyMessage} />
+  );
 
   return (
     <div className={classes.root}>
       <TableToolbar
-        numSelected={selected.length}
         selected={selected}
-        renderActions={renderActions}
-        NoSelectionToolbarComponent={NoSelectionToolbarComponent}
+        Actions={ToolbarActions}
+        NoSelectionToolbar={NoSelectionToolbar}
         countText={countTextFunction?.(selected)}
       />
       <div
@@ -163,15 +175,13 @@ const GraaspTable: React.FC<Props> = ({
         id={id}
       >
         <AgGridReact
-          columnDefs={colDefs}
+          columnDefs={buildColumnDefs()}
           rowData={rowData}
           defaultColDef={defaultColDef}
           rowSelection={rowSelection}
           suppressRowClickSelection={suppressRowClickSelection}
           suppressCellFocus={suppressCellFocus}
-          noRowsOverlayComponentFramework={
-            NoRowsComponent ?? TableNoRowsContent({ emptyMessage })
-          }
+          noRowsOverlayComponent={NoRowsComponent ?? EmptyTableComponent}
           rowDragManaged={rowDragManaged}
           onRowDragEnd={handleDragEnd}
           onGridReady={onGridReady}

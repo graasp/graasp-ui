@@ -2177,7 +2177,7 @@ __metadata:
     "@babel/preset-typescript": 7.16.7
     "@commitlint/cli": 17.0.0
     "@commitlint/config-conventional": 17.0.0
-    "@graasp/utils": "github:graasp/graasp-utils.git#8/objectEnum"
+    "@graasp/utils": "github:graasp/graasp-utils.git"
     "@material-ui/core": 4.12.4
     "@material-ui/icons": 4.11.3
     "@material-ui/lab": 4.0.0-alpha.61
@@ -2256,9 +2256,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@graasp/utils@github:graasp/graasp-utils.git#8/objectEnum":
+"@graasp/utils@github:graasp/graasp-utils.git":
   version: 0.1.0
-  resolution: "@graasp/utils@https://github.com/graasp/graasp-utils.git#commit=6959732352183e69e8b66fe844a3878fd79d2682"
+  resolution: "@graasp/utils@https://github.com/graasp/graasp-utils.git#commit=82be1fd0ba2cc7a3c59465012b55e10736e17f96"
   checksum: 8d7a8cac8f9ce6726babed4efd127163520100f6ad9edf40e26789b66982ce6a9c2359267db1583e6050f45b56598eb59660fa46593e1df69ee4dc165cf6ec61
   languageName: node
   linkType: hard

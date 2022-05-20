@@ -47,7 +47,7 @@
     "pre-commit": "yarn prettier:check && yarn lint"
   },
   "dependencies": {
-    "@graasp/utils": "github:graasp/graasp-utils.git#8/objectEnum",
+    "@graasp/utils": "github:graasp/graasp-utils.git",
     "ag-grid-community": "27.3.0",
     "ag-grid-react": "27.3.0",
     "clsx": "1.1.1",
