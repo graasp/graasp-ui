@@ -2250,6 +2250,8 @@ __metadata:
     "@material-ui/core": 4.11.0
     "@material-ui/icons": 4.9.1
     "@material-ui/lab": 4.0.0-alpha.58
+    ag-grid-community: 27.3.0
+    ag-grid-react: 27.3.0
     i18next: 21.3.1
     react: ^16.13.1
     react-dom: 16.13.1
