@@ -115,5 +115,13 @@ export type Flag = {
 };
 
 export type ButtonVariant = 'text' | 'contained' | 'outlined';
+export type ColorVariant =
+  | 'inherit'
+  | 'primary'
+  | 'secondary'
+  | 'success'
+  | 'error'
+  | 'info'
+  | 'warning';
 
 export type HostMap = { [name in Context]: string };

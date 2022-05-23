@@ -5,8 +5,8 @@
     "standard-react",
     "plugin:prettier/recommended",
     "eslint:recommended",
-    "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
     "prettier/standard",
     "prettier/react"
   ],
@@ -16,6 +16,7 @@
   },
   "parserOptions": {
     "ecmaVersion": 2020,
+    "sourceType": "module",
     "ecmaFeatures": {
       "legacyDecorators": true,
       "jsx": true
