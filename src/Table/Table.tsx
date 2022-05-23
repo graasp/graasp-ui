@@ -36,6 +36,7 @@ interface Props {
   emptyMessage?: string;
   countTextFunction?: (selected: string[]) => string;
   dragClassName?: string;
+  enableBrowserTooltips?: boolean;
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -92,6 +93,8 @@ const GraaspTable: React.FC<Props> = ({
   rowDragText,
   rowHeight,
   countTextFunction,
+  dragClassName,
+  enableBrowserTooltips = true,
   tableHeight = 'auto',
   className = '',
   isClickable = true,
@@ -100,7 +103,6 @@ const GraaspTable: React.FC<Props> = ({
   suppressRowClickSelection = true,
   rowDragManaged = true,
   enableDrag = false,
-  dragClassName,
 }) => {
   const [gridApi, setGridApi] = useState<GridApi>();
   const [selected, setSelected] = useState<string[]>([]);
@@ -195,6 +197,7 @@ const GraaspTable: React.FC<Props> = ({
           getRowId={getRowId}
           onRowDataChanged={handleRowDataChanged}
           suppressRowHoverHighlight={!isClickable}
+          enableBrowserTooltips={enableBrowserTooltips}
         />
       </div>
     </div>
