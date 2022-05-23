@@ -198,6 +198,8 @@ const GraaspTable: React.FC<Props> = ({
           onRowDataChanged={handleRowDataChanged}
           suppressRowHoverHighlight={!isClickable}
           enableBrowserTooltips={enableBrowserTooltips}
+          enableCellTextSelection
+          ensureDomOrder
         />
       </div>
     </div>
