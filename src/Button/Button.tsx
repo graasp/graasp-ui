@@ -1,7 +1,7 @@
 import React, { FC, ReactNode } from 'react';
-import Button from '@material-ui/core/Button';
+import Button from '@mui/material/Button';
 import { PropTypes } from '@material-ui/core';
-import { ButtonVariant } from '../types';
+import { ButtonVariant, ColorVariant } from '../types';
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 
@@ -10,7 +10,7 @@ interface GraaspButtonProps {
   id?: string;
   dataCy?: string;
   children?: ReactNode;
-  color?: PropTypes.Color;
+  color?: ColorVariant;
   variant?: ButtonVariant;
   disabled?: boolean;
   className?: string;
@@ -20,6 +20,7 @@ interface GraaspButtonProps {
   autoFocus?: boolean;
   fullWidth?: boolean;
 }
+
 const useStyles = makeStyles((theme) => ({
   button: {
     margin: theme.spacing(1),
