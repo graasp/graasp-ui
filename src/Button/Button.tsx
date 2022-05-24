@@ -1,13 +1,14 @@
 import React, { FC, ReactNode } from 'react';
 import Button, { ButtonProps } from '@mui/material/Button';
 import { ButtonVariant, ColorVariant } from '../types';
-import { styled } from '@mui/material';
+import { styled, SxProps, Theme } from '@mui/material';
 
 interface GraaspButtonProps {
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
   id?: string;
   dataCy?: string;
   children?: ReactNode;
+  sx?: SxProps;
   color?: ColorVariant;
   variant?: ButtonVariant;
   disabled?: boolean;
@@ -25,6 +26,7 @@ const GraaspButton: FC<GraaspButtonProps> = ({
   onClick,
   children,
   className,
+  sx,
   startIcon,
   autoFocus,
   endIcon,
@@ -34,9 +36,11 @@ const GraaspButton: FC<GraaspButtonProps> = ({
   disabled = false,
   size = 'medium',
 }) => {
-  const StyledButton = styled(Button)<ButtonProps>(({ theme }) => ({
-    margin: theme.spacing(0),
-  }));
+  const StyledButton = styled(Button)<ButtonProps>(
+    ({ theme }: { theme: Theme }) => ({
+      margin: theme.spacing(0),
+    }),
+  );
   return (
     <StyledButton
       id={id}
@@ -46,6 +50,7 @@ const GraaspButton: FC<GraaspButtonProps> = ({
       onClick={onClick}
       disabled={disabled}
       className={className}
+      sx={sx}
       size={size}
       startIcon={startIcon}
       endIcon={endIcon}
