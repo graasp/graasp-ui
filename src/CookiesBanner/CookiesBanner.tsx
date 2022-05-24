@@ -1,7 +1,14 @@
 import React, { FC } from 'react';
 import CookieConsent from 'react-cookie-consent';
 import Button from '../Button';
-import { makeStyles, Theme } from '@material-ui/core';
+import { makeStyles } from '@mui/styles';
+
+import { Theme } from '@mui/material/styles';
+
+declare module '@mui/styles/defaultTheme' {
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  interface DefaultTheme extends Theme {}
+}
 
 // used to keep track of the decline button internally
 const DECLINE_BUTTON_ID = 'decline-button-id';
@@ -21,6 +28,7 @@ interface CookieButtonProps {
   id: string;
   onClick: React.MouseEventHandler<HTMLButtonElement>;
 }
+
 const CookieButton: FC<CookieButtonProps> = (props: CookieButtonProps) => {
   const { id } = props;
   const isDeclinedButton = id === DECLINE_BUTTON_ID;

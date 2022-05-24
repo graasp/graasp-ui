@@ -1,9 +1,7 @@
 import React, { FC, ReactNode } from 'react';
-import Button from '@mui/material/Button';
-import { PropTypes } from '@material-ui/core';
+import Button, { ButtonProps } from '@mui/material/Button';
 import { ButtonVariant, ColorVariant } from '../types';
-import { makeStyles } from '@material-ui/core/styles';
-import clsx from 'clsx';
+import { styled } from '@mui/material';
 
 interface GraaspButtonProps {
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
@@ -21,12 +19,6 @@ interface GraaspButtonProps {
   fullWidth?: boolean;
 }
 
-const useStyles = makeStyles((theme) => ({
-  button: {
-    margin: theme.spacing(1),
-  },
-}));
-
 const GraaspButton: FC<GraaspButtonProps> = ({
   id,
   dataCy,
@@ -42,16 +34,18 @@ const GraaspButton: FC<GraaspButtonProps> = ({
   disabled = false,
   size = 'medium',
 }) => {
-  const classes = useStyles();
+  const StyledButton = styled(Button)<ButtonProps>(({ theme }) => ({
+    margin: theme.spacing(0),
+  }));
   return (
-    <Button
+    <StyledButton
       id={id}
       data-cy={dataCy}
       variant={variant}
       color={color}
       onClick={onClick}
       disabled={disabled}
-      className={clsx(classes.button, className)}
+      className={className}
       size={size}
       startIcon={startIcon}
       endIcon={endIcon}
@@ -59,7 +53,7 @@ const GraaspButton: FC<GraaspButtonProps> = ({
       fullWidth={fullWidth}
     >
       {children}
-    </Button>
+    </StyledButton>
   );
 };
 

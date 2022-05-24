@@ -1,12 +1,12 @@
 import React, { FC } from 'react';
 import { useTranslation } from 'react-i18next';
-import { IconButton, Tooltip } from '@material-ui/core';
-import ReportIcon from '@material-ui/icons/Report';
+import { IconButton, Tooltip } from '@mui/material';
+import ReportIcon from '@mui/icons-material/Report';
 
 export interface FlagItemButtonProps {
   setOpen: (arg: boolean) => void;
   buttonColor: 'primary' | 'secondary' | 'default' | undefined;
-  iconSize: 'default' | 'small' | 'large' | 'inherit' | 'medium' | undefined;
+  iconSize: 'small' | 'large' | 'inherit' | 'medium' | undefined;
 }
 
 export const FlagItemButton: FC<FlagItemButtonProps> = ({

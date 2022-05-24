@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Record } from 'immutable';
-import Alert from '@material-ui/lab/Alert';
+import Alert from '@mui/lab/Alert';
 import { MIME_TYPES, UNEXPECTED_ERROR_MESSAGE } from '../constants';
 import Loader from '../Loader';
 import FileAudio from './FileAudio';

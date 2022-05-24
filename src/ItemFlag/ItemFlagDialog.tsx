@@ -1,13 +1,14 @@
 import React, { FC, MouseEventHandler } from 'react';
 import { useTranslation } from 'react-i18next';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogActions from '@material-ui/core/DialogActions';
+import DialogTitle from '@mui/material/DialogTitle';
+import DialogContent from '@mui/material/DialogContent';
+import DialogActions from '@mui/material/DialogActions';
 import Button from '../Button';
-import Dialog from '@material-ui/core/Dialog';
-import List from '@material-ui/core/List';
-import { ListItem, ListItemText, makeStyles } from '@material-ui/core';
-import Typography from '@material-ui/core/Typography';
+import Dialog from '@mui/material/Dialog';
+import List from '@mui/material/List';
+import { ListItemButton, ListItemText } from '@mui/material';
+import { makeStyles } from '@mui/styles';
+import Typography from '@mui/material/Typography';
 import { FLAG_LIST_MAX_HEIGHT } from '../constants';
 import { Flag } from '../types';
 
@@ -60,15 +61,14 @@ export const ItemFlagDialog: FC<ItemFlagDialogProps> = ({
         </Typography>
         <List component='nav' className={classes.list}>
           {flags?.map((flag: Flag) => (
-            <ListItem
+            <ListItemButton
               key={flag.id}
               id={`flagListItem-${flag.id}`}
-              button
               selected={selectedFlag.id === flag.id}
               onClick={handleSelect(flag)}
             >
               <ListItemText primary={flag.name} />
-            </ListItem>
+            </ListItemButton>
           ))}
         </List>
       </DialogContent>

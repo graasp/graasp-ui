@@ -1,9 +1,9 @@
 import React from 'react';
 import { shallow, ShallowWrapper } from 'enzyme';
-import MaterialMenuItem from '@material-ui/core/MenuItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import MaterialMenuItem from '@mui/material/MenuItem';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { MenuItem, MenuItemProps } from './MenuItem';
 
 const createMenuItemProps = (opts?: {

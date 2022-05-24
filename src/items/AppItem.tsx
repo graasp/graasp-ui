@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Record } from 'immutable';
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles } from '@mui/styles';
 import { getAppExtra } from '../utils/itemExtra';
 import qs from 'qs';
 import Loader from '../Loader';
@@ -14,7 +14,11 @@ import withCaption from './withCaption';
 import type { AppItemExtra, Item, Member, UUID } from '../types';
 import { UseMutateAsyncFunction } from 'react-query';
 
-const buildPostMessageKeys = (itemId: UUID) => ({
+const buildPostMessageKeys = (
+  itemId: UUID,
+): {
+  [key: string]: string;
+} => ({
   GET_CONTEXT_SUCCESS: `GET_CONTEXT_SUCCESS_${itemId}`,
   GET_CONTEXT_FAILURE: `GET_CONTEXT_FAILURE_${itemId}`,
   GET_CONTEXT: `GET_CONTEXT_${itemId}`,

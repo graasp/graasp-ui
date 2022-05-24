@@ -1,13 +1,19 @@
-import React, { FC, ReactNode, useRef, useState } from 'react';
-import { Container, TextField, Tooltip } from '@material-ui/core';
-import { makeStyles, Theme } from '@material-ui/core/styles';
-import OutlinedInput from '@material-ui/core/OutlinedInput';
-import InputLabel from '@material-ui/core/InputLabel';
-import FormControl from '@material-ui/core/FormControl';
-import InfoIcon from '@material-ui/icons/Info';
-import Select from '@material-ui/core/Select';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
+import React, { ElementType, FC, ReactNode, useRef, useState } from 'react';
+import {
+  Container,
+  InputBaseComponentProps,
+  SelectChangeEvent,
+  TextField,
+  Tooltip,
+} from '@mui/material';
+import { makeStyles } from '@mui/styles';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import InputLabel from '@mui/material/InputLabel';
+import FormControl from '@mui/material/FormControl';
+import InfoIcon from '@mui/icons-material/Info';
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
+import FormControlLabel from '@mui/material/FormControlLabel';
 import { useTranslation } from 'react-i18next';
 import { SETTINGS } from '../constants';
 import Button from '../Button';
@@ -16,7 +22,7 @@ import { isMemberIdValid } from '../utils/utils';
 import MemberIdTextField from './MemberIdTextField';
 import { ItemLogin, UUID } from '../types';
 
-const useStyles = makeStyles((theme: Theme) => ({
+const useStyles = makeStyles((theme) => ({
   wrapper: {
     margin: 'auto',
     display: 'flex',
@@ -118,9 +124,7 @@ const ItemLoginScreen: FC<ItemLoginScreenProps> = ({
     signIn({ itemId, ...signInProperties });
   };
 
-  const handleOnSignInModeChange = (
-    e: React.ChangeEvent<{ name?: string; value: unknown }>,
-  ): void => {
+  const handleOnSignInModeChange = (e: SelectChangeEvent): void => {
     const { value } = e.target;
     setSignInMode(value as string);
   };
@@ -168,7 +172,9 @@ const ItemLoginScreen: FC<ItemLoginScreenProps> = ({
           error={Boolean(error)}
           onChange={onMemberIdChange}
           label={t('Member Id')}
-          inputComponent={MemberIdTextField}
+          inputComponent={
+            MemberIdTextField as ElementType<InputBaseComponentProps>
+          }
           color='primary'
           fullWidth
           className={classes.input}
@@ -245,9 +251,9 @@ const ItemLoginScreen: FC<ItemLoginScreenProps> = ({
         />
         <div className={classes.usernameAndMemberId}>
           {/* we actually need to render two text fields to avoid data conflicts
-            using a single function returning one or the other text fields sometimes
-            lead to the previous data being meld into the new textfield
-          */}
+           using a single function returning one or the other text fields sometimes
+           lead to the previous data being meld into the new textfield
+           */}
           {renderUsernameTextField()}
           {renderMemberIdTextField()}
         </div>

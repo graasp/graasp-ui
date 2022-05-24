@@ -1,15 +1,11 @@
 import React, { Component } from 'react';
 import clsx from 'clsx';
-import {
-  withStyles,
-  Theme,
-  createStyles,
-  WithStyles,
-} from '@material-ui/core/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
+import { withStyles, createStyles, WithStyles } from '@mui/styles';
+import CssBaseline from '@mui/material/CssBaseline';
 import Header from '../Header';
 import Sidebar from '../Sidebar';
 import { DRAWER_WIDTH } from '../constants';
+import { Theme } from '@mui/material/styles';
 
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 const styles = (theme: Theme) =>

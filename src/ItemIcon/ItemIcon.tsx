@@ -1,16 +1,16 @@
 import React, { FC } from 'react';
-import MusicNoteIcon from '@material-ui/icons/MusicNote';
-import InsertDriveFileIcon from '@material-ui/icons/InsertDriveFile';
-import { makeStyles } from '@material-ui/core/styles';
-import FolderIcon from '@material-ui/icons/Folder';
-import PictureAsPdfIcon from '@material-ui/icons/PictureAsPdf';
-import LinkIcon from '@material-ui/icons/Link';
-import MovieIcon from '@material-ui/icons/Movie';
-import DescriptionIcon from '@material-ui/icons/Description';
-import ImageIcon from '@material-ui/icons/Image';
-import ShortcutIcon from '@material-ui/icons/Input';
-import AppsIcon from '@material-ui/icons/Apps';
-import ArchiveIcon from '@material-ui/icons/Archive';
+import MusicNoteIcon from '@mui/icons-material/MusicNote';
+import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
+import { makeStyles } from '@mui/styles';
+import FolderIcon from '@mui/icons-material/Folder';
+import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
+import LinkIcon from '@mui/icons-material/Link';
+import MovieIcon from '@mui/icons-material/Movie';
+import DescriptionIcon from '@mui/icons-material/Description';
+import ImageIcon from '@mui/icons-material/Image';
+import ShortcutIcon from '@mui/icons-material/Input';
+import AppsIcon from '@mui/icons-material/Apps';
+import ArchiveIcon from '@mui/icons-material/Archive';
 import { MIME_TYPES, ITEM_ICON_MAX_SIZE } from '../constants';
 import {
   getEmbeddedLinkExtra,

@@ -1,10 +1,10 @@
 import React, { FC, useState, useRef, Fragment } from 'react';
 import { Record } from 'immutable';
-import Alert from '@material-ui/lab/Alert';
+import Alert from '@mui/lab/Alert';
 import { redirect } from '@graasp/utils';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@mui/styles';
 import { getEmbeddedLinkExtra } from '../utils/itemExtra';
-import OpenInNewIcon from '@material-ui/icons/OpenInNew';
+import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import Button from '../Button';
 import withCaption from './withCaption';
 import { ITEM_MAX_HEIGHT } from '../constants';

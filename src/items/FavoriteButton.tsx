@@ -4,10 +4,10 @@ import {
   SvgIconProps,
   Tooltip,
   IconButtonProps,
-} from '@material-ui/core';
+} from '@mui/material';
 import { useTranslation } from 'react-i18next';
-import StarIcon from '@material-ui/icons/Star';
-import StarBorderIcon from '@material-ui/icons/StarBorder';
+import StarIcon from '@mui/icons-material/Star';
+import StarBorderIcon from '@mui/icons-material/StarBorder';
 
 export interface FavoriteButtonProps {
   isFavorite: boolean;

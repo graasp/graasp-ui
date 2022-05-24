@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
-import clsx from 'clsx';
-import { makeStyles } from '@material-ui/core/styles';
+import { styled } from '@mui/styles';
+
 interface FileImageProps {
   id?: string;
   url: string;
@@ -8,22 +8,11 @@ interface FileImageProps {
   className?: string;
 }
 
-const useStyles = makeStyles(() => ({
-  image: {
-    maxWidth: '100%',
-  },
-}));
-
 const FileImage: FC<FileImageProps> = ({ id, url, alt, className }) => {
-  const classes = useStyles();
-  return (
-    <img
-      id={id}
-      className={clsx(classes.image, className)}
-      src={url}
-      alt={alt}
-    />
-  );
+  const StyledImage = styled('img')({
+    maxWidth: '100%',
+  });
+  return <StyledImage id={id} className={className} src={url} alt={alt} />;
 };
 
 export default FileImage;

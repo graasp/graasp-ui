@@ -1,6 +1,6 @@
 import React, { FC, useRef, useState, ReactEventHandler } from 'react';
 import clsx from 'clsx';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@mui/styles';
 import { ITEM_MAX_HEIGHT } from '../constants';
 
 interface FilePdfProps {
@@ -10,6 +10,7 @@ interface FilePdfProps {
   className?: string;
 }
 
+// todo change to use `styled` utility
 const useStyles = makeStyles({
   embed: {
     maxHeight: ITEM_MAX_HEIGHT,

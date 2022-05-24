@@ -97,8 +97,8 @@ export interface AppItemExtra extends UnknownExtra {
 
 export enum Variant {
   TEXT = 'text',
-  RECT = 'rect',
-  CIRCLE = 'circle',
+  RECT = 'rectangular',
+  CIRCLE = 'circular',
 }
 
 export type ItemFlag = {

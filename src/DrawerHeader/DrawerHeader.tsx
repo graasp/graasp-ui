@@ -1,11 +1,17 @@
 import React, { FC } from 'react';
-import { Theme, createStyles, makeStyles } from '@material-ui/core/styles';
-import IconButton from '@material-ui/core/IconButton';
-import ListItem from '@material-ui/core/ListItem';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
+import { createStyles, makeStyles } from '@mui/styles';
+import IconButton from '@mui/material/IconButton';
+import ListItem from '@mui/material/ListItem';
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import ListItemSecondaryAction from '@mui/material/ListItemSecondaryAction';
 import { DEFAULT_DIRECTION, DRAWER_HEADER_HEIGHT } from '../constants';
+import { Theme } from '@mui/material/styles';
+
+declare module '@mui/styles/defaultTheme' {
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  interface DefaultTheme extends Theme {}
+}
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({

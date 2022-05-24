@@ -1,7 +1,7 @@
 import React, { FC, MouseEventHandler } from 'react';
-import { IconButton, Tooltip, CircularProgressProps } from '@material-ui/core';
-import GetAppIcon from '@material-ui/icons/GetApp';
-import CircularProgress from '@material-ui/core/CircularProgress';
+import { IconButton, Tooltip, CircularProgressProps } from '@mui/material';
+import GetAppIcon from '@mui/icons-material/GetApp';
+import CircularProgress from '@mui/material/CircularProgress';
 import { DEFAULT_LOADER_SIZE } from '../constants';
 
 export interface DownloadButtonProps {

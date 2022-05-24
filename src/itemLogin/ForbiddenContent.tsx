@@ -1,7 +1,7 @@
 import React, { FC, ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
-import { makeStyles } from '@material-ui/core/styles';
-import { Container, Typography } from '@material-ui/core';
+import { makeStyles } from '@mui/styles';
+import { Container, Typography } from '@mui/material';
 import Button from '../Button';
 import { ImmutableMember } from '../types';
 import ForbiddenText from './ForbiddenText';

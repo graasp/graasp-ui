@@ -1,5 +1,5 @@
 import React, { FC, useEffect, useState } from 'react';
-import Alert from '@material-ui/lab/Alert';
+import Alert from '@mui/lab/Alert';
 import { Record } from 'immutable';
 import { MIME_TYPES, UNEXPECTED_ERROR_MESSAGE } from '../constants';
 import Loader from '../Loader';

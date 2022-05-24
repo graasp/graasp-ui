@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow, ShallowWrapper } from 'enzyme';
 import { MainMenu, MainMenuProps } from './MainMenu';
 import MenuItem from '../MenuItem';
-import List from '@material-ui/core/List';
+import List from '@mui/material/List';
 
 const createMainMenuProps = (opts?: { id?: string }): MainMenuProps => ({
   id: opts?.id,
