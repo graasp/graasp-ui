@@ -10,6 +10,12 @@
 npm install --save @graasp/ui
 ```
 
+If you use the `Table` component, you can define your ag-grid theme:
+
+```js
+import 'ag-grid-community/dist/styles/ag-theme-material.min.css';
+````
+
 ## Usage
 
 ```tsx

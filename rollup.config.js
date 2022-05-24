@@ -41,12 +41,14 @@ export default {
     }),
   ],
   external: [
-    'react',
-    'react-dom',
     '@material-ui/core',
     '@material-ui/icons',
     '@material-ui/lab',
     '@material-ui/styles',
+    'ag-grid-community',
+    'ag-grid-react',
     'katex',
+    'react',
+    'react-dom',
   ],
 };
