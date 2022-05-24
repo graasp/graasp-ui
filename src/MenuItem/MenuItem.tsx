@@ -1,7 +1,7 @@
 import React, { FC, SyntheticEvent, ReactElement } from 'react';
-import MaterialMenuItem from '@material-ui/core/MenuItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
+import MaterialMenuItem from '@mui/material/MenuItem';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
 
 export interface MenuItemProps {
   id?: string;
@@ -14,7 +14,7 @@ export interface MenuItemProps {
 
 export const MenuItem: FC<MenuItemProps> = ({ id, text, icon, onClick }) => {
   return (
-    <MaterialMenuItem id={id} onClick={onClick} button>
+    <MaterialMenuItem id={id} onClick={onClick}>
       {icon && <ListItemIcon>{icon}</ListItemIcon>}
       {text && <ListItemText primary={text} />}
     </MaterialMenuItem>

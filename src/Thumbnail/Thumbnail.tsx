@@ -1,7 +1,7 @@
 import React, { FC, useState, useEffect } from 'react';
 import clsx from 'clsx';
-import { makeStyles } from '@material-ui/core/styles';
-import Skeleton from '@material-ui/lab/Skeleton';
+import { makeStyles } from '@mui/styles';
+import Skeleton from '@mui/material/Skeleton';
 import { getItemImage } from '../utils/image';
 import { EmbeddedLinkItemExtra, UnknownExtra, Variant } from '../types';
 import { DEFAULT_THUMBNAIL_SIZE } from '../constants';

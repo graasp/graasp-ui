@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import List from '@material-ui/core/List';
+import List from '@mui/material/List';
 
 export interface MainMenuProps {
   id?: string;

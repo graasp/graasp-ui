@@ -1,9 +1,9 @@
 import React, { FC, MouseEventHandler } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import Avatar from '@material-ui/core/Avatar';
-import Skeleton from '@material-ui/lab/Skeleton';
-import Tooltip from '@material-ui/core/Tooltip';
+import { makeStyles } from '@mui/styles';
+import Typography from '@mui/material/Typography';
+import Avatar from '@mui/material/Avatar';
+import Skeleton from '@mui/material/Skeleton';
+import Tooltip from '@mui/material/Tooltip';
 import { SHORT_TEXT_WIDTH, SMALL_AVATAR_SIZE } from '../constants';
 import { UUID } from '../types';
 
@@ -43,7 +43,7 @@ const HeaderUserInformation: FC<HeaderUserInformationProps> = ({
     return (
       <div className={classes.wrapper}>
         <Skeleton
-          variant='circle'
+          variant='circular'
           width={SMALL_AVATAR_SIZE}
           height={SMALL_AVATAR_SIZE}
         />

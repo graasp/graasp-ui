@@ -1,12 +1,12 @@
 import React, { FC, ReactElement } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import Typography from '@mui/material/Typography';
+import Grid from '@mui/material/Grid';
 import CardHeader from './CardHeader';
 import { Item } from '../types';
 import { DEFAULT_CARD_HEIGHT } from '../constants';
+import { styled } from '@mui/material';
 
 type CardProps = {
   description: string;
@@ -35,42 +35,15 @@ const Item: FC<CardProps> = ({
   NameWrapper,
   Thumbnail,
 }) => {
-  const useStyles = makeStyles((theme) => ({
-    media: {
-      width: '100%',
-      height: '100%',
-      objectFit: 'cover',
-    },
-    imageContainer: {
-      width: '100%',
-      height: '100%',
-    },
-    information: {
-      width: '100%',
-      height: '100%',
-      justifyContent: 'space-between',
-    },
-    description: {
-      height: theme.spacing(5),
-      padding: theme.spacing(0, 1),
-    },
-    header: {
-      width: '100%',
-    },
-    actions: {
-      padding: 0,
-      justifyContent: 'right',
-    },
-    container: {
-      height,
-    },
-  }));
-
-  const classes = useStyles();
+  const StyledImage = styled('img')({
+    width: '100%',
+    height: '100%',
+    objectFit: 'cover',
+  });
 
   const renderImage = (): ReactElement => {
     if (!Thumbnail) {
-      return <img className={classes.media} src={image} alt={name} />;
+      return <StyledImage src={image} alt={name} />;
     }
 
     return Thumbnail;
@@ -78,14 +51,22 @@ const Item: FC<CardProps> = ({
 
   return (
     <Card id={cardId} className={className}>
-      <Grid container className={classes.container}>
-        <Grid item xs={5} className={classes.imageContainer}>
+      <Grid container sx={{ height }}>
+        <Grid item xs={5} sx={{ width: '100%', height: '100%' }}>
           {renderImage()}
         </Grid>
 
         <Grid item xs={7}>
-          <Grid container direction='column' className={classes.information}>
-            <Grid item className={classes.header}>
+          <Grid
+            container
+            direction='column'
+            sx={{
+              width: '100%',
+              height: '100%',
+              justifyContent: 'space-between',
+            }}
+          >
+            <Grid item sx={{ width: '100%' }}>
               <CardHeader
                 name={name}
                 creator={creator}
@@ -93,7 +74,7 @@ const Item: FC<CardProps> = ({
                 NameWrapper={NameWrapper}
               />
             </Grid>
-            <Grid item className={classes.description}>
+            <Grid item sx={{ height: 5, paddingX: 1 }}>
               <Typography variant='caption' color='textSecondary' component='p'>
                 {description}
               </Typography>
@@ -101,7 +82,9 @@ const Item: FC<CardProps> = ({
             {/* keep grid to avoid weird behavior with space between */}
             <Grid item>
               {Actions && (
-                <CardActions className={classes.actions}>{Actions}</CardActions>
+                <CardActions sx={{ justifyContent: 'right', p: 0 }}>
+                  {Actions}
+                </CardActions>
               )}
             </Grid>
           </Grid>

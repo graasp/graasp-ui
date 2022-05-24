@@ -1,5 +1,5 @@
 import React from 'react';
-import BarChartIcon from '@material-ui/icons/BarChart';
+import BarChartIcon from '@mui/icons-material/BarChart';
 
 interface AnalyzeIconProps {
   className?: string;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Record } from 'immutable';
-import Grid from '@material-ui/core/Grid';
+import Grid from '@mui/material/Grid';
 import TextEditor from '../TextEditor';
 import type { Item, UnknownExtra } from '../types';
 import { DEFAULT_ITEM_DESCRIPTION } from '../constants';

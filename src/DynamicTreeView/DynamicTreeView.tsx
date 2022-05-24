@@ -1,10 +1,10 @@
 import React, { FC, useState } from 'react';
 import type { UseQueryResult } from 'react-query';
-import TreeView from '@material-ui/lab/TreeView';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import TreeView from '@mui/lab/TreeView';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { List, Record } from 'immutable';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import TreeItem from '@material-ui/lab/TreeItem';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import TreeItem from '@mui/lab/TreeItem';
 import CustomTreeItem from './CustomTreeItem';
 import TreeItemLabel from './TreeItemLabel';
 import type { Item } from '../types';

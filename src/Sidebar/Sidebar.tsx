@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Drawer from '@material-ui/core/Drawer';
+import { makeStyles } from '@mui/styles';
+import Drawer from '@mui/material/Drawer';
 import DrawerHeader from '../DrawerHeader';
 import { DRAWER_WIDTH } from '../constants';
 

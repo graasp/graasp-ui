@@ -1,6 +1,6 @@
 import React, { ComponentClass, ReactElement } from 'react';
 import { StatusCodes, getReasonPhrase } from 'http-status-codes';
-import Alert from '@material-ui/lab/Alert';
+import Alert from '@mui/lab/Alert';
 import ItemLoginScreen from './ItemLoginScreen';
 import Loader from '../Loader';
 import ForbiddenContent from './ForbiddenContent';

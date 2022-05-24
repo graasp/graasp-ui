@@ -4,10 +4,10 @@ import {
   IconButtonProps,
   SvgIconProps,
   Tooltip,
-} from '@material-ui/core';
+} from '@mui/material';
 import { useTranslation } from 'react-i18next';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 
 export interface LikeButtonProps {
   isLiked: boolean;

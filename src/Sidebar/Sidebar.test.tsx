@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow, ShallowWrapper } from 'enzyme';
-import Drawer from '@material-ui/core/Drawer';
+import Drawer from '@mui/material/Drawer';
 import { Sidebar, SidebarProps } from './Sidebar';
 import DrawerHeader from '../DrawerHeader';
 

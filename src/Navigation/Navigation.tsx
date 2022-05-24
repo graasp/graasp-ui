@@ -1,11 +1,6 @@
 import React, { MouseEventHandler } from 'react';
-import {
-  makeStyles,
-  Menu,
-  MenuItem,
-  Typography,
-  Button,
-} from '@material-ui/core';
+import { Menu, MenuItem, Typography, Button } from '@mui/material';
+import { makeStyles } from '@mui/styles';
 import { redirect, Context } from '@graasp/utils';
 import ExploreIcon from '../icons/ExploreIcon';
 import BuildIcon from '../icons/BuildIcon';
@@ -132,7 +127,6 @@ const Navigation: React.FC<NavigationProps> = ({
         id='navigation-menu'
         anchorEl={anchorEl}
         keepMounted
-        getContentAnchorEl={null}
         open={Boolean(anchorEl)}
         onClose={handleClose}
         anchorOrigin={{

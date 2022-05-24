@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
-import Checkbox from '@material-ui/core/Checkbox';
-import { makeStyles } from '@material-ui/core/styles';
+import Checkbox from '@mui/material/Checkbox';
+import { makeStyles } from '@mui/styles';
 
 const useStyles = makeStyles(() => ({
   label: {

@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
-import GetAppIcon from '@material-ui/icons/GetApp';
-import { makeStyles } from '@material-ui/core/styles';
+import GetAppIcon from '@mui/icons-material/GetApp';
+import { makeStyles } from '@mui/styles';
 import Button from '../Button';
 
 const useStyles = makeStyles(() => ({

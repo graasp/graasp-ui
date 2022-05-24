@@ -1,7 +1,7 @@
 import React from 'react';
-import AppBar from '@material-ui/core/AppBar';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
+import AppBar from '@mui/material/AppBar';
+import IconButton from '@mui/material/IconButton';
+import MenuIcon from '@mui/icons-material/Menu';
 import { shallow, ShallowWrapper } from 'enzyme';
 import { Header, HeaderProps } from './Header';
 import { OPEN_DRAWER_LABEL } from '../texts';

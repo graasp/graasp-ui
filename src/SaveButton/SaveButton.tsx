@@ -1,7 +1,6 @@
-import { PropTypes } from '@material-ui/core';
 import React, { FC } from 'react';
 import GraaspButton from '../Button';
-import { ButtonVariant } from '../types';
+import { ButtonVariant, ColorVariant } from '../types';
 
 interface SaveButtonProps {
   onClick: (e: any) => void;
@@ -9,7 +8,7 @@ interface SaveButtonProps {
   id?: string;
   text?: string;
   savedText?: string;
-  color?: PropTypes.Color;
+  color?: ColorVariant;
   variant?: ButtonVariant;
 }
 

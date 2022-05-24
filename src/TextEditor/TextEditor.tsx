@@ -1,5 +1,5 @@
 import React, { useState, useEffect, FC } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@mui/styles';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import SaveButton from '../SaveButton';

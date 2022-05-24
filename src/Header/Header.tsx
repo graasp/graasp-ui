@@ -1,10 +1,10 @@
 import React, { FC } from 'react';
-import { makeStyles, Theme } from '@material-ui/core/styles';
+import { makeStyles } from '@mui/styles';
 import clsx from 'clsx';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import IconButton from '@mui/material/IconButton';
+import MenuIcon from '@mui/icons-material/Menu';
 import { DRAWER_WIDTH } from '../constants';
 import { OPEN_DRAWER_LABEL } from '../texts';
 
@@ -18,7 +18,7 @@ export type HeaderProps = {
   rightContent?: React.ReactElement;
 };
 
-const useStyles = makeStyles((theme: Theme) => ({
+const useStyles = makeStyles((theme) => ({
   appBar: {
     transition: theme.transitions.create(['margin', 'width'], {
       easing: theme.transitions.easing.sharp,

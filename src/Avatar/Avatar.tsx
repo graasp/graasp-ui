@@ -1,12 +1,11 @@
 import React, { useState, useEffect, FC } from 'react';
-import clsx from 'clsx';
 // eslint-disable-next-line import/no-named-default
-import { default as AvatarComponent } from '@material-ui/core/Avatar';
-import { makeStyles } from '@material-ui/core/styles';
-import Skeleton from '@material-ui/lab/Skeleton';
+import { default as AvatarComponent } from '@mui/material/Avatar';
+import Skeleton from '@mui/material/Skeleton';
 import { getItemImage } from '../utils/image';
 import { EmbeddedLinkItemExtra, Variant } from '../types';
 import { DEFAULT_THUMBNAIL_SIZE } from '../constants';
+import { styled } from '@mui/material';
 
 type AvatarProps = {
   id: string;
@@ -48,12 +47,10 @@ const Avatar: FC<AvatarProps> = ({
     size,
   });
 
-  const classes = makeStyles({
-    img: {
-      maxWidth,
-      maxHeight,
-    },
-  })();
+  const ScaledImg = styled('img')({
+    maxWidth,
+    maxHeight,
+  });
 
   useEffect(() => {
     if (thumbnailBlob) {
@@ -93,9 +90,7 @@ const Avatar: FC<AvatarProps> = ({
     return <AvatarComponent alt={alt} src={thumbnail} className={className} />;
   }
 
-  return (
-    <img src={thumbnail} alt={alt} className={clsx(classes.img, className)} />
-  );
+  return <ScaledImg src={thumbnail} alt={alt} className={className} />;
 };
 
 export default Avatar;

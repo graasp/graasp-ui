@@ -1,11 +1,18 @@
 import React, { FC, ReactElement, useState } from 'react';
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-import Accordion from '@material-ui/core/Accordion';
-import AccordionSummary from '@material-ui/core/AccordionSummary';
-import AccordionDetails from '@material-ui/core/AccordionDetails';
-import Typography from '@material-ui/core/Typography';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import { makeStyles, createStyles } from '@mui/styles';
+import Accordion from '@mui/material/Accordion';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import Typography from '@mui/material/Typography';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { COLLAPSE_MIN_HEIGHT } from '../constants';
+
+import { Theme } from '@mui/material/styles';
+
+declare module '@mui/styles/defaultTheme' {
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  interface DefaultTheme extends Theme {}
+}
 
 type CollapseProps = {
   title: string;
@@ -13,7 +20,7 @@ type CollapseProps = {
   className?: string;
 };
 
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles((theme) =>
   createStyles({
     root: {
       border: '1px solid rgba(0, 0, 0, .125)',
@@ -57,6 +64,27 @@ const Collapse: FC<CollapseProps> = ({ title, content }) => {
     <Accordion
       square
       elevation={0}
+      sx={[
+        {
+          border: '1px solid rgba(0, 0, 0, .125)',
+          boxShadow: 'none',
+        },
+        {
+          '&:not(:last-child)': {
+            borderBottom: 0,
+          },
+        },
+        {
+          '&:before': {
+            display: 'none',
+          },
+        },
+        {
+          '&$expanded': {
+            margin: 'auto',
+          },
+        },
+      ]}
       classes={{
         root: classes.root,
         expanded: classes.expanded,

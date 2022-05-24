@@ -2,7 +2,7 @@ import React, { Component, ReactNode } from 'react';
 import { v4 } from 'uuid';
 import { Map } from 'immutable';
 import { shallow, ShallowWrapper } from 'enzyme';
-import Alert from '@material-ui/lab/Alert';
+import Alert from '@mui/lab/Alert';
 import Loader from '../Loader';
 import ItemLoginAuthorization, {
   ItemLoginAuthorizationProps,
