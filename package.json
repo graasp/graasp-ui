@@ -6,7 +6,8 @@
   "contributors": [
     "Juan Carlos Farah",
     "Kim Lan Phan Hoang",
-    "Abdallah Al Chami"
+    "Abdallah Al Chami",
+    "Alexandre Chau"
   ],
   "workspaces": [
     "example"
@@ -49,6 +50,7 @@
   "dependencies": {
     "@graasp/utils": "github:graasp/graasp-utils.git",
     "clsx": "1.1.1",
+    "h5p-standalone": "3.5.1",
     "http-status-codes": "2.2.0",
     "immutable": "4.0.0",
     "katex": "0.15.3",

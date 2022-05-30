@@ -13,3 +13,5 @@ export { default as FavoriteButton } from './FavoriteButton';
 export { default as LikeButton } from './LikeButton';
 
 export { default as DownloadButton } from './DownloadButton';
+
+export { default as H5PItem } from './H5PItem';

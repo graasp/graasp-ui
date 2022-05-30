@@ -2219,6 +2219,7 @@ __metadata:
     eslint-plugin-react: ^7.29.4
     eslint-plugin-react-app: 6.2.2
     eslint-plugin-standard: ^4.1.0
+    h5p-standalone: 3.5.1
     http-status-codes: 2.2.0
     husky: ^8.0.1
     immutable: 4.0.0
@@ -9971,6 +9972,13 @@ __metadata:
     duplexer: ^0.1.1
     pify: ^4.0.1
   checksum: 6451ba2210877368f6d9ee9b4dc0d14501671472801323bf81fbd38bdeb8525f40a78be45a59d0182895d51e6b60c6314b7d02bd6ed40e7225a01e8d038aac1b
+  languageName: node
+  linkType: hard
+
+"h5p-standalone@npm:3.5.1":
+  version: 3.5.1
+  resolution: "h5p-standalone@npm:3.5.1"
+  checksum: cf291edf47db2c76e2adb3f9e1ae57c164280187b48b821793d91fbc53e5767408f639d5127d72ce68e523722e6519d309b93b310edf454bb7617d26749c6608
   languageName: node
   linkType: hard
 
