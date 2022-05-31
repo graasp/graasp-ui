@@ -56,4 +56,6 @@ export { default as Navigation } from './Navigation';
 
 export { default as Table } from './Table';
 
+export * from './Authorization';
+
 export * from './icons';

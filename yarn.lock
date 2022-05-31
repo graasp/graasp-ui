@@ -1844,6 +1844,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@babel/runtime@npm:^7.7.6":
+  version: 7.18.3
+  resolution: "@babel/runtime@npm:7.18.3"
+  dependencies:
+    regenerator-runtime: ^0.13.4
+  checksum: db8526226aa02cfa35a5a7ac1a34b5f303c62a1f000c7db48cb06c6290e616483e5036ab3c4e7a84d0f3be6d4e2148d5fe5cec9564bf955f505c3e764b83d7f1
+  languageName: node
+  linkType: hard
+
 "@babel/template@npm:^7.16.7, @babel/template@npm:^7.3.3, @babel/template@npm:^7.4.0, @babel/template@npm:^7.8.6":
   version: 7.16.7
   resolution: "@babel/template@npm:7.16.7"
@@ -2177,7 +2186,7 @@ __metadata:
     "@babel/preset-typescript": 7.16.7
     "@commitlint/cli": 17.0.0
     "@commitlint/config-conventional": 17.0.0
-    "@graasp/utils": "github:graasp/graasp-utils.git"
+    "@graasp/utils": "github:graasp/graasp-utils.git#11/redirect"
     "@material-ui/core": 4.12.4
     "@material-ui/icons": 4.11.3
     "@material-ui/lab": 4.0.0-alpha.61
@@ -2196,6 +2205,7 @@ __metadata:
     "@types/qs": 6.9.7
     "@types/react": ^17.0.45
     "@types/react-dom": ^17.0.17
+    "@types/react-router-dom": 5.3.3
     "@types/react-text-mask": 5.4.11
     "@types/uuid": 8.3.4
     "@typescript-eslint/eslint-plugin": ^2.34.0
@@ -2256,13 +2266,14 @@ __metadata:
     i18next: 21.3.1
     react: ^16.13.1
     react-dom: 16.13.1
+    react-router-dom: 6.2.2
   languageName: unknown
   linkType: soft
 
-"@graasp/utils@github:graasp/graasp-utils.git":
+"@graasp/utils@github:graasp/graasp-utils.git#11/redirect":
   version: 0.1.0
-  resolution: "@graasp/utils@https://github.com/graasp/graasp-utils.git#commit=82be1fd0ba2cc7a3c59465012b55e10736e17f96"
-  checksum: 8d7a8cac8f9ce6726babed4efd127163520100f6ad9edf40e26789b66982ce6a9c2359267db1583e6050f45b56598eb59660fa46593e1df69ee4dc165cf6ec61
+  resolution: "@graasp/utils@https://github.com/graasp/graasp-utils.git#commit=a6fbcb5c02e7b7b79e7d0dd29734d549367fe509"
+  checksum: eebd3a95fdb9a0adfbca3c3d06339ac033f6fa32cf4e91292525f480ec7d683a345a71dde7418f0108d1d8e7eb4cb189c2ef48ef58a21b2512bc251c62060e51
   languageName: node
   linkType: hard
 
@@ -3483,6 +3494,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/history@npm:^4.7.11":
+  version: 4.7.11
+  resolution: "@types/history@npm:4.7.11"
+  checksum: c92e2ba407dcab0581a9afdf98f533aa41b61a71133420a6d92b1ca9839f741ab1f9395b17454ba5b88cb86020b70b22d74a1950ccfbdfd9beeaa5459fdc3464
+  languageName: node
+  linkType: hard
+
 "@types/istanbul-lib-coverage@npm:*, @types/istanbul-lib-coverage@npm:^2.0.0, @types/istanbul-lib-coverage@npm:^2.0.1":
   version: 2.0.4
   resolution: "@types/istanbul-lib-coverage@npm:2.0.4"
@@ -3671,6 +3689,33 @@ __metadata:
   dependencies:
     "@types/react": "*"
   checksum: decde42d02a90ac2fe94fd6bfd9c78d002c03762a2d940df9422bf61af89c03d05e2113fd55fe45521fe27fa872a79dfd654b7d6b89652b455425efdcb763c58
+  languageName: node
+  linkType: hard
+
+"@types/react-router-dom@link:../node_modules/@types/react-router-dom::locator=graasp-ui-example%40workspace%3Aexample":
+  version: 0.0.0-use.local
+  resolution: "@types/react-router-dom@link:../node_modules/@types/react-router-dom::locator=graasp-ui-example%40workspace%3Aexample"
+  languageName: node
+  linkType: soft
+
+"@types/react-router-dom@npm:5.3.3":
+  version: 5.3.3
+  resolution: "@types/react-router-dom@npm:5.3.3"
+  dependencies:
+    "@types/history": ^4.7.11
+    "@types/react": "*"
+    "@types/react-router": "*"
+  checksum: 28c4ea48909803c414bf5a08502acbb8ba414669b4b43bb51297c05fe5addc4df0b8fd00e0a9d1e3535ec4073ef38aaafac2c4a2b95b787167d113bc059beff3
+  languageName: node
+  linkType: hard
+
+"@types/react-router@npm:*":
+  version: 5.1.18
+  resolution: "@types/react-router@npm:5.1.18"
+  dependencies:
+    "@types/history": ^4.7.11
+    "@types/react": "*"
+  checksum: f08b37ee822f9f9ff904ffd0778fe2bb7c717ed3ee311610382ee024d02a35169bd3301ecde863cac21aae8fdee919501e8ea22bad0260c02c10cfbdba5c71be
   languageName: node
   linkType: hard
 
@@ -9944,9 +9989,11 @@ __metadata:
     "@types/node": "link:../node_modules/@types/node"
     "@types/react": "link:../node_modules/@types/react"
     "@types/react-dom": "link:../node_modules/@types/react-dom"
+    "@types/react-router-dom": "link:../node_modules/@types/react-router-dom"
     immutable: 4.0.0
     react: 17.0.2
     react-dom: 17.0.2
+    react-router-dom: 6.2.2
     react-scripts: 3.4.4
     typescript: 4.6.4
   peerDependencies:
@@ -9955,6 +10002,7 @@ __metadata:
     "@material-ui/lab": 4.0.0-alpha.58
     react: 17.0.1
     react-dom: 17.0.1
+    react-router-dom: 6.2.2
   languageName: unknown
   linkType: soft
 
@@ -10173,6 +10221,15 @@ __metadata:
   version: 1.1.0
   resolution: "hex-color-regex@npm:1.1.0"
   checksum: 44fa1b7a26d745012f3bfeeab8015f60514f72d2fcf10dce33068352456b8d71a2e6bc5a17f933ab470da2c5ab1e3e04b05caf3fefe3c1cabd7e02e516fc8784
+  languageName: node
+  linkType: hard
+
+"history@npm:^5.2.0":
+  version: 5.3.0
+  resolution: "history@npm:5.3.0"
+  dependencies:
+    "@babel/runtime": ^7.7.6
+  checksum: d73c35df49d19ac172f9547d30a21a26793e83f16a78386d99583b5bf1429cc980799fcf1827eb215d31816a6600684fba9686ce78104e23bd89ec239e7c726f
   languageName: node
   linkType: hard
 
@@ -16487,6 +16544,30 @@ __metadata:
     react: ">=16.3.0"
     react-dom: ">=16.3.0"
   checksum: 312c08f21b6ef9dcfa2e4823ebf63a3142793168b02b2cd54327587ad8159d409577428c6c363e3805ba437403dcfc708df39ebc83b423e9d71002e3fca3f3fc
+  languageName: node
+  linkType: hard
+
+"react-router-dom@npm:6.2.2":
+  version: 6.2.2
+  resolution: "react-router-dom@npm:6.2.2"
+  dependencies:
+    history: ^5.2.0
+    react-router: 6.2.2
+  peerDependencies:
+    react: ">=16.8"
+    react-dom: ">=16.8"
+  checksum: 83c5105af923c4f8af65a6de98283a95f46ffa643fd0c1a5005647c2c3deb946dae52dda32dc00cfcc3659517b08be806ff02ff03173361dba3d824850053e99
+  languageName: node
+  linkType: hard
+
+"react-router@npm:6.2.2":
+  version: 6.2.2
+  resolution: "react-router@npm:6.2.2"
+  dependencies:
+    history: ^5.2.0
+  peerDependencies:
+    react: ">=16.8"
+  checksum: 1a2e7006d4d56bfae8ff11dd5ec15e8049578864dfb2764652510eb0ce4af26a8949790a3732c4f7beb14bcb6500469ea18841b8cfc953e09828e4e4113922f0
   languageName: node
   linkType: hard
 
