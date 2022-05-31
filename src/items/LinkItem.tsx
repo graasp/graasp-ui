@@ -1,4 +1,5 @@
 import React, { FC, useState, useRef, Fragment } from 'react';
+import clsx from 'clsx';
 import { Record } from 'immutable';
 import Alert from '@material-ui/lab/Alert';
 import { redirect } from '@graasp/utils';
@@ -9,6 +10,7 @@ import Button from '../Button';
 import withCaption from './withCaption';
 import { ITEM_MAX_HEIGHT } from '../constants';
 import type { EmbeddedLinkItemExtra, Item } from '../types';
+import withExtension from './withExtension';
 
 interface LinkItemProps {
   item: Record<Item<EmbeddedLinkItemExtra>>;
@@ -20,13 +22,17 @@ interface LinkItemProps {
   loadingMessage?: string;
   openLinkMessage?: string;
   errorMessage?: string;
+  isExtendable?: boolean;
 }
 
 const useStyles = makeStyles((theme) => ({
   iframe: {
     width: '100%',
     border: 'none',
+  },
+  iframeWithoutExtension: {
     maxHeight: ITEM_MAX_HEIGHT,
+    height: ITEM_MAX_HEIGHT,
   },
   linkButton: {
     marginLeft: 'auto',
@@ -35,8 +41,10 @@ const useStyles = makeStyles((theme) => ({
   },
   iframeContainer: {
     position: 'relative',
-    maxHeight: ITEM_MAX_HEIGHT,
     overflow: 'auto',
+  },
+  iframeContainerWithoutExtension: {
+    maxHeight: ITEM_MAX_HEIGHT,
   },
 }));
 
@@ -50,6 +58,7 @@ const LinkItem: FC<LinkItemProps> = ({
   openLinkMessage = 'Click here to open the link manually',
   height: defaultHeight,
   errorMessage = 'The link is malformed.',
+  isExtendable = false,
 }) => {
   const classes = useStyles();
   const [isLoading, setIsLoading] = useState(true);
@@ -99,6 +108,21 @@ const LinkItem: FC<LinkItemProps> = ({
     redirect(url, { openInNewTab: true });
   };
 
+  const iframe = (
+    <iframe
+      id={id}
+      className={clsx(
+        classes.iframe,
+        !isExtendable && classes.iframeWithoutExtension,
+      )}
+      title={name}
+      src={url}
+      onLoad={handleLoad}
+      height='100%'
+      ref={iframeRef}
+    />
+  );
+
   const component = (
     <Fragment>
       <div
@@ -110,18 +134,20 @@ const LinkItem: FC<LinkItemProps> = ({
       </div>
       <div
         hidden={isLoading}
-        className={classes.iframeContainer}
-        style={{ height: height }}
+        className={clsx(
+          classes.iframeContainer,
+          !isExtendable && classes.iframeContainerWithoutExtension,
+        )}
       >
-        <iframe
-          id={id}
-          className={classes.iframe}
-          title={name}
-          src={url}
-          onLoad={handleLoad}
-          height='100%'
-          ref={iframeRef}
-        />
+        {!isExtendable && iframe}
+
+        {isExtendable && (
+          <div>
+            {withExtension({
+              height,
+            })(iframe)}
+          </div>
+        )}
       </div>
       {isLoading && (
         <Button

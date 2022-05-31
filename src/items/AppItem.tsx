@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import clsx from 'clsx';
 import { Record } from 'immutable';
 import { withStyles } from '@material-ui/core/styles';
 import { getAppExtra } from '../utils/itemExtra';
 import qs from 'qs';
 import Loader from '../Loader';
+import withExtension from './withExtension';
 import {
   APP_ITEM_FRAME_BORDER,
   APP_ITEM_WIDTH,
@@ -50,6 +52,7 @@ interface AppItemProps {
   };
   height?: number | string;
   requestApiAccessToken: Function;
+  isExtendable?: boolean;
 }
 
 interface AppItemState {
@@ -72,6 +75,7 @@ class AppItem extends Component<AppItemProps> {
     showCaption: true,
     // todo: get this value from common graasp constants
     permission: DEFAULT_PERMISSION,
+    isExtendable: false,
   };
 
   state: AppItemState = {
@@ -216,6 +220,7 @@ class AppItem extends Component<AppItemProps> {
       saveButtonId,
       editCaption,
       classes,
+      isExtendable,
     } = this.props;
     const { iframeIsLoading, url, height } = this.state;
 
@@ -239,20 +244,31 @@ class AppItem extends Component<AppItemProps> {
       },
     )}`;
 
+    const iframe = (
+      <iframe
+        id={id}
+        title={item?.get('name')}
+        onLoad={onLoad}
+        ref={this.iframeRef}
+        width={APP_ITEM_WIDTH}
+        height='100%'
+        src={appUrl}
+        frameBorder={APP_ITEM_FRAME_BORDER}
+        className={clsx(!isExtendable && classes.iframe)}
+      />
+    );
+
     const component = (
       <React.Fragment>
         {iframeIsLoading && <Loader />}
-        <iframe
-          id={id}
-          title={item?.get('name')}
-          onLoad={onLoad}
-          ref={this.iframeRef}
-          width={APP_ITEM_WIDTH}
-          height={height}
-          src={appUrl}
-          frameBorder={APP_ITEM_FRAME_BORDER}
-          className={classes.iframe}
-        />
+        {!isExtendable && iframe}
+        {isExtendable && (
+          <div>
+            {withExtension({
+              height,
+            })(iframe)}
+          </div>
+        )}
       </React.Fragment>
     );
 
