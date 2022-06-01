@@ -1,7 +1,6 @@
 import React from 'react';
 import { Typography, Container, makeStyles } from '@material-ui/core';
 import GraaspLogo from '../GraaspLogo';
-import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 interface Props {
@@ -55,10 +54,6 @@ const RedirectionContent: React.FC<Props> = ({
       </div>
     </Container>
   );
-};
-
-RedirectionContent.propTypes = {
-  link: PropTypes.string.isRequired,
 };
 
 export default RedirectionContent;

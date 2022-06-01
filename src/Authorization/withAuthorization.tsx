@@ -1,22 +1,20 @@
 import React, { ComponentType, FC } from 'react';
-import { useLocation } from 'react-router';
 import { Map } from 'immutable';
-import { redirect, saveUrlForRedirection } from '@graasp/utils';
+import { redirect } from '@graasp/utils';
 import RedirectContent from './RedirectionContent';
 
 interface Props {
   redirectionLink: string;
   currentMember?: Map<string, unknown>;
+  onRedirect?: Function;
 }
 
 const withAuthorization =
   <P extends object>(
     ChildComponent: ComponentType<P>,
-    { currentMember, redirectionLink }: Props,
+    { currentMember, redirectionLink, onRedirect }: Props,
   ): FC<P> =>
   (childProps: P) => {
-    const { pathname } = useLocation();
-
     const redirectToSignIn = (): void => {
       redirect(redirectionLink);
     };
@@ -27,8 +25,8 @@ const withAuthorization =
       return <ChildComponent {...(childProps as P)} />;
     }
 
-    // save current url for later redirection after sign in
-    saveUrlForRedirection(pathname);
+    // eslint-disable-next-line no-unused-expressions
+    onRedirect?.();
 
     // do not redirect in test environment to fully load a page
     // eslint-disable-next-line no-unused-expressions
