@@ -1,6 +1,5 @@
-import React, { FC, useEffect, useRef } from 'react';
-import { Item } from '../types';
 import { H5P, H5POptions } from 'h5p-standalone';
+import React, { FC, useEffect, useRef } from 'react';
 
 /**
  * Helper to generate unique H5P container IDs
@@ -13,7 +12,7 @@ export const buildH5PContainerId = (itemId: string) =>
  * React props types for {@link H5PItem}
  */
 interface H5PItemProps {
-  item: Item;
+  itemId: string;
   playerOptions: H5POptions;
 }
 
@@ -23,16 +22,16 @@ interface H5PItemProps {
  * This component bridges the gap between the procedural "h5p-standalone"
  * package and the Graasp React ecosystem
  */
-const H5PItem: FC<H5PItemProps> = ({ item, playerOptions }) => {
+const H5PItem: FC<H5PItemProps> = ({ itemId, playerOptions }) => {
   const h5pContainerEl = useRef(null);
 
   useEffect(() => {
     if (h5pContainerEl.current) {
       new H5P(h5pContainerEl.current, playerOptions);
     }
-  }, [item]);
+  }, [itemId]);
 
-  return <div ref={h5pContainerEl} id={buildH5PContainerId(item.id)}></div>;
+  return <div ref={h5pContainerEl} id={buildH5PContainerId(itemId)}></div>;
 };
 
 export default H5PItem;
