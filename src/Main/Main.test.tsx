@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow, ShallowWrapper } from 'enzyme';
-import { Main } from './Main';
+import { Main, MainProps } from './Main';
 import Header from '../Header';
 import Sidebar from '../Sidebar';
 
@@ -8,7 +8,7 @@ const createMainProps = (opts?: {
   fullScreen?: boolean;
   children?: JSX.Element;
   sidebar?: JSX.Element;
-}): any => ({
+}): MainProps => ({
   classes: {
     fullScreen: 'fullScreen',
     root: '',
