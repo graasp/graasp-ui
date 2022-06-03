@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@mui/styles';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
 import clsx from 'clsx';
 
 interface Props {

@@ -1,5 +1,5 @@
 import React, { ReactElement, useState } from 'react';
-import { makeStyles } from '@material-ui/core';
+import { makeStyles } from '@mui/styles';
 import clsx from 'clsx';
 import { GridApi, RowNode, ColDef, IRowDragItem } from 'ag-grid-community';
 import { AgGridReact } from 'ag-grid-react';

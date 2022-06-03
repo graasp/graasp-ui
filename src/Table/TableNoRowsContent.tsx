@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import clsx from 'clsx';
-import { makeStyles, Typography } from '@material-ui/core';
+import { makeStyles } from '@mui/styles';
+import { Typography } from '@mui/material';
 
 interface Props {
   emptyMessage?: string;

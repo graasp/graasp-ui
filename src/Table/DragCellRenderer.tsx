@@ -1,6 +1,6 @@
 import React, { FC, useEffect, useRef } from 'react';
-import DragIndicatorIcon from '@material-ui/icons/DragIndicator';
-import { makeStyles } from '@material-ui/core/styles';
+import DragIndicatorIcon from '@mui/icons-material/DragIndicator';
+import { makeStyles } from '@mui/styles';
 import { DRAG_ICON_SIZE } from '../constants';
 
 interface Props {
