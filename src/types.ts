@@ -43,9 +43,9 @@ export type ItemMembership = {
 // todo: better solution?
 // conflict between isEmpty which only exists in Map, List of objects and the fact
 // we cannot create a Record from data
-export type ImmutableItem = Map<string, unknown>;
-export type ImmutableMember = Map<string, unknown>;
-export type ItemLogin = Map<string, unknown>;
+export type ImmutableItem = Map<string, any>;
+export type ImmutableMember = Map<string, any>;
+export type ItemLogin = Map<string, any>;
 export class ImmutableItemClass extends Record({
   id: '',
   name: '',
