@@ -5,7 +5,7 @@ import { withStyles } from '@material-ui/core/styles';
 import { getAppExtra } from '../utils/itemExtra';
 import qs from 'qs';
 import Loader from '../Loader';
-import withExtension from './withExtension';
+import withResizing from './withResizing';
 import {
   APP_ITEM_FRAME_BORDER,
   APP_ITEM_WIDTH,
@@ -254,22 +254,23 @@ class AppItem extends Component<AppItemProps> {
         height='100%'
         src={appUrl}
         frameBorder={APP_ITEM_FRAME_BORDER}
-        className={clsx(!isExtendable && classes.iframe)}
+        className={clsx({ [classes.iframe]: !isExtendable })}
       />
     );
 
     const component = (
-      <React.Fragment>
+      <>
         {iframeIsLoading && <Loader />}
-        {!isExtendable && iframe}
-        {isExtendable && (
+        {isExtendable ? (
           <div>
-            {withExtension({
+            {withResizing({
               height,
             })(iframe)}
           </div>
-        )}
-      </React.Fragment>
+        ) :
+          iframe
+        }
+      </>
     );
 
     if (showCaption) {

@@ -10,7 +10,7 @@ import Button from '../Button';
 import withCaption from './withCaption';
 import { ITEM_MAX_HEIGHT } from '../constants';
 import type { EmbeddedLinkItemExtra, Item } from '../types';
-import withExtension from './withExtension';
+import withResizing from './withResizing';
 
 interface LinkItemProps {
   item: Record<Item<EmbeddedLinkItemExtra>>;
@@ -113,7 +113,7 @@ const LinkItem: FC<LinkItemProps> = ({
       id={id}
       className={clsx(
         classes.iframe,
-        !isExtendable && classes.iframeWithoutExtension,
+        { [classes.iframeWithoutExtension]: !isExtendable },
       )}
       title={name}
       src={url}
@@ -136,18 +136,18 @@ const LinkItem: FC<LinkItemProps> = ({
         hidden={isLoading}
         className={clsx(
           classes.iframeContainer,
-          !isExtendable && classes.iframeContainerWithoutExtension,
+          { [classes.iframeContainerWithoutExtension]: !isExtendable },
         )}
       >
-        {!isExtendable && iframe}
-
-        {isExtendable && (
+        {isExtendable ? (
           <div>
-            {withExtension({
+            {withResizing({
               height,
             })(iframe)}
           </div>
-        )}
+        ) :
+          iframe
+        }
       </div>
       {isLoading && (
         <Button
