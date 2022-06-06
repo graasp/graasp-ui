@@ -51,6 +51,10 @@ export const LINK_BUTTON_ICON_FONT_SIZE = 46;
 export const ITEM_ICON_MAX_SIZE = 25;
 export const DEFAULT_ITEM_DESCRIPTION = '';
 
+export const RESIZING_ICON_LEVEL_BACKGROUND_COLOR = 300;
+export const RESIZING_ICON_LEVEL_BACKGROUND_COLOR_FOCUS = 500;
+
+
 // todo: factor out in graasp constants
 export const SETTINGS = {
   ITEM_LOGIN: {
