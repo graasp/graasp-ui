@@ -2059,7 +2059,7 @@ __metadata:
     react-cookie-consent: 7.4.1
     react-i18next: 11.17.0
     react-query: 3.39.1
-    react-quill: 1.3.5
+    react-quill: 2.0.0-beta.4
     react-test-renderer: 18.1.0
     react-text-mask: 5.4.3
     rimraf: 3.0.2
@@ -3498,7 +3498,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@testing-library/user-event@npm:14.2.0, @testing-library/user-event@npm:^14.2.0":
+"@testing-library/user-event@npm:^14.2.0":
   version: 14.2.0
   resolution: "@testing-library/user-event@npm:14.2.0"
   peerDependencies:
@@ -3924,7 +3924,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/quill@npm:1.3.10":
+"@types/quill@npm:^1.3.10":
   version: 1.3.10
   resolution: "@types/quill@npm:1.3.10"
   dependencies:
@@ -6331,16 +6331,6 @@ __metadata:
     path-type: ^4.0.0
     yaml: ^1.10.0
   checksum: 4be63e7117955fd88333d7460e4c466a90f556df6ef34efd59034d2463484e339666c41f02b523d574a797ec61f4a91918c5b89a316db2ea2f834e0d2d09465b
-  languageName: node
-  linkType: hard
-
-"create-react-class@npm:^15.6.0":
-  version: 15.7.0
-  resolution: "create-react-class@npm:15.7.0"
-  dependencies:
-    loose-envify: ^1.3.1
-    object-assign: ^4.1.1
-  checksum: 0c5f43da705fa9f67ec289051dd5780792652d440dfa17cd2c7d8423c1f604609596f895dabf46fda1960ddd93ee96fe1b61ef4d55a94fc4271b07d515486714
   languageName: node
   linkType: hard
 
@@ -8782,7 +8772,6 @@ __metadata:
     "@material-ui/lab": 4.0.0-alpha.61
     "@testing-library/jest-dom": 5.16.4
     "@testing-library/react": 13.3.0
-    "@testing-library/user-event": 14.2.0
     "@types/jest": 28.1.0
     "@types/node": 17.0.39
     "@types/react": 18.0.10
@@ -11260,7 +11249,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"loose-envify@npm:^1.1.0, loose-envify@npm:^1.3.1, loose-envify@npm:^1.4.0":
+"loose-envify@npm:^1.1.0, loose-envify@npm:^1.4.0":
   version: 1.4.0
   resolution: "loose-envify@npm:1.4.0"
   dependencies:
@@ -13448,7 +13437,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prop-types@npm:^15.5.10, prop-types@npm:^15.5.6, prop-types@npm:^15.6.2, prop-types@npm:^15.7.2, prop-types@npm:^15.8.1":
+"prop-types@npm:^15.5.6, prop-types@npm:^15.6.2, prop-types@npm:^15.7.2, prop-types@npm:^15.8.1":
   version: 15.8.1
   resolution: "prop-types@npm:15.8.1"
   dependencies:
@@ -13666,13 +13655,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-dom-factories@npm:^1.0.0":
-  version: 1.0.2
-  resolution: "react-dom-factories@npm:1.0.2"
-  checksum: 2ef14d4bb1d33ebcc52a752f9d32820ce57d7ac4e0fe53b90f98adf5310f604b120ee7bb1ba2f1b36eb487b02e5cd4b1b52f138f49a82303672b971a3eb92b6a
-  languageName: node
-  linkType: hard
-
 "react-dom@npm:18.1.0":
   version: 18.1.0
   resolution: "react-dom@npm:18.1.0"
@@ -13750,19 +13732,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-quill@npm:1.3.5":
-  version: 1.3.5
-  resolution: "react-quill@npm:1.3.5"
+"react-quill@npm:2.0.0-beta.4":
+  version: 2.0.0-beta.4
+  resolution: "react-quill@npm:2.0.0-beta.4"
   dependencies:
-    "@types/quill": 1.3.10
-    create-react-class: ^15.6.0
+    "@types/quill": ^1.3.10
     lodash: ^4.17.4
-    prop-types: ^15.5.10
     quill: ^1.3.7
-    react-dom-factories: ^1.0.0
   peerDependencies:
-    react: ^0.14.9 || ^15.3.0 || ^16.0.0
-  checksum: c0bfa816c29eeb8bb361b43c753e907c5fa1882afd843055393e361219319226dc4a0570510bd460fc10fd8b22f1b40da28fbf8b8dece19add71103d63727fa6
+    react: ^16 || ^17
+    react-dom: ^16 || ^17
+  checksum: bec76caae579d199d47b475af2236321c902dd468bd9b6a688c6bc1b4c8ddcf8407348ae3a490f9e45b6e33dc7d0fffe026ccd595297440c2623964d5f466c29
   languageName: node
   linkType: hard
 
