@@ -1,7 +1,6 @@
 import React, { FC } from 'react';
 import MusicNoteIcon from '@mui/icons-material/MusicNote';
 import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
-import { makeStyles } from '@mui/styles';
 import FolderIcon from '@mui/icons-material/Folder';
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import LinkIcon from '@mui/icons-material/Link';
@@ -24,14 +23,9 @@ import {
   S3FileItemExtra,
   UnknownExtra,
 } from '../types';
+import { StyledImage } from '../StyledComponents/StyledBaseComponents';
+import { SxProps } from '@mui/material';
 
-const useStyles = makeStyles({
-  imageIcon: {
-    // icons should be squared
-    maxHeight: ITEM_ICON_MAX_SIZE,
-    maxWidth: ITEM_ICON_MAX_SIZE,
-  },
-});
 
 interface ItemIconProps {
   name?: string;
@@ -39,19 +33,16 @@ interface ItemIconProps {
   type: string;
   extra?: UnknownExtra;
   color?: string;
-  className?: string;
-  iconClass?: string;
+  sx?: SxProps;
 }
 
 const ItemIcon: FC<ItemIconProps> = ({
   name = '',
   type,
   extra,
-  iconClass,
+  sx,
   color,
 }) => {
-  const classes = useStyles();
-
   const mimetype =
     getFileExtra(extra as unknown as FileItemExtra)?.mimetype ||
     getS3FileExtra(extra as unknown as S3FileItemExtra)?.mimetype;
@@ -59,7 +50,17 @@ const ItemIcon: FC<ItemIconProps> = ({
     ?.icons?.[0];
 
   if (icon) {
-    return <img className={classes.imageIcon} alt={name} src={icon} />;
+    return (
+      <StyledImage
+        sx={{
+          // icons should be squared
+          maxHeight: ITEM_ICON_MAX_SIZE,
+          maxWidth: ITEM_ICON_MAX_SIZE,
+        }}
+        alt={name}
+        src={icon}
+      />
+    );
   }
 
   let Icon = InsertDriveFileIcon;
@@ -114,7 +115,7 @@ const ItemIcon: FC<ItemIconProps> = ({
       break;
   }
 
-  return <Icon className={iconClass} style={{ color }} />;
+  return <Icon sx={sx} style={{ color }} />;
 };
 
 export default ItemIcon;

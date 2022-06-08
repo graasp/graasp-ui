@@ -6,25 +6,22 @@ import DialogActions from '@mui/material/DialogActions';
 import Button from '../Button';
 import Dialog from '@mui/material/Dialog';
 import List from '@mui/material/List';
-import { ListItemButton, ListItemText } from '@mui/material';
-import { makeStyles } from '@mui/styles';
+import { ListItemButton, ListItemText, styled } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import { FLAG_LIST_MAX_HEIGHT } from '../constants';
 import { Flag } from '../types';
 
-const useStyles = makeStyles(() => ({
-  list: {
-    width: '100%',
-    overflow: 'auto',
-    maxHeight: FLAG_LIST_MAX_HEIGHT,
-  },
-  listTitle: {
-    fontSize: 'small',
-  },
-  flagItemButton: {
-    color: 'red',
-  },
-}));
+const ListTitle = styled(Typography)({
+  fontSize: 'small',
+});
+const FlagItemButton = styled(Button)({
+  color: 'red',
+});
+const StyledList = styled(List)({
+  width: '100%',
+  overflow: 'auto',
+  maxHeight: FLAG_LIST_MAX_HEIGHT,
+});
 
 export interface ItemFlagDialogProps {
   flags: Flag[];
@@ -44,7 +41,6 @@ export const ItemFlagDialog: FC<ItemFlagDialogProps> = ({
   setSelectedFlag,
 }) => {
   const { t } = useTranslation();
-  const classes = useStyles();
 
   const onClose = (): void => {
     setOpen(false);
@@ -56,10 +52,10 @@ export const ItemFlagDialog: FC<ItemFlagDialogProps> = ({
     <Dialog open={open} onClose={onClose} maxWidth='sm' fullWidth>
       <DialogTitle>{t('Flag Item')}</DialogTitle>
       <DialogContent>
-        <Typography variant='h6' className={classes.listTitle}>
+        <ListTitle variant='h6'>
           {`${t('Select reason for flagging this item')}:`}
-        </Typography>
-        <List component='nav' className={classes.list}>
+        </ListTitle>
+        <StyledList component='nav'>
           {flags?.map((flag: Flag) => (
             <ListItemButton
               key={flag.id}
@@ -70,20 +66,19 @@ export const ItemFlagDialog: FC<ItemFlagDialogProps> = ({
               <ListItemText primary={flag.name} />
             </ListItemButton>
           ))}
-        </List>
+        </StyledList>
       </DialogContent>
       <DialogActions>
         <Button onClick={onClose} variant='text'>
           {t('Cancel')}
         </Button>
-        <Button
+        <FlagItemButton
           onClick={onFlag}
-          className={classes.flagItemButton}
           id='flagItemButton'
           disabled={!selectedFlag}
         >
           {t('Flag')}
-        </Button>
+        </FlagItemButton>
       </DialogActions>
     </Dialog>
   );

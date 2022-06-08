@@ -2,13 +2,13 @@ import React, { FC, useState, useRef, Fragment } from 'react';
 import { Record } from 'immutable';
 import Alert from '@mui/material/Alert';
 import { redirect } from '@graasp/utils';
-import { makeStyles } from '@mui/styles';
 import { getEmbeddedLinkExtra } from '../utils/itemExtra';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import Button from '../Button';
 import withCaption from './withCaption';
 import { ITEM_MAX_HEIGHT } from '../constants';
 import type { EmbeddedLinkItemExtra, Item } from '../types';
+import { styled } from '@mui/material';
 
 interface LinkItemProps {
   item: Record<Item<EmbeddedLinkItemExtra>>;
@@ -22,22 +22,22 @@ interface LinkItemProps {
   errorMessage?: string;
 }
 
-const useStyles = makeStyles((theme) => ({
-  iframe: {
-    width: '100%',
-    border: 'none',
-    maxHeight: ITEM_MAX_HEIGHT,
-  },
-  linkButton: {
-    marginLeft: 'auto',
-    marginRight: 'auto',
-    marginTop: theme.spacing(1),
-  },
-  iframeContainer: {
-    position: 'relative',
-    maxHeight: ITEM_MAX_HEIGHT,
-    overflow: 'auto',
-  },
+const StyledIFrame = styled('iframe')({
+  width: '100%',
+  border: 'none',
+  maxHeight: ITEM_MAX_HEIGHT,
+});
+
+const IFrameContainer = styled('div')({
+  position: 'relative',
+  maxHeight: ITEM_MAX_HEIGHT,
+  overflow: 'auto',
+});
+
+const StyledLinkButton = styled(Button)(({ theme }) => ({
+  marginLeft: 'auto',
+  marginRight: 'auto',
+  marginTop: theme.spacing(1),
 }));
 
 const LinkItem: FC<LinkItemProps> = ({
@@ -51,7 +51,6 @@ const LinkItem: FC<LinkItemProps> = ({
   height: defaultHeight,
   errorMessage = 'The link is malformed.',
 }) => {
-  const classes = useStyles();
   const [isLoading, setIsLoading] = useState(true);
   const [height] = useState<string | number>(defaultHeight ?? '100%');
   const iframeRef = useRef<HTMLIFrameElement>(null);
@@ -69,7 +68,6 @@ const LinkItem: FC<LinkItemProps> = ({
   // if available, display specific player
   const html = extra?.html;
   if (html) {
-    // eslint-disable-next-line react/no-danger
     const component = (
       <div id={id} dangerouslySetInnerHTML={{ __html: html }} />
     );
@@ -101,36 +99,23 @@ const LinkItem: FC<LinkItemProps> = ({
 
   const component = (
     <Fragment>
-      <div
-        hidden={!isLoading}
-        className={classes.iframeContainer}
-        style={{ height }}
-      >
+      <IFrameContainer hidden={!isLoading} style={{ height }}>
         {loadingMessage}
-      </div>
-      <div
-        hidden={isLoading}
-        className={classes.iframeContainer}
-        style={{ height }}
-      >
-        <iframe
+      </IFrameContainer>
+      <IFrameContainer hidden={isLoading} style={{ height }}>
+        <StyledIFrame
           id={id}
-          className={classes.iframe}
           title={name}
           src={url}
           onLoad={handleLoad}
           height='100%'
           ref={iframeRef}
         />
-      </div>
+      </IFrameContainer>
       {isLoading && (
-        <Button
-          onClick={onClick}
-          className={classes.linkButton}
-          startIcon={<OpenInNewIcon />}
-        >
+        <StyledLinkButton onClick={onClick} startIcon={<OpenInNewIcon />}>
           {openLinkMessage}
-        </Button>
+        </StyledLinkButton>
       )}
     </Fragment>
   );
