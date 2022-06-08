@@ -124,4 +124,6 @@ export type ColorVariant =
   | 'info'
   | 'warning';
 
+export type IconSizeVariant = 'small' | 'medium' | 'large' | 'inherit';
+
 export type HostMap = { [name in Context]: string };

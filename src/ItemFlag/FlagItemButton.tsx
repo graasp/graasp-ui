@@ -2,11 +2,12 @@ import React, { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { IconButton, Tooltip } from '@mui/material';
 import ReportIcon from '@mui/icons-material/Report';
+import { ColorVariant, IconSizeVariant } from '../types';
 
 export interface FlagItemButtonProps {
   setOpen: (arg: boolean) => void;
-  buttonColor: 'primary' | 'secondary' | 'default' | undefined;
-  iconSize: 'small' | 'large' | 'inherit' | 'medium' | undefined;
+  buttonColor?: ColorVariant;
+  iconSize?: IconSizeVariant;
 }
 
 export const FlagItemButton: FC<FlagItemButtonProps> = ({

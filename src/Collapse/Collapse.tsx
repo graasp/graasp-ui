@@ -25,13 +25,13 @@ const useStyles = makeStyles((theme) =>
     root: {
       border: '1px solid rgba(0, 0, 0, .125)',
       boxShadow: 'none',
-      '&:not(:last-child)': {
+      ':not(:last-child)': {
         borderBottom: 0,
       },
-      '&:before': {
+      ':before': {
         display: 'none',
       },
-      '&$expanded': {
+      $expanded: {
         margin: 'auto',
       },
     },

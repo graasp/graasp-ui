@@ -1,6 +1,6 @@
 import React, { FC, useState, useRef, Fragment } from 'react';
 import { Record } from 'immutable';
-import Alert from '@mui/lab/Alert';
+import Alert from '@mui/material/Alert';
 import { redirect } from '@graasp/utils';
 import { makeStyles } from '@mui/styles';
 import { getEmbeddedLinkExtra } from '../utils/itemExtra';
@@ -104,14 +104,14 @@ const LinkItem: FC<LinkItemProps> = ({
       <div
         hidden={!isLoading}
         className={classes.iframeContainer}
-        style={{ height: height }}
+        style={{ height }}
       >
         {loadingMessage}
       </div>
       <div
         hidden={isLoading}
         className={classes.iframeContainer}
-        style={{ height: height }}
+        style={{ height }}
       >
         <iframe
           id={id}

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import clsx from 'clsx';
-import { withStyles, createStyles, WithStyles } from '@mui/styles';
+import { withStyles, createStyles } from '@mui/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import Header from '../Header';
 import Sidebar from '../Sidebar';
@@ -44,7 +44,8 @@ const styles = (theme: Theme) =>
     },
   });
 
-export interface MainProps extends WithStyles<typeof styles> {
+export interface MainProps {
+  classes: { [key: string]: string };
   fullScreen?: boolean;
   children?: React.ReactElement;
   sidebar?: React.ReactElement;

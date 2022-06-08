@@ -2,7 +2,7 @@ import React, { Component, ReactNode } from 'react';
 import { v4 } from 'uuid';
 import { Map } from 'immutable';
 import { shallow, ShallowWrapper } from 'enzyme';
-import Alert from '@mui/lab/Alert';
+import Alert from '@mui/material/Alert';
 import Loader from '../Loader';
 import ItemLoginAuthorization, {
   ItemLoginAuthorizationProps,
@@ -13,10 +13,10 @@ import ItemLoginScreen from './ItemLoginScreen';
 import ForbiddenContent from './ForbiddenContent';
 
 const defaultData: {
-  data?: any;
+  data?: unknown;
   isLoading?: boolean;
   isError?: boolean;
-  error?: { message: any };
+  error?: { message: unknown };
 } = {
   data: null,
   isLoading: false,
