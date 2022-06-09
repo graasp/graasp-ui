@@ -60,11 +60,11 @@
     "uuid": "8.3.2"
   },
   "peerDependencies": {
+    "@emotion/react": "~11.9.0",
+    "@emotion/styled": "~11.8.1",
     "@mui/icons-material": "~5.8.3",
     "@mui/lab": "~5.0.0-alpha.85",
     "@mui/material": "~5.8.3",
-    "@emotion/styled": "~11.8.1",
-    "@emotion/react": "~11.9.0",
     "ag-grid-community": "~27.3.0",
     "ag-grid-react": "~27.3.0",
     "i18next": "~21.8.9",
