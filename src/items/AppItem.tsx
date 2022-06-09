@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Record } from 'immutable';
-import { withStyles } from '@mui/styles';
 import { getAppExtra } from '../utils/itemExtra';
 import qs from 'qs';
 import Loader from '../Loader';
@@ -13,6 +12,7 @@ import {
 import withCaption from './withCaption';
 import type { AppItemExtra, Item, Member, UUID } from '../types';
 import { UseMutateAsyncFunction } from 'react-query';
+import { styled } from '@mui/material';
 
 const buildPostMessageKeys = (
   itemId: UUID,
@@ -28,6 +28,11 @@ const buildPostMessageKeys = (
 });
 
 type Token = string;
+
+const StyledIFrame = styled('iframe')({
+  height: ITEM_MAX_HEIGHT,
+  maxHeight: ITEM_MAX_HEIGHT,
+});
 
 interface AppItemProps {
   item: Record<Item<AppItemExtra>>;
@@ -49,9 +54,6 @@ interface AppItemProps {
   // todo: one of enum
   mode?: string;
   saveButtonId?: string;
-  classes: {
-    iframe: string;
-  };
   height?: number | string;
   requestApiAccessToken: Function;
 }
@@ -62,13 +64,6 @@ interface AppItemState {
   url?: string;
   height: number | string;
 }
-
-const styles = {
-  iframe: {
-    height: ITEM_MAX_HEIGHT,
-    maxHeight: ITEM_MAX_HEIGHT,
-  },
-};
 
 class AppItem extends Component<AppItemProps> {
   static defaultProps = {
@@ -99,7 +94,6 @@ class AppItem extends Component<AppItemProps> {
     const { item } = this.props;
     const { item: nextItem } = prevProps;
     if (item !== nextItem) {
-      // eslint-disable-next-line react/no-did-update-set-state
       this.setState({ url: getAppExtra(item?.get('extra'))?.url });
     }
   }
@@ -219,7 +213,6 @@ class AppItem extends Component<AppItemProps> {
       onSaveCaption,
       saveButtonId,
       editCaption,
-      classes,
     } = this.props;
     const { iframeIsLoading, url, height } = this.state;
 
@@ -246,7 +239,7 @@ class AppItem extends Component<AppItemProps> {
     const component = (
       <React.Fragment>
         {iframeIsLoading && <Loader />}
-        <iframe
+        <StyledIFrame
           id={id}
           title={item?.get('name')}
           onLoad={onLoad}
@@ -255,7 +248,6 @@ class AppItem extends Component<AppItemProps> {
           height={height}
           src={appUrl}
           frameBorder={APP_ITEM_FRAME_BORDER}
-          className={classes.iframe}
         />
       </React.Fragment>
     );
@@ -273,4 +265,4 @@ class AppItem extends Component<AppItemProps> {
   }
 }
 
-export default withStyles(styles)(React.memo(AppItem));
+export default React.memo(AppItem);

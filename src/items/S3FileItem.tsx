@@ -12,6 +12,7 @@ import DownloadButtonFileItem from './DownloadButtonFileItem';
 import withCaption from './withCaption';
 import type { Item, S3FileItemExtra } from '../types';
 import { ERRORS } from '../enums';
+import { SxProps } from '@mui/material';
 
 interface S3FileItemProps {
   id?: string;
@@ -25,7 +26,7 @@ interface S3FileItemProps {
   showCaption?: boolean;
   errorMessage?: string;
   saveButtonId?: string;
-  className?: string;
+  sx?: SxProps;
 }
 
 // DEPRECATED
@@ -41,7 +42,7 @@ const S3FileItem = ({
   showCaption = true,
   saveButtonId,
   errorMessage = UNEXPECTED_ERROR_MESSAGE,
-  className,
+  sx,
 }: S3FileItemProps): JSX.Element => {
   const [url, setUrl] = useState<string>();
   const { mimetype, name: originalFileName } =
@@ -81,23 +82,23 @@ const S3FileItem = ({
   if (mimetype) {
     if (MIME_TYPES.IMAGE.includes(mimetype)) {
       component = (
-        <FileImage id={id} url={url} alt={name} className={className} />
+        <FileImage id={id} url={url} alt={name} sx={sx} />
       );
     }
 
     if (MIME_TYPES.AUDIO.includes(mimetype)) {
       component = (
-        <FileAudio id={id} url={url} type={mimetype} className={className} />
+        <FileAudio id={id} url={url} type={mimetype} sx={sx} />
       );
     }
 
     if (MIME_TYPES.VIDEO.includes(mimetype)) {
-      component = <FileVideo id={id} url={url} className={className} />;
+      component = <FileVideo id={id} url={url} sx={sx} />;
     }
 
     if (MIME_TYPES.PDF.includes(mimetype)) {
       component = (
-        <FilePdf id={id} url={url} height={maxHeight} className={className} />
+        <FilePdf id={id} url={url} height={maxHeight} sx={sx} />
       );
     }
   }

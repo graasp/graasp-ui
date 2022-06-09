@@ -7,8 +7,8 @@ import ForbiddenContent from './ForbiddenContent';
 import { UUID } from '../types';
 
 export type ItemLoginAuthorizationProps = {
-  signOut: Function;
-  signIn: Function;
+  signOut: () => void;
+  signIn: () => void;
   itemId: UUID;
   useCurrentMember: Function;
   useItem: Function;
@@ -74,7 +74,7 @@ const ItemLoginAuthorization =
         ].includes(itemError.message)
       ) {
         return (
-          ErrorComponent ?? <Alert severity='error'>An error occured.</Alert>
+          ErrorComponent ?? <Alert severity='error'>An error occurred.</Alert>
         );
       }
 
@@ -82,7 +82,6 @@ const ItemLoginAuthorization =
       // because the user is signed in and has access
       // or because the item is public
       if (item && !item.isEmpty()) {
-        // eslint-disable-next-line react/jsx-props-no-spreading
         return <ChildComponent />;
       }
 

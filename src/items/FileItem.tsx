@@ -12,6 +12,7 @@ import DownloadButtonFileItem from './DownloadButtonFileItem';
 import withCaption from './withCaption';
 import { FileItemExtra, Item, S3FileItemExtra, UnknownExtra } from '../types';
 import { ERRORS } from '../enums';
+import { SxProps } from '@mui/material';
 
 interface FileItemProps {
   item: Record<Item<UnknownExtra>>;
@@ -25,7 +26,7 @@ interface FileItemProps {
   showCaption?: boolean;
   errorMessage?: string;
   saveButtonId?: string;
-  className?: string;
+  sx?: SxProps;
 }
 
 const FileItem: FC<FileItemProps> = ({
@@ -40,7 +41,7 @@ const FileItem: FC<FileItemProps> = ({
   showCaption = true,
   saveButtonId,
   errorMessage = UNEXPECTED_ERROR_MESSAGE,
-  className,
+  sx,
 }) => {
   const [url, setUrl] = useState<string>();
   const extra =
@@ -82,18 +83,18 @@ const FileItem: FC<FileItemProps> = ({
   if (mimetype) {
     if (MIME_TYPES.IMAGE.includes(mimetype)) {
       component = (
-        <FileImage id={id} url={url} alt={name} className={className} />
+        <FileImage id={id} url={url} alt={name} sx={sx} />
       );
     } else if (MIME_TYPES.AUDIO.includes(mimetype)) {
       component = (
-        <FileAudio id={id} url={url} type={mimetype} className={className} />
+        <FileAudio id={id} url={url} type={mimetype} sx={sx} />
       );
     } else if (MIME_TYPES.VIDEO.includes(mimetype)) {
       // does not specify mimetype in video source, this way, it works with more container formats in more browsers (especially Chrome with video/quicktime)
-      component = <FileVideo id={id} url={url} className={className} />;
+      component = <FileVideo id={id} url={url} sx={sx} />;
     } else if (MIME_TYPES.PDF.includes(mimetype)) {
       component = (
-        <FilePdf id={id} url={url} height={maxHeight} className={className} />
+        <FilePdf id={id} url={url} height={maxHeight} sx={sx} />
       );
     }
   }

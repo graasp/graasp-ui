@@ -1,48 +1,22 @@
 import React, { Component } from 'react';
-import clsx from 'clsx';
-import { withStyles, createStyles } from '@mui/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import Header from '../Header';
 import Sidebar from '../Sidebar';
 import { DRAWER_WIDTH } from '../constants';
-import { Theme } from '@mui/material/styles';
+import { styled } from '@mui/material';
 
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-const styles = (theme: Theme) =>
-  createStyles({
-    root: {
-      display: 'flex',
-      height: '100%',
-    },
-    fullScreen: {
-      width: '100%',
-      height: '100%',
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-    },
-    content: {
-      flexGrow: 1,
-      transition: theme.transitions.create('margin', {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.leavingScreen,
-      }),
-    },
-    contentShift: {
-      transition: theme.transitions.create('margin', {
-        easing: theme.transitions.easing.easeOut,
-        duration: theme.transitions.duration.enteringScreen,
-      }),
-      marginLeft: DRAWER_WIDTH,
-    },
-    drawerHeader: {
-      display: 'flex',
-      alignItems: 'center',
-      padding: '0 8px',
-      ...theme.mixins.toolbar,
-      justifyContent: 'flex-end',
-    },
-  });
+const StyledRoot = styled('div')({
+  display: 'flex',
+  height: '100%',
+});
+
+const DrawerHeaderContainer = styled('div')(({ theme }) => ({
+  display: 'flex',
+  alignItems: 'center',
+  padding: '0 8px',
+  ...theme.mixins.toolbar,
+  justifyContent: 'flex-end',
+}));
 
 export interface MainProps {
   classes: { [key: string]: string };
@@ -77,7 +51,6 @@ export class Main extends Component<MainProps, MainState> {
 
   render(): JSX.Element {
     const {
-      classes,
       children,
       fullScreen,
       sidebar,
@@ -87,8 +60,30 @@ export class Main extends Component<MainProps, MainState> {
     const { open } = this.state;
     const hasSidebar = Boolean(sidebar);
 
+    const StyledMain = styled('main')(({ theme }) => ({
+      flexGrow: 1,
+      transition: theme.transitions.create('margin', {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.leavingScreen,
+      }),
+      ...(open && {
+        transition: theme.transitions.create('margin', {
+          easing: theme.transitions.easing.easeOut,
+          duration: theme.transitions.duration.enteringScreen,
+        }),
+        marginLeft: DRAWER_WIDTH,
+      }),
+      ...(fullScreen && {
+        width: '100%',
+        height: '100%',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }),
+    }));
+
     return (
-      <div className={classes.root}>
+      <StyledRoot>
         <CssBaseline />
         <Header
           hasSidebar={hasSidebar}
@@ -107,18 +102,13 @@ export class Main extends Component<MainProps, MainState> {
           </Sidebar>
         )}
 
-        <main
-          className={clsx(classes.content, {
-            [classes.contentShift]: open,
-            [classes.fullScreen]: fullScreen,
-          })}
-        >
-          <div className={classes.drawerHeader} />
+        <StyledMain>
+          <DrawerHeaderContainer />
           {children}
-        </main>
-      </div>
+        </StyledMain>
+      </StyledRoot>
     );
   }
 }
 
-export default withStyles(styles, { withTheme: true })(Main);
+export default Main;
