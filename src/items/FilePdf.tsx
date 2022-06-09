@@ -1,4 +1,4 @@
-import React, { FC, useRef, useState, ReactEventHandler } from 'react';
+import React, { FC, useRef } from 'react';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import { ITEM_MAX_HEIGHT } from '../constants';
@@ -24,16 +24,6 @@ const FilePdf: FC<FilePdfProps> = ({
 }) => {
   const embedRef = useRef<HTMLEmbedElement>(null);
   const classes = useStyles();
-  const [height, setHeight] = useState<number | string>(
-    defaultHeight ?? '100%',
-  );
-
-  const onLoad: ReactEventHandler<HTMLEmbedElement> = (e) => {
-    // set pdf height -> probably very high
-    const newHeight = (e.target as HTMLEmbedElement)?.offsetParent
-      ?.scrollHeight;
-    newHeight && setHeight(newHeight);
-  };
 
   return (
     <embed
@@ -41,8 +31,7 @@ const FilePdf: FC<FilePdfProps> = ({
       id={id}
       src={url}
       width='100%'
-      height={height || '100%'}
-      onLoad={onLoad}
+      height={defaultHeight || ITEM_MAX_HEIGHT}
       className={clsx(classes.embed, className)}
     />
   );
