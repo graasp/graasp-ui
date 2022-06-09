@@ -1,12 +1,11 @@
 import React, { FC } from 'react';
-import { makeStyles } from '@mui/styles';
-import clsx from 'clsx';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import { DRAWER_WIDTH } from '../constants';
 import { OPEN_DRAWER_LABEL } from '../texts';
+import { styled } from '@mui/material';
 
 export type HeaderProps = {
   id?: string;
@@ -18,32 +17,38 @@ export type HeaderProps = {
   rightContent?: React.ReactElement;
 };
 
-const useStyles = makeStyles((theme) => ({
-  appBar: {
-    transition: theme.transitions.create(['margin', 'width'], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-  },
-  appBarShift: {
-    width: `calc(100% - ${DRAWER_WIDTH}px)`,
-    marginLeft: DRAWER_WIDTH,
-    transition: theme.transitions.create(['margin', 'width'], {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  },
-  menuButton: {
-    marginLeft: theme.spacing(2),
-    marginRight: theme.spacing(3),
-  },
-  hide: {
-    display: 'none',
-  },
-  toolbar: {
-    justifyContent: 'space-between',
-  },
+const StyledAppBar = styled(AppBar, {
+  // tells the component to not forward the isSidebarOpen prop
+  shouldForwardProp: (propName: string) => propName !== 'isSidebarOpen',
+})(({ theme, isSidebarOpen }) => ({
+  transition: theme.transitions.create(['margin', 'width'], {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.leavingScreen,
+  }),
+  ...(isSidebarOpen
+    ? {
+        width: `calc(100% - ${DRAWER_WIDTH}px)`,
+        marginLeft: DRAWER_WIDTH,
+        transition: theme.transitions.create(['margin', 'width'], {
+          easing: theme.transitions.easing.easeOut,
+          duration: theme.transitions.duration.enteringScreen,
+        }),
+      }
+    : {}),
 }));
+
+const StyledIconButton = styled(IconButton, {
+  // tells the component to not forward the isSidebarOpen prop
+  shouldForwardProp: (propName: string) => propName !== 'isSidebarOpen',
+})(({ theme, isSidebarOpen }) => ({
+  marginLeft: theme.spacing(2),
+  marginRight: theme.spacing(3),
+  ...(isSidebarOpen ? { display: 'none' } : {}),
+}));
+
+const StyledToolbar = styled(Toolbar)({
+  justifyContent: 'space-between',
+});
 
 export const Header: FC<HeaderProps> = ({
   id,
@@ -54,32 +59,23 @@ export const Header: FC<HeaderProps> = ({
   leftContent,
   rightContent,
 }) => {
-  const classes = useStyles();
   return (
-    <AppBar
-      position='fixed'
-      className={clsx(classes.appBar, {
-        [classes.appBarShift]: isSidebarOpen,
-      })}
-    >
-      <Toolbar disableGutters={!isSidebarOpen} className={classes.toolbar}>
+    <StyledAppBar isSidebarOpen position='fixed'>
+      <StyledToolbar disableGutters={!isSidebarOpen}>
         {hasSidebar && (
-          <IconButton
+          <StyledIconButton
             id={id}
             color='inherit'
             aria-label={openDrawerAriaLabel}
             onClick={handleDrawerOpen}
-            className={clsx(classes.menuButton, {
-              [classes.hide]: isSidebarOpen,
-            })}
           >
             <MenuIcon />
-          </IconButton>
+          </StyledIconButton>
         )}
         {leftContent}
         {rightContent}
-      </Toolbar>
-    </AppBar>
+      </StyledToolbar>
+    </StyledAppBar>
   );
 };
 

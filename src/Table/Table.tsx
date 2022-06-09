@@ -1,5 +1,4 @@
 import React, { ReactElement, useState } from 'react';
-import { makeStyles } from '@mui/styles';
 import clsx from 'clsx';
 import { GridApi, RowNode, ColDef, IRowDragItem } from 'ag-grid-community';
 import { AgGridReact } from 'ag-grid-react';
@@ -10,6 +9,7 @@ import TableToolbar from './TableToolbar';
 import DragCellRenderer from './DragCellRenderer';
 import TableNoRowsContent from './TableNoRowsContent';
 import { DRAG_ICON_SIZE } from '../constants';
+import { styled, SxProps } from '@mui/material';
 
 interface Props {
   id: string;
@@ -17,7 +17,7 @@ interface Props {
   rowData: unknown[];
   NoRowsComponent?: ReactElement;
   onDragEnd: (nodes: RowNode[]) => void;
-  className?: string;
+  sx?: SxProps;
   onSelectionChanged: () => void;
   columnDefs: ColDef[];
   isClickable: boolean;
@@ -39,38 +39,16 @@ interface Props {
   enableBrowserTooltips?: boolean;
 }
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    width: '100%',
-    '& .ag-checked::after': {
-      color: `${theme.palette.primary.main}!important`,
-    },
+const StyledDiv = styled('div')({
+  width: '100%',
+  '& .ag-checked::after': {
+    color: 'primary.main !important',
   },
-  table: {
-    fontSize: theme.typography.fontSize,
-    width: '100%',
-    height: (props: { tableHeight: number | string }) => props.tableHeight,
-  },
-  row: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  rowClickable: {
-    cursor: 'pointer',
-  },
-  dragCell: {
-    paddingLeft: '0!important',
-    paddingRight: '0!important',
-    display: 'flex',
-    alignItems: 'center',
-  },
-  actionCell: {
-    paddingLeft: '0!important',
-    paddingRight: '0!important',
-    textAlign: 'right',
-  },
-}));
+});
+
+const ROW_CLASS_NAME = 'row-class-name';
+const ROW_CLICKABLE_CLASS_NAME = 'row-clickable-class-name';
+const DRAG_CELL_CLASS_NAME = 'drag-cell-class-name';
 
 const defaultColDef = {
   resizable: true,
@@ -96,7 +74,7 @@ const GraaspTable: React.FC<Props> = ({
   dragClassName,
   enableBrowserTooltips = true,
   tableHeight = 'auto',
-  className = '',
+  sx,
   isClickable = true,
   rowSelection = 'multiple',
   suppressCellFocus = true,
@@ -106,7 +84,26 @@ const GraaspTable: React.FC<Props> = ({
 }) => {
   const [gridApi, setGridApi] = useState<GridApi>();
   const [selected, setSelected] = useState<string[]>([]);
-  const classes = useStyles({ tableHeight });
+  const StyledTableContainer = styled('div', {
+  })(({ theme }) => ({
+    fontSize: theme.typography.fontSize,
+    width: '100%',
+    height: tableHeight,
+    [ROW_CLASS_NAME]: {
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    [ROW_CLICKABLE_CLASS_NAME]: {
+      cursor: 'pointer',
+    },
+    [DRAG_CELL_CLASS_NAME]: {
+      paddingLeft: '0!important',
+      paddingRight: '0!important',
+      display: 'flex',
+      alignItems: 'center',
+    },
+  }));
 
   const onGridReady = (params: { api: GridApi }): void => {
     setGridApi(params.api);
@@ -143,7 +140,7 @@ const GraaspTable: React.FC<Props> = ({
     }
 
     // adds the column drag on the left of the table
-    const dragCellClasses = [classes.dragCell];
+    const dragCellClasses = [DRAG_CELL_CLASS_NAME];
     if (dragClassName) {
       dragCellClasses.push(dragClassName);
     }
@@ -151,7 +148,7 @@ const GraaspTable: React.FC<Props> = ({
       cellRenderer: DragCellRenderer,
       rowDragText,
       cellClass: dragCellClasses,
-      headerClass: classes.dragCell,
+      headerClass: DRAG_CELL_CLASS_NAME,
       maxWidth: DRAG_ICON_SIZE,
       sortable: false,
     };
@@ -165,17 +162,14 @@ const GraaspTable: React.FC<Props> = ({
   );
 
   return (
-    <div className={classes.root}>
+    <StyledDiv>
       <TableToolbar
         selected={selected}
         Actions={ToolbarActions}
         NoSelectionToolbar={NoSelectionToolbar}
         countText={countTextFunction?.(selected)}
       />
-      <div
-        className={clsx('ag-theme-material', classes.table, className)}
-        id={id}
-      >
+      <StyledTableContainer className={'ag-theme-material'} id={id} sx={sx}>
         <AgGridReact
           columnDefs={buildColumnDefs()}
           rowData={rowData}
@@ -190,8 +184,8 @@ const GraaspTable: React.FC<Props> = ({
           onSelectionChanged={handleSelectionChanged}
           onCellClicked={isClickable ? onCellClicked : undefined}
           rowClass={clsx({
-            [classes.row]: !isClickable,
-            [classes.rowClickable]: isClickable,
+            [ROW_CLASS_NAME]: !isClickable,
+            [ROW_CLICKABLE_CLASS_NAME]: isClickable,
           })}
           getRowHeight={() => rowHeight}
           getRowId={getRowId}
@@ -201,8 +195,8 @@ const GraaspTable: React.FC<Props> = ({
           enableCellTextSelection
           ensureDomOrder
         />
-      </div>
-    </div>
+      </StyledTableContainer>
+    </StyledDiv>
   );
 };
 

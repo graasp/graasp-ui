@@ -27,9 +27,9 @@ export interface ItemFlagDialogProps {
   flags: Flag[];
   onFlag: MouseEventHandler;
   open: boolean;
-  setOpen: Function;
+  setOpen: (open: boolean) => void;
   selectedFlag: Flag;
-  setSelectedFlag: Function;
+  setSelectedFlag: (flag: Flag) => void;
 }
 
 export const ItemFlagDialog: FC<ItemFlagDialogProps> = ({

@@ -1,6 +1,5 @@
 import React, { MouseEventHandler } from 'react';
-import { Menu, MenuItem, Typography, Button } from '@mui/material';
-import { makeStyles } from '@mui/styles';
+import { Menu, MenuItem, Typography, Button, styled } from '@mui/material';
 import { redirect, Context } from '@graasp/utils';
 import ExploreIcon from '../icons/ExploreIcon';
 import BuildIcon from '../icons/BuildIcon';
@@ -8,28 +7,20 @@ import AnalyzeIcon from '../icons/AnalyzeIcon';
 import PlayIcon from '../icons/PlayIcon';
 import { HostMap } from '../types';
 
-const useStyles = makeStyles((theme) => ({
-  icon: {
-    marginRight: theme.spacing(1),
-  },
-  // todo: remove once analyze is not a material icon anymore
-  analyzeIcon: {
-    margin: theme.spacing(0, 1, 0, 0.5),
-  },
-  button: {
-    textTransform: 'capitalize',
-    fontSize: theme.typography.fontSize,
-    color: 'white',
-  },
-  triangle: {
-    width: 0,
-    height: 0,
-    borderLeft: '5px solid transparent',
-    borderRight: '5px solid transparent',
-    borderTop: '5px solid #fff',
-    display: 'inline',
-    marginLeft: theme.spacing(1),
-  },
+const NavigationMenuButton = styled(Button)(({ theme }) => ({
+  textTransform: 'capitalize',
+  fontSize: theme.typography.fontSize,
+  color: 'white',
+}));
+
+const DropDownIcon = styled('div')(({ theme }) => ({
+  width: 0,
+  height: 0,
+  borderLeft: '5px solid transparent',
+  borderRight: '5px solid transparent',
+  borderTop: '5px solid #fff',
+  display: 'inline',
+  marginLeft: theme.spacing(1),
 }));
 
 interface ContextMenuItemProps {
@@ -41,33 +32,37 @@ const ContextMenuItem: React.FC<ContextMenuItemProps> = ({
   value,
   disabled,
 }) => {
-  const classes = useStyles();
+  const iconSX = { mr: 1 };
   switch (value) {
     case Context.BUILDER:
       return (
         <>
-          <BuildIcon className={classes.icon} disabled={disabled} />
+          <BuildIcon sx={iconSX} disabled={disabled} />
           {Context.BUILDER}
         </>
       );
     case Context.EXPLORER:
       return (
         <>
-          <ExploreIcon className={classes.icon} disabled={disabled} />
+          <ExploreIcon sx={iconSX} disabled={disabled} />
           {Context.EXPLORER}
         </>
       );
     case Context.PLAYER:
       return (
         <>
-          <PlayIcon className={classes.icon} disabled={disabled} />
+          <PlayIcon sx={iconSX} disabled={disabled} />
           {Context.PLAYER}
         </>
       );
     case Context.ANALYZER:
       return (
         <>
-          <AnalyzeIcon className={classes.analyzeIcon} disabled={disabled} />
+          {/* todo: remove the margin style once analyze is not a material icon anymore */}
+          <AnalyzeIcon
+            sx={{ margin: (theme) => theme.spacing(0, 1, 0, 0.5) }}
+            disabled={disabled}
+          />
           {Context.ANALYZER}
         </>
       );
@@ -87,8 +82,6 @@ const Navigation: React.FC<NavigationProps> = ({
   hostMap = {},
   id,
 }) => {
-  const classes = useStyles();
-
   const [anchorEl, setAnchorEl] = React.useState<Element | null>(null);
 
   const handleClick: MouseEventHandler = (event): void => {
@@ -109,20 +102,19 @@ const Navigation: React.FC<NavigationProps> = ({
 
   return (
     <>
-      <Button
+      <NavigationMenuButton
         id={id}
         aria-controls='navigation-menu'
         aria-haspopup='true'
         onClick={handleClick}
-        className={classes.button}
         variant='outlined'
         color='secondary'
       >
         <Typography variant='h6' color='inherit'>
           {currentValue}
         </Typography>
-        <div className={classes.triangle} />
-      </Button>
+        <DropDownIcon />
+      </NavigationMenuButton>
       <Menu
         id='navigation-menu'
         anchorEl={anchorEl}

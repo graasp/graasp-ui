@@ -46,6 +46,7 @@ export type ItemMembership = {
 export type ImmutableItem = Map<string, any>;
 export type ImmutableMember = Map<string, any>;
 export type ItemLogin = Map<string, any>;
+
 export class ImmutableItemClass extends Record({
   id: '',
   name: '',
@@ -62,13 +63,16 @@ export type EmbeddedLinkItemExtraProp = {
   url: string;
   icons: string[];
 };
+
 export interface EmbeddedLinkItemExtra extends UnknownExtra {
   embeddedLink: EmbeddedLinkItemExtraProp;
 }
+
 export type S3FileItemExtraProp = {
   mimetype: string;
   name: string;
 };
+
 export interface S3FileItemExtra extends UnknownExtra {
   s3File: S3FileItemExtraProp;
 }
@@ -81,16 +85,20 @@ export type FileItemProp = {
 export interface FileItemExtra extends UnknownExtra {
   file: FileItemProp;
 }
+
 export type DocumentItemExtraProp = {
   content: string;
 };
+
 export interface DocumentItemExtra extends UnknownExtra {
   document: DocumentItemExtraProp;
 }
+
 export type AppItemExtraProp = {
   url: string;
   settings: UnknownExtra;
 };
+
 export interface AppItemExtra extends UnknownExtra {
   app: AppItemExtraProp;
 }
@@ -125,5 +133,7 @@ export type ColorVariant =
   | 'warning';
 
 export type IconSizeVariant = 'small' | 'medium' | 'large' | 'inherit';
+
+export type ThumbnailSizeVariant = 'small' | 'medium' | 'large' | 'original';
 
 export type HostMap = { [name in Context]: string };

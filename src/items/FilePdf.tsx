@@ -1,30 +1,20 @@
 import React, { FC, useRef, useState, ReactEventHandler } from 'react';
-import clsx from 'clsx';
-import { makeStyles } from '@mui/styles';
 import { ITEM_MAX_HEIGHT } from '../constants';
+import { styled, SxProps } from '@mui/material';
 
 interface FilePdfProps {
   id?: string;
   url: string;
   height?: number | string;
-  className?: string;
+  sx?: SxProps;
 }
 
-// todo change to use `styled` utility
-const useStyles = makeStyles({
-  embed: {
-    maxHeight: ITEM_MAX_HEIGHT,
-  },
+const StyledEmbed = styled('embed')({
+  maxHeight: ITEM_MAX_HEIGHT,
 });
 
-const FilePdf: FC<FilePdfProps> = ({
-  url,
-  id,
-  height: defaultHeight,
-  className,
-}) => {
+const FilePdf: FC<FilePdfProps> = ({ url, id, height: defaultHeight, sx }) => {
   const embedRef = useRef<HTMLEmbedElement>(null);
-  const classes = useStyles();
   const [height, setHeight] = useState<number | string>(
     defaultHeight ?? '100%',
   );
@@ -37,14 +27,14 @@ const FilePdf: FC<FilePdfProps> = ({
   };
 
   return (
-    <embed
+    <StyledEmbed
       ref={embedRef}
       id={id}
       src={url}
       width='100%'
       height={height || '100%'}
       onLoad={onLoad}
-      className={clsx(classes.embed, className)}
+      sx={sx}
     />
   );
 };

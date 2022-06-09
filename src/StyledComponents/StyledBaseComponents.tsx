@@ -21,8 +21,8 @@ type DivProps = {
 >;
 
 const StyledDiv: FC<DivProps> = (props) => {
-  const StyledImage = styled('div')({});
-  return <StyledImage {...props} />;
+  const StyledDiv = styled('div')({});
+  return <StyledDiv {...props} />;
 };
 
 export { StyledImage, StyledDiv };

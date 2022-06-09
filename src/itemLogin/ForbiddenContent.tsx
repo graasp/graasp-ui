@@ -1,25 +1,21 @@
 import React, { FC, ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
-import { makeStyles } from '@mui/styles';
-import { Container, Typography } from '@mui/material';
+import { Container, styled, Typography } from '@mui/material';
 import Button from '../Button';
 import { ImmutableMember } from '../types';
 import ForbiddenText from './ForbiddenText';
 
-const useStyles = makeStyles(() => ({
-  container: {
+const StyledContainer = styled(Container)({
     textAlign: 'center',
-  },
-}));
+});
 
 interface Props {
-  signOut: Function;
+  signOut: () => void;
   user: ImmutableMember;
   id?: string;
 }
 
 const ForbiddenContent: FC<Props> = ({ signOut, user, id }) => {
-  const classes = useStyles();
 
   const { t } = useTranslation();
 
@@ -40,10 +36,10 @@ const ForbiddenContent: FC<Props> = ({ signOut, user, id }) => {
   );
 
   return (
-    <Container className={classes.container} id={id}>
+    <StyledContainer id={id}>
       <ForbiddenText />
       {user && !user.isEmpty() && renderAuthenticatedAlternative()}
-    </Container>
+    </StyledContainer>
   );
 };
 

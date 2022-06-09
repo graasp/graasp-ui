@@ -1,13 +1,11 @@
 import React, { FC } from 'react';
 import Checkbox from '@mui/material/Checkbox';
-import { makeStyles } from '@mui/styles';
+import { styled } from '@mui/material';
 
-const useStyles = makeStyles(() => ({
-  label: {
-    display: 'flex',
-    alignItems: 'center',
-  },
-}));
+const StyledDiv = styled('div')({
+  display: 'flex',
+  alignItems: 'center',
+});
 
 interface TreeItemLabelProps {
   name: string;
@@ -22,10 +20,9 @@ const TreeItemLabel: FC<TreeItemLabelProps> = ({
   className,
   name,
 }) => {
-  const classes = useStyles();
   if (showCheckbox) {
     return (
-      <div className={classes.label}>
+      <StyledDiv>
         <Checkbox
           checked={checked}
           color='primary'
@@ -33,7 +30,7 @@ const TreeItemLabel: FC<TreeItemLabelProps> = ({
           className={className}
         />
         {name}
-      </div>
+      </StyledDiv>
     );
   }
 

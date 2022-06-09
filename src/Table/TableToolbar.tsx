@@ -1,8 +1,7 @@
 import React, { FC } from 'react';
-import { makeStyles } from '@mui/styles';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import clsx from 'clsx';
+import { styled } from '@mui/material';
 
 interface Props {
   selected: string[];
@@ -11,21 +10,11 @@ interface Props {
   countText?: string;
 }
 
-const useToolbarStyles = makeStyles((theme) => ({
-  root: {
-    paddingLeft: theme.spacing(2),
-    paddingRight: theme.spacing(1),
-  },
-  title: {
-    flex: '1 1 100%',
-    display: 'flex',
-    alignItems: 'center',
-  },
-  highlight: {
-    background: theme.palette.primary.main,
-    color: 'white',
-  },
-}));
+const StyledTitle = styled(Typography)({
+  flex: '1 1 100%',
+  display: 'flex',
+  alignItems: 'center',
+});
 
 const TableToolbar: FC<Props> = ({
   selected,
@@ -33,26 +22,24 @@ const TableToolbar: FC<Props> = ({
   NoSelectionToolbar,
   countText,
 }) => {
-  const classes = useToolbarStyles();
   const numSelected = selected.length;
+  const StyledToolbar = styled(Toolbar)(({ theme }) => ({
+    paddingLeft: theme.spacing(2),
+    paddingRight: theme.spacing(1),
+    ...(numSelected > 0 && {
+      background: theme.palette.primary.main,
+      color: 'white',
+    }),
+  }));
 
   if (numSelected > 0) {
     return (
-      <Toolbar
-        className={clsx(classes.root, {
-          [classes.highlight]: numSelected > 0,
-        })}
-      >
-        <Typography
-          className={classes.title}
-          color='inherit'
-          variant='subtitle1'
-          component='div'
-        >
+      <StyledToolbar>
+        <StyledTitle color='inherit' variant='subtitle1' component='div'>
           {countText ?? `${numSelected} selected`}
-        </Typography>
+        </StyledTitle>
         {Actions?.({ selectedIds: selected })}
-      </Toolbar>
+      </StyledToolbar>
     );
   }
 

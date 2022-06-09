@@ -3,10 +3,10 @@ import {
   Container,
   InputBaseComponentProps,
   SelectChangeEvent,
+  styled,
   TextField,
   Tooltip,
 } from '@mui/material';
-import { makeStyles } from '@mui/styles';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
@@ -22,43 +22,50 @@ import { isMemberIdValid } from '../utils/utils';
 import MemberIdTextField from './MemberIdTextField';
 import { ItemLogin, UUID } from '../types';
 
-const useStyles = makeStyles((theme) => ({
-  wrapper: {
-    margin: 'auto',
-    display: 'flex',
-    flexDirection: 'column',
-    textAlign: 'center',
-    justifyContent: 'center',
-    height: '100vh',
-  },
-  input: {
-    margin: theme.spacing(1, 0),
-  },
-  usernameAndMemberId: {
-    display: 'flex',
-    alignItems: 'center',
-  },
-  usernameInfo: {
-    margin: theme.spacing(0, 1),
-  },
-  signInWithWrapper: {
-    justifyContent: 'flex-end',
-    marginLeft: theme.spacing(0),
-  },
-  signInWithWrapperLabel: {
+type SignInPropertiesType = {
+  memberId?: string;
+  username?: string;
+  password?: string;
+};
+
+const WrapperContainer = styled(Container)({
+  margin: 'auto',
+  display: 'flex',
+  flexDirection: 'column',
+  textAlign: 'center',
+  justifyContent: 'center',
+  height: '100vh',
+});
+const StyledTextField = styled(TextField)(({ theme }) => ({
+  margin: theme.spacing(1, 0),
+}));
+const StyledOutlinedInput = styled(OutlinedInput)(({ theme }) => ({
+  margin: theme.spacing(1, 0),
+}));
+const MemberIdFormControl = styled(FormControl)({
+  width: '100%',
+});
+const MemberIdInputLabel = styled(InputLabel)(({ theme }) => ({
+  marginLeft: theme.spacing(2),
+}));
+const UsernameAndMemberIdContainer = styled('div')({
+  display: 'flex',
+  alignItems: 'center',
+});
+const SignInWithWrapper = styled(FormControlLabel)(({ theme }) => ({
+  justifyContent: 'flex-end',
+  marginLeft: theme.spacing(0),
+  '.MuiFormControlLabel-label': {
     marginRight: theme.spacing(1),
   },
-  memberIdWrapper: {
-    width: '100%',
-  },
-  memberIdLabel: {
-    marginLeft: theme.spacing(2),
-  },
+}));
+const UsernameInfoIcon = styled(InfoIcon)(({ theme }) => ({
+  margin: theme.spacing(0, 1),
 }));
 
 interface ItemLoginScreenProps {
   itemId: UUID;
-  signIn: Function;
+  signIn: (input: SignInPropertiesType & { itemId: string }) => void;
   itemLogin: ItemLogin;
   // todo: use enum
   memberIdInputId?: string;
@@ -79,7 +86,6 @@ const ItemLoginScreen: FC<ItemLoginScreenProps> = ({
   modeSelectId,
 }) => {
   const { t } = useTranslation();
-  const classes = useStyles();
   const loginModeRef = useRef(null);
   const [password, setPassword] = useState<string | undefined>(undefined);
   const [username, setUsername] = useState<string | undefined>(undefined);
@@ -103,11 +109,7 @@ const ItemLoginScreen: FC<ItemLoginScreenProps> = ({
   ].includes(loginSchema);
 
   const onClickSignIn = (): void => {
-    const signInProperties: {
-      memberId?: string;
-      username?: string;
-      password?: string;
-    } = {};
+    const signInProperties: SignInPropertiesType = {};
     switch (signInMode) {
       case SETTINGS.ITEM_LOGIN.SIGN_IN_MODE.MEMBER_ID:
         signInProperties.memberId = memberId;
@@ -159,15 +161,11 @@ const ItemLoginScreen: FC<ItemLoginScreenProps> = ({
     const error = memberId?.length && !isMemberIdValid(memberId);
 
     return (
-      <FormControl className={classes.memberIdWrapper}>
-        <InputLabel
-          error={Boolean(error)}
-          className={classes.memberIdLabel}
-          shrink
-        >
+      <MemberIdFormControl>
+        <MemberIdInputLabel error={Boolean(error)} shrink>
           {t('Member Id')}
-        </InputLabel>
-        <OutlinedInput
+        </MemberIdInputLabel>
+        <StyledOutlinedInput
           autoFocus
           error={Boolean(error)}
           onChange={onMemberIdChange}
@@ -177,11 +175,10 @@ const ItemLoginScreen: FC<ItemLoginScreenProps> = ({
           }
           color='primary'
           fullWidth
-          className={classes.input}
           id={memberIdInputId}
           value={memberId}
         />
-      </FormControl>
+      </MemberIdFormControl>
     );
   };
 
@@ -195,7 +192,7 @@ const ItemLoginScreen: FC<ItemLoginScreenProps> = ({
       ? t('This is a member id. You should switch the sign in mode.')
       : null;
     return (
-      <TextField
+      <StyledTextField
         error={error}
         autoFocus
         onChange={onUsernameChange}
@@ -205,7 +202,6 @@ const ItemLoginScreen: FC<ItemLoginScreenProps> = ({
         fullWidth
         type='text'
         helperText={helperText}
-        className={classes.input}
         id={usernameInputId}
         value={username}
       />
@@ -221,7 +217,7 @@ const ItemLoginScreen: FC<ItemLoginScreenProps> = ({
             'You can create a new account with a pseudonyme or use your member id from a previous item to reuse your account.',
           )}
         >
-          <InfoIcon color='primary' className={classes.usernameInfo} />
+          <UsernameInfoIcon color='primary' />
         </Tooltip>
         <Select
           onChange={handleOnSignInModeChange}
@@ -240,39 +236,34 @@ const ItemLoginScreen: FC<ItemLoginScreenProps> = ({
 
     return (
       <>
-        <FormControlLabel
+        <SignInWithWrapper
           control={select}
-          classes={{
-            root: classes.signInWithWrapper,
-            label: classes.signInWithWrapperLabel,
-          }}
           label={t('Sign In with')}
           labelPlacement='start'
         />
-        <div className={classes.usernameAndMemberId}>
+        <UsernameAndMemberIdContainer>
           {/* we actually need to render two text fields to avoid data conflicts
            using a single function returning one or the other text fields sometimes
-           lead to the previous data being meld into the new textfield
+           lead to the previous data being melded into the new text-field
            */}
           {renderUsernameTextField()}
           {renderMemberIdTextField()}
-        </div>
+        </UsernameAndMemberIdContainer>
       </>
     );
   };
 
   return (
-    <Container maxWidth='xs' className={classes.wrapper}>
+    <WrapperContainer maxWidth='xs'>
       {renderUsernameOrMemberIdField()}
       {withPassword && (
-        <TextField
+        <StyledTextField
           onChange={onPasswordChange}
           label={t('Password')}
           value={password}
           type='password'
           color='primary'
           variant='outlined'
-          className={classes.input}
           id={passwordInputId}
         />
       )}
@@ -283,7 +274,7 @@ const ItemLoginScreen: FC<ItemLoginScreenProps> = ({
       >
         {t('Sign In')}
       </Button>
-    </Container>
+    </WrapperContainer>
   );
 };
 

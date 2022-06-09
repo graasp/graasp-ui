@@ -1,21 +1,11 @@
 import React, { FC } from 'react';
-import { makeStyles } from '@mui/styles';
 import Drawer from '@mui/material/Drawer';
 import DrawerHeader from '../DrawerHeader';
 import { DRAWER_WIDTH } from '../constants';
-
-const useStyles = makeStyles(() => ({
-  drawer: {
-    width: DRAWER_WIDTH,
-    flexShrink: 0,
-  },
-  drawerPaper: {
-    width: DRAWER_WIDTH,
-  },
-}));
+import { styled, SxProps } from '@mui/material';
 
 export interface SidebarProps {
-  className?: string;
+  sx?: SxProps;
   isSidebarOpen?: boolean;
   handleDrawerClose?: () => void;
   children?: React.ReactElement;
@@ -23,28 +13,26 @@ export interface SidebarProps {
 }
 
 export const Sidebar: FC<SidebarProps> = ({
-  className,
+  sx,
   isSidebarOpen = false,
   handleDrawerClose,
   children,
   drawerHeaderContent,
 }) => {
-  const classes = useStyles();
+  const SideBar = styled(Drawer)({
+    width: DRAWER_WIDTH,
+    flexShrink: 0,
+    '.MuiDrawer-paper': {
+      width: DRAWER_WIDTH,
+    },
+  });
   return (
-    <Drawer
-      className={className}
-      variant='persistent'
-      anchor='left'
-      open={isSidebarOpen}
-      classes={{
-        paper: classes.drawerPaper,
-      }}
-    >
+    <SideBar sx={sx} variant='persistent' anchor='left' open={isSidebarOpen}>
       <DrawerHeader handleDrawerClose={handleDrawerClose}>
         {drawerHeaderContent}
       </DrawerHeader>
       {children}
-    </Drawer>
+    </SideBar>
   );
 };
 

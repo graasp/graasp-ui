@@ -1,5 +1,5 @@
 import React, { useState, useEffect, FC } from 'react';
-import { makeStyles } from '@mui/styles';
+import { styled } from '@mui/material';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import SaveButton from '../SaveButton';
@@ -16,7 +16,7 @@ import 'katex/dist/katex.min.css';
 
 declare const window: Window &
   typeof globalThis & {
-    katex: any;
+    katex: katex;
   };
 
 window.katex = katex;
@@ -56,7 +56,7 @@ const TextEditor: FC<TextEditorProps> = ({
 }) => {
   // keep current content
   const [content, setContent] = useState(initialValue ?? '');
-  const useStyles = makeStyles(() => ({
+  const Div = styled('div')({
     wrapper: {
       '& .ql-editor': {
         // adapt height if read only
@@ -70,7 +70,7 @@ const TextEditor: FC<TextEditorProps> = ({
         border: !edit ? 'none' : undefined,
       },
     },
-  }));
+  });
 
   const onTextChange = (text: string): void => {
     // keep track of the current content
@@ -90,13 +90,11 @@ const TextEditor: FC<TextEditorProps> = ({
     setContent(initialValue);
   }, [initialValue]);
 
-  const classes = useStyles();
-
   const placeholder = edit ? placeholderText : '';
 
   return (
     <React.Fragment>
-      <div className={classes.wrapper}>
+      <Div>
         <ReactQuill
           id={id}
           placeholder={placeholder}
@@ -111,7 +109,7 @@ const TextEditor: FC<TextEditorProps> = ({
             },
           }}
         />
-      </div>
+      </Div>
       {showActions && edit && (
         <>
           <Button id={cancelButtonId} onClick={onCancelClick}>

@@ -1,7 +1,7 @@
 import React, { FC, useEffect, useRef } from 'react';
 import DragIndicatorIcon from '@mui/icons-material/DragIndicator';
-import { makeStyles } from '@mui/styles';
 import { DRAG_ICON_SIZE } from '../constants';
+import { styled } from '@mui/material';
 
 interface Props {
   data: {
@@ -11,24 +11,21 @@ interface Props {
   buildId?: (id: string) => string;
 }
 
-const useStyles = makeStyles(() => ({
-  dragIconContainer: {
-    display: 'flex',
-    '&:hover': {
-      cursor: 'move',
-    },
+const StyledDragIndicatorIcon = styled(DragIndicatorIcon)({
+  fontSize: DRAG_ICON_SIZE,
+});
+const StyledDragContainer = styled('div')({
+  display: 'flex',
+  '&:hover': {
+    cursor: 'move',
   },
-  dragIcon: {
-    fontSize: DRAG_ICON_SIZE,
-  },
-}));
+});
 
 const DragCellRenderer: FC<Props> = ({
   data: item,
   registerRowDragger,
   buildId,
 }) => {
-  const classes = useStyles();
   const dragRef = useRef<SVGSVGElement>(null);
 
   useEffect(() => {
@@ -38,13 +35,9 @@ const DragCellRenderer: FC<Props> = ({
   }, [dragRef]);
 
   return (
-    <div className={classes.dragIconContainer}>
-      <DragIndicatorIcon
-        id={buildId?.(item.id)}
-        ref={dragRef}
-        className={classes.dragIcon}
-      />
-    </div>
+    <StyledDragContainer>
+      <StyledDragIndicatorIcon id={buildId?.(item.id)} ref={dragRef} />
+    </StyledDragContainer>
   );
 };
 
