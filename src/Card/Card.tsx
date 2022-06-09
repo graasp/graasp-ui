@@ -4,9 +4,14 @@ import CardActions from '@mui/material/CardActions';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import CardHeader from './CardHeader';
-import { Item } from '../types';
 import { DEFAULT_CARD_HEIGHT } from '../constants';
 import { styled } from '@mui/material';
+
+const StyledImage = styled('img')({
+  width: '100%',
+  height: '100%',
+  objectFit: 'cover',
+});
 
 type CardProps = {
   description: string;
@@ -35,11 +40,7 @@ const Item: FC<CardProps> = ({
   NameWrapper,
   Thumbnail,
 }) => {
-  const StyledImage = styled('img')({
-    width: '100%',
-    height: '100%',
-    objectFit: 'cover',
-  });
+
 
   const renderImage = (): ReactElement => {
     if (!Thumbnail) {

@@ -1,11 +1,10 @@
 import React, { useState, useEffect, FC } from 'react';
-// eslint-disable-next-line import/no-named-default
 import { default as AvatarComponent } from '@mui/material/Avatar';
 import Skeleton from '@mui/material/Skeleton';
 import { getItemImage } from '../utils/image';
 import { EmbeddedLinkItemExtra, Variant } from '../types';
 import { DEFAULT_THUMBNAIL_SIZE } from '../constants';
-import { styled } from '@mui/material';
+import { styled, SxProps } from '@mui/material';
 
 type AvatarProps = {
   id: string;
@@ -16,7 +15,7 @@ type AvatarProps = {
   variant?: Variant;
   alt: string;
   component?: string;
-  className?: string;
+  sx?: SxProps;
   useAvatar: Function;
   // todo: enforce size strings
   size?: string;
@@ -25,7 +24,7 @@ type AvatarProps = {
 const Avatar: FC<AvatarProps> = ({
   id,
   extra,
-  className,
+  sx,
   alt,
   defaultImage,
   useAvatar,
@@ -70,7 +69,7 @@ const Avatar: FC<AvatarProps> = ({
         variant={variant}
         width={maxWidth}
         height={maxHeight}
-        className={className}
+        sx={sx}
       />
     );
   }
@@ -87,10 +86,10 @@ const Avatar: FC<AvatarProps> = ({
   }
 
   if (component === 'avatar') {
-    return <AvatarComponent alt={alt} src={thumbnail} className={className} />;
+    return <AvatarComponent alt={alt} src={thumbnail} sx={sx} />;
   }
 
-  return <ScaledImg src={thumbnail} alt={alt} className={className} />;
+  return <ScaledImg src={thumbnail} alt={alt} sx={sx} />;
 };
 
 export default Avatar;
