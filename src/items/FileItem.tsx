@@ -26,6 +26,7 @@ interface FileItemProps {
   errorMessage?: string;
   saveButtonId?: string;
   className?: string;
+  showCollapse?: boolean;
 }
 
 const FileItem: FC<FileItemProps> = ({
@@ -41,6 +42,7 @@ const FileItem: FC<FileItemProps> = ({
   saveButtonId,
   errorMessage = UNEXPECTED_ERROR_MESSAGE,
   className,
+  showCollapse,
 }) => {
   const [url, setUrl] = useState<string>();
   const extra =
@@ -93,7 +95,7 @@ const FileItem: FC<FileItemProps> = ({
       component = <FileVideo id={id} url={url} className={className} />;
     } else if (MIME_TYPES.PDF.includes(mimetype)) {
       component = (
-        <FilePdf id={id} url={url} height={maxHeight} className={className} />
+        <FilePdf id={id} url={url} height={maxHeight} className={className} showCollapse={showCollapse} />
       );
     }
   }
