@@ -56,6 +56,6 @@ export { default as Table } from './Table';
 
 export * from './Authorization';
 
-export { default as UserSwitch } from './UserSwitch';
+export { UserSwitch, UserSwitchWrapper } from './UserSwitch';
 
 export * from './icons';

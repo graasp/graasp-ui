@@ -28,9 +28,6 @@ const withAuthorization =
     // eslint-disable-next-line no-unused-expressions
     onRedirect?.();
 
-    // do not redirect in test environment to fully load a page
-    // eslint-disable-next-line no-unused-expressions
-    // NODE_ENV !== 'test' &&
     redirectToSignIn();
 
     // redirect page if redirection is not working

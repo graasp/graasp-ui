@@ -1,11 +1,15 @@
 import React, {
   FC,
-  MouseEvent,
   MouseEventHandler,
   ReactElement,
   useState,
+  useRef,
 } from 'react';
-import { isPseudonymizedMember } from '@graasp/utils';
+import {
+  isPseudonymizedMember,
+  isSessionExpired,
+  isError,
+} from '@graasp/utils';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Menu from '@material-ui/core/Menu';
@@ -60,51 +64,68 @@ interface Props {
   member?: ImmutableMember;
   members?: Member[];
   onSeeProfileClick?: MouseEventHandler;
-  onUserClick?: (_id: string) => MouseEventHandler;
+  onMemberClick?: (_id: string) => MouseEventHandler;
   seeProfileText?: string;
   signedOutTooltipText?: string;
-  Actions?: ReactElement;
-  ButtonContent?: ReactElement;
+  Actions?: JSX.Element | JSX.Element[];
+  ButtonContent?: JSX.Element;
   isMemberLoading?: boolean;
   buttonId?: string;
+  buildMemberMenuItemId?: (id: string) => string;
+  seeProfileButtonId?: string;
 }
 
 const UserSwitch: FC<Props> = ({
-  member = Map(),
-  members = [],
   useAvatar,
   onSeeProfileClick,
   ButtonContent,
-  isMemberLoading = false,
-  onUserClick = () => () => undefined,
-  seeProfileText = 'See Profile',
-  signedOutTooltipText = 'You are not signed in.',
   Actions,
   buttonId,
+  seeProfileButtonId,
+  buildMemberMenuItemId,
+  member = Map(),
+  members = [],
+  isMemberLoading = false,
+  onMemberClick = () => () => undefined,
+  seeProfileText = 'See Profile',
+  signedOutTooltipText = 'You are not signed in.',
 }) => {
   const classes = useStyles();
-  const [anchorEl, setAnchorEl] = useState<(EventTarget & Element) | null>(
-    null,
-  );
+  const menuRef = useRef<(EventTarget & Element) | null>(null);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
   const memberName = member.get('name');
 
-  const handleClick: MouseEventHandler = (event: MouseEvent) => {
-    setAnchorEl(event.currentTarget);
+  const handleClick: MouseEventHandler = () => {
+    setIsOpen(true);
   };
 
   const handleClose = (): void => {
-    setAnchorEl(null);
+    setIsOpen(false);
   };
 
   const renderStoredSessions = (): (ReactElement | null)[] => {
-    const menuItems = members.map(({ id, name, email, extra }) => {
+    const menuItems = members.map((m) => {
+      // an error happened and the member is null or is an error
+      if (!m || isError(m)) {
+        return null;
+      }
+
+      const { id, name, email, extra } = m;
+
       // do not show current member
       if (id === member.get('id')) {
         return null;
       }
 
+      const hasExpired = isSessionExpired(id);
+
       return (
-        <MenuItem key={id} onClick={onUserClick(id)}>
+        <MenuItem
+          id={buildMemberMenuItemId?.(id)}
+          key={id}
+          onClick={onMemberClick(id)}
+          disabled={hasExpired}
+        >
           <ListItemIcon>
             <Avatar
               id={id}
@@ -165,8 +186,9 @@ const UserSwitch: FC<Props> = ({
               <Button
                 size='small'
                 variant='outlined'
-                onClick={onSeeProfileClick}
                 className={classes.profileButton}
+                id={seeProfileButtonId}
+                onClick={onSeeProfileClick}
               >
                 {seeProfileText}
               </Button>
@@ -237,9 +259,9 @@ const UserSwitch: FC<Props> = ({
         {renderButtonContent()}
       </Box>
       <Menu
-        anchorEl={anchorEl}
+        anchorEl={menuRef?.current}
         keepMounted
-        open={Boolean(anchorEl)}
+        open={isOpen}
         onClose={handleClose}
       >
         {currentMemberInfo}

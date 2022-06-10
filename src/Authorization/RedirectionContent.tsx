@@ -45,7 +45,7 @@ const RedirectionContent: React.FC<Props> = ({
         <Typography variant='h4' align='center'>
           {redirectionText ?? 'You are being redirected…'}
         </Typography>
-        <Link to={link} className={classes.link}>
+        <Link to={{ pathname: link }} className={classes.link}>
           <Typography align='center'>
             {redirectionLinkText ??
               'Click here if you are not automatically redirected'}
