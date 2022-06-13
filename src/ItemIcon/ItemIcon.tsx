@@ -11,7 +11,7 @@ import ImageIcon from '@material-ui/icons/Image';
 import ShortcutIcon from '@material-ui/icons/Input';
 import AppsIcon from '@material-ui/icons/Apps';
 import ArchiveIcon from '@material-ui/icons/Archive';
-import LayersIcon from '@material-ui/icons/Layers';
+import Looks5Icon from '@material-ui/icons/Looks5';
 import { MIME_TYPES, ITEM_ICON_MAX_SIZE } from '../constants';
 import {
   getEmbeddedLinkExtra,
@@ -112,7 +112,7 @@ const ItemIcon: FC<ItemIconProps> = ({
       break;
     }
     case ITEM_TYPES.H5P: {
-      Icon = LayersIcon;
+      Icon = Looks5Icon;
       break;
     }
     default:
