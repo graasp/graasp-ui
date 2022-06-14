@@ -22,7 +22,7 @@ interface LinkItemProps {
   loadingMessage?: string;
   openLinkMessage?: string;
   errorMessage?: string;
-  isExtendable?: boolean;
+  isResizable?: boolean;
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -58,7 +58,7 @@ const LinkItem: FC<LinkItemProps> = ({
   openLinkMessage = 'Click here to open the link manually',
   height: defaultHeight,
   errorMessage = 'The link is malformed.',
-  isExtendable = false,
+  isResizable = false,
 }) => {
   const classes = useStyles();
   const [isLoading, setIsLoading] = useState(true);
@@ -113,7 +113,7 @@ const LinkItem: FC<LinkItemProps> = ({
       id={id}
       className={clsx(
         classes.iframe,
-        { [classes.iframeWithoutExtension]: !isExtendable },
+        { [classes.iframeWithoutExtension]: !isResizable },
       )}
       title={name}
       src={url}
@@ -136,10 +136,10 @@ const LinkItem: FC<LinkItemProps> = ({
         hidden={isLoading}
         className={clsx(
           classes.iframeContainer,
-          { [classes.iframeContainerWithoutExtension]: !isExtendable },
+          { [classes.iframeContainerWithoutExtension]: !isResizable },
         )}
       >
-        {isExtendable ? (
+        {isResizable ? (
           <div>
             {withResizing({
               height,

@@ -52,7 +52,7 @@ interface AppItemProps {
   };
   height?: number | string;
   requestApiAccessToken: Function;
-  isExtendable?: boolean;
+  isResizable?: boolean;
 }
 
 interface AppItemState {
@@ -75,7 +75,7 @@ class AppItem extends Component<AppItemProps> {
     showCaption: true,
     // todo: get this value from common graasp constants
     permission: DEFAULT_PERMISSION,
-    isExtendable: false,
+    isResizable: false,
   };
 
   state: AppItemState = {
@@ -220,7 +220,7 @@ class AppItem extends Component<AppItemProps> {
       saveButtonId,
       editCaption,
       classes,
-      isExtendable,
+      isResizable,
     } = this.props;
     const { iframeIsLoading, url, height } = this.state;
 
@@ -254,14 +254,14 @@ class AppItem extends Component<AppItemProps> {
         height='100%'
         src={appUrl}
         frameBorder={APP_ITEM_FRAME_BORDER}
-        className={clsx({ [classes.iframe]: !isExtendable })}
+        className={clsx({ [classes.iframe]: !isResizable })}
       />
     );
 
     const component = (
       <>
         {iframeIsLoading && <Loader />}
-        {isExtendable ? (
+        {isResizable ? (
           <div>
             {withResizing({
               height,
