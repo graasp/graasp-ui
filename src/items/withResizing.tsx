@@ -19,6 +19,12 @@ const resizeHandleStyles = {
   },
   resizableContainer: {
     paddingBottom: '35px',
+    '-webkit-user-select': 'none',
+    '-webkit-touch-callout': 'none',
+    '-khtml-user-select': 'none',
+    '-moz-user-select': 'none',
+    '-ms-user-select': 'none',
+    'user-select': 'none',
   },
 };
 
