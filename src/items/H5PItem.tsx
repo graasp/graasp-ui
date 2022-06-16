@@ -54,9 +54,22 @@ const H5PItem: FC<H5PItemProps> = ({
       const el = document.getElementById("${containerId}");
       const options = JSON.parse('${JSON.stringify(playerOptions)}');
       new H5PStandalone.H5P(el, options);
+      const resizeObserver = new ResizeObserver(entries => {
+        for (let entry of entries) {
+          window.frameElement.height = entry.contentRect.height;
+        }
+      });
+      resizeObserver.observe(el);
     </script>
   `;
-  return <iframe srcDoc={container + script + init}></iframe>;
+  return (
+    <iframe
+      srcDoc={container + script + init}
+      scrolling={'no'}
+      frameBorder={0}
+      style={{ width: '100%', border: 'none', display: 'block' }}
+    ></iframe>
+  );
 };
 
 export default H5PItem;
