@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     border: 'none',
   },
-  iframeWithoutExtension: {
+  iframeWithoutResizer: {
     maxHeight: ITEM_MAX_HEIGHT,
     height: ITEM_MAX_HEIGHT,
   },
@@ -43,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
     position: 'relative',
     overflow: 'auto',
   },
-  iframeContainerWithoutExtension: {
+  iframeContainerWithoutResizer: {
     maxHeight: ITEM_MAX_HEIGHT,
   },
 }));
@@ -113,7 +113,7 @@ const LinkItem: FC<LinkItemProps> = ({
       id={id}
       className={clsx(
         classes.iframe,
-        { [classes.iframeWithoutExtension]: !isResizable },
+        { [classes.iframeWithoutResizer]: !isResizable },
       )}
       title={name}
       src={url}
@@ -136,7 +136,7 @@ const LinkItem: FC<LinkItemProps> = ({
         hidden={isLoading}
         className={clsx(
           classes.iframeContainer,
-          { [classes.iframeContainerWithoutExtension]: !isResizable },
+          { [classes.iframeContainerWithoutResizer]: !isResizable },
         )}
       >
         {isResizable ? (
