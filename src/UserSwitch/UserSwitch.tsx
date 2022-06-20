@@ -1,9 +1,9 @@
 import React, {
   FC,
+  MouseEvent,
   MouseEventHandler,
   ReactElement,
   useState,
-  useRef,
 } from 'react';
 import {
   isPseudonymizedMember,
@@ -91,16 +91,17 @@ const UserSwitch: FC<Props> = ({
   signedOutTooltipText = 'You are not signed in.',
 }) => {
   const classes = useStyles();
-  const menuRef = useRef<(EventTarget & Element) | null>(null);
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [anchorEl, setAnchorEl] = useState<(EventTarget & Element) | null>(
+    null,
+  );
   const memberName = member.get('name');
 
-  const handleClick: MouseEventHandler = () => {
-    setIsOpen(true);
+  const handleClick: MouseEventHandler = (event: MouseEvent) => {
+    setAnchorEl(event.currentTarget);
   };
 
   const handleClose = (): void => {
-    setIsOpen(false);
+    setAnchorEl(null);
   };
 
   const renderStoredSessions = (): (ReactElement | null)[] => {
@@ -259,9 +260,9 @@ const UserSwitch: FC<Props> = ({
         {renderButtonContent()}
       </Box>
       <Menu
-        anchorEl={menuRef?.current}
+        anchorEl={anchorEl}
         keepMounted
-        open={isOpen}
+        open={Boolean(anchorEl)}
         onClose={handleClose}
       >
         {currentMemberInfo}
