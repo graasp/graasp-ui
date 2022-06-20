@@ -2274,11 +2274,11 @@ __metadata:
 
 "@graasp/utils@github:graasp/graasp-utils.git#11/redirect":
   version: 0.1.0
-  resolution: "@graasp/utils@https://github.com/graasp/graasp-utils.git#commit=99884c7253d86ff9570731c90f1dbaf5661fc812"
+  resolution: "@graasp/utils@https://github.com/graasp/graasp-utils.git#commit=9f988af2afa77c08873ed0aba11368f51b917472"
   dependencies:
     js-cookie: 3.0.1
     qs: 6.10.3
-  checksum: 7756781b332bb6ca1c06ca0713df84b448c89e622aadffe6122880b0ebe1e6999797a55289bd843607f039681a1c823d636822aa884f9d61eaa73d4d485e8090
+  checksum: a7b3abb3b3c457117f09c792ab41ba7d101c5fae3e82e06cd6124a87155414b23759a0501716a20cb397c645c32e293a368a3366130cd275ae2a4e90c8218b6b
   languageName: node
   linkType: hard
 

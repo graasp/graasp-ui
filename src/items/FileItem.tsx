@@ -95,7 +95,13 @@ const FileItem: FC<FileItemProps> = ({
       component = <FileVideo id={id} url={url} className={className} />;
     } else if (MIME_TYPES.PDF.includes(mimetype)) {
       component = (
-        <FilePdf id={id} url={url} height={maxHeight} className={className} showCollapse={showCollapse} />
+        <FilePdf
+          id={id}
+          url={url}
+          height={maxHeight}
+          className={className}
+          showCollapse={showCollapse}
+        />
       );
     }
   }

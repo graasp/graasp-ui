@@ -111,10 +111,9 @@ const LinkItem: FC<LinkItemProps> = ({
   const iframe = (
     <iframe
       id={id}
-      className={clsx(
-        classes.iframe,
-        { [classes.iframeWithoutResizer]: !isResizable },
-      )}
+      className={clsx(classes.iframe, {
+        [classes.iframeWithoutResizer]: !isResizable,
+      })}
       title={name}
       src={url}
       onLoad={handleLoad}
@@ -134,10 +133,9 @@ const LinkItem: FC<LinkItemProps> = ({
       </div>
       <div
         hidden={isLoading}
-        className={clsx(
-          classes.iframeContainer,
-          { [classes.iframeContainerWithoutResizer]: !isResizable },
-        )}
+        className={clsx(classes.iframeContainer, {
+          [classes.iframeContainerWithoutResizer]: !isResizable,
+        })}
       >
         {isResizable ? (
           <div>
@@ -145,9 +143,9 @@ const LinkItem: FC<LinkItemProps> = ({
               height,
             })(iframe)}
           </div>
-        ) :
+        ) : (
           iframe
-        }
+        )}
       </div>
       {isLoading && (
         <Button
