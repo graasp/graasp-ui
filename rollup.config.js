@@ -50,5 +50,6 @@ export default {
     'katex',
     'react',
     'react-dom',
+    'react-router-dom',
   ],
 };

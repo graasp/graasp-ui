@@ -39,10 +39,12 @@ interface CookiesBannerProps {
   declineButtonText?: string;
   expires?: number;
   text?: string;
+  domain?: string;
 }
 
 const CookiesBanner: FC<CookiesBannerProps> = ({
   cookieName,
+  domain = window.location.hostname,
   acceptText = 'Accept All',
   declineButtonText = 'Reject Non-Essential',
   text = `We use cookies and other tracking technologies to improve your browsing experience on our website, to analyze our website traffic, and to understand where our visitors are coming from. By browsing our website, you consent to our use of cookies and other tracking technologies.`,
@@ -52,6 +54,7 @@ const CookiesBanner: FC<CookiesBannerProps> = ({
 
   return (
     <CookieConsent
+      extraCookieOptions={{ domain }}
       buttonText={acceptText}
       cookieName={cookieName}
       expires={expires}

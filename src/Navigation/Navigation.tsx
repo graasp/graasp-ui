@@ -26,6 +26,9 @@ const useStyles = makeStyles((theme) => ({
     fontSize: theme.typography.fontSize,
     color: 'white',
   },
+  menuItem: {
+    textTransform: 'capitalize',
+  },
   triangle: {
     width: 0,
     height: 0,
@@ -145,24 +148,27 @@ const Navigation: React.FC<NavigationProps> = ({
         }}
       >
         <MenuItem
+          className={classes.menuItem}
           onClick={onClick(Context.BUILDER)}
           disabled={currentValue === Context.BUILDER}
         >
           <ContextMenuItem value={Context.BUILDER} />
         </MenuItem>
         <MenuItem
+          className={classes.menuItem}
           onClick={onClick(Context.EXPLORER)}
           disabled={currentValue === Context.EXPLORER}
         >
           <ContextMenuItem value={Context.EXPLORER} />
         </MenuItem>
         <MenuItem
+          className={classes.menuItem}
           onClick={onClick(Context.PLAYER)}
           disabled={currentValue === Context.PLAYER}
         >
           <ContextMenuItem value={Context.PLAYER} />
         </MenuItem>
-        <MenuItem disabled>
+        <MenuItem disabled className={classes.menuItem}>
           <ContextMenuItem value={Context.ANALYZER} />
         </MenuItem>
       </Menu>

@@ -54,7 +54,6 @@ export const DEFAULT_ITEM_DESCRIPTION = '';
 export const RESIZING_ICON_LEVEL_BACKGROUND_COLOR = 300;
 export const RESIZING_ICON_LEVEL_BACKGROUND_COLOR_FOCUS = 500;
 
-
 // todo: factor out in graasp constants
 export const SETTINGS = {
   ITEM_LOGIN: {
@@ -94,3 +93,5 @@ export enum CC_LICENSE_ADAPTION_OPTIONS {
 export const DEFAULT_LOADER_SIZE = 20;
 
 export const DRAG_ICON_SIZE = 18;
+
+export const HEADER_USERNAME_MAX_WIDTH = 120;

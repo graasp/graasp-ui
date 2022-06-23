@@ -28,7 +28,8 @@ const Avatar: FC<AvatarProps> = ({
   extra,
   className,
   alt,
-  defaultImage,
+  // use a random string to trigger default avatar
+  defaultImage = 'broken-image',
   useAvatar,
   maxWidth = '100%',
   maxHeight = '100%',

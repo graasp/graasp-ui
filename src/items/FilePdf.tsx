@@ -38,7 +38,7 @@ const FilePdf: FC<FilePdfProps> = ({
       const newHeight = (e.target as HTMLEmbedElement)?.offsetParent
         ?.scrollHeight;
       newHeight && setHeight(newHeight);
-    };
+    }
   };
 
   return (

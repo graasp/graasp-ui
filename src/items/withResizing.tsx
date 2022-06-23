@@ -34,9 +34,9 @@ function withResizing({ height }: WithResizingProps) {
       render(): JSX.Element {
         return (
           <>
-            <div style={ resizeHandleStyles.resizableContainer }>
+            <div style={resizeHandleStyles.resizableContainer}>
               <Rnd
-                style={{position: 'relative'}}
+                style={{ position: 'relative' }}
                 disableDragging
                 enableResizing={{ bottom: true }}
                 default={{
@@ -47,7 +47,9 @@ function withResizing({ height }: WithResizingProps) {
                 }}
                 minHeight={IFRAME_MIN_HEIGHT}
                 resizeHandleComponent={{ bottom: <ResizingIcon /> }}
-                resizeHandleStyles={{ bottom: resizeHandleStyles.resizeHandleComponent }}
+                resizeHandleStyles={{
+                  bottom: resizeHandleStyles.resizeHandleComponent,
+                }}
               >
                 {component}
               </Rnd>

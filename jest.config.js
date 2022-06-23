@@ -16,6 +16,7 @@ module.exports = {
     '@material-ui/styles': '<rootDir>/example/node_modules/@material-ui/styles',
     immutable: '<rootDir>/node_modules/immutable',
     '^react$': '<rootDir>/example/node_modules/react',
+    '^react-router-dom$': '<rootDir>/example/node_modules/react-router-dom',
     '^react-dom$': '<rootDir>/example/node_modules/react-dom',
     '^react-dom/(.*)': '<rootDir>/example/node_modules/react-dom/$1',
     '\\.(css|less)$': '<rootDir>/test/styleMock.js',

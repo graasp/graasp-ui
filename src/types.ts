@@ -34,6 +34,9 @@ export type Member = {
   id: string;
   name: string;
   email: string;
+  extra: {
+    [key: string]: Anything;
+  };
 };
 
 export type ItemMembership = {

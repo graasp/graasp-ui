@@ -267,9 +267,9 @@ class AppItem extends Component<AppItemProps> {
               height,
             })(iframe)}
           </div>
-        ) :
+        ) : (
           iframe
-        }
+        )}
       </>
     );
 
