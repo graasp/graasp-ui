@@ -47,7 +47,7 @@
     "pre-commit": "yarn prettier:check && yarn lint"
   },
   "dependencies": {
-    "@graasp/utils": "github:graasp/graasp-utils.git#11/redirect",
+    "@graasp/utils": "github:graasp/graasp-utils.git",
     "clsx": "1.1.1",
     "http-status-codes": "2.2.0",
     "immutable": "4.0.0",
