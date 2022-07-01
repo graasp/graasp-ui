@@ -72,6 +72,14 @@
     "react-dom": "16.13.1",
     "react-router-dom": "6.2.2"
   },
+  "peerDependenciesMeta": {
+    "ag-grid-community": {
+      "optional": true
+    },
+    "ag-grid-react": {
+      "optional": true
+    }
+  },
   "devDependencies": {
     "@babel/plugin-proposal-optional-chaining": "7.16.7",
     "@babel/preset-env": "7.17.10",

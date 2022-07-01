@@ -2269,6 +2269,11 @@ __metadata:
     react: ^16.13.1
     react-dom: 16.13.1
     react-router-dom: 6.2.2
+  peerDependenciesMeta:
+    ag-grid-community:
+      optional: true
+    ag-grid-react:
+      optional: true
   languageName: unknown
   linkType: soft
 
