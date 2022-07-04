@@ -5,6 +5,7 @@ import {
   MenuItem,
   Typography,
   Button,
+  PropTypes,
 } from '@material-ui/core';
 import { redirect, Context } from '@graasp/utils';
 import ExploreIcon from '../icons/ExploreIcon';
@@ -88,6 +89,7 @@ interface NavigationProps {
   id?: string;
   currentValue: Context;
   hostMap: HostMap;
+  buttonColor?: PropTypes.Color;
   buttonStyle?: string;
   triangleStyle?: string;
 }
@@ -96,6 +98,7 @@ const Navigation: React.FC<NavigationProps> = ({
   currentValue,
   hostMap = {},
   id,
+  buttonColor = 'secondary',
   buttonStyle,
   triangleStyle,
 }) => {
@@ -133,6 +136,7 @@ const Navigation: React.FC<NavigationProps> = ({
         onClick={handleClick}
         className={button}
         variant='outlined'
+        color={buttonColor}
       >
         <Typography variant='h6' color='inherit'>
           {currentValue}
