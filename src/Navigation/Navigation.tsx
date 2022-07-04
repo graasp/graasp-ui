@@ -5,7 +5,6 @@ import {
   MenuItem,
   Typography,
   Button,
-  PropTypes,
 } from '@material-ui/core';
 import { redirect, Context } from '@graasp/utils';
 import ExploreIcon from '../icons/ExploreIcon';
@@ -89,16 +88,21 @@ interface NavigationProps {
   id?: string;
   currentValue: Context;
   hostMap: HostMap;
-  color: PropTypes.Color;
+  buttonStyle?: string;
+  triangleStyle?: string;
 }
 
 const Navigation: React.FC<NavigationProps> = ({
   currentValue,
   hostMap = {},
   id,
-  color = 'secondary',
+  buttonStyle,
+  triangleStyle,
 }) => {
   const classes = useStyles();
+
+  const button = buttonStyle || classes.button;
+  const triangle = triangleStyle || classes.triangle;
 
   const [anchorEl, setAnchorEl] = React.useState<Element | null>(null);
 
@@ -127,14 +131,13 @@ const Navigation: React.FC<NavigationProps> = ({
         aria-controls='navigation-menu'
         aria-haspopup='true'
         onClick={handleClick}
-        className={classes.button}
+        className={button}
         variant='outlined'
-        color={color}
       >
         <Typography variant='h6' color='inherit'>
           {currentValue}
         </Typography>
-        <div className={classes.triangle} />
+        <div className={triangle} />
       </Button>
       <Menu
         id='navigation-menu'
