@@ -8,9 +8,8 @@ import ItemLoginAuthorization, {
   ItemLoginAuthorizationProps,
 } from './ItemLoginAuthorization';
 import { getReasonPhrase, StatusCodes } from 'http-status-codes';
-import { FORBIDDEN_TEXT, SETTINGS } from '../constants';
+import { SETTINGS } from '../constants';
 import ItemLoginScreen from './ItemLoginScreen';
-import ForbiddenContent from './ForbiddenContent';
 
 const defaultData: {
   data?: any;
@@ -29,14 +28,12 @@ const createProps = ({
   useCurrentMemberData = defaultData,
   useItemData = defaultData,
   useItemLoginData = defaultData,
-  signOut = jest.fn(),
   signIn = jest.fn(),
 }): ItemLoginAuthorizationProps => ({
   useCurrentMember: jest.fn().mockReturnValue(useCurrentMemberData),
   useItem: jest.fn().mockReturnValue(useItemData),
   useItemLogin: jest.fn().mockReturnValue(useItemLoginData),
   itemId,
-  signOut,
   signIn,
 });
 
@@ -143,26 +140,5 @@ describe('ItemLoginAuthorization', () => {
     wrapper = shallow(<Comp />);
     const loader = wrapper.find(ItemLoginScreen);
     expect(loader).toHaveLength(1);
-  });
-  it('renders ForbiddenContent if user is defined and item is undefined', () => {
-    const props = createProps({
-      itemId: v4(),
-      useCurrentMemberData: { data: Map({ id: v4() }) },
-    });
-    const Comp = ItemLoginAuthorization(props)(MockChildren);
-    wrapper = shallow(<Comp />);
-    const loader = wrapper.find(ForbiddenContent);
-    expect(loader).toHaveLength(1);
-  });
-  it('renders ForbiddenContent if item login is undefined and cannot fetch item', () => {
-    const props = createProps({
-      itemId: v4(),
-      useItemLoginData: { data: Map({ id: v4() }) },
-      useItemData: { isError: true, error: { message: 'error' } },
-    });
-    const Comp = ItemLoginAuthorization(props)(MockChildren);
-    wrapper = shallow(<Comp />);
-
-    expect(wrapper.html()).toContain(FORBIDDEN_TEXT);
   });
 });

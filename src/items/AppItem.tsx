@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import clsx from 'clsx';
 import { Record } from 'immutable';
 import { withStyles } from '@material-ui/core/styles';
 import { getAppExtra } from '../utils/itemExtra';
 import qs from 'qs';
 import Loader from '../Loader';
+import withResizing from './withResizing';
 import {
   APP_ITEM_FRAME_BORDER,
   APP_ITEM_WIDTH,
@@ -50,6 +52,7 @@ interface AppItemProps {
   };
   height?: number | string;
   requestApiAccessToken: Function;
+  isResizable?: boolean;
 }
 
 interface AppItemState {
@@ -72,6 +75,7 @@ class AppItem extends Component<AppItemProps> {
     showCaption: true,
     // todo: get this value from common graasp constants
     permission: DEFAULT_PERMISSION,
+    isResizable: false,
   };
 
   state: AppItemState = {
@@ -216,6 +220,7 @@ class AppItem extends Component<AppItemProps> {
       saveButtonId,
       editCaption,
       classes,
+      isResizable,
     } = this.props;
     const { iframeIsLoading, url, height } = this.state;
 
@@ -239,21 +244,33 @@ class AppItem extends Component<AppItemProps> {
       },
     )}`;
 
+    const iframe = (
+      <iframe
+        id={id}
+        title={item?.get('name')}
+        onLoad={onLoad}
+        ref={this.iframeRef}
+        width={APP_ITEM_WIDTH}
+        height='100%'
+        src={appUrl}
+        frameBorder={APP_ITEM_FRAME_BORDER}
+        className={clsx({ [classes.iframe]: !isResizable })}
+      />
+    );
+
     const component = (
-      <React.Fragment>
+      <>
         {iframeIsLoading && <Loader />}
-        <iframe
-          id={id}
-          title={item?.get('name')}
-          onLoad={onLoad}
-          ref={this.iframeRef}
-          width={APP_ITEM_WIDTH}
-          height={height}
-          src={appUrl}
-          frameBorder={APP_ITEM_FRAME_BORDER}
-          className={classes.iframe}
-        />
-      </React.Fragment>
+        {isResizable ? (
+          <div>
+            {withResizing({
+              height,
+            })(iframe)}
+          </div>
+        ) : (
+          iframe
+        )}
+      </>
     );
 
     if (showCaption) {

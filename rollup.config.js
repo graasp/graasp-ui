@@ -7,7 +7,7 @@ import copy from 'rollup-plugin-copy';
 import { babel } from '@rollup/plugin-babel';
 
 export default {
-  input: './src/index.ts',
+  input: ['./src/index.ts', './src/table.ts'],
   output: {
     dir: './dist',
     format: 'cjs',
@@ -21,7 +21,7 @@ export default {
     typescript({
       tsconfig: './tsconfig.json',
       sourceMap: false,
-      exclude: ['**/*.test.ts'],
+      exclude: ['**/*.test.ts', '**/*.test.tsx'],
     }),
     commonjs(),
     scss({ outputStyle: 'compressed', output: 'dist/bundle.css' }),
@@ -50,5 +50,6 @@ export default {
     'katex',
     'react',
     'react-dom',
+    'react-router-dom',
   ],
 };

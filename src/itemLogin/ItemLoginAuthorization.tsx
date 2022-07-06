@@ -3,11 +3,10 @@ import { StatusCodes, getReasonPhrase } from 'http-status-codes';
 import Alert from '@material-ui/lab/Alert';
 import ItemLoginScreen from './ItemLoginScreen';
 import Loader from '../Loader';
-import ForbiddenContent from './ForbiddenContent';
 import { UUID } from '../types';
+import ForbiddenText from './ForbiddenText';
 
 export type ItemLoginAuthorizationProps = {
-  signOut: Function;
   signIn: Function;
   itemId: UUID;
   useCurrentMember: Function;
@@ -19,7 +18,7 @@ export type ItemLoginAuthorizationProps = {
   signInButtonId?: string;
   passwordInputId?: string;
   modeSelectId?: string;
-  forbiddenContentId?: string;
+  ForbiddenContent?: ReactElement;
 };
 
 const ItemLoginAuthorization =
@@ -28,7 +27,6 @@ const ItemLoginAuthorization =
     useItem,
     useItemLogin,
     itemId,
-    signOut,
     signIn,
     Error: ErrorComponent,
     memberIdInputId,
@@ -36,7 +34,7 @@ const ItemLoginAuthorization =
     signInButtonId,
     passwordInputId,
     modeSelectId,
-    forbiddenContentId,
+    ForbiddenContent = <ForbiddenText />,
   }: ItemLoginAuthorizationProps) =>
   (ChildComponent: ComponentClass) => {
     const ComposedComponent = (): ReactElement => {
@@ -104,13 +102,7 @@ const ItemLoginAuthorization =
 
       // either the item does not allow item login
       // or the user is already signed in as normal user and hasn't the access to this item
-      return (
-        <ForbiddenContent
-          id={forbiddenContentId}
-          signOut={signOut}
-          user={user}
-        />
-      );
+      return ForbiddenContent;
     };
 
     return ComposedComponent;

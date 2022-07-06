@@ -1,4 +1,4 @@
-import React, { FC, ReactNode, useRef, useState } from 'react';
+import React, { FC, ReactElement, ReactNode, useRef, useState } from 'react';
 import { Container, TextField, Tooltip } from '@material-ui/core';
 import { makeStyles, Theme } from '@material-ui/core/styles';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
@@ -60,6 +60,7 @@ interface ItemLoginScreenProps {
   signInButtonId?: string;
   passwordInputId?: string;
   modeSelectId?: string;
+  ForbiddenContent?: ReactElement;
 }
 
 const ItemLoginScreen: FC<ItemLoginScreenProps> = ({
@@ -71,6 +72,7 @@ const ItemLoginScreen: FC<ItemLoginScreenProps> = ({
   signInButtonId,
   passwordInputId,
   modeSelectId,
+  ForbiddenContent = <ForbiddenText />,
 }) => {
   const { t } = useTranslation();
   const classes = useStyles();
@@ -89,7 +91,7 @@ const ItemLoginScreen: FC<ItemLoginScreenProps> = ({
     itemLogin.isEmpty() ||
     !Object.values(SETTINGS.ITEM_LOGIN.OPTIONS).includes(loginSchema)
   ) {
-    return <ForbiddenText />;
+    return ForbiddenContent;
   }
 
   const withPassword = [

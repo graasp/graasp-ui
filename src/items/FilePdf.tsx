@@ -8,6 +8,7 @@ interface FilePdfProps {
   url: string;
   height?: number | string;
   className?: string;
+  showCollapse?: boolean;
 }
 
 const useStyles = makeStyles({
@@ -21,6 +22,7 @@ const FilePdf: FC<FilePdfProps> = ({
   id,
   height: defaultHeight,
   className,
+  showCollapse,
 }) => {
   const embedRef = useRef<HTMLEmbedElement>(null);
   const classes = useStyles();
@@ -29,10 +31,14 @@ const FilePdf: FC<FilePdfProps> = ({
   );
 
   const onLoad: ReactEventHandler<HTMLEmbedElement> = (e) => {
-    // set pdf height -> probably very high
-    const newHeight = (e.target as HTMLEmbedElement)?.offsetParent
-      ?.scrollHeight;
-    newHeight && setHeight(newHeight);
+    // only set pdf height if not using collapse
+    if (!showCollapse) {
+      // set pdf height -> probably very high
+      console.log((e.target as HTMLEmbedElement)?.offsetParent);
+      const newHeight = (e.target as HTMLEmbedElement)?.offsetParent
+        ?.scrollHeight;
+      newHeight && setHeight(newHeight);
+    }
   };
 
   return (

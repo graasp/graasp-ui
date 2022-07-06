@@ -32,8 +32,6 @@ export { default as withCollapse } from './Collapse';
 
 export { default as PermissionedComponent } from './PermissionedComponent';
 
-export { default as HeaderUserInformation } from './HeaderUserInformation';
-
 export { default as ItemIcon } from './ItemIcon';
 
 export { default as GraaspLogo } from './GraaspLogo';
@@ -54,6 +52,8 @@ export { default as Button } from './Button';
 
 export { default as Navigation } from './Navigation';
 
-export { default as Table } from './Table';
+export * from './Authorization';
+
+export { UserSwitch, UserSwitchWrapper } from './UserSwitch';
 
 export * from './icons';
