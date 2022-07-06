@@ -19,6 +19,7 @@ interface GraaspButtonProps {
   endIcon?: ReactNode;
   autoFocus?: boolean;
   fullWidth?: boolean;
+  component?: React.ElementType;
 }
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -36,6 +37,7 @@ const GraaspButton: FC<GraaspButtonProps> = ({
   autoFocus,
   endIcon,
   fullWidth,
+  component = 'button',
   color = 'primary',
   variant = 'contained',
   disabled = false,
@@ -56,6 +58,7 @@ const GraaspButton: FC<GraaspButtonProps> = ({
       endIcon={endIcon}
       autoFocus={autoFocus}
       fullWidth={fullWidth}
+      component={component}
     >
       {children}
     </Button>
