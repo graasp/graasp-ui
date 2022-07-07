@@ -5,6 +5,7 @@ import {
   MenuItem,
   Typography,
   Button,
+  PropTypes,
 } from '@material-ui/core';
 import { redirect, Context } from '@graasp/utils';
 import ExploreIcon from '../icons/ExploreIcon';
@@ -12,6 +13,7 @@ import BuildIcon from '../icons/BuildIcon';
 import AnalyzeIcon from '../icons/AnalyzeIcon';
 import PlayIcon from '../icons/PlayIcon';
 import { HostMap } from '../types';
+import clsx from 'clsx';
 
 const useStyles = makeStyles((theme) => ({
   icon: {
@@ -88,12 +90,18 @@ interface NavigationProps {
   id?: string;
   currentValue: Context;
   hostMap: HostMap;
+  buttonColor?: PropTypes.Color;
+  buttonClassname?: string;
+  triangleClassname?: string;
 }
 
 const Navigation: React.FC<NavigationProps> = ({
   currentValue,
   hostMap = {},
   id,
+  buttonColor = 'secondary',
+  buttonClassname,
+  triangleClassname,
 }) => {
   const classes = useStyles();
 
@@ -122,14 +130,14 @@ const Navigation: React.FC<NavigationProps> = ({
         aria-controls='navigation-menu'
         aria-haspopup='true'
         onClick={handleClick}
-        className={classes.button}
+        className={clsx(buttonClassname, classes.button)}
         variant='outlined'
-        color='secondary'
+        color={buttonColor}
       >
         <Typography variant='h6' color='inherit'>
           {currentValue}
         </Typography>
-        <div className={classes.triangle} />
+        <div className={clsx(triangleClassname, classes.triangle)} />
       </Button>
       <Menu
         id='navigation-menu'
