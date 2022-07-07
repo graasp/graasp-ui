@@ -13,6 +13,7 @@ import BuildIcon from '../icons/BuildIcon';
 import AnalyzeIcon from '../icons/AnalyzeIcon';
 import PlayIcon from '../icons/PlayIcon';
 import { HostMap } from '../types';
+import clsx from 'clsx';
 
 const useStyles = makeStyles((theme) => ({
   icon: {
@@ -90,8 +91,8 @@ interface NavigationProps {
   currentValue: Context;
   hostMap: HostMap;
   buttonColor?: PropTypes.Color;
-  buttonStyle?: string;
-  triangleStyle?: string;
+  buttonClassname?: string;
+  triangleClassname?: string;
 }
 
 const Navigation: React.FC<NavigationProps> = ({
@@ -99,13 +100,10 @@ const Navigation: React.FC<NavigationProps> = ({
   hostMap = {},
   id,
   buttonColor = 'secondary',
-  buttonStyle,
-  triangleStyle,
+  buttonClassname,
+  triangleClassname,
 }) => {
   const classes = useStyles();
-
-  const button = buttonStyle || classes.button;
-  const triangle = triangleStyle || classes.triangle;
 
   const [anchorEl, setAnchorEl] = React.useState<Element | null>(null);
 
@@ -118,8 +116,6 @@ const Navigation: React.FC<NavigationProps> = ({
   };
 
   const onClick = (value: Context) => () => {
-    console.log(hostMap);
-    console.log(value);
     let url = hostMap[value];
     if (!url) {
       url = '/';
@@ -134,14 +130,14 @@ const Navigation: React.FC<NavigationProps> = ({
         aria-controls='navigation-menu'
         aria-haspopup='true'
         onClick={handleClick}
-        className={button}
+        className={clsx(classes.button, buttonClassname)}
         variant='outlined'
         color={buttonColor}
       >
         <Typography variant='h6' color='inherit'>
           {currentValue}
         </Typography>
-        <div className={triangle} />
+        <div className={clsx(classes.triangle, triangleClassname)} />
       </Button>
       <Menu
         id='navigation-menu'
