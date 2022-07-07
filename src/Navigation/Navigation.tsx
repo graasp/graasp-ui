@@ -130,14 +130,14 @@ const Navigation: React.FC<NavigationProps> = ({
         aria-controls='navigation-menu'
         aria-haspopup='true'
         onClick={handleClick}
-        className={clsx(classes.button, buttonClassname)}
+        className={clsx(buttonClassname, classes.button)}
         variant='outlined'
         color={buttonColor}
       >
         <Typography variant='h6' color='inherit'>
           {currentValue}
         </Typography>
-        <div className={clsx(classes.triangle, triangleClassname)} />
+        <div className={clsx(triangleClassname, classes.triangle)} />
       </Button>
       <Menu
         id='navigation-menu'
