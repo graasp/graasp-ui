@@ -6,6 +6,7 @@ import Skeleton from '@material-ui/lab/Skeleton';
 import { getItemImage } from '../utils/image';
 import { EmbeddedLinkItemExtra, Variant } from '../types';
 import { DEFAULT_THUMBNAIL_SIZE } from '../constants';
+import { UseQueryResult } from 'react-query';
 
 type AvatarProps = {
   id: string;
@@ -17,11 +18,7 @@ type AvatarProps = {
   alt: string;
   component?: string;
   className?: string;
-  useAvatar: (args: { id: string; size?: string }) => {
-    data: Blob;
-    isLoading: boolean;
-    isFetching: boolean;
-  };
+  useAvatar: (args: { id: string; size?: string }) => UseQueryResult<Blob>;
   // todo: enforce size strings
   size?: string;
 };
