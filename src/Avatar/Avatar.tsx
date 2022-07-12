@@ -1,6 +1,5 @@
 import React, { useState, useEffect, FC } from 'react';
 import clsx from 'clsx';
-// eslint-disable-next-line import/no-named-default
 import { default as AvatarComponent } from '@material-ui/core/Avatar';
 import { makeStyles } from '@material-ui/core/styles';
 import Skeleton from '@material-ui/lab/Skeleton';
@@ -18,7 +17,11 @@ type AvatarProps = {
   alt: string;
   component?: string;
   className?: string;
-  useAvatar: Function;
+  useAvatar: (args: { id: string; size?: string }) => {
+    data: Blob;
+    isLoading: boolean;
+    isFetching: boolean;
+  };
   // todo: enforce size strings
   size?: string;
 };
@@ -99,4 +102,4 @@ const Avatar: FC<AvatarProps> = ({
   );
 };
 
-export default Avatar;
+export default React.memo(Avatar);

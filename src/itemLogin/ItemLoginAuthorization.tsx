@@ -1,17 +1,29 @@
-import React, { ComponentClass, ReactElement } from 'react';
+import React, { ReactElement } from 'react';
 import { StatusCodes, getReasonPhrase } from 'http-status-codes';
 import Alert from '@material-ui/lab/Alert';
-import ItemLoginScreen from './ItemLoginScreen';
+import ItemLoginScreen, { SignInPropertiesType } from './ItemLoginScreen';
 import Loader from '../Loader';
 import { UUID } from '../types';
 import ForbiddenText from './ForbiddenText';
+import { Map } from 'immutable';
 
 export type ItemLoginAuthorizationProps = {
-  signIn: Function;
+  signIn: (args: { itemId: string } & SignInPropertiesType) => void;
   itemId: UUID;
-  useCurrentMember: Function;
-  useItem: Function;
-  useItemLogin: Function;
+  useCurrentMember: () => {
+    data: Map<string, unknown>;
+    isLoading: boolean;
+    isError: boolean;
+  };
+  useItem: (itemId: string) => {
+    data: Map<unknown, unknown>;
+    isLoading: boolean;
+    isError: boolean;
+    error: Error;
+  };
+  useItemLogin: (itemId: string) => {
+    data: Map<string, any>;
+  };
   Error?: ReactElement;
   memberIdInputId?: string;
   usernameInputId?: string;
@@ -36,7 +48,7 @@ const ItemLoginAuthorization =
     modeSelectId,
     ForbiddenContent = <ForbiddenText />,
   }: ItemLoginAuthorizationProps) =>
-  (ChildComponent: ComponentClass) => {
+  (ChildComponent: typeof React.Component) => {
     const ComposedComponent = (): ReactElement => {
       const {
         data: user,
@@ -60,7 +72,7 @@ const ItemLoginAuthorization =
       // but can be empty
       if (isCurrentMemberError) {
         return (
-          ErrorComponent ?? <Alert severity='error'>An error occured.</Alert>
+          ErrorComponent ?? <Alert severity='error'>An error occurred.</Alert>
         );
       }
 
@@ -72,7 +84,7 @@ const ItemLoginAuthorization =
         ].includes(itemError.message)
       ) {
         return (
-          ErrorComponent ?? <Alert severity='error'>An error occured.</Alert>
+          ErrorComponent ?? <Alert severity='error'>An error occurred.</Alert>
         );
       }
 
@@ -80,7 +92,6 @@ const ItemLoginAuthorization =
       // because the user is signed in and has access
       // or because the item is public
       if (item && !item.isEmpty()) {
-        // eslint-disable-next-line react/jsx-props-no-spreading
         return <ChildComponent />;
       }
 

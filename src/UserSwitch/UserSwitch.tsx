@@ -60,7 +60,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 interface Props {
-  useAvatar: Function;
+  useAvatar: (args: { id: string; size?: string }) => {
+    data: Blob;
+    isLoading: boolean;
+    isFetching: boolean;
+  };
   member?: ImmutableMember;
   members?: Member[];
   onSeeProfileClick?: MouseEventHandler;
