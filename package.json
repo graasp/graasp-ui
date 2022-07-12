@@ -16,7 +16,7 @@
   "main": "dist/index.js",
   "source": "src/index.ts",
   "module": "dist/index.js",
-  "typings": "dist/types.d.ts",
+  "typings": "dist/index.d.ts",
   "typescript": {
     "definition": "dist/index.d.ts"
   },
