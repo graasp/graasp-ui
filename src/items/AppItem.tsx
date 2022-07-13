@@ -16,7 +16,7 @@ import withCaption from './withCaption';
 import type { AppItemExtra, Item, Member, UUID } from '../types';
 import { UseMutateAsyncFunction } from 'react-query';
 
-const buildPostMessageKeys = (itemId: UUID) => ({
+const buildPostMessageKeys = (itemId: UUID): { [key: string]: string } => ({
   GET_CONTEXT_SUCCESS: `GET_CONTEXT_SUCCESS_${itemId}`,
   GET_CONTEXT_FAILURE: `GET_CONTEXT_FAILURE_${itemId}`,
   GET_CONTEXT: `GET_CONTEXT_${itemId}`,
@@ -51,7 +51,10 @@ interface AppItemProps {
     iframe: string;
   };
   height?: number | string;
-  requestApiAccessToken: Function;
+  requestApiAccessToken: (
+    args: { id: string; app: string; origin: string },
+    queryConfig: { API_HOST: string },
+  ) => Promise<{ token: string }>;
   isResizable?: boolean;
 }
 

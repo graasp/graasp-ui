@@ -16,6 +16,12 @@ import { isMemberIdValid } from '../utils/utils';
 import MemberIdTextField from './MemberIdTextField';
 import { ItemLogin, UUID } from '../types';
 
+export type SignInPropertiesType = {
+  memberId?: string;
+  username?: string;
+  password?: string;
+};
+
 const useStyles = makeStyles((theme: Theme) => ({
   wrapper: {
     margin: 'auto',
@@ -52,7 +58,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 interface ItemLoginScreenProps {
   itemId: UUID;
-  signIn: Function;
+  signIn: (args: { itemId: string } & SignInPropertiesType) => void;
   itemLogin: ItemLogin;
   // todo: use enum
   memberIdInputId?: string;
@@ -99,11 +105,7 @@ const ItemLoginScreen: FC<ItemLoginScreenProps> = ({
   ].includes(loginSchema);
 
   const onClickSignIn = (): void => {
-    const signInProperties: {
-      memberId?: string;
-      username?: string;
-      password?: string;
-    } = {};
+    const signInProperties: SignInPropertiesType = {};
     switch (signInMode) {
       case SETTINGS.ITEM_LOGIN.SIGN_IN_MODE.MEMBER_ID:
         signInProperties.memberId = memberId;

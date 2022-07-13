@@ -6,7 +6,7 @@ import RedirectContent from './RedirectionContent';
 interface Props {
   redirectionLink: string;
   currentMember?: Map<string, unknown>;
-  onRedirect?: Function;
+  onRedirect?: () => void;
 }
 
 const withAuthorization =

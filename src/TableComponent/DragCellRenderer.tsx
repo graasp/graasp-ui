@@ -7,7 +7,7 @@ interface Props {
   data: {
     id: string;
   };
-  registerRowDragger: (ref: SVGSVGElement) => {};
+  registerRowDragger: (ref: SVGSVGElement) => void;
   buildId?: (id: string) => string;
 }
 

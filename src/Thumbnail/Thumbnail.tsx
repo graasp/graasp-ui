@@ -14,7 +14,11 @@ type ThumbnailProps = {
   defaultImage?: string;
   variant?: Variant;
   alt: string;
-  useThumbnail: Function;
+  useThumbnail: (args: { id: string; size: string }) => {
+    data: Blob;
+    isFetching: boolean;
+    isLoading: boolean;
+  };
   className?: string;
   // todo: enforce sizes strings
   size?: string;
@@ -84,4 +88,4 @@ const Thumbnail: FC<ThumbnailProps> = ({
   );
 };
 
-export default Thumbnail;
+export default React.memo(Thumbnail);

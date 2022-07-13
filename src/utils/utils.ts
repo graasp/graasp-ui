@@ -4,7 +4,7 @@ import { validate } from 'uuid';
 export const getParentsIdsFromPath = (
   path?: string,
   { ignoreSelf = false } = {},
-) => {
+): string[] => {
   if (!path) {
     return [];
   }

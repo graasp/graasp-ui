@@ -28,7 +28,7 @@ interface Props {
   redirectPath: string;
   profilePath: string;
   switchMember: (args: { memberId: string; domain: string }) => Promise<void>;
-  useAvatar: Function;
+  useAvatar: (args: { id: string; size?: string }) => UseQueryResult<Blob>;
   currentMember?: ImmutableMember;
   isCurrentMemberLoading: boolean;
   isCurrentMemberSuccess: boolean;
