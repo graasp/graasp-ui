@@ -17,7 +17,6 @@ import Tooltip from '@material-ui/core/Tooltip';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import Box from '@material-ui/core/Box';
 import { Divider } from '@material-ui/core';
-import { Map } from 'immutable';
 import MenuItem from '@material-ui/core/MenuItem';
 import {
   HEADER_USERNAME_MAX_WIDTH,
@@ -62,8 +61,8 @@ const useStyles = makeStyles((theme) => ({
 
 interface Props {
   useAvatar: (args: { id: string; size?: string }) => UseQueryResult<Blob>;
-  member?: ImmutableMember;
-  members?: Member[];
+  member: ImmutableMember;
+  members: Member[];
   onSeeProfileClick?: MouseEventHandler;
   onMemberClick?: (_id: string) => MouseEventHandler;
   seeProfileText?: string;
@@ -84,8 +83,8 @@ const UserSwitch: FC<Props> = ({
   buttonId,
   seeProfileButtonId,
   buildMemberMenuItemId,
-  member = Map(),
-  members = [],
+  member,
+  members,
   isMemberLoading = false,
   onMemberClick = () => () => undefined,
   seeProfileText = 'See Profile',
@@ -95,7 +94,7 @@ const UserSwitch: FC<Props> = ({
   const [anchorEl, setAnchorEl] = useState<(EventTarget & Element) | null>(
     null,
   );
-  const memberName = member.get('name');
+  const memberName = member.name;
 
   const handleClick: MouseEventHandler = (event: MouseEvent) => {
     setAnchorEl(event.currentTarget);
@@ -115,7 +114,7 @@ const UserSwitch: FC<Props> = ({
       const { id, name, email, extra } = m;
 
       // do not show current member
-      if (id === member.get('id')) {
+      if (id === member.id) {
         return null;
       }
 
@@ -158,15 +157,15 @@ const UserSwitch: FC<Props> = ({
   };
 
   const renderCurrentMemberInfo = (): ReactElement | null => {
-    if (!member || member.isEmpty()) {
+    if (!member || member.toSeq().isEmpty()) {
       return null;
     }
 
     return (
       <MenuItem>
         <Avatar
-          id={member.get('id')}
-          extra={member.get('extra')}
+          id={member.id}
+          extra={member.extra}
           className={classes.mainAvatar}
           variant={Variant.CIRCLE}
           alt={memberName}
@@ -180,10 +179,10 @@ const UserSwitch: FC<Props> = ({
           </Typography>
           {/* show info only for normal member */}
           {/* todo: show which item a pseudonymized member as access to */}
-          {!isPseudonymizedMember(member.get('email')) && (
+          {!isPseudonymizedMember(member.email) && (
             <>
               <Typography variant='subtitle2' noWrap>
-                {member.get('email')}
+                {member.email}
               </Typography>
               <Button
                 size='small'
@@ -229,8 +228,8 @@ const UserSwitch: FC<Props> = ({
       <>
         <Tooltip title={memberName ?? signedOutTooltipText}>
           <Avatar
-            id={member.get('id')}
-            extra={member.get('extra')}
+            id={member.id}
+            extra={member.extra}
             maxWidth={30}
             maxHeight={30}
             variant={Variant.CIRCLE}

@@ -5,24 +5,24 @@ import ItemLoginScreen, { SignInPropertiesType } from './ItemLoginScreen';
 import Loader from '../Loader';
 import { UUID } from '../types';
 import ForbiddenText from './ForbiddenText';
-import { Map } from 'immutable';
+import { RecordOf } from 'immutable';
 
 export type ItemLoginAuthorizationProps = {
   signIn: (args: { itemId: string } & SignInPropertiesType) => void;
   itemId: UUID;
   useCurrentMember: () => {
-    data: Map<string, unknown>;
+    data: RecordOf<any>;
     isLoading: boolean;
     isError: boolean;
   };
   useItem: (itemId: string) => {
-    data: Map<unknown, unknown>;
+    data: RecordOf<any>;
     isLoading: boolean;
     isError: boolean;
     error: Error;
   };
   useItemLogin: (itemId: string) => {
-    data: Map<string, any>;
+    data: RecordOf<any>;
   };
   Error?: ReactElement;
   memberIdInputId?: string;
@@ -91,7 +91,7 @@ const ItemLoginAuthorization =
       // the item could be fetched without errors
       // because the user is signed in and has access
       // or because the item is public
-      if (item && !item.isEmpty()) {
+      if (item && !item.toSeq().isEmpty()) {
         return <ChildComponent />;
       }
 

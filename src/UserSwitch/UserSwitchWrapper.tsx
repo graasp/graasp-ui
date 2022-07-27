@@ -2,7 +2,7 @@ import React, { useEffect, FC } from 'react';
 import Typography from '@material-ui/core/Typography';
 import type { UseQueryResult } from 'react-query';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
-import { List } from 'immutable';
+import { List, RecordOf } from 'immutable';
 import { Divider } from '@material-ui/core';
 import MeetingRoomIcon from '@material-ui/icons/MeetingRoom';
 import {
@@ -23,7 +23,7 @@ import type { ImmutableMember, Member } from '../types';
 interface Props {
   ButtonContent: JSX.Element;
   signOut: (memberId: string) => void;
-  useMembers: (ids: string[]) => UseQueryResult<List<Member>>;
+  useMembers: (ids: string[]) => UseQueryResult<List<RecordOf<Member>>>;
   domain: string;
   redirectPath: string;
   profilePath: string;
@@ -117,7 +117,7 @@ const UserSwitchWrapper: FC<Props> = ({
     </MenuItem>,
   ];
 
-  if (currentMember && !currentMember.isEmpty()) {
+  if (currentMember && !currentMember.toSeq().isEmpty()) {
     Actions = Actions.concat([
       <Divider key='divider' />,
       <MenuItem key='signout' onClick={handleSignOut} id={signOutMenuItemId}>
@@ -131,20 +131,22 @@ const UserSwitchWrapper: FC<Props> = ({
 
   return (
     <>
-      <UserSwitch
-        ButtonContent={ButtonContent}
-        Actions={Actions}
-        onMemberClick={onMemberClick}
-        useAvatar={useAvatar}
-        onSeeProfileClick={goToProfile}
-        member={currentMember}
-        members={members?.toJS() as Member[]}
-        seeProfileText={seeProfileText}
-        signedOutTooltipText={signedOutTooltipText}
-        buttonId={buttonId}
-        buildMemberMenuItemId={buildMemberMenuItemId}
-        seeProfileButtonId={seeProfileButtonId}
-      />
+      {currentMember && members ? (
+        <UserSwitch
+          ButtonContent={ButtonContent}
+          Actions={Actions}
+          onMemberClick={onMemberClick}
+          useAvatar={useAvatar}
+          onSeeProfileClick={goToProfile}
+          member={currentMember}
+          members={members?.toJS() as Member[]}
+          seeProfileText={seeProfileText}
+          signedOutTooltipText={signedOutTooltipText}
+          buttonId={buttonId}
+          buildMemberMenuItemId={buildMemberMenuItemId}
+          seeProfileButtonId={seeProfileButtonId}
+        />
+      ) : null}
     </>
   );
 };

@@ -1,6 +1,6 @@
 import React, { FC, useEffect, useState } from 'react';
 import Alert from '@material-ui/lab/Alert';
-import { Record } from 'immutable';
+import { RecordOf } from 'immutable';
 import { MIME_TYPES, UNEXPECTED_ERROR_MESSAGE } from '../constants';
 import Loader from '../Loader';
 import FileImage from './FileImage';
@@ -14,7 +14,7 @@ import { FileItemExtra, Item, S3FileItemExtra, UnknownExtra } from '../types';
 import { ERRORS } from '../enums';
 
 interface FileItemProps {
-  item: Record<Item<UnknownExtra>>;
+  item: RecordOf<Item<UnknownExtra>>;
   content: Blob;
   id?: string;
   defaultItem?: JSX.Element;
@@ -46,10 +46,10 @@ const FileItem: FC<FileItemProps> = ({
 }) => {
   const [url, setUrl] = useState<string>();
   const extra =
-    getFileExtra(item.get('extra') as FileItemExtra) ??
-    getS3FileExtra(item.get('extra') as S3FileItemExtra);
+    getFileExtra(item.extra as FileItemExtra) ??
+    getS3FileExtra(item.extra as S3FileItemExtra);
   const { mimetype, name: originalFileName } = extra ?? {};
-  const name = item.get('name');
+  const name = item.name;
 
   useEffect(() => {
     (async () => {

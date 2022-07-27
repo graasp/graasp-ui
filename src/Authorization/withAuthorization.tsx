@@ -1,11 +1,11 @@
 import React, { ComponentType, FC } from 'react';
-import { Map } from 'immutable';
+import { RecordOf } from 'immutable';
 import { redirect } from '@graasp/utils';
 import RedirectContent from './RedirectionContent';
 
 interface Props {
   redirectionLink: string;
-  currentMember?: Map<string, unknown>;
+  currentMember?: RecordOf<any>;
   onRedirect?: () => void;
 }
 
@@ -20,7 +20,7 @@ const withAuthorization =
     };
 
     // check authorization: user shouldn't be empty
-    if (currentMember?.size) {
+    if (currentMember?.toSeq().size) {
       // eslint-disable-next-line react/jsx-props-no-spreading
       return <ChildComponent {...(childProps as P)} />;
     }

@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import clsx from 'clsx';
 import type { UseQueryResult } from 'react-query';
-import { List, Record } from 'immutable';
+import { List, RecordOf } from 'immutable';
 import Skeleton from '@material-ui/lab/Skeleton';
 import { makeStyles } from '@material-ui/core/styles';
 import TreeItem from '@material-ui/lab/TreeItem';
@@ -41,10 +41,10 @@ interface CustomItemTreeProps {
   useChildren: (
     id: string,
     options: { enabled: boolean },
-  ) => UseQueryResult<List<Item>>;
-  useItem: (id: string) => UseQueryResult<Record<Item>>;
-  showItemFilter?: (item: Record<Item>) => boolean;
-  shouldFetchChildrenForItem?: (item: Record<Item>) => boolean;
+  ) => UseQueryResult<List<RecordOf<Item>>>;
+  useItem: (id: string) => UseQueryResult<RecordOf<Item>>;
+  showItemFilter?: (item: RecordOf<Item>) => boolean;
+  shouldFetchChildrenForItem?: (item: RecordOf<Item>) => boolean;
   showCheckbox?: boolean;
 }
 
@@ -68,7 +68,7 @@ const CustomTreeItem: FC<CustomItemTreeProps> = ({
 
   // load depth-2 level of children to allow collapse to correctly show
   // parent of parent should be expanded
-  const parentsIds = getParentsIdsFromPath(item?.get('path'));
+  const parentsIds = getParentsIdsFromPath(item?.path);
   const parentOfParentIdx = parentsIds.length - 2;
   const parentOfParentIsVisible =
     parentOfParentIdx < 0 ||
@@ -104,7 +104,7 @@ const CustomTreeItem: FC<CustomItemTreeProps> = ({
     return null;
   }
 
-  const name = item.get('name');
+  const name = item.name;
 
   // to prevent clicking on disabled checkboxes, the id of the item is set to a non-existing id
   const nodeId = isDisabled ? 'disabled-node-id' : itemId;

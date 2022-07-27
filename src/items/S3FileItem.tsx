@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Record } from 'immutable';
+import { RecordOf } from 'immutable';
 import Alert from '@material-ui/lab/Alert';
 import { MIME_TYPES, UNEXPECTED_ERROR_MESSAGE } from '../constants';
 import Loader from '../Loader';
@@ -15,7 +15,7 @@ import { ERRORS } from '../enums';
 
 interface S3FileItemProps {
   id?: string;
-  item: Record<Item<S3FileItemExtra>>;
+  item: RecordOf<Item<S3FileItemExtra>>;
   content: Blob;
   defaultItem?: JSX.Element;
   downloadText?: string;
@@ -44,9 +44,8 @@ const S3FileItem = ({
   className,
 }: S3FileItemProps): JSX.Element => {
   const [url, setUrl] = useState<string>();
-  const { mimetype, name: originalFileName } =
-    getS3FileExtra(item.get('extra')) ?? {};
-  const name = item.get('name');
+  const { mimetype, name: originalFileName } = getS3FileExtra(item.extra) ?? {};
+  const name = item.name;
 
   useEffect(() => {
     (async () => {
