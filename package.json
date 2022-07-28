@@ -29,7 +29,7 @@
     "start:example": "yarn workspace graasp-ui-example start",
     "prepack": "yarn build",
     "prepare": "yarn prepack && yarn hooks:install",
-    "lint": "eslint .",
+    "lint": "eslint src",
     "prettier:check": "prettier --check \"{src,example}/**/*.{js,ts,tsx}\"",
     "prettier:write": "prettier --write \"{src,example}/**/*.{js,ts,tsx}\"",
     "pretest": "cd example && yarn",
@@ -46,7 +46,7 @@
     "post-commit": "git status",
     "pre-commit": "yarn prettier:check && yarn lint",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "storybook:build": "build-storybook"
   },
   "dependencies": {
     "@graasp/utils": "github:graasp/graasp-utils.git",
