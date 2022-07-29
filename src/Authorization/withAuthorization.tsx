@@ -1,6 +1,6 @@
 import React, { ComponentType, FC } from 'react';
 import { Map } from 'immutable';
-import { redirect } from '@graasp/utils';
+import { redirect } from '@graasp/sdk';
 import RedirectContent from './RedirectionContent';
 
 interface Props {

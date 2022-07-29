@@ -5,9 +5,6 @@ import { ButtonVariant } from '../types';
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 
-/**
- * Column properties.
- */
 export interface GraaspButtonProps {
   autoFocus?: boolean;
   /**
