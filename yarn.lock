@@ -2820,9 +2820,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@graasp/sdk@github:graasp/graasp-sdk.git#20/library":
+"@graasp/sdk@github:graasp/graasp-sdk.git":
   version: 0.1.0
-  resolution: "@graasp/sdk@https://github.com/graasp/graasp-sdk.git#commit=b6c9591b0e277bc031f7bbc18eee308689263856"
+  resolution: "@graasp/sdk@https://github.com/graasp/graasp-sdk.git#commit=7e3491095507f6dfd129d318a87e6c63f0eb486e"
   dependencies:
     "@fastify/secure-session": 5.2.0
     aws-sdk: 2.1111.0
@@ -2852,7 +2852,7 @@ __metadata:
     "@babel/preset-typescript": 7.16.7
     "@commitlint/cli": 17.0.0
     "@commitlint/config-conventional": 17.0.0
-    "@graasp/sdk": "github:graasp/graasp-sdk.git#20/library"
+    "@graasp/sdk": "github:graasp/graasp-sdk.git"
     "@material-ui/core": 4.12.4
     "@material-ui/icons": 4.11.3
     "@material-ui/lab": 4.0.0-alpha.61
