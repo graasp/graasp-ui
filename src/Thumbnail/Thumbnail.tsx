@@ -3,12 +3,12 @@ import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import Skeleton from '@material-ui/lab/Skeleton';
 import { getItemImage } from '../utils/image';
-import { EmbeddedLinkItemExtra, UnknownExtra, Variant } from '../types';
+import { EmbeddedLinkItemExtra/*, UnknownExtra*/, Variant } from '../types';
 import { DEFAULT_THUMBNAIL_SIZE } from '../constants';
 
 type ThumbnailProps = {
   id: string;
-  extra: UnknownExtra;
+  extra: any;
   maxWidth?: string | number;
   maxHeight?: string | number;
   defaultImage?: string;
@@ -36,7 +36,7 @@ const Thumbnail: FC<ThumbnailProps> = ({
   variant = Variant.RECT,
   size = DEFAULT_THUMBNAIL_SIZE,
 }) => {
-  console.log("t1")
+
   const [thumbnailUrl, setThumbnailUrl] = useState<string | undefined>(
     undefined,
   );
@@ -55,8 +55,7 @@ const Thumbnail: FC<ThumbnailProps> = ({
       maxHeight,
     },
   })();
-  console.log("thumbnailData")
-console.log(thumbnailData)
+
   useEffect(() => {
     if (thumbnailData) {
       const src = URL.createObjectURL(thumbnailData);

@@ -23,7 +23,7 @@ import {
   SHORT_TEXT_WIDTH,
   SMALL_AVATAR_SIZE,
 } from '../constants';
-import { Member, Variant } from '../types';
+import { Member, MemberRecord, Variant } from '../types';
 import Avatar from '../Avatar';
 import Button from '../Button';
 import { Skeleton } from '@material-ui/lab';
@@ -61,7 +61,7 @@ const useStyles = makeStyles((theme) => ({
 
 interface Props {
   useAvatar: (args: { id?: string; size?: string }) => UseQueryResult<Blob>;
-  member?: Member;
+  member?: MemberRecord;
   members?: Member[];
   onSeeProfileClick?: MouseEventHandler;
   onMemberClick?: (_id: string) => MouseEventHandler;
@@ -157,7 +157,7 @@ const UserSwitch: FC<Props> = ({
   };
 
   const renderCurrentMemberInfo = (): ReactElement | null => {
-    if (!member || Object.keys(member).length === 0) {
+    if (!member || member.toSeq().isEmpty()) {
       return null;
     }
 

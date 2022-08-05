@@ -68,7 +68,7 @@ export class ImmutableItemClass extends Record({
 }) {}
 
 export type EmbeddedLinkItemExtraProp = {
-  thumbnails: string[];
+  thumbnails: any;
   html: string;
   url: string;
   icons: string[];

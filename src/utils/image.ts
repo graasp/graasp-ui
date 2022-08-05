@@ -1,4 +1,4 @@
-import { EmbeddedLinkItemExtra } from '../types';
+//import { EmbeddedLinkItemExtra } from '../types';
 import { getEmbeddedLinkExtra } from './itemExtra';
 
 export const getItemImage = ({
@@ -7,7 +7,7 @@ export const getItemImage = ({
   defaultImage,
 }: {
   url?: string;
-  extra: EmbeddedLinkItemExtra;
+  extra: any;
   defaultImage?: string;
 }): string | null | undefined => {
   if (url) {
@@ -17,7 +17,6 @@ export const getItemImage = ({
   if (linkThumbnail) {
     return linkThumbnail;
   }
-
   if (defaultImage) {
     return defaultImage;
   }
