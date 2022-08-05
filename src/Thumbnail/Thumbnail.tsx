@@ -36,6 +36,7 @@ const Thumbnail: FC<ThumbnailProps> = ({
   variant = Variant.RECT,
   size = DEFAULT_THUMBNAIL_SIZE,
 }) => {
+  console.log("t1")
   const [thumbnailUrl, setThumbnailUrl] = useState<string | undefined>(
     undefined,
   );
@@ -54,7 +55,8 @@ const Thumbnail: FC<ThumbnailProps> = ({
       maxHeight,
     },
   })();
-
+  console.log("thumbnailData")
+console.log(thumbnailData)
   useEffect(() => {
     if (thumbnailData) {
       const src = URL.createObjectURL(thumbnailData);

@@ -14,7 +14,7 @@ import Button from '../Button';
 import ForbiddenText from './ForbiddenText';
 import { isMemberIdValid } from '../utils/utils';
 import MemberIdTextField from './MemberIdTextField';
-import { ItemLogin, UUID } from '../types';
+import { ItemLoginRecord, UUID } from '../types';
 
 export type SignInPropertiesType = {
   memberId?: string;
@@ -59,7 +59,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 interface ItemLoginScreenProps {
   itemId: UUID;
   signIn: (args: { itemId: string } & SignInPropertiesType) => void;
-  itemLogin: ItemLogin;
+  itemLogin: ItemLoginRecord;
   // todo: use enum
   memberIdInputId?: string;
   usernameInputId?: string;
@@ -89,12 +89,12 @@ const ItemLoginScreen: FC<ItemLoginScreenProps> = ({
   const [signInMode, setSignInMode] = useState<string>(
     SETTINGS.ITEM_LOGIN.SIGN_IN_MODE.PSEUDONYME,
   );
-  const loginSchema = itemLogin?.get('loginSchema');
+  const loginSchema = itemLogin?.loginSchema;
 
   // no item login detected
   if (
     !itemLogin ||
-    itemLogin.isEmpty() ||
+    itemLogin.toSeq().isEmpty() ||
     !Object.values(SETTINGS.ITEM_LOGIN.OPTIONS).includes(loginSchema)
   ) {
     return ForbiddenContent;

@@ -1,11 +1,11 @@
 import React, { ComponentType, FC } from 'react';
-import { RecordOf } from 'immutable';
 import { redirect } from '@graasp/utils';
 import RedirectContent from './RedirectionContent';
+import { MemberRecord } from '../types';
 
 interface Props {
   redirectionLink: string;
-  currentMember?: RecordOf<any>;
+  currentMember?: MemberRecord;
   onRedirect?: () => void;
 }
 

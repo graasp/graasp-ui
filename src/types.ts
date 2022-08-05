@@ -30,25 +30,33 @@ export interface Item<T = UnknownExtra> {
   settings?: unknown;
 }
 
-export type Member = {
-  id: string;
-  name: string;
-  email: string;
-  extra: {
-    [key: string]: Anything;
-  };
-};
+export type ItemRecord = RecordOf<Item>;
 
 export type ItemMembership = {
   id: string;
 };
+
+export type MemberExtra = {
+  hasAvatar?: boolean;
+};
+
+export type MemberExtraRecord = RecordOf<MemberExtra>;
+
+export type Member = {
+  id: UUID;
+  name: string;
+  email: string;
+  extra: MemberExtraRecord;
+};
+
+export type MemberRecord = RecordOf<Member>;
 
 // todo: better solution?
 // conflict between isEmpty which only exists in Map, List of objects and the fact
 // we cannot create a Record from data
 export type ImmutableItem = RecordOf<any>;
 export type ImmutableMember = RecordOf<any>;
-export type ItemLogin = RecordOf<any>;
+//export type ItemLogin = RecordOf<any>;
 export class ImmutableItemClass extends Record({
   id: '',
   name: '',
@@ -117,6 +125,19 @@ export type Flag = {
   name: string;
 };
 
+export type FlagRecord = RecordOf<Flag>;
+
 export type ButtonVariant = 'text' | 'contained' | 'outlined';
 
 export type HostMap = { [name in Context]: string };
+
+export enum ITEM_LOGIN_SCHEMAS {
+  USERNAME = 'username',
+  USERNAME_AND_PASSWORD = 'username+password',
+}
+
+export type ItemLogin = {
+  loginSchema: ITEM_LOGIN_SCHEMAS;
+};
+
+export type ItemLoginRecord = RecordOf<ItemLogin>;

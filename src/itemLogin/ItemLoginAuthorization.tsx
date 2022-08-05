@@ -3,26 +3,25 @@ import { StatusCodes, getReasonPhrase } from 'http-status-codes';
 import Alert from '@material-ui/lab/Alert';
 import ItemLoginScreen, { SignInPropertiesType } from './ItemLoginScreen';
 import Loader from '../Loader';
-import { UUID } from '../types';
+import { ItemLoginRecord, ItemRecord, MemberRecord, UUID } from '../types';
 import ForbiddenText from './ForbiddenText';
-import { RecordOf } from 'immutable';
 
 export type ItemLoginAuthorizationProps = {
   signIn: (args: { itemId: string } & SignInPropertiesType) => void;
   itemId: UUID;
   useCurrentMember: () => {
-    data: RecordOf<any>;
+    data: MemberRecord;
     isLoading: boolean;
     isError: boolean;
   };
   useItem: (itemId: string) => {
-    data: RecordOf<any>;
+    data: ItemRecord;
     isLoading: boolean;
     isError: boolean;
     error: Error;
   };
   useItemLogin: (itemId: string) => {
-    data: RecordOf<any>;
+    data: ItemLoginRecord;
   };
   Error?: ReactElement;
   memberIdInputId?: string;
@@ -96,7 +95,7 @@ const ItemLoginAuthorization =
       }
 
       // signed out but can sign in with item login
-      if ((!user || user.isEmpty()) && itemLogin && !itemLogin.isEmpty()) {
+      if ((!user || user.toSeq().isEmpty()) && itemLogin && !itemLogin.toSeq().isEmpty()) {
         return (
           <ItemLoginScreen
             itemId={itemId}

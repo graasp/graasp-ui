@@ -13,7 +13,7 @@ import {
   ITEM_MAX_HEIGHT,
 } from '../constants';
 import withCaption from './withCaption';
-import type { AppItemExtra, Item, Member, UUID } from '../types';
+import type { AppItemExtra, Item, Member, MemberRecord, UUID } from '../types';
 import { UseMutateAsyncFunction } from 'react-query';
 
 const buildPostMessageKeys = (itemId: UUID): { [key: string]: string } => ({
@@ -29,7 +29,7 @@ type Token = string;
 
 interface AppItemProps {
   item: RecordOf<Item<AppItemExtra>>;
-  member: Record<Member>;
+  member: MemberRecord;
   lang?: string;
   context?: string;
   permission?: string;

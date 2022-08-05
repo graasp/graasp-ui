@@ -1,13 +1,13 @@
 import React, { FC } from 'react';
 import clsx from 'clsx';
 import type { UseQueryResult } from 'react-query';
-import { List, RecordOf } from 'immutable';
+import { List } from 'immutable';
 import Skeleton from '@material-ui/lab/Skeleton';
 import { makeStyles } from '@material-ui/core/styles';
 import TreeItem from '@material-ui/lab/TreeItem';
 import TreeItemLabel from './TreeItemLabel';
 import { getParentsIdsFromPath } from '../utils/utils';
-import { ImmutableItemClass, Item } from '../types';
+import { ImmutableItemClass, ItemRecord } from '../types';
 
 const LoadingTreeItem = <Skeleton variant='text' />;
 
@@ -41,10 +41,10 @@ interface CustomItemTreeProps {
   useChildren: (
     id: string,
     options: { enabled: boolean },
-  ) => UseQueryResult<List<RecordOf<Item>>>;
-  useItem: (id: string) => UseQueryResult<RecordOf<Item>>;
-  showItemFilter?: (item: RecordOf<Item>) => boolean;
-  shouldFetchChildrenForItem?: (item: RecordOf<Item>) => boolean;
+  ) => UseQueryResult<List<ItemRecord>>;
+  useItem: (id: string) => UseQueryResult<ItemRecord>;
+  showItemFilter?: (item: ItemRecord) => boolean;
+  shouldFetchChildrenForItem?: (item: ItemRecord) => boolean;
   showCheckbox?: boolean;
 }
 

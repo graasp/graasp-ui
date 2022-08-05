@@ -13,7 +13,7 @@ export const getItemImage = ({
   if (url) {
     return url;
   }
-  const linkThumbnail = getEmbeddedLinkExtra(extra)?.thumbnails?.[0];
+  const linkThumbnail = getEmbeddedLinkExtra(extra)?.thumbnails?.get(0);
   if (linkThumbnail) {
     return linkThumbnail;
   }

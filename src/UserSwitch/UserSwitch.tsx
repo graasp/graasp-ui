@@ -23,7 +23,7 @@ import {
   SHORT_TEXT_WIDTH,
   SMALL_AVATAR_SIZE,
 } from '../constants';
-import { ImmutableMember, Member, Variant } from '../types';
+import { Member, Variant } from '../types';
 import Avatar from '../Avatar';
 import Button from '../Button';
 import { Skeleton } from '@material-ui/lab';
@@ -60,9 +60,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 interface Props {
-  useAvatar: (args: { id: string; size?: string }) => UseQueryResult<Blob>;
-  member: ImmutableMember;
-  members: Member[];
+  useAvatar: (args: { id?: string; size?: string }) => UseQueryResult<Blob>;
+  member?: Member;
+  members?: Member[];
   onSeeProfileClick?: MouseEventHandler;
   onMemberClick?: (_id: string) => MouseEventHandler;
   seeProfileText?: string;
@@ -84,7 +84,7 @@ const UserSwitch: FC<Props> = ({
   seeProfileButtonId,
   buildMemberMenuItemId,
   member,
-  members,
+  members = [],
   isMemberLoading = false,
   onMemberClick = () => () => undefined,
   seeProfileText = 'See Profile',
@@ -94,7 +94,7 @@ const UserSwitch: FC<Props> = ({
   const [anchorEl, setAnchorEl] = useState<(EventTarget & Element) | null>(
     null,
   );
-  const memberName = member.name;
+  const memberName = member?.name;
 
   const handleClick: MouseEventHandler = (event: MouseEvent) => {
     setAnchorEl(event.currentTarget);
@@ -114,7 +114,7 @@ const UserSwitch: FC<Props> = ({
       const { id, name, email, extra } = m;
 
       // do not show current member
-      if (id === member.id) {
+      if (id === member?.id) {
         return null;
       }
 
@@ -157,7 +157,7 @@ const UserSwitch: FC<Props> = ({
   };
 
   const renderCurrentMemberInfo = (): ReactElement | null => {
-    if (!member || member.toSeq().isEmpty()) {
+    if (!member || Object.keys(member).length === 0) {
       return null;
     }
 
@@ -228,8 +228,8 @@ const UserSwitch: FC<Props> = ({
       <>
         <Tooltip title={memberName ?? signedOutTooltipText}>
           <Avatar
-            id={member.id}
-            extra={member.extra}
+            id={member?.id}
+            extra={member?.extra}
             maxWidth={30}
             maxHeight={30}
             variant={Variant.CIRCLE}

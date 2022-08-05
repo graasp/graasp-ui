@@ -2,30 +2,30 @@ import React, { FC, useState } from 'react';
 import type { UseQueryResult } from 'react-query';
 import TreeView from '@material-ui/lab/TreeView';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import { List, RecordOf } from 'immutable';
+import { List } from 'immutable';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import TreeItem from '@material-ui/lab/TreeItem';
 import CustomTreeItem from './CustomTreeItem';
 import TreeItemLabel from './TreeItemLabel';
-import type { Item } from '../types';
+import type { ItemRecord } from '../types';
 
 interface DynamicTreeViewProps {
   id: string;
   rootLabel: string;
   rootId: string;
   rootClassName: string;
-  items: List<RecordOf<Item>>;
+  items: List<ItemRecord>;
   initialExpendedItems?: string[];
   showCheckbox?: boolean;
   selectedId: string;
   onTreeItemSelect?: (id: string) => void;
-  useItem: (id: string) => UseQueryResult<RecordOf<Item>>;
+  useItem: (id: string) => UseQueryResult<ItemRecord>;
   useChildren: (
     id: string,
     options: { enabled: boolean },
-  ) => UseQueryResult<List<RecordOf<Item>>>;
-  showItemFilter?: (item: RecordOf<Item>) => boolean;
-  shouldFetchChildrenForItem?: (item: RecordOf<Item>) => boolean;
+  ) => UseQueryResult<List<ItemRecord>>;
+  showItemFilter?: (item: ItemRecord) => boolean;
+  shouldFetchChildrenForItem?: (item: ItemRecord) => boolean;
   isTreeItemDisabled?: (args: {
     parentIsDisabled: boolean;
     itemId: string;
