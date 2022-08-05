@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import clsx from 'clsx';
-import { Record, RecordOf } from 'immutable';
+import { RecordOf } from 'immutable';
 import { withStyles } from '@material-ui/core/styles';
 import { getAppExtra } from '../utils/itemExtra';
 import qs from 'qs';
@@ -13,7 +13,7 @@ import {
   ITEM_MAX_HEIGHT,
 } from '../constants';
 import withCaption from './withCaption';
-import type { AppItemExtra, Item, Member, MemberRecord, UUID } from '../types';
+import type { AppItemExtra, Item, MemberRecord, UUID } from '../types';
 import { UseMutateAsyncFunction } from 'react-query';
 
 const buildPostMessageKeys = (itemId: UUID): { [key: string]: string } => ({

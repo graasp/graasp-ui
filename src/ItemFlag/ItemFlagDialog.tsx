@@ -9,7 +9,7 @@ import { List as MuiList } from '@material-ui/core';
 import { ListItem, ListItemText, makeStyles } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import { FLAG_LIST_MAX_HEIGHT } from '../constants';
-import { Flag, FlagRecord } from '../types';
+import { FlagRecord } from '../types';
 import { List } from 'immutable';
 
 const useStyles = makeStyles(() => ({
