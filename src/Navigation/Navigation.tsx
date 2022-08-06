@@ -5,19 +5,21 @@ import {
   MenuItem,
   Typography,
   Button,
+  PropTypes,
 } from '@material-ui/core';
-import { redirect, Context } from '@graasp/utils';
+import { redirect, Context } from '@graasp/sdk';
 import ExploreIcon from '../icons/ExploreIcon';
 import BuildIcon from '../icons/BuildIcon';
 import AnalyzeIcon from '../icons/AnalyzeIcon';
 import PlayIcon from '../icons/PlayIcon';
 import { HostMap } from '../types';
+import clsx from 'clsx';
 
 const useStyles = makeStyles((theme) => ({
   icon: {
     marginRight: theme.spacing(1),
   },
-  // todo: remove once analyze is not a material icon anymore
+  // todo: remove once graasp analytics is not a material icon anymore
   analyzeIcon: {
     margin: theme.spacing(0, 1, 0, 0.5),
   },
@@ -58,11 +60,11 @@ const ContextMenuItem: React.FC<ContextMenuItemProps> = ({
           {Context.BUILDER}
         </>
       );
-    case Context.EXPLORER:
+    case Context.LIBRARY:
       return (
         <>
           <ExploreIcon className={classes.icon} disabled={disabled} />
-          {Context.EXPLORER}
+          {Context.LIBRARY}
         </>
       );
     case Context.PLAYER:
@@ -72,11 +74,11 @@ const ContextMenuItem: React.FC<ContextMenuItemProps> = ({
           {Context.PLAYER}
         </>
       );
-    case Context.ANALYZER:
+    case Context.ANALYTICS:
       return (
         <>
           <AnalyzeIcon className={classes.analyzeIcon} disabled={disabled} />
-          {Context.ANALYZER}
+          {Context.ANALYTICS}
         </>
       );
     default:
@@ -84,16 +86,40 @@ const ContextMenuItem: React.FC<ContextMenuItemProps> = ({
   }
 };
 
-interface NavigationProps {
-  id?: string;
+export interface NavigationProps {
+  /**
+   * button's classname
+   */
+  buttonClassname?: string;
+  /**
+   * button's color based on MUI design
+   */
+  buttonColor?: PropTypes.Color;
+  /**
+   * current context to set as default value
+   */
   currentValue: Context;
+  /**
+   * map of hosts to define apps' urls
+   */
   hostMap: HostMap;
+  /**
+   * id string
+   */
+  id?: string;
+  /**
+   * button's triangle's classname
+   */
+  triangleClassname?: string;
 }
 
 const Navigation: React.FC<NavigationProps> = ({
   currentValue,
   hostMap = {},
   id,
+  buttonColor = 'secondary',
+  buttonClassname,
+  triangleClassname,
 }) => {
   const classes = useStyles();
 
@@ -122,14 +148,14 @@ const Navigation: React.FC<NavigationProps> = ({
         aria-controls='navigation-menu'
         aria-haspopup='true'
         onClick={handleClick}
-        className={classes.button}
+        className={clsx(buttonClassname, classes.button)}
         variant='outlined'
-        color='secondary'
+        color={buttonColor}
       >
         <Typography variant='h6' color='inherit'>
           {currentValue}
         </Typography>
-        <div className={classes.triangle} />
+        <div className={clsx(triangleClassname, classes.triangle)} />
       </Button>
       <Menu
         id='navigation-menu'
@@ -156,10 +182,10 @@ const Navigation: React.FC<NavigationProps> = ({
         </MenuItem>
         <MenuItem
           className={classes.menuItem}
-          onClick={onClick(Context.EXPLORER)}
-          disabled={currentValue === Context.EXPLORER}
+          onClick={onClick(Context.LIBRARY)}
+          disabled={currentValue === Context.LIBRARY}
         >
-          <ContextMenuItem value={Context.EXPLORER} />
+          <ContextMenuItem value={Context.LIBRARY} />
         </MenuItem>
         <MenuItem
           className={classes.menuItem}
@@ -169,7 +195,7 @@ const Navigation: React.FC<NavigationProps> = ({
           <ContextMenuItem value={Context.PLAYER} />
         </MenuItem>
         <MenuItem disabled className={classes.menuItem}>
-          <ContextMenuItem value={Context.ANALYZER} />
+          <ContextMenuItem value={Context.ANALYTICS} />
         </MenuItem>
       </Menu>
     </>

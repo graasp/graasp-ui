@@ -1,12 +1,12 @@
 import React, { useState, useEffect, FC } from 'react';
 import clsx from 'clsx';
-// eslint-disable-next-line import/no-named-default
 import { default as AvatarComponent } from '@material-ui/core/Avatar';
 import { makeStyles } from '@material-ui/core/styles';
 import Skeleton from '@material-ui/lab/Skeleton';
 import { getItemImage } from '../utils/image';
 import { EmbeddedLinkItemExtra, Variant } from '../types';
 import { DEFAULT_THUMBNAIL_SIZE } from '../constants';
+import { UseQueryResult } from 'react-query';
 
 type AvatarProps = {
   id: string;
@@ -18,7 +18,7 @@ type AvatarProps = {
   alt: string;
   component?: string;
   className?: string;
-  useAvatar: Function;
+  useAvatar: (args: { id: string; size?: string }) => UseQueryResult<Blob>;
   // todo: enforce size strings
   size?: string;
 };
@@ -99,4 +99,4 @@ const Avatar: FC<AvatarProps> = ({
   );
 };
 
-export default Avatar;
+export default React.memo(Avatar);

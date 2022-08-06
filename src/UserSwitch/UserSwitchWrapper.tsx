@@ -12,7 +12,7 @@ import {
   getCurrentSession,
   setCurrentSession,
   saveUrlForRedirection,
-} from '@graasp/utils';
+} from '@graasp/sdk';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import MenuItem from '@material-ui/core/MenuItem';
 
@@ -28,7 +28,7 @@ interface Props {
   redirectPath: string;
   profilePath: string;
   switchMember: (args: { memberId: string; domain: string }) => Promise<void>;
-  useAvatar: Function;
+  useAvatar: (args: { id: string; size?: string }) => UseQueryResult<Blob>;
   currentMember?: ImmutableMember;
   isCurrentMemberLoading: boolean;
   isCurrentMemberSuccess: boolean;

@@ -21,7 +21,7 @@ export default {
     typescript({
       tsconfig: './tsconfig.json',
       sourceMap: false,
-      exclude: ['**/*.test.ts', '**/*.test.tsx'],
+      exclude: ['**/*.test.ts', '**/*.test.tsx', '**/*.stories.tsx'],
     }),
     commonjs(),
     scss({ outputStyle: 'compressed', output: 'dist/bundle.css' }),

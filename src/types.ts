@@ -1,5 +1,5 @@
 import { Map, Record } from 'immutable';
-import { Context } from '@graasp/utils';
+import { Context } from '@graasp/sdk';
 
 export type UUID = string;
 

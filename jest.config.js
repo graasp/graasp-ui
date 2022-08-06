@@ -4,8 +4,6 @@ module.exports = {
     '^.+\\.(ts|tsx)?$': 'ts-jest',
     '^.+\\.(js|jsx)$': 'babel-jest',
   },
-  snapshotSerializers: ['enzyme-to-json/serializer'],
-  setupFilesAfterEnv: ['<rootDir>/test/setupTests.ts'],
   moduleNameMapper: {
     '@material-ui/core/(.*)':
       '<rootDir>/example/node_modules/@material-ui/core/$1',
@@ -21,4 +19,5 @@ module.exports = {
     '^react-dom/(.*)': '<rootDir>/example/node_modules/react-dom/$1',
     '\\.(css|less)$': '<rootDir>/test/styleMock.js',
   },
+  resolver: `${__dirname}/test/resolver.js`,
 };

@@ -5,20 +5,36 @@ import { ButtonVariant } from '../types';
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 
-interface GraaspButtonProps {
-  onClick?: React.MouseEventHandler<HTMLButtonElement>;
-  id?: string;
-  dataCy?: string;
+export interface GraaspButtonProps {
+  autoFocus?: boolean;
+  /**
+   * button contents, usually a string
+   */
   children?: ReactNode;
-  color?: PropTypes.Color;
-  variant?: ButtonVariant;
-  disabled?: boolean;
+  /**
+   * classname string
+   */
   className?: string;
+  color?: PropTypes.Color;
+  component?: React.ElementType;
+  /**
+   * cypress data-cy attribute
+   */
+  dataCy?: string;
+  disabled?: boolean;
+  endIcon?: ReactNode;
+  fullWidth?: boolean;
+  /**
+   * id string
+   */
+  id?: string;
+  /**
+   * on click handler
+   */
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
   size?: 'medium' | 'large' | 'small';
   startIcon?: ReactNode;
-  endIcon?: ReactNode;
-  autoFocus?: boolean;
-  fullWidth?: boolean;
+  variant?: ButtonVariant;
 }
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -26,7 +42,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const GraaspButton: FC<GraaspButtonProps> = ({
+/**
+ * Column properties.
+ */
+export const GraaspButton: FC<GraaspButtonProps> = ({
   id,
   dataCy,
   onClick,
@@ -36,6 +55,7 @@ const GraaspButton: FC<GraaspButtonProps> = ({
   autoFocus,
   endIcon,
   fullWidth,
+  component = 'button',
   color = 'primary',
   variant = 'contained',
   disabled = false,
@@ -56,6 +76,7 @@ const GraaspButton: FC<GraaspButtonProps> = ({
       endIcon={endIcon}
       autoFocus={autoFocus}
       fullWidth={fullWidth}
+      component={component}
     >
       {children}
     </Button>

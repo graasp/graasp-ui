@@ -1,4 +1,4 @@
-import React, { ReactElement, useState } from 'react';
+import React, { ReactElement, useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core';
 import clsx from 'clsx';
 import { GridApi, RowNode, ColDef, IRowDragItem } from 'ag-grid-community';
@@ -82,7 +82,7 @@ const GraaspTable: React.FC<Props> = ({
   emptyMessage,
   onRowDataChanged,
   id,
-  rowData,
+  rowData: initialData,
   NoRowsComponent,
   onDragEnd,
   onSelectionChanged,
@@ -104,9 +104,14 @@ const GraaspTable: React.FC<Props> = ({
   rowDragManaged = true,
   enableDrag = false,
 }) => {
+  const [rowData, setRowData] = useState(initialData);
   const [gridApi, setGridApi] = useState<GridApi>();
   const [selected, setSelected] = useState<string[]>([]);
   const classes = useStyles({ tableHeight });
+
+  useEffect(() => {
+    setRowData(initialData);
+  }, [initialData]);
 
   const onGridReady = (params: { api: GridApi }): void => {
     setGridApi(params.api);

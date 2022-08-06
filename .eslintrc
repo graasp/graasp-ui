@@ -1,14 +1,11 @@
 {
   "parser": "@typescript-eslint/parser",
   "extends": [
-    "standard",
     "standard-react",
     "plugin:prettier/recommended",
     "eslint:recommended",
     "plugin:@typescript-eslint/eslint-recommended",
-    "plugin:@typescript-eslint/recommended",
-    "prettier/standard",
-    "prettier/react"
+    "plugin:@typescript-eslint/recommended"
   ],
   "env": {
     "node": true,
@@ -23,7 +20,7 @@
   },
   "settings": {
     "react": {
-      "version": "16"
+      "version": "17"
     }
   },
   "rules": {
@@ -34,7 +31,10 @@
     "react/no-unused-prop-types": 0,
     "import/export": 0,
     // disable the rule for all files
-    "@typescript-eslint/explicit-function-return-type": "off"
+    "@typescript-eslint/explicit-function-return-type": "off",
+    // note you must disable the base rule as it can report incorrect errors
+    "no-use-before-define": "off",
+    "@typescript-eslint/no-use-before-define": ["error"]
   },
   "overrides": [
     {

@@ -5,11 +5,7 @@ import React, {
   ReactElement,
   useState,
 } from 'react';
-import {
-  isPseudonymizedMember,
-  isSessionExpired,
-  isError,
-} from '@graasp/utils';
+import { isPseudonymizedMember, isSessionExpired, isError } from '@graasp/sdk';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Menu from '@material-ui/core/Menu';
@@ -28,6 +24,7 @@ import { ImmutableMember, Member, Variant } from '../types';
 import Avatar from '../Avatar';
 import Button from '../Button';
 import { Skeleton } from '@material-ui/lab';
+import { UseQueryResult } from 'react-query';
 
 const useStyles = makeStyles((theme) => ({
   wrapper: {
@@ -60,7 +57,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 interface Props {
-  useAvatar: Function;
+  useAvatar: (args: { id: string; size?: string }) => UseQueryResult<Blob>;
   member?: ImmutableMember;
   members?: Member[];
   onSeeProfileClick?: MouseEventHandler;
