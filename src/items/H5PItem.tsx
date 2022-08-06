@@ -1,6 +1,5 @@
 import { H5POptions } from 'h5p-standalone';
-import React from 'react';
-import { FC } from 'react';
+import React, { FC } from 'react';
 
 /**
  * Helper to generate unique H5P container IDs
@@ -17,7 +16,6 @@ interface H5PItemProps {
   h5pAssetsHost: string;
   playerOptions: H5POptions;
 }
-
 /**
  * The H5PItem component displays an iframe with the content of an H5P
  *
@@ -30,21 +28,12 @@ const H5PItem: FC<H5PItemProps> = ({
   playerOptions,
 }) => {
   /*
-    The following implementation performs the integration as a side-effect. Unfortunately, h5p-standalone (and H5P itself) expect the integration to be done on the window global object, which does not allow multiple H5Ps to be loaded simultaneously (as they will be competing for the same global object).
-   *
-  const h5pContainerEl = useRef(null);
-
-  useEffect(() => {
-    if (h5pContainerEl.current) {
-      new H5P(h5pContainerEl.current, playerOptions);
-    }
-  }, [itemId]);
-
-  return <div ref={h5pContainerEl} id={buildH5PContainerId(itemId)}></div>;
-   */
-
-  /*
-    As a workaround, we wrap the H5P integration into an iframe, such that it gets its own window object
+    h5p-standalone (and H5P itself) expect the integration to be done on the
+    window global object, which does not allow multiple H5Ps to be loaded
+    simultaneously (as they will be competing for the same global object)
+    As a workaround, we wrap the H5P integration into an iframe, such that it
+    gets its own window object. We can also enable the sandbox attribute for
+    additional security
    */
   const containerId = buildH5PContainerId(itemId);
   const container = `<div id="${containerId}"></div>`;
@@ -67,6 +56,9 @@ const H5PItem: FC<H5PItemProps> = ({
       srcDoc={container + script + init}
       scrolling={'no'}
       frameBorder={0}
+      sandbox={
+        'allow-forms allow-modals allow-pointer-lock allow-popups allow-presentation allow-scripts'
+      }
       style={{ width: '100%', border: 'none', display: 'block' }}
     ></iframe>
   );

@@ -91,7 +91,7 @@ export namespace H5P {
      * @use triggerXAPIScored instead
      */
     triggerXAPICompleted(score: number, maxScore: number, success: boolean);
-    /** Helepr function to create scored xAPI events */
+    /** Helper function to create scored xAPI events */
     triggerXAPIScored(
       score: number,
       maxScore: number,
