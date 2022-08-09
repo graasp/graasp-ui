@@ -157,7 +157,7 @@ const UserSwitch: FC<Props> = ({
   };
 
   const renderCurrentMemberInfo = (): ReactElement | null => {
-    if (!member || member.toSeq().isEmpty()) {
+    if (!member || !member.id) {
       return null;
     }
 

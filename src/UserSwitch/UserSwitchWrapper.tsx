@@ -117,7 +117,7 @@ const UserSwitchWrapper: FC<Props> = ({
     </MenuItem>,
   ];
 
-  if (currentMember && !currentMember.toSeq().isEmpty()) {
+  if (currentMember && currentMember.id) {
     Actions = Actions.concat([
       <Divider key='divider' />,
       <MenuItem key='signout' onClick={handleSignOut} id={signOutMenuItemId}>

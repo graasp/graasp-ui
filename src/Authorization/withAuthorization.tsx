@@ -20,7 +20,7 @@ const withAuthorization =
     };
 
     // check authorization: user shouldn't be empty
-    if (currentMember?.toSeq().size) {
+    if (currentMember && currentMember.id) {
       // eslint-disable-next-line react/jsx-props-no-spreading
       return <ChildComponent {...(childProps as P)} />;
     }
