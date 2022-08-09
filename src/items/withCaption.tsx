@@ -2,7 +2,7 @@ import React from 'react';
 import { RecordOf } from 'immutable';
 import Grid from '@material-ui/core/Grid';
 import TextEditor from '../TextEditor';
-import type { Item, UnknownExtra } from '../types';
+import type { Item } from '../types';
 import { DEFAULT_ITEM_DESCRIPTION } from '../constants';
 
 interface WithCaptionProps<T> {
@@ -13,7 +13,7 @@ interface WithCaptionProps<T> {
   saveButtonId?: string;
 }
 
-function withCaption<T extends UnknownExtra>({
+function withCaption<T>({
   item,
   edit,
   onSave,

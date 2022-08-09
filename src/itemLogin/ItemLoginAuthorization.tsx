@@ -95,7 +95,11 @@ const ItemLoginAuthorization =
       }
 
       // signed out but can sign in with item login
-      if ((!user || user.toSeq().isEmpty()) && itemLogin && !itemLogin.toSeq().isEmpty()) {
+      if (
+        (!user || user.toSeq().isEmpty()) &&
+        itemLogin &&
+        !itemLogin.toSeq().isEmpty()
+      ) {
         return (
           <ItemLoginScreen
             itemId={itemId}

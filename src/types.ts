@@ -1,4 +1,4 @@
-import { Record, RecordOf } from 'immutable';
+import { List, Record, RecordOf } from 'immutable';
 import { Context } from '@graasp/utils';
 
 export type UUID = string;
@@ -68,12 +68,12 @@ export class ImmutableItemClass extends Record({
 }) {}
 
 export type EmbeddedLinkItemExtraProp = {
-  thumbnails: any;
+  thumbnails: List<string>;
   html: string;
   url: string;
-  icons: string[];
+  icons: List<string>;
 };
-export interface EmbeddedLinkItemExtra extends UnknownExtra {
+export interface EmbeddedLinkItemExtra {
   embeddedLink: EmbeddedLinkItemExtraProp;
 }
 export type S3FileItemExtraProp = {
