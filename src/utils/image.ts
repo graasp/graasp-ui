@@ -5,12 +5,12 @@ export const getItemImage = ({
   url,
   extra,
   defaultImage,
-  extraThumbnail,
+  thumbnailSrc,
 }: {
   url?: string;
   extra?: EmbeddedLinkItemExtra;
   defaultImage?: string;
-  extraThumbnail?: string;
+  thumbnailSrc?: string;
 }): string | null | undefined => {
   if (url) {
     return url;
@@ -19,8 +19,8 @@ export const getItemImage = ({
   if (linkThumbnail) {
     return linkThumbnail;
   }
-  if (extraThumbnail) {
-    return extraThumbnail;
+  if (thumbnailSrc) {
+    return thumbnailSrc;
   }
   if (defaultImage) {
     return defaultImage;

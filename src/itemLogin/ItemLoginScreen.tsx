@@ -94,7 +94,7 @@ const ItemLoginScreen: FC<ItemLoginScreenProps> = ({
   // no item login detected
   if (
     !itemLogin ||
-    itemLogin.toSeq().isEmpty() ||
+    !itemLogin.loginSchema ||
     !Object.values(SETTINGS.ITEM_LOGIN.OPTIONS).includes(loginSchema)
   ) {
     return ForbiddenContent;

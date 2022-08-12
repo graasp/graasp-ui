@@ -90,12 +90,12 @@ const ItemLoginAuthorization =
       // the item could be fetched without errors
       // because the user is signed in and has access
       // or because the item is public
-      if (item && !item.toSeq().isEmpty()) {
+      if (item && item.id) {
         return <ChildComponent />;
       }
 
       // signed out but can sign in with item login
-      if ((!user || !user.id) && itemLogin && !itemLogin.toSeq().isEmpty()) {
+      if ((!user || !user.id) && (itemLogin && itemLogin.loginSchema)) {
         return (
           <ItemLoginScreen
             itemId={itemId}

@@ -29,7 +29,7 @@ interface ItemIconProps {
   // todo: check is valid type
   type: string;
   extra?: UnknownExtra;
-  extraIcon?: string;
+  iconSrc?: string;
   color?: string;
   className?: string;
   iconClass?: string;
@@ -39,7 +39,7 @@ const ItemIcon: FC<ItemIconProps> = ({
   name = '',
   type,
   extra,
-  extraIcon,
+  iconSrc,
   iconClass,
   color,
 }) => {
@@ -49,8 +49,8 @@ const ItemIcon: FC<ItemIconProps> = ({
     getFileExtra(extra as unknown as FileItemExtra)?.mimetype ||
     getS3FileExtra(extra as unknown as S3FileItemExtra)?.mimetype;
 
-  if (extraIcon) {
-    return <img className={classes.imageIcon} alt={name} src={extraIcon} />;
+  if (iconSrc) {
+    return <img className={classes.imageIcon} alt={name} src={iconSrc} />;
   }
 
   let Icon = InsertDriveFileIcon;

@@ -27,7 +27,7 @@ const Avatar: FC<AvatarProps> = ({
   id,
   extra,
   className,
-  alt,
+  alt = 'avatar',
   // use a random string to trigger default avatar
   defaultImage = 'broken-image',
   useAvatar,

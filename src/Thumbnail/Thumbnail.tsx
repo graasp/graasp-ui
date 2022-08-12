@@ -8,7 +8,7 @@ import { DEFAULT_THUMBNAIL_SIZE } from '../constants';
 
 type ThumbnailProps = {
   id: string;
-  extraThumbnail: string;
+  thumbnailSrc: string;
   maxWidth?: string | number;
   maxHeight?: string | number;
   defaultValue?: JSX.Element;
@@ -26,7 +26,7 @@ type ThumbnailProps = {
 
 const Thumbnail: FC<ThumbnailProps> = ({
   id,
-  extraThumbnail,
+  thumbnailSrc,
   defaultValue,
   alt,
   useThumbnail,
@@ -74,7 +74,7 @@ const Thumbnail: FC<ThumbnailProps> = ({
 
   const thumbnail = getItemImage({
     url: thumbnailUrl,
-    extraThumbnail,
+    thumbnailSrc,
   });
 
   if (thumbnail) {
