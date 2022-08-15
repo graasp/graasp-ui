@@ -5,11 +5,7 @@ import React, {
   ReactElement,
   useState,
 } from 'react';
-import {
-  isPseudonymizedMember,
-  isSessionExpired,
-  isError,
-} from '@graasp/utils';
+import { isPseudonymizedMember, isSessionExpired, isError } from '@graasp/sdk';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Menu from '@material-ui/core/Menu';

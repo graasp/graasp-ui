@@ -12,7 +12,7 @@ import {
   getCurrentSession,
   setCurrentSession,
   saveUrlForRedirection,
-} from '@graasp/utils';
+} from '@graasp/sdk';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import MenuItem from '@material-ui/core/MenuItem';
 

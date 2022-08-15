@@ -1,5 +1,5 @@
 import React, { ComponentType, FC } from 'react';
-import { redirect } from '@graasp/utils';
+import { redirect } from '@graasp/sdk';
 import RedirectContent from './RedirectionContent';
 import { MemberRecord } from '../types';
 

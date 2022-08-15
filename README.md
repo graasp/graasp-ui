@@ -32,6 +32,13 @@ class Example extends Component {
 }
 ```
 
+## Storybook
+
+Storybook provides a nice display of defined UI components. To open the framework, run
+```
+yarn storybook
+```
+
 ## License
 
 MIT © [Graasp Association](https://graasp.org)

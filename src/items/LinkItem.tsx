@@ -2,7 +2,7 @@ import React, { FC, useState, useRef, Fragment } from 'react';
 import clsx from 'clsx';
 import { RecordOf } from 'immutable';
 import Alert from '@material-ui/lab/Alert';
-import { redirect } from '@graasp/utils';
+import { redirect } from '@graasp/sdk';
 import { makeStyles } from '@material-ui/core/styles';
 import { getEmbeddedLinkExtra } from '../utils/itemExtra';
 import OpenInNewIcon from '@material-ui/icons/OpenInNew';
