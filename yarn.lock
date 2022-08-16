@@ -2409,7 +2409,6 @@ __metadata:
     eslint-plugin-prettier: ^4.2.1
     eslint-plugin-promise: ^6.0.0
     eslint-plugin-react: ^7.30.1
-    h5p-standalone: 3.5.1
     http-status-codes: 2.2.0
     husky: ^8.0.1
     immutable: 4.1.0
@@ -13148,13 +13147,6 @@ __metadata:
   dependencies:
     duplexer: ^0.1.2
   checksum: 2df97f359696ad154fc171dcb55bc883fe6e833bca7a65e457b9358f3cb6312405ed70a8da24a77c1baac0639906cd52358dc0ce2ec1a937eaa631b934c94194
-  languageName: node
-  linkType: hard
-
-"h5p-standalone@npm:3.5.1":
-  version: 3.5.1
-  resolution: "h5p-standalone@npm:3.5.1"
-  checksum: cf291edf47db2c76e2adb3f9e1ae57c164280187b48b821793d91fbc53e5767408f639d5127d72ce68e523722e6519d309b93b310edf454bb7617d26749c6608
   languageName: node
   linkType: hard
 
