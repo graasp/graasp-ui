@@ -1,4 +1,5 @@
 import React, { FC, useEffect, useRef } from 'react';
+import * as uuid from 'uuid';
 
 /**
  * React props types for {@link H5PItem}
@@ -57,11 +58,10 @@ const H5PItem: FC<H5PItemProps> = ({
         return;
       }
       // contentId should be UUID string
-      const uuidRegex =
-        /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/;
       if (
         typeof event.data.contentId !== 'string' ||
-        !event.data.contentId.match(uuidRegex)
+        uuid.version(event.data.contentId) !== 4 ||
+        !uuid.validate(event.data.contentId)
       ) {
         return;
       }
