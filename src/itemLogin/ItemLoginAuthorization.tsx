@@ -3,26 +3,25 @@ import { StatusCodes, getReasonPhrase } from 'http-status-codes';
 import Alert from '@material-ui/lab/Alert';
 import ItemLoginScreen, { SignInPropertiesType } from './ItemLoginScreen';
 import Loader from '../Loader';
-import { UUID } from '../types';
+import { ItemLoginRecord, ItemRecord, MemberRecord, UUID } from '../types';
 import ForbiddenText from './ForbiddenText';
-import { Map } from 'immutable';
 
 export type ItemLoginAuthorizationProps = {
   signIn: (args: { itemId: string } & SignInPropertiesType) => void;
   itemId: UUID;
   useCurrentMember: () => {
-    data: Map<string, unknown>;
+    data: MemberRecord;
     isLoading: boolean;
     isError: boolean;
   };
   useItem: (itemId: string) => {
-    data: Map<unknown, unknown>;
+    data: ItemRecord;
     isLoading: boolean;
     isError: boolean;
     error: Error;
   };
   useItemLogin: (itemId: string) => {
-    data: Map<string, any>;
+    data: ItemLoginRecord;
   };
   Error?: ReactElement;
   memberIdInputId?: string;
@@ -91,12 +90,12 @@ const ItemLoginAuthorization =
       // the item could be fetched without errors
       // because the user is signed in and has access
       // or because the item is public
-      if (item && !item.isEmpty()) {
+      if (item && item.id) {
         return <ChildComponent />;
       }
 
       // signed out but can sign in with item login
-      if ((!user || user.isEmpty()) && itemLogin && !itemLogin.isEmpty()) {
+      if ((!user || !user.id) && (itemLogin && itemLogin.loginSchema)) {
         return (
           <ItemLoginScreen
             itemId={itemId}

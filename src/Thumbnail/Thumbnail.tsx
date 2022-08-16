@@ -3,15 +3,15 @@ import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import Skeleton from '@material-ui/lab/Skeleton';
 import { getItemImage } from '../utils/image';
-import { EmbeddedLinkItemExtra, UnknownExtra, Variant } from '../types';
+import { Variant } from '../types';
 import { DEFAULT_THUMBNAIL_SIZE } from '../constants';
 
 type ThumbnailProps = {
   id: string;
-  extra: UnknownExtra;
+  thumbnailSrc: string;
   maxWidth?: string | number;
   maxHeight?: string | number;
-  defaultImage?: string;
+  defaultValue?: JSX.Element;
   variant?: Variant;
   alt: string;
   useThumbnail: (args: { id: string; size: string }) => {
@@ -26,8 +26,8 @@ type ThumbnailProps = {
 
 const Thumbnail: FC<ThumbnailProps> = ({
   id,
-  extra,
-  defaultImage,
+  thumbnailSrc,
+  defaultValue,
   alt,
   useThumbnail,
   className,
@@ -72,20 +72,20 @@ const Thumbnail: FC<ThumbnailProps> = ({
     return <Skeleton variant={variant} width={maxWidth} height={maxHeight} />;
   }
 
-  const embeddedLinkExtra = extra as unknown as EmbeddedLinkItemExtra;
   const thumbnail = getItemImage({
     url: thumbnailUrl,
-    extra: embeddedLinkExtra,
-    defaultImage,
+    thumbnailSrc,
   });
 
-  if (!thumbnail) {
+  if (thumbnail) {
+    return (
+      <img src={thumbnail} alt={alt} className={clsx(classes.img, className)} />
+    );
+  } else if (defaultValue) {
+    return defaultValue;
+  } else {
     return null;
   }
-
-  return (
-    <img src={thumbnail} alt={alt} className={clsx(classes.img, className)} />
-  );
 };
 
-export default React.memo(Thumbnail);
+export default Thumbnail;

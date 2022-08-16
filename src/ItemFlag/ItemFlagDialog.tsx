@@ -5,11 +5,12 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogActions from '@material-ui/core/DialogActions';
 import Button from '../Button';
 import Dialog from '@material-ui/core/Dialog';
-import List from '@material-ui/core/List';
+import { List as MuiList } from '@material-ui/core';
 import { ListItem, ListItemText, makeStyles } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import { FLAG_LIST_MAX_HEIGHT } from '../constants';
-import { Flag } from '../types';
+import { FlagRecord } from '../types';
+import { List } from 'immutable';
 
 const useStyles = makeStyles(() => ({
   list: {
@@ -26,12 +27,12 @@ const useStyles = makeStyles(() => ({
 }));
 
 export interface ItemFlagDialogProps {
-  flags: Flag[];
+  flags: List<FlagRecord>;
   onFlag: MouseEventHandler;
   open: boolean;
   setOpen: (open: boolean) => void;
-  selectedFlag: Flag;
-  setSelectedFlag: (flag: Flag) => void;
+  selectedFlag: FlagRecord;
+  setSelectedFlag: (flag: FlagRecord) => void;
 }
 
 export const ItemFlagDialog: FC<ItemFlagDialogProps> = ({
@@ -49,7 +50,7 @@ export const ItemFlagDialog: FC<ItemFlagDialogProps> = ({
     setOpen(false);
   };
 
-  const handleSelect = (flag: Flag) => () => setSelectedFlag(flag);
+  const handleSelect = (flag: FlagRecord) => () => setSelectedFlag(flag);
 
   return (
     <Dialog open={open} onClose={onClose} maxWidth='sm' fullWidth>
@@ -58,8 +59,8 @@ export const ItemFlagDialog: FC<ItemFlagDialogProps> = ({
         <Typography variant='h6' className={classes.listTitle}>
           {`${t('Select reason for flagging this item')}:`}
         </Typography>
-        <List component='nav' className={classes.list}>
-          {flags?.map((flag: Flag) => (
+        <MuiList component='nav' className={classes.list}>
+          {flags?.map((flag: FlagRecord) => (
             <ListItem
               key={flag.id}
               id={`flagListItem-${flag.id}`}
@@ -70,7 +71,7 @@ export const ItemFlagDialog: FC<ItemFlagDialogProps> = ({
               <ListItemText primary={flag.name} />
             </ListItem>
           ))}
-        </List>
+        </MuiList>
       </DialogContent>
       <DialogActions>
         <Button onClick={onClose} variant='text'>

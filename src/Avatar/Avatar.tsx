@@ -9,16 +9,16 @@ import { DEFAULT_THUMBNAIL_SIZE } from '../constants';
 import { UseQueryResult } from 'react-query';
 
 type AvatarProps = {
-  id: string;
-  extra: object;
+  id?: string;
+  extra?: object;
   maxWidth?: string | number;
   maxHeight?: string | number;
   defaultImage?: string;
   variant?: Variant;
-  alt: string;
+  alt?: string;
   component?: string;
   className?: string;
-  useAvatar: (args: { id: string; size?: string }) => UseQueryResult<Blob>;
+  useAvatar: (args: { id?: string; size?: string }) => UseQueryResult<Blob>;
   // todo: enforce size strings
   size?: string;
 };
@@ -27,7 +27,7 @@ const Avatar: FC<AvatarProps> = ({
   id,
   extra,
   className,
-  alt,
+  alt = 'avatar',
   // use a random string to trigger default avatar
   defaultImage = 'broken-image',
   useAvatar,

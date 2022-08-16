@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import clsx from 'clsx';
-import { Record } from 'immutable';
+import { RecordOf } from 'immutable';
 import { withStyles } from '@material-ui/core/styles';
 import { getAppExtra } from '../utils/itemExtra';
 import qs from 'qs';
@@ -13,7 +13,7 @@ import {
   ITEM_MAX_HEIGHT,
 } from '../constants';
 import withCaption from './withCaption';
-import type { AppItemExtra, Item, Member, UUID } from '../types';
+import type { AppItemExtra, Item, MemberRecord, UUID } from '../types';
 import { UseMutateAsyncFunction } from 'react-query';
 
 const buildPostMessageKeys = (itemId: UUID): { [key: string]: string } => ({
@@ -28,8 +28,8 @@ const buildPostMessageKeys = (itemId: UUID): { [key: string]: string } => ({
 type Token = string;
 
 interface AppItemProps {
-  item: Record<Item<AppItemExtra>>;
-  member: Record<Member>;
+  item: RecordOf<Item<AppItemExtra>>;
+  member: MemberRecord;
   lang?: string;
   context?: string;
   permission?: string;
@@ -95,7 +95,7 @@ class AppItem extends Component<AppItemProps> {
 
   componentDidMount(): void {
     window.addEventListener('message', this.windowOnMessage);
-    this.setState({ url: getAppExtra(this.props.item?.get('extra'))?.url });
+    this.setState({ url: getAppExtra(this.props.item?.extra)?.url });
   }
 
   componentDidUpdate(prevProps: AppItemProps): void {
@@ -103,7 +103,7 @@ class AppItem extends Component<AppItemProps> {
     const { item: nextItem } = prevProps;
     if (item !== nextItem) {
       // eslint-disable-next-line react/no-did-update-set-state
-      this.setState({ url: getAppExtra(item?.get('extra'))?.url });
+      this.setState({ url: getAppExtra(item?.extra)?.url });
     }
   }
 
@@ -126,7 +126,7 @@ class AppItem extends Component<AppItemProps> {
     // get token from backend
     const { token } = await requestApiAccessToken(
       {
-        id: item.get('id'),
+        id: item.id,
 
         // the app should provide this (in the message)
         // this id is "manually" added as a "registered" app id.
@@ -146,7 +146,7 @@ class AppItem extends Component<AppItemProps> {
     const { channel, url } = this.state;
     const { item } = this.props;
 
-    const POST_MESSAGE_KEYS = buildPostMessageKeys(item.get('id'));
+    const POST_MESSAGE_KEYS = buildPostMessageKeys(item.id);
 
     // responds only to corresponding app
     if (!url?.includes(requestOrigin)) {
@@ -175,7 +175,7 @@ class AppItem extends Component<AppItemProps> {
     const { url } = this.state;
     const { data, origin: requestOrigin } = e;
 
-    const POST_MESSAGE_KEYS = buildPostMessageKeys(item.get('id'));
+    const POST_MESSAGE_KEYS = buildPostMessageKeys(item.id);
 
     // responds only to corresponding app
     if (!url?.includes(requestOrigin)) {
@@ -200,8 +200,8 @@ class AppItem extends Component<AppItemProps> {
           type: POST_MESSAGE_KEYS.GET_CONTEXT_SUCCESS,
           payload: {
             apiHost,
-            itemId: item.get('id'),
-            settings: item.get('settings'),
+            itemId: item.id,
+            settings: item.settings,
             memberId: member?.get('id'),
             permission,
             lang,
@@ -241,7 +241,7 @@ class AppItem extends Component<AppItemProps> {
       : undefined;
 
     const appUrl = `${url}${qs.stringify(
-      { itemId: item?.get('id') },
+      { itemId: item?.id },
       {
         addQueryPrefix: true,
       },
@@ -250,7 +250,7 @@ class AppItem extends Component<AppItemProps> {
     const iframe = (
       <iframe
         id={id}
-        title={item?.get('name')}
+        title={item?.name}
         onLoad={onLoad}
         ref={this.iframeRef}
         width={APP_ITEM_WIDTH}

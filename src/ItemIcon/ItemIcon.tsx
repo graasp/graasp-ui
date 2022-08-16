@@ -12,18 +12,9 @@ import ShortcutIcon from '@material-ui/icons/Input';
 import AppsIcon from '@material-ui/icons/Apps';
 import ArchiveIcon from '@material-ui/icons/Archive';
 import { MIME_TYPES, ITEM_ICON_MAX_SIZE } from '../constants';
-import {
-  getEmbeddedLinkExtra,
-  getFileExtra,
-  getS3FileExtra,
-} from '../utils/itemExtra';
+import { getFileExtra, getS3FileExtra } from '../utils/itemExtra';
 import { ITEM_TYPES } from '../enums';
-import {
-  EmbeddedLinkItemExtra,
-  FileItemExtra,
-  S3FileItemExtra,
-  UnknownExtra,
-} from '../types';
+import { FileItemExtra, S3FileItemExtra, UnknownExtra } from '../types';
 
 const useStyles = makeStyles({
   imageIcon: {
@@ -38,6 +29,7 @@ interface ItemIconProps {
   // todo: check is valid type
   type: string;
   extra?: UnknownExtra;
+  iconSrc?: string;
   color?: string;
   className?: string;
   iconClass?: string;
@@ -47,6 +39,7 @@ const ItemIcon: FC<ItemIconProps> = ({
   name = '',
   type,
   extra,
+  iconSrc,
   iconClass,
   color,
 }) => {
@@ -55,11 +48,9 @@ const ItemIcon: FC<ItemIconProps> = ({
   const mimetype =
     getFileExtra(extra as unknown as FileItemExtra)?.mimetype ||
     getS3FileExtra(extra as unknown as S3FileItemExtra)?.mimetype;
-  const icon = getEmbeddedLinkExtra(extra as unknown as EmbeddedLinkItemExtra)
-    ?.icons?.[0];
 
-  if (icon) {
-    return <img className={classes.imageIcon} alt={name} src={icon} />;
+  if (iconSrc) {
+    return <img className={classes.imageIcon} alt={name} src={iconSrc} />;
   }
 
   let Icon = InsertDriveFileIcon;

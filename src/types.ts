@@ -1,4 +1,4 @@
-import { Map, Record } from 'immutable';
+import { List, Record, RecordOf } from 'immutable';
 import { Context } from '@graasp/sdk';
 
 export type UUID = string;
@@ -30,25 +30,27 @@ export interface Item<T = UnknownExtra> {
   settings?: unknown;
 }
 
-export type Member = {
-  id: string;
-  name: string;
-  email: string;
-  extra: {
-    [key: string]: Anything;
-  };
-};
+export type ItemRecord = RecordOf<Item>;
 
 export type ItemMembership = {
   id: string;
 };
 
-// todo: better solution?
-// conflict between isEmpty which only exists in Map, List of objects and the fact
-// we cannot create a Record from data
-export type ImmutableItem = Map<string, any>;
-export type ImmutableMember = Map<string, any>;
-export type ItemLogin = Map<string, any>;
+export type MemberExtra = {
+  hasAvatar?: boolean;
+};
+
+export type MemberExtraRecord = RecordOf<MemberExtra>;
+
+export type Member = {
+  id: UUID;
+  name: string;
+  email: string;
+  extra: MemberExtraRecord;
+};
+
+export type MemberRecord = RecordOf<Member>;
+
 export class ImmutableItemClass extends Record({
   id: '',
   name: '',
@@ -60,12 +62,12 @@ export class ImmutableItemClass extends Record({
 }) {}
 
 export type EmbeddedLinkItemExtraProp = {
-  thumbnails: string[];
+  thumbnails: List<string>;
   html: string;
   url: string;
-  icons: string[];
+  icons: List<string>;
 };
-export interface EmbeddedLinkItemExtra extends UnknownExtra {
+export interface EmbeddedLinkItemExtra {
   embeddedLink: EmbeddedLinkItemExtraProp;
 }
 export type S3FileItemExtraProp = {
@@ -117,6 +119,19 @@ export type Flag = {
   name: string;
 };
 
+export type FlagRecord = RecordOf<Flag>;
+
 export type ButtonVariant = 'text' | 'contained' | 'outlined';
 
 export type HostMap = { [name in Context]: string };
+
+export enum ITEM_LOGIN_SCHEMAS {
+  USERNAME = 'username',
+  USERNAME_AND_PASSWORD = 'username+password',
+}
+
+export type ItemLogin = {
+  loginSchema: ITEM_LOGIN_SCHEMAS;
+};
+
+export type ItemLoginRecord = RecordOf<ItemLogin>;

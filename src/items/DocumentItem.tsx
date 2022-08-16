@@ -1,11 +1,11 @@
 import React, { FC } from 'react';
-import { Record } from 'immutable';
+import { RecordOf } from 'immutable';
 import TextEditor from '../TextEditor';
 import { getDocumentExtra } from '../utils/itemExtra';
 import type { DocumentItemExtra, Item } from '../types';
 
 interface DocumentItemProps {
-  item: Record<Item<DocumentItemExtra>>;
+  item: RecordOf<Item<DocumentItemExtra>>;
   id?: string;
   edit?: boolean;
   saveButtonId?: string;
@@ -31,7 +31,7 @@ const DocumentItem: FC<DocumentItemProps> = ({
 }) => (
   <TextEditor
     id={id}
-    value={getDocumentExtra(item.get('extra'))?.content}
+    value={getDocumentExtra(item.extra)?.content}
     edit={edit}
     onSave={onSave}
     onCancel={onCancel}

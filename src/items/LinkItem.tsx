@@ -1,6 +1,6 @@
 import React, { FC, useState, useRef, Fragment } from 'react';
 import clsx from 'clsx';
-import { Record } from 'immutable';
+import { RecordOf } from 'immutable';
 import Alert from '@material-ui/lab/Alert';
 import { redirect } from '@graasp/sdk';
 import { makeStyles } from '@material-ui/core/styles';
@@ -13,7 +13,7 @@ import type { EmbeddedLinkItemExtra, Item } from '../types';
 import withResizing from './withResizing';
 
 interface LinkItemProps {
-  item: Record<Item<EmbeddedLinkItemExtra>>;
+  item: RecordOf<Item<EmbeddedLinkItemExtra>>;
   height?: number | string;
   onSaveCaption?: (text: string) => void;
   editCaption?: boolean;
@@ -65,8 +65,8 @@ const LinkItem: FC<LinkItemProps> = ({
   const [height] = useState<string | number>(defaultHeight ?? '100%');
   const iframeRef = useRef<HTMLIFrameElement>(null);
 
-  const id = item.get('id');
-  const extra = getEmbeddedLinkExtra(item.get('extra'));
+  const id = item.id;
+  const extra = getEmbeddedLinkExtra(item.extra);
 
   const CaptionWrapper = withCaption({
     item,
@@ -90,7 +90,7 @@ const LinkItem: FC<LinkItemProps> = ({
 
   // default case is an iframe with given link
   const url = extra?.url;
-  const name = item.get('name');
+  const name = item.name;
 
   if (!url) {
     return <Alert severity='error'>{errorMessage}</Alert>;

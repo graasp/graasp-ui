@@ -18,18 +18,18 @@ import MenuItem from '@material-ui/core/MenuItem';
 
 import Loader from '../Loader';
 import UserSwitch from './UserSwitch';
-import type { ImmutableMember, Member } from '../types';
+import type { Member, MemberRecord } from '../types';
 
 interface Props {
   ButtonContent: JSX.Element;
   signOut: (memberId: string) => void;
-  useMembers: (ids: string[]) => UseQueryResult<List<Member>>;
+  useMembers: (ids: string[]) => UseQueryResult<List<MemberRecord>>;
   domain: string;
   redirectPath: string;
   profilePath: string;
   switchMember: (args: { memberId: string; domain: string }) => Promise<void>;
-  useAvatar: (args: { id: string; size?: string }) => UseQueryResult<Blob>;
-  currentMember?: ImmutableMember;
+  useAvatar: (args: { id?: string; size?: string }) => UseQueryResult<Blob>;
+  currentMember?: MemberRecord;
   isCurrentMemberLoading: boolean;
   isCurrentMemberSuccess: boolean;
   seeProfileText?: string;
@@ -117,7 +117,7 @@ const UserSwitchWrapper: FC<Props> = ({
     </MenuItem>,
   ];
 
-  if (currentMember && !currentMember.isEmpty()) {
+  if (currentMember && currentMember.id) {
     Actions = Actions.concat([
       <Divider key='divider' />,
       <MenuItem key='signout' onClick={handleSignOut} id={signOutMenuItemId}>
