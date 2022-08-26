@@ -11,7 +11,7 @@ const useStyles = makeStyles(() => ({
 
 interface DownloadButtonFileItemProps {
   name?: string;
-  url: string;
+  url?: string;
   id?: string;
   text?: string;
 }

@@ -10,7 +10,7 @@ const useStyles = makeStyles(() => ({
 
 interface FileVideoProps {
   id?: string;
-  url: string;
+  url?: string;
   className?: string;
 }
 

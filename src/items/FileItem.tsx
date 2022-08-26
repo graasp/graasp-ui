@@ -15,7 +15,7 @@ import { ERRORS } from '../enums';
 
 interface FileItemProps {
   item: RecordOf<Item<UnknownExtra>>;
-  content: Blob;
+  content?: Blob;
   id?: string;
   defaultItem?: JSX.Element;
   downloadText?: string;
@@ -27,12 +27,14 @@ interface FileItemProps {
   saveButtonId?: string;
   className?: string;
   showCollapse?: boolean;
+  s3Url?: string;
 }
 
 const FileItem: FC<FileItemProps> = ({
   id,
   item,
   content,
+  s3Url,
   defaultItem,
   downloadText,
   maxHeight = '100%',
@@ -72,11 +74,15 @@ const FileItem: FC<FileItemProps> = ({
     // does not include url to avoid infinite loop
   }, [content]);
 
-  if (!url) {
+  console.log("FileItem");
+  console.log(content);
+  console.log(s3Url);
+
+  if (content && !url) {
     return <Loader />;
   }
 
-  if (url === ERRORS.BLOB_URL) {
+  if (content && url === ERRORS.BLOB_URL) {
     return <Alert severity='error'>{errorMessage}</Alert>;
   }
 
@@ -84,20 +90,20 @@ const FileItem: FC<FileItemProps> = ({
   if (mimetype) {
     if (MIME_TYPES.IMAGE.includes(mimetype)) {
       component = (
-        <FileImage id={id} url={url} alt={name} className={className} />
+        <FileImage id={id} url={s3Url || url} alt={name} className={className} />
       );
     } else if (MIME_TYPES.AUDIO.includes(mimetype)) {
       component = (
-        <FileAudio id={id} url={url} type={mimetype} className={className} />
+        <FileAudio id={id} url={s3Url || url} type={mimetype} className={className} />
       );
     } else if (MIME_TYPES.VIDEO.includes(mimetype)) {
       // does not specify mimetype in video source, this way, it works with more container formats in more browsers (especially Chrome with video/quicktime)
-      component = <FileVideo id={id} url={url} className={className} />;
+      component = <FileVideo id={id} url={s3Url || url} className={className} />;
     } else if (MIME_TYPES.PDF.includes(mimetype)) {
       component = (
         <FilePdf
           id={id}
-          url={url}
+          url={s3Url || url}
           height={maxHeight}
           className={className}
           showCollapse={showCollapse}

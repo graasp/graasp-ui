@@ -5,7 +5,7 @@ import { ITEM_MAX_HEIGHT } from '../constants';
 
 interface FilePdfProps {
   id?: string;
-  url: string;
+  url?: string;
   height?: number | string;
   className?: string;
   showCollapse?: boolean;

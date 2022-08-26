@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 interface FileImageProps {
   id?: string;
-  url: string;
+  url?: string;
   alt: string;
   className?: string;
 }
