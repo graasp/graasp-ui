@@ -1,8 +1,7 @@
 import React, { FC, useEffect, useState } from 'react';
-import Alert from '@material-ui/lab/Alert';
+import { Alert, Skeleton } from '@material-ui/lab';
 import { RecordOf } from 'immutable';
 import { MIME_TYPES, UNEXPECTED_ERROR_MESSAGE } from '../constants';
-import Loader from '../Loader';
 import FileImage from './FileImage';
 import FileAudio from './FileAudio';
 import FileVideo from './FileVideo';
@@ -73,7 +72,7 @@ const FileItem: FC<FileItemProps> = ({
   }, [content]);
 
   if (!url) {
-    return <Loader />;
+    return <Skeleton variant="rect" width={'100%'} height={maxHeight || window.innerHeight * 0.8} />;
   }
 
   if (url === ERRORS.BLOB_URL) {

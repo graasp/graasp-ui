@@ -56,4 +56,6 @@ export * from './Authorization';
 
 export { UserSwitch, UserSwitchWrapper } from './UserSwitch';
 
+export { default as CustomInitialLoader } from './CustomInitialLoader';
+
 export * from './icons';
