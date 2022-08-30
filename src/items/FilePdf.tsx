@@ -5,7 +5,7 @@ import { ITEM_MAX_HEIGHT } from '../constants';
 
 interface FilePdfProps {
   id?: string;
-  url?: string;
+  url: string;
   height?: number | string;
   className?: string;
   showCollapse?: boolean;
@@ -25,7 +25,7 @@ const FilePdf: FC<FilePdfProps> = ({
 }) => {
   const classes = useStyles();
 
-  const src = encodeURIComponent(`https://pdfviewer.dev.graasp.org/pdf/web/viewer.html?file=${url}`);
+  const src = `https://pdfviewer.dev.graasp.org/pdf/web/viewer.html?file=${encodeURIComponent(url)}`;
 
   return (
     <iframe
