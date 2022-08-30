@@ -55,6 +55,10 @@ const FileItem: FC<FileItemProps> = ({
 
   useEffect(() => {
     (async () => {
+      if (s3Url) {
+        setUrl(s3Url);
+      }
+
       if (content) {
         // Build a URL from the file
         const fileURL = URL.createObjectURL(content);
@@ -66,23 +70,23 @@ const FileItem: FC<FileItemProps> = ({
       }
 
       return () => {
-        if (url) {
+        if (content && url) {
           URL.revokeObjectURL(url);
         }
       };
     })();
     // does not include url to avoid infinite loop
-  }, [content]);
+  }, [content, s3Url]);
 
   console.log("FileItem");
   console.log(content);
   console.log(s3Url);
 
-  if (content && !url) {
+  if (!url) {
     return <Loader />;
   }
 
-  if (content && url === ERRORS.BLOB_URL) {
+  if (url === ERRORS.BLOB_URL) {
     return <Alert severity='error'>{errorMessage}</Alert>;
   }
 
@@ -90,20 +94,20 @@ const FileItem: FC<FileItemProps> = ({
   if (mimetype) {
     if (MIME_TYPES.IMAGE.includes(mimetype)) {
       component = (
-        <FileImage id={id} url={s3Url || url} alt={name} className={className} />
+        <FileImage id={id} url={url} alt={name} className={className} />
       );
     } else if (MIME_TYPES.AUDIO.includes(mimetype)) {
       component = (
-        <FileAudio id={id} url={s3Url || url} type={mimetype} className={className} />
+        <FileAudio id={id} url={url} type={mimetype} className={className} />
       );
     } else if (MIME_TYPES.VIDEO.includes(mimetype)) {
       // does not specify mimetype in video source, this way, it works with more container formats in more browsers (especially Chrome with video/quicktime)
-      component = <FileVideo id={id} url={s3Url || url} className={className} />;
+      component = <FileVideo id={id} url={url} className={className} />;
     } else if (MIME_TYPES.PDF.includes(mimetype)) {
       component = (
         <FilePdf
           id={id}
-          url={s3Url || url}
+          url={url}
           height={maxHeight}
           className={className}
           showCollapse={showCollapse}
