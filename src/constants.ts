@@ -95,3 +95,5 @@ export const DEFAULT_LOADER_SIZE = 20;
 export const DRAG_ICON_SIZE = 18;
 
 export const HEADER_USERNAME_MAX_WIDTH = 120;
+
+export const PDF_VIEWER_LINK = 'https://pdfviewer.dev.graasp.org/pdf/web/viewer.html?file=';

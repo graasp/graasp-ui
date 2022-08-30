@@ -1,7 +1,7 @@
 import React, { FC, useRef, useState, ReactEventHandler } from 'react';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
-import { ITEM_MAX_HEIGHT } from '../constants';
+import { ITEM_MAX_HEIGHT, PDF_VIEWER_LINK } from '../constants';
 
 interface FilePdfProps {
   id?: string;
@@ -41,11 +41,13 @@ const FilePdf: FC<FilePdfProps> = ({
     }
   };
 
+  const src = `${PDF_VIEWER_LINK}${encodeURIComponent(url)}`;
+
   return (
     <embed
       ref={embedRef}
       id={id}
-      src={url}
+      src={src}
       width='100%'
       height={height || '100%'}
       onLoad={onLoad}
