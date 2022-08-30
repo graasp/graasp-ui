@@ -41,7 +41,7 @@ const FilePdf: FC<FilePdfProps> = ({
     }
   };
 
-  const src = `https://pdfviewer.dev.graasp.org/pdf/web/viewer.html?file=${url}`;
+  const src = encodeURIComponent(`https://pdfviewer.dev.graasp.org/pdf/web/viewer.html?file=${url}`);
 
   return (
     <embed
