@@ -41,11 +41,13 @@ const FilePdf: FC<FilePdfProps> = ({
     }
   };
 
+  const src = `https://pdfviewer.dev.graasp.org/pdf/web/viewer.html?file=${url}`;
+
   return (
     <embed
       ref={embedRef}
       id={id}
-      src={url}
+      src={src}
       width='100%'
       height={height || '100%'}
       onLoad={onLoad}
