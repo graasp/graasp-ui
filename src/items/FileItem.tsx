@@ -16,6 +16,7 @@ import { ERRORS } from '../enums';
 interface FileItemProps {
   item: RecordOf<Item<UnknownExtra>>;
   content?: Blob;
+  fileUrl?: string;
   id?: string;
   defaultItem?: JSX.Element;
   downloadText?: string;
@@ -27,14 +28,13 @@ interface FileItemProps {
   saveButtonId?: string;
   className?: string;
   showCollapse?: boolean;
-  s3Url?: string;
 }
 
 const FileItem: FC<FileItemProps> = ({
   id,
   item,
   content,
-  s3Url,
+  fileUrl,
   defaultItem,
   downloadText,
   maxHeight = '100%',
@@ -55,8 +55,8 @@ const FileItem: FC<FileItemProps> = ({
 
   useEffect(() => {
     (async () => {
-      if (s3Url) {
-        setUrl(s3Url);
+      if (fileUrl) {
+        setUrl(fileUrl);
       }
 
       if (content) {
@@ -76,11 +76,7 @@ const FileItem: FC<FileItemProps> = ({
       };
     })();
     // does not include url to avoid infinite loop
-  }, [content, s3Url]);
-
-  console.log("FileItem");
-  console.log(content);
-  console.log(s3Url);
+  }, [content, fileUrl]);
 
   if (!url) {
     return <Loader />;
