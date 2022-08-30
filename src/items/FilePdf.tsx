@@ -1,4 +1,4 @@
-import React, { FC, useRef, useState, ReactEventHandler } from 'react';
+import React, { FC } from 'react';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import { ITEM_MAX_HEIGHT } from '../constants';
@@ -22,35 +22,17 @@ const FilePdf: FC<FilePdfProps> = ({
   id,
   height: defaultHeight,
   className,
-  showCollapse,
 }) => {
-  const embedRef = useRef<HTMLEmbedElement>(null);
   const classes = useStyles();
-  const [height, setHeight] = useState<number | string>(
-    defaultHeight ?? '100%',
-  );
-
-  const onLoad: ReactEventHandler<HTMLEmbedElement> = (e) => {
-    // only set pdf height if not using collapse
-    if (!showCollapse) {
-      // set pdf height -> probably very high
-      console.log((e.target as HTMLEmbedElement)?.offsetParent);
-      const newHeight = (e.target as HTMLEmbedElement)?.offsetParent
-        ?.scrollHeight;
-      newHeight && setHeight(newHeight);
-    }
-  };
 
   const src = encodeURIComponent(`https://pdfviewer.dev.graasp.org/pdf/web/viewer.html?file=${url}`);
 
   return (
-    <embed
-      ref={embedRef}
+    <iframe
       id={id}
       src={src}
       width='100%'
-      height={height || '100%'}
-      onLoad={onLoad}
+      height={defaultHeight || '100%'}
       className={clsx(classes.embed, className)}
     />
   );
