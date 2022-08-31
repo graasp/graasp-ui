@@ -1,7 +1,7 @@
 import React, { FC, useRef, useState, ReactEventHandler } from 'react';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
-import { ITEM_MAX_HEIGHT, PDF_VIEWER_LINK } from '../constants';
+import { ITEM_MAX_HEIGHT, PDF_VIEWER_LINK, SERVICE_TYPES } from '../constants';
 
 interface FilePdfProps {
   id?: string;
@@ -9,6 +9,7 @@ interface FilePdfProps {
   height?: number | string;
   className?: string;
   showCollapse?: boolean;
+  serviceType?: string;
 }
 
 const useStyles = makeStyles({
@@ -23,6 +24,7 @@ const FilePdf: FC<FilePdfProps> = ({
   height: defaultHeight,
   className,
   showCollapse,
+  serviceType,
 }) => {
   const embedRef = useRef<HTMLEmbedElement>(null);
   const classes = useStyles();
@@ -41,13 +43,13 @@ const FilePdf: FC<FilePdfProps> = ({
     }
   };
 
-  const src = `${PDF_VIEWER_LINK}${encodeURIComponent(url)}`;
+  const urlWithPdfViewer = `${PDF_VIEWER_LINK}${encodeURIComponent(url)}`;
 
   return (
     <embed
       ref={embedRef}
       id={id}
-      src={src}
+      src={serviceType === SERVICE_TYPES.S3 ? urlWithPdfViewer : url}
       width='100%'
       height={height || '100%'}
       onLoad={onLoad}

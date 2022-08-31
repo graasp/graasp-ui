@@ -17,6 +17,7 @@ interface FileItemProps {
   item: RecordOf<Item<UnknownExtra>>;
   content?: Blob;
   fileUrl?: string;
+  serviceType?: string;
   id?: string;
   defaultItem?: JSX.Element;
   downloadText?: string;
@@ -45,6 +46,7 @@ const FileItem: FC<FileItemProps> = ({
   errorMessage = UNEXPECTED_ERROR_MESSAGE,
   className,
   showCollapse,
+  serviceType,
 }) => {
   const [url, setUrl] = useState<string>();
   const extra =
@@ -107,6 +109,7 @@ const FileItem: FC<FileItemProps> = ({
           height={maxHeight}
           className={className}
           showCollapse={showCollapse}
+          serviceType={serviceType}
         />
       );
     }
