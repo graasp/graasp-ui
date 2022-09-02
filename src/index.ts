@@ -58,4 +58,6 @@ export { UserSwitch, UserSwitchWrapper } from './UserSwitch';
 
 export { default as CustomInitialLoader } from './CustomInitialLoader';
 
+export { default as ItemSkeleton } from './ItemSkeleton';
+
 export * from './icons';
