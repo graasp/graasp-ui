@@ -1,7 +1,7 @@
 import React from 'react';
 import { Skeleton } from '@material-ui/lab';
 import { ITEM_TYPES } from '../enums';
-import { SCREEN_MAX_HEIGHT } from '../constants';
+import { SCREEN_MAX_HEIGHT, SKELETON_COLLAPSE_HEIGHT, SKELETON_FOLDER_BUTTON_HEIGHT } from '../constants';
 
 interface Props {
   itemType: string;
@@ -18,13 +18,13 @@ const ItemSkeleton: React.FC<Props> = ({
 }) => {
   switch (true) {
     case isCollapsible: {
-      return <Skeleton variant="rect" width={'100%'} height={'56px'} />;
+      return <Skeleton variant="rect" width={'100%'} height={SKELETON_COLLAPSE_HEIGHT} />;
     }
     case itemType === ITEM_TYPES.FOLDER && isChildren: {
       return null;
     }
     case itemType === ITEM_TYPES.FOLDER: {
-      return <Skeleton variant="rect" width={'100%'} height={'130px'} />;
+      return <Skeleton variant="rect" width={'100%'} height={SKELETON_FOLDER_BUTTON_HEIGHT} />;
     }
     case [
       ITEM_TYPES.FILE,
