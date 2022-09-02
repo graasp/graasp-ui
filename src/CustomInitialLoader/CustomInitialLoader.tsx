@@ -28,10 +28,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const CustomInitialLoader: React.FC<Props> = ({
-    text,
-  id,
-}) => {
+const CustomInitialLoader: React.FC<Props> = ({ text, id }) => {
   const classes = useStyles();
   return (
     <Container id={id} className={classes.container}>
