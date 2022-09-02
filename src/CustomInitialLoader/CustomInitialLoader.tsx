@@ -18,7 +18,14 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(2),
   },
   progressBar: {
-    color: theme.palette.primary.main,
+    width: '50%',
+    minWidth: 200,
+    margin: '0 auto',
+    height: 10,
+    borderRadius: 2,
+  },
+  bar: {
+    backgroundColor: theme.palette.primary.main,
   },
   logo: {
     fill: theme.palette.primary.main,
@@ -31,7 +38,7 @@ const CustomInitialLoader: React.FC<Props> = ({ id }) => {
     <Container id={id} className={classes.container}>
       <GraaspLogo height={100} className={classes.logo} />
       <div className={classes.progressBarContainer} >
-        <LinearProgress className={classes.progressBar} />
+        <LinearProgress classes={{ root: classes.progressBar, bar: classes.bar }} />
       </div>
     </Container>
   );
