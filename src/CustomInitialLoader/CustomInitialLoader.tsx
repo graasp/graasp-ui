@@ -8,7 +8,7 @@ interface Props {
 
 const useStyles = makeStyles((theme) => ({
   container: {
-    height: '100vh',
+    height: '200vh',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
