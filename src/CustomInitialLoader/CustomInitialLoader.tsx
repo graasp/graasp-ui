@@ -8,14 +8,14 @@ interface Props {
 
 const useStyles = makeStyles((theme) => ({
   container: {
-    height: '200vh',
+    height: '100vh',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
   },
   progressBarContainer: {
-    marginTop: theme.spacing(2),
+    marginTop: theme.spacing(7),
   },
   progressBar: {
     width: '50%',
@@ -36,7 +36,7 @@ const CustomInitialLoader: React.FC<Props> = ({ id }) => {
   const classes = useStyles();
   return (
     <Container id={id} className={classes.container}>
-      <GraaspLogo height={100} className={classes.logo} />
+      <GraaspLogo height={200} className={classes.logo} />
       <div className={classes.progressBarContainer} >
         <LinearProgress classes={{ root: classes.progressBar, bar: classes.bar }} />
       </div>
