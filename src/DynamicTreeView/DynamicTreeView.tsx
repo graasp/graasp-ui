@@ -1,21 +1,21 @@
-import React, { FC, useState } from 'react';
-import type { UseQueryResult } from 'react-query';
-import TreeView from '@material-ui/lab/TreeView';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import { List } from 'immutable';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import TreeItem from '@material-ui/lab/TreeItem';
+import type { Item, ItemRecord } from '../types';
 import CustomTreeItem from './CustomTreeItem';
 import TreeItemLabel from './TreeItemLabel';
-import type { ItemRecord } from '../types';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { Skeleton } from '@material-ui/lab';
+import TreeItem from '@material-ui/lab/TreeItem';
+import TreeView from '@material-ui/lab/TreeView';
+import { List } from 'immutable';
+import React, { FC, useState } from 'react';
+import type { UseQueryResult } from 'react-query';
 
 interface DynamicTreeViewProps {
   id: string;
   rootLabel: string;
   rootId: string;
   rootClassName: string;
-  items: List<ItemRecord>;
+  items: List<Item>;
   initialExpendedItems?: string[];
   showCheckbox?: boolean;
   selectedId: string;

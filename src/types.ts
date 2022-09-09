@@ -28,6 +28,8 @@ export interface Item<T = UnknownExtra> {
   type: string;
   creator: string;
   settings?: unknown;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export type ItemRecord = RecordOf<Item>;
@@ -59,6 +61,8 @@ export class ImmutableItemClass extends Record({
   extra: {},
   type: '',
   creator: '',
+  createdAt: '',
+  updatedAt: '',
 }) {}
 
 export type EmbeddedLinkItemExtraProp = {

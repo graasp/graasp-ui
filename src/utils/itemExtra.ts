@@ -1,3 +1,4 @@
+import { ItemType } from '@graasp/sdk';
 import {
   AppItemExtra,
   AppItemExtraProp,
@@ -12,20 +13,20 @@ import {
 } from '../types';
 
 export const getFileExtra = (extra?: FileItemExtra): FileItemProp | undefined =>
-  extra?.file;
+  extra?.[ItemType.LOCAL_FILE];
 
 export const getS3FileExtra = (
   extra?: S3FileItemExtra,
-): S3FileItemExtraProp | undefined => extra?.s3File;
+): S3FileItemExtraProp | undefined => extra?.[ItemType.S3_FILE];
 
 export const getEmbeddedLinkExtra = (
   extra?: EmbeddedLinkItemExtra,
-): EmbeddedLinkItemExtraProp | undefined => extra?.embeddedLink;
+): EmbeddedLinkItemExtraProp | undefined => extra?.[ItemType.LINK];
 
 export const getDocumentExtra = (
   extra?: DocumentItemExtra,
-): DocumentItemExtraProp | undefined => extra?.document;
+): DocumentItemExtraProp | undefined => extra?.[ItemType.DOCUMENT];
 
 export const getAppExtra = (
   extra?: AppItemExtra,
-): AppItemExtraProp | undefined => extra?.app;
+): AppItemExtraProp | undefined => extra?.[ItemType.APP];

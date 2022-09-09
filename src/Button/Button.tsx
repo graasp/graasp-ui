@@ -42,9 +42,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-/**
- * Column properties.
- */
 export const GraaspButton: FC<GraaspButtonProps> = ({
   id,
   dataCy,
