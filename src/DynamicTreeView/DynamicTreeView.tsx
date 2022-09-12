@@ -32,7 +32,7 @@ interface DynamicTreeViewProps {
     itemId: string;
   }) => boolean;
   buildTreeItemClass?: (id: string) => string;
-  isLoading?: boolean,
+  isLoading?: boolean;
 }
 
 const DynamicTreeView: FC<DynamicTreeViewProps> = ({
@@ -54,7 +54,7 @@ const DynamicTreeView: FC<DynamicTreeViewProps> = ({
   isLoading,
 }) => {
   if (isLoading) {
-    return <Skeleton variant="text" />;
+    return <Skeleton variant='text' />;
   }
 
   const [expandedItems, setExpandedItems] = useState(initialExpendedItems);

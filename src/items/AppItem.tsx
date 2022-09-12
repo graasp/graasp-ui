@@ -4,17 +4,18 @@ import { RecordOf } from 'immutable';
 import { withStyles } from '@material-ui/core/styles';
 import { getAppExtra } from '../utils/itemExtra';
 import qs from 'qs';
-import Loader from '../Loader';
 import withResizing from './withResizing';
 import {
   APP_ITEM_FRAME_BORDER,
   APP_ITEM_WIDTH,
   DEFAULT_PERMISSION,
   ITEM_MAX_HEIGHT,
+  SCREEN_MAX_HEIGHT,
 } from '../constants';
 import withCaption from './withCaption';
 import type { AppItemExtra, Item, MemberRecord, UUID } from '../types';
 import { UseMutateAsyncFunction } from 'react-query';
+import { Skeleton } from '@material-ui/lab';
 
 const buildPostMessageKeys = (itemId: UUID): { [key: string]: string } => ({
   GET_CONTEXT_SUCCESS: `GET_CONTEXT_SUCCESS_${itemId}`,
@@ -263,7 +264,9 @@ class AppItem extends Component<AppItemProps> {
 
     const component = (
       <>
-        {iframeIsLoading && <Loader />}
+        {iframeIsLoading && (
+          <Skeleton variant='rect' width={'100%'} height={SCREEN_MAX_HEIGHT} />
+        )}
         {isResizable ? (
           <div>
             {withResizing({
