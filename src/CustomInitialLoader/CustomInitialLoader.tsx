@@ -37,8 +37,10 @@ const CustomInitialLoader: React.FC<Props> = ({ id }) => {
   return (
     <Container id={id} className={classes.container}>
       <GraaspLogo height={200} className={classes.logo} />
-      <div className={classes.progressBarContainer} >
-        <LinearProgress classes={{ root: classes.progressBar, bar: classes.bar }} />
+      <div className={classes.progressBarContainer}>
+        <LinearProgress
+          classes={{ root: classes.progressBar, bar: classes.bar }}
+        />
       </div>
     </Container>
   );
