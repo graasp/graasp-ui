@@ -30,10 +30,12 @@ const resizeHandleStyles = {
 
 function withResizing({ height }: WithResizingProps) {
   return (component: JSX.Element): JSX.Element => {
-    class ComponentWithResizing extends React.Component {
+    class ComponentWithResizing extends React.Component<{}, {variableHeight: string | number}> {
       constructor(props: any) {
         super(props);
-        this.state = {variableHeight: height};
+        this.state = {
+          variableHeight: height,
+        };
       }
 
       render(): JSX.Element {
@@ -41,6 +43,7 @@ function withResizing({ height }: WithResizingProps) {
           <>
             <div style={resizeHandleStyles.resizableContainer}>
               <Rnd
+                size={{ width: '100%',  height: this.state.variableHeight }}
                 style={{ position: 'relative' }}
                 disableDragging
                 enableResizing={{ bottom: true }}
@@ -62,6 +65,7 @@ function withResizing({ height }: WithResizingProps) {
                 }}
               >
                 {component}
+                {this.state.variableHeight}
               </Rnd>
             </div>
           </>
