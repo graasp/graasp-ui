@@ -1,6 +1,6 @@
 import React from 'react';
 import { Rnd } from 'react-rnd';
-import Cookies from 'js-cookie'
+import Cookies from 'js-cookie';
 import ResizingIcon from '../icons/ResizingIcon';
 import { UUID } from '../types';
 
@@ -31,14 +31,18 @@ const resizeHandleStyles = {
   },
 };
 
-const IFRAME_RESIZE_HEIGHT_KEY = 'iFrameResizeHeight';
+const IFRAME_RESIZE_HEIGHT_KEY = 'iframeResizeHeight';
+const EXPIRATION_IFRAME_RESIZE_HEIGHT_COOKIE = 365; // 365 days
 
-const buildIframeResizeHeightKey = (memberId: UUID, itemId: UUID) => `${IFRAME_RESIZE_HEIGHT_KEY}-${memberId}-${itemId}`;
-
+const buildIframeResizeHeightKey = (memberId: UUID, itemId: UUID) =>
+  `${IFRAME_RESIZE_HEIGHT_KEY}-${memberId}-${itemId}`;
 
 function withResizing({ height, memberId, itemId }: WithResizingProps) {
   return (component: JSX.Element): JSX.Element => {
-    class ComponentWithResizing extends React.Component<{}, {variableHeight: string | number}> {
+    class ComponentWithResizing extends React.Component<
+      {},
+      { variableHeight: string | number }
+    > {
       constructor(props: any) {
         super(props);
         this.state = {
@@ -47,8 +51,10 @@ function withResizing({ height, memberId, itemId }: WithResizingProps) {
       }
 
       componentDidMount(): void {
-        const iframeResizeHeight = Cookies.get(buildIframeResizeHeightKey(memberId, itemId));
-        if(iframeResizeHeight) {
+        const iframeResizeHeight = Cookies.get(
+          buildIframeResizeHeightKey(memberId, itemId),
+        );
+        if (iframeResizeHeight) {
           this.setState({
             variableHeight: iframeResizeHeight,
           });
@@ -57,7 +63,11 @@ function withResizing({ height, memberId, itemId }: WithResizingProps) {
 
       componentDidUpdate(_prevProps: any, prevState: any) {
         if (prevState.variableHeight !== this.state.variableHeight) {
-          Cookies.set(buildIframeResizeHeightKey(memberId, itemId), String(this.state.variableHeight));
+          Cookies.set(
+            buildIframeResizeHeightKey(memberId, itemId),
+            String(this.state.variableHeight),
+            { expires: EXPIRATION_IFRAME_RESIZE_HEIGHT_COOKIE },
+          );
         }
       }
 
@@ -66,7 +76,7 @@ function withResizing({ height, memberId, itemId }: WithResizingProps) {
           <>
             <div style={resizeHandleStyles.resizableContainer}>
               <Rnd
-                size={{ width: '100%',  height: this.state.variableHeight }}
+                size={{ width: '100%', height: this.state.variableHeight }}
                 position={{ x: 0, y: 0 }}
                 style={{ position: 'relative' }}
                 disableDragging
