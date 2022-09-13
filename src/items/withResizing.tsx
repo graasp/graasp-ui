@@ -1,5 +1,6 @@
 import React from 'react';
 import { Rnd } from 'react-rnd';
+import Cookies from 'js-cookie'
 import ResizingIcon from '../icons/ResizingIcon';
 
 interface WithResizingProps {
@@ -35,6 +36,21 @@ function withResizing({ height }: WithResizingProps) {
         this.state = {
           variableHeight: height,
         };
+      }
+
+      componentDidMount(): void {
+        const resizeHeightCookie = Cookies.get('resizeHeight');
+        if(resizeHeightCookie) {
+          this.setState({
+            variableHeight: resizeHeightCookie,
+          });
+        }
+      }
+
+      componentDidUpdate(_prevProps: any, prevState: any) {
+        if (prevState.variableHeight !== this.state.variableHeight) {
+          Cookies.set('resizeHeight', String(this.state.variableHeight));
+        }
       }
 
       render(): JSX.Element {
