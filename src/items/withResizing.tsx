@@ -44,16 +44,10 @@ function withResizing({ height }: WithResizingProps) {
             <div style={resizeHandleStyles.resizableContainer}>
               <Rnd
                 size={{ width: '100%',  height: this.state.variableHeight }}
+                position={{ x: 0, y: 0 }}
                 style={{ position: 'relative' }}
                 disableDragging
                 enableResizing={{ bottom: true }}
-                default={{
-                  width: '100%',
-                  height: height,
-                  x: 0,
-                  y: 0,
-                }}
-                minHeight={IFRAME_MIN_HEIGHT}
                 resizeHandleComponent={{ bottom: <ResizingIcon /> }}
                 resizeHandleStyles={{
                   bottom: resizeHandleStyles.resizeHandleComponent,
