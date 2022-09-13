@@ -1,7 +1,6 @@
 import React from 'react';
 import { Rnd } from 'react-rnd';
 import ResizingIcon from '../icons/ResizingIcon';
-import { IFRAME_MIN_HEIGHT } from '../constants';
 
 interface WithResizingProps {
   height: string | number;
