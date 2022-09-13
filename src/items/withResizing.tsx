@@ -31,6 +31,11 @@ const resizeHandleStyles = {
 function withResizing({ height }: WithResizingProps) {
   return (component: JSX.Element): JSX.Element => {
     class ComponentWithResizing extends React.Component {
+      constructor(props: any) {
+        super(props);
+        this.state = {variableHeight: height};
+      }
+
       render(): JSX.Element {
         return (
           <>
@@ -49,6 +54,11 @@ function withResizing({ height }: WithResizingProps) {
                 resizeHandleComponent={{ bottom: <ResizingIcon /> }}
                 resizeHandleStyles={{
                   bottom: resizeHandleStyles.resizeHandleComponent,
+                }}
+                onResizeStop={(ref: any) => {
+                  this.setState({
+                    variableHeight: ref.style.height,
+                  });
                 }}
               >
                 {component}
