@@ -2,9 +2,12 @@ import React from 'react';
 import { Rnd } from 'react-rnd';
 import Cookies from 'js-cookie'
 import ResizingIcon from '../icons/ResizingIcon';
+import { UUID } from '../types';
 
 interface WithResizingProps {
   height: string | number;
+  memberId: UUID;
+  itemId: UUID;
 }
 
 const resizeHandleStyles = {
@@ -28,7 +31,12 @@ const resizeHandleStyles = {
   },
 };
 
-function withResizing({ height }: WithResizingProps) {
+const IFRAME_RESIZE_HEIGHT_KEY = 'iFrameResizeHeight';
+
+const buildIframeResizeHeightKey = (memberId: UUID, itemId: UUID) => `${IFRAME_RESIZE_HEIGHT_KEY}-${memberId}-${itemId}`;
+
+
+function withResizing({ height, memberId, itemId }: WithResizingProps) {
   return (component: JSX.Element): JSX.Element => {
     class ComponentWithResizing extends React.Component<{}, {variableHeight: string | number}> {
       constructor(props: any) {
@@ -39,17 +47,17 @@ function withResizing({ height }: WithResizingProps) {
       }
 
       componentDidMount(): void {
-        const resizeHeightCookie = Cookies.get('resizeHeight');
-        if(resizeHeightCookie) {
+        const iframeResizeHeight = Cookies.get(buildIframeResizeHeightKey(memberId, itemId));
+        if(iframeResizeHeight) {
           this.setState({
-            variableHeight: resizeHeightCookie,
+            variableHeight: iframeResizeHeight,
           });
         }
       }
 
       componentDidUpdate(_prevProps: any, prevState: any) {
         if (prevState.variableHeight !== this.state.variableHeight) {
-          Cookies.set('resizeHeight', String(this.state.variableHeight));
+          Cookies.set(buildIframeResizeHeightKey(memberId, itemId), String(this.state.variableHeight));
         }
       }
 
@@ -74,7 +82,6 @@ function withResizing({ height }: WithResizingProps) {
                 }}
               >
                 {component}
-                {this.state.variableHeight}
               </Rnd>
             </div>
           </>

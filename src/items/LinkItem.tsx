@@ -9,11 +9,12 @@ import OpenInNewIcon from '@material-ui/icons/OpenInNew';
 import Button from '../Button';
 import withCaption from './withCaption';
 import { ITEM_MAX_HEIGHT } from '../constants';
-import type { EmbeddedLinkItemExtra, Item } from '../types';
+import type { EmbeddedLinkItemExtra, Item, MemberRecord } from '../types';
 import withResizing from './withResizing';
 
 interface LinkItemProps {
   item: RecordOf<Item<EmbeddedLinkItemExtra>>;
+  member: MemberRecord;
   height?: number | string;
   onSaveCaption?: (text: string) => void;
   editCaption?: boolean;
@@ -50,6 +51,7 @@ const useStyles = makeStyles((theme) => ({
 
 const LinkItem: FC<LinkItemProps> = ({
   item,
+  member,
   onSaveCaption,
   saveButtonId,
   editCaption = false,
@@ -141,6 +143,8 @@ const LinkItem: FC<LinkItemProps> = ({
           <div>
             {withResizing({
               height,
+              memberId: member.id,
+              itemId: item.id,
             })(iframe)}
           </div>
         ) : (
