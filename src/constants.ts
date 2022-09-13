@@ -54,6 +54,9 @@ export const DEFAULT_ITEM_DESCRIPTION = '';
 export const RESIZING_ICON_LEVEL_BACKGROUND_COLOR = 300;
 export const RESIZING_ICON_LEVEL_BACKGROUND_COLOR_FOCUS = 500;
 
+export const SKELETON_COLLAPSE_HEIGHT = '3.5em';
+export const SKELETON_FOLDER_BUTTON_HEIGHT = '8.125em';
+
 // todo: factor out in graasp constants
 export const SETTINGS = {
   ITEM_LOGIN: {
@@ -103,3 +106,5 @@ export const SERVICE_TYPES = {
   LOCAL: 'localService',
   S3: 's3Service',
 };
+
+export const SCREEN_MAX_HEIGHT = window.innerHeight * 0.8;

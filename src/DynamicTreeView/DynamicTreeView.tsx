@@ -8,6 +8,7 @@ import TreeItem from '@material-ui/lab/TreeItem';
 import CustomTreeItem from './CustomTreeItem';
 import TreeItemLabel from './TreeItemLabel';
 import type { ItemRecord } from '../types';
+import { Skeleton } from '@material-ui/lab';
 
 interface DynamicTreeViewProps {
   id: string;
@@ -31,6 +32,7 @@ interface DynamicTreeViewProps {
     itemId: string;
   }) => boolean;
   buildTreeItemClass?: (id: string) => string;
+  isLoading?: boolean;
 }
 
 const DynamicTreeView: FC<DynamicTreeViewProps> = ({
@@ -49,7 +51,12 @@ const DynamicTreeView: FC<DynamicTreeViewProps> = ({
   shouldFetchChildrenForItem = () => true,
   isTreeItemDisabled = () => false,
   buildTreeItemClass = () => '',
+  isLoading,
 }) => {
+  if (isLoading) {
+    return <Skeleton variant='text' />;
+  }
+
   const [expandedItems, setExpandedItems] = useState(initialExpendedItems);
 
   // types based on TreeView types

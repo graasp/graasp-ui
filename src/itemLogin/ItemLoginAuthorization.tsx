@@ -2,9 +2,9 @@ import React, { ReactElement } from 'react';
 import { StatusCodes, getReasonPhrase } from 'http-status-codes';
 import Alert from '@material-ui/lab/Alert';
 import ItemLoginScreen, { SignInPropertiesType } from './ItemLoginScreen';
-import Loader from '../Loader';
 import { ItemLoginRecord, ItemRecord, MemberRecord, UUID } from '../types';
 import ForbiddenText from './ForbiddenText';
+import CustomInitialLoader from '../CustomInitialLoader';
 
 export type ItemLoginAuthorizationProps = {
   signIn: (args: { itemId: string } & SignInPropertiesType) => void;
@@ -64,7 +64,7 @@ const ItemLoginAuthorization =
 
       if (isMemberLoading || (isItemLoading && !item)) {
         // get item login if the user is not authenticated and the item is empty
-        return <Loader />;
+        return <CustomInitialLoader />;
       }
 
       // member should never trigger an error
