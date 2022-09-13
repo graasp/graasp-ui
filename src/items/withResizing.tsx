@@ -51,7 +51,7 @@ function withResizing({ height }: WithResizingProps) {
                 resizeHandleStyles={{
                   bottom: resizeHandleStyles.resizeHandleComponent,
                 }}
-                onResizeStop={(ref: any) => {
+                onResizeStop={(e, direction, ref, delta, position) => {
                   this.setState({
                     variableHeight: ref.style.height,
                   });
