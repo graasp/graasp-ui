@@ -1,16 +1,16 @@
-import React, { FC, useState, useRef, Fragment } from 'react';
-import clsx from 'clsx';
-import { RecordOf } from 'immutable';
-import Alert from '@material-ui/lab/Alert';
-import { redirect } from '@graasp/sdk';
-import { makeStyles } from '@material-ui/core/styles';
-import { getEmbeddedLinkExtra } from '../utils/itemExtra';
-import OpenInNewIcon from '@material-ui/icons/OpenInNew';
 import Button from '../Button';
-import withCaption from './withCaption';
 import { ITEM_MAX_HEIGHT } from '../constants';
 import type { EmbeddedLinkItemExtra, Item } from '../types';
+import { getEmbeddedLinkExtra } from '../utils/itemExtra';
+import withCaption from './withCaption';
 import withResizing from './withResizing';
+import { redirect } from '@graasp/sdk';
+import { makeStyles } from '@material-ui/core/styles';
+import OpenInNewIcon from '@material-ui/icons/OpenInNew';
+import Alert from '@material-ui/lab/Alert';
+import clsx from 'clsx';
+import { RecordOf } from 'immutable';
+import React, { FC, useState, useRef, Fragment } from 'react';
 
 export interface LinkItemProps {
   editCaption?: boolean;
@@ -79,7 +79,6 @@ const LinkItem: FC<LinkItemProps> = ({
   errorMessage = 'The link is malformed.',
   isResizable = false,
 }) => {
-  console.log(showIframe);
   const classes = useStyles();
   const [isLoading, setIsLoading] = useState(true);
   const [height] = useState<string | number>(defaultHeight ?? '100%');
