@@ -1,11 +1,10 @@
-import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
-
-import LinkItem from './LinkItem';
-import { RecordOf } from 'immutable';
-import { Item, ItemType } from '@graasp/sdk';
 import { EmbeddedLinkItemExtra, ImmutableItemClass } from '../types';
 import { TABLE_CATEGORIES } from '../utils/storybook';
+import LinkItem from './LinkItem';
+import { Item, ItemType } from '@graasp/sdk';
+import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { RecordOf } from 'immutable';
+import React from 'react';
 
 const item = new ImmutableItemClass({
   id: 'item-id',
@@ -20,7 +19,6 @@ const item = new ImmutableItemClass({
   creator: 'creator',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  settings: {},
   description: 'my link description',
 }) as RecordOf<Item<EmbeddedLinkItemExtra>>;
 

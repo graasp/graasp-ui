@@ -1,4 +1,4 @@
-import { List, Record, RecordOf } from 'immutable';
+import { Record, RecordOf } from 'immutable';
 import { Context } from '@graasp/sdk';
 
 export type UUID = string;
@@ -65,13 +65,14 @@ export class ImmutableItemClass extends Record({
   updatedAt: '',
 }) {}
 
+// use any instead of immutable List otherwise it cannot extends UnknownExtra
 export type EmbeddedLinkItemExtraProp = {
-  thumbnails: List<string>;
+  thumbnails: any; //List<string>;
   html: string;
   url: string;
-  icons: List<string>;
+  icons: any; // List<string>;
 };
-export interface EmbeddedLinkItemExtra {
+export interface EmbeddedLinkItemExtra extends UnknownExtra {
   embeddedLink: EmbeddedLinkItemExtraProp;
 }
 export type S3FileItemExtraProp = {

@@ -1,4 +1,4 @@
-import type { Item, ItemRecord } from '../types';
+import type { ItemRecord } from '../types';
 import CustomTreeItem from './CustomTreeItem';
 import TreeItemLabel from './TreeItemLabel';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
@@ -15,7 +15,7 @@ interface DynamicTreeViewProps {
   rootLabel: string;
   rootId: string;
   rootClassName: string;
-  items: List<Item>;
+  items: List<ItemRecord>;
   initialExpendedItems?: string[];
   showCheckbox?: boolean;
   selectedId: string;
