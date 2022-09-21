@@ -1,28 +1,45 @@
-import React, { FC, useState, useRef, Fragment } from 'react';
-import clsx from 'clsx';
-import { RecordOf } from 'immutable';
-import Alert from '@material-ui/lab/Alert';
-import { redirect } from '@graasp/sdk';
-import { makeStyles } from '@material-ui/core/styles';
-import { getEmbeddedLinkExtra } from '../utils/itemExtra';
-import OpenInNewIcon from '@material-ui/icons/OpenInNew';
 import Button from '../Button';
-import withCaption from './withCaption';
 import { ITEM_MAX_HEIGHT } from '../constants';
 import type { EmbeddedLinkItemExtra, Item } from '../types';
+import { getEmbeddedLinkExtra } from '../utils/itemExtra';
+import withCaption from './withCaption';
 import withResizing from './withResizing';
+import { redirect } from '@graasp/sdk';
+import { makeStyles } from '@material-ui/core/styles';
+import OpenInNewIcon from '@material-ui/icons/OpenInNew';
+import Alert from '@material-ui/lab/Alert';
+import clsx from 'clsx';
+import { RecordOf } from 'immutable';
+import React, { FC, useState, useRef, Fragment } from 'react';
 
-interface LinkItemProps {
-  item: RecordOf<Item<EmbeddedLinkItemExtra>>;
-  height?: number | string;
-  onSaveCaption?: (text: string) => void;
+export interface LinkItemProps {
   editCaption?: boolean;
-  showCaption?: boolean;
-  saveButtonId?: string;
-  loadingMessage?: string;
-  openLinkMessage?: string;
   errorMessage?: string;
+  height?: number | string;
+  /**
+   * whether the link can be resized
+   */
   isResizable?: boolean;
+  item: RecordOf<Item<EmbeddedLinkItemExtra>>;
+  loadingMessage?: string;
+  onSaveCaption?: (text: string) => void;
+  openLinkMessage?: string;
+  /**
+   * id of the save button
+   */
+  saveButtonId?: string;
+  /**
+   * whether the caption should be displayed
+   */
+  showCaption?: boolean;
+  /**
+   * whether the iframe should be displayed
+   */
+  showIframe?: boolean;
+  /**
+   * whether the button should be displayed
+   */
+  showButton?: boolean;
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -54,6 +71,8 @@ const LinkItem: FC<LinkItemProps> = ({
   saveButtonId,
   editCaption = false,
   showCaption = true,
+  showIframe = true,
+  showButton = false,
   loadingMessage = 'Link is Loading...',
   openLinkMessage = 'Click here to open the link manually',
   height: defaultHeight,
@@ -108,54 +127,68 @@ const LinkItem: FC<LinkItemProps> = ({
     redirect(url, { openInNewTab: true });
   };
 
-  const iframe = (
-    <iframe
-      id={id}
-      className={clsx(classes.iframe, {
-        [classes.iframeWithoutResizer]: !isResizable,
-      })}
-      title={name}
-      src={url}
-      onLoad={handleLoad}
-      height='100%'
-      ref={iframeRef}
-    />
+  const renderIframe = () => {
+    if (!showIframe) {
+      return null;
+    }
+
+    const iframe = (
+      <iframe
+        id={id}
+        className={clsx(classes.iframe, {
+          [classes.iframeWithoutResizer]: !isResizable,
+        })}
+        title={name}
+        src={url}
+        onLoad={handleLoad}
+        height='100%'
+        ref={iframeRef}
+      />
+    );
+
+    return (
+      <>
+        <div
+          hidden={!isLoading}
+          className={classes.iframeContainer}
+          style={{ height: height }}
+        >
+          {loadingMessage}
+        </div>
+        <div
+          hidden={isLoading}
+          className={clsx(classes.iframeContainer, {
+            [classes.iframeContainerWithoutResizer]: !isResizable,
+          })}
+        >
+          {isResizable ? (
+            <div>
+              {withResizing({
+                height,
+              })(iframe)}
+            </div>
+          ) : (
+            iframe
+          )}
+        </div>
+      </>
+    );
+  };
+
+  const button = (
+    <Button
+      onClick={onClick}
+      className={classes.linkButton}
+      startIcon={<OpenInNewIcon />}
+    >
+      {openLinkMessage}
+    </Button>
   );
 
   const component = (
     <Fragment>
-      <div
-        hidden={!isLoading}
-        className={classes.iframeContainer}
-        style={{ height: height }}
-      >
-        {loadingMessage}
-      </div>
-      <div
-        hidden={isLoading}
-        className={clsx(classes.iframeContainer, {
-          [classes.iframeContainerWithoutResizer]: !isResizable,
-        })}
-      >
-        {isResizable ? (
-          <div>
-            {withResizing({
-              height,
-            })(iframe)}
-          </div>
-        ) : (
-          iframe
-        )}
-      </div>
-      {isLoading && (
-        <Button
-          onClick={onClick}
-          className={classes.linkButton}
-          startIcon={<OpenInNewIcon />}
-        >
-          {openLinkMessage}
-        </Button>
-      )}
+      {renderIframe()}
+      {(isLoading || showButton) && button}
     </Fragment>
   );
 
