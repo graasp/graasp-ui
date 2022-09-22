@@ -1,8 +1,8 @@
 import React from 'react';
 import { Rnd } from 'react-rnd';
-import Cookies from 'js-cookie';
 import ResizingIcon from '../icons/ResizingIcon';
 import { UUID } from '../types';
+import { getIframeResizeHeightCookie, setIframeResizeHeightCookie } from '@graasp/sdk';
 
 interface WithResizingProps {
   height: string | number;
@@ -31,12 +31,6 @@ const resizeHandleStyles = {
   },
 };
 
-const IFRAME_RESIZE_HEIGHT_KEY = 'iframeResizeHeight';
-const EXPIRATION_IFRAME_RESIZE_HEIGHT_COOKIE = 365; // 365 days
-
-const buildIframeResizeHeightKey = (memberId: UUID, itemId: UUID) =>
-  `${IFRAME_RESIZE_HEIGHT_KEY}-${memberId}-${itemId}`;
-
 function withResizing({ height, memberId, itemId }: WithResizingProps) {
   return (component: JSX.Element): JSX.Element => {
     class ComponentWithResizing extends React.Component<
@@ -51,9 +45,8 @@ function withResizing({ height, memberId, itemId }: WithResizingProps) {
       }
 
       componentDidMount(): void {
-        const iframeResizeHeight = Cookies.get(
-          buildIframeResizeHeightKey(memberId, itemId),
-        );
+        const iframeResizeHeight = getIframeResizeHeightCookie(memberId, itemId);
+
         if (iframeResizeHeight) {
           this.setState({
             variableHeight: iframeResizeHeight,
@@ -63,11 +56,7 @@ function withResizing({ height, memberId, itemId }: WithResizingProps) {
 
       componentDidUpdate(_prevProps: any, prevState: any) {
         if (prevState.variableHeight !== this.state.variableHeight) {
-          Cookies.set(
-            buildIframeResizeHeightKey(memberId, itemId),
-            String(this.state.variableHeight),
-            { expires: EXPIRATION_IFRAME_RESIZE_HEIGHT_COOKIE },
-          );
+          setIframeResizeHeightCookie(memberId, itemId, this.state.variableHeight);
         }
       }
 

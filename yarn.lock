@@ -2330,7 +2330,7 @@ __metadata:
 
 "@graasp/sdk@github:graasp/graasp-sdk#46/SavePermanentlyWithresizeHeightInACookie":
   version: 0.1.0
-  resolution: "@graasp/sdk@https://github.com/graasp/graasp-sdk.git#commit=52bc0587fae8750b4a3cee0adbcf62754cf4542b"
+  resolution: "@graasp/sdk@https://github.com/graasp/graasp-sdk.git#commit=2c17e271dfd65aa1736138acb62500ce1ca1e83c"
   dependencies:
     "@fastify/secure-session": 5.2.0
     aws-sdk: 2.1111.0
@@ -2341,7 +2341,7 @@ __metadata:
     qs: 6.11.0
     slonik: 28.1.1
     uuid: 8.3.2
-  checksum: 186a89840a5d5436b06ea9f207c616f417093525fd33cf103033e34b0d5ec74a52369051d959d37c2bbcc75763ca16b108d747b78fc94f46487e14325334ed04
+  checksum: d26a8eaff4345411d245ad302482b83bb52073e48152c22f86f3ef7fecee097d68d225eae13b98faffd3ffaa0dd0d14eba82feb743f376870e93328ecfa9d9a5
   languageName: node
   linkType: hard
 
@@ -2385,7 +2385,6 @@ __metadata:
     "@types/enzyme": 3.10.12
     "@types/enzyme-adapter-react-16": 1.0.6
     "@types/jest": 28.1.4
-    "@types/js-cookie": 3.0.2
     "@types/katex": 0.14.0
     "@types/lodash.truncate": 4.4.7
     "@types/node": ^17.0.33
@@ -2416,7 +2415,6 @@ __metadata:
     immutable: 4.1.0
     jest: 28.1.0
     jest-environment-jsdom: 28.1.2
-    js-cookie: 3.0.1
     katex: 0.15.3
     lodash.truncate: 4.4.2
     node-sass: 7.0.1
@@ -5726,13 +5724,6 @@ __metadata:
     jest-matcher-utils: ^28.0.0
     pretty-format: ^28.0.0
   checksum: 97e22c600397bb4f30e39b595f8285ae92e4eb29a1ef6d1689749e4a4da683d88ecfe717b64492f6adc4c17c1c989520c3546f938c84a7d435c6ac3acf1a2bdc
-  languageName: node
-  linkType: hard
-
-"@types/js-cookie@npm:3.0.2":
-  version: 3.0.2
-  resolution: "@types/js-cookie@npm:3.0.2"
-  checksum: 7ab964288dd26373e134ed0bcde4a7dbea7e6f5de1805e2d1e48eac847e89a0e7f5fdc9164c37931680ec97c6e6e5a73e3e4039e0d08527c2e21badd7bee62d1
   languageName: node
   linkType: hard
 
