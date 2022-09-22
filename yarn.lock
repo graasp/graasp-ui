@@ -2328,19 +2328,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@graasp/sdk@github:graasp/graasp-sdk.git":
+"@graasp/sdk@github:graasp/graasp-sdk#46/SavePermanentlyWithresizeHeightInACookie":
   version: 0.1.0
-  resolution: "@graasp/sdk@https://github.com/graasp/graasp-sdk.git#commit=4796e963bdbc84b0a2b098a83a401c0aecc259cb"
+  resolution: "@graasp/sdk@https://github.com/graasp/graasp-sdk.git#commit=52bc0587fae8750b4a3cee0adbcf62754cf4542b"
   dependencies:
     "@fastify/secure-session": 5.2.0
     aws-sdk: 2.1111.0
     fastify: ^3.29.1
     fluent-json-schema: 3.1.0
+    immutable: 4.1.0
     js-cookie: 3.0.1
     qs: 6.11.0
     slonik: 28.1.1
     uuid: 8.3.2
-  checksum: 1562609fe4dd058fe4c02991f5a7742dd932cbe301ae56cf77d217fc06243448fbed1dc05744829be2cc098a2bc4adacf6004c06cce8d49c6733b42a7fb1d9bf
+  checksum: 186a89840a5d5436b06ea9f207c616f417093525fd33cf103033e34b0d5ec74a52369051d959d37c2bbcc75763ca16b108d747b78fc94f46487e14325334ed04
   languageName: node
   linkType: hard
 
@@ -2360,7 +2361,7 @@ __metadata:
     "@babel/preset-typescript": 7.16.7
     "@commitlint/cli": 17.0.0
     "@commitlint/config-conventional": 17.0.0
-    "@graasp/sdk": "github:graasp/graasp-sdk.git"
+    "@graasp/sdk": "github:graasp/graasp-sdk#46/SavePermanentlyWithresizeHeightInACookie"
     "@material-ui/core": 4.12.4
     "@material-ui/icons": 4.11.3
     "@material-ui/lab": 4.0.0-alpha.61
