@@ -2328,7 +2328,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@graasp/sdk@github:graasp/graasp-sdk":
+"@graasp/sdk@github:graasp/graasp-sdk.git":
   version: 0.1.0
   resolution: "@graasp/sdk@https://github.com/graasp/graasp-sdk.git#commit=9dea1ad86a92a3154bb97ca8413c19f88c8a03c4"
   dependencies:
@@ -2361,7 +2361,7 @@ __metadata:
     "@babel/preset-typescript": 7.16.7
     "@commitlint/cli": 17.0.0
     "@commitlint/config-conventional": 17.0.0
-    "@graasp/sdk": "github:graasp/graasp-sdk"
+    "@graasp/sdk": "github:graasp/graasp-sdk.git"
     "@material-ui/core": 4.12.4
     "@material-ui/icons": 4.11.3
     "@material-ui/lab": 4.0.0-alpha.61
