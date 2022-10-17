@@ -50,7 +50,7 @@
     "storybook:build": "build-storybook"
   },
   "dependencies": {
-    "@graasp/sdk": "github:graasp/graasp-sdk#46/SavePermanentlyWithresizeHeightInACookie",
+    "@graasp/sdk": "github:graasp/graasp-sdk",
     "clsx": "1.1.1",
     "http-status-codes": "2.2.0",
     "immutable": "4.1.0",
