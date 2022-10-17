@@ -271,6 +271,8 @@ class AppItem extends Component<AppItemProps> {
           <div>
             {withResizing({
               height,
+              memberId: this.props.member.id,
+              itemId: this.props.item.id,
             })(iframe)}
           </div>
         ) : (

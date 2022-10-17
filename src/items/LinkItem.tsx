@@ -1,6 +1,6 @@
 import Button from '../Button';
 import { ITEM_MAX_HEIGHT } from '../constants';
-import type { EmbeddedLinkItemExtra, Item } from '../types';
+import type { EmbeddedLinkItemExtra, Item, MemberRecord } from '../types';
 import { getEmbeddedLinkExtra } from '../utils/itemExtra';
 import withCaption from './withCaption';
 import withResizing from './withResizing';
@@ -13,6 +13,7 @@ import { RecordOf } from 'immutable';
 import React, { FC, useState, useRef, Fragment } from 'react';
 
 export interface LinkItemProps {
+  member: MemberRecord;
   editCaption?: boolean;
   errorMessage?: string;
   height?: number | string;
@@ -67,6 +68,7 @@ const useStyles = makeStyles((theme) => ({
 
 const LinkItem: FC<LinkItemProps> = ({
   item,
+  member,
   onSaveCaption,
   saveButtonId,
   editCaption = false,
@@ -165,6 +167,8 @@ const LinkItem: FC<LinkItemProps> = ({
             <div>
               {withResizing({
                 height,
+                memberId: member.id,
+                itemId: item.id,
               })(iframe)}
             </div>
           ) : (

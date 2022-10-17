@@ -1,10 +1,13 @@
 import React from 'react';
 import { Rnd } from 'react-rnd';
 import ResizingIcon from '../icons/ResizingIcon';
-import { IFRAME_MIN_HEIGHT } from '../constants';
+import { UUID } from '../types';
+import { getIframeResizeHeightCookie, setIframeResizeHeightCookie } from '@graasp/sdk';
 
 interface WithResizingProps {
   height: string | number;
+  memberId: UUID;
+  itemId: UUID;
 }
 
 const resizeHandleStyles = {
@@ -28,27 +31,53 @@ const resizeHandleStyles = {
   },
 };
 
-function withResizing({ height }: WithResizingProps) {
+function withResizing({ height, memberId, itemId }: WithResizingProps) {
   return (component: JSX.Element): JSX.Element => {
-    class ComponentWithResizing extends React.Component {
+    class ComponentWithResizing extends React.Component<
+      {},
+      { variableHeight: string | number }
+    > {
+      constructor(props: any) {
+        super(props);
+        this.state = {
+          variableHeight: height,
+        };
+      }
+
+      componentDidMount(): void {
+        const iframeResizeHeight = getIframeResizeHeightCookie(memberId, itemId);
+
+        if (iframeResizeHeight) {
+          this.setState({
+            variableHeight: iframeResizeHeight,
+          });
+        }
+      }
+
+      componentDidUpdate(_prevProps: any, prevState: any) {
+        if (prevState.variableHeight !== this.state.variableHeight) {
+          setIframeResizeHeightCookie(memberId, itemId, this.state.variableHeight);
+        }
+      }
+
       render(): JSX.Element {
         return (
           <>
             <div style={resizeHandleStyles.resizableContainer}>
               <Rnd
+                size={{ width: '100%', height: this.state.variableHeight }}
+                position={{ x: 0, y: 0 }}
                 style={{ position: 'relative' }}
                 disableDragging
                 enableResizing={{ bottom: true }}
-                default={{
-                  width: '100%',
-                  height: height,
-                  x: 0,
-                  y: 0,
-                }}
-                minHeight={IFRAME_MIN_HEIGHT}
                 resizeHandleComponent={{ bottom: <ResizingIcon /> }}
                 resizeHandleStyles={{
                   bottom: resizeHandleStyles.resizeHandleComponent,
+                }}
+                onResizeStop={(_e, _direction, ref, _delta, _position) => {
+                  this.setState({
+                    variableHeight: ref.style.height,
+                  });
                 }}
               >
                 {component}
