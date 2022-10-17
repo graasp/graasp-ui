@@ -12,7 +12,7 @@ import clsx from 'clsx';
 import { RecordOf } from 'immutable';
 import React, { FC, useState, useRef, Fragment } from 'react';
 
-interface LinkItemProps {
+export interface LinkItemProps {
   member: MemberRecord;
   editCaption?: boolean;
   errorMessage?: string;
