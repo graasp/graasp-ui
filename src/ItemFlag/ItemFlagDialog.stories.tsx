@@ -52,6 +52,9 @@ Primary.play = async () => {
   expect(modal.getByText('Flag')).toBeDisabled();
 
   // choose a flag and validate
-  await userEvent.click(modal.getByText(flags.first()?.name));
+  const flagName = flags.first()?.name;
+  if (flagName) {
+    await userEvent.click(modal.getByText(flagName));
+  }
   await userEvent.click(modal.getByText('Flag'));
 };
