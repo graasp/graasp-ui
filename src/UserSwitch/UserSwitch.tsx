@@ -1,3 +1,15 @@
+import { List } from 'immutable';
+
+import { styled } from '@mui/material';
+import Box from '@mui/material/Box';
+import Divider from '@mui/material/Divider';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import Skeleton from '@mui/material/Skeleton';
+import Tooltip from '@mui/material/Tooltip';
+import Typography from '@mui/material/Typography';
+
 import React, {
   FC,
   MouseEvent,
@@ -5,88 +17,82 @@ import React, {
   ReactElement,
   useState,
 } from 'react';
-import { isPseudonymizedMember, isSessionExpired, isError } from '@graasp/sdk';
-import { makeStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import Menu from '@material-ui/core/Menu';
-import Tooltip from '@material-ui/core/Tooltip';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import Box from '@material-ui/core/Box';
-import { Divider } from '@material-ui/core';
-import MenuItem from '@material-ui/core/MenuItem';
+
+import { isError, isPseudonymizedMember, isSessionExpired } from '@graasp/sdk';
+
+import Button from '../buttons/Button';
 import {
   HEADER_USERNAME_MAX_WIDTH,
   SHORT_TEXT_WIDTH,
   SMALL_AVATAR_SIZE,
 } from '../constants';
-import { Member, MemberRecord, Variant } from '../types';
-import Avatar from '../Avatar';
-import Button from '../Button';
-import { Skeleton } from '@material-ui/lab';
-import { UseQueryResult } from 'react-query';
+import { MemberRecord, Variant } from '../types';
 
-const useStyles = makeStyles((theme) => ({
-  wrapper: {
-    display: 'flex',
-    alignItems: 'center',
-    '&:hover': {
-      cursor: 'pointer',
-    },
-  },
-  mainUsername: {
-    margin: theme.spacing(0, 2),
-    maxWidth: HEADER_USERNAME_MAX_WIDTH,
-  },
-  mainAvatar: {
-    width: 70,
-    height: 70,
-    marginRight: theme.spacing(2),
-  },
-  profileButton: {
-    margin: 0,
-    marginTop: theme.spacing(1),
-  },
-  avatar: {
-    width: 30,
-    height: 30,
-  },
-  skeletonUsername: {
-    margin: theme.spacing(0, 2),
+const StyledWrapper = styled(Box)(() => ({
+  display: 'flex',
+  alignItems: 'center',
+  '&:hover': {
+    cursor: 'pointer',
   },
 }));
 
+// const useStyles = makeStyles((theme) => ({
+//   wrapper: {
+//     display: 'flex',
+//     alignItems: 'center',
+//     '&:hover': {
+//       cursor: 'pointer',
+//     },
+//   },
+//   mainUsername: {
+//     margin: theme.spacing(0, 2),
+//     maxWidth: HEADER_USERNAME_MAX_WIDTH,
+//   },
+//   mainAvatar: {
+//     width: 70,
+//     height: 70,
+//     marginRight: theme.spacing(2),
+//   },
+//   profileButton: {
+//     margin: 0,
+//     marginTop: theme.spacing(1),
+//   },
+//   skeletonUsername: {
+//     margin: theme.spacing(0, 2),
+//   },
+// }));
+
 interface Props {
-  useAvatar: (args: { id?: string; size?: string }) => UseQueryResult<Blob>;
+  Actions?: JSX.Element | JSX.Element[];
+  buildMemberMenuItemId?: (id: string) => string;
+  ButtonContent?: JSX.Element;
+  buttonId?: string;
+  isMemberLoading?: boolean;
   member?: MemberRecord;
-  members?: Member[];
-  onSeeProfileClick?: MouseEventHandler;
+  members?: List<MemberRecord>;
   onMemberClick?: (_id: string) => MouseEventHandler;
+  onSeeProfileClick?: MouseEventHandler;
+  renderAvatar?: (member?: MemberRecord) => JSX.Element;
+  seeProfileButtonId?: string;
   seeProfileText?: string;
   signedOutTooltipText?: string;
-  Actions?: JSX.Element | JSX.Element[];
-  ButtonContent?: JSX.Element;
-  isMemberLoading?: boolean;
-  buttonId?: string;
-  buildMemberMenuItemId?: (id: string) => string;
-  seeProfileButtonId?: string;
 }
 
 const UserSwitch: FC<Props> = ({
-  useAvatar,
-  onSeeProfileClick,
-  ButtonContent,
   Actions,
-  buttonId,
-  seeProfileButtonId,
   buildMemberMenuItemId,
-  member,
-  members = [],
+  ButtonContent,
+  buttonId,
   isMemberLoading = false,
+  member,
+  members = List(),
   onMemberClick = () => () => undefined,
+  onSeeProfileClick,
+  renderAvatar = () => <></>,
+  seeProfileButtonId,
   seeProfileText = 'See Profile',
   signedOutTooltipText = 'You are not signed in.',
 }) => {
-  const classes = useStyles();
   const [anchorEl, setAnchorEl] = useState<(EventTarget & Element) | null>(
     null,
   );
@@ -100,14 +106,14 @@ const UserSwitch: FC<Props> = ({
     setAnchorEl(null);
   };
 
-  const renderStoredSessions = (): (ReactElement | null)[] => {
+  const renderStoredSessions = (): (JSX.Element | null)[] | null => {
     const menuItems = members.map((m) => {
       // an error happened and the member is null or is an error
       if (!m || isError(m)) {
         return null;
       }
 
-      const { id, name, email, extra } = m;
+      const { id, name, email } = m;
 
       // do not show current member
       if (id === member?.id) {
@@ -123,17 +129,7 @@ const UserSwitch: FC<Props> = ({
           onClick={onMemberClick(id)}
           disabled={hasExpired}
         >
-          <ListItemIcon>
-            <Avatar
-              id={id}
-              extra={extra}
-              variant={Variant.CIRCLE}
-              alt={name}
-              component='avatar'
-              className={classes.avatar}
-              useAvatar={useAvatar}
-            />
-          </ListItemIcon>
+          <ListItemIcon>{renderAvatar(m)}</ListItemIcon>
           <div>
             <Typography variant='body1' noWrap>
               {name}
@@ -149,7 +145,8 @@ const UserSwitch: FC<Props> = ({
         </MenuItem>
       );
     });
-    return menuItems;
+
+    return menuItems?.toJS() as (JSX.Element | null)[];
   };
 
   const renderCurrentMemberInfo = (): ReactElement | null => {
@@ -159,15 +156,7 @@ const UserSwitch: FC<Props> = ({
 
     return (
       <MenuItem>
-        <Avatar
-          id={member.id}
-          extra={member.extra}
-          className={classes.mainAvatar}
-          variant={Variant.CIRCLE}
-          alt={memberName}
-          component='avatar'
-          useAvatar={useAvatar}
-        />
+        {renderAvatar(member)}
 
         <div>
           <Typography variant='h6' noWrap>
@@ -183,7 +172,7 @@ const UserSwitch: FC<Props> = ({
               <Button
                 size='small'
                 variant='outlined'
-                className={classes.profileButton}
+                sx={{ mt: 1 }}
                 id={seeProfileButtonId}
                 onClick={onSeeProfileClick}
               >
@@ -205,39 +194,26 @@ const UserSwitch: FC<Props> = ({
 
     if (isMemberLoading) {
       return (
-        <div className={classes.wrapper}>
+        <StyledWrapper>
           <Skeleton
-            variant='circle'
+            variant={Variant.CIRCLE}
             width={SMALL_AVATAR_SIZE}
             height={SMALL_AVATAR_SIZE}
           />
-          <Skeleton
-            variant='text'
-            width={SHORT_TEXT_WIDTH}
-            className={classes.skeletonUsername}
-          />
-        </div>
+          <Skeleton variant='text' width={SHORT_TEXT_WIDTH} sx={{ mx: 2 }} />
+        </StyledWrapper>
       );
     }
 
     return (
       <>
         <Tooltip title={memberName ?? signedOutTooltipText}>
-          <Avatar
-            id={member?.id}
-            extra={member?.extra}
-            maxWidth={30}
-            maxHeight={30}
-            variant={Variant.CIRCLE}
-            alt={memberName}
-            component='avatar'
-            useAvatar={useAvatar}
-          />
+          {renderAvatar(member)}
         </Tooltip>
         {memberName && (
           <Typography
             variant='subtitle1'
-            className={classes.mainUsername}
+            sx={{ mx: 2, maxWidth: HEADER_USERNAME_MAX_WIDTH }}
             noWrap
           >
             {memberName}
@@ -252,9 +228,9 @@ const UserSwitch: FC<Props> = ({
 
   return (
     <>
-      <Box className={classes.wrapper} onClick={handleClick} id={buttonId}>
+      <StyledWrapper onClick={handleClick} id={buttonId}>
         {renderButtonContent()}
-      </Box>
+      </StyledWrapper>
       <Menu
         anchorEl={anchorEl}
         keepMounted

@@ -36,3 +36,5 @@ example/src/react-app-env.d.ts
 
 # storybook
 storybook-static
+.nyc_output
+coverage

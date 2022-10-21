@@ -1,20 +1,23 @@
+import { List } from 'immutable';
+
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import TreeItem from '@mui/lab/TreeItem';
+import TreeView from '@mui/lab/TreeView';
+import Skeleton from '@mui/material/Skeleton';
+
+import React, { FC, useState } from 'react';
+import type { UseQueryResult } from 'react-query';
+
 import type { ItemRecord } from '../types';
 import CustomTreeItem from './CustomTreeItem';
 import TreeItemLabel from './TreeItemLabel';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import { Skeleton } from '@material-ui/lab';
-import TreeItem from '@material-ui/lab/TreeItem';
-import TreeView from '@material-ui/lab/TreeView';
-import { List } from 'immutable';
-import React, { FC, useState } from 'react';
-import type { UseQueryResult } from 'react-query';
 
 interface DynamicTreeViewProps {
   id: string;
   rootLabel: string;
   rootId: string;
-  rootClassName: string;
+  rootSx?: object;
   items: List<ItemRecord>;
   initialExpendedItems?: string[];
   showCheckbox?: boolean;
@@ -39,7 +42,7 @@ const DynamicTreeView: FC<DynamicTreeViewProps> = ({
   id,
   rootLabel,
   rootId,
-  rootClassName,
+  rootSx,
   useItem,
   useChildren,
   initialExpendedItems = [],
@@ -99,11 +102,7 @@ const DynamicTreeView: FC<DynamicTreeViewProps> = ({
       onNodeToggle={onToggle}
       expanded={expandedItems}
     >
-      <TreeItem
-        nodeId={rootId}
-        className={rootClassName}
-        label={rootLabelComponent}
-      >
+      <TreeItem nodeId={rootId} sx={rootSx} label={rootLabelComponent}>
         {items.map(({ id: itemId }) => (
           <CustomTreeItem
             key={itemId}

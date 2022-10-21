@@ -1,10 +1,12 @@
 import React, { ComponentType, FC } from 'react';
-import { redirect } from '@graasp/sdk';
-import RedirectContent from './RedirectionContent';
-import { MemberRecord } from '../types';
 
-interface Props {
-  redirectionLink: string;
+import { redirect } from '@graasp/sdk';
+
+import { MemberRecord } from '../types';
+import RedirectContent from './RedirectionContent';
+
+export interface withAutorizationProps {
+  redirectionLink?: string;
   currentMember?: MemberRecord;
   onRedirect?: () => void;
 }
@@ -12,16 +14,18 @@ interface Props {
 const withAuthorization =
   <P extends object>(
     ChildComponent: ComponentType<P>,
-    { currentMember, redirectionLink, onRedirect }: Props,
+    { currentMember, redirectionLink, onRedirect }: withAutorizationProps,
   ): FC<P> =>
   (childProps: P) => {
     const redirectToSignIn = (): void => {
+      if (!redirectionLink) {
+        return console.debug('No link has been set for redirection');
+      }
       redirect(redirectionLink);
     };
 
     // check authorization: user shouldn't be empty
     if (currentMember && currentMember.id) {
-      // eslint-disable-next-line react/jsx-props-no-spreading
       return <ChildComponent {...(childProps as P)} />;
     }
 

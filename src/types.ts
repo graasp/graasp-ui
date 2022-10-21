@@ -1,36 +1,15 @@
 import { Record, RecordOf } from 'immutable';
-import { Context } from '@graasp/sdk';
+
+import {
+  Context,
+  Item,
+  ItemType,
+  Member,
+  MemberType,
+  UnknownExtra,
+} from '@graasp/sdk';
 
 export type UUID = string;
-
-export type Anything =
-  | string
-  | number
-  | boolean
-  | null
-  | undefined
-  | Anything[]
-  | { [key: string]: Anything };
-
-export interface UnknownExtra {
-  [key: string]: Anything;
-}
-
-// create immutable items using record
-// https://medium.com/@dyskplus/not-sure-if-that-wasnt-possible-as-of-writing-this-article-but-right-now-i-think-you-could-simply-ecafc50d06
-// we won't need Item anymore once all levels are immutable (List<Record<Item>>)
-export interface Item<T = UnknownExtra> {
-  id: UUID;
-  name: string;
-  path: string;
-  extra: T;
-  description?: string;
-  type: string;
-  creator: string;
-  settings?: unknown;
-  createdAt: string;
-  updatedAt: string;
-}
 
 export type ItemRecord = RecordOf<Item>;
 
@@ -44,22 +23,25 @@ export type MemberExtra = {
 
 export type MemberExtraRecord = RecordOf<MemberExtra>;
 
-export type Member = {
-  id: UUID;
-  name: string;
-  email: string;
-  extra: MemberExtraRecord;
-};
-
 export type MemberRecord = RecordOf<Member>;
+export class ImmutableMember extends Record<Member>({
+  id: '',
+  extra: {},
+  name: '',
+  createdAt: '',
+  updatedAt: '',
+  email: '',
+  type: MemberType.Individual,
+}) {}
 
-export class ImmutableItemClass extends Record({
+export class ImmutableItem extends Record<Item>({
   id: '',
   name: '',
   path: '',
   description: '',
   extra: {},
-  type: '',
+  settings: {},
+  type: ItemType.FOLDER,
   creator: '',
   createdAt: '',
   updatedAt: '',
@@ -70,15 +52,18 @@ export type EmbeddedLinkItemExtraProp = {
   thumbnails: any; //List<string>;
   html: string;
   url: string;
-  icons: any; // List<string>;
+  icons: any; //List<string>;
 };
+
 export interface EmbeddedLinkItemExtra extends UnknownExtra {
   embeddedLink: EmbeddedLinkItemExtraProp;
 }
+
 export type S3FileItemExtraProp = {
   mimetype: string;
   name: string;
 };
+
 export interface S3FileItemExtra extends UnknownExtra {
   s3File: S3FileItemExtraProp;
 }
@@ -91,24 +76,28 @@ export type FileItemProp = {
 export interface FileItemExtra extends UnknownExtra {
   file: FileItemProp;
 }
+
 export type DocumentItemExtraProp = {
   content: string;
 };
+
 export interface DocumentItemExtra extends UnknownExtra {
   document: DocumentItemExtraProp;
 }
+
 export type AppItemExtraProp = {
   url: string;
   settings: UnknownExtra;
 };
+
 export interface AppItemExtra extends UnknownExtra {
   app: AppItemExtraProp;
 }
 
 export enum Variant {
   TEXT = 'text',
-  RECT = 'rect',
-  CIRCLE = 'circle',
+  RECT = 'rectangular',
+  CIRCLE = 'circular',
 }
 
 export type ItemFlag = {
@@ -125,18 +114,48 @@ export type Flag = {
 };
 
 export type FlagRecord = RecordOf<Flag>;
+export class ImmutableFlag extends Record({
+  id: '',
+  name: '',
+}) {}
 
-export type ButtonVariant = 'text' | 'contained' | 'outlined';
+export type TooltipPlacement =
+  | 'bottom-end'
+  | 'bottom-start'
+  | 'bottom'
+  | 'left-end'
+  | 'left-start'
+  | 'left'
+  | 'right-end'
+  | 'right-start'
+  | 'right'
+  | 'top-end'
+  | 'top-start'
+  | 'top';
+
+export type IconSizeVariant = 'small' | 'medium' | 'large' | 'inherit';
+
+export type ThumbnailSizeVariant = 'small' | 'medium' | 'large' | 'original';
 
 export type HostMap = { [name in Context]: string };
 
-export enum ITEM_LOGIN_SCHEMAS {
+export enum ItemLoginSchema {
   USERNAME = 'username',
   USERNAME_AND_PASSWORD = 'username+password',
 }
 
 export type ItemLogin = {
-  loginSchema: ITEM_LOGIN_SCHEMAS;
+  loginSchema: ItemLoginSchema;
 };
 
 export type ItemLoginRecord = RecordOf<ItemLogin>;
+
+export class ImmutableItemLogin extends Record({
+  loginSchema: ItemLoginSchema.USERNAME,
+}) {}
+
+export enum ButtonTypeEnum {
+  ICON = 'icon',
+  MENU_ITEM = 'menuItem',
+}
+export type ButtonType = 'icon' | 'menuItem' | ButtonTypeEnum | string;

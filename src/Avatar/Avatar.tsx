@@ -1,60 +1,62 @@
-import React, { useState, useEffect, FC } from 'react';
-import clsx from 'clsx';
-import { default as AvatarComponent } from '@material-ui/core/Avatar';
-import { makeStyles } from '@material-ui/core/styles';
-import Skeleton from '@material-ui/lab/Skeleton';
+import { SxProps, styled } from '@mui/material';
+import { default as AvatarComponent } from '@mui/material/Avatar';
+import Skeleton, { SkeletonProps } from '@mui/material/Skeleton';
+
+import React, { FC, useEffect, useState } from 'react';
+
 import { getItemImage } from '../utils/image';
-import { EmbeddedLinkItemExtra, Variant } from '../types';
-import { DEFAULT_THUMBNAIL_SIZE } from '../constants';
-import { UseQueryResult } from 'react-query';
 
 type AvatarProps = {
-  id?: string;
-  extra?: object;
-  maxWidth?: string | number;
-  maxHeight?: string | number;
-  defaultImage?: string;
-  variant?: Variant;
-  alt?: string;
-  component?: string;
+  alt: string;
+  blob?: Blob;
+  /**
+   * classname selector
+   * use maxWidth and maxHeight or sx
+   */
   className?: string;
-  useAvatar: (args: { id?: string; size?: string }) => UseQueryResult<Blob>;
-  // todo: enforce size strings
+  /**
+   * component used to display the avatar (img or avatar)
+   */
+  component?: string;
+  /**
+   * default image to use for image component
+   */
+  defaultImage?: string;
+  isLoading?: boolean;
+  maxHeight?: string | number;
+  maxWidth?: string | number;
+  /**
+   * thumbnail size to fetch
+   */
   size?: string;
+  sx?: SxProps;
+  /**
+   * skeleton variant
+   */
+  variant?: SkeletonProps['variant'];
 };
 
 const Avatar: FC<AvatarProps> = ({
-  id,
-  extra,
-  className,
+  sx,
   alt = 'avatar',
   // use a random string to trigger default avatar
   defaultImage = 'broken-image',
-  useAvatar,
+  blob: thumbnailBlob,
   maxWidth = '100%',
   maxHeight = '100%',
-  variant = Variant.RECT,
+  variant,
   component = 'img',
-  size = DEFAULT_THUMBNAIL_SIZE,
+  isLoading,
+  className,
 }) => {
   const [thumbnailUrl, setThumbnailUrl] = useState<string | undefined>(
     undefined,
   );
-  const {
-    data: thumbnailBlob,
-    isLoading,
-    isFetching,
-  } = useAvatar({
-    id,
-    size,
-  });
 
-  const classes = makeStyles({
-    img: {
-      maxWidth,
-      maxHeight,
-    },
-  })();
+  const ScaledImg = styled('img')({
+    maxWidth,
+    maxHeight,
+  });
 
   useEffect(() => {
     if (thumbnailBlob) {
@@ -68,21 +70,14 @@ const Avatar: FC<AvatarProps> = ({
     };
   }, [thumbnailBlob]);
 
-  if (isLoading || isFetching) {
+  if (isLoading) {
     return (
-      <Skeleton
-        variant={variant}
-        width={maxWidth}
-        height={maxHeight}
-        className={className}
-      />
+      <Skeleton variant={variant} width={maxWidth} height={maxHeight} sx={sx} />
     );
   }
 
-  const embeddedLinkExtra = extra as unknown as EmbeddedLinkItemExtra;
   const thumbnail = getItemImage({
     url: thumbnailUrl,
-    extra: embeddedLinkExtra,
     defaultImage,
   });
 
@@ -91,12 +86,17 @@ const Avatar: FC<AvatarProps> = ({
   }
 
   if (component === 'avatar') {
-    return <AvatarComponent alt={alt} src={thumbnail} className={className} />;
+    return (
+      <AvatarComponent
+        className={className}
+        alt={alt}
+        src={thumbnail}
+        sx={sx}
+      />
+    );
   }
 
-  return (
-    <img src={thumbnail} alt={alt} className={clsx(classes.img, className)} />
-  );
+  return <ScaledImg className={className} src={thumbnail} alt={alt} sx={sx} />;
 };
 
 export default React.memo(Avatar);

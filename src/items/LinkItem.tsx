@@ -1,19 +1,22 @@
-import Button from '../Button';
+import { RecordOf } from 'immutable';
+
+import OpenInNewIcon from '@mui/icons-material/OpenInNew';
+import { styled } from '@mui/material';
+import Alert from '@mui/material/Alert';
+
+import React, { FC, Fragment, useRef, useState } from 'react';
+
+import { Item, redirect } from '@graasp/sdk';
+
+import Button from '../buttons/Button';
 import { ITEM_MAX_HEIGHT } from '../constants';
-import type { EmbeddedLinkItemExtra, Item, MemberRecord } from '../types';
+import type { EmbeddedLinkItemExtra, MemberRecord } from '../types';
 import { getEmbeddedLinkExtra } from '../utils/itemExtra';
 import withCaption from './withCaption';
-import withResizing from './withResizing';
-import { redirect } from '@graasp/sdk';
-import { makeStyles } from '@material-ui/core/styles';
-import OpenInNewIcon from '@material-ui/icons/OpenInNew';
-import Alert from '@material-ui/lab/Alert';
-import clsx from 'clsx';
-import { RecordOf } from 'immutable';
-import React, { FC, useState, useRef, Fragment } from 'react';
+import withResizing, { StyledIFrame } from './withResizing';
 
 export interface LinkItemProps {
-  member: MemberRecord;
+  member?: MemberRecord;
   editCaption?: boolean;
   errorMessage?: string;
   height?: number | string;
@@ -43,27 +46,16 @@ export interface LinkItemProps {
   showButton?: boolean;
 }
 
-const useStyles = makeStyles((theme) => ({
-  iframe: {
-    width: '100%',
-    border: 'none',
-  },
-  iframeWithoutResizer: {
-    maxHeight: ITEM_MAX_HEIGHT,
-    height: ITEM_MAX_HEIGHT,
-  },
-  linkButton: {
-    marginLeft: 'auto',
-    marginRight: 'auto',
-    marginTop: theme.spacing(1),
-  },
-  iframeContainer: {
-    position: 'relative',
-    overflow: 'auto',
-  },
-  iframeContainerWithoutResizer: {
-    maxHeight: ITEM_MAX_HEIGHT,
-  },
+const IFrameContainer = styled('div')({
+  position: 'relative',
+  maxHeight: ITEM_MAX_HEIGHT,
+  overflow: 'auto',
+});
+
+const StyledLinkButton = styled(Button)(({ theme }) => ({
+  marginLeft: 'auto',
+  marginRight: 'auto',
+  marginTop: theme.spacing(1),
 }));
 
 const LinkItem: FC<LinkItemProps> = ({
@@ -77,13 +69,12 @@ const LinkItem: FC<LinkItemProps> = ({
   showButton = false,
   loadingMessage = 'Link is Loading...',
   openLinkMessage = 'Click here to open the link manually',
-  height: defaultHeight,
+  height: defaultHeight = 400,
   errorMessage = 'The link is malformed.',
   isResizable = false,
 }) => {
-  const classes = useStyles();
   const [isLoading, setIsLoading] = useState(true);
-  const [height] = useState<string | number>(defaultHeight ?? '100%');
+  const [height] = useState<string | number>(defaultHeight);
   const iframeRef = useRef<HTMLIFrameElement>(null);
 
   const id = item.id;
@@ -99,7 +90,6 @@ const LinkItem: FC<LinkItemProps> = ({
   // if available, display specific player
   const html = extra?.html;
   if (html) {
-    // eslint-disable-next-line react/no-danger
     const component = (
       <div id={id} dangerouslySetInnerHTML={{ __html: html }} />
     );
@@ -129,47 +119,39 @@ const LinkItem: FC<LinkItemProps> = ({
     redirect(url, { openInNewTab: true });
   };
 
-  const renderIframe = () => {
+  const renderIframe = (): JSX.Element | null => {
     if (!showIframe) {
       return null;
     }
 
     const iframe = (
-      <iframe
+      <StyledIFrame
+        height={height}
         id={id}
-        className={clsx(classes.iframe, {
-          [classes.iframeWithoutResizer]: !isResizable,
-        })}
-        title={name}
-        src={url}
+        isResizable={isResizable}
         onLoad={handleLoad}
-        height='100%'
         ref={iframeRef}
+        src={url}
+        title={name}
       />
     );
 
+    const ResizableLink = withResizing({
+      height,
+      component: iframe,
+      memberId: member?.id,
+      itemId: item.id,
+    });
+
     return (
       <>
-        <div
-          hidden={!isLoading}
-          className={classes.iframeContainer}
-          style={{ height: height }}
-        >
+        <IFrameContainer hidden={!isLoading} style={{ height }}>
           {loadingMessage}
-        </div>
-        <div
-          hidden={isLoading}
-          className={clsx(classes.iframeContainer, {
-            [classes.iframeContainerWithoutResizer]: !isResizable,
-          })}
-        >
+        </IFrameContainer>
+        <div hidden={isLoading}>
           {isResizable ? (
             <div>
-              {withResizing({
-                height,
-                memberId: member.id,
-                itemId: item.id,
-              })(iframe)}
+              <ResizableLink />
             </div>
           ) : (
             iframe
@@ -180,13 +162,9 @@ const LinkItem: FC<LinkItemProps> = ({
   };
 
   const button = (
-    <Button
-      onClick={onClick}
-      className={classes.linkButton}
-      startIcon={<OpenInNewIcon />}
-    >
-      {openLinkMessage}
-    </Button>
+    <StyledLinkButton onClick={onClick} startIcon={<OpenInNewIcon />}>
+      {item.name ?? openLinkMessage}
+    </StyledLinkButton>
   );
 
   const component = (

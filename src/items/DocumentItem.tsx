@@ -1,33 +1,37 @@
-import React, { FC } from 'react';
 import { RecordOf } from 'immutable';
-import TextEditor from '../TextEditor';
-import { getDocumentExtra } from '../utils/itemExtra';
-import type { DocumentItemExtra, Item } from '../types';
 
-interface DocumentItemProps {
-  item: RecordOf<Item<DocumentItemExtra>>;
-  id?: string;
+import React, { FC } from 'react';
+
+import { Item } from '@graasp/sdk';
+
+import TextEditor from '../TextEditor';
+import type { DocumentItemExtra } from '../types';
+import { getDocumentExtra } from '../utils/itemExtra';
+
+export interface DocumentItemProps {
+  cancelButtonId?: string;
+  cancelButtonText?: string;
   edit?: boolean;
+  id?: string;
+  item: RecordOf<Item<DocumentItemExtra>>;
+  maxHeight?: string | number;
+  onCancel?: (text: string) => void;
+  onSave: (text: string) => void;
   saveButtonId?: string;
   saveButtonText?: string;
-  cancelButtonText?: string;
-  cancelButtonId?: string;
-  onSave: (text: string) => void;
-  onCancel?: (text: string) => void;
-  maxHeight?: string | number;
 }
 
 const DocumentItem: FC<DocumentItemProps> = ({
-  item,
-  id,
+  cancelButtonId,
+  cancelButtonText,
   edit,
-  onSave,
+  id,
+  item,
+  maxHeight,
   onCancel,
+  onSave,
   saveButtonId,
   saveButtonText,
-  cancelButtonText,
-  cancelButtonId,
-  maxHeight,
 }) => (
   <TextEditor
     id={id}

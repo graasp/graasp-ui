@@ -5,5 +5,8 @@
   "tabWidth": 2,
   "bracketSpacing": true,
   "arrowParens": "always",
-  "trailingComma": "all"
+  "trailingComma": "all",
+  "importOrder": ["^@mui","^react",  "^@?graasp", "^[./]"],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true
 }

@@ -1,29 +1,25 @@
-name: Node CI
+name: Storyboook tests
 
 on: [push]
 
 jobs:
-  build-node:
+  storybook-test:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Use Node.js 16.x
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
           node-version: 16.x
-      - name: Get npm cache directory
-        id: npm-cache
+      - name: yarn install
+        run: yarn
+      - name: install playwright
+        run: npx playwright install --with-deps
+      - name: build storybook
+        run: yarn build-storybook --quiet
+      - name: start and test storybook 
         run: |
-          echo "::set-output name=dir::$(npm config get cache)"
-      - uses: actions/cache@v2
-        with:
-          path: ${{ steps.npm-cache.outputs.dir }}
-          key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
-      - name: yarn install, build, and test
-        run: |
-          yarn
-          yarn build
-      # yarn test 
+          npx concurrently -k -s first -n "SB,TEST" -c "magenta,blue" \
+            "npx http-server storybook-static --port 6006 --silent" \
+            "npx wait-on tcp:6006 && yarn storybook:test"

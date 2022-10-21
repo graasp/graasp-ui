@@ -1,83 +1,70 @@
+import { Button, Menu, MenuItem, Typography, styled } from '@mui/material';
+import { ButtonProps } from '@mui/material/Button';
+
 import React, { MouseEventHandler } from 'react';
-import {
-  makeStyles,
-  Menu,
-  MenuItem,
-  Typography,
-  Button,
-  PropTypes,
-} from '@material-ui/core';
-import { redirect, Context } from '@graasp/sdk';
-import ExploreIcon from '../icons/ExploreIcon';
+
+import { Context, redirect } from '@graasp/sdk';
+
+import AnalyticsIcon from '../icons/AnalyticsIcon';
 import BuildIcon from '../icons/BuildIcon';
-import AnalyzeIcon from '../icons/AnalyzeIcon';
+import LibraryIcon from '../icons/LibraryIcon';
 import PlayIcon from '../icons/PlayIcon';
 import { HostMap } from '../types';
-import clsx from 'clsx';
 
-const useStyles = makeStyles((theme) => ({
-  icon: {
-    marginRight: theme.spacing(1),
-  },
-  // todo: remove once graasp analytics is not a material icon anymore
-  analyzeIcon: {
-    margin: theme.spacing(0, 1, 0, 0.5),
-  },
-  button: {
-    textTransform: 'capitalize',
-    fontSize: theme.typography.fontSize,
-    color: 'white',
-  },
-  menuItem: {
-    textTransform: 'capitalize',
-  },
-  triangle: {
+const NavigationMenuButton = styled(Button)(({ theme }) => ({
+  textTransform: 'capitalize',
+  fontSize: theme.typography.fontSize,
+}));
+
+const DropDownIcon = styled('div')(({ theme, color }) => {
+  let buttonColor = 'black';
+  if (color) {
+    buttonColor = theme.palette[color]?.main;
+  }
+  return {
     width: 0,
     height: 0,
     borderLeft: '5px solid transparent',
     borderRight: '5px solid transparent',
-    borderTop: '5px solid #fff',
+    borderTop: `5px solid ${buttonColor}`,
     display: 'inline',
     marginLeft: theme.spacing(1),
-  },
-}));
+  };
+});
 
 interface ContextMenuItemProps {
   value: Context;
   disabled?: boolean;
 }
 
-const ContextMenuItem: React.FC<ContextMenuItemProps> = ({
-  value,
-  disabled,
-}) => {
-  const classes = useStyles();
+const ContextMenuItem: React.FC<ContextMenuItemProps> = ({ value }) => {
+  const iconSX = { mr: 1 };
   switch (value) {
     case Context.BUILDER:
       return (
         <>
-          <BuildIcon className={classes.icon} disabled={disabled} />
+          <BuildIcon size={30} sx={iconSX} />
           {Context.BUILDER}
         </>
       );
     case Context.LIBRARY:
       return (
         <>
-          <ExploreIcon className={classes.icon} disabled={disabled} />
+          <LibraryIcon size={30} sx={iconSX} />
           {Context.LIBRARY}
         </>
       );
     case Context.PLAYER:
       return (
         <>
-          <PlayIcon className={classes.icon} disabled={disabled} />
+          <PlayIcon size={30} sx={iconSX} />
           {Context.PLAYER}
         </>
       );
     case Context.ANALYTICS:
       return (
         <>
-          <AnalyzeIcon className={classes.analyzeIcon} disabled={disabled} />
+          <AnalyticsIcon size={30} sx={iconSX} />
           {Context.ANALYTICS}
         </>
       );
@@ -85,6 +72,10 @@ const ContextMenuItem: React.FC<ContextMenuItemProps> = ({
       return null;
   }
 };
+
+const StyledMenuItem = styled(MenuItem)({
+  textTransform: 'capitalize',
+});
 
 export interface NavigationProps {
   /**
@@ -94,7 +85,7 @@ export interface NavigationProps {
   /**
    * button's color based on MUI design
    */
-  buttonColor?: PropTypes.Color;
+  buttonColor?: ButtonProps['color'];
   /**
    * current context to set as default value
    */
@@ -111,6 +102,7 @@ export interface NavigationProps {
    * button's triangle's classname
    */
   triangleClassname?: string;
+  itemId?: string;
 }
 
 const Navigation: React.FC<NavigationProps> = ({
@@ -118,11 +110,8 @@ const Navigation: React.FC<NavigationProps> = ({
   hostMap = {},
   id,
   buttonColor = 'secondary',
-  buttonClassname,
-  triangleClassname,
+  itemId,
 }) => {
-  const classes = useStyles();
-
   const [anchorEl, setAnchorEl] = React.useState<Element | null>(null);
 
   const handleClick: MouseEventHandler = (event): void => {
@@ -138,30 +127,28 @@ const Navigation: React.FC<NavigationProps> = ({
     if (!url) {
       url = '/';
     }
-    redirect(url);
+    redirect(url, { openInNewTab: true, name: `${value} ${itemId}` });
   };
 
   return (
     <>
-      <Button
+      <NavigationMenuButton
         id={id}
         aria-controls='navigation-menu'
         aria-haspopup='true'
         onClick={handleClick}
-        className={clsx(buttonClassname, classes.button)}
         variant='outlined'
         color={buttonColor}
       >
         <Typography variant='h6' color='inherit'>
           {currentValue}
         </Typography>
-        <div className={clsx(triangleClassname, classes.triangle)} />
-      </Button>
+        <DropDownIcon color={buttonColor} />
+      </NavigationMenuButton>
       <Menu
         id='navigation-menu'
         anchorEl={anchorEl}
         keepMounted
-        getContentAnchorEl={null}
         open={Boolean(anchorEl)}
         onClose={handleClose}
         anchorOrigin={{
@@ -173,30 +160,27 @@ const Navigation: React.FC<NavigationProps> = ({
           horizontal: 'left',
         }}
       >
-        <MenuItem
-          className={classes.menuItem}
+        <StyledMenuItem
           onClick={onClick(Context.BUILDER)}
           disabled={currentValue === Context.BUILDER}
         >
           <ContextMenuItem value={Context.BUILDER} />
-        </MenuItem>
-        <MenuItem
-          className={classes.menuItem}
+        </StyledMenuItem>
+        <StyledMenuItem
           onClick={onClick(Context.LIBRARY)}
           disabled={currentValue === Context.LIBRARY}
         >
           <ContextMenuItem value={Context.LIBRARY} />
-        </MenuItem>
-        <MenuItem
-          className={classes.menuItem}
+        </StyledMenuItem>
+        <StyledMenuItem
           onClick={onClick(Context.PLAYER)}
           disabled={currentValue === Context.PLAYER}
         >
           <ContextMenuItem value={Context.PLAYER} />
-        </MenuItem>
-        <MenuItem disabled className={classes.menuItem}>
+        </StyledMenuItem>
+        <StyledMenuItem disabled>
           <ContextMenuItem value={Context.ANALYTICS} />
-        </MenuItem>
+        </StyledMenuItem>
       </Menu>
     </>
   );

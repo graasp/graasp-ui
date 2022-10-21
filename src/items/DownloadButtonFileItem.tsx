@@ -1,13 +1,13 @@
-import React, { FC } from 'react';
-import GetAppIcon from '@material-ui/icons/GetApp';
-import { makeStyles } from '@material-ui/core/styles';
-import Button from '../Button';
+import GetAppIcon from '@mui/icons-material/GetApp';
+import { styled } from '@mui/material';
 
-const useStyles = makeStyles(() => ({
-  link: {
-    textDecoration: 'none',
-  },
-}));
+import React, { FC } from 'react';
+
+import Button from '../buttons/Button';
+
+const StyledLink = styled('a')({
+  textDecoration: 'none',
+});
 
 interface DownloadButtonFileItemProps {
   name?: string;
@@ -22,13 +22,11 @@ const DownloadButtonFileItem: FC<DownloadButtonFileItemProps> = ({
   url,
   text,
 }) => {
-  const classes = useStyles();
   const buttonText = text || `Download ${name}`;
 
   return (
-    <a
+    <StyledLink
       id={id}
-      className={classes.link}
       href={url}
       target='_blank'
       rel='noreferrer'
@@ -37,7 +35,7 @@ const DownloadButtonFileItem: FC<DownloadButtonFileItemProps> = ({
       <Button size='large' startIcon={<GetAppIcon />}>
         {buttonText}
       </Button>
-    </a>
+    </StyledLink>
   );
 };
 

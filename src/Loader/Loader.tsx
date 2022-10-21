@@ -1,15 +1,17 @@
+import { SxProps } from '@mui/material';
+import CircularProgress, {
+  CircularProgressProps,
+} from '@mui/material/CircularProgress';
+
 import React from 'react';
-import CircularProgress from '@material-ui/core/CircularProgress';
 
 export interface LoaderProps {
-  color?: string;
-  className?: string;
+  color?: CircularProgressProps['color'];
+  sx?: SxProps;
 }
 
-export const Loader: React.FC<LoaderProps> = ({ className }) => (
-  <div className={className}>
-    <CircularProgress color='primary' />
-  </div>
+export const Loader: React.FC<LoaderProps> = ({ sx, color = 'primary' }) => (
+  <CircularProgress sx={sx} color={color} />
 );
 
 export default Loader;

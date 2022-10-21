@@ -1,5 +1,6 @@
-import React, { FC, useEffect, useRef } from 'react';
 import * as uuid from 'uuid';
+
+import React, { FC, useEffect, useRef } from 'react';
 
 /**
  * React props types for {@link H5PItem}
@@ -36,7 +37,7 @@ const H5PItem: FC<H5PItemProps> = ({
 
   // Listen for content height changes
   useEffect(() => {
-    const onResize = (event: MessageEvent) => {
+    const onResize = (event: MessageEvent): void => {
       // iframe must be mounted
       if (iframeRef.current === null) {
         return;

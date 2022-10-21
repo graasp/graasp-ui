@@ -1,89 +1,77 @@
-import React, { FC, MouseEventHandler } from 'react';
-import { useTranslation } from 'react-i18next';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogActions from '@material-ui/core/DialogActions';
-import Button from '../Button';
-import Dialog from '@material-ui/core/Dialog';
-import { List as MuiList } from '@material-ui/core';
-import { ListItem, ListItemText, makeStyles } from '@material-ui/core';
-import Typography from '@material-ui/core/Typography';
-import { FLAG_LIST_MAX_HEIGHT } from '../constants';
-import { FlagRecord } from '../types';
 import { List } from 'immutable';
 
-const useStyles = makeStyles(() => ({
-  list: {
-    width: '100%',
-    overflow: 'auto',
-    maxHeight: FLAG_LIST_MAX_HEIGHT,
-  },
-  listTitle: {
-    fontSize: 'small',
-  },
-  flagItemButton: {
-    color: 'red',
-  },
-}));
+import { ListItemButton, ListItemText, styled } from '@mui/material';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogTitle from '@mui/material/DialogTitle';
+import { default as MuiList } from '@mui/material/List';
+import Typography from '@mui/material/Typography';
+
+import React, { FC, MouseEventHandler, useState } from 'react';
+
+import Button from '../buttons/Button';
+import { FLAG_LIST_MAX_HEIGHT } from '../constants';
+import { FlagRecord } from '../types';
+
+const ListTitle = styled(Typography)({
+  fontSize: 'small',
+});
+const StyledList = styled(MuiList)({
+  width: '100%',
+  overflow: 'auto',
+  maxHeight: FLAG_LIST_MAX_HEIGHT,
+});
 
 export interface ItemFlagDialogProps {
   flags: List<FlagRecord>;
   onFlag: MouseEventHandler;
   open: boolean;
-  setOpen: (open: boolean) => void;
-  selectedFlag: FlagRecord;
-  setSelectedFlag: (flag: FlagRecord) => void;
+  onClose: () => void;
+  descriptionText?: string;
+  title?: string;
+  cancelButtonText?: string;
+  confirmButtonText?: string;
 }
 
 export const ItemFlagDialog: FC<ItemFlagDialogProps> = ({
   flags,
   onFlag,
   open,
-  setOpen,
-  selectedFlag,
-  setSelectedFlag,
+  onClose,
+  descriptionText = 'Select reason for flagging this item',
+  title = 'Flag Item',
+  cancelButtonText = 'Cancel',
+  confirmButtonText = 'Flag',
 }) => {
-  const { t } = useTranslation();
-  const classes = useStyles();
-
-  const onClose = (): void => {
-    setOpen(false);
-  };
+  const [selectedFlag, setSelectedFlag] = useState<FlagRecord>();
 
   const handleSelect = (flag: FlagRecord) => () => setSelectedFlag(flag);
 
   return (
     <Dialog open={open} onClose={onClose} maxWidth='sm' fullWidth>
-      <DialogTitle>{t('Flag Item')}</DialogTitle>
+      <DialogTitle>{title}</DialogTitle>
       <DialogContent>
-        <Typography variant='h6' className={classes.listTitle}>
-          {`${t('Select reason for flagging this item')}:`}
-        </Typography>
-        <MuiList component='nav' className={classes.list}>
+        <ListTitle variant='h6'>{descriptionText}</ListTitle>
+        <StyledList>
           {flags?.map((flag: FlagRecord) => (
-            <ListItem
+            <ListItemButton
               key={flag.id}
               id={`flagListItem-${flag.id}`}
-              button
-              selected={selectedFlag.id === flag.id}
+              selected={selectedFlag?.id === flag.id}
               onClick={handleSelect(flag)}
             >
               <ListItemText primary={flag.name} />
-            </ListItem>
+            </ListItemButton>
           ))}
-        </MuiList>
+        </StyledList>
       </DialogContent>
       <DialogActions>
         <Button onClick={onClose} variant='text'>
-          {t('Cancel')}
+          {cancelButtonText}
         </Button>
-        <Button
-          onClick={onFlag}
-          className={classes.flagItemButton}
-          id='flagItemButton'
-          disabled={!selectedFlag}
-        >
-          {t('Flag')}
+        <Button color='error' onClick={onFlag} disabled={!selectedFlag}>
+          {confirmButtonText}
         </Button>
       </DialogActions>
     </Dialog>

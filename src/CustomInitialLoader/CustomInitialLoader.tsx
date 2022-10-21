@@ -1,48 +1,47 @@
+import { useTheme } from '@mui/material';
+import { Container, styled } from '@mui/material';
+import LinearProgress, {
+  linearProgressClasses,
+} from '@mui/material/LinearProgress';
+
 import React from 'react';
-import { Container, makeStyles, LinearProgress } from '@material-ui/core';
+
 import GraaspLogo from '../GraaspLogo';
 
-interface Props {
+export interface CustomInitialLoaderProps {
   id?: string;
 }
 
-const useStyles = makeStyles((theme) => ({
-  container: {
-    height: '100vh',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  progressBarContainer: {
-    marginTop: theme.spacing(7),
-  },
-  progressBar: {
-    width: '50%',
-    minWidth: 200,
-    margin: '0 auto',
-    height: 10,
-    borderRadius: 2,
-  },
-  bar: {
+const StyledContainer = styled(Container)(() => ({
+  height: '100vh',
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'center',
+}));
+
+const StyledLinearProgress = styled(LinearProgress)(({ theme }) => ({
+  width: '50%',
+  minWidth: 200,
+  margin: '0 auto',
+  height: 10,
+  borderRadius: 2,
+  marginTop: theme.spacing(2),
+
+  [`& .${linearProgressClasses.bar}`]: {
     backgroundColor: theme.palette.primary.main,
-  },
-  logo: {
-    fill: theme.palette.primary.main,
   },
 }));
 
-const CustomInitialLoader: React.FC<Props> = ({ id }) => {
-  const classes = useStyles();
+const CustomInitialLoader: React.FC<CustomInitialLoaderProps> = ({ id }) => {
+  const theme = useTheme();
   return (
-    <Container id={id} className={classes.container}>
-      <GraaspLogo height={200} className={classes.logo} />
-      <div className={classes.progressBarContainer}>
-        <LinearProgress
-          classes={{ root: classes.progressBar, bar: classes.bar }}
-        />
+    <StyledContainer id={id}>
+      <GraaspLogo height={170} sx={{ fill: theme.palette.primary.main }} />
+      <div>
+        <StyledLinearProgress />
       </div>
-    </Container>
+    </StyledContainer>
   );
 };
 

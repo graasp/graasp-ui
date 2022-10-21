@@ -1,3 +1,3 @@
 export { default as ItemFlagDialog } from './ItemFlagDialog';
 
-export { default as FlagItemButton } from './FlagItemButton';
+export { default as ItemFlagButton } from './ItemFlagButton';

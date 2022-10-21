@@ -1,11 +1,15 @@
-import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { expect } from '@storybook/jest';
+import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { screen, userEvent, within } from '@storybook/testing-library';
 
-import Navigation from './Navigation';
+import React from 'react';
+
 import { Context } from '@graasp/sdk';
 
+import Navigation from './Navigation';
+
 export default {
-  title: 'Navigation',
+  title: 'Common/Navigation',
   component: Navigation,
   parameters: {
     backgrounds: {
@@ -30,6 +34,19 @@ White.parameters = {
     default: 'black',
   },
 };
+White.play = async ({ canvasElement, args }) => {
+  const canvas = within(canvasElement);
+
+  await userEvent.click(canvas.getByText(args.currentValue));
+
+  const listbox = within(screen.getByRole('presentation'));
+  expect(listbox.getByText(args.currentValue)).toHaveAttribute(
+    'aria-disabled',
+    'true',
+  );
+  await userEvent.click(listbox.getByText(Context.PLAYER));
+  await userEvent.click(listbox.getByText(Context.LIBRARY));
+};
 
 export const Black = Template.bind({});
 Black.args = {
@@ -42,4 +59,17 @@ Black.parameters = {
   backgrounds: {
     default: 'white',
   },
+};
+Black.play = async ({ canvasElement, args }) => {
+  const canvas = within(canvasElement);
+
+  await userEvent.click(canvas.getByText(args.currentValue));
+
+  const listbox = within(screen.getByRole('presentation'));
+  expect(listbox.getByText(args.currentValue)).toHaveAttribute(
+    'aria-disabled',
+    'true',
+  );
+  await userEvent.click(listbox.getByText(Context.BUILDER));
+  await userEvent.click(listbox.getByText(Context.LIBRARY));
 };

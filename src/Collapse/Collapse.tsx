@@ -1,53 +1,42 @@
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { SxProps, styled } from '@mui/material';
+import Accordion from '@mui/material/Accordion';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import Typography from '@mui/material/Typography';
+
 import React, { FC, ReactElement, useState } from 'react';
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-import Accordion from '@material-ui/core/Accordion';
-import AccordionSummary from '@material-ui/core/AccordionSummary';
-import AccordionDetails from '@material-ui/core/AccordionDetails';
-import Typography from '@material-ui/core/Typography';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+
 import { COLLAPSE_MIN_HEIGHT } from '../constants';
 
-type CollapseProps = {
+export type CollapseProps = {
+  children?: ReactElement;
   title: string;
-  content: ReactElement;
-  className?: string;
+  /**
+   * @deprecated use children
+   */
+  content?: ReactElement;
+  sx?: SxProps;
 };
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      border: '1px solid rgba(0, 0, 0, .125)',
-      boxShadow: 'none',
-      '&:not(:last-child)': {
-        borderBottom: 0,
-      },
-      '&:before': {
-        display: 'none',
-      },
-      '&$expanded': {
-        margin: 'auto',
-      },
-    },
-    expanded: {},
-    rootAccordionSummary: {
-      marginBottom: -1,
+const StyledAccordionSummary = styled(AccordionSummary)(({ theme }) => ({
+  '.MuiAccordionSummary-root': {
+    marginBottom: -1,
+    minHeight: COLLAPSE_MIN_HEIGHT,
+    flexDirection: 'row-reverse',
+    '&$expanded': {
       minHeight: COLLAPSE_MIN_HEIGHT,
-      flexDirection: 'row-reverse',
-      '&$expanded': {
-        minHeight: COLLAPSE_MIN_HEIGHT,
-      },
-      '& .MuiIconButton-edgeEnd': {
-        marginRight: theme.spacing(0.5),
-        marginLeft: theme.spacing(0.5),
-      },
     },
-    expandedAccordionSummary: {},
-  }),
-);
+    '& .MuiIconButton-edgeEnd': {
+      marginRight: theme.spacing(0.5),
+      marginLeft: theme.spacing(0.5),
+    },
+  },
+  '.Mui-expanded': {},
+}));
 
-const Collapse: FC<CollapseProps> = ({ title, content }) => {
+const Collapse: FC<CollapseProps> = ({ title, content, sx, children }) => {
   const [expanded, setExpanded] = useState<boolean>(false);
-  const classes = useStyles();
 
   const handleChange = (expanded: boolean) => () => {
     setExpanded(!expanded);
@@ -57,23 +46,36 @@ const Collapse: FC<CollapseProps> = ({ title, content }) => {
     <Accordion
       square
       elevation={0}
-      classes={{
-        root: classes.root,
-        expanded: classes.expanded,
-      }}
+      sx={[
+        {
+          border: '1px solid rgba(0, 0, 0, .125)',
+          boxShadow: 'none',
+        },
+        {
+          '&:not(:last-child)': {
+            borderBottom: 0,
+          },
+        },
+        {
+          '&:before': {
+            display: 'none',
+          },
+        },
+        {
+          $expanded: {
+            margin: 'auto',
+          },
+        },
+        // You cannot spread `sx` directly because `SxProps` (typeof sx) can be an array.
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
       expanded={expanded}
       onChange={handleChange(expanded)}
     >
-      <AccordionSummary
-        expandIcon={<ExpandMoreIcon />}
-        classes={{
-          root: classes.rootAccordionSummary,
-          expanded: classes.expandedAccordionSummary,
-        }}
-      >
+      <StyledAccordionSummary expandIcon={<ExpandMoreIcon />}>
         <Typography>{title}</Typography>
-      </AccordionSummary>
-      <AccordionDetails>{content}</AccordionDetails>
+      </StyledAccordionSummary>
+      <AccordionDetails>{content ?? children}</AccordionDetails>
     </Accordion>
   );
 };
