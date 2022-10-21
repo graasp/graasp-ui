@@ -36,7 +36,7 @@ const TableToolbar: FC<Props> = ({
   if (numSelected > 0) {
     return (
       <StyledToolbar>
-        {/* @ts-expect-error: component does exist on typography */}
+        {/* @ts-ignore: component does exist on typography */}
         <StyledTitle color='inherit' variant='subtitle1' component='div'>
           {countTextFunction?.(selected) ?? `${numSelected} selected`}
         </StyledTitle>

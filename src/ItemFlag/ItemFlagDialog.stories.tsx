@@ -52,7 +52,6 @@ Primary.play = async () => {
   expect(modal.getByText('Flag')).toBeDisabled();
 
   // choose a flag and validate
-  // @ts-expect-error flag is not empty
-  await userEvent.click(modal.getByText(flags.first()!.name));
+  await userEvent.click(modal.getByText(flags.first()?.name));
   await userEvent.click(modal.getByText('Flag'));
 };
