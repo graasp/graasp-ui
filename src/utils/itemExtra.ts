@@ -1,4 +1,5 @@
 import { ItemType } from '@graasp/sdk';
+
 import {
   AppItemExtra,
   AppItemExtraProp,

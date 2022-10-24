@@ -1,26 +1,22 @@
-import React, { FC } from 'react';
-import clsx from 'clsx';
-import { makeStyles } from '@material-ui/core';
+import { SxProps, styled } from '@mui/material';
 
-const useStyles = makeStyles(() => ({
-  audio: {
-    maxWidth: '100%',
-  },
-}));
+import React, { FC } from 'react';
 
 interface FileAudioProps {
   id?: string;
   url: string;
   type: string;
-  className?: string;
+  sx?: SxProps;
 }
 
-const FileAudio: FC<FileAudioProps> = ({ id, url, type, className }) => {
-  const classes = useStyles();
+const FileAudio: FC<FileAudioProps> = ({ id, url, type, sx }) => {
+  const StyledAudio = styled('audio')({
+    maxWidth: '100%',
+  });
   return (
-    <audio className={clsx(classes.audio, className)} id={id} controls>
+    <StyledAudio sx={sx} id={id} controls>
       <source src={url} type={type} />
-    </audio>
+    </StyledAudio>
   );
 };
 

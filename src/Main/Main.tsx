@@ -1,65 +1,74 @@
+import { styled } from '@mui/material';
+
 import React, { Component } from 'react';
-import clsx from 'clsx';
-import {
-  withStyles,
-  Theme,
-  createStyles,
-  WithStyles,
-} from '@material-ui/core/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
+
 import Header from '../Header';
 import Sidebar from '../Sidebar';
 import { DRAWER_WIDTH } from '../constants';
 
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-const styles = (theme: Theme) =>
-  createStyles({
-    root: {
-      display: 'flex',
-      height: '100%',
-    },
-    fullScreen: {
-      width: '100%',
-      height: '100%',
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-    },
-    content: {
-      flexGrow: 1,
-      transition: theme.transitions.create('margin', {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.leavingScreen,
-      }),
-    },
-    contentShift: {
-      transition: theme.transitions.create('margin', {
-        easing: theme.transitions.easing.easeOut,
-        duration: theme.transitions.duration.enteringScreen,
-      }),
-      marginLeft: DRAWER_WIDTH,
-    },
-    drawerHeader: {
-      display: 'flex',
-      alignItems: 'center',
-      padding: '0 8px',
-      ...theme.mixins.toolbar,
-      justifyContent: 'flex-end',
-    },
-  });
+const StyledRoot = styled('div')({
+  display: 'flex',
+  height: '100%',
+});
 
-export interface MainProps extends WithStyles<typeof styles> {
+const DrawerHeaderContainer = styled('div')(({ theme }) => ({
+  display: 'flex',
+  alignItems: 'center',
+  padding: '0 8px',
+  ...theme.mixins.toolbar,
+  justifyContent: 'flex-end',
+}));
+
+export interface MainProps {
+  children?: JSX.Element | JSX.Element[];
   fullScreen?: boolean;
-  children?: React.ReactElement;
-  sidebar?: React.ReactElement;
-  open?: boolean;
+  /**
+   * Header's center content
+   */
+  headerCenterContent?: React.ReactElement;
+  /**
+   * Header's left content
+   */
   headerLeftContent?: React.ReactElement;
+  /**
+   * Header's right content
+   */
   headerRightContent?: React.ReactElement;
+  /**
+   * Whether the sidebar is open by default
+   */
+  headerId?: string;
+  open?: boolean;
+  sidebar?: React.ReactElement;
+  menuButtonId?: string;
 }
 
 type MainState = {
   open: boolean;
 };
+
+const StyledMain = styled('main')<MainProps>(({ theme, open, fullScreen }) => ({
+  flexGrow: 1,
+  marginLeft: 0,
+  transition: theme.transitions.create('margin', {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.leavingScreen,
+  }),
+  ...(open && {
+    transition: theme.transitions.create('margin', {
+      easing: theme.transitions.easing.easeOut,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+    marginLeft: DRAWER_WIDTH,
+  }),
+  ...(fullScreen && {
+    width: '100%',
+    height: '100%',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  }),
+}));
 
 export class Main extends Component<MainProps, MainState> {
   state = ((): MainState => ({
@@ -80,48 +89,43 @@ export class Main extends Component<MainProps, MainState> {
 
   render(): JSX.Element {
     const {
-      classes,
       children,
       fullScreen,
-      sidebar,
       headerLeftContent,
       headerRightContent,
+      headerCenterContent,
+      headerId,
+      menuButtonId,
+      sidebar,
     } = this.props;
     const { open } = this.state;
     const hasSidebar = Boolean(sidebar);
 
     return (
-      <div className={classes.root}>
-        <CssBaseline />
+      <StyledRoot>
         <Header
           hasSidebar={hasSidebar}
           isSidebarOpen={open}
           handleDrawerOpen={this.handleDrawerOpen}
+          handleDrawerClose={this.handleDrawerClose}
           leftContent={headerLeftContent}
           rightContent={headerRightContent}
+          centerContent={headerCenterContent}
+          id={headerId}
+          menuButtonId={menuButtonId}
         />
 
-        {hasSidebar && (
-          <Sidebar
-            isSidebarOpen={open}
-            handleDrawerClose={this.handleDrawerClose}
-          >
-            {sidebar}
-          </Sidebar>
-        )}
+        {hasSidebar && <Sidebar isSidebarOpen={open}>{sidebar}</Sidebar>}
 
-        <main
-          className={clsx(classes.content, {
-            [classes.contentShift]: open,
-            [classes.fullScreen]: fullScreen,
-          })}
-        >
-          <div className={classes.drawerHeader} />
-          {children}
-        </main>
-      </div>
+        <StyledMain open={open} fullScreen={fullScreen}>
+          <>
+            <DrawerHeaderContainer />
+            {children}
+          </>
+        </StyledMain>
+      </StyledRoot>
     );
   }
 }
 
-export default withStyles(styles, { withTheme: true })(Main);
+export default Main;

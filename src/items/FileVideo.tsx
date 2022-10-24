@@ -1,25 +1,22 @@
-import React, { FC } from 'react';
-import clsx from 'clsx';
-import { makeStyles } from '@material-ui/core/styles';
+import { SxProps, styled } from '@mui/material';
 
-const useStyles = makeStyles(() => ({
-  video: {
-    maxWidth: '100%',
-  },
-}));
+import React, { FC } from 'react';
 
 interface FileVideoProps {
   id?: string;
   url: string;
-  className?: string;
+  sx?: SxProps;
 }
 
-const FileVideo: FC<FileVideoProps> = ({ id, url, className }) => {
-  const classes = useStyles();
+const StyledVideo = styled('video')({
+  maxWidth: '100%',
+});
+
+const FileVideo: FC<FileVideoProps> = ({ id, url, sx }) => {
   return (
-    <video className={clsx(classes.video, className)} id={id} controls>
+    <StyledVideo sx={sx} id={id} controls>
       <source src={url} />
-    </video>
+    </StyledVideo>
   );
 };
 

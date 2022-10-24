@@ -1,11 +1,15 @@
-import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { expect } from '@storybook/jest';
+import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { screen, userEvent, within } from '@storybook/testing-library';
 
-import Navigation from './Navigation';
+import React from 'react';
+
 import { Context } from '@graasp/sdk';
 
+import Navigation from './Navigation';
+
 export default {
-  title: 'Navigation',
+  title: 'Common/Navigation',
   component: Navigation,
   parameters: {
     backgrounds: {
@@ -21,25 +25,51 @@ const Template: ComponentStory<typeof Navigation> = (args) => (
   <Navigation {...args} />
 );
 
-export const White = Template.bind({});
-White.args = {
+export const WhiteOnBlackBackground = Template.bind({});
+WhiteOnBlackBackground.args = {
   currentValue: Context.BUILDER,
 };
-White.parameters = {
+WhiteOnBlackBackground.parameters = {
   backgrounds: {
     default: 'black',
   },
 };
+WhiteOnBlackBackground.play = async ({ canvasElement, args }) => {
+  const canvas = within(canvasElement);
 
-export const Black = Template.bind({});
-Black.args = {
+  await userEvent.click(canvas.getByText(args.currentValue));
+
+  const listbox = within(screen.getByRole('presentation'));
+  expect(listbox.getByText(args.currentValue)).toHaveAttribute(
+    'aria-disabled',
+    'true',
+  );
+  await userEvent.click(listbox.getByText(Context.PLAYER));
+  await userEvent.click(listbox.getByText(Context.LIBRARY));
+};
+
+export const BlackOnWhiteBackground = Template.bind({});
+BlackOnWhiteBackground.args = {
   currentValue: Context.PLAYER,
   buttonColor: 'primary',
   buttonClassname: 'blackColor',
   triangleClassname: 'blackBorderTop',
 };
-Black.parameters = {
+BlackOnWhiteBackground.parameters = {
   backgrounds: {
     default: 'white',
   },
+};
+BlackOnWhiteBackground.play = async ({ canvasElement, args }) => {
+  const canvas = within(canvasElement);
+
+  await userEvent.click(canvas.getByText(args.currentValue));
+
+  const listbox = within(screen.getByRole('presentation'));
+  expect(listbox.getByText(args.currentValue)).toHaveAttribute(
+    'aria-disabled',
+    'true',
+  );
+  await userEvent.click(listbox.getByText(Context.BUILDER));
+  await userEvent.click(listbox.getByText(Context.LIBRARY));
 };

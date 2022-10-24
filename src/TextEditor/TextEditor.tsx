@@ -1,27 +1,29 @@
-import React, { useState, useEffect, FC } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+// formula dependencies
+import katex from 'katex';
+import 'katex/dist/katex.min.css';
+
+import { styled } from '@mui/material';
+
+import React, { FC, useEffect, useState } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
-import SaveButton from '../SaveButton';
+
+import Button from '../buttons/Button';
+import SaveButton from '../buttons/SaveButton';
 import {
   TEXT_EDITOR_MAX_HEIGHT,
   TEXT_EDITOR_MIN_HEIGHT,
   TEXT_EDITOR_TOOLBAR,
 } from '../constants';
-import Button from '../Button';
-
-// formula dependencies
-import katex from 'katex';
-import 'katex/dist/katex.min.css';
 
 declare const window: Window &
   typeof globalThis & {
-    katex: any;
+    katex: katex;
   };
 
 window.katex = katex;
 
-interface TextEditorProps {
+export type TextEditorProps = {
   onSave?: (text: string) => void;
   value?: string;
   id?: string;
@@ -36,7 +38,23 @@ interface TextEditorProps {
   cancelButtonId?: string;
   showActions?: boolean;
   maxHeight?: string | number;
-}
+};
+
+const Div = styled('div')(
+  ({ edit, maxHeight }: { edit?: boolean; maxHeight?: number | string }) => ({
+    '& .ql-editor': {
+      // adapt height if read only
+      minHeight: !edit ? 0 : TEXT_EDITOR_MIN_HEIGHT,
+      // necessary styles to avoid window scrolling top on paste
+      // set a max height only on edition
+      maxHeight: edit ? maxHeight ?? TEXT_EDITOR_MAX_HEIGHT : '100%',
+      overflow: 'auto',
+    },
+    '& .ql-container': {
+      border: !edit ? 'none !important' : undefined,
+    },
+  }),
+);
 
 const TextEditor: FC<TextEditorProps> = ({
   id,
@@ -51,26 +69,11 @@ const TextEditor: FC<TextEditorProps> = ({
   value: initialValue = '',
   showActions = true,
   edit = false,
-  placeholderText = 'Write something...',
+  placeholderText = 'Write something…',
   maxHeight,
 }) => {
   // keep current content
   const [content, setContent] = useState(initialValue ?? '');
-  const useStyles = makeStyles(() => ({
-    wrapper: {
-      '& .ql-editor': {
-        // adapt height if read only
-        minHeight: !edit ? 0 : TEXT_EDITOR_MIN_HEIGHT,
-        // necessary styles to avoid window scrolling top on paste
-        // set a max height only on edition
-        maxHeight: edit ? maxHeight ?? TEXT_EDITOR_MAX_HEIGHT : '100%',
-        overflow: 'auto',
-      },
-      '& .ql-container': {
-        border: !edit ? 'none' : undefined,
-      },
-    },
-  }));
 
   const onTextChange = (text: string): void => {
     // keep track of the current content
@@ -90,16 +93,17 @@ const TextEditor: FC<TextEditorProps> = ({
     setContent(initialValue);
   }, [initialValue]);
 
-  const classes = useStyles();
-
-  const placeholder = edit ? placeholderText : '';
+  // empty text
+  if (!content && !edit) {
+    return null;
+  }
 
   return (
     <React.Fragment>
-      <div className={classes.wrapper}>
+      <Div edit={edit} maxHeight={maxHeight}>
         <ReactQuill
           id={id}
-          placeholder={placeholder}
+          placeholder={placeholderText}
           readOnly={!edit}
           theme='snow'
           value={content}
@@ -111,13 +115,19 @@ const TextEditor: FC<TextEditorProps> = ({
             },
           }}
         />
-      </div>
+      </Div>
       {showActions && edit && (
         <>
-          <Button id={cancelButtonId} onClick={onCancelClick}>
+          <Button
+            variant='text'
+            sx={{ m: 1 }}
+            id={cancelButtonId}
+            onClick={onCancelClick}
+          >
             {cancelButtonText}
           </Button>
           <SaveButton
+            sx={{ m: 1 }}
             id={saveButtonId}
             onClick={() => {
               // eslint-disable-next-line no-unused-expressions

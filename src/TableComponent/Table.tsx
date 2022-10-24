@@ -1,202 +1,243 @@
-import React, { ReactElement, useEffect, useState } from 'react';
-import { makeStyles } from '@material-ui/core';
-import clsx from 'clsx';
-import { GridApi, RowNode, ColDef, IRowDragItem } from 'ag-grid-community';
+import {
+  CellClickedEvent,
+  ColDef,
+  GridApi,
+  IRowDragItem,
+  RowNode,
+} from 'ag-grid-community';
 import { AgGridReact } from 'ag-grid-react';
+import clsx from 'clsx';
 
-import 'ag-grid-community/dist/styles/ag-grid.min.css';
+import { SxProps, styled } from '@mui/material';
+import Box from '@mui/material/Box';
+import TablePagination, {
+  TablePaginationProps,
+} from '@mui/material/TablePagination';
 
-import TableToolbar from './TableToolbar';
+import React, {
+  ReactElement,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
+
+import { DRAG_ICON_SIZE } from '../constants';
 import DragCellRenderer from './DragCellRenderer';
 import TableNoRowsContent from './TableNoRowsContent';
-import { DRAG_ICON_SIZE } from '../constants';
+import TableToolbar from './TableToolbar';
 
-interface Props {
-  id: string;
-  tableHeight?: number;
-  rowData: unknown[];
-  NoRowsComponent?: ReactElement;
-  onDragEnd: (nodes: RowNode[]) => void;
+export interface TableProps<T> {
   className?: string;
-  onSelectionChanged: () => void;
+  /**
+   * definition of the columns following AG Grid definitions
+   */
   columnDefs: ColDef[];
-  isClickable: boolean;
-  onCellClicked: () => void;
-  getRowId: () => string;
-  onRowDataChanged: () => void;
-  rowSelection?: string;
-  ToolbarActions?: React.FC<{ selectedIds: string[] }>;
-  NoSelectionToolbar: React.FC;
+  /**
+   * Table Toolbar's count text
+   */
+  countTextFunction?: (selected: string[]) => string;
+  emptyMessage?: string;
+  enableBrowserTooltips?: boolean;
+  enableDrag?: boolean;
+  getRowId?: (args: { data: T }) => string;
+  id?: string;
+  isClickable?: boolean;
+  NoRowsComponent?: ReactElement;
+  NoSelectionToolbar?: React.FC;
+  onCellClicked?: ((event: CellClickedEvent<T, any>) => void) | undefined;
+  onDragEnd?: (nodes: RowNode[]) => void;
+  onRowDataChanged?: (context: any) => void;
+  onSelectionChanged?: (context: any) => void;
+  rowData: T[];
+  rowDragManaged?: boolean;
+  rowDragText?: (params: IRowDragItem, dragItemCount: number) => string;
+  rowHeight?: number;
+  rowSelection?: 'single' | 'multiple';
   suppressCellFocus?: boolean;
   suppressRowClickSelection?: boolean;
-  rowDragManaged?: boolean;
-  rowDragText: (params: IRowDragItem, dragItemCount: number) => string;
-  enableDrag?: boolean;
-  rowHeight: number;
-  emptyMessage?: string;
-  countTextFunction?: (selected: string[]) => string;
-  dragClassName?: string;
-  enableBrowserTooltips?: boolean;
+  sx?: SxProps;
+  tableHeight?: number | string;
+  ToolbarActions?: React.FC<{ selectedIds: string[] }>;
+  /**
+   * enable pagination
+   * We don't use AG Grid's pagination because it disables the custom dragging
+   */
+  pagination?: boolean;
+  labelDisplayedRows?: TablePaginationProps['labelDisplayedRows'];
 }
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    width: '100%',
-    '& .ag-checked::after': {
-      color: `${theme.palette.primary.main}!important`,
-    },
+const StyledDiv = styled('div')(({ theme }) => ({
+  width: '100%',
+  '.ag-theme-material .ag-checkbox-input-wrapper.ag-checked:after': {
+    color: theme.palette.primary.main,
   },
-  table: {
-    fontSize: theme.typography.fontSize,
-    width: '100%',
-    height: (props: { tableHeight: number | string }) => props.tableHeight,
-  },
-  row: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  rowClickable: {
-    cursor: 'pointer',
-  },
-  dragCell: {
-    paddingLeft: '0!important',
-    paddingRight: '0!important',
-    display: 'flex',
-    alignItems: 'center',
-  },
-  actionCell: {
-    paddingLeft: '0!important',
-    paddingRight: '0!important',
-    textAlign: 'right',
-  },
+  height: '100%',
 }));
 
-const defaultColDef = {
+const ROW_CLASS_NAME = 'row-class-name';
+const ROW_CLICKABLE_CLASS_NAME = 'row-clickable-class-name';
+const DRAG_CELL_CLASS_NAME = 'drag-cell-class-name';
+
+const DEFAULT_COL_DEF = {
   resizable: true,
   sortable: true,
+  flex: 1,
 };
 
-const GraaspTable: React.FC<Props> = ({
-  ToolbarActions,
-  emptyMessage,
-  onRowDataChanged,
-  id,
-  rowData: initialData,
-  NoRowsComponent,
-  onDragEnd,
-  onSelectionChanged,
+const StyledBox = styled(Box)<{ tableHeight: string | number }>(
+  ({ theme, tableHeight }) => ({
+    fontSize: theme.typography.fontSize,
+    width: '100%',
+    height: tableHeight,
+    [`.${ROW_CLASS_NAME}`]: {
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    [`.${ROW_CLICKABLE_CLASS_NAME}`]: {
+      cursor: 'pointer',
+    },
+    [`.${DRAG_CELL_CLASS_NAME}`]: {
+      paddingLeft: '0!important',
+      paddingRight: '0!important',
+      display: 'flex',
+      alignItems: 'center',
+    },
+  }),
+);
+
+function GraaspTable<T>({
+  className = 'ag-theme-material',
   columnDefs,
-  onCellClicked,
+  countTextFunction,
+  emptyMessage,
+  enableBrowserTooltips = true,
+  enableDrag = false,
   getRowId,
+  id,
+  isClickable = true,
+  NoRowsComponent,
   NoSelectionToolbar,
+  onCellClicked,
+  onDragEnd,
+  onRowDataChanged,
+  onSelectionChanged,
+  rowData: initialData,
   rowDragText,
   rowHeight,
-  countTextFunction,
-  dragClassName,
-  enableBrowserTooltips = true,
-  tableHeight = 'auto',
-  className = '',
-  isClickable = true,
   rowSelection = 'multiple',
   suppressCellFocus = true,
   suppressRowClickSelection = true,
-  rowDragManaged = true,
-  enableDrag = false,
-}) => {
-  const [rowData, setRowData] = useState(initialData);
-  const [gridApi, setGridApi] = useState<GridApi>();
+  labelDisplayedRows,
+  pagination = true,
+  sx,
+  tableHeight = 500,
+  ToolbarActions,
+}: TableProps<T>) {
+  const gridRef = useRef<AgGridReact>(null);
   const [selected, setSelected] = useState<string[]>([]);
-  const classes = useStyles({ tableHeight });
+  const [gridApi, setGridApi] = useState<GridApi>();
+  const [rowData, setRowData] = useState<T[]>(initialData);
 
   useEffect(() => {
-    setRowData(initialData);
+    if (rowData !== initialData) {
+      setRowData(initialData);
+    }
   }, [initialData]);
 
   const onGridReady = (params: { api: GridApi }): void => {
-    setGridApi(params.api);
+    if (!gridApi) {
+      setGridApi(params.api);
+    }
   };
 
   const changeSelection = (): void => {
     setSelected(gridApi?.getSelectedRows().map((r) => r.id) ?? []);
   };
 
-  const handleRowDataChanged = (): void => {
+  const handleRowDataChanged = (context: any): void => {
     changeSelection();
     // eslint-disable-next-line no-unused-expressions
-    onRowDataChanged?.();
+    onRowDataChanged?.(context);
   };
 
-  const handleSelectionChanged = (): void => {
+  const handleSelectionChanged = (context: any): void => {
     changeSelection();
     // eslint-disable-next-line no-unused-expressions
-    onSelectionChanged?.();
+    onSelectionChanged?.(context);
   };
 
   const handleDragEnd = (): void => {
+    const api = gridRef.current?.api;
     // return displayed rows
     const nodes: RowNode[] = [];
     // eslint-disable-next-line no-unused-expressions
-    gridApi?.getModel().forEachNode((n) => nodes.push(n));
+    api?.getModel().forEachNode((n) => nodes.push(n));
     // eslint-disable-next-line no-unused-expressions
     onDragEnd?.(nodes);
   };
 
-  const buildColumnDefs = (): ColDef[] => {
+  const buildColumnDefs = useCallback((): ColDef[] => {
     if (!enableDrag) {
       return columnDefs;
     }
 
     // adds the column drag on the left of the table
-    const dragCellClasses = [classes.dragCell];
-    if (dragClassName) {
-      dragCellClasses.push(dragClassName);
-    }
+    const dragCellClasses = [DRAG_CELL_CLASS_NAME];
     const dragColumn: ColDef = {
       cellRenderer: DragCellRenderer,
       rowDragText,
+      field: 'name',
       cellClass: dragCellClasses,
-      headerClass: classes.dragCell,
-      maxWidth: DRAG_ICON_SIZE,
+      cellStyle: {
+        display: 'flex',
+      },
+      headerClass: DRAG_CELL_CLASS_NAME,
+      width: DRAG_ICON_SIZE,
       sortable: false,
+      headerName: '',
     };
 
     // adds the drag column
     return [dragColumn, ...columnDefs];
-  };
+  }, [columnDefs, enableDrag]);
 
   const EmptyTableComponent = (): JSX.Element => (
     <TableNoRowsContent emptyMessage={emptyMessage} />
   );
 
   return (
-    <div className={classes.root}>
+    <StyledDiv>
       <TableToolbar
         selected={selected}
         Actions={ToolbarActions}
         NoSelectionToolbar={NoSelectionToolbar}
-        countText={countTextFunction?.(selected)}
+        countTextFunction={countTextFunction}
       />
-      <div
-        className={clsx('ag-theme-material', classes.table, className)}
+      <StyledBox
+        className={className}
         id={id}
+        sx={sx}
+        tableHeight={tableHeight}
       >
         <AgGridReact
+          onGridReady={onGridReady}
+          ref={gridRef}
           columnDefs={buildColumnDefs()}
           rowData={rowData}
-          defaultColDef={defaultColDef}
+          rowDragManaged={true}
+          defaultColDef={DEFAULT_COL_DEF}
           rowSelection={rowSelection}
           suppressRowClickSelection={suppressRowClickSelection}
           suppressCellFocus={suppressCellFocus}
           noRowsOverlayComponent={NoRowsComponent ?? EmptyTableComponent}
-          rowDragManaged={rowDragManaged}
           onRowDragEnd={handleDragEnd}
-          onGridReady={onGridReady}
           onSelectionChanged={handleSelectionChanged}
           onCellClicked={isClickable ? onCellClicked : undefined}
           rowClass={clsx({
-            [classes.row]: !isClickable,
-            [classes.rowClickable]: isClickable,
+            [ROW_CLASS_NAME]: !isClickable,
+            [ROW_CLICKABLE_CLASS_NAME]: isClickable,
           })}
           getRowHeight={() => rowHeight}
           getRowId={getRowId}
@@ -205,10 +246,30 @@ const GraaspTable: React.FC<Props> = ({
           enableBrowserTooltips={enableBrowserTooltips}
           enableCellTextSelection
           ensureDomOrder
+          animateRows={true}
         />
-      </div>
-    </div>
+        {/* TODO: implement pagination */}
+        {pagination && (
+          <TablePagination
+            count={rowData.length}
+            labelDisplayedRows={labelDisplayedRows}
+            page={0}
+            rowsPerPageOptions={[]}
+            onPageChange={() => {
+              // todo
+            }}
+            component='div'
+            rowsPerPage={-1}
+          />
+        )}
+      </StyledBox>
+    </StyledDiv>
   );
-};
+}
 
-export default GraaspTable;
+export default Object.assign(GraaspTable, {
+  textComparator: (text1: string, text2: string) =>
+    text1.localeCompare(text2, undefined, { sensitivity: 'base' }),
+  dateComparator: (d1: string, d2: string) =>
+    new Date(d1).getTime() - new Date(d2).getTime(),
+});

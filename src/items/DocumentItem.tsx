@@ -1,46 +1,73 @@
-import React, { FC } from 'react';
 import { RecordOf } from 'immutable';
-import TextEditor from '../TextEditor';
-import { getDocumentExtra } from '../utils/itemExtra';
-import type { DocumentItemExtra, Item } from '../types';
 
-interface DocumentItemProps {
-  item: RecordOf<Item<DocumentItemExtra>>;
-  id?: string;
+import { Typography } from '@mui/material';
+
+import React, { FC } from 'react';
+
+import { Item } from '@graasp/sdk';
+
+import TextEditor from '../TextEditor';
+import type { DocumentItemExtra } from '../types';
+import { getDocumentExtra } from '../utils/itemExtra';
+
+export interface DocumentItemProps {
+  cancelButtonId?: string;
+  cancelButtonText?: string;
   edit?: boolean;
+  id?: string;
+  item: RecordOf<Item<DocumentItemExtra>>;
+  maxHeight?: string | number;
+  onCancel?: (text: string) => void;
+  onSave: (text: string) => void;
   saveButtonId?: string;
   saveButtonText?: string;
-  cancelButtonText?: string;
-  cancelButtonId?: string;
-  onSave: (text: string) => void;
-  onCancel?: (text: string) => void;
-  maxHeight?: string | number;
+  /**
+   * whether a message should be displayed if the text is empty
+   */
+  showEmpty?: boolean;
+  emptyMessage?: string;
 }
 
 const DocumentItem: FC<DocumentItemProps> = ({
-  item,
-  id,
+  cancelButtonId,
+  cancelButtonText,
   edit,
-  onSave,
+  id,
+  item,
+  maxHeight,
   onCancel,
+  onSave,
   saveButtonId,
   saveButtonText,
-  cancelButtonText,
-  cancelButtonId,
-  maxHeight,
-}) => (
-  <TextEditor
-    id={id}
-    value={getDocumentExtra(item.extra)?.content}
-    edit={edit}
-    onSave={onSave}
-    onCancel={onCancel}
-    saveButtonId={saveButtonId}
-    saveButtonText={saveButtonText}
-    maxHeight={maxHeight}
-    cancelButtonText={cancelButtonText}
-    cancelButtonId={cancelButtonId}
-  />
-);
+  showEmpty,
+  emptyMessage = 'This document is empty…',
+}) => {
+  const content = getDocumentExtra(item.extra)?.content;
+  if (!content && showEmpty) {
+    return (
+      <Typography
+        variant='body2'
+        sx={{ fontStyle: 'italic', color: 'lightgrey' }}
+      >
+        {emptyMessage}
+      </Typography>
+    );
+  }
+
+  return (
+    <TextEditor
+      id={id}
+      value={content}
+      edit={edit}
+      onSave={onSave}
+      onCancel={onCancel}
+      saveButtonId={saveButtonId}
+      saveButtonText={saveButtonText}
+      maxHeight={maxHeight}
+      cancelButtonText={cancelButtonText}
+      cancelButtonId={cancelButtonId}
+    />
+  );
+};
 
 export default DocumentItem;

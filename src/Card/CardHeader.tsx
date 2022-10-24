@@ -1,44 +1,7 @@
-import React, { FC, ReactElement } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid';
+import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingLeft: theme.spacing(1),
-    width: '100%',
-  },
-  header: {
-    display: 'flex',
-    width: '100%',
-  },
-  wrapper: {
-    width: '100%',
-  },
-  avatar: {
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1),
-  },
-  title: {
-    fontSize: '0.9rem',
-    fontWeight: 'bold',
-    overflow: 'hidden',
-    textOverflow: 'ellipsis',
-    whiteSpace: 'nowrap',
-  },
-  subtitle: {
-    fontSize: '0.72rem',
-    overflow: 'hidden',
-    textOverflow: 'ellipsis',
-    whiteSpace: 'nowrap',
-  },
-  itemMenu: {
-    textAlign: 'right',
-  },
-}));
+import React, { FC, ReactElement } from 'react';
 
 type CardHeaderProps = {
   name: string;
@@ -53,25 +16,36 @@ const CustomCardHeader: FC<CardHeaderProps> = ({
   ItemMenu,
   NameWrapper = ({ children }: { children: ReactElement }) => children,
 }) => {
-  const classes = useStyles();
-
   return (
-    <Grid container className={classes.root}>
-      <Grid item xs={9} className={classes.header}>
+    <Grid
+      container
+      justifyContent='space-between'
+      alignItems='center'
+      sx={{ width: '100%', pl: 1 }}
+    >
+      <Grid item xs={9} sx={{ display: 'flex', width: '100%' }}>
         <Grid container>
           <Grid item xs={12}>
             <NameWrapper>
-              <Typography className={classes.title}>{name}</Typography>
+              <Typography
+                noWrap
+                variant='subtitle1'
+                sx={{ fontWeight: 'bold' }}
+              >
+                {name}
+              </Typography>
             </NameWrapper>
           </Grid>
           {creator && (
             <Grid item xs={12}>
-              <Typography className={classes.subtitle}>{creator}</Typography>
+              <Typography noWrap variant='caption'>
+                {creator}
+              </Typography>
             </Grid>
           )}
         </Grid>
       </Grid>
-      <Grid item xs={3} className={classes.itemMenu}>
+      <Grid item xs={3} sx={{ textAlign: 'right' }}>
         {ItemMenu}
       </Grid>
     </Grid>

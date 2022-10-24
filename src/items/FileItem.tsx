@@ -1,51 +1,61 @@
-import React, { FC, useEffect, useState } from 'react';
-import { Alert, Skeleton } from '@material-ui/lab';
 import { RecordOf } from 'immutable';
+
+import { SxProps } from '@mui/material';
+import Alert from '@mui/material/Alert';
+import Skeleton from '@mui/material/Skeleton';
+
+import React, { FC, useEffect, useState } from 'react';
+
+import { Item, UnknownExtra } from '@graasp/sdk';
+
 import {
   MIME_TYPES,
   SCREEN_MAX_HEIGHT,
   UNEXPECTED_ERROR_MESSAGE,
 } from '../constants';
-import FileImage from './FileImage';
-import FileAudio from './FileAudio';
-import FileVideo from './FileVideo';
-import FilePdf from './FilePdf';
+import { ERRORS } from '../enums';
+import { FileItemExtra, S3FileItemExtra } from '../types';
 import { getFileExtra, getS3FileExtra } from '../utils/itemExtra';
 import DownloadButtonFileItem from './DownloadButtonFileItem';
+import FileAudio from './FileAudio';
+import FileImage from './FileImage';
+import FilePdf from './FilePdf';
+import FileVideo from './FileVideo';
 import withCaption from './withCaption';
-import { FileItemExtra, Item, S3FileItemExtra, UnknownExtra } from '../types';
-import { ERRORS } from '../enums';
 
-interface FileItemProps {
-  item: RecordOf<Item<UnknownExtra>>;
+export interface FileItemProps {
+  /**
+   * blob content of the file
+   * */
   content: Blob;
-  id?: string;
   defaultItem?: JSX.Element;
   downloadText?: string;
+  editCaption?: boolean;
+  errorMessage?: string;
+  id?: string;
+  item: RecordOf<Item<UnknownExtra>>;
   maxHeight?: number;
   onSaveCaption?: (text: string) => void;
-  editCaption?: boolean;
-  showCaption?: boolean;
-  errorMessage?: string;
   saveButtonId?: string;
-  className?: string;
+  showCaption?: boolean;
   showCollapse?: boolean;
+  sx?: SxProps;
 }
 
 const FileItem: FC<FileItemProps> = ({
-  id,
-  item,
   content,
   defaultItem,
   downloadText,
+  editCaption = false,
+  errorMessage = UNEXPECTED_ERROR_MESSAGE,
+  id,
+  item,
   maxHeight = '100%',
   onSaveCaption,
-  editCaption = false,
-  showCaption = true,
   saveButtonId,
-  errorMessage = UNEXPECTED_ERROR_MESSAGE,
-  className,
+  showCaption = true,
   showCollapse,
+  sx,
 }) => {
   const [url, setUrl] = useState<string>();
   const extra =
@@ -78,7 +88,7 @@ const FileItem: FC<FileItemProps> = ({
   if (!url) {
     return (
       <Skeleton
-        variant='rect'
+        variant='rectangular'
         width={'100%'}
         height={maxHeight || SCREEN_MAX_HEIGHT}
       />
@@ -92,23 +102,19 @@ const FileItem: FC<FileItemProps> = ({
   let component;
   if (mimetype) {
     if (MIME_TYPES.IMAGE.includes(mimetype)) {
-      component = (
-        <FileImage id={id} url={url} alt={name} className={className} />
-      );
+      component = <FileImage id={id} url={url} alt={name} sx={sx} />;
     } else if (MIME_TYPES.AUDIO.includes(mimetype)) {
-      component = (
-        <FileAudio id={id} url={url} type={mimetype} className={className} />
-      );
+      component = <FileAudio id={id} url={url} type={mimetype} sx={sx} />;
     } else if (MIME_TYPES.VIDEO.includes(mimetype)) {
       // does not specify mimetype in video source, this way, it works with more container formats in more browsers (especially Chrome with video/quicktime)
-      component = <FileVideo id={id} url={url} className={className} />;
+      component = <FileVideo id={id} url={url} sx={sx} />;
     } else if (MIME_TYPES.PDF.includes(mimetype)) {
       component = (
         <FilePdf
           id={id}
           url={url}
           height={maxHeight}
-          className={className}
+          sx={sx}
           showCollapse={showCollapse}
         />
       );

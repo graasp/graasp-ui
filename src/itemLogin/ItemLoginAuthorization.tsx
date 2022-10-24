@@ -1,12 +1,16 @@
-import React, { ReactElement } from 'react';
 import { StatusCodes, getReasonPhrase } from 'http-status-codes';
-import Alert from '@material-ui/lab/Alert';
-import ItemLoginScreen, { SignInPropertiesType } from './ItemLoginScreen';
+
+import Alert from '@mui/material/Alert';
+
+import React, { ReactElement } from 'react';
+
+import CustomInitialLoader from '../CustomInitialLoader';
 import { ItemLoginRecord, ItemRecord, MemberRecord, UUID } from '../types';
 import ForbiddenText from './ForbiddenText';
-import CustomInitialLoader from '../CustomInitialLoader';
+import ItemLoginScreen, { SignInPropertiesType } from './ItemLoginScreen';
 
 export type ItemLoginAuthorizationProps = {
+  signOut: () => void;
   signIn: (args: { itemId: string } & SignInPropertiesType) => void;
   itemId: UUID;
   useCurrentMember: () => {

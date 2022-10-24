@@ -1,12 +1,21 @@
-import { EmbeddedLinkItemExtra, ImmutableItemClass } from '../types';
-import { TABLE_CATEGORIES } from '../utils/storybook';
-import LinkItem from './LinkItem';
-import { Item, ItemType } from '@graasp/sdk';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { expect } from '@storybook/jest';
+import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { userEvent, within } from '@storybook/testing-library';
 import { RecordOf } from 'immutable';
+
 import React from 'react';
 
-const item = new ImmutableItemClass({
+import { Item, ItemType } from '@graasp/sdk';
+
+import {
+  EmbeddedLinkItemExtra,
+  ImmutableItem,
+  ImmutableMember,
+} from '../types';
+import { TABLE_CATEGORIES } from '../utils/storybook';
+import LinkItem from './LinkItem';
+
+const item = new ImmutableItem({
   id: 'item-id',
   name: 'item-name',
   type: ItemType.LINK,
@@ -23,7 +32,7 @@ const item = new ImmutableItemClass({
 }) as RecordOf<Item<EmbeddedLinkItemExtra>>;
 
 export default {
-  title: 'LinkItem',
+  title: 'Items/LinkItem',
   component: LinkItem,
 
   argTypes: {
@@ -42,6 +51,14 @@ const Template: ComponentStory<typeof LinkItem> = (args) => (
 export const Iframe = Template.bind({});
 Iframe.args = {
   item,
+  isResizable: true,
+  member: new ImmutableMember({ id: 'link-iframe-id' }),
+};
+Iframe.play = async ({ canvasElement, args }) => {
+  const canvas = within(canvasElement);
+
+  expect(canvas.getByText(args.item.description)).toBeInTheDocument();
+  expect(canvas.getByTitle(args.item.name)).toBeInTheDocument();
 };
 
 export const LinkButton = Template.bind({});
@@ -50,9 +67,23 @@ LinkButton.args = {
   showButton: true,
   showIframe: false,
 };
+LinkButton.play = async ({ canvasElement, args }) => {
+  const canvas = within(canvasElement);
+
+  expect(canvas.getByText(args.item.description)).toBeInTheDocument();
+  await userEvent.click(canvas.getByText(args.item.name));
+};
 
 export const IframeAndLinkButton = Template.bind({});
 IframeAndLinkButton.args = {
   item,
   showButton: true,
+};
+
+IframeAndLinkButton.play = async ({ canvasElement, args }) => {
+  const canvas = within(canvasElement);
+
+  expect(canvas.getByText(args.item.description)).toBeInTheDocument();
+  expect(canvas.getByTitle(args.item.name)).toBeInTheDocument();
+  await userEvent.click(canvas.getByText(args.item.name));
 };

@@ -1,51 +1,45 @@
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import { styled, useTheme } from '@mui/material';
+import IconButton from '@mui/material/IconButton';
+import ListItem from '@mui/material/ListItem';
+import ListItemSecondaryAction from '@mui/material/ListItemSecondaryAction';
+
 import React, { FC } from 'react';
-import { Theme, createStyles, makeStyles } from '@material-ui/core/styles';
-import IconButton from '@material-ui/core/IconButton';
-import ListItem from '@material-ui/core/ListItem';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
+
 import { DEFAULT_DIRECTION, DRAWER_HEADER_HEIGHT } from '../constants';
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    drawerHeader: {
-      height: DRAWER_HEADER_HEIGHT,
-    },
-    secondaryAction: {
-      right: theme.spacing(1),
-    },
+const StyledListItem = styled(ListItem)({
+  height: DRAWER_HEADER_HEIGHT,
+});
+const StyledListItemSecondaryAction = styled(ListItemSecondaryAction)(
+  ({ theme }) => ({
+    right: theme.spacing(1),
   }),
 );
 
 export interface DrawerHeaderProps {
-  theme?: {
-    direction?: string;
-  };
   children?: JSX.Element;
+  direction?: string;
   handleDrawerClose?: () => void;
 }
 
 export const DrawerHeader: FC<DrawerHeaderProps> = ({
   handleDrawerClose,
   children,
-  theme,
+  direction,
 }) => {
-  const classes = useStyles();
-  const direction = theme?.direction ?? DEFAULT_DIRECTION;
+  const theme = useTheme();
+  const dir = direction ?? theme?.direction ?? DEFAULT_DIRECTION;
   return (
-    <ListItem
-      classes={{ root: classes.drawerHeader }}
-      divider
-      ContainerComponent='div'
-    >
+    <StyledListItem divider ContainerComponent='div'>
       {children}
-      <ListItemSecondaryAction classes={{ root: classes.secondaryAction }}>
+      <StyledListItemSecondaryAction>
         <IconButton onClick={handleDrawerClose}>
-          {direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+          {dir === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
         </IconButton>
-      </ListItemSecondaryAction>
-    </ListItem>
+      </StyledListItemSecondaryAction>
+    </StyledListItem>
   );
 };
 
