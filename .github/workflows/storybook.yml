@@ -1,5 +1,8 @@
 name: Deploy Storybook to Github Pages
 on: 
+  # Allow the workflow to be manually triggered
+  workflow_dispatch:
+  # Automatically trigger on push on main
   push:
     branches:
         - main
