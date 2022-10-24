@@ -34,7 +34,7 @@ const PinButton: FC<PinButtonProps> = ({
   size,
 }) => {
   const icon = isPinned ? <PushPinIcon /> : <PushPinOutlinedIcon />;
-  const text = isPinned ? pinText : unPinText;
+  const text = isPinned ? unPinText : pinText;
 
   switch (type) {
     case BUTTON_TYPES.MENU_ITEM:

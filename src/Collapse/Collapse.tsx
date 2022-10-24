@@ -66,7 +66,7 @@ const Collapse: FC<CollapseProps> = ({ title, content, sx, children }) => {
             margin: 'auto',
           },
         },
-        // You cannot spread `sx` directly because `SxProps` (typeof sx) can be an array.
+        // You cannot spread `sx` directly because `SxProps` (typeof sx) might not be an array.
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
       expanded={expanded}

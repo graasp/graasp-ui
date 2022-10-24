@@ -40,6 +40,7 @@ export const SMALL_AVATAR_SIZE = 40;
 export const SHORT_TEXT_WIDTH = 60;
 export const COLLAPSE_MIN_HEIGHT = 56;
 export const IFRAME_MIN_HEIGHT = 200;
+export const APP_DEFAULT_HEIGHT = 400;
 
 export const LINK_BUTTON_CONTAINER_HEIGHT = 50;
 export const LINK_BUTTON_CONTAINER_WIDTH = 50;
@@ -106,4 +107,4 @@ export const BUTTON_TYPES = {
   ICON_BUTTON: 'iconButton',
 };
 
-export const FAVORITE_COLOR = '#ffc107'
+export const FAVORITE_COLOR = '#ffc107';

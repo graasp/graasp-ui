@@ -23,7 +23,7 @@ const CopyButton: FC<Props> = ({
   iconClassName,
   id = '',
   menuItemClassName,
-  onClick = () => {},
+  onClick,
   text = 'Copy',
   type = 'icon',
 }) => {

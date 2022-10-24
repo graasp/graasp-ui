@@ -8,6 +8,7 @@ import React, { Component } from 'react';
 import { Item } from '@graasp/sdk';
 
 import {
+  APP_DEFAULT_HEIGHT,
   APP_ITEM_WIDTH,
   DEFAULT_PERMISSION,
   SCREEN_MAX_HEIGHT,
@@ -96,7 +97,7 @@ export class AppItem extends Component<AppItemProps> {
 
   state: AppItemState = {
     iframeIsLoading: true,
-    height: this.props.height ?? 400,
+    height: this.props.height ?? APP_DEFAULT_HEIGHT,
   };
 
   iframeRef: React.RefObject<HTMLIFrameElement>;

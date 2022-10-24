@@ -7,6 +7,8 @@ import { TABLE_CATEGORIES } from '../utils/storybook';
 import ForbiddenContent from './ForbiddenContent';
 import ForbiddenText from './ForbiddenText';
 
+const user = new ImmutableMember({ id: 'member-id', name: 'member-name' });
+
 export default {
   title: 'Common/ForbiddenContent',
   component: ForbiddenContent,
@@ -27,10 +29,16 @@ const Template: ComponentStory<typeof ForbiddenContent> = (args) => (
 
 export const SignedIn = Template.bind({});
 SignedIn.args = {
-  user: new ImmutableMember({ id: 'member-id', name: 'member-name' }),
+  user,
 };
 
 export const SignedOut = Template.bind({});
 SignedOut.args = {
   user: new ImmutableMember({}),
+};
+
+export const SignedOutShowPseudonymized = Template.bind({});
+SignedOutShowPseudonymized.args = {
+  showPseudonymized: true,
+  user,
 };

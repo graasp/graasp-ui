@@ -47,7 +47,7 @@ export class ImmutableItem extends Record<Item>({
   updatedAt: '',
 }) {}
 
-// use any instead of immutable List otherwise it cannot extends UnknownExtra
+// we use any instead of immutable List otherwise it cannot extends UnknownExtra
 export type EmbeddedLinkItemExtraProp = {
   thumbnails: any; //List<string>;
   html: string;

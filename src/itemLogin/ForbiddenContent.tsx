@@ -1,7 +1,6 @@
 import { Container, Typography, styled } from '@mui/material';
 
 import React, { FC, ReactNode } from 'react';
-import { useTranslation } from 'react-i18next';
 
 import Button from '../buttons/Button';
 import { MemberRecord } from '../types';
@@ -17,6 +16,8 @@ export interface ForbiddenContentProps {
   id?: string;
   showPseudonymized?: boolean;
   forbiddenTextId?: string;
+  signOutText?: string;
+  defaultOptions?: JSX.Element[];
 }
 
 const ForbiddenContent: FC<ForbiddenContentProps> = ({
@@ -25,24 +26,22 @@ const ForbiddenContent: FC<ForbiddenContentProps> = ({
   id,
   forbiddenTextId,
   showPseudonymized = false,
+  signOutText = 'Sign out to access as pseudonymized user',
+  defaultOptions = [
+    <Typography>{'Ask the creator to share this item with you'}</Typography>,
+  ],
 }) => {
-  const { t } = useTranslation();
-
   const handleSignOut = (): void => {
     signOut();
   };
 
   const renderAuthenticatedAlternatives = (): ReactNode => {
-    const options = [
-      <Typography>
-        {t('Ask the creator to share this item with you')}
-      </Typography>,
-    ];
+    let options = defaultOptions;
 
     if (showPseudonymized) {
-      options.push(
+      options = options.concat(
         <Button sx={{ mt: 1 }} onClick={handleSignOut}>
-          {t('Sign out to access as pseudonymized user')}
+          {signOutText}
         </Button>,
       );
     }

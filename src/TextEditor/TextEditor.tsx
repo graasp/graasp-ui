@@ -69,7 +69,7 @@ const TextEditor: FC<TextEditorProps> = ({
   value: initialValue = '',
   showActions = true,
   edit = false,
-  placeholderText = 'Write something...',
+  placeholderText = 'Write something…',
   maxHeight,
 }) => {
   // keep current content

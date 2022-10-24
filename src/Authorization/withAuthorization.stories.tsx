@@ -6,8 +6,10 @@ import { BuildIcon } from '../icons';
 import { ImmutableMember } from '../types';
 import withAuthorization from './withAuthorization';
 
+const redirectionLink = 'http://redirect.org';
+
 const ComponentWithAuthorization = withAuthorization(BuildIcon, {
-  redirectionLink: 'http://redirect.org',
+  redirectionLink,
   currentMember: new ImmutableMember({ id: 'member', name: 'member' }),
 });
 
@@ -22,7 +24,7 @@ export default {
 
 const Template: ComponentStory<typeof ComponentWithAuthorization> = () => {
   const Component = withAuthorization(BuildIcon, {
-    redirectionLink: 'http://redirect.org',
+    redirectionLink,
     currentMember: new ImmutableMember({ id: 'member', name: 'member' }),
   });
   return <Component />;

@@ -29,12 +29,17 @@ const Template: ComponentStory<typeof PinButton> = (args) => (
   <PinButton {...args} />
 );
 
-export const MenuItem = Template.bind({});
-MenuItem.args = {
-  type: BUTTON_TYPES.MENU_ITEM,
+export const IsPinned = Template.bind({});
+IsPinned.args = {
+  isPinned: true,
 };
 
 export const Icon = Template.bind({});
 Icon.args = {
   type: BUTTON_TYPES.ICON_BUTTON,
+};
+
+export const MenuItem = Template.bind({});
+MenuItem.args = {
+  type: BUTTON_TYPES.MENU_ITEM,
 };

@@ -27,7 +27,7 @@ const Template: ComponentStory<typeof Avatar> = (
   args,
   { loaded: { data } },
 ) => (
-  // @ts-expect-error this is not a valid query
+  // @ts-expect-error useAvatar does not match type
   <Avatar {...args} useAvatar={data ? () => ({ data }) : args.useAvatar} />
 );
 

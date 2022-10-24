@@ -40,7 +40,7 @@ Default.args = {
   // @ts-expect-error following function is not a query
   useThumbnail: () => ({ data: null }),
   alt: 'myname',
-  defaultValue: <>{'no thumbnail'}</>,
+  defaultValue: <img src='https://picsum.photos/100' />,
 };
 
 export const Loading = Template.bind({});

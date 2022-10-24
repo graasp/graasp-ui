@@ -23,12 +23,20 @@ export default {
   },
 } as ComponentMeta<typeof FileItem>;
 
-const Template: ComponentStory<typeof FileItem> = (args) => (
-  <FileItem {...args} />
-);
+const Template: ComponentStory<typeof FileItem> = (
+  args,
+  { loaded: { content } },
+) => {
+  return <FileItem {...args} content={content} />;
+};
 
-export const DefaultImage = Template.bind({});
-DefaultImage.args = {
+export const Image = Template.bind({});
+Image.loaders = [
+  async () => ({
+    content: await fetch('https://picsum.photos/100').then((r) => r.blob()),
+  }),
+];
+Image.args = {
   item: new ImmutableItem({
     id: 'my-id',
     name: 'my item name',

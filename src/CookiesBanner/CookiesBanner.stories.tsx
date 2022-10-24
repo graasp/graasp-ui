@@ -4,6 +4,8 @@ import React from 'react';
 
 import CookiesBanner from './CookiesBanner';
 
+const cookieName = 'cookieName';
+
 export default {
   title: 'Common/CookiesBanner',
   component: CookiesBanner,
@@ -17,19 +19,15 @@ export default {
   },
   decorators: [
     (story) => {
-      return (
-        <>
-          If you don't see the banner, you might need to remove the
-          corresponding cookie.
-          {story()}
-        </>
-      );
+      // delete cookie on mount
+      document.cookie = `${cookieName}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+      return <>{story()}</>;
     },
   ],
 } as ComponentMeta<typeof CookiesBanner>;
 
 const Template: ComponentStory<typeof CookiesBanner> = (args) => (
-  <CookiesBanner {...args} cookieName='cookieName' />
+  <CookiesBanner {...args} cookieName={cookieName} />
 );
 
 export const Banner = Template.bind({});

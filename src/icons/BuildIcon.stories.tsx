@@ -31,4 +31,7 @@ export const Default = Template.bind({});
 Default.args = { size: 50 };
 
 export const Disabled = Template.bind({});
-Disabled.args = {};
+Disabled.args = {
+  primaryColor: 'grey',
+  secondaryColor: 'white',
+};

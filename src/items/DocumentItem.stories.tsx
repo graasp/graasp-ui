@@ -61,8 +61,21 @@ const Template: ComponentStory<typeof DocumentItem> = (args) => (
   <DocumentItem {...args} />
 );
 
-export const Example = Template.bind({});
-Example.args = {
+export const Editing = Template.bind({});
+Editing.args = {
   item,
   edit: true,
+};
+
+export const EmptyMessage = Template.bind({});
+EmptyMessage.args = {
+  item: {
+    ...item,
+    extra: {
+      [ItemType.DOCUMENT]: {
+        content: '',
+      },
+    },
+  },
+  showEmpty: true,
 };

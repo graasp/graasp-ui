@@ -1,7 +1,7 @@
 import AppsIcon from '@mui/icons-material/Apps';
-import ArchiveIcon from '@mui/icons-material/Archive';
 import DescriptionIcon from '@mui/icons-material/Description';
 import FolderIcon from '@mui/icons-material/Folder';
+import FolderZipIcon from '@mui/icons-material/FolderZip';
 import ImageIcon from '@mui/icons-material/Image';
 import ShortcutIcon from '@mui/icons-material/Input';
 import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
@@ -103,7 +103,7 @@ const ItemIcon: FC<ItemIconProps> = ({
           break;
         }
         if (MIME_TYPES.ZIP.includes(mimetype)) {
-          Icon = ArchiveIcon;
+          Icon = FolderZipIcon;
           break;
         }
       }

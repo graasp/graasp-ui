@@ -8,7 +8,7 @@ import Toolbar from '@mui/material/Toolbar';
 
 import React, { FC } from 'react';
 
-import { CLOSE_DRAWER_LABEL, OPEN_DRAWER_LABEL } from '../texts';
+import { CLOSE_DRAWER_LABEL, OPEN_DRAWER_LABEL } from '../labels';
 
 export type HeaderProps = {
   centerContent?: React.ReactElement;

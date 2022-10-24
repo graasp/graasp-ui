@@ -19,5 +19,5 @@ const Template: ComponentStory<typeof SearchInput> = (args) => (
   <SearchInput {...args} />
 );
 
-export const Example = Template.bind({});
-Example.args = {};
+export const Default = Template.bind({});
+Default.args = {};

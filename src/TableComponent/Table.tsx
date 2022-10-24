@@ -27,7 +27,7 @@ import DragCellRenderer from './DragCellRenderer';
 import TableNoRowsContent from './TableNoRowsContent';
 import TableToolbar from './TableToolbar';
 
-export interface Props<T> {
+export interface TableProps<T> {
   className?: string;
   /**
    * definition of the columns following AG Grid definitions
@@ -79,9 +79,10 @@ const ROW_CLASS_NAME = 'row-class-name';
 const ROW_CLICKABLE_CLASS_NAME = 'row-clickable-class-name';
 const DRAG_CELL_CLASS_NAME = 'drag-cell-class-name';
 
-const defaultColDef = {
+const DEFAULT_COL_DEF = {
   resizable: true,
   sortable: true,
+  flex: 1,
 };
 
 const StyledBox = styled(Box)<{ tableHeight: string | number }>(
@@ -133,7 +134,7 @@ function GraaspTable<T>({
   sx,
   tableHeight = 500,
   ToolbarActions,
-}: Props<T>) {
+}: TableProps<T>) {
   const gridRef = useRef<AgGridReact>(null);
   const [selected, setSelected] = useState<string[]>([]);
   const [gridApi, setGridApi] = useState<GridApi>();
@@ -200,7 +201,7 @@ function GraaspTable<T>({
 
     // adds the drag column
     return [dragColumn, ...columnDefs];
-  }, [columnDefs]);
+  }, [columnDefs, enableDrag]);
 
   const EmptyTableComponent = (): JSX.Element => (
     <TableNoRowsContent emptyMessage={emptyMessage} />
@@ -226,7 +227,7 @@ function GraaspTable<T>({
           columnDefs={buildColumnDefs()}
           rowData={rowData}
           rowDragManaged={true}
-          defaultColDef={defaultColDef}
+          defaultColDef={DEFAULT_COL_DEF}
           rowSelection={rowSelection}
           suppressRowClickSelection={suppressRowClickSelection}
           suppressCellFocus={suppressCellFocus}

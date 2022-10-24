@@ -25,16 +25,16 @@ const Template: ComponentStory<typeof Navigation> = (args) => (
   <Navigation {...args} />
 );
 
-export const White = Template.bind({});
-White.args = {
+export const WhiteOnBlackBackground = Template.bind({});
+WhiteOnBlackBackground.args = {
   currentValue: Context.BUILDER,
 };
-White.parameters = {
+WhiteOnBlackBackground.parameters = {
   backgrounds: {
     default: 'black',
   },
 };
-White.play = async ({ canvasElement, args }) => {
+WhiteOnBlackBackground.play = async ({ canvasElement, args }) => {
   const canvas = within(canvasElement);
 
   await userEvent.click(canvas.getByText(args.currentValue));
@@ -48,19 +48,19 @@ White.play = async ({ canvasElement, args }) => {
   await userEvent.click(listbox.getByText(Context.LIBRARY));
 };
 
-export const Black = Template.bind({});
-Black.args = {
+export const BlackOnWhiteBackground = Template.bind({});
+BlackOnWhiteBackground.args = {
   currentValue: Context.PLAYER,
   buttonColor: 'primary',
   buttonClassname: 'blackColor',
   triangleClassname: 'blackBorderTop',
 };
-Black.parameters = {
+BlackOnWhiteBackground.parameters = {
   backgrounds: {
     default: 'white',
   },
 };
-Black.play = async ({ canvasElement, args }) => {
+BlackOnWhiteBackground.play = async ({ canvasElement, args }) => {
   const canvas = within(canvasElement);
 
   await userEvent.click(canvas.getByText(args.currentValue));

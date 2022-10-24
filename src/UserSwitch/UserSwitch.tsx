@@ -36,32 +36,6 @@ const StyledWrapper = styled(Box)(() => ({
   },
 }));
 
-// const useStyles = makeStyles((theme) => ({
-//   wrapper: {
-//     display: 'flex',
-//     alignItems: 'center',
-//     '&:hover': {
-//       cursor: 'pointer',
-//     },
-//   },
-//   mainUsername: {
-//     margin: theme.spacing(0, 2),
-//     maxWidth: HEADER_USERNAME_MAX_WIDTH,
-//   },
-//   mainAvatar: {
-//     width: 70,
-//     height: 70,
-//     marginRight: theme.spacing(2),
-//   },
-//   profileButton: {
-//     margin: 0,
-//     marginTop: theme.spacing(1),
-//   },
-//   skeletonUsername: {
-//     margin: theme.spacing(0, 2),
-//   },
-// }));
-
 interface Props {
   Actions?: JSX.Element | JSX.Element[];
   buildMemberMenuItemId?: (id: string) => string;
