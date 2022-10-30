@@ -2865,7 +2865,7 @@ __metadata:
     qs: 6.11.0
     slonik: 28.1.1
     uuid: 8.3.2
-  checksum: 995101205cbb9300997e48bc1632d85c6803a6ed3bb6c05ea4a400c4cae6acf634d83831681e119808e32650ef187a82c9966f5336d3b56fee91fbd3901c77c7
+  checksum: 95113bd6b03bd6c60a3c74cefad4e9d2912ee1a235865302657985d4610f064fe2c07f18e6635f354f01141e0cab7f254083f43ceab8e93acf2b9f1fc83e146f
   languageName: node
   linkType: hard
 
@@ -2948,6 +2948,7 @@ __metadata:
     pinst: 3.0.0
     prettier: 2.6.2
     qs: 6.10.5
+    quill-emoji: 0.2.0
     react: 17.0.2
     react-cookie-consent: 7.4.1
     react-dom: 17.0.2
@@ -7950,6 +7951,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"amdefine@npm:>=0.0.4":
+  version: 1.0.1
+  resolution: "amdefine@npm:1.0.1"
+  checksum: 9d4e15b94641643a9385b2841b4cb2bcf4e8e2f741ea4bd475c93ad7bab261ad4ed827a32e9c549b38b98759c4526c173ae4e6dde8caeb75ee5cebedc9863762
+  languageName: node
+  linkType: hard
+
 "ansi-align@npm:^3.0.0":
   version: 3.0.1
   resolution: "ansi-align@npm:3.0.1"
@@ -9867,6 +9875,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"clean-css@npm:^3.4.20":
+  version: 3.4.28
+  resolution: "clean-css@npm:3.4.28"
+  dependencies:
+    commander: 2.8.x
+    source-map: 0.4.x
+  bin:
+    cleancss: ./bin/cleancss
+  checksum: eacc573e5ba118aa59bb44a3d188e54d390b7482cad7941559b3865e4946c677afb2deab50bcf8e97592532935f684a53b3abff1d5c55e95e21ded1e93b69132
+  languageName: node
+  linkType: hard
+
 "clean-css@npm:^4.2.3":
   version: 4.2.4
   resolution: "clean-css@npm:4.2.4"
@@ -10099,6 +10119,15 @@ __metadata:
   version: 1.0.8
   resolution: "comma-separated-tokens@npm:1.0.8"
   checksum: 0adcb07174fa4d08cf0f5c8e3aec40a36b5ff0c2c720e5e23f50fe02e6789d1d00a67036c80e0c1e1539f41d3e7f0101b074039dd833b4e4a59031b659d6ca0d
+  languageName: node
+  linkType: hard
+
+"commander@npm:2.8.x":
+  version: 2.8.1
+  resolution: "commander@npm:2.8.1"
+  dependencies:
+    graceful-readlink: ">= 1.0.0"
+  checksum: 9552028af84683cf2b20397c54fa4dd5b18fb69555e201a8edc3880b344f5aadd8857f777da97ce0c99e50fc133adf356f0299e9958b9b4e95b96c45f0696dfd
   languageName: node
   linkType: hard
 
@@ -11928,6 +11957,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"emoji-data-css@npm:^1.0.1":
+  version: 1.0.1
+  resolution: "emoji-data-css@npm:1.0.1"
+  dependencies:
+    clean-css: ^3.4.20
+    emoji-datasource: ^2.4.4
+  checksum: 929db5aee240453eb86e64ffc149e860f863d4f30ffd8f908af5d2e6f33bb2a12767c5b67b2a15e0809d456ba68f784576efbf8c772d0fd56cbba23a5ca6a672
+  languageName: node
+  linkType: hard
+
+"emoji-datasource@npm:^2.4.4":
+  version: 2.4.4
+  resolution: "emoji-datasource@npm:2.4.4"
+  checksum: c6389580aae4db2dbbae0375733e0af7a5d1935f7a1554f3213fecc247b03ee89b182e275f20ac8bb5cf9877f9b7205f324ea0da89573ddde6a162e20f68d646
+  languageName: node
+  linkType: hard
+
 "emoji-regex@npm:^8.0.0":
   version: 8.0.0
   resolution: "emoji-regex@npm:8.0.0"
@@ -13741,6 +13787,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"fuse.js@npm:^3.3.0":
+  version: 3.6.1
+  resolution: "fuse.js@npm:3.6.1"
+  checksum: 958aa877ace65dc900df776becd39a03df68d7eebc7890b5fd2fc8c5d88e2fff238f60c37f80013ce70e9d9e7ac8efa9f503695fdd23d1eca3cc983797b50191
+  languageName: node
+  linkType: hard
+
 "gauge@npm:^3.0.0":
   version: 3.0.2
   resolution: "gauge@npm:3.0.2"
@@ -14212,6 +14265,13 @@ __metadata:
   version: 4.2.10
   resolution: "graceful-fs@npm:4.2.10"
   checksum: 3f109d70ae123951905d85032ebeae3c2a5a7a997430df00ea30df0e3a6c60cf6689b109654d6fdacd28810a053348c4d14642da1d075049e6be1ba5216218da
+  languageName: node
+  linkType: hard
+
+"graceful-readlink@npm:>= 1.0.0":
+  version: 1.0.1
+  resolution: "graceful-readlink@npm:1.0.1"
+  checksum: 4c1889ca0a6fc0bb9585b55c26a99719be132cbc4b7d84036193b70608059b9783e52e2a866d5a8e39821b16a69e899644ca75c6206563f1319b6720836b9ab2
   languageName: node
   linkType: hard
 
@@ -21493,6 +21553,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"quill-emoji@npm:0.2.0":
+  version: 0.2.0
+  resolution: "quill-emoji@npm:0.2.0"
+  dependencies:
+    emoji-data-css: ^1.0.1
+    fuse.js: ^3.3.0
+  peerDependencies:
+    quill: ^1.3.5
+  checksum: 9244072433561d8df30da722c3e5aed6e0eb647438e49964de805176dc223c851afd7ba951951cc80bdf06f154bf027dd487321b7a241d7c546bae47e08f7bde
+  languageName: node
+  linkType: hard
+
 "quill@npm:^1.3.7":
   version: 1.3.7
   resolution: "quill@npm:1.3.7"
@@ -23671,6 +23743,15 @@ __metadata:
   version: 0.4.1
   resolution: "source-map-url@npm:0.4.1"
   checksum: 64c5c2c77aff815a6e61a4120c309ae4cac01298d9bcbb3deb1b46a4dd4c46d4a1eaeda79ec9f684766ae80e8dc86367b89326ce9dd2b89947bd9291fc1ac08c
+  languageName: node
+  linkType: hard
+
+"source-map@npm:0.4.x":
+  version: 0.4.4
+  resolution: "source-map@npm:0.4.4"
+  dependencies:
+    amdefine: ">=0.0.4"
+  checksum: b31992fcb4a2a6c335617f187bd36f392896dfcc111830ebdb8b716923cf6554b665833b975fc998bdf3a63881b2c8b4c5c34fda0280357b8c18fe6aa5d148ea
   languageName: node
   linkType: hard
 

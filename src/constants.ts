@@ -30,6 +30,7 @@ export const TEXT_EDITOR_TOOLBAR = [
   ],
   [{ align: [] }],
   [{ list: 'ordered' }, { list: 'bullet' }, 'code-block', 'link', 'formula'],
+  ['emoji'],[handlers: {'emoji': function() {}}];
 ];
 export const TEXT_EDITOR_MIN_HEIGHT = 200;
 export const TEXT_EDITOR_MAX_HEIGHT = 400;
