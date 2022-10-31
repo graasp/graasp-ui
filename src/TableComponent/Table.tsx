@@ -197,6 +197,7 @@ function GraaspTable<T>({
       width: DRAG_ICON_SIZE,
       sortable: false,
       headerName: '',
+      flex: 0,
     };
 
     // adds the drag column

@@ -52,6 +52,8 @@ export const Iframe = Template.bind({});
 Iframe.args = {
   item,
   isResizable: true,
+  showButton: false,
+  showIframe: true,
   member: new ImmutableMember({ id: 'link-iframe-id' }),
 };
 Iframe.play = async ({ canvasElement, args }) => {
@@ -78,6 +80,7 @@ export const IframeAndLinkButton = Template.bind({});
 IframeAndLinkButton.args = {
   item,
   showButton: true,
+  showIframe: true,
 };
 
 IframeAndLinkButton.play = async ({ canvasElement, args }) => {
