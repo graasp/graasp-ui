@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.3.1](https://github.com/graasp/graasp-ui/compare/v0.3.0...v0.3.1) (2022-11-01)
+
+
+### Bug Fixes
+
+* add master branch to trigger workflows ([6b275c0](https://github.com/graasp/graasp-ui/commit/6b275c0c706487250239fc6bc787d9b2d529bd58))
+
+
+### Documentation
+
+* **readme:** udpate badges and add storybook link in readme ([#178](https://github.com/graasp/graasp-ui/issues/178)) ([689ff62](https://github.com/graasp/graasp-ui/commit/689ff626edccf3bce5e05202ab9a1713ee903757))
+
 ## [0.3.0](https://github.com/graasp/graasp-ui/compare/v0.2.1...v0.3.0) (2022-10-24)
 
 ### [0.2.1](https://github.com/graasp/graasp-ui/compare/v0.2.0...v0.2.1) (2022-10-24)
