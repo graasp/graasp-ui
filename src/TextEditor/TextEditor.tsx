@@ -5,7 +5,8 @@ import 'katex/dist/katex.min.css';
 import { styled } from '@mui/material';
 
 import React, { FC, useEffect, useState } from 'react';
-import ReactQuill from 'react-quill';
+import ReactQuill, { Quill } from 'react-quill';
+import quillEmoji from 'quill-emoji';
 import 'react-quill/dist/quill.snow.css';
 
 import Button from '../buttons/Button';
@@ -22,6 +23,15 @@ declare const window: Window &
   };
 
 window.katex = katex;
+
+const { EmojiBlot, ShortNameEmoji, ToolbarEmoji, TextAreaEmoji } = quillEmoji;
+
+Quill.register({
+  'formats/emoji': EmojiBlot,
+  'modules/emoji-shortname': ShortNameEmoji,
+  'modules/emoji-toolbar': ToolbarEmoji,
+  'modules/emoji-textarea': TextAreaEmoji
+}, true);
 
 export type TextEditorProps = {
   onSave?: (text: string) => void;
@@ -110,9 +120,6 @@ const TextEditor: FC<TextEditorProps> = ({
           onChange={onTextChange}
           modules={{
             toolbar: edit ? TEXT_EDITOR_TOOLBAR : null,
-			"emoji-toolbar": true,
-			"emoji-textarea": true,
-			"emoji-shortname": true,
             clipboard: {
               matchVisual: false,
             },

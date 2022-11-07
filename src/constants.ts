@@ -18,19 +18,22 @@ export const MIME_TYPES = {
 };
 
 export const TEXT_EDITOR_TOOLBAR = [
-  [
-    { header: [1, 2, 3, 4, 5, 6, false] },
-    { font: [] },
-    'bold',
-    'italic',
-    'underline',
-    'strike',
-    { color: [] }, // default colors depending on theme
-    { background: [] }, // default colors depending on theme
-  ],
-  [{ align: [] }],
-  [{ list: 'ordered' }, { list: 'bullet' }, 'code-block', 'link', 'formula'],
-  ['emoji'],[handlers: {'emoji': function() {}}];
+    [
+		[{ header: [1, 2, 3, 4, 5, 6, false] }],
+		[{ font: [] }],
+		['bold',
+		'italic',
+		'underline',
+		'strike'],
+		[{ color: [] }], // default colors depending on theme
+		[{ background: [] }], // default colors depending on theme
+		[{ align: [] }],
+		[{ list: 'ordered' }, { list: 'bullet' }, 'code-block', 'link', 'formula'],
+		['emoji'],
+	],
+	"emoji-toolbar": true,
+    "emoji-textarea": true,
+    "emoji-shortname": true,
 ];
 export const TEXT_EDITOR_MIN_HEIGHT = 200;
 export const TEXT_EDITOR_MAX_HEIGHT = 400;
