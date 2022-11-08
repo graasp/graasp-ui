@@ -120,6 +120,9 @@ const TextEditor: FC<TextEditorProps> = ({
           onChange={onTextChange}
           modules={{
             toolbar: edit ? TEXT_EDITOR_TOOLBAR : null,
+			"emoji-toolbar": true,
+			"emoji-textarea": true,
+			"emoji-shortname": true,
             clipboard: {
               matchVisual: false,
             },
