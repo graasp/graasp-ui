@@ -7,6 +7,7 @@ import { styled } from '@mui/material';
 import React, { FC, useEffect, useState } from 'react';
 import ReactQuill, { Quill } from 'react-quill';
 import quillEmoji from 'quill-emoji';
+import 'quill-emoji/dist/quill-emoji.css';
 import 'react-quill/dist/quill.snow.css';
 
 import Button from '../buttons/Button';
@@ -120,9 +121,9 @@ const TextEditor: FC<TextEditorProps> = ({
           onChange={onTextChange}
           modules={{
             toolbar: edit ? TEXT_EDITOR_TOOLBAR : null,
-			"emoji-toolbar": true,
-			"emoji-textarea": true,
-			"emoji-shortname": true,
+			      'emoji-toolbar': true,
+            'emoji-textarea': false,
+            'emoji-shortname': false,
             clipboard: {
               matchVisual: false,
             },
