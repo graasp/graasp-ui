@@ -1,9 +1,10 @@
+import List from '@mui/material/List';
+
 import React, { FC } from 'react';
-import List from '@material-ui/core/List';
 
 export interface MainMenuProps {
   id?: string;
-  children?: React.ReactElement;
+  children?: React.ReactElement | React.ReactElement[];
 }
 
 export const MainMenu: FC<MainMenuProps> = ({ id, children }) => {

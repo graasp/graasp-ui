@@ -1,34 +1,37 @@
+import { Theme, styled, useTheme } from '@mui/material';
+import Container, { ContainerProps } from '@mui/material/Container';
+import Typography, { TypographyProps } from '@mui/material/Typography';
+
 import React from 'react';
-import { Typography, Container, makeStyles } from '@material-ui/core';
+import { Link, LinkProps } from 'react-router-dom';
+
 import GraaspLogo from '../GraaspLogo';
-import { Link } from 'react-router-dom';
 
 interface Props {
-  link: string;
+  link?: string;
   id?: string;
   redirectionLinkText?: string;
   redirectionText?: string;
 }
 
-const useStyles = makeStyles((theme) => ({
-  container: {
-    height: '100vh',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  text: {
+const StyledContainer = styled(Container)<ContainerProps>(() => ({
+  height: '100vh',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+}));
+
+const StyledTypography = styled(Typography)<TypographyProps>(
+  ({ theme }: { theme: Theme }) => ({
     marginLeft: theme.spacing(2),
     color: theme.palette.primary.main,
-  },
-  logo: {
-    fill: theme.palette.primary.main,
-  },
-  link: {
-    textDecoration: 'none',
-    fontStyle: 'italic',
-    color: 'black',
-  },
+  }),
+);
+
+const StyledLink = styled(Link)<LinkProps>(() => ({
+  textDecoration: 'none',
+  fontStyle: 'italic',
+  color: 'black',
 }));
 
 const RedirectionContent: React.FC<Props> = ({
@@ -37,22 +40,23 @@ const RedirectionContent: React.FC<Props> = ({
   redirectionLinkText,
   id,
 }) => {
-  const classes = useStyles();
+  const theme = useTheme();
+
   return (
-    <Container id={id} className={classes.container}>
-      <GraaspLogo height={100} className={classes.logo} />
-      <div className={classes.text}>
-        <Typography variant='h4' align='center'>
+    <StyledContainer id={id}>
+      <GraaspLogo height={100} sx={{ fill: theme.palette.primary.main }} />
+      <div>
+        <StyledTypography variant='h4' align='center'>
           {redirectionText ?? 'You are being redirected…'}
-        </Typography>
-        <Link to={{ pathname: link }} className={classes.link}>
+        </StyledTypography>
+        <StyledLink to={{ pathname: link }}>
           <Typography align='center'>
             {redirectionLinkText ??
               'Click here if you are not automatically redirected'}
           </Typography>
-        </Link>
+        </StyledLink>
       </div>
-    </Container>
+    </StyledContainer>
   );
 };
 

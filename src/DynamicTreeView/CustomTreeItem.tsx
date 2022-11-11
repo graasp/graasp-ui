@@ -1,31 +1,21 @@
-import React, { FC } from 'react';
-import clsx from 'clsx';
-import type { UseQueryResult } from 'react-query';
 import { List } from 'immutable';
-import Skeleton from '@material-ui/lab/Skeleton';
-import { makeStyles } from '@material-ui/core/styles';
-import TreeItem from '@material-ui/lab/TreeItem';
-import TreeItemLabel from './TreeItemLabel';
+
+import TreeItem from '@mui/lab/TreeItem';
+import { styled } from '@mui/material';
+import Skeleton from '@mui/material/Skeleton';
+
+import React, { FC } from 'react';
+import type { UseQueryResult } from 'react-query';
+
+import { ImmutableItem, ItemRecord } from '../types';
 import { getParentsIdsFromPath } from '../utils/utils';
-import { ImmutableItemClass, ItemRecord } from '../types';
+import TreeItemLabel from './TreeItemLabel';
 
 const LoadingTreeItem = <Skeleton variant='text' />;
 
-const useStyles = makeStyles((theme) => ({
-  disabled: {
-    opacity: 0.5,
-    color: theme.palette.primary.main,
-  },
-  treeItem: {
-    // override background of tree item to show background on select
-    '& > .MuiTreeItem-content .MuiTreeItem-label': {
-      background: 'none !important',
-    },
-  },
-  checkbox: {
-    // reduce spacing between tree items
-    padding: `${theme.spacing(0.5)}px !important`,
-  },
+const StyledTreeItemLabel = styled(TreeItemLabel)(({ theme }) => ({
+  // reduce spacing between tree items
+  padding: `${theme.spacing(0.5)}px !important`,
 }));
 
 interface CustomItemTreeProps {
@@ -61,7 +51,6 @@ const CustomTreeItem: FC<CustomItemTreeProps> = ({
   shouldFetchChildrenForItem = () => true,
   showCheckbox = false,
 }) => {
-  const classes = useStyles();
   const { data: item, isLoading, isError } = useItem(itemId);
   const showItem = item && showItemFilter?.(item);
   const isExpanded = expandedItems?.includes(itemId);
@@ -112,11 +101,10 @@ const CustomTreeItem: FC<CustomItemTreeProps> = ({
   const buildTreeItemContent = (): JSX.Element => {
     if (showCheckbox) {
       return (
-        <TreeItemLabel
+        <StyledTreeItemLabel
           showCheckbox={showCheckbox}
           name={name}
           checked={Boolean(selectedId && selectedId === nodeId)}
-          className={classes.checkbox}
         />
       );
     }
@@ -135,7 +123,7 @@ const CustomTreeItem: FC<CustomItemTreeProps> = ({
     }
 
     const filteredChildren = children?.filter((item) =>
-      showItemFilter?.(new ImmutableItemClass(item)),
+      showItemFilter?.(new ImmutableItem(item)),
     );
 
     if (!filteredChildren?.size) {
@@ -165,19 +153,30 @@ const CustomTreeItem: FC<CustomItemTreeProps> = ({
   const content = childrenIsLoading ? LoadingTreeItem : buildTreeItemContent();
 
   // recursive display of children
-  const className = clsx(buildTreeItemClass?.(itemId), {
-    [classes.disabled]: isDisabled,
-    [classes.treeItem]: showCheckbox,
-  });
+  const className = buildTreeItemClass?.(itemId);
+
+  const StyledTreeItem = styled(TreeItem)(({ theme }) => ({
+    ...(isDisabled && {
+      opacity: 0.5,
+      color: theme.palette.primary.main,
+    }),
+    ...(showCheckbox && {
+      // override background of tree item to show background on select
+      '& > .MuiTreeItem-content .MuiTreeItem-label': {
+        background: 'none !important',
+      },
+    }),
+  }));
+
   return (
-    <TreeItem
+    <StyledTreeItem
       key={itemId}
       nodeId={nodeId}
       label={content}
       className={className}
     >
       {childrenTreeItems}
-    </TreeItem>
+    </StyledTreeItem>
   );
 };
 

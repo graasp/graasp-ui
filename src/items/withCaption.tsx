@@ -1,11 +1,15 @@
-import React from 'react';
 import { RecordOf } from 'immutable';
-import Grid from '@material-ui/core/Grid';
+
+import Grid from '@mui/material/Grid';
+
+import React from 'react';
+
+import type { Item, UnknownExtra } from '@graasp/sdk';
+
 import TextEditor from '../TextEditor';
-import type { Item } from '../types';
 import { DEFAULT_ITEM_DESCRIPTION } from '../constants';
 
-interface WithCaptionProps<T> {
+interface WithCaptionProps<T extends UnknownExtra> {
   item: RecordOf<Item<T>>;
   edit?: boolean;
   onSave?: (text: string) => void;
@@ -13,7 +17,7 @@ interface WithCaptionProps<T> {
   saveButtonId?: string;
 }
 
-function withCaption<T>({
+function withCaption<T extends UnknownExtra>({
   item,
   edit,
   onSave,

@@ -1,11 +1,11 @@
 {
   "parser": "@typescript-eslint/parser",
   "extends": [
-    "standard-react",
-    "plugin:prettier/recommended",
     "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
     "plugin:@typescript-eslint/eslint-recommended",
-    "plugin:@typescript-eslint/recommended"
+    "prettier",
+    "plugin:prettier/recommended",
   ],
   "env": {
     "node": true,
@@ -13,6 +13,7 @@
   },
   "parserOptions": {
     "ecmaVersion": 2020,
+    "sourceType": "module",
     "ecmaFeatures": {
       "legacyDecorators": true,
       "jsx": true
@@ -30,16 +31,24 @@
     "react/jsx-fragments": 0,
     "react/no-unused-prop-types": 0,
     "import/export": 0,
+    // "no-unused-vars": "off",
+    // "@typescript-eslint/no-unused-vars": [
+    //   "error"
+    // ],
     // disable the rule for all files
     "@typescript-eslint/explicit-function-return-type": "off",
+    // enum error
+    // "@typescript-eslint/no-use-before-define": "off",
     // note you must disable the base rule as it can report incorrect errors
     "no-use-before-define": "off",
-    "@typescript-eslint/no-use-before-define": ["error"]
   },
   "overrides": [
     {
       // enable the rule specifically for TypeScript files
-      "files": ["*.ts", "*.tsx"],
+      "files": [
+        "*.ts",
+        "*.tsx"
+      ],
       "rules": {
         "@typescript-eslint/explicit-function-return-type": [
           "error",

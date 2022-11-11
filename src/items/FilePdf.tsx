@@ -1,31 +1,29 @@
-import React, { FC, useRef, useState, ReactEventHandler } from 'react';
-import clsx from 'clsx';
-import { makeStyles } from '@material-ui/core/styles';
+import { SxProps, styled } from '@mui/material';
+
+import React, { FC, ReactEventHandler, useRef, useState } from 'react';
+
 import { ITEM_MAX_HEIGHT, PDF_VIEWER_LINK } from '../constants';
 
 interface FilePdfProps {
   id?: string;
   url: string;
   height?: number | string;
-  className?: string;
+  sx?: SxProps;
   showCollapse?: boolean;
 }
 
-const useStyles = makeStyles({
-  embed: {
-    maxHeight: ITEM_MAX_HEIGHT,
-  },
+const StyledEmbed = styled('embed')({
+  maxHeight: ITEM_MAX_HEIGHT,
 });
 
 const FilePdf: FC<FilePdfProps> = ({
   url,
   id,
+  sx,
   height: defaultHeight,
-  className,
   showCollapse,
 }) => {
   const embedRef = useRef<HTMLEmbedElement>(null);
-  const classes = useStyles();
   const [height, setHeight] = useState<number | string>(
     defaultHeight ?? '100%',
   );
@@ -34,7 +32,6 @@ const FilePdf: FC<FilePdfProps> = ({
     // only set pdf height if not using collapse
     if (!showCollapse) {
       // set pdf height -> probably very high
-      console.log((e.target as HTMLEmbedElement)?.offsetParent);
       const newHeight = (e.target as HTMLEmbedElement)?.offsetParent
         ?.scrollHeight;
       newHeight && setHeight(newHeight);
@@ -44,14 +41,14 @@ const FilePdf: FC<FilePdfProps> = ({
   const urlWithPdfViewer = `${PDF_VIEWER_LINK}${encodeURIComponent(url)}`;
 
   return (
-    <embed
+    <StyledEmbed
       ref={embedRef}
       id={id}
       src={urlWithPdfViewer}
       width='100%'
       height={height || '100%'}
       onLoad={onLoad}
-      className={clsx(classes.embed, className)}
+      sx={sx}
     />
   );
 };

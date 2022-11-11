@@ -1,14 +1,14 @@
 import React, { FC } from 'react';
 
-type Props = {
+export type GraaspLogoProps = {
   height: number;
-  className?: string;
+  /**
+   * sx contains 'fill' which defines a color for the logo
+   * */
+  sx?: { fill: string };
 };
 
-/**
- * @param className this property should contain 'fill' to define a color to the logo
- * */
-const GraaspLogo: FC<Props> = ({ height, className }) => {
+const GraaspLogo: FC<GraaspLogoProps> = ({ height, sx }) => {
   return (
     <svg
       xmlns='http://www.w3.org/2000/svg'
@@ -16,7 +16,7 @@ const GraaspLogo: FC<Props> = ({ height, className }) => {
       height={height}
     >
       <path
-        className={className}
+        style={sx}
         d='M244.82,228.06c0.22,0.19,0.92,0.72,1.81,0.68c2.44-0.1,4.14-4.11,4.74-5.5c2.89-6.64,6.54-12.9,10.2-19.11
 	c5.95-10.11,11.2-21.49,27.16-41.41c6.36-7.95,5.13-6.64,12.73-13.38c3.93-3.49,8.18-6.5,13.05-8.43
 	c5.22-2.07,10.46-1.79,14.45,2.33c4.02,4.15,2.41,9.19,0.45,13.9c-1.47,3.55-3.33,5.77-6.53,9.66c-2.22,2.7-3.02,3.58-4.74,5.68

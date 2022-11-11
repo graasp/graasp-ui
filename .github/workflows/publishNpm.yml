@@ -1,9 +1,11 @@
 on:
-  push:
-    # sequence of patterns matched against refs/tags
-    tags:
-      # push events to matching v*, i.e. v1.0, v20.15.10
-      - 'v*' 
+  workflow_dispatch:
+
+  # push:
+  #   # sequence of patterns matched against refs/tags
+  #   tags:
+  #     # push events to matching v*, i.e. v1.0, v20.15.10
+  #     - 'v*'
 
 jobs:
   publish:

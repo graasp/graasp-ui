@@ -8,10 +8,8 @@ export { default as LinkItem } from './LinkItem';
 
 export { default as AppItem } from './AppItem';
 
-export { default as FavoriteButton } from './FavoriteButton';
+export { default as FavoriteButton } from '../buttons/FavoriteButton/FavoriteButton';
 
-export { default as LikeButton } from './LikeButton';
-
-export { default as DownloadButton } from './DownloadButton';
+export { default as LikeButton } from '../buttons/LikeButton/LikeButton';
 
 export { default as H5PItem } from './H5PItem';

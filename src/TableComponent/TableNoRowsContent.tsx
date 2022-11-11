@@ -1,33 +1,21 @@
+import { SxProps, Typography, styled } from '@mui/material';
+
 import React, { FC } from 'react';
-import clsx from 'clsx';
-import { makeStyles, Typography } from '@material-ui/core';
 
 interface Props {
   emptyMessage?: string;
-  className?: string;
+  sx?: SxProps;
 }
 
-const useStyles = makeStyles((theme) => ({
-  emptyText: {
-    margin: theme.spacing(2, 0),
-  },
-  row: {
-    display: 'flex',
-    alignItems: 'center',
-  },
-  actionCell: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'flex-end',
-  },
+const EmptyText = styled(Typography)(({ theme }) => ({
+  margin: theme.spacing(2, 0),
 }));
 
-const NoRowsComponent: FC<Props> = ({ emptyMessage, className }) => {
-  const classes = useStyles();
+const NoRowsComponent: FC<Props> = ({ emptyMessage, sx }) => {
   return (
-    <Typography align='center' className={clsx(classes.emptyText, className)}>
+    <EmptyText align='center' sx={sx}>
       {emptyMessage ?? 'No rows to display'}
-    </Typography>
+    </EmptyText>
   );
 };
 

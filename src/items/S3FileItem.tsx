@@ -1,17 +1,23 @@
-import React, { useEffect, useState } from 'react';
 import { RecordOf } from 'immutable';
-import Alert from '@material-ui/lab/Alert';
-import { MIME_TYPES, UNEXPECTED_ERROR_MESSAGE } from '../constants';
+
+import { SxProps } from '@mui/material';
+import Alert from '@mui/material/Alert';
+
+import React, { useEffect, useState } from 'react';
+
+import { Item } from '@graasp/sdk';
+
 import Loader from '../Loader';
-import FileAudio from './FileAudio';
-import FileImage from './FileImage';
-import FileVideo from './FileVideo';
-import FilePdf from './FilePdf';
+import { MIME_TYPES, UNEXPECTED_ERROR_MESSAGE } from '../constants';
+import { ERRORS } from '../enums';
+import type { S3FileItemExtra } from '../types';
 import { getS3FileExtra } from '../utils/itemExtra';
 import DownloadButtonFileItem from './DownloadButtonFileItem';
+import FileAudio from './FileAudio';
+import FileImage from './FileImage';
+import FilePdf from './FilePdf';
+import FileVideo from './FileVideo';
 import withCaption from './withCaption';
-import type { Item, S3FileItemExtra } from '../types';
-import { ERRORS } from '../enums';
 
 interface S3FileItemProps {
   id?: string;
@@ -25,7 +31,7 @@ interface S3FileItemProps {
   showCaption?: boolean;
   errorMessage?: string;
   saveButtonId?: string;
-  className?: string;
+  sx?: SxProps;
 }
 
 // DEPRECATED
@@ -41,7 +47,7 @@ const S3FileItem = ({
   showCaption = true,
   saveButtonId,
   errorMessage = UNEXPECTED_ERROR_MESSAGE,
-  className,
+  sx,
 }: S3FileItemProps): JSX.Element => {
   const [url, setUrl] = useState<string>();
   const { mimetype, name: originalFileName } = getS3FileExtra(item.extra) ?? {};
@@ -79,25 +85,19 @@ const S3FileItem = ({
   let component;
   if (mimetype) {
     if (MIME_TYPES.IMAGE.includes(mimetype)) {
-      component = (
-        <FileImage id={id} url={url} alt={name} className={className} />
-      );
+      component = <FileImage id={id} url={url} alt={name} sx={sx} />;
     }
 
     if (MIME_TYPES.AUDIO.includes(mimetype)) {
-      component = (
-        <FileAudio id={id} url={url} type={mimetype} className={className} />
-      );
+      component = <FileAudio id={id} url={url} type={mimetype} sx={sx} />;
     }
 
     if (MIME_TYPES.VIDEO.includes(mimetype)) {
-      component = <FileVideo id={id} url={url} className={className} />;
+      component = <FileVideo id={id} url={url} sx={sx} />;
     }
 
     if (MIME_TYPES.PDF.includes(mimetype)) {
-      component = (
-        <FilePdf id={id} url={url} height={maxHeight} className={className} />
-      );
+      component = <FilePdf id={id} url={url} height={maxHeight} sx={sx} />;
     }
   }
 

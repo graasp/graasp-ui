@@ -1,19 +1,29 @@
-import React, { FC } from 'react';
-import { Typography } from '@material-ui/core';
-import { useTranslation } from 'react-i18next';
-import { UUID } from '../types';
-import { FORBIDDEN_TEXT } from '../constants';
+import BlockIcon from '@mui/icons-material/Block';
+import { Typography } from '@mui/material';
 
-interface Props {
+import React, { FC } from 'react';
+
+import { FORBIDDEN_TEXT } from '../constants';
+import { UUID } from '../types';
+
+export interface ForbiddenTextProps {
   id?: UUID;
+  text?: string;
 }
 
-const ForbiddenText: FC<Props> = ({ id }) => {
-  const { t } = useTranslation();
-
+const ForbiddenText: FC<ForbiddenTextProps> = ({
+  id,
+  text = FORBIDDEN_TEXT,
+}) => {
   return (
-    <Typography id={id} variant='h3' align='center'>
-      {t(FORBIDDEN_TEXT)}
+    <Typography
+      id={id}
+      variant='h4'
+      align='center'
+      sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+    >
+      <BlockIcon fontSize='large' sx={{ mr: 1 }} />
+      {text}
     </Typography>
   );
 };

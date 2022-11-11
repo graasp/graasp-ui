@@ -1,50 +1,57 @@
+import { SxProps, styled } from '@mui/material';
+import Drawer from '@mui/material/Drawer';
+
 import React, { FC } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Drawer from '@material-ui/core/Drawer';
+
 import DrawerHeader from '../DrawerHeader';
 import { DRAWER_WIDTH } from '../constants';
 
-const useStyles = makeStyles(() => ({
-  drawer: {
-    width: DRAWER_WIDTH,
-    flexShrink: 0,
-  },
-  drawerPaper: {
+export interface SidebarProps {
+  children?: JSX.Element;
+  drawerHeaderContent?: React.ReactElement;
+  handleDrawerClose?: () => void;
+  isSidebarOpen?: boolean;
+  sx?: SxProps;
+}
+
+const StyledDrawer = styled(Drawer)<SidebarProps>(({ theme, open }) => ({
+  transition: theme.transitions.create(['width'], {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.leavingScreen,
+  }),
+  ...(open && {
+    transition: theme.transitions.create(['width'], {
+      easing: theme.transitions.easing.easeOut,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+  }),
+  flexShrink: 0,
+  '.MuiDrawer-paper': {
     width: DRAWER_WIDTH,
   },
 }));
 
-export interface SidebarProps {
-  className?: string;
-  isSidebarOpen?: boolean;
-  handleDrawerClose?: () => void;
-  children?: React.ReactElement;
-  drawerHeaderContent?: React.ReactElement;
-}
-
 export const Sidebar: FC<SidebarProps> = ({
-  className,
-  isSidebarOpen = false,
-  handleDrawerClose,
   children,
   drawerHeaderContent,
+  handleDrawerClose,
+  isSidebarOpen = false,
+  sx,
 }) => {
-  const classes = useStyles();
   return (
-    <Drawer
-      className={className}
+    <StyledDrawer
+      sx={sx}
       variant='persistent'
       anchor='left'
       open={isSidebarOpen}
-      classes={{
-        paper: classes.drawerPaper,
-      }}
     >
-      <DrawerHeader handleDrawerClose={handleDrawerClose}>
-        {drawerHeaderContent}
-      </DrawerHeader>
-      {children}
-    </Drawer>
+      <>
+        <DrawerHeader handleDrawerClose={handleDrawerClose}>
+          {drawerHeaderContent}
+        </DrawerHeader>
+        {children}
+      </>
+    </StyledDrawer>
   );
 };
 

@@ -1,23 +1,28 @@
-import React, { Component } from 'react';
-import clsx from 'clsx';
 import { RecordOf } from 'immutable';
-import { withStyles } from '@material-ui/core/styles';
-import { getAppExtra } from '../utils/itemExtra';
 import qs from 'qs';
-import withResizing from './withResizing';
+
+import Skeleton from '@mui/material/Skeleton';
+
+import React, { Component } from 'react';
+
+import { Item } from '@graasp/sdk';
+
 import {
-  APP_ITEM_FRAME_BORDER,
+  APP_DEFAULT_HEIGHT,
   APP_ITEM_WIDTH,
   DEFAULT_PERMISSION,
-  ITEM_MAX_HEIGHT,
   SCREEN_MAX_HEIGHT,
 } from '../constants';
+import type { AppItemExtra, MemberRecord, UUID } from '../types';
+import { getAppExtra } from '../utils/itemExtra';
 import withCaption from './withCaption';
-import type { AppItemExtra, Item, MemberRecord, UUID } from '../types';
-import { UseMutateAsyncFunction } from 'react-query';
-import { Skeleton } from '@material-ui/lab';
+import withResizing, { StyledIFrame } from './withResizing';
 
-const buildPostMessageKeys = (itemId: UUID): { [key: string]: string } => ({
+const buildPostMessageKeys = (
+  itemId: UUID,
+): {
+  [key: string]: string;
+} => ({
   GET_CONTEXT_SUCCESS: `GET_CONTEXT_SUCCESS_${itemId}`,
   GET_CONTEXT_FAILURE: `GET_CONTEXT_FAILURE_${itemId}`,
   GET_CONTEXT: `GET_CONTEXT_${itemId}`,
@@ -28,63 +33,71 @@ const buildPostMessageKeys = (itemId: UUID): { [key: string]: string } => ({
 
 type Token = string;
 
-interface AppItemProps {
-  item: RecordOf<Item<AppItemExtra>>;
-  member: MemberRecord;
-  lang?: string;
-  context?: string;
-  permission?: string;
+export interface AppItemProps {
+  /**
+   * app api host
+   */
   apiHost: string;
-  id?: string;
-  onSaveCaption?: (text: string) => void;
-  editCaption?: boolean;
-  showCaption?: boolean;
-  onSettingsUpdate: UseMutateAsyncFunction<
-    Item<AppItemExtra>,
-    unknown,
-    Partial<Item<AppItemExtra>>,
-    unknown
-  >;
-  // todo: one of enum
-  mode?: string;
-  saveButtonId?: string;
-  classes: {
-    iframe: string;
-  };
-  height?: number | string;
+  /**
+   * corresponding item of the app
+   */
+  item: RecordOf<Item<AppItemExtra>>;
+  /**
+   * function to fetch the app token
+   */
   requestApiAccessToken: (
     args: { id: string; app: string; origin: string },
     queryConfig: { API_HOST: string },
   ) => Promise<{ token: string }>;
+  context?: string;
+  /**
+   * whether the caption is being edited
+   */
+  editCaption?: boolean;
+  /**
+   * app height
+   */
+  height?: number | string;
+  id?: string;
+  /**
+   * whether resize is enabled
+   */
   isResizable?: boolean;
+  lang?: string;
+  /**
+   * signed in member
+   */
+  member?: MemberRecord;
+  // todo: one of enum
+  mode?: string;
+  onSaveCaption?: (text: string) => void;
+  permission?: string;
+  /**
+   * whether the caption is shown
+   */
+  showCaption?: boolean;
+  saveButtonId?: string;
 }
 
 interface AppItemState {
-  channel?: MessageChannel;
-  iframeIsLoading: boolean;
-  url?: string;
   height: number | string;
+  iframeIsLoading: boolean;
+  channel?: MessageChannel;
+  url?: string;
 }
 
-const styles = {
-  iframe: {
-    height: ITEM_MAX_HEIGHT,
-    maxHeight: ITEM_MAX_HEIGHT,
-  },
-};
-
-class AppItem extends Component<AppItemProps> {
+export class AppItem extends Component<AppItemProps> {
   static defaultProps = {
     editCaption: false,
     showCaption: true,
     // todo: get this value from common graasp constants
     permission: DEFAULT_PERMISSION,
-    isResizable: false,
+    isResizable: true,
   };
 
   state: AppItemState = {
     iframeIsLoading: true,
-    height: this.props.height ?? '100%',
+    height: this.props.height ?? APP_DEFAULT_HEIGHT,
   };
 
   iframeRef: React.RefObject<HTMLIFrameElement>;
@@ -103,7 +116,6 @@ class AppItem extends Component<AppItemProps> {
     const { item } = this.props;
     const { item: nextItem } = prevProps;
     if (item !== nextItem) {
-      // eslint-disable-next-line react/no-did-update-set-state
       this.setState({ url: getAppExtra(item?.extra)?.url });
     }
   }
@@ -203,7 +215,7 @@ class AppItem extends Component<AppItemProps> {
             apiHost,
             itemId: item.id,
             settings: item.settings,
-            memberId: member?.get('id'),
+            memberId: member?.id,
             permission,
             lang,
             context,
@@ -218,12 +230,12 @@ class AppItem extends Component<AppItemProps> {
   render(): JSX.Element {
     const {
       item,
+      member,
       id,
       showCaption,
       onSaveCaption,
       saveButtonId,
       editCaption,
-      classes,
       isResizable,
     } = this.props;
     const { iframeIsLoading, url, height } = this.state;
@@ -249,29 +261,38 @@ class AppItem extends Component<AppItemProps> {
     )}`;
 
     const iframe = (
-      <iframe
+      <StyledIFrame
+        height={height}
         id={id}
-        title={item?.name}
+        isResizable={isResizable}
         onLoad={onLoad}
         ref={this.iframeRef}
-        width={APP_ITEM_WIDTH}
-        height='100%'
         src={appUrl}
-        frameBorder={APP_ITEM_FRAME_BORDER}
-        className={clsx({ [classes.iframe]: !isResizable })}
+        sx={{ visibility: iframeIsLoading ? 'hidden' : 'visible' }}
+        title={item?.name}
+        width={APP_ITEM_WIDTH}
       />
     );
+
+    const ResizableIframe = withResizing({
+      height,
+      memberId: member?.id,
+      itemId: item.id,
+      component: iframe,
+    });
 
     const component = (
       <>
         {iframeIsLoading && (
-          <Skeleton variant='rect' width={'100%'} height={SCREEN_MAX_HEIGHT} />
+          <Skeleton
+            variant='rectangular'
+            width={'100%'}
+            height={SCREEN_MAX_HEIGHT}
+          />
         )}
         {isResizable ? (
           <div>
-            {withResizing({
-              height,
-            })(iframe)}
+            <ResizableIframe />
           </div>
         ) : (
           iframe
@@ -292,4 +313,4 @@ class AppItem extends Component<AppItemProps> {
   }
 }
 
-export default withStyles(styles)(React.memo(AppItem));
+export default React.memo(AppItem);

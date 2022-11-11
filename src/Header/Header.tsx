@@ -1,84 +1,98 @@
+import MenuIcon from '@mui/icons-material/Menu';
+import MenuOpenIcon from '@mui/icons-material/MenuOpen';
+import { Theme, styled } from '@mui/material';
+import AppBar from '@mui/material/AppBar';
+import Grid from '@mui/material/Grid';
+import IconButton from '@mui/material/IconButton';
+import Toolbar from '@mui/material/Toolbar';
+
 import React, { FC } from 'react';
-import { makeStyles, Theme } from '@material-ui/core/styles';
-import clsx from 'clsx';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-import { DRAWER_WIDTH } from '../constants';
-import { OPEN_DRAWER_LABEL } from '../texts';
+
+import { CLOSE_DRAWER_LABEL, OPEN_DRAWER_LABEL } from '../labels';
 
 export type HeaderProps = {
-  id?: string;
-  isSidebarOpen?: boolean;
+  centerContent?: React.ReactElement;
   handleDrawerOpen?: () => void;
-  hasSidebar: boolean;
-  openDrawerAriaLabel?: string;
+  handleDrawerClose?: () => void;
+  hasSidebar?: boolean;
+  id?: string;
+  menuButtonId?: string;
+  isSidebarOpen?: boolean;
   leftContent?: React.ReactElement;
+  openDrawerAriaLabel?: string;
+  closeDrawerAriaLabel?: string;
   rightContent?: React.ReactElement;
 };
 
-const useStyles = makeStyles((theme: Theme) => ({
-  appBar: {
-    transition: theme.transitions.create(['margin', 'width'], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-  },
-  appBarShift: {
-    width: `calc(100% - ${DRAWER_WIDTH}px)`,
-    marginLeft: DRAWER_WIDTH,
-    transition: theme.transitions.create(['margin', 'width'], {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  },
-  menuButton: {
+const StyledIconButton = styled(IconButton)(
+  ({ theme, isSidebarOpen }: { theme: Theme; isSidebarOpen?: boolean }) => ({
     marginLeft: theme.spacing(2),
     marginRight: theme.spacing(3),
-  },
-  hide: {
-    display: 'none',
-  },
-  toolbar: {
-    justifyContent: 'space-between',
-  },
-}));
+    float: 'left',
+    ...(isSidebarOpen ? { display: 'none' } : {}),
+  }),
+);
+
+const StyledToolbar = styled(Toolbar)({
+  justifyContent: 'space-between',
+});
 
 export const Header: FC<HeaderProps> = ({
+  centerContent,
+  menuButtonId,
   id,
   hasSidebar,
   handleDrawerOpen,
+  handleDrawerClose,
   isSidebarOpen = false,
   openDrawerAriaLabel = OPEN_DRAWER_LABEL,
+  closeDrawerAriaLabel = CLOSE_DRAWER_LABEL,
   leftContent,
   rightContent,
 }) => {
-  const classes = useStyles();
+  const renderMenuIcon = (): JSX.Element | null => {
+    if (!hasSidebar) {
+      return null;
+    }
+
+    if (!isSidebarOpen) {
+      return (
+        <StyledIconButton
+          sx={{ float: 'left' }}
+          id={id}
+          color='inherit'
+          aria-label={openDrawerAriaLabel}
+          onClick={handleDrawerOpen}
+        >
+          <MenuIcon />
+        </StyledIconButton>
+      );
+    }
+    return (
+      <StyledIconButton
+        id={menuButtonId}
+        sx={{ float: 'left' }}
+        color='inherit'
+        aria-label={closeDrawerAriaLabel}
+        onClick={handleDrawerClose}
+      >
+        <MenuOpenIcon />
+      </StyledIconButton>
+    );
+  };
+
   return (
-    <AppBar
-      position='fixed'
-      className={clsx(classes.appBar, {
-        [classes.appBarShift]: isSidebarOpen,
-      })}
-    >
-      <Toolbar disableGutters={!isSidebarOpen} className={classes.toolbar}>
-        {hasSidebar && (
-          <IconButton
-            id={id}
-            color='inherit'
-            aria-label={openDrawerAriaLabel}
-            onClick={handleDrawerOpen}
-            className={clsx(classes.menuButton, {
-              [classes.hide]: isSidebarOpen,
-            })}
-          >
-            <MenuIcon />
-          </IconButton>
-        )}
-        {leftContent}
-        {rightContent}
-      </Toolbar>
+    <AppBar id={id} position='fixed'>
+      <StyledToolbar disableGutters>
+        {renderMenuIcon()}
+        <Grid container>
+          <Grid container justifyContent='space-between' alignItems='center'>
+            <Grid item>{leftContent}</Grid>
+            <Grid item>{centerContent}</Grid>
+            <Grid item>{rightContent}</Grid>
+          </Grid>
+        </Grid>
+      </StyledToolbar>
     </AppBar>
   );
 };

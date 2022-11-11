@@ -1,91 +1,85 @@
+import { SxProps, styled } from '@mui/material';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
+
 import React, { FC, ReactElement } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid';
-import CardHeader from './CardHeader';
-import { Item } from '../types';
+
 import { DEFAULT_CARD_HEIGHT } from '../constants';
+import CardHeader from './CardHeader';
+
+const StyledImage = styled('img')({
+  width: '100%',
+  height: '100%',
+  objectFit: 'cover',
+});
 
 type CardProps = {
-  description: string;
-  Actions?: ReactElement;
-  height?: string | number;
   name: string;
-  creator?: string;
-  ItemMenu?: ReactElement;
-  image?: string;
+  /**
+   * actions displayed at the bottom of the card
+   */
+  Actions?: ReactElement;
   cardId?: string;
+  /**
+   * creator name
+   */
+  creator?: string;
+  description?: string;
+  height?: string | number;
+  /**
+   * image link to display as thumbnail
+   */
+  image?: string;
+  ItemMenu?: ReactElement;
   NameWrapper?: FC;
-  className?: string;
+  sx?: SxProps;
+  /**
+   * thumbnail component, override image
+   */
   Thumbnail?: ReactElement;
 };
 
 const Item: FC<CardProps> = ({
-  className,
-  description,
   Actions,
-  height = DEFAULT_CARD_HEIGHT,
-  name,
-  creator,
-  ItemMenu,
-  image,
   cardId,
+  creator,
+  description,
+  height = DEFAULT_CARD_HEIGHT,
+  image,
+  ItemMenu,
+  name,
   NameWrapper,
+  sx,
   Thumbnail,
 }) => {
-  const useStyles = makeStyles((theme) => ({
-    media: {
-      width: '100%',
-      height: '100%',
-      objectFit: 'cover',
-    },
-    imageContainer: {
-      width: '100%',
-      height: '100%',
-    },
-    information: {
-      width: '100%',
-      height: '100%',
-      justifyContent: 'space-between',
-    },
-    description: {
-      height: theme.spacing(5),
-      padding: theme.spacing(0, 1),
-    },
-    header: {
-      width: '100%',
-    },
-    actions: {
-      padding: 0,
-      justifyContent: 'right',
-    },
-    container: {
-      height,
-    },
-  }));
-
-  const classes = useStyles();
-
   const renderImage = (): ReactElement => {
     if (!Thumbnail) {
-      return <img className={classes.media} src={image} alt={name} />;
+      return <StyledImage src={image} alt={name} />;
     }
 
     return Thumbnail;
   };
 
   return (
-    <Card id={cardId} className={className}>
-      <Grid container className={classes.container}>
-        <Grid item xs={5} className={classes.imageContainer}>
+    <Card id={cardId} sx={sx}>
+      <Grid container sx={{ height }}>
+        <Grid item xs={5} sx={{ width: '100%', height: '100%' }}>
           {renderImage()}
         </Grid>
 
         <Grid item xs={7}>
-          <Grid container direction='column' className={classes.information}>
-            <Grid item className={classes.header}>
+          <Grid
+            container
+            direction='column'
+            sx={{
+              width: '100%',
+              height: '100%',
+              justifyContent: 'space-between',
+            }}
+          >
+            <Grid item sx={{ width: '100%' }}>
               <CardHeader
                 name={name}
                 creator={creator}
@@ -93,15 +87,24 @@ const Item: FC<CardProps> = ({
                 NameWrapper={NameWrapper}
               />
             </Grid>
-            <Grid item className={classes.description}>
-              <Typography variant='caption' color='textSecondary' component='p'>
-                {description}
-              </Typography>
-            </Grid>
+            {description && (
+              <Grid item sx={{ height: 5, width: '100%', paddingX: 1 }}>
+                <Typography
+                  variant='caption'
+                  color='textSecondary'
+                  component='div'
+                  noWrap
+                >
+                  {description}
+                </Typography>
+              </Grid>
+            )}
             {/* keep grid to avoid weird behavior with space between */}
             <Grid item>
               {Actions && (
-                <CardActions className={classes.actions}>{Actions}</CardActions>
+                <CardActions sx={{ justifyContent: 'right', p: 0 }}>
+                  {Actions}
+                </CardActions>
               )}
             </Grid>
           </Grid>

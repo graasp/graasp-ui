@@ -10,7 +10,6 @@ const MemberIdTextField: FC<Props> = (props) => {
 
   return (
     <MaskedInput
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...other}
       mask={[
         /[0-9a-f]/,

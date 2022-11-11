@@ -1,27 +1,50 @@
-import React, { FC, useState, useEffect } from 'react';
-import clsx from 'clsx';
-import { makeStyles } from '@material-ui/core/styles';
-import Skeleton from '@material-ui/lab/Skeleton';
-import { getItemImage } from '../utils/image';
-import { Variant } from '../types';
+import { SxProps } from '@mui/material';
+import Skeleton from '@mui/material/Skeleton';
+
+import React, { FC, useEffect, useState } from 'react';
+import { QueryObserverResult } from 'react-query';
+
+import { StyledImage } from '../StyledComponents/StyledBaseComponents';
 import { DEFAULT_THUMBNAIL_SIZE } from '../constants';
+import { ThumbnailSizeVariant, Variant } from '../types';
+import { getItemImage } from '../utils/image';
 
 type ThumbnailProps = {
+  alt: string;
+  /**
+   * item id to get the thumbnail for
+   */
   id: string;
-  thumbnailSrc: string;
+  useThumbnail: ({
+    id,
+    size,
+  }: {
+    id?: string | undefined;
+    size?: string | undefined;
+  }) => QueryObserverResult<Blob, Error>;
+  /**
+   * @deprecated use sx
+   */
+  className?: string;
+  /**
+   * default thumbnail component
+   */
+  defaultValue?: JSX.Element;
   maxWidth?: string | number;
   maxHeight?: string | number;
-  defaultValue?: JSX.Element;
+  /**
+   * size of the thumbnail to fetch
+   */
+  size?: ThumbnailSizeVariant;
+  sx?: SxProps;
+  /**
+   * default thumbnail src link, override defaultValue
+   */
+  thumbnailSrc?: string;
+  /**
+   * skeleton's variant
+   */
   variant?: Variant;
-  alt: string;
-  useThumbnail: (args: { id: string; size: string }) => {
-    data: Blob;
-    isFetching: boolean;
-    isLoading: boolean;
-  };
-  className?: string;
-  // todo: enforce sizes strings
-  size?: string;
 };
 
 const Thumbnail: FC<ThumbnailProps> = ({
@@ -30,7 +53,7 @@ const Thumbnail: FC<ThumbnailProps> = ({
   defaultValue,
   alt,
   useThumbnail,
-  className,
+  sx,
   maxWidth = '100%',
   maxHeight = '100%',
   variant = Variant.RECT,
@@ -47,13 +70,6 @@ const Thumbnail: FC<ThumbnailProps> = ({
     id,
     size,
   });
-
-  const classes = makeStyles({
-    img: {
-      maxWidth,
-      maxHeight,
-    },
-  })();
 
   useEffect(() => {
     if (thumbnailData) {
@@ -79,13 +95,26 @@ const Thumbnail: FC<ThumbnailProps> = ({
 
   if (thumbnail) {
     return (
-      <img src={thumbnail} alt={alt} className={clsx(classes.img, className)} />
+      <StyledImage
+        src={thumbnail}
+        alt={alt}
+        sx={[
+          {
+            maxWidth,
+            maxHeight,
+          },
+          // You cannot spread `sx` directly because `SxProps` (typeof sx) can be an array.
+          ...(Array.isArray(sx) ? sx : [sx]),
+        ]}
+      />
     );
-  } else if (defaultValue) {
-    return defaultValue;
-  } else {
-    return null;
   }
+
+  if (defaultValue) {
+    return defaultValue;
+  }
+
+  return null;
 };
 
-export default Thumbnail;
+export default React.memo(Thumbnail);

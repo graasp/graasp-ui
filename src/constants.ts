@@ -39,7 +39,8 @@ export const UNEXPECTED_ERROR_MESSAGE = 'An unexpected error occurred';
 export const SMALL_AVATAR_SIZE = 40;
 export const SHORT_TEXT_WIDTH = 60;
 export const COLLAPSE_MIN_HEIGHT = 56;
-export const IFRAME_MIN_HEIGHT = 300;
+export const IFRAME_MIN_HEIGHT = 200;
+export const APP_DEFAULT_HEIGHT = 400;
 
 export const LINK_BUTTON_CONTAINER_HEIGHT = 50;
 export const LINK_BUTTON_CONTAINER_WIDTH = 50;
@@ -66,7 +67,7 @@ export const SETTINGS = {
       USERNAME_AND_PASSWORD: 'username+password',
     },
     SIGN_IN_MODE: {
-      PSEUDONYME: 'pseudonyme',
+      PSEUDONYM: 'pseudonym',
       MEMBER_ID: 'memberId',
     },
   },
@@ -88,7 +89,7 @@ export const DEFAULT_THUMBNAIL_SIZE = THUMBNAIL_SIZES.SMALL;
 export const FLAG_LIST_MAX_HEIGHT = 250;
 export const DEFAULT_PERMISSION = 'read';
 
-export enum CC_LICENSE_ADAPTION_OPTIONS {
+export enum CCLicenseAdaption {
   ALLOW = 'allow',
   ALIKE = 'alike',
 }
@@ -102,3 +103,10 @@ export const HEADER_USERNAME_MAX_WIDTH = 120;
 export const PDF_VIEWER_LINK =
   `${process.env.REACT_APP_GRAASP_ASSETS_URL}/pdf-viewer/web/viewer.html?file=`;
 export const SCREEN_MAX_HEIGHT = window.innerHeight * 0.8;
+
+export const BUTTON_TYPES = {
+  MENU_ITEM: 'menuItem',
+  ICON_BUTTON: 'iconButton',
+};
+
+export const FAVORITE_COLOR = '#ffc107';

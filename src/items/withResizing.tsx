@@ -1,10 +1,36 @@
-import React from 'react';
-import { Rnd } from 'react-rnd';
-import ResizingIcon from '../icons/ResizingIcon';
-import { IFRAME_MIN_HEIGHT } from '../constants';
+import { styled } from '@mui/material';
 
-interface WithResizingProps {
+import React, { FC, useEffect, useState } from 'react';
+import { Rnd } from 'react-rnd';
+
+import {
+  getIframeResizeHeightCookie,
+  setIframeResizeHeightCookie,
+} from '@graasp/sdk';
+
+import { IFRAME_MIN_HEIGHT, ITEM_MAX_HEIGHT } from '../constants';
+import ResizingIcon from '../icons/ResizingIcon';
+import { UUID } from '../types';
+
+export const StyledIFrame = styled('iframe')<{
+  isResizable?: boolean;
   height: string | number;
+}>(({ isResizable, height }) =>
+  isResizable
+    ? {
+        width: '100%',
+        border: 'none',
+        maxHeight: !isResizable ? ITEM_MAX_HEIGHT : undefined,
+        height: !isResizable ? height : '100%',
+      }
+    : {},
+);
+
+export interface WithResizingProps {
+  height: string | number;
+  component: JSX.Element;
+  memberId?: UUID;
+  itemId: UUID;
 }
 
 const resizeHandleStyles = {
@@ -28,39 +54,47 @@ const resizeHandleStyles = {
   },
 };
 
-function withResizing({ height }: WithResizingProps) {
-  return (component: JSX.Element): JSX.Element => {
-    class ComponentWithResizing extends React.Component {
-      render(): JSX.Element {
-        return (
-          <>
-            <div style={resizeHandleStyles.resizableContainer}>
-              <Rnd
-                style={{ position: 'relative' }}
-                disableDragging
-                enableResizing={{ bottom: true }}
-                default={{
-                  width: '100%',
-                  height: height,
-                  x: 0,
-                  y: 0,
-                }}
-                minHeight={IFRAME_MIN_HEIGHT}
-                resizeHandleComponent={{ bottom: <ResizingIcon /> }}
-                resizeHandleStyles={{
-                  bottom: resizeHandleStyles.resizeHandleComponent,
-                }}
-              >
-                {component}
-              </Rnd>
-            </div>
-          </>
-        );
-      }
-    }
+const withResizing =
+  <P extends object>({
+    height,
+    component,
+    memberId,
+    itemId,
+  }: WithResizingProps): FC<P> =>
+  () => {
+    const [variableHeight, setVariableHeight] = useState<number | string>(
+      getIframeResizeHeightCookie({ memberId, itemId }) ?? height,
+    );
 
-    return <ComponentWithResizing />;
+    useEffect(() => {
+      setIframeResizeHeightCookie({ memberId, itemId }, variableHeight);
+    }, [variableHeight]);
+
+    return (
+      <div style={resizeHandleStyles.resizableContainer}>
+        <Rnd
+          style={{ position: 'relative' }}
+          disableDragging
+          enableResizing={{ bottom: true }}
+          default={{
+            width: '100%',
+            height: variableHeight,
+            x: 0,
+            y: 0,
+          }}
+          minHeight={IFRAME_MIN_HEIGHT}
+          resizeHandleComponent={{ bottom: <ResizingIcon /> }}
+          resizeHandleStyles={{
+            bottom: resizeHandleStyles.resizeHandleComponent,
+          }}
+          onResizeStop={(_e, _direction, ref) => {
+            setVariableHeight(ref.style.height);
+          }}
+        >
+          {component}
+        </Rnd>
+      </div>
+    );
   };
-}
 
 export default withResizing;

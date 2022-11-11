@@ -1,69 +1,76 @@
-import React, { useEffect, FC } from 'react';
-import Typography from '@material-ui/core/Typography';
+import { List, RecordOf } from 'immutable';
+
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import MeetingRoomIcon from '@mui/icons-material/MeetingRoom';
+import { Divider } from '@mui/material';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import MenuItem from '@mui/material/MenuItem';
+import Typography from '@mui/material/Typography';
+
+import React, { FC, useEffect } from 'react';
 import type { UseQueryResult } from 'react-query';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import { List } from 'immutable';
-import { Divider } from '@material-ui/core';
-import MeetingRoomIcon from '@material-ui/icons/MeetingRoom';
+
 import {
-  redirect,
-  getStoredSessions,
-  storeSession,
+  Member,
+  MemberExtra,
   getCurrentSession,
-  setCurrentSession,
+  getStoredSessions,
+  redirect,
   saveUrlForRedirection,
+  setCurrentSession,
+  storeSession,
 } from '@graasp/sdk';
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import MenuItem from '@material-ui/core/MenuItem';
 
 import Loader from '../Loader';
+import type { MemberRecord } from '../types';
 import UserSwitch from './UserSwitch';
-import type { Member, MemberRecord } from '../types';
 
 interface Props {
+  buildMemberMenuItemId?: (id: string) => string;
   ButtonContent: JSX.Element;
-  signOut: (memberId: string) => void;
-  useMembers: (ids: string[]) => UseQueryResult<List<MemberRecord>>;
-  domain: string;
-  redirectPath: string;
-  profilePath: string;
-  switchMember: (args: { memberId: string; domain: string }) => Promise<void>;
-  useAvatar: (args: { id?: string; size?: string }) => UseQueryResult<Blob>;
+  buttonId?: string;
   currentMember?: MemberRecord;
+  domain: string;
   isCurrentMemberLoading: boolean;
   isCurrentMemberSuccess: boolean;
+  profilePath: string;
+  redirectPath: string;
+  renderAvatar: (member?: MemberRecord) => JSX.Element;
+  seeProfileButtonId?: string;
   seeProfileText?: string;
   signedOutTooltipText?: string;
-  signOutText?: string;
-  switchMemberText?: string;
-  buttonId?: string;
-  buildMemberMenuItemId?: (id: string) => string;
   signInMenuItemId?: string;
+  signOut: (memberId: string) => void;
   signOutMenuItemId?: string;
-  seeProfileButtonId?: string;
+  signOutText?: string;
+  switchMember: (args: { memberId: string; domain: string }) => Promise<void>;
+  switchMemberText?: string;
+  useMembers: (
+    ids: string[],
+  ) => UseQueryResult<List<RecordOf<Member<RecordOf<MemberExtra>>>>>;
 }
 
 const UserSwitchWrapper: FC<Props> = ({
+  buildMemberMenuItemId,
   ButtonContent,
-  useMembers,
-  signOut,
-  domain,
-  switchMember,
-  useAvatar,
-  redirectPath,
-  profilePath,
+  buttonId,
   currentMember,
+  domain,
   isCurrentMemberLoading,
   isCurrentMemberSuccess,
-  buttonId,
-  buildMemberMenuItemId,
-  signInMenuItemId,
-  signOutMenuItemId,
+  profilePath,
+  redirectPath,
+  renderAvatar,
   seeProfileButtonId,
-  signedOutTooltipText = 'You are not signed in.',
   seeProfileText = 'See Profile',
+  signedOutTooltipText = 'You are not signed in.',
+  signInMenuItemId,
+  signOut,
+  signOutMenuItemId,
   signOutText = 'Sign Out',
+  switchMember,
   switchMemberText = 'Sign in with another account',
+  useMembers,
 }) => {
   // get stored sessions
   const sessions = getStoredSessions();
@@ -135,15 +142,15 @@ const UserSwitchWrapper: FC<Props> = ({
         ButtonContent={ButtonContent}
         Actions={Actions}
         onMemberClick={onMemberClick}
-        useAvatar={useAvatar}
         onSeeProfileClick={goToProfile}
         member={currentMember}
-        members={members?.toJS() as Member[]}
+        members={members}
         seeProfileText={seeProfileText}
         signedOutTooltipText={signedOutTooltipText}
         buttonId={buttonId}
         buildMemberMenuItemId={buildMemberMenuItemId}
         seeProfileButtonId={seeProfileButtonId}
+        renderAvatar={renderAvatar}
       />
     </>
   );

@@ -1,5 +1,11 @@
 export * from './assets/styles.module.css';
 
+export * from './theme';
+
+export * from './items';
+export * from './icons';
+export * from './buttons';
+
 export { default as Loader } from './Loader';
 export * from './Loader';
 
@@ -15,16 +21,11 @@ export * from './DrawerHeader';
 export { default as MainMenu } from './MainMenu';
 export * from './MainMenu';
 
-export { default as MenuItem } from './MenuItem';
-export * from './MenuItem';
-
 export { default as Main } from './Main';
 export * from './Main';
 
 export { default as DynamicTreeView } from './DynamicTreeView';
 export * from './DynamicTreeView';
-
-export * from './items';
 
 export { default as TextEditor } from './TextEditor';
 
@@ -32,11 +33,10 @@ export { default as withCollapse } from './Collapse';
 
 export { default as PermissionedComponent } from './PermissionedComponent';
 
-export { default as ItemIcon } from './ItemIcon';
-
 export { default as GraaspLogo } from './GraaspLogo';
 
 export { default as ItemLoginAuthorization } from './itemLogin';
+export * from './itemLogin';
 
 export { default as Card } from './Card';
 export { default as Thumbnail } from './Thumbnail';
@@ -46,18 +46,17 @@ export * from './ItemFlag';
 
 export { default as CookiesBanner } from './CookiesBanner';
 
-export { default as CCLicenseIcon } from './CCLicense';
-
-export { default as Button } from './Button';
-
 export { default as Navigation } from './Navigation';
-
 export * from './Authorization';
 
 export { UserSwitch, UserSwitchWrapper } from './UserSwitch';
 
 export { default as CustomInitialLoader } from './CustomInitialLoader';
 
-export { default as ItemSkeleton } from './ItemSkeleton';
+export { default as ItemSkeleton } from './items/ItemSkeleton';
 
-export * from './icons';
+export { default as SearchInput } from './SearchInput';
+export * from './SearchInput';
+
+export { default as Select } from './Select';
+export * from './Select';
