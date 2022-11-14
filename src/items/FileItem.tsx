@@ -27,7 +27,8 @@ export interface FileItemProps {
   /**
    * blob content of the file
    * */
-  content: Blob;
+  content?: Blob;
+  fileUrl?: string;
   defaultItem?: JSX.Element;
   downloadText?: string;
   editCaption?: boolean;
@@ -44,6 +45,7 @@ export interface FileItemProps {
 
 const FileItem: FC<FileItemProps> = ({
   content,
+  fileUrl,
   defaultItem,
   downloadText,
   editCaption = false,
@@ -66,6 +68,10 @@ const FileItem: FC<FileItemProps> = ({
 
   useEffect(() => {
     (async () => {
+      if (fileUrl) {
+        setUrl(fileUrl);
+      }
+
       if (content) {
         // Build a URL from the file
         const fileURL = URL.createObjectURL(content);
@@ -77,13 +83,13 @@ const FileItem: FC<FileItemProps> = ({
       }
 
       return () => {
-        if (url) {
+        if (content && url) {
           URL.revokeObjectURL(url);
         }
       };
     })();
     // does not include url to avoid infinite loop
-  }, [content]);
+  }, [content, fileUrl]);
 
   if (!url) {
     return (

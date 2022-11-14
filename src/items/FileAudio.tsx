@@ -4,7 +4,7 @@ import React, { FC } from 'react';
 
 interface FileAudioProps {
   id?: string;
-  url: string;
+  url?: string;
   type: string;
   sx?: SxProps;
 }

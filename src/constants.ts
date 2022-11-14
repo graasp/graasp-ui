@@ -100,6 +100,11 @@ export const DRAG_ICON_SIZE = 18;
 
 export const HEADER_USERNAME_MAX_WIDTH = 120;
 
+export const PDF_VIEWER_LINK =
+  `${process.env.REACT_APP_GRAASP_ASSETS_URL}/pdf-viewer/web/viewer.html?file=`;
+  
+export const GRAASP_ASSETS_PROTOCOL = 'https://';
+
 export const SCREEN_MAX_HEIGHT = window.innerHeight * 0.8;
 
 export const BUTTON_TYPES = {

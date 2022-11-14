@@ -11,7 +11,7 @@ const StyledLink = styled('a')({
 
 interface DownloadButtonFileItemProps {
   name?: string;
-  url: string;
+  url?: string;
   id?: string;
   text?: string;
 }

@@ -5,7 +5,7 @@ import React, { FC } from 'react';
 
 export interface FileImageProps {
   alt: string;
-  url: string;
+  url?: string;
   id?: string;
   sx?: SxProps;
 }

@@ -4,7 +4,7 @@ import React, { FC } from 'react';
 
 interface FileVideoProps {
   id?: string;
-  url: string;
+  url?: string;
   sx?: SxProps;
 }
 
