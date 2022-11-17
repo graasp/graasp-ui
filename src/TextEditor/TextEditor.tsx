@@ -27,12 +27,15 @@ window.katex = katex;
 
 const { EmojiBlot, ShortNameEmoji, ToolbarEmoji, TextAreaEmoji } = quillEmoji;
 
-Quill.register({
-  'formats/emoji': EmojiBlot,
-  'modules/emoji-shortname': ShortNameEmoji,
-  'modules/emoji-toolbar': ToolbarEmoji,
-  'modules/emoji-textarea': TextAreaEmoji
-}, true);
+Quill.register(
+  {
+    'formats/emoji': EmojiBlot,
+    'modules/emoji-shortname': ShortNameEmoji,
+    'modules/emoji-toolbar': ToolbarEmoji,
+    'modules/emoji-textarea': TextAreaEmoji,
+  },
+  true,
+);
 
 export type TextEditorProps = {
   onSave?: (text: string) => void;
@@ -121,7 +124,7 @@ const TextEditor: FC<TextEditorProps> = ({
           onChange={onTextChange}
           modules={{
             toolbar: edit ? TEXT_EDITOR_TOOLBAR : null,
-			      'emoji-toolbar': true,
+            'emoji-toolbar': true,
             'emoji-textarea': false,
             'emoji-shortname': false,
             clipboard: {
