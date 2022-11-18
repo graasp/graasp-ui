@@ -201,6 +201,7 @@ export class AppItem extends Component<AppItemProps> {
           return;
         }
         this.iframeRef.current.height = payload.toString();
+        break;
       }
     }
   };
