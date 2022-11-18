@@ -80,9 +80,9 @@ const FileItem: FC<FileItemProps> = ({
         setUrl(fileUrl);
       } else if (content) {
         // Build a URL from the file
-        const fileURL = URL.createObjectURL(content);
-        if (fileURL) {
-          setUrl(fileURL);
+        const urlFromContent = URL.createObjectURL(content);
+        if (urlFromContent) {
+          setUrl(urlFromContent);
         } else {
           setUrl(ERRORS.BLOB_URL);
         }
