@@ -25,9 +25,12 @@ import withCaption from './withCaption';
 
 export interface FileItemProps {
   /**
-   * blob content of the file
+   * blob content of the file, overriden by fileUrl
    * */
   content?: Blob;
+  /**
+   * url of the file, overrides content
+   * */
   fileUrl?: string;
   defaultItem?: JSX.Element;
   downloadText?: string;
@@ -37,6 +40,10 @@ export interface FileItemProps {
   item: RecordOf<Item<UnknownExtra>>;
   maxHeight?: number;
   onSaveCaption?: (text: string) => void;
+  /**
+   * use a custom pdf reader from the link if defined
+   * */
+  pdfViewerLink?: string;
   saveButtonId?: string;
   showCaption?: boolean;
   showCollapse?: boolean;
@@ -58,6 +65,7 @@ const FileItem: FC<FileItemProps> = ({
   showCaption = true,
   showCollapse,
   sx,
+  pdfViewerLink,
 }) => {
   const [url, setUrl] = useState<string>();
   const extra =
@@ -70,13 +78,11 @@ const FileItem: FC<FileItemProps> = ({
     (async () => {
       if (fileUrl) {
         setUrl(fileUrl);
-      }
-
-      if (content) {
+      } else if (content) {
         // Build a URL from the file
-        const fileURL = URL.createObjectURL(content);
-        if (fileURL) {
-          setUrl(fileURL);
+        const urlFromContent = URL.createObjectURL(content);
+        if (urlFromContent) {
+          setUrl(urlFromContent);
         } else {
           setUrl(ERRORS.BLOB_URL);
         }
@@ -122,6 +128,7 @@ const FileItem: FC<FileItemProps> = ({
           height={maxHeight}
           sx={sx}
           showCollapse={showCollapse}
+          pdfViewerLink={pdfViewerLink}
         />
       );
     }
