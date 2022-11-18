@@ -27,7 +27,7 @@ import UserSwitch from './UserSwitch';
 
 interface Props {
   buildMemberMenuItemId?: (id: string) => string;
-  ButtonContent: JSX.Element;
+  ButtonContent?: JSX.Element;
   buttonId?: string;
   currentMember?: MemberRecord;
   domain: string;

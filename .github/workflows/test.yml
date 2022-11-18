@@ -14,11 +14,13 @@ jobs:
           node-version: 16.x
       - name: yarn install
         run: yarn
+      - name: yarn build # ensures type-checks and compiles
+        run: yarn build
       - name: install playwright
         run: npx playwright install --with-deps
       - name: build storybook
         run: yarn build-storybook --quiet
-      - name: start and test storybook 
+      - name: start and test storybook
         run: |
           npx concurrently -k -s first -n "SB,TEST" -c "magenta,blue" \
             "npx http-server storybook-static --port 6006 --silent" \
