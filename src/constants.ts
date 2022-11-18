@@ -18,18 +18,16 @@ export const MIME_TYPES = {
 };
 
 export const TEXT_EDITOR_TOOLBAR = [
-	[{ header: [1, 2, 3, 4, 5, 6, false] }],
-	[{ font: [] }],
-	['bold',
-	'italic',
-	'underline',
-	'strike'],
-	[{ color: [] }], // default colors depending on theme
-	[{ background: [] }], // default colors depending on theme
-	[{ align: [] }],
-	[{ list: 'ordered' }, { list: 'bullet' }, 'code-block', 'link', 'formula'],
-	['emoji']
+  [{ header: [1, 2, 3, 4, 5, 6, false] }],
+  [{ font: [] }],
+  ['bold', 'italic', 'underline', 'strike'],
+  [{ color: [] }], // default colors depending on theme
+  [{ background: [] }], // default colors depending on theme
+  [{ align: [] }],
+  [{ list: 'ordered' }, { list: 'bullet' }, 'code-block', 'link', 'formula'],
+  ['emoji'],
 ];
+
 export const TEXT_EDITOR_MIN_HEIGHT = 200;
 export const TEXT_EDITOR_MAX_HEIGHT = 400;
 export const APP_ITEM_WIDTH = '100%';
@@ -98,11 +96,6 @@ export const DEFAULT_LOADER_SIZE = 20;
 export const DRAG_ICON_SIZE = 18;
 
 export const HEADER_USERNAME_MAX_WIDTH = 120;
-
-export const PDF_VIEWER_LINK =
-  `${process.env.REACT_APP_GRAASP_ASSETS_URL}/pdf-viewer/web/viewer.html?file=`;
-  
-export const GRAASP_ASSETS_PROTOCOL = 'https://';
 
 export const SCREEN_MAX_HEIGHT = window.innerHeight * 0.8;
 
