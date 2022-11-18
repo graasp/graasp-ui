@@ -21,6 +21,7 @@ yarn-error.log*
 
 # development environments
 .idea/
+.vscode
 
 # react-app-env
 src/react-app-env.d.ts

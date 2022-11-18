@@ -1,10 +1,10 @@
+import { babel } from '@rollup/plugin-babel';
+import commonjs from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
 import typescript from '@rollup/plugin-typescript';
+import copy from 'rollup-plugin-copy';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import scss from 'rollup-plugin-scss';
-import commonjs from '@rollup/plugin-commonjs';
-import copy from 'rollup-plugin-copy';
-import { babel } from '@rollup/plugin-babel';
 
 export default {
   input: ['./src/index.ts', './src/table.ts'],
@@ -36,6 +36,15 @@ export default {
             'node_modules/katex/dist/fonts/**/*.woff',
           ],
           dest: 'dist/fonts',
+        },
+      ],
+    }),
+    // import quill-emoji image
+    copy({
+      targets: [
+        {
+          src: ['node_modules/quill-emoji/dist/*.png'],
+          dest: 'dist/',
         },
       ],
     }),
