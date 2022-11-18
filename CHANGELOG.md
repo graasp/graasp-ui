@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.4.0](https://github.com/graasp/graasp-ui/compare/v0.3.1...v0.4.0) (2022-11-18)
+
+
+### Features
+
+* add auto-resize message listener ([#183](https://github.com/graasp/graasp-ui/issues/183)) ([becfd7b](https://github.com/graasp/graasp-ui/commit/becfd7b48c9a971367991290cff5c972d5492ed3))
+
 ## [0.3.1](https://github.com/graasp/graasp-ui/compare/v0.3.0...v0.3.1) (2022-11-01)
 
 
