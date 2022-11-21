@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.4.1](https://github.com/graasp/graasp-ui/compare/v0.4.0...v0.4.1) (2022-11-21)
+
+
+### Bug Fixes
+
+* add build step and quill-emoji declarations ([#185](https://github.com/graasp/graasp-ui/issues/185)) ([71703e7](https://github.com/graasp/graasp-ui/commit/71703e72a06a1ca826292be1eb09e430b36f679a))
+* add missing break ([c0fe093](https://github.com/graasp/graasp-ui/commit/c0fe0930c5470b8677b17aa879b8b31d8b48bf20))
+
 ## [0.4.0](https://github.com/graasp/graasp-ui/compare/v0.3.1...v0.4.0) (2022-11-18)
 
 
