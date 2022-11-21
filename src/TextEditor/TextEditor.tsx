@@ -1,13 +1,13 @@
 // formula dependencies
 import katex from 'katex';
 import 'katex/dist/katex.min.css';
+import quillEmoji from 'quill-emoji';
+import 'quill-emoji/dist/quill-emoji.css';
 
 import { styled } from '@mui/material';
 
 import React, { FC, useEffect, useState } from 'react';
 import ReactQuill, { Quill } from 'react-quill';
-import quillEmoji from 'quill-emoji';
-import 'quill-emoji/dist/quill-emoji.css';
 import 'react-quill/dist/quill.snow.css';
 
 import Button from '../buttons/Button';

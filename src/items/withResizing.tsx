@@ -15,16 +15,17 @@ import { UUID } from '../types';
 export const StyledIFrame = styled('iframe')<{
   isResizable?: boolean;
   height: string | number;
-}>(({ isResizable, height }) =>
-  isResizable
+}>(({ isResizable, height }) => ({
+  // remove ugly borders
+  border: 'none',
+  ...(isResizable
     ? {
         width: '100%',
-        border: 'none',
         maxHeight: !isResizable ? ITEM_MAX_HEIGHT : undefined,
         height: !isResizable ? height : '100%',
       }
-    : {},
-);
+    : {}),
+}));
 
 export interface WithResizingProps {
   height: string | number;

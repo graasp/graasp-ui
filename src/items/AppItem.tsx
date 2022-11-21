@@ -29,6 +29,7 @@ const buildPostMessageKeys = (
   GET_AUTH_TOKEN: `GET_AUTH_TOKEN_${itemId}`,
   GET_AUTH_TOKEN_SUCCESS: `GET_AUTH_TOKEN_SUCCESS_${itemId}`,
   GET_AUTH_TOKEN_FAILURE: `GET_AUTH_TOKEN_FAILURE_${itemId}`,
+  POST_AUTO_RESIZE: `POST_AUTO_RESIZE_${itemId}`,
 });
 
 type Token = string;
@@ -60,7 +61,7 @@ export interface AppItemProps {
   height?: number | string;
   id?: string;
   /**
-   * whether resize is enabled
+   * whether manual resize is enabled (as opposed to automatic resize, default)
    */
   isResizable?: boolean;
   lang?: string;
@@ -92,7 +93,7 @@ export class AppItem extends Component<AppItemProps> {
     showCaption: true,
     // todo: get this value from common graasp constants
     permission: DEFAULT_PERMISSION,
-    isResizable: true,
+    isResizable: false, // by default, use auto-resize
   };
 
   state: AppItemState = {
@@ -155,7 +156,7 @@ export class AppItem extends Component<AppItemProps> {
 
   // receive message from app through MessageChannel
   onMessage = async (e: MessageEvent): Promise<void> => {
-    const { data, origin: requestOrigin } = e;
+    const { data, origin: requestOrigin, source } = e;
     const { channel, url } = this.state;
     const { item } = this.props;
 
@@ -169,7 +170,7 @@ export class AppItem extends Component<AppItemProps> {
     const { type, payload } = JSON.parse(data);
 
     switch (type) {
-      case POST_MESSAGE_KEYS.GET_AUTH_TOKEN:
+      case POST_MESSAGE_KEYS.GET_AUTH_TOKEN: {
         // eslint-disable-next-line no-unused-expressions
         channel?.port1.postMessage(
           JSON.stringify({
@@ -180,6 +181,28 @@ export class AppItem extends Component<AppItemProps> {
           }),
         );
         break;
+      }
+
+      case POST_MESSAGE_KEYS.POST_AUTO_RESIZE: {
+        // item should not be manually resizable
+        if (this.props.isResizable) {
+          return;
+        }
+        // iframe must be mounted
+        if (this.iframeRef.current === null) {
+          return;
+        }
+        // message source must be iframe of this app
+        if (source !== this.iframeRef.current.contentWindow) {
+          return;
+        }
+        // payload should be number
+        if (typeof payload !== 'number') {
+          return;
+        }
+        this.iframeRef.current.height = payload.toString();
+        break;
+      }
     }
   };
 
@@ -241,16 +264,7 @@ export class AppItem extends Component<AppItemProps> {
     const { iframeIsLoading, url, height } = this.state;
 
     const onLoad = iframeIsLoading
-      ? (): void => {
-          this.setState({ iframeIsLoading: false });
-          // TODO: set dynamic height
-          // if (this.iframeRef?.current?.contentWindow) {
-          // this.setState({
-          //   height:
-          //     this.iframeRef.current.contentWindow.document.body.scrollHeight,
-          // });
-          // }
-        }
+      ? () => this.setState({ iframeIsLoading: false })
       : undefined;
 
     const appUrl = `${url}${qs.stringify(

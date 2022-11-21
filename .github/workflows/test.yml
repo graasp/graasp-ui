@@ -14,7 +14,7 @@ jobs:
           node-version: 16.x
       - name: yarn install
         run: yarn
-      - name: yarn build
+      - name: yarn build # ensures type-checks and compiles
         run: yarn build
       - name: install playwright
         run: npx playwright install --with-deps
