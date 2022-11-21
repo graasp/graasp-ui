@@ -156,7 +156,7 @@ export class AppItem extends Component<AppItemProps> {
 
   // receive message from app through MessageChannel
   onMessage = async (e: MessageEvent): Promise<void> => {
-    const { data, origin: requestOrigin, source } = e;
+    const { data, origin: requestOrigin } = e;
     const { channel, url } = this.state;
     const { item } = this.props;
 
@@ -190,10 +190,6 @@ export class AppItem extends Component<AppItemProps> {
         }
         // iframe must be mounted
         if (this.iframeRef.current === null) {
-          return;
-        }
-        // message source must be iframe of this app
-        if (source !== this.iframeRef.current.contentWindow) {
           return;
         }
         // payload should be number
