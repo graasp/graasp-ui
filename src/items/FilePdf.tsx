@@ -2,7 +2,11 @@ import { SxProps, styled } from '@mui/material';
 
 import React, { FC, ReactEventHandler, useRef, useState } from 'react';
 
-import { ITEM_MAX_HEIGHT } from '../constants';
+import {
+  GRAASP_ASSETS_PROTOCOL,
+  ITEM_MAX_HEIGHT,
+  PDF_VIEWER_LINK,
+} from '../constants';
 
 interface FilePdfProps {
   id?: string;
@@ -43,11 +47,9 @@ const FilePdf: FC<FilePdfProps> = ({
     }
   };
 
-  // use custom pdf viewer if defined
-  let urlWithPdfViewer = url;
-  if (pdfViewerLink) {
-    urlWithPdfViewer = `${pdfViewerLink}${encodeURIComponent(url)}`;
-  }
+  const urlWithPdfViewer = `${GRAASP_ASSETS_PROTOCOL}${PDF_VIEWER_LINK}${encodeURIComponent(
+    url,
+  )}`;
 
   return (
     <StyledEmbed

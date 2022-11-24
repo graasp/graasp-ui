@@ -2,11 +2,10 @@
   "parser": "@typescript-eslint/parser",
   "extends": [
     "eslint:recommended",
-    "plugin:@typescript-eslint/recommended",
-    "plugin:@typescript-eslint/eslint-recommended",
     "prettier",
-    "plugin:prettier/recommended",
+    "plugin:@typescript-eslint/recommended"
   ],
+  "plugins": ["import", "jsx-a11y", "@typescript-eslint"],
   "env": {
     "node": true,
     "browser": true
@@ -40,15 +39,12 @@
     // enum error
     // "@typescript-eslint/no-use-before-define": "off",
     // note you must disable the base rule as it can report incorrect errors
-    "no-use-before-define": "off",
+    "no-use-before-define": "off"
   },
   "overrides": [
     {
       // enable the rule specifically for TypeScript files
-      "files": [
-        "*.ts",
-        "*.tsx"
-      ],
+      "files": ["*.ts", "*.tsx"],
       "rules": {
         "@typescript-eslint/explicit-function-return-type": [
           "error",

@@ -1,5 +1,4 @@
-import { EmbeddedLinkItemExtra } from '../types';
-import { getEmbeddedLinkExtra } from './itemExtra';
+import { EmbeddedLinkItemExtra, getEmbeddedLinkExtra } from '@graasp/sdk';
 
 export const getItemImage = ({
   url,
@@ -15,7 +14,8 @@ export const getItemImage = ({
   if (url) {
     return url;
   }
-  const linkThumbnail = getEmbeddedLinkExtra(extra)?.thumbnails?.get(0);
+  // todo: check that the type is correct
+  const linkThumbnail = getEmbeddedLinkExtra(extra)?.thumbnails?.[0];
   if (linkThumbnail) {
     return linkThumbnail;
   }

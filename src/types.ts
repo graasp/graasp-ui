@@ -1,13 +1,6 @@
 import { Record, RecordOf } from 'immutable';
 
-import {
-  Context,
-  Item,
-  ItemType,
-  Member,
-  MemberType,
-  UnknownExtra,
-} from '@graasp/sdk';
+import { Context, Item, ItemType, Member, MemberType } from '@graasp/sdk';
 
 export type UUID = string;
 
@@ -47,52 +40,53 @@ export class ImmutableItem extends Record<Item>({
   updatedAt: '',
 }) {}
 
-// we use any instead of immutable List otherwise it cannot extends UnknownExtra
-export type EmbeddedLinkItemExtraProp = {
-  thumbnails: any; //List<string>;
-  html: string;
-  url: string;
-  icons: any; //List<string>;
-};
+// // we use any instead of immutable List otherwise it cannot extends UnknownExtra
+// export type EmbeddedLinkItemExtraProp = {
+//   thumbnails: any; //List<string>;
+//   html: string;
+//   url: string;
+//   icons: any; //List<string>;
+// };
 
-export interface EmbeddedLinkItemExtra extends UnknownExtra {
-  embeddedLink: EmbeddedLinkItemExtraProp;
-}
+// export interface EmbeddedLinkItemExtra extends UnknownExtra {
+//   embeddedLink: EmbeddedLinkItemExtraProp;
+// }
 
-export type S3FileItemExtraProp = {
-  mimetype: string;
-  name: string;
-};
+// // todo: add path and move this to sdk
+// export type S3FileItemExtraProp = {
+//   mimetype: string;
+//   name: string;
+// };
 
-export interface S3FileItemExtra extends UnknownExtra {
-  s3File: S3FileItemExtraProp;
-}
+// export interface S3FileItemExtra extends UnknownExtra {
+//   s3File: S3FileItemExtraProp;
+// }
 
-export type FileItemProp = {
-  mimetype: string;
-  name: string;
-};
+// export type FileItemProp = {
+//   mimetype: string;
+//   name: string;
+// };
 
-export interface FileItemExtra extends UnknownExtra {
-  file: FileItemProp;
-}
+// export interface FileItemExtra extends UnknownExtra {
+//   file: FileItemProp;
+// }
 
-export type DocumentItemExtraProp = {
-  content: string;
-};
+// export type DocumentItemExtraProp = {
+//   content: string;
+// };
 
-export interface DocumentItemExtra extends UnknownExtra {
-  document: DocumentItemExtraProp;
-}
+// export interface DocumentItemExtra extends UnknownExtra {
+//   document: DocumentItemExtraProp;
+// }
 
-export type AppItemExtraProp = {
-  url: string;
-  settings: UnknownExtra;
-};
+// export type AppItemExtraProp = {
+//   url: string;
+//   settings: UnknownExtra;
+// };
 
-export interface AppItemExtra extends UnknownExtra {
-  app: AppItemExtraProp;
-}
+// export interface AppItemExtra extends UnknownExtra {
+//   app: AppItemExtraProp;
+// }
 
 export enum Variant {
   TEXT = 'text',
@@ -145,14 +139,14 @@ export enum ItemLoginSchema {
 }
 
 export type ItemLogin = {
-  loginSchema: ItemLoginSchema;
+  loginSchema: `${ItemLoginSchema}`;
 };
 
 export type ItemLoginRecord = RecordOf<ItemLogin>;
 
-export class ImmutableItemLogin extends Record({
+export const ImmutableItemLoginFactory = Record({
   loginSchema: ItemLoginSchema.USERNAME,
-}) {}
+});
 
 export enum ButtonTypeEnum {
   ICON = 'icon',

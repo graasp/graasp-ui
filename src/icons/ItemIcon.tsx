@@ -14,12 +14,18 @@ import { SxProps } from '@mui/material';
 
 import React, { FC } from 'react';
 
-import { ItemType, UnknownExtra } from '@graasp/sdk';
+import {
+  ItemType,
+  LocalFileItemExtra,
+  S3FileItemExtra,
+  UnknownExtra,
+  getFileExtra,
+  getS3FileExtra,
+} from '@graasp/sdk';
+
 
 import { StyledImage } from '../StyledComponents/StyledBaseComponents';
 import { ITEM_ICON_MAX_SIZE, MIME_TYPES } from '../constants';
-import { FileItemExtra, S3FileItemExtra } from '../types';
-import { getFileExtra, getS3FileExtra } from '../utils/itemExtra';
 
 export interface ItemIconProps {
   alt: string;
@@ -54,7 +60,7 @@ const ItemIcon: FC<ItemIconProps> = ({
   type,
 }) => {
   const mimetype =
-    getFileExtra(extra as unknown as FileItemExtra)?.mimetype ||
+    getFileExtra(extra as unknown as LocalFileItemExtra)?.mimetype ||
     getS3FileExtra(extra as unknown as S3FileItemExtra)?.mimetype;
 
   if (iconSrc) {
