@@ -1,6 +1,13 @@
 import { Record, RecordOf } from 'immutable';
 
-import { Context, Item, ItemType, Member, MemberType } from '@graasp/sdk';
+import {
+  Context,
+  Item,
+  ItemType,
+  Member,
+  MemberType,
+  UnknownExtra,
+} from '@graasp/sdk';
 
 export type UUID = string;
 
@@ -27,66 +34,21 @@ export class ImmutableMember extends Record<Member>({
   type: MemberType.Individual,
 }) {}
 
-export class ImmutableItem extends Record<Item>({
-  id: '',
-  name: '',
-  path: '',
-  description: '',
-  extra: {},
-  settings: {},
-  type: ItemType.FOLDER,
-  creator: '',
-  createdAt: '',
-  updatedAt: '',
-}) {}
-
-// // we use any instead of immutable List otherwise it cannot extends UnknownExtra
-// export type EmbeddedLinkItemExtraProp = {
-//   thumbnails: any; //List<string>;
-//   html: string;
-//   url: string;
-//   icons: any; //List<string>;
-// };
-
-// export interface EmbeddedLinkItemExtra extends UnknownExtra {
-//   embeddedLink: EmbeddedLinkItemExtraProp;
-// }
-
-// // todo: add path and move this to sdk
-// export type S3FileItemExtraProp = {
-//   mimetype: string;
-//   name: string;
-// };
-
-// export interface S3FileItemExtra extends UnknownExtra {
-//   s3File: S3FileItemExtraProp;
-// }
-
-// export type FileItemProp = {
-//   mimetype: string;
-//   name: string;
-// };
-
-// export interface FileItemExtra extends UnknownExtra {
-//   file: FileItemProp;
-// }
-
-// export type DocumentItemExtraProp = {
-//   content: string;
-// };
-
-// export interface DocumentItemExtra extends UnknownExtra {
-//   document: DocumentItemExtraProp;
-// }
-
-// export type AppItemExtraProp = {
-//   url: string;
-//   settings: UnknownExtra;
-// };
-
-// export interface AppItemExtra extends UnknownExtra {
-//   app: AppItemExtraProp;
-// }
+export const ImmutableItemFactory = <T extends UnknownExtra>(
+  arg: Partial<Item<T>>,
+): RecordOf<Item<T>> =>
+  Record<Item<T>>({
+    id: '',
+    name: '',
+    path: '',
+    description: '',
+    extra: {} as T,
+    settings: {},
+    type: ItemType.FOLDER,
+    creator: '',
+    createdAt: '',
+    updatedAt: '',
+  })(arg);
 
 export enum Variant {
   TEXT = 'text',

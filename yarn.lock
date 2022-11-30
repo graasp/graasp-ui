@@ -2559,7 +2559,7 @@ __metadata:
 
 "@graasp/sdk@github:graasp/graasp-sdk#62-upstream-types":
   version: 0.1.0
-  resolution: "@graasp/sdk@https://github.com/graasp/graasp-sdk.git#commit=894597cd04657db088f7199fe7180436dfab386b"
+  resolution: "@graasp/sdk@https://github.com/graasp/graasp-sdk.git#commit=4e52f357d1b23c4f1b2beb28657f5df44559f0e3"
   dependencies:
     "@fastify/secure-session": 5.2.0
     aws-sdk: 2.1111.0
@@ -2570,7 +2570,7 @@ __metadata:
     qs: 6.11.0
     slonik: 28.1.1
     uuid: 8.3.2
-  checksum: 95fc724808f859f2fd0ef638c6a86c4fb933fec910bb8923f8e28fb950fd23b4f484f3f27803979b4ce7461ff00051af5920b8481610247f309fb761ee28b852
+  checksum: be6e8d76a17765a56f27b8d741be153ef904c5da347a103975eae6a296051ea882fccb93eff5c9caa5f2bff21640f79a61478411bee0c3c2f5875c5d38ee490d
   languageName: node
   linkType: hard
 

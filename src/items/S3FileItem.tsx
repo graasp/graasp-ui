@@ -5,13 +5,11 @@ import Alert from '@mui/material/Alert';
 
 import React, { useEffect, useState } from 'react';
 
-import { Item } from '@graasp/sdk';
+import { Item, S3FileItemExtra, getS3FileExtra } from '@graasp/sdk';
 
 import Loader from '../Loader';
 import { MIME_TYPES, UNEXPECTED_ERROR_MESSAGE } from '../constants';
 import { ERRORS } from '../enums';
-import type { S3FileItemExtra } from '../types';
-import { getS3FileExtra } from '../utils/itemExtra';
 import DownloadButtonFileItem from './DownloadButtonFileItem';
 import FileAudio from './FileAudio';
 import FileImage from './FileImage';

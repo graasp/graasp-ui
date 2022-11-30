@@ -5,7 +5,7 @@ import Skeleton from '@mui/material/Skeleton';
 
 import React, { Component } from 'react';
 
-import { Item } from '@graasp/sdk';
+import { AppItemExtra, Item, getAppExtra } from '@graasp/sdk';
 
 import {
   APP_DEFAULT_HEIGHT,
@@ -13,8 +13,7 @@ import {
   DEFAULT_PERMISSION,
   SCREEN_MAX_HEIGHT,
 } from '../constants';
-import type { AppItemExtra, MemberRecord, UUID } from '../types';
-import { getAppExtra } from '../utils/itemExtra';
+import type { MemberRecord, UUID } from '../types';
 import withCaption from './withCaption';
 import withResizing, { StyledIFrame } from './withResizing';
 

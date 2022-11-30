@@ -7,7 +7,7 @@ import Skeleton from '@mui/material/Skeleton';
 import React, { FC } from 'react';
 import type { UseQueryResult } from 'react-query';
 
-import { ImmutableItem, ItemRecord } from '../types';
+import { ImmutableItemFactory, ItemRecord } from '../types';
 import { getParentsIdsFromPath } from '../utils/utils';
 import TreeItemLabel from './TreeItemLabel';
 
@@ -123,7 +123,7 @@ const CustomTreeItem: FC<CustomItemTreeProps> = ({
     }
 
     const filteredChildren = children?.filter((item) =>
-      showItemFilter?.(new ImmutableItem(item)),
+      showItemFilter?.(ImmutableItemFactory(item)),
     );
 
     if (!filteredChildren?.size) {

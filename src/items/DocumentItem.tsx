@@ -4,11 +4,9 @@ import { Typography } from '@mui/material';
 
 import React, { FC } from 'react';
 
-import { Item } from '@graasp/sdk';
+import { DocumentItemExtra, Item, getDocumentExtra } from '@graasp/sdk';
 
 import TextEditor from '../TextEditor';
-import type { DocumentItemExtra } from '../types';
-import { getDocumentExtra } from '../utils/itemExtra';
 
 export interface DocumentItemProps {
   cancelButtonId?: string;

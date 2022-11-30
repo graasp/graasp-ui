@@ -1,16 +1,15 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import { RecordOf } from 'immutable';
 
 import React from 'react';
 
-import { Item, ItemType } from '@graasp/sdk';
+import { DocumentItemExtra, ItemType } from '@graasp/sdk';
 
 import TextEditor from '../TextEditor';
-import { DocumentItemExtra, ImmutableItem } from '../types';
+import { ImmutableItemFactory } from '../types';
 import { TABLE_CATEGORIES } from '../utils/storybook';
 import DocumentItem from './DocumentItem';
 
-const item = new ImmutableItem({
+const item = ImmutableItemFactory<DocumentItemExtra>({
   id: 'item-id',
   name: 'item-name',
   type: ItemType.DOCUMENT,
@@ -24,7 +23,7 @@ const item = new ImmutableItem({
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   description: 'my document description',
-}) as RecordOf<Item<DocumentItemExtra>>;
+});
 
 export default {
   title: 'Items/DocumentItem',
