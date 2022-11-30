@@ -281,6 +281,7 @@ export class AppItem extends Component<AppItemProps> {
         sx={{ visibility: iframeIsLoading ? 'hidden' : 'visible' }}
         title={item?.name}
         width={APP_ITEM_WIDTH}
+        allow='fullscreen'
       />
     );
 
