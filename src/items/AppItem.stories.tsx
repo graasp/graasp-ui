@@ -4,9 +4,9 @@ import { within } from '@storybook/testing-library';
 
 import React from 'react';
 
-import { ItemType } from '@graasp/sdk';
+import { AppItemExtra, ItemType } from '@graasp/sdk';
 
-import { ImmutableItem } from '../types';
+import { ImmutableItemFactory } from '../types';
 import { TABLE_CATEGORIES } from '../utils/storybook';
 import AppItem from './AppItem';
 
@@ -34,8 +34,7 @@ const Template: ComponentStory<typeof AppItem> = (args) => (
 
 export const Example = Template.bind({});
 Example.args = {
-  // @ts-expect-error incomplete item
-  item: new ImmutableItem({
+  item: ImmutableItemFactory<AppItemExtra>({
     name: 'my app',
     id: 'item-id',
     description: 'item-description',

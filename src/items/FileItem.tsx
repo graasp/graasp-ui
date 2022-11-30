@@ -6,7 +6,14 @@ import Skeleton from '@mui/material/Skeleton';
 
 import React, { FC, useEffect, useState } from 'react';
 
-import { Item, UnknownExtra } from '@graasp/sdk';
+import {
+  Item,
+  LocalFileItemExtra,
+  S3FileItemExtra,
+  UnknownExtra,
+  getFileExtra,
+  getS3FileExtra,
+} from '@graasp/sdk';
 
 import {
   MIME_TYPES,
@@ -14,8 +21,6 @@ import {
   UNEXPECTED_ERROR_MESSAGE,
 } from '../constants';
 import { ERRORS } from '../enums';
-import { FileItemExtra, S3FileItemExtra } from '../types';
-import { getFileExtra, getS3FileExtra } from '../utils/itemExtra';
 import DownloadButtonFileItem from './DownloadButtonFileItem';
 import FileAudio from './FileAudio';
 import FileImage from './FileImage';
@@ -69,7 +74,7 @@ const FileItem: FC<FileItemProps> = ({
 }) => {
   const [url, setUrl] = useState<string>();
   const extra =
-    getFileExtra(item.extra as FileItemExtra) ??
+    getFileExtra(item.extra as LocalFileItemExtra) ??
     getS3FileExtra(item.extra as S3FileItemExtra);
   const { mimetype, name: originalFileName } = extra ?? {};
   const name = item.name;

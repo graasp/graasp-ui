@@ -6,12 +6,16 @@ import Alert from '@mui/material/Alert';
 
 import React, { FC, Fragment, useRef, useState } from 'react';
 
-import { Item, redirect } from '@graasp/sdk';
+import {
+  EmbeddedLinkItemExtra,
+  Item,
+  getEmbeddedLinkExtra,
+  redirect,
+} from '@graasp/sdk';
 
 import Button from '../buttons/Button';
 import { ITEM_MAX_HEIGHT } from '../constants';
-import type { EmbeddedLinkItemExtra, MemberRecord } from '../types';
-import { getEmbeddedLinkExtra } from '../utils/itemExtra';
+import { MemberRecord } from '../types';
 import withCaption from './withCaption';
 import withResizing, { StyledIFrame } from './withResizing';
 
