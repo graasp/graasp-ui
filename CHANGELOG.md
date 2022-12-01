@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.4.2](https://github.com/graasp/graasp-ui/compare/v0.4.1...v0.4.2) (2022-12-01)
+
+
+### Bug Fixes
+
+* allow fullscreen on app iframes ([29fbdd3](https://github.com/graasp/graasp-ui/commit/29fbdd34300e7439bbd17efac5ce5d6f601eff74))
+
 ## [0.4.1](https://github.com/graasp/graasp-ui/compare/v0.4.0...v0.4.1) (2022-11-21)
 
 
