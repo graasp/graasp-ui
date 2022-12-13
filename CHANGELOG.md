@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.5.0](https://github.com/graasp/graasp-ui/compare/v0.4.2...v0.5.0) (2022-12-13)
+
+
+### Features
+
+* add fullscreen custom hook ([402f35f](https://github.com/graasp/graasp-ui/commit/402f35f2772e4e5e0814b10d9bfd3ab1beca6cca))
+
+
+### Bug Fixes
+
+* update npm publish deployement ([451ec2a](https://github.com/graasp/graasp-ui/commit/451ec2a70195019f9bb3d8585396f3a64ae843ff))
+
 ## [0.4.2](https://github.com/graasp/graasp-ui/compare/v0.4.1...v0.4.2) (2022-12-01)
 
 
