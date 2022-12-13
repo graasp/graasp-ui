@@ -3,6 +3,7 @@ export * from './assets/styles.module.css';
 export * from './theme';
 
 export * from './items';
+export * from './hooks';
 export * from './icons';
 export * from './buttons';
 
