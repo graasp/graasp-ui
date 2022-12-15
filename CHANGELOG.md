@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.6.0](https://github.com/graasp/graasp-ui/compare/v0.5.0...v0.6.0) (2022-12-15)
+
+
+### Features
+
+* move types ([c5333a3](https://github.com/graasp/graasp-ui/commit/c5333a383ea4d7c1e30a20ec2ea956b341cdfb60))
+
+
+### Bug Fixes
+
+* patch issues ([a3a2007](https://github.com/graasp/graasp-ui/commit/a3a20076b97cfa13f0e221cf5f3886c0368bc8c6))
+* types usages ([2955223](https://github.com/graasp/graasp-ui/commit/2955223918b3ece2b57c964a3b7dfe3795c17c71))
+
 ## [0.5.0](https://github.com/graasp/graasp-ui/compare/v0.4.2...v0.5.0) (2022-12-13)
 
 
