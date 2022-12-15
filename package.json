@@ -42,7 +42,6 @@
     "hooks:install": "husky install",
     "predeploy": "cd example && yarn install && yarn run build",
     "deploy": "gh-pages -d example/build",
-    "release": "standard-version",
     "prepublishOnly": "pinst --disable",
     "postpublish": "pinst --enable",
     "post-commit": "git status",
@@ -52,7 +51,7 @@
     "storybook:build": "build-storybook"
   },
   "dependencies": {
-    "@graasp/sdk": "github:graasp/graasp-sdk#62-upstream-types",
+    "@graasp/sdk": "github:graasp/graasp-sdk#v0.1.0",
     "clsx": "1.1.1",
     "http-status-codes": "2.2.0",
     "immutable": "4.1.0",
@@ -163,7 +162,6 @@
     "rollup-plugin-peer-deps-external": "2.2.4",
     "rollup-plugin-scss": "3.0.0",
     "sass": "1.52.2",
-    "standard-version": "9.5.0",
     "storybook": "6.5.9",
     "ts-jest": "28.0.5",
     "ts-node": "10.8.0",
