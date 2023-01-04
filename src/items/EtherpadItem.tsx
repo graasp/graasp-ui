@@ -1,5 +1,7 @@
 import React, { FC } from 'react';
 
+import { SCREEN_MAX_HEIGHT } from '../constants';
+
 /**
  * @see https://etherpad.org/doc/v1.8.18/#index_embed-parameters
  */
@@ -22,6 +24,7 @@ interface EtherpadItemProps {
   padUrl: string;
   iframeId?: string;
   options?: EtherpadEmbedOptions;
+  style?: React.CSSProperties;
 }
 
 const EtherpadItem: FC<EtherpadItemProps> = ({
@@ -29,6 +32,7 @@ const EtherpadItem: FC<EtherpadItemProps> = ({
   padUrl,
   iframeId = `etherpad-container-${itemId}`,
   options,
+  style,
 }) => {
   const src = new URL(padUrl);
   if (options) {
@@ -43,7 +47,13 @@ const EtherpadItem: FC<EtherpadItemProps> = ({
       src={src.href}
       frameBorder={0}
       sandbox='allow-forms allow-modals allow-orientation-lock allow-pointer-lock allow-popups allow-presentation allow-scripts'
-      style={{ width: '100%', border: 'none', display: 'block' }}
+      style={{
+        width: '100%',
+        height: SCREEN_MAX_HEIGHT,
+        border: 'none',
+        display: 'block',
+        ...style,
+      }}
     ></iframe>
   );
 };
