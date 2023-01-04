@@ -2,6 +2,7 @@ import AppsIcon from '@mui/icons-material/Apps';
 import DescriptionIcon from '@mui/icons-material/Description';
 import FolderIcon from '@mui/icons-material/Folder';
 import FolderZipIcon from '@mui/icons-material/FolderZip';
+import GroupsIcon from '@mui/icons-material/Groups';
 import ImageIcon from '@mui/icons-material/Image';
 import ShortcutIcon from '@mui/icons-material/Input';
 import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
@@ -22,7 +23,6 @@ import {
   getFileExtra,
   getS3FileExtra,
 } from '@graasp/sdk';
-
 
 import { StyledImage } from '../StyledComponents/StyledBaseComponents';
 import { ITEM_ICON_MAX_SIZE, MIME_TYPES } from '../constants';
@@ -127,6 +127,10 @@ const ItemIcon: FC<ItemIconProps> = ({
     }
     case ItemType.H5P: {
       Icon = Looks5Icon;
+      break;
+    }
+    case ItemType.ETHERPAD: {
+      Icon = GroupsIcon;
       break;
     }
     default:
