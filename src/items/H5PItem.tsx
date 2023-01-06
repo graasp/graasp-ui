@@ -9,6 +9,7 @@ interface H5PItemProps {
   itemId: string;
   contentId: string;
   integrationUrl: string;
+  iframeId?: string;
 }
 /**
  * The H5PItem component displays an iframe with the content of an H5P
@@ -20,6 +21,7 @@ const H5PItem: FC<H5PItemProps> = ({
   itemId,
   contentId,
   integrationUrl: integrationBase,
+  iframeId = `h5p-container-${itemId}`,
 }) => {
   /*
     h5p-standalone (and H5P itself) expect the integration to be done on the
@@ -87,10 +89,11 @@ const H5PItem: FC<H5PItemProps> = ({
   return (
     <iframe
       ref={iframeRef}
-      id={`h5p-container-${itemId}`}
+      id={iframeId}
       src={integrationUrl.href}
       scrolling={'no'}
       frameBorder={0}
+      sandbox='allow-forms allow-modals allow-orientation-lock allow-pointer-lock allow-popups allow-presentation allow-scripts'
       style={{ width: '100%', border: 'none', display: 'block' }}
     ></iframe>
   );

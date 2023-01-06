@@ -13,3 +13,5 @@ export { default as FavoriteButton } from '../buttons/FavoriteButton/FavoriteBut
 export { default as LikeButton } from '../buttons/LikeButton/LikeButton';
 
 export { default as H5PItem } from './H5PItem';
+
+export { default as EtherpadItem } from './EtherpadItem';
