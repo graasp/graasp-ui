@@ -2557,9 +2557,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@graasp/sdk@github:graasp/graasp-sdk#v0.1.0":
-  version: 0.1.0
-  resolution: "@graasp/sdk@https://github.com/graasp/graasp-sdk.git#commit=08cadf0216fc011dd01d6bb23547a3cf1b363732"
+"@graasp/sdk@npm:0.2.0":
+  version: 0.2.0
+  resolution: "@graasp/sdk@npm:0.2.0"
   dependencies:
     "@fastify/secure-session": 5.2.0
     aws-sdk: 2.1111.0
@@ -2570,7 +2570,7 @@ __metadata:
     qs: 6.11.0
     slonik: 28.1.1
     uuid: 8.3.2
-  checksum: 263b2349837b9b6f3f5ff6b0c86e71b2a37625156b435061ca5d9c5cdd1a730cd52a76ede6e1c7d4dae45a2c131f99cb699a81d100960ac2861a53e27d0c007a
+  checksum: 95a76c69dd4577f8a0eb51197d83fdb5c61c58c1c6a7c895e7ca543d4883603bc7deb534fd5b7bc4f61b5f15cd0b6c403bf165e6a6a4a756707f9ad877961339
   languageName: node
   linkType: hard
 
@@ -2592,7 +2592,7 @@ __metadata:
     "@commitlint/config-conventional": 17.0.2
     "@emotion/react": 11.10.4
     "@emotion/styled": 11.10.4
-    "@graasp/sdk": "github:graasp/graasp-sdk#v0.1.0"
+    "@graasp/sdk": 0.2.0
     "@mdx-js/react": 1.6.22
     "@mui/icons-material": 5.10.6
     "@mui/lab": 5.0.0-alpha.101
