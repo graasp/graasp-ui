@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.7.0](https://github.com/graasp/graasp-ui/compare/v0.6.0...v0.7.0) (2023-01-06)
+
+
+### Features
+
+* add etherpad UI components ([#206](https://github.com/graasp/graasp-ui/issues/206)) ([5c6bf3f](https://github.com/graasp/graasp-ui/commit/5c6bf3f2ec69a7bf4124931360fbda80f34e0ccc))
+
 ## [0.6.0](https://github.com/graasp/graasp-ui/compare/v0.5.0...v0.6.0) (2022-12-15)
 
 
