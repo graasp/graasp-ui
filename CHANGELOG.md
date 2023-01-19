@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.7.1](https://github.com/graasp/graasp-ui/compare/v0.7.0...v0.7.1) (2023-01-19)
+
+
+### Bug Fixes
+
+* h5p revert to default iframe ([#208](https://github.com/graasp/graasp-ui/issues/208)) ([aba3d1e](https://github.com/graasp/graasp-ui/commit/aba3d1e6468d55e2b2b4d951fe8219759fb68cf7))
+
 ## [0.7.0](https://github.com/graasp/graasp-ui/compare/v0.6.0...v0.7.0) (2023-01-06)
 
 
