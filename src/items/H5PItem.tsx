@@ -93,7 +93,7 @@ const H5PItem: FC<H5PItemProps> = ({
       src={integrationUrl.href}
       scrolling={'no'}
       frameBorder={0}
-      sandbox='allow-forms allow-modals allow-orientation-lock allow-pointer-lock allow-popups allow-presentation allow-scripts'
+      sandbox='allow-forms allow-modals allow-orientation-lock allow-pointer-lock allow-popups allow-presentation allow-scripts allow-same-origin'
       style={{ width: '100%', border: 'none', display: 'block' }}
     ></iframe>
   );
