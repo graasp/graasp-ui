@@ -41,6 +41,8 @@ export interface MainProps {
   open?: boolean;
   sidebar?: React.ReactElement;
   menuButtonId?: string;
+  handleDrawerOpen?: () => void;
+  handleDrawerClose?: () => void;
 }
 
 type MainState = {
@@ -81,10 +83,12 @@ export class Main extends Component<MainProps, MainState> {
 
   handleDrawerOpen = (): void => {
     this.setState({ open: true });
+    this.props.handleDrawerOpen?.();
   };
 
   handleDrawerClose = (): void => {
     this.setState({ open: false });
+    this.props.handleDrawerClose?.();
   };
 
   render(): JSX.Element {
