@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.8.0](https://github.com/graasp/graasp-ui/compare/v0.7.1...v0.8.0) (2023-01-26)
+
+
+### Features
+
+* add handleDrawerOpen and handleDrawerClose to Main ([7e3cd9b](https://github.com/graasp/graasp-ui/commit/7e3cd9bf4ad2629f5e68d1e4243c9f7f62f945c8))
+
 ## [0.7.1](https://github.com/graasp/graasp-ui/compare/v0.7.0...v0.7.1) (2023-01-19)
 
 
