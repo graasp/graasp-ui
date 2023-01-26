@@ -32,7 +32,7 @@ function Select<T extends string | number | readonly string[] | undefined>({
   sx,
   values,
   variant,
-}: Props<T>) {
+}: Props<T>): JSX.Element {
   const showLabel = Boolean(labelId ?? label);
   return (
     <FormControl sx={{ mt: 1 }}>
