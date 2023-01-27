@@ -6,16 +6,18 @@ import React, { FC } from 'react';
 
 interface Props {
   selected: string[];
-  Actions?: React.FC<{ selectedIds: string[] }>;
-  NoSelectionToolbar?: React.FC;
+  Actions?: ({ selectedIds }: { selectedIds: string[] }) => JSX.Element;
+  NoSelectionToolbar?: () => JSX.Element;
   countTextFunction?: (selection: string[]) => string;
 }
 
+// casting is needed to support the `component` prop
+// see: https://mui.com/material-ui/guides/typescript/#complications-with-the-component-prop
 const StyledTitle = styled(Typography)({
   flex: '1 1 100%',
   display: 'flex',
   alignItems: 'center',
-});
+}) as typeof Typography;
 
 const TableToolbar: FC<Props> = ({
   selected,
@@ -36,7 +38,6 @@ const TableToolbar: FC<Props> = ({
   if (numSelected > 0) {
     return (
       <StyledToolbar>
-        {/* @ts-ignore: component does exist on typography */}
         <StyledTitle color='inherit' variant='subtitle1' component='div'>
           {countTextFunction?.(selected) ?? `${numSelected} selected`}
         </StyledTitle>
@@ -47,7 +48,7 @@ const TableToolbar: FC<Props> = ({
 
   if (NoSelectionToolbar) {
     // eslint-disable-next-line no-unused-expressions
-    return NoSelectionToolbar?.({});
+    return NoSelectionToolbar?.();
   }
 
   return null;
