@@ -45,6 +45,7 @@ Image.args = {
         path: 'https://picsum.photos/100',
         mimetype: MIME_TYPES.IMAGE[0],
         name: 'original file name',
+        size: 2600,
       },
     },
   }),

@@ -44,16 +44,17 @@ const resizeHandleStyles = {
     left: '0',
     right: '0',
   },
-  resizableContainer: {
-    paddingBottom: '35px',
-    '-webkit-user-select': 'none',
-    '-webkit-touch-callout': 'none',
-    '-khtml-user-select': 'none',
-    '-moz-user-select': 'none',
-    '-ms-user-select': 'none',
-    'user-select': 'none',
-  },
 };
+
+const StyledDiv = styled('div')({
+  paddingBottom: '35px',
+  WebkitUserSelect: 'none',
+  WebkitTouchCallout: 'none',
+  KhtmlUserSelect: 'none',
+  MozUserSelect: 'none',
+  msUserSelect: 'none',
+  userSelect: 'none',
+});
 
 const withResizing =
   <P extends object>({
@@ -72,7 +73,7 @@ const withResizing =
     }, [variableHeight]);
 
     return (
-      <div style={resizeHandleStyles.resizableContainer}>
+      <StyledDiv>
         <Rnd
           style={{ position: 'relative' }}
           disableDragging
@@ -94,7 +95,7 @@ const withResizing =
         >
           {component}
         </Rnd>
-      </div>
+      </StyledDiv>
     );
   };
 

@@ -58,7 +58,7 @@ Iframe.play = async ({ canvasElement, args }) => {
   const canvas = within(canvasElement);
 
   expect(canvas.getByText(args.item.description)).toBeInTheDocument();
-  expect(canvas.getByTitle(args.item.name)).toBeInTheDocument();
+  expect(canvas.getByText(args.item.name)).toBeInTheDocument();
 };
 
 export const LinkButton = Template.bind({});
@@ -85,6 +85,6 @@ IframeAndLinkButton.play = async ({ canvasElement, args }) => {
   const canvas = within(canvasElement);
 
   expect(canvas.getByText(args.item.description)).toBeInTheDocument();
-  expect(canvas.getByTitle(args.item.name)).toBeInTheDocument();
+  expect(canvas.getByText(args.item.name)).toBeInTheDocument();
   await userEvent.click(canvas.getByText(args.item.name));
 };
