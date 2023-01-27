@@ -29,7 +29,7 @@
     "build": "rimraf dist && tsc && rollup -c rollup.config.js",
     "start": "rimraf dist && tsc && rollup --watch -c rollup.config.js",
     "start:example": "yarn workspace graasp-ui-example start",
-    "prepack": "pinst --disable && yarn build",
+    "prepack": "yarn build",
     "lint": "eslint src",
     "prettier:check": "prettier --check \"{src,example}/**/*.{js,ts,tsx}\"",
     "prettier:write": "prettier --write \"{src,example}/**/*.{js,ts,tsx}\"",
