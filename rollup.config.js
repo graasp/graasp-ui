@@ -24,7 +24,7 @@ export default {
       exclude: ['**/*.test.ts', '**/*.test.tsx', '**/*.stories.tsx'],
     }),
     commonjs(),
-    scss({ outputStyle: 'compressed', output: 'dist/bundle.css' }),
+    scss({ outputStyle: 'compressed', fileName: 'bundle.css' }),
     babel({ babelHelpers: 'bundled' }),
     // import katex fonts
     copy({
