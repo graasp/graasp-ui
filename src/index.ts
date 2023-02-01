@@ -61,3 +61,6 @@ export * from './SearchInput';
 
 export { default as Select } from './Select';
 export * from './Select';
+
+export { default as PlatformSwitch } from './PlatformSwitch';
+export * from './PlatformSwitch';
