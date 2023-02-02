@@ -1,6 +1,6 @@
 import { Box, SxProps } from '@mui/material';
 
-import React, { FC, ReactElement, useState } from 'react';
+import React, { FC, useState } from 'react';
 
 import { AnalyticsIcon, BuildIcon, LibraryIcon, PlayIcon } from '../icons';
 import { PRIMARY_COLOR, SECONDARY_COLOR } from '../theme';
@@ -30,29 +30,37 @@ type IconProps = {
   sx?: SxProps;
 };
 
-const PlatformButton =
-  (
-    platform: Platform,
-    { accentColor, color }: PlatformSwitchProps,
-    getIconProps: (platform: Platform) => IconProps,
-  ): FC<PlatformSwitchProps> =>
-  () => {
-    let Icon: (props: IconProps) => ReactElement | null;
-    switch (platform) {
-      case Platform.Builder:
-        Icon = BuildIcon;
-        break;
-      case Platform.Player:
-        Icon = PlayIcon;
-        break;
-      case Platform.Library:
-        Icon = LibraryIcon;
-        break;
-      case Platform.Analytics:
-        Icon = AnalyticsIcon;
-        break;
-    }
+const PlatformIcons: Record<Platform, FC<IconProps>> = {
+  [Platform.Builder]: BuildIcon,
+  [Platform.Player]: PlayIcon,
+  [Platform.Library]: LibraryIcon,
+  [Platform.Analytics]: AnalyticsIcon,
+};
 
+export const PlatformSwitch: FC<PlatformSwitchProps> = ({
+  spacing = 0.5,
+  size = 35,
+  color = SECONDARY_COLOR,
+  accentColor = PRIMARY_COLOR,
+  sx = {},
+  selected,
+}) => {
+  const getIconProps = (platform: Platform, last = false) => {
+    const isSelectedPlatform = platform === selected;
+    return {
+      sx: { mr: last ? 0 : spacing, cursor: 'pointer' },
+      size,
+      secondaryColor: isSelectedPlatform ? accentColor : color,
+      primaryColor: isSelectedPlatform ? color : undefined,
+      primaryOpacity: isSelectedPlatform ? 1 : 0,
+      ...sx,
+    };
+  };
+
+  const PlatformButton: FC<{
+    icon: FC<IconProps>;
+    iconProps: IconProps;
+  }> = ({ icon: Icon, iconProps }) => {
     const [isHover, setHover] = useState(false);
 
     const mouseHoverEvents = {
@@ -70,44 +78,21 @@ const PlatformButton =
 
     return (
       <nav style={{ display: 'flex' }} {...mouseHoverEvents}>
-        <Icon {...getIconProps(platform)} {...hoverStyles} />
+        <Icon {...iconProps} {...hoverStyles} />
       </nav>
     );
   };
 
-export const PlatformSwitch: FC<PlatformSwitchProps> = ({
-  spacing = 0.5,
-  size = 35,
-  color = SECONDARY_COLOR,
-  accentColor = PRIMARY_COLOR,
-  sx = {},
-  selected,
-}) => {
-  const getIconProps = (platform: Platform) => {
-    const isSelectedPlatform = platform === selected;
-    return {
-      sx: { mr: spacing, cursor: 'pointer' },
-      size,
-      secondaryColor: isSelectedPlatform ? accentColor : color,
-      primaryColor: isSelectedPlatform ? color : undefined,
-      primaryOpacity: isSelectedPlatform ? 1 : 0,
-      ...sx,
-    };
-  };
-
-  const getLastIconProps = () => {
-    const iconProps = getIconProps(Platform.Analytics);
-    return { ...iconProps, sx: { ...iconProps.sx, mr: 0 } };
-  };
-
-  const colors = { accentColor, color };
-
-  const [BuilderButton, PlayerButton, LibraryButton, AnalyticsButton] = [
-    PlatformButton(Platform.Builder, colors, getIconProps),
-    PlatformButton(Platform.Player, colors, getIconProps),
-    PlatformButton(Platform.Library, colors, getIconProps),
-    PlatformButton(Platform.Analytics, colors, getLastIconProps),
-  ];
+  const buttons = Object.entries(PlatformIcons).map(
+    ([platform, icon], index, entries) => (
+      <PlatformButton
+        icon={icon}
+        iconProps={{
+          ...getIconProps(platform as Platform, index === entries.length),
+        }}
+      />
+    ),
+  );
 
   return (
     <Box
@@ -120,10 +105,7 @@ export const PlatformSwitch: FC<PlatformSwitchProps> = ({
         display: 'flex',
       }}
     >
-      <BuilderButton />
-      <PlayerButton />
-      <LibraryButton />
-      <AnalyticsButton />
+      {buttons}
     </Box>
   );
 };
