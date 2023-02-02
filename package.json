@@ -21,7 +21,7 @@
     "definition": "dist/index.d.ts"
   },
   "engines": {
-    "node": ">=10"
+    "node": ">=16"
   },
   "scripts": {
     "build": "rimraf dist && tsc && rollup -c rollup.config.js",
@@ -44,9 +44,9 @@
     "postpublish": "pinst --enable",
     "post-commit": "git status",
     "pre-commit": "yarn prettier:check && yarn lint",
-    "storybook": "start-storybook -p 6006",
+    "storybook": "storybook dev -p 6006",
     "storybook:test": "test-storybook --coverage",
-    "storybook:build": "build-storybook"
+    "storybook:build": "storybook build"
   },
   "dependencies": {
     "@graasp/sdk": "0.3.0",
@@ -89,6 +89,7 @@
     "@babel/core": "7.20.12",
     "@babel/plugin-proposal-optional-chaining": "7.20.7",
     "@babel/preset-env": "7.20.2",
+    "@babel/preset-react": "7.18.6",
     "@babel/preset-typescript": "7.18.6",
     "@commitlint/cli": "17.4.2",
     "@commitlint/config-conventional": "17.4.2",
@@ -102,19 +103,18 @@
     "@rollup/plugin-commonjs": "24.0.1",
     "@rollup/plugin-node-resolve": "15.0.1",
     "@rollup/plugin-typescript": "11.0.0",
-    "@storybook/addon-a11y": "6.5.16",
-    "@storybook/addon-actions": "6.5.16",
+    "@storybook/addon-a11y": "7.0.0-beta.40",
+    "@storybook/addon-actions": "7.0.0-beta.40",
     "@storybook/addon-coverage": "0.0.7",
-    "@storybook/addon-docs": "6.5.16",
-    "@storybook/addon-essentials": "6.5.16",
-    "@storybook/addon-interactions": "6.5.16",
-    "@storybook/addon-links": "6.5.16",
-    "@storybook/builder-webpack4": "6.5.16",
-    "@storybook/jest": "0.0.10",
-    "@storybook/manager-webpack4": "6.5.16",
-    "@storybook/react": "6.5.16",
-    "@storybook/test-runner": "0.9.3",
-    "@storybook/testing-library": "0.0.13",
+    "@storybook/addon-docs": "7.0.0-beta.40",
+    "@storybook/addon-essentials": "7.0.0-beta.40",
+    "@storybook/addon-interactions": "7.0.0-beta.40",
+    "@storybook/addon-links": "7.0.0-beta.40",
+    "@storybook/jest": "0.0.11-next.0",
+    "@storybook/react": "7.0.0-beta.40",
+    "@storybook/react-webpack5": "7.0.0-beta.40",
+    "@storybook/test-runner": "0.10.0-next.8",
+    "@storybook/testing-library": "0.0.14-next.1",
     "@testing-library/jest-dom": "5.16.5",
     "@testing-library/react": "13.4.0",
     "@testing-library/user-event": "14.4.3",
@@ -160,7 +160,7 @@
     "rollup-plugin-peer-deps-external": "2.2.4",
     "rollup-plugin-scss": "4.0.0",
     "sass": "1.57.1",
-    "storybook": "6.5.16",
+    "storybook": "next",
     "ts-jest": "29.0.5",
     "ts-node": "10.9.1",
     "typescript": "4.9.4",
