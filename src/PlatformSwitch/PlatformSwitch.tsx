@@ -1,54 +1,130 @@
-import { Pagination, PaginationItem } from '@mui/material';
+import { Box, SxProps } from '@mui/material';
 
-import React, { FC } from 'react';
+import React, { FC, ReactElement, useState } from 'react';
 
-import { LibraryIcon, PlayIcon } from '../icons';
-import BuildIcon from '../icons/BuildIcon';
+import { AnalyticsIcon, BuildIcon, LibraryIcon, PlayIcon } from '../icons';
+import { PRIMARY_COLOR, SECONDARY_COLOR } from '../theme';
 
-export type PlatformSwitchProps = {};
-
-const defaultIconsProps = {
-  size: 21,
+export type PlatformSwitchProps = {
+  size?: number;
+  spacing?: number;
+  color?: string;
+  accentColor?: string;
+  sx?: SxProps;
+  selected?: Platform;
 };
 
-export const Platforms = {
-  Builder: {
-    icon: <BuildIcon {...defaultIconsProps} />,
-  },
-  Player: {
-    icon: <PlayIcon {...defaultIconsProps} />,
-  },
-  Library: {
-    icon: <LibraryIcon {...defaultIconsProps} />,
-  },
-} as const;
-
-/**
- * A hacky helper to always obtain each Platform props in the same order
- */
-class PlatformPropsIterator {
-  static readonly platforms = Object.values(Platforms);
-  /** store state in-between next() invocations*/
-  private counter = 0;
-
-  public next(): typeof Platforms[keyof typeof Platforms] {
-    const props = PlatformPropsIterator.platforms[this.counter];
-    this.counter += 1;
-    return props;
-  }
+export enum Platform {
+  Builder = 'Builder',
+  Player = 'Player',
+  Library = 'Library',
+  Analytics = 'Analytics',
 }
 
-export const PlatformSwitch: FC<PlatformSwitchProps> = () => {
-  const iconsIterator = new PlatformPropsIterator();
+type IconProps = {
+  size?: number;
+  primaryColor?: string;
+  primaryOpacity?: number;
+  secondaryColor?: string;
+  secondaryOpacity?: number;
+  sx?: SxProps;
+};
+
+const PlatformButton =
+  (
+    platform: Platform,
+    { accentColor, color }: PlatformSwitchProps,
+    getIconProps: (platform: Platform) => IconProps,
+  ): FC<PlatformSwitchProps> =>
+  () => {
+    let Icon: (props: IconProps) => ReactElement | null;
+    switch (platform) {
+      case Platform.Builder:
+        Icon = BuildIcon;
+        break;
+      case Platform.Player:
+        Icon = PlayIcon;
+        break;
+      case Platform.Library:
+        Icon = LibraryIcon;
+        break;
+      case Platform.Analytics:
+        Icon = AnalyticsIcon;
+        break;
+    }
+
+    const [isHover, setHover] = useState(false);
+
+    const mouseHoverEvents = {
+      onMouseEnter: () => setHover(true),
+      onMouseLeave: () => setHover(false),
+    };
+
+    const hoverStyles = isHover
+      ? {
+          secondaryColor: accentColor,
+          primaryColor: color,
+          primaryOpacity: 1,
+        }
+      : {};
+
+    return (
+      <nav style={{ display: 'flex' }} {...mouseHoverEvents}>
+        <Icon {...getIconProps(platform)} {...hoverStyles} />
+      </nav>
+    );
+  };
+
+export const PlatformSwitch: FC<PlatformSwitchProps> = ({
+  spacing = 0.5,
+  size = 35,
+  color = SECONDARY_COLOR,
+  accentColor = PRIMARY_COLOR,
+  sx = {},
+  selected,
+}) => {
+  const getIconProps = (platform: Platform) => {
+    const isSelectedPlatform = platform === selected;
+    return {
+      sx: { mr: spacing, cursor: 'pointer' },
+      size,
+      secondaryColor: isSelectedPlatform ? accentColor : color,
+      primaryColor: isSelectedPlatform ? color : undefined,
+      primaryOpacity: isSelectedPlatform ? 1 : 0,
+      ...sx,
+    };
+  };
+
+  const getLastIconProps = () => {
+    const iconProps = getIconProps(Platform.Analytics);
+    return { ...iconProps, sx: { ...iconProps.sx, mr: 0 } };
+  };
+
+  const colors = { accentColor, color };
+
+  const [BuilderButton, PlayerButton, LibraryButton, AnalyticsButton] = [
+    PlatformButton(Platform.Builder, colors, getIconProps),
+    PlatformButton(Platform.Player, colors, getIconProps),
+    PlatformButton(Platform.Library, colors, getIconProps),
+    PlatformButton(Platform.Analytics, colors, getLastIconProps),
+  ];
+
   return (
-    <Pagination
-      count={PlatformPropsIterator.platforms.length}
-      hideNextButton
-      hidePrevButton
-      renderItem={(item) => (
-        <PaginationItem {...item} page={iconsIterator.next().icon} />
-      )}
-    />
+    <Box
+      sx={{
+        p: spacing,
+        border: 1,
+        borderColor: color,
+        borderRadius: `${size}px`,
+        width: 'fit-content',
+        display: 'flex',
+      }}
+    >
+      <BuilderButton />
+      <PlayerButton />
+      <LibraryButton />
+      <AnalyticsButton />
+    </Box>
   );
 };
 
