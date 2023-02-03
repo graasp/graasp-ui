@@ -9,7 +9,7 @@ export enum Platform {
 }
 
 /** Maps each Platform to a URL generator function */
-export type HostsMapper = Record<Platform, (itemId: string) => string>;
+export type HostsMapper = Partial<Record<Platform, (itemId: string) => string>>;
 
 /**
  * Generates a default hosts mapper given a record of platform to hostname
@@ -23,7 +23,7 @@ export type HostsMapper = Record<Platform, (itemId: string) => string>;
  * For any advanced usage, create your own {@see HostsMapper}
  */
 export function defaultHostsMapper(
-  hostsUrls: Omit<Record<Platform, string>, 'Analytics'>,
+  hostsUrls: Partial<Record<Platform, string>>,
 ): HostsMapper {
   return Object.fromEntries(
     Object.entries(hostsUrls).map(([platform, url]) => {
@@ -51,7 +51,7 @@ export function usePlatformNavigation(hostsMapper: HostsMapper) {
       /^\/(?:\w+\/)*([0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}).*/;
     const match = window.location.pathname.match(itemRegex);
     const itemId = match?.[1] ?? '';
-    const url = hostsMapper[platform](itemId);
+    const url = hostsMapper[platform]?.(itemId) ?? '#';
     redirect(url);
   };
 }
