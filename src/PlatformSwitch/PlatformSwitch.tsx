@@ -6,12 +6,34 @@ import { AnalyticsIcon, BuildIcon, LibraryIcon, PlayIcon } from '../icons';
 import { PRIMARY_COLOR, SECONDARY_COLOR } from '../theme';
 
 export type PlatformSwitchProps = {
+  /** Size of the icons (default: 35) */
   size?: number;
+  /** Spacing in-between icons as well as padding inside the switch frame */
   spacing?: number;
+  /** Color of the switch controls */
   color?: string;
+  /** Color of the icons when highlighted */
   accentColor?: string;
+  /** Color of the icons when the corresponding platform is disabled */
+  disabledColor?: string;
+  /** Style overrides to apply to the switch frame */
   sx?: SxProps;
+  /** Platform that should be currently highlighted */
   selected?: Platform;
+  /** Platform-specific icon props */
+  platformsProps?: Partial<
+    Record<
+      Platform,
+      {
+        /** Whether this platform should be disabled (non-clickable) */
+        disabled?: boolean;
+        /** Action when this platform button is clicked */
+        onClick?: React.MouseEventHandler<HTMLElement>;
+        /** Style overrides for this platform's icon */
+        sx?: SxProps;
+      }
+    >
+  >;
 };
 
 export enum Platform {
@@ -21,6 +43,7 @@ export enum Platform {
   Analytics = 'Analytics',
 }
 
+/** Common props for all platform icons */
 type IconProps = {
   size?: number;
   primaryColor?: string;
@@ -30,6 +53,7 @@ type IconProps = {
   sx?: SxProps;
 };
 
+/** Mapping from platform to their icons */
 const PlatformIcons: Record<Platform, FC<IconProps>> = {
   [Platform.Builder]: BuildIcon,
   [Platform.Player]: PlayIcon,
@@ -37,30 +61,27 @@ const PlatformIcons: Record<Platform, FC<IconProps>> = {
   [Platform.Analytics]: AnalyticsIcon,
 };
 
+/**
+ * PlatformSwitch allows the user to change between the platforms
+ */
 export const PlatformSwitch: FC<PlatformSwitchProps> = ({
   spacing = 0.5,
   size = 35,
   color = SECONDARY_COLOR,
   accentColor = PRIMARY_COLOR,
-  sx = {},
+  disabledColor = '#CCC',
+  sx,
   selected,
+  platformsProps,
 }) => {
-  const getIconProps = (platform: Platform, last = false) => {
-    const isSelectedPlatform = platform === selected;
-    return {
-      sx: { mr: last ? 0 : spacing, cursor: 'pointer' },
-      size,
-      secondaryColor: isSelectedPlatform ? accentColor : color,
-      primaryColor: isSelectedPlatform ? color : undefined,
-      primaryOpacity: isSelectedPlatform ? 1 : 0,
-      ...sx,
-    };
-  };
-
+  /** Helper inner component: generates buttons from icons while capturing parent props */
   const PlatformButton: FC<{
-    icon: FC<IconProps>;
-    iconProps: IconProps;
-  }> = ({ icon: Icon, iconProps }) => {
+    /** Platform which button should be rendered */
+    platform: Platform;
+    /** Styles applied to the underlying icon */
+    sx?: SxProps;
+  }> = ({ platform, sx }) => {
+    // Emulate mouseover: we want to change the color of the icons that are props
     const [isHover, setHover] = useState(false);
 
     const mouseHoverEvents = {
@@ -68,31 +89,59 @@ export const PlatformSwitch: FC<PlatformSwitchProps> = ({
       onMouseLeave: () => setHover(false),
     };
 
-    const hoverStyles = isHover
+    const isSelectedPlatform = platform === selected;
+
+    const platformProps = platformsProps?.[platform];
+
+    const Icon = PlatformIcons[platform];
+
+    const iconProps = {
+      size,
+      secondaryColor: isSelectedPlatform ? accentColor : color,
+      primaryColor: isSelectedPlatform ? color : undefined,
+      primaryOpacity: isSelectedPlatform ? 1 : 0,
+      // platform-specific styles should override existing ones
+      sx: { ...sx, ...platformProps?.sx },
+    };
+
+    // Generate hover styles but not if this platform is disabled
+    const hoverStyles =
+      isHover && !platformProps?.disabled
+        ? {
+            secondaryColor: accentColor,
+            primaryColor: color,
+            primaryOpacity: 1,
+          }
+        : {};
+
+    const disabledStyles = platformProps?.disabled
       ? {
-          secondaryColor: accentColor,
-          primaryColor: color,
-          primaryOpacity: 1,
+          secondaryColor: disabledColor,
         }
       : {};
 
+    // Ordering of the spread props is important: later styles override former ones
     return (
-      <nav style={{ display: 'flex' }} {...mouseHoverEvents}>
-        <Icon {...iconProps} {...hoverStyles} />
+      <nav
+        style={{
+          display: 'flex',
+          cursor: platformProps?.disabled ? 'default' : 'pointer',
+        }}
+        {...mouseHoverEvents}
+        onClick={platformProps?.disabled ? undefined : platformProps?.onClick}
+      >
+        <Icon {...iconProps} {...hoverStyles} {...disabledStyles} />
       </nav>
     );
   };
 
-  const buttons = Object.entries(PlatformIcons).map(
-    ([platform, icon], index, entries) => (
-      <PlatformButton
-        icon={icon}
-        iconProps={{
-          ...getIconProps(platform as Platform, index === entries.length),
-        }}
-      />
-    ),
-  );
+  const buttons = Object.values(Platform).map((platform, index, platforms) => (
+    <PlatformButton
+      // the last icon does not need margin at the end
+      sx={{ mr: index === platforms.length ? 0 : spacing }}
+      platform={platform}
+    />
+  ));
 
   return (
     <Box
@@ -103,6 +152,8 @@ export const PlatformSwitch: FC<PlatformSwitchProps> = ({
         borderRadius: `${size}px`,
         width: 'fit-content',
         display: 'flex',
+        // props sx must be spread last to override existing styles
+        ...sx,
       }}
     >
       {buttons}
