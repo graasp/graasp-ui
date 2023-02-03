@@ -3,7 +3,8 @@ import { ComponentMeta, ComponentStory } from '@storybook/react';
 import React from 'react';
 
 import { PRIMARY_COLOR, SECONDARY_COLOR } from '../theme';
-import PlatformSwitch, { Platform } from './PlatformSwitch';
+import PlatformSwitch from './PlatformSwitch';
+import { Platform } from './hooks';
 
 export default {
   title: 'Common/PlatformSwitch',

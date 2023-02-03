@@ -4,6 +4,7 @@ import React, { FC, useState } from 'react';
 
 import { AnalyticsIcon, BuildIcon, LibraryIcon, PlayIcon } from '../icons';
 import { PRIMARY_COLOR, SECONDARY_COLOR } from '../theme';
+import { Platform } from './hooks';
 
 export type PlatformSwitchProps = {
   /** Size of the icons (default: 35) */
@@ -35,13 +36,6 @@ export type PlatformSwitchProps = {
     >
   >;
 };
-
-export enum Platform {
-  Builder = 'Builder',
-  Player = 'Player',
-  Library = 'Library',
-  Analytics = 'Analytics',
-}
 
 /** Common props for all platform icons */
 type IconProps = {
