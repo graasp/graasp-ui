@@ -1,12 +1,11 @@
 import { expect } from '@storybook/jest';
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import { within } from '@storybook/testing-library';
 
 import React from 'react';
 
-import { AppItemExtra, ItemType } from '@graasp/sdk';
+import { AppItemType, ItemType, convertJs } from '@graasp/sdk';
 
-import { ImmutableItemFactory } from '../types';
 import { TABLE_CATEGORIES } from '../utils/storybook';
 import AppItem from './AppItem';
 
@@ -26,15 +25,13 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof AppItem>;
+} as Meta<typeof AppItem>;
 
-const Template: ComponentStory<typeof AppItem> = (args) => (
-  <AppItem {...args} />
-);
+const Template: StoryFn<typeof AppItem> = (args) => <AppItem {...args} />;
 
 export const Example = Template.bind({});
 Example.args = {
-  item: ImmutableItemFactory<AppItemExtra>({
+  item: convertJs<AppItemType>({
     name: 'my app',
     id: 'item-id',
     description: 'item-description',
@@ -43,6 +40,12 @@ Example.args = {
         url: 'https://graasp.org',
       },
     },
+    type: 'app',
+    path: 'item-path',
+    settings: {},
+    creator: 'mock-member-id',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt',
   }),
 };
 Example.play = async ({ canvasElement, args }) => {

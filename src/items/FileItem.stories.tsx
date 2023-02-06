@@ -1,12 +1,11 @@
 // TODO
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 
 import React from 'react';
 
-import { ItemType, LocalFileItemExtra } from '@graasp/sdk';
+import { ItemType, LocalFileItemType, convertJs } from '@graasp/sdk';
 
 import { MIME_TYPES } from '../constants';
-import { ImmutableItemFactory } from '../types';
 import { TABLE_CATEGORIES } from '../utils/storybook';
 import FileItem from './FileItem';
 
@@ -21,12 +20,9 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof FileItem>;
+} as Meta<typeof FileItem>;
 
-const Template: ComponentStory<typeof FileItem> = (
-  args,
-  { loaded: { content } },
-) => {
+const Template: StoryFn<typeof FileItem> = (args, { loaded: { content } }) => {
   return <FileItem {...args} content={content} />;
 };
 
@@ -37,7 +33,7 @@ Image.loaders = [
   }),
 ];
 Image.args = {
-  item: ImmutableItemFactory<LocalFileItemExtra>({
+  item: convertJs<LocalFileItemType>({
     id: 'my-id',
     name: 'my item name',
     extra: {
@@ -48,5 +44,12 @@ Image.args = {
         size: 2600,
       },
     },
+    type: 'file',
+    description: '',
+    path: 'item-path',
+    settings: {},
+    creator: 'creator',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt',
   }),
 };

@@ -29,6 +29,8 @@
     "start:example": "yarn workspace graasp-ui-example start",
     "prepack": "yarn build",
     "lint": "eslint src",
+    "type-check": "tsc --noEmit",
+    "check": "yarn prettier:check && yarn lint && yarn type-check",
     "prettier:check": "prettier --check \"{src,example}/**/*.{js,ts,tsx}\"",
     "prettier:write": "prettier --write \"{src,example}/**/*.{js,ts,tsx}\"",
     "pretest": "cd example && yarn",
@@ -49,7 +51,7 @@
     "storybook:build": "storybook build"
   },
   "dependencies": {
-    "@graasp/sdk": "0.3.0",
+    "@graasp/sdk": "github:graasp/graasp-sdk#74-afine-item-type-with-discriminated-union",
     "clsx": "1.2.1",
     "http-status-codes": "2.2.0",
     "immutable": "4.1.0",

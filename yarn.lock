@@ -2319,9 +2319,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@graasp/sdk@npm:0.3.0":
+"@graasp/sdk@github:graasp/graasp-sdk#74-afine-item-type-with-discriminated-union":
   version: 0.3.0
-  resolution: "@graasp/sdk@npm:0.3.0"
+  resolution: "@graasp/sdk@https://github.com/graasp/graasp-sdk.git#commit=b6d7d153e1ba0958cbe782cae8d568c58d83c875"
   dependencies:
     "@fastify/secure-session": 5.2.0
     aws-sdk: 2.1111.0
@@ -2332,7 +2332,7 @@ __metadata:
     qs: 6.11.0
     slonik: 28.1.1
     uuid: 8.3.2
-  checksum: 9204d48d08ebf5b1ed3b37000c8b3398a6f1ae2420ce5a474da0ba115494e14156aee106d3850eb7d892255d668bb0e018efd60359b674fa4b88d195419f77cb
+  checksum: 45b387bca830b2b393d9307a558320e48277bef3e442b0a648ce796c1d0a5894a32f3b64aec4af30e3201e2ff19f67cb6b52d85d2d87c9cb0cd9b6e33f37b061
   languageName: node
   linkType: hard
 
@@ -2349,7 +2349,7 @@ __metadata:
     "@commitlint/config-conventional": 17.4.2
     "@emotion/react": 11.10.5
     "@emotion/styled": 11.10.5
-    "@graasp/sdk": 0.3.0
+    "@graasp/sdk": "github:graasp/graasp-sdk#74-afine-item-type-with-discriminated-union"
     "@mdx-js/react": 2.2.1
     "@mui/icons-material": 5.11.0
     "@mui/lab": 5.0.0-alpha.117
