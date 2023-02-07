@@ -1,11 +1,13 @@
-name: Storyboook tests
+name: Storybook tests
 
 on: [push]
 
 jobs:
   storybook-test:
     runs-on: ubuntu-latest
-
+    concurrency:
+      group: storybook-tests-{{ github.head_ref || github.ref }}
+      cancel-in-progress: true
     steps:
       - uses: actions/checkout@v3
       - name: Use Node.js 16.x

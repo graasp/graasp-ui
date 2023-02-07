@@ -9,6 +9,9 @@ on:
       - master
 jobs:
   build-and-deploy:
+    concurrency:
+      group: storybook-{{ github.ref }}
+      cancel-in-progress: true
     runs-on: ubuntu-latest
     steps:
       - name: checkout
