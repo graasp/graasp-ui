@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.10.0](https://github.com/graasp/graasp-ui/compare/v0.9.0...v0.10.0) (2023-02-07)
+
+
+### Features
+
+* add PlatformSwitch component ([#216](https://github.com/graasp/graasp-ui/issues/216)) ([1621c43](https://github.com/graasp/graasp-ui/commit/1621c43ff0f66eca4a4108ff9f54a1d74ffe40ae))
+
 ## [0.9.0](https://github.com/graasp/graasp-ui/compare/v0.8.0...v0.9.0) (2023-02-06)
 
 
