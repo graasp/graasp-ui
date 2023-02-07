@@ -7,6 +7,8 @@ import { PRIMARY_COLOR, SECONDARY_COLOR } from '../theme';
 import { Platform } from './hooks';
 
 export type PlatformSwitchProps = {
+  /** Element ID of the Platform Switch */
+  id?: string;
   /** Size of the icons (default: 32) */
   size?: number;
   /** Spacing in-between icons as well as padding inside the switch frame */
@@ -26,10 +28,17 @@ export type PlatformSwitchProps = {
     Record<
       Platform,
       {
+        /** Element ID of this specific platform button */
+        id?: string;
         /** Whether this platform should be disabled (non-clickable) */
         disabled?: boolean;
         /** Action when this platform button is clicked */
         onClick?: React.MouseEventHandler<HTMLElement>;
+        /**
+         * Action when this platform button is clicked
+         * (any mouse button, use the {@see MouseEvent} parameter to discriminate)
+         */
+        onMouseDown?: React.MouseEventHandler<HTMLElement>;
         /** Style overrides for this platform's icon */
         sx?: SxProps;
       }
@@ -59,6 +68,7 @@ const PlatformIcons: Record<Platform, FC<IconProps>> = {
  * PlatformSwitch allows the user to change between the platforms
  */
 export const PlatformSwitch: FC<PlatformSwitchProps> = ({
+  id,
   spacing = 0.5,
   size = 32,
   color = SECONDARY_COLOR,
@@ -116,16 +126,20 @@ export const PlatformSwitch: FC<PlatformSwitchProps> = ({
 
     // Ordering of the spread props is important: later styles override former ones
     return (
-      <nav
+      <a
+        id={platformProps?.id}
         style={{
           display: 'flex',
           cursor: platformProps?.disabled ? 'default' : 'pointer',
         }}
         {...mouseHoverEvents}
         onClick={platformProps?.disabled ? undefined : platformProps?.onClick}
+        onMouseDown={
+          platformProps?.disabled ? undefined : platformProps?.onMouseDown
+        }
       >
         <Icon {...iconProps} {...hoverStyles} {...disabledStyles} />
-      </nav>
+      </a>
     );
   };
 
@@ -139,6 +153,8 @@ export const PlatformSwitch: FC<PlatformSwitchProps> = ({
 
   return (
     <Box
+      component='nav'
+      id={id}
       sx={{
         p: spacing,
         border: 1,
