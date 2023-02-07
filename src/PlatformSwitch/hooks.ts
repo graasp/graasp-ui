@@ -1,5 +1,8 @@
 import { redirect } from '@graasp/sdk';
 
+const MOUSE_MIDDLE_BUTTON = 1;
+const TARGET_BLANK_NEW_TAB = '_blank';
+
 /** Enumeration of available platforms */
 export enum Platform {
   Builder = 'Builder',
@@ -47,14 +50,24 @@ export function defaultHostsMapper(
 /**
  * Hook to create a platform navigator function
  * @param hostsMapper {@see HostsMapper}
- * @returns A navigation function to be applied on a given itemId
+ * @param itemId Optional ID of the item context which will be opened in the target platform
+ * @returns A mouse events factory that will generate left and middle click actions, to be applied to a given platform
  */
 export function usePlatformNavigation(
   hostsMapper: HostsMapper,
   itemId?: string,
 ) {
   return (platform: Platform) => {
-    const url = hostsMapper[platform]?.(itemId) ?? '#';
-    redirect(url);
+    const url = hostsMapper[platform]?.(itemId);
+    const href = url ?? '#';
+    return {
+      onClick: (_event: MouseEvent) => redirect(href),
+      onMouseDown: (event: MouseEvent) => {
+        if (event.button !== MOUSE_MIDDLE_BUTTON || url === undefined) {
+          return;
+        }
+        window.open(href, TARGET_BLANK_NEW_TAB);
+      },
+    };
   };
 }
