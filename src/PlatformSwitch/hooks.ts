@@ -9,7 +9,9 @@ export enum Platform {
 }
 
 /** Maps each Platform to a URL generator function */
-export type HostsMapper = Partial<Record<Platform, (itemId: string) => string>>;
+export type HostsMapper = Partial<
+  Record<Platform, (itemId?: string) => string | undefined>
+>;
 
 /**
  * Generates a default hosts mapper given a record of platform to hostname
@@ -25,14 +27,17 @@ export type HostsMapper = Partial<Record<Platform, (itemId: string) => string>>;
 export function defaultHostsMapper(
   hostsUrls: Partial<Record<Platform, string>>,
 ): HostsMapper {
+  const transformUrls = {
+    [Platform.Builder]: (origin: string) => `${origin}/items`,
+  };
+
   return Object.fromEntries(
     Object.entries(hostsUrls).map(([platform, url]) => {
       const origin = new URL(url).origin;
-      // in Builder platform, should appear under /items
-      const prefixIfBuilder = platform === Platform.Builder ? 'items/' : '';
+      const path = transformUrls[platform]?.(origin) ?? origin;
       return [
         platform,
-        (itemId: string) => `${origin}/${prefixIfBuilder}${itemId}`,
+        (itemId: string) => (itemId ? `${path}/${itemId}` : undefined),
       ];
     }),
   ) as HostsMapper;
@@ -45,7 +50,7 @@ export function defaultHostsMapper(
  */
 export function usePlatformNavigation(
   hostsMapper: HostsMapper,
-  itemId: string,
+  itemId?: string,
 ) {
   return (platform: Platform) => {
     const url = hostsMapper[platform]?.(itemId) ?? '#';
