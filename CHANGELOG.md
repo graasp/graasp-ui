@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.10.2](https://github.com/graasp/graasp-ui/compare/v0.10.1...v0.10.2) (2023-02-07)
+
+
+### Bug Fixes
+
+* use MouseEvent from react in PlatformSwitch ([434e862](https://github.com/graasp/graasp-ui/commit/434e862754211e603b5058ed8031754cf4a3b802))
+
 ## [0.10.1](https://github.com/graasp/graasp-ui/compare/v0.10.0...v0.10.1) (2023-02-07)
 
 
