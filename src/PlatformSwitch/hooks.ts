@@ -1,3 +1,5 @@
+import { MouseEvent } from 'react';
+
 import { redirect } from '@graasp/sdk';
 
 const MOUSE_MIDDLE_BUTTON = 1;
