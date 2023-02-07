@@ -43,14 +43,11 @@ export function defaultHostsMapper(
  * @param hostsMapper {@see HostsMapper}
  * @returns A navigation function to be applied on a given itemId
  */
-export function usePlatformNavigation(hostsMapper: HostsMapper) {
+export function usePlatformNavigation(
+  hostsMapper: HostsMapper,
+  itemId: string,
+) {
   return (platform: Platform) => {
-    // detect current item given url /[optionalPrefixA/optionalPrefixB/.../]<itemId>[...anything]
-    // todo: use proper top-level item context?
-    const itemRegex =
-      /^\/(?:\w+\/)*([0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}).*/;
-    const match = window.location.pathname.match(itemRegex);
-    const itemId = match?.[1] ?? '';
     const url = hostsMapper[platform]?.(itemId) ?? '#';
     redirect(url);
   };
