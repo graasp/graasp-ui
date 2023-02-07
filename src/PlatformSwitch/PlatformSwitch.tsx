@@ -7,7 +7,7 @@ import { PRIMARY_COLOR, SECONDARY_COLOR } from '../theme';
 import { Platform } from './hooks';
 
 export type PlatformSwitchProps = {
-  /** Size of the icons (default: 35) */
+  /** Size of the icons (default: 32) */
   size?: number;
   /** Spacing in-between icons as well as padding inside the switch frame */
   spacing?: number;
@@ -60,7 +60,7 @@ const PlatformIcons: Record<Platform, FC<IconProps>> = {
  */
 export const PlatformSwitch: FC<PlatformSwitchProps> = ({
   spacing = 0.5,
-  size = 35,
+  size = 32,
   color = SECONDARY_COLOR,
   accentColor = PRIMARY_COLOR,
   disabledColor = '#CCC',
