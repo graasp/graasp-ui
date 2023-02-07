@@ -37,7 +37,8 @@ export function defaultHostsMapper(
       const path = transformUrls[platform]?.(origin) ?? origin;
       return [
         platform,
-        (itemId: string) => (itemId ? `${path}/${itemId}` : undefined),
+        // if passed itemId is undefined, redirect to home page of platform
+        (itemId: string) => (itemId ? `${path}/${itemId}` : origin),
       ];
     }),
   ) as HostsMapper;
