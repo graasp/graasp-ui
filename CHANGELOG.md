@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.10.1](https://github.com/graasp/graasp-ui/compare/v0.10.0...v0.10.1) (2023-02-07)
+
+
+### Bug Fixes
+
+* add platform switch ids, use nav controls, handle middle click  ([#221](https://github.com/graasp/graasp-ui/issues/221)) ([6d45212](https://github.com/graasp/graasp-ui/commit/6d4521228294a9abaf108a98eafc394efd1b1b3c))
+
 ## [0.10.0](https://github.com/graasp/graasp-ui/compare/v0.9.0...v0.10.0) (2023-02-07)
 
 
