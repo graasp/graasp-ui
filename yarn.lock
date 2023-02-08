@@ -2145,7 +2145,7 @@ __metadata:
 
 "@graasp/sdk@github:graasp/graasp-sdk#74-afine-item-type-with-discriminated-union":
   version: 0.3.0
-  resolution: "@graasp/sdk@https://github.com/graasp/graasp-sdk.git#commit=5c4998143c19770e49833b75e6d38461a5d53121"
+  resolution: "@graasp/sdk@https://github.com/graasp/graasp-sdk.git#commit=d35dbebbd26384a24fb90c24f0d98ab4a306c921"
   dependencies:
     "@fastify/secure-session": 5.3.0
     aws-sdk: 2.1310.0
@@ -2156,7 +2156,7 @@ __metadata:
     qs: 6.11.0
     slonik: 28.1.1
     uuid: 9.0.0
-  checksum: b113be6008ee5d570c5b2dd809c27093a5634353291cdc002cec1924e327868316ec4772dfbea2a980d0b3bc0587fbda34f8d4f701ea1f75b351b260175db217
+  checksum: 5c1da0694f1a0dfa230eb1bd63ad296e891f7bc3dbf9a2dcf9258926dd32ea2ac9aa13cebd3807dc5c5076f72dcf089a34afc27b87a5938db7008889e668cddc
   languageName: node
   linkType: hard
 
