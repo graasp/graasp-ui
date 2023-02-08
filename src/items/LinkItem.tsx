@@ -4,7 +4,7 @@ import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import { styled } from '@mui/material';
 import Alert from '@mui/material/Alert';
 
-import React, { FC, Fragment, useRef, useState } from 'react';
+import React, { Fragment, useRef, useState } from 'react';
 
 import {
   EmbeddedLinkItemType,
@@ -26,7 +26,7 @@ export interface LinkItemProps {
   /**
    * @deprecated Use the `memberId` prop to only pass the id
    */
-  member: MemberRecord;
+  member?: MemberRecord;
   editCaption?: boolean;
   errorMessage?: string;
   height?: number | string;
@@ -68,7 +68,7 @@ const StyledLinkButton = styled(Button)(({ theme }) => ({
   marginTop: theme.spacing(1),
 }));
 
-const LinkItem: FC<LinkItemProps> = ({
+const LinkItem = ({
   item,
   memberId,
   member,
@@ -83,7 +83,7 @@ const LinkItem: FC<LinkItemProps> = ({
   height: defaultHeight = 400,
   errorMessage = 'The link is malformed.',
   isResizable = false,
-}) => {
+}: LinkItemProps): JSX.Element => {
   const [isLoading, setIsLoading] = useState(true);
   const [height] = useState<string | number>(defaultHeight);
   const iframeRef = useRef<HTMLIFrameElement>(null);
@@ -150,7 +150,7 @@ const LinkItem: FC<LinkItemProps> = ({
     const ResizableLink = withResizing({
       height,
       component: iframe,
-      memberId: memberId || member.id,
+      memberId: memberId || member?.id,
       itemId: item.id,
     });
 

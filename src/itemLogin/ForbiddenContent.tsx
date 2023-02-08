@@ -19,7 +19,7 @@ export interface ForbiddenContentProps {
   /**
    * @deprecated Use the `memberId` prop to only pass the id
    */
-  user: MemberRecord;
+  user?: MemberRecord;
   signOut: () => void;
   id?: string;
   showPseudonymized?: boolean;
@@ -63,7 +63,7 @@ const ForbiddenContent: FC<ForbiddenContentProps> = ({
       <ForbiddenText id={forbiddenTextId} />
       {
         // todo: remove this when deprecating user prop
-        (memberId || user.id) && renderAuthenticatedAlternatives()
+        (memberId || user?.id) && renderAuthenticatedAlternatives()
       }
     </StyledContainer>
   );
