@@ -1,6 +1,6 @@
 import { Box, SxProps } from '@mui/material';
 
-import React, { FC, useState } from 'react';
+import React, { FC, MouseEvent, useState } from 'react';
 
 import { AnalyticsIcon, BuildIcon, LibraryIcon, PlayIcon } from '../icons';
 import { PRIMARY_COLOR, SECONDARY_COLOR } from '../theme';
@@ -33,12 +33,12 @@ export type PlatformSwitchProps = {
         /** Whether this platform should be disabled (non-clickable) */
         disabled?: boolean;
         /** Action when this platform button is clicked */
-        onClick?: React.MouseEventHandler<HTMLElement>;
+        onClick?: React.MouseEventHandler;
         /**
          * Action when this platform button is clicked
          * (any mouse button, use the {@see MouseEvent} parameter to discriminate)
          */
-        onMouseDown?: React.MouseEventHandler<HTMLElement>;
+        onMouseDown?: React.MouseEventHandler;
         /** Style overrides for this platform's icon */
         sx?: SxProps;
       }
@@ -88,14 +88,22 @@ export const PlatformSwitch: FC<PlatformSwitchProps> = ({
     // Emulate mouseover: we want to change the color of the icons that are props
     const [isHover, setHover] = useState(false);
 
-    const mouseHoverEvents = {
-      onMouseEnter: () => setHover(true),
-      onMouseLeave: () => setHover(false),
-    };
-
     const isSelectedPlatform = platform === selected;
 
     const platformProps = platformsProps?.[platform];
+
+    const mouseEvents = {
+      onMouseEnter: () => setHover(true),
+      onMouseLeave: () => setHover(false),
+      onClick: platformProps?.disabled ? undefined : platformProps?.onClick,
+      onMouseDown: platformProps?.disabled
+        ? undefined
+        : (event: MouseEvent) => {
+            platformProps?.onMouseDown?.(event);
+            // when middle-clicked, opens in new tab => hover state may not be cleared
+            setHover(false);
+          },
+    };
 
     const Icon = PlatformIcons[platform];
 
@@ -132,11 +140,7 @@ export const PlatformSwitch: FC<PlatformSwitchProps> = ({
           display: 'flex',
           cursor: platformProps?.disabled ? 'default' : 'pointer',
         }}
-        {...mouseHoverEvents}
-        onClick={platformProps?.disabled ? undefined : platformProps?.onClick}
-        onMouseDown={
-          platformProps?.disabled ? undefined : platformProps?.onMouseDown
-        }
+        {...mouseEvents}
       >
         <Icon {...iconProps} {...hoverStyles} {...disabledStyles} />
       </a>
