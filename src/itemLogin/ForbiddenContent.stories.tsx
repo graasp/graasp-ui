@@ -1,13 +1,10 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 
 import React from 'react';
 
-import { ImmutableMember } from '../types';
 import { TABLE_CATEGORIES } from '../utils/storybook';
 import ForbiddenContent from './ForbiddenContent';
 import ForbiddenText from './ForbiddenText';
-
-const user = new ImmutableMember({ id: 'member-id', name: 'member-name' });
 
 export default {
   title: 'Common/ForbiddenContent',
@@ -21,24 +18,24 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof ForbiddenContent>;
+} as Meta<typeof ForbiddenContent>;
 
-const Template: ComponentStory<typeof ForbiddenContent> = (args) => (
+const Template: StoryFn<typeof ForbiddenContent> = (args) => (
   <ForbiddenContent {...args} />
 );
 
 export const SignedIn = Template.bind({});
 SignedIn.args = {
-  user,
+  memberId: 'member-id',
 };
 
 export const SignedOut = Template.bind({});
 SignedOut.args = {
-  user: new ImmutableMember({}),
+  memberId: undefined,
 };
 
 export const SignedOutShowPseudonymized = Template.bind({});
 SignedOutShowPseudonymized.args = {
   showPseudonymized: true,
-  user,
+  memberId: 'member-id',
 };

@@ -4,8 +4,10 @@ import Alert from '@mui/material/Alert';
 
 import React, { ReactElement } from 'react';
 
+import { ItemRecord, MemberRecord } from '@graasp/sdk/frontend';
+
 import CustomInitialLoader from '../CustomInitialLoader';
-import { ItemLoginRecord, ItemRecord, MemberRecord, UUID } from '../types';
+import { ItemLoginRecord, UUID } from '../types';
 import ForbiddenText from './ForbiddenText';
 import ItemLoginScreen, { SignInPropertiesType } from './ItemLoginScreen';
 

@@ -2,8 +2,9 @@ import { Container, Typography, styled } from '@mui/material';
 
 import React, { FC, ReactNode } from 'react';
 
+import { MemberRecord } from '@graasp/sdk/frontend';
+
 import Button from '../buttons/Button';
-import { MemberRecord } from '../types';
 import ForbiddenText from './ForbiddenText';
 
 const StyledContainer = styled(Container)({
@@ -11,6 +12,13 @@ const StyledContainer = styled(Container)({
 });
 
 export interface ForbiddenContentProps {
+  /**
+   * Id of the current member used for saving the resizing preferences
+   */
+  memberId?: string;
+  /**
+   * @deprecated Use the `memberId` prop to only pass the id
+   */
   user: MemberRecord;
   signOut: () => void;
   id?: string;
@@ -22,6 +30,7 @@ export interface ForbiddenContentProps {
 
 const ForbiddenContent: FC<ForbiddenContentProps> = ({
   signOut,
+  memberId,
   user,
   id,
   forbiddenTextId,
@@ -52,7 +61,10 @@ const ForbiddenContent: FC<ForbiddenContentProps> = ({
   return (
     <StyledContainer id={id}>
       <ForbiddenText id={forbiddenTextId} />
-      {user.id && renderAuthenticatedAlternatives()}
+      {
+        // todo: remove this when deprecating user prop
+        (memberId || user.id) && renderAuthenticatedAlternatives()
+      }
     </StyledContainer>
   );
 };

@@ -1,31 +1,12 @@
 import { Record, RecordOf } from 'immutable';
 
-import { Context, Item, Member, MemberType } from '@graasp/sdk';
+import { Context } from '@graasp/sdk';
 
 export type UUID = string;
-
-export type ItemRecord = RecordOf<Item>;
 
 export type ItemMembership = {
   id: string;
 };
-
-export type MemberExtra = {
-  hasAvatar?: boolean;
-};
-
-export type MemberExtraRecord = RecordOf<MemberExtra>;
-
-export type MemberRecord = RecordOf<Member>;
-export class ImmutableMember extends Record<Member>({
-  id: '',
-  extra: {},
-  name: '',
-  createdAt: '',
-  updatedAt: '',
-  email: '',
-  type: MemberType.Individual,
-}) {}
 
 export enum Variant {
   TEXT = 'text',

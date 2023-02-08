@@ -11,15 +11,22 @@ import {
   getEmbeddedLinkExtra,
   redirect,
 } from '@graasp/sdk';
+import { MemberRecord } from '@graasp/sdk/frontend';
 
 import Button from '../buttons/Button';
 import { ITEM_MAX_HEIGHT } from '../constants';
-import { MemberRecord } from '../types';
 import withCaption from './withCaption';
 import withResizing, { StyledIFrame } from './withResizing';
 
 export interface LinkItemProps {
-  member?: MemberRecord;
+  /**
+   * Id of the current member used for saving the resizing preferences
+   */
+  memberId?: string;
+  /**
+   * @deprecated Use the `memberId` prop to only pass the id
+   */
+  member: MemberRecord;
   editCaption?: boolean;
   errorMessage?: string;
   height?: number | string;
@@ -63,6 +70,7 @@ const StyledLinkButton = styled(Button)(({ theme }) => ({
 
 const LinkItem: FC<LinkItemProps> = ({
   item,
+  memberId,
   member,
   onSaveCaption,
   saveButtonId,
@@ -142,7 +150,7 @@ const LinkItem: FC<LinkItemProps> = ({
     const ResizableLink = withResizing({
       height,
       component: iframe,
-      memberId: member?.id,
+      memberId: memberId || member.id,
       itemId: item.id,
     });
 

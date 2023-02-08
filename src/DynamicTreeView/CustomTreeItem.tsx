@@ -7,7 +7,8 @@ import Skeleton from '@mui/material/Skeleton';
 import React, { FC } from 'react';
 import type { UseQueryResult } from 'react-query';
 
-import { ItemRecord } from '../types';
+import { ItemRecord } from '@graasp/sdk/frontend';
+
 import { getParentsIdsFromPath } from '../utils/utils';
 import TreeItemLabel from './TreeItemLabel';
 

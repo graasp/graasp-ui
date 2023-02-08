@@ -19,6 +19,7 @@ import React, {
 } from 'react';
 
 import { isError, isPseudonymizedMember, isSessionExpired } from '@graasp/sdk';
+import { MemberRecord } from '@graasp/sdk/frontend';
 
 import Button from '../buttons/Button';
 import {
@@ -26,7 +27,7 @@ import {
   SHORT_TEXT_WIDTH,
   SMALL_AVATAR_SIZE,
 } from '../constants';
-import { MemberRecord, Variant } from '../types';
+import { Variant } from '../types';
 
 const StyledWrapper = styled(Box)(() => ({
   display: 'flex',
