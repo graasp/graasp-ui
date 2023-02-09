@@ -10,7 +10,7 @@ export default {
   input: ['./src/index.ts', './src/table.ts'],
   output: {
     dir: './dist',
-    format: 'es',
+    format: 'cjs',
   },
   plugins: [
     peerDepsExternal(),
@@ -20,7 +20,7 @@ export default {
     }),
     typescript({
       tsconfig: './tsconfig.json',
-      sourceMap: true,
+      sourceMap: false,
       exclude: ['**/*.test.ts', '**/*.test.tsx', '**/*.stories.tsx'],
     }),
     commonjs(),
