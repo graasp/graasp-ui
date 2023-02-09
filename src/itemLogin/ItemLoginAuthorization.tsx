@@ -51,7 +51,7 @@ const ItemLoginAuthorization =
     modeSelectId,
     ForbiddenContent = <ForbiddenText />,
   }: ItemLoginAuthorizationProps) =>
-  (ChildComponent: typeof React.Component) => {
+  (ChildComponent: typeof React.Component | (() => JSX.Element)) => {
     const ComposedComponent = (): ReactElement => {
       const {
         data: user,
