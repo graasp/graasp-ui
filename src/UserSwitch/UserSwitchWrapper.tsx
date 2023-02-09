@@ -20,9 +20,9 @@ import {
   setCurrentSession,
   storeSession,
 } from '@graasp/sdk';
+import { MemberRecord } from '@graasp/sdk/frontend';
 
 import Loader from '../Loader';
-import type { MemberRecord } from '../types';
 import UserSwitch from './UserSwitch';
 
 interface Props {

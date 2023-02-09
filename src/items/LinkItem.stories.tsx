@@ -1,17 +1,16 @@
 import { expect } from '@storybook/jest';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { userEvent, within } from '@storybook/testing-library';
-import { RecordOf } from 'immutable';
 
 import React from 'react';
 
-import { EmbeddedLinkItemType, ItemType, convertJs } from '@graasp/sdk';
+import { ItemType, convertJs } from '@graasp/sdk';
+import { EmbeddedLinkItemTypeRecord } from '@graasp/sdk/frontend';
 
-import { ImmutableMember } from '../types';
 import { TABLE_CATEGORIES } from '../utils/storybook';
 import LinkItem from './LinkItem';
 
-const item: RecordOf<EmbeddedLinkItemType> = convertJs({
+const item: EmbeddedLinkItemTypeRecord = convertJs({
   id: 'item-id',
   name: 'item-name',
   type: ItemType.LINK,
@@ -53,7 +52,7 @@ Iframe.args = {
   isResizable: true,
   showButton: false,
   showIframe: true,
-  member: new ImmutableMember({ id: 'link-iframe-id' }),
+  memberId: 'link-iframe-id',
 };
 Iframe.play = async ({ canvasElement, args }) => {
   const canvas = within(canvasElement);

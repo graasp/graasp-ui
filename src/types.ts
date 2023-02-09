@@ -17,6 +17,9 @@ export type MemberExtra = {
 export type MemberExtraRecord = RecordOf<MemberExtra>;
 
 export type MemberRecord = RecordOf<Member>;
+/**
+ * @deprecated
+ */
 export class ImmutableMember extends Record<Member>({
   id: '',
   extra: {},
