@@ -1,7 +1,6 @@
 {
   "name": "@graasp/ui",
   "version": "0.8.0",
-  "type": "module",
   "description": "React components for the Graasp ecosystem.",
   "author": "graasp",
   "contributors": [
@@ -15,7 +14,6 @@
   "repository": "graasp/graasp-ui",
   "main": "dist/index.js",
   "source": "src/index.ts",
-  "module": "dist/index.js",
   "typings": "dist/index.d.ts",
   "typescript": {
     "definition": "dist/index.d.ts"
@@ -24,8 +22,8 @@
     "node": ">=16"
   },
   "scripts": {
-    "build": "rimraf dist && tsc && rollup -c rollup.config.js",
-    "start": "rimraf dist && tsc && rollup --watch -c rollup.config.js",
+    "build": "rimraf dist && tsc && rollup -c rollup.config.mjs",
+    "start": "rimraf dist && tsc && rollup --watch -c rollup.config.mjs",
     "start:example": "yarn workspace graasp-ui-example start",
     "prepack": "yarn build",
     "lint": "eslint src",
