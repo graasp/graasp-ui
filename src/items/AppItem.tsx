@@ -5,7 +5,7 @@ import Skeleton from '@mui/material/Skeleton';
 
 import React, { Component } from 'react';
 
-import { AppItemExtra, Item, getAppExtra } from '@graasp/sdk';
+import { AppItemType, getAppExtra } from '@graasp/sdk';
 
 import {
   APP_DEFAULT_HEIGHT,
@@ -41,7 +41,7 @@ export interface AppItemProps {
   /**
    * corresponding item of the app
    */
-  item: RecordOf<Item<AppItemExtra>>;
+  item: RecordOf<AppItemType>;
   /**
    * function to fetch the app token
    */

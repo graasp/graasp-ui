@@ -1,16 +1,17 @@
 import { expect } from '@storybook/jest';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { userEvent, within } from '@storybook/testing-library';
+import { RecordOf } from 'immutable';
 
 import React from 'react';
 
-import { EmbeddedLinkItemExtra, ItemType } from '@graasp/sdk';
+import { EmbeddedLinkItemType, ItemType, convertJs } from '@graasp/sdk';
 
-import { ImmutableItemFactory, ImmutableMember } from '../types';
+import { ImmutableMember } from '../types';
 import { TABLE_CATEGORIES } from '../utils/storybook';
 import LinkItem from './LinkItem';
 
-const item = ImmutableItemFactory<EmbeddedLinkItemExtra>({
+const item: RecordOf<EmbeddedLinkItemType> = convertJs({
   id: 'item-id',
   name: 'item-name',
   type: ItemType.LINK,

@@ -7,8 +7,7 @@ import Alert from '@mui/material/Alert';
 import React, { FC, Fragment, useRef, useState } from 'react';
 
 import {
-  EmbeddedLinkItemExtra,
-  Item,
+  EmbeddedLinkItemType,
   getEmbeddedLinkExtra,
   redirect,
 } from '@graasp/sdk';
@@ -28,7 +27,7 @@ export interface LinkItemProps {
    * whether the link can be resized
    */
   isResizable?: boolean;
-  item: RecordOf<Item<EmbeddedLinkItemExtra>>;
+  item: RecordOf<EmbeddedLinkItemType>;
   loadingMessage?: string;
   onSaveCaption?: (text: string) => void;
   openLinkMessage?: string;

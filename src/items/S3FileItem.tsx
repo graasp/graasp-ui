@@ -5,7 +5,7 @@ import Alert from '@mui/material/Alert';
 
 import React, { useEffect, useState } from 'react';
 
-import { Item, S3FileItemExtra, getS3FileExtra } from '@graasp/sdk';
+import { S3FileItemType, getS3FileExtra } from '@graasp/sdk';
 
 import Loader from '../Loader';
 import { MIME_TYPES, UNEXPECTED_ERROR_MESSAGE } from '../constants';
@@ -19,7 +19,7 @@ import withCaption from './withCaption';
 
 interface S3FileItemProps {
   id?: string;
-  item: RecordOf<Item<S3FileItemExtra>>;
+  item: RecordOf<S3FileItemType>;
   content: Blob;
   defaultItem?: JSX.Element;
   downloadText?: string;
