@@ -63,6 +63,11 @@ const Div = styled('div')(
       // set a max height only on edition
       maxHeight: edit ? maxHeight ?? TEXT_EDITOR_MAX_HEIGHT : '100%',
       overflow: 'auto',
+
+      '& p': {
+        paddingBottom: 3,
+        paddingTop: 3,
+      },
     },
     '& .ql-container': {
       border: !edit ? 'none !important' : undefined,
