@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.10.4](https://github.com/graasp/graasp-ui/compare/v0.10.3...v0.10.4) (2023-02-13)
+
+
+### Bug Fixes
+
+* revert [#224](https://github.com/graasp/graasp-ui/issues/224) ([bea6b07](https://github.com/graasp/graasp-ui/commit/bea6b07cdd424f852e3a53683d72c31cdad3c8b3))
+
 ## [0.10.3](https://github.com/graasp/graasp-ui/compare/v0.10.2...v0.10.3) (2023-02-13)
 
 
