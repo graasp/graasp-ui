@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.10.3](https://github.com/graasp/graasp-ui/compare/v0.10.2...v0.10.3) (2023-02-13)
+
+
+### Bug Fixes
+
+* clear hover state when platform opens in new tab ([#224](https://github.com/graasp/graasp-ui/issues/224)) ([0881b2a](https://github.com/graasp/graasp-ui/commit/0881b2a3f9d52cc6f75a4ae83fa74fc399dcaadc))
+
 ## [0.10.2](https://github.com/graasp/graasp-ui/compare/v0.10.1...v0.10.2) (2023-02-07)
 
 
