@@ -24,9 +24,11 @@ import React, {
 } from 'react';
 import { useTranslation } from 'react-i18next';
 
+import { UUID } from '@graasp/sdk';
+import { ItemLoginRecord } from '@graasp/sdk/frontend';
+
 import Button from '../buttons/Button';
 import { SETTINGS } from '../constants';
-import { ItemLoginRecord, UUID } from '../types';
 import { isMemberIdValid } from '../utils/utils';
 import ForbiddenText from './ForbiddenText';
 import MemberIdTextField from './MemberIdTextField';

@@ -4,13 +4,13 @@ import React, { FC, useEffect, useState } from 'react';
 import { Rnd } from 'react-rnd';
 
 import {
+  UUID,
   getIframeResizeHeightCookie,
   setIframeResizeHeightCookie,
 } from '@graasp/sdk';
 
 import { IFRAME_MIN_HEIGHT, ITEM_MAX_HEIGHT } from '../constants';
 import ResizingIcon from '../icons/ResizingIcon';
-import { UUID } from '../types';
 
 export const StyledIFrame = styled('iframe')<{
   isResizable?: boolean;

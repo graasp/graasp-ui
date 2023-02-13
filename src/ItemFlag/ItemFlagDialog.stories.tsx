@@ -5,7 +5,9 @@ import { List } from 'immutable';
 
 import React from 'react';
 
-import { ImmutableFlag } from '../types';
+import { convertJs } from '@graasp/sdk';
+import { FlagRecord } from '@graasp/sdk/frontend';
+
 import { TABLE_CATEGORIES } from '../utils/storybook';
 import ItemFlagDialog from './ItemFlagDialog';
 
@@ -28,10 +30,10 @@ export default {
   },
 } as ComponentMeta<typeof ItemFlagDialog>;
 
-const flags = List([
-  new ImmutableFlag({ id: 'flag-1', name: 'flag-1' }),
-  new ImmutableFlag({ id: 'flag-2', name: 'flag-2' }),
-  new ImmutableFlag({ id: 'flag-3', name: 'flag-3' }),
+const flags: List<FlagRecord> = convertJs([
+  { id: 'flag-1', name: 'flag-1' },
+  { id: 'flag-2', name: 'flag-2' },
+  { id: 'flag-3', name: 'flag-3' },
 ]);
 
 const Template: ComponentStory<typeof ItemFlagDialog> = (args) => (

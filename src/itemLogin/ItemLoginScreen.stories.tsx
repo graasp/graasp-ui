@@ -4,8 +4,9 @@ import { userEvent, within } from '@storybook/testing-library';
 
 import React from 'react';
 
+import { ItemLoginSchema, convertJs } from '@graasp/sdk';
+
 import { FORBIDDEN_TEXT } from '../constants';
-import { ImmutableItemLoginFactory, ItemLoginSchema } from '../types';
 import { TABLE_CATEGORIES } from '../utils/storybook';
 import ItemLoginScreen from './ItemLoginScreen';
 import MemberIdTextField from './MemberIdTextField';
@@ -51,7 +52,7 @@ const Template: ComponentStory<typeof ItemLoginScreen> = (args) => (
 
 export const ItemLoginUsernameAndPassword = Template.bind({});
 ItemLoginUsernameAndPassword.args = {
-  itemLogin: ImmutableItemLoginFactory({
+  itemLogin: convertJs({
     loginSchema: ItemLoginSchema.USERNAME_AND_PASSWORD,
   }),
 };
@@ -70,7 +71,7 @@ ItemLoginUsernameAndPassword.play = async ({ args, canvasElement }) => {
 
 export const ItemLoginUsername = Template.bind({});
 ItemLoginUsername.args = {
-  itemLogin: ImmutableItemLoginFactory({
+  itemLogin: convertJs({
     loginSchema: ItemLoginSchema.USERNAME,
   }),
 };

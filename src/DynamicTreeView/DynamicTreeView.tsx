@@ -9,7 +9,8 @@ import Skeleton from '@mui/material/Skeleton';
 import React, { FC, useState } from 'react';
 import type { UseQueryResult } from 'react-query';
 
-import type { ItemRecord } from '../types';
+import { ItemRecord } from '@graasp/sdk/frontend';
+
 import CustomTreeItem from './CustomTreeItem';
 import TreeItemLabel from './TreeItemLabel';
 

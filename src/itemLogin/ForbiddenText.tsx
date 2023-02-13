@@ -3,8 +3,9 @@ import { Typography } from '@mui/material';
 
 import React, { FC } from 'react';
 
+import { UUID } from '@graasp/sdk';
+
 import { FORBIDDEN_TEXT } from '../constants';
-import { UUID } from '../types';
 
 export interface ForbiddenTextProps {
   id?: UUID;
