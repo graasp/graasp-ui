@@ -4,7 +4,7 @@ import 'katex/dist/katex.min.css';
 import quillEmoji from 'quill-emoji';
 import 'quill-emoji/dist/quill-emoji.css';
 
-import { CssBaseline, styled } from '@mui/material';
+import { styled } from '@mui/material';
 
 import React, { FC, useEffect, useState } from 'react';
 import ReactQuill, { Quill } from 'react-quill';
@@ -72,7 +72,7 @@ const Div = styled('div')(
     '& .ql-container': {
       border: !edit ? 'none !important' : undefined,
       // use font size from mui theme
-      fontSize:'unset'
+      fontSize: 'unset',
     },
   }),
 );
