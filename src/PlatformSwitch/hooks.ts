@@ -64,11 +64,12 @@ export function usePlatformNavigation(
     const href = url ?? '#';
     return {
       onClick: (_event: MouseEvent) => redirect(href),
-      onMouseDown: (event: MouseEvent) => {
+      onMouseDown: (event: MouseEvent): boolean => {
         if (event.button !== MOUSE_MIDDLE_BUTTON || url === undefined) {
-          return;
+          return false;
         }
         window.open(href, TARGET_BLANK_NEW_TAB);
+        return true;
       },
     };
   };
