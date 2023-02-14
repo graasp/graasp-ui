@@ -32,19 +32,25 @@ export type HostsMapper = Partial<
 export function defaultHostsMapper(
   hostsUrls: Partial<Record<Platform, string>>,
 ): HostsMapper {
-  const transformUrls = {
-    [Platform.Builder]: (origin: string) => `${origin}/items`,
-    [Platform.Library]: (origin: string) => `${origin}/collections`,
+  const urlBuilders = {
+    [Platform.Builder]: (origin: string, itemId: string) =>
+      `${origin}/items/${itemId}`,
+    [Platform.Player]: (origin: string, itemId: string) =>
+      `${origin}/${itemId}`,
+    [Platform.Library]: (origin: string, itemId: string) =>
+      `${origin}/collections/${itemId}`,
+    [Platform.Analytics]: (origin: string, itemId: string) =>
+      `${origin}/${itemId}`,
   };
 
   return Object.fromEntries(
     Object.entries(hostsUrls).map(([platform, url]) => {
       const origin = new URL(url).origin;
-      const path = transformUrls[platform]?.(origin) ?? origin;
       return [
         platform,
         // if passed itemId is undefined, redirect to home page of platform
-        (itemId: string) => (itemId ? `${path}/${itemId}` : origin),
+        (itemId: string) =>
+          itemId ? urlBuilders[platform](origin, itemId) : origin,
       ];
     }),
   ) as HostsMapper;
