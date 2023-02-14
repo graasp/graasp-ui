@@ -25,15 +25,8 @@ export const MenuItem: FC<MenuItemProps> = ({
   disabled,
 }) => {
   return (
-    <ListItem
-      disablePadding
-      disabled={disabled}
-      key={key}
-      id={id}
-      onClick={onClick}
-      selected={selected}
-    >
-      <ListItemButton>
+    <ListItem disablePadding key={key} id={id}>
+      <ListItemButton onClick={onClick} disabled={disabled} selected={selected}>
         {icon && <ListItemIcon>{icon}</ListItemIcon>}
         {text && <ListItemText primary={text} />}
       </ListItemButton>

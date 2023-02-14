@@ -1,12 +1,14 @@
 import { action } from '@storybook/addon-actions';
+import { expect } from '@storybook/jest';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { userEvent, waitFor, within } from '@storybook/testing-library';
 import { ColDef } from 'ag-grid-community';
 import 'ag-grid-community/dist/styles/ag-grid.min.css';
 import 'ag-grid-community/dist/styles/ag-theme-material.min.css';
 
 import React from 'react';
 
-import { DeleteButton } from '../buttons';
+import { DeleteButton, EditButton } from '../buttons';
 import { TABLE_CATEGORIES } from '../utils/storybook';
 import Table, { TableProps } from './Table';
 import TableToolbar from './TableToolbar';
@@ -102,6 +104,12 @@ export default {
         category: agGridCategory,
       },
     },
+    onCellClicked: {
+      table: {
+        category: TABLE_CATEGORIES.EVENTS,
+      },
+      action: 'cell clicked',
+    },
   },
 } as ComponentMeta<typeof Table>;
 
@@ -129,9 +137,56 @@ Simple.args = {
       type: 'rightAligned',
       valueFormatter: dateFormatter,
     },
+    {
+      field: 'actions',
+      suppressKeyboardEvent: Table.suppressKeyboardEventForParentCell,
+      cellRenderer: ({ data }: any) => {
+        return (
+          <>
+            <DeleteButton id={'delete' + data.id} />
+            <EditButton />
+          </>
+        );
+      },
+      headerName: 'actions',
+    },
   ],
   rowData,
   ToolbarActions,
+};
+
+Simple.play = async ({ args, canvasElement }) => {
+  const canvas = within(canvasElement);
+
+  // we need to wait a lot because it is ag grid that triggers
+  await waitFor(async () => {
+    await expect(canvas.getAllByRole('row')).toBeTruthy();
+  });
+
+  // check mouse onclick trigger event
+  await userEvent.click(canvas.getByText('name 1'));
+  await waitFor(async () => {
+    await expect(args.onCellClicked).toHaveBeenCalledTimes(1);
+  });
+
+  // check keyboard navigation
+  await userEvent.keyboard('{Tab}{Enter}');
+  await waitFor(async () => {
+    await expect(args.onCellClicked).toHaveBeenCalledTimes(2);
+  });
+
+  await userEvent.keyboard('{Tab}{Enter}');
+  await waitFor(async () => {
+    await expect(args.onCellClicked).toHaveBeenCalledTimes(3);
+  });
+
+  await userEvent.keyboard('{Tab}{Enter}');
+  await waitFor(async () => {
+    await expect(args.onCellClicked).toHaveBeenCalledTimes(4);
+  });
+
+  // ag grid does not simulate the tab navigation correctly
+  // so we cannot test inner navigation
 };
 
 export const SimpleWithDrag = Template.bind({});
