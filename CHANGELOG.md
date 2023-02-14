@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.10.5](https://github.com/graasp/graasp-ui/compare/v0.10.4...v0.10.5) (2023-02-14)
+
+
+### Bug Fixes
+
+* allow keyboard nav in menu and table ([#227](https://github.com/graasp/graasp-ui/issues/227)) ([d550913](https://github.com/graasp/graasp-ui/commit/d550913aaeb9645e687fc9f4311ccc1ac0e111c3))
+
 ## [0.10.4](https://github.com/graasp/graasp-ui/compare/v0.10.3...v0.10.4) (2023-02-13)
 
 
