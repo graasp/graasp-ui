@@ -34,6 +34,7 @@ export function defaultHostsMapper(
 ): HostsMapper {
   const transformUrls = {
     [Platform.Builder]: (origin: string) => `${origin}/items`,
+    [Platform.Library]: (origin: string) => `${origin}/collections`,
   };
 
   return Object.fromEntries(
