@@ -32,7 +32,10 @@ export type HostsMapper = Partial<
 export function defaultHostsMapper(
   hostsUrls: Partial<Record<Platform, string>>,
 ): HostsMapper {
-  const urlBuilders = {
+  const urlBuilders: Record<
+    Platform,
+    (origin: string, itemId: string) => string
+  > = {
     [Platform.Builder]: (origin: string, itemId: string) =>
       `${origin}/items/${itemId}`,
     [Platform.Player]: (origin: string, itemId: string) =>
