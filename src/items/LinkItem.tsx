@@ -1,17 +1,11 @@
-import { RecordOf } from 'immutable';
-
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import { styled } from '@mui/material';
 import Alert from '@mui/material/Alert';
 
 import React, { FC, Fragment, useRef, useState } from 'react';
 
-import {
-  EmbeddedLinkItemType,
-  getEmbeddedLinkExtra,
-  redirect,
-} from '@graasp/sdk';
-import { MemberRecord } from '@graasp/sdk/frontend';
+import { getEmbeddedLinkExtra, redirect } from '@graasp/sdk';
+import { EmbeddedLinkItemTypeRecord, MemberRecord } from '@graasp/sdk/frontend';
 
 import Button from '../buttons/Button';
 import { ITEM_MAX_HEIGHT } from '../constants';
@@ -34,7 +28,7 @@ export interface LinkItemProps {
    * whether the link can be resized
    */
   isResizable?: boolean;
-  item: RecordOf<EmbeddedLinkItemType>;
+  item: EmbeddedLinkItemTypeRecord;
   loadingMessage?: string;
   onSaveCaption?: (text: string) => void;
   openLinkMessage?: string;
