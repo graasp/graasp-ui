@@ -32,7 +32,7 @@ export interface ItemIconProps {
   /**
    * item type
    */
-  type: ItemType;
+  type: ItemType | `${ItemType}`;
   color?: string;
   /**
    * item extra
