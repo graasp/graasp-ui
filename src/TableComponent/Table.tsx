@@ -1,5 +1,6 @@
 import {
   CellClickedEvent,
+  CellKeyDownEvent,
   ColDef,
   GridApi,
   IRowDragItem,
@@ -26,6 +27,7 @@ import { DRAG_ICON_SIZE } from '../constants';
 import DragCellRenderer from './DragCellRenderer';
 import TableNoRowsContent from './TableNoRowsContent';
 import TableToolbar from './TableToolbar';
+import { suppressKeyboardEventForParentCell } from './utils';
 
 export interface TableProps<T> {
   className?: string;
@@ -127,7 +129,7 @@ function GraaspTable<T>({
   rowDragText,
   rowHeight,
   rowSelection = 'multiple',
-  suppressCellFocus = true,
+  suppressCellFocus = false,
   suppressRowClickSelection = true,
   labelDisplayedRows,
   pagination = true,
@@ -154,6 +156,12 @@ function GraaspTable<T>({
 
   const changeSelection = (): void => {
     setSelected(gridApi?.getSelectedRows().map((r) => r.id) ?? []);
+  };
+
+  const onKeyPress = (event: CellKeyDownEvent): void => {
+    if ((event.event as KeyboardEvent)?.key === 'Enter') {
+      onCellClicked?.(event);
+    }
   };
 
   const handleRowDataChanged = (context: any): void => {
@@ -235,6 +243,7 @@ function GraaspTable<T>({
           noRowsOverlayComponent={NoRowsComponent ?? EmptyTableComponent}
           onRowDragEnd={handleDragEnd}
           onSelectionChanged={handleSelectionChanged}
+          onCellKeyPress={isClickable ? onKeyPress : undefined}
           onCellClicked={isClickable ? onCellClicked : undefined}
           rowClass={clsx({
             [ROW_CLASS_NAME]: !isClickable,
@@ -273,4 +282,5 @@ export default Object.assign(GraaspTable, {
     text1.localeCompare(text2, undefined, { sensitivity: 'base' }),
   dateComparator: (d1: string, d2: string) =>
     new Date(d1).getTime() - new Date(d2).getTime(),
+  suppressKeyboardEventForParentCell,
 });

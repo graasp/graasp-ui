@@ -2,7 +2,7 @@ import { styled } from '@mui/material';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 
-import React, { FC } from 'react';
+import React from 'react';
 
 interface Props {
   selected: string[];
@@ -19,12 +19,12 @@ const StyledTitle = styled(Typography)({
   alignItems: 'center',
 }) as typeof Typography;
 
-const TableToolbar: FC<Props> = ({
+const TableToolbar = ({
   selected,
   Actions,
   NoSelectionToolbar,
   countTextFunction,
-}) => {
+}: Props): JSX.Element | null => {
   const numSelected = selected.length;
   const StyledToolbar = styled(Toolbar)(({ theme }) => ({
     paddingLeft: theme.spacing(2),
@@ -38,7 +38,7 @@ const TableToolbar: FC<Props> = ({
   if (numSelected > 0) {
     return (
       <StyledToolbar>
-        <StyledTitle color='inherit' variant='subtitle1' component='div'>
+        <StyledTitle color='inherit' variant='subtitle1'>
           {countTextFunction?.(selected) ?? `${numSelected} selected`}
         </StyledTitle>
         {Actions?.({ selectedIds: selected })}
