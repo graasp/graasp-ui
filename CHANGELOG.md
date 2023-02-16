@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.11.0](https://github.com/graasp/graasp-ui/compare/v0.10.5...v0.11.0) (2023-02-16)
+
+
+### Features
+
+* move types to sdk and use types from @graasp/sdk/frontend ([#228](https://github.com/graasp/graasp-ui/issues/228)) ([1f31b54](https://github.com/graasp/graasp-ui/commit/1f31b5431d5f1f142a22cb9f2f91c6959618aa6f)), closes [#235](https://github.com/graasp/graasp-ui/issues/235) [#202](https://github.com/graasp/graasp-ui/issues/202)
+
+
+### Bug Fixes
+
+* **types:** add type annotation for StyledIframe ([1f31b54](https://github.com/graasp/graasp-ui/commit/1f31b5431d5f1f142a22cb9f2f91c6959618aa6f))
+* **types:** update ItemIcon type prop to accept string litteral from ItemType enum ([1f31b54](https://github.com/graasp/graasp-ui/commit/1f31b5431d5f1f142a22cb9f2f91c6959618aa6f))
+* update ItemIcon `extra` prop ([1f31b54](https://github.com/graasp/graasp-ui/commit/1f31b5431d5f1f142a22cb9f2f91c6959618aa6f))
+* update LinkItem props ([1f31b54](https://github.com/graasp/graasp-ui/commit/1f31b5431d5f1f142a22cb9f2f91c6959618aa6f))
+* update type of useMember hook ([1f31b54](https://github.com/graasp/graasp-ui/commit/1f31b5431d5f1f142a22cb9f2f91c6959618aa6f))
+* useItem type in `ItemLoginAuthorization` ([1f31b54](https://github.com/graasp/graasp-ui/commit/1f31b5431d5f1f142a22cb9f2f91c6959618aa6f))
+* various component props ([1f31b54](https://github.com/graasp/graasp-ui/commit/1f31b5431d5f1f142a22cb9f2f91c6959618aa6f))
+
 ## [0.10.5](https://github.com/graasp/graasp-ui/compare/v0.10.4...v0.10.5) (2023-02-14)
 
 
