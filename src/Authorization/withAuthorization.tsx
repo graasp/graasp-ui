@@ -1,8 +1,8 @@
 import React, { ComponentType, FC } from 'react';
 
 import { redirect } from '@graasp/sdk';
+import { MemberRecord } from '@graasp/sdk/frontend';
 
-import { MemberRecord } from '../types';
 import RedirectContent from './RedirectionContent';
 
 export interface withAutorizationProps {

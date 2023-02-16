@@ -1,11 +1,11 @@
-import { RecordOf } from 'immutable';
 import qs from 'qs';
 
 import Skeleton from '@mui/material/Skeleton';
 
 import React, { Component } from 'react';
 
-import { AppItemExtra, Item, getAppExtra } from '@graasp/sdk';
+import { UUID, getAppExtra } from '@graasp/sdk';
+import { AppItemTypeRecord, MemberRecord } from '@graasp/sdk/frontend';
 
 import {
   APP_DEFAULT_HEIGHT,
@@ -13,7 +13,6 @@ import {
   DEFAULT_PERMISSION,
   SCREEN_MAX_HEIGHT,
 } from '../constants';
-import type { MemberRecord, UUID } from '../types';
 import withCaption from './withCaption';
 import withResizing, { StyledIFrame } from './withResizing';
 
@@ -41,7 +40,7 @@ export interface AppItemProps {
   /**
    * corresponding item of the app
    */
-  item: RecordOf<Item<AppItemExtra>>;
+  item: AppItemTypeRecord;
   /**
    * function to fetch the app token
    */
@@ -65,7 +64,11 @@ export interface AppItemProps {
   isResizable?: boolean;
   lang?: string;
   /**
-   * signed in member
+   * Id of the current member used for saving the resizing preferences
+   */
+  memberId?: string;
+  /**
+   * @deprecated Use the `memberId` prop to only pass the id
    */
   member?: MemberRecord;
   // todo: one of enum
@@ -202,7 +205,8 @@ export class AppItem extends Component<AppItemProps> {
   };
 
   windowOnMessage = (e: MessageEvent): void => {
-    const { item, member, apiHost, lang, context, permission } = this.props;
+    const { item, member, memberId, apiHost, lang, context, permission } =
+      this.props;
     const { url } = this.state;
     const { data, origin: requestOrigin } = e;
 
@@ -233,7 +237,7 @@ export class AppItem extends Component<AppItemProps> {
             apiHost,
             itemId: item.id,
             settings: item.settings,
-            memberId: member?.id,
+            memberId: memberId || member?.id,
             permission,
             lang,
             context,
@@ -249,13 +253,14 @@ export class AppItem extends Component<AppItemProps> {
     const {
       item,
       member,
+      memberId,
       id,
       showCaption,
       onSaveCaption,
       saveButtonId,
       editCaption,
       isResizable,
-    } = this.props;
+    }: AppItemProps = this.props;
     const { iframeIsLoading, url, height } = this.state;
 
     const onLoad = iframeIsLoading
@@ -286,7 +291,7 @@ export class AppItem extends Component<AppItemProps> {
 
     const ResizableIframe = withResizing({
       height,
-      memberId: member?.id,
+      memberId: memberId || member?.id,
       itemId: item.id,
       component: iframe,
     });

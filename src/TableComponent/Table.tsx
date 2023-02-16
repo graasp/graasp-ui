@@ -46,7 +46,7 @@ export interface TableProps<T> {
   id?: string;
   isClickable?: boolean;
   NoRowsComponent?: ReactElement;
-  NoSelectionToolbar?: React.FC;
+  NoSelectionToolbar?: () => JSX.Element;
   onCellClicked?: ((event: CellClickedEvent<T, any>) => void) | undefined;
   onDragEnd?: (nodes: RowNode[]) => void;
   onRowDataChanged?: (context: any) => void;
@@ -60,7 +60,7 @@ export interface TableProps<T> {
   suppressRowClickSelection?: boolean;
   sx?: SxProps;
   tableHeight?: number | string;
-  ToolbarActions?: React.FC<{ selectedIds: string[] }>;
+  ToolbarActions?: ({ selectedIds }: { selectedIds: string[] }) => JSX.Element;
   /**
    * enable pagination
    * We don't use AG Grid's pagination because it disables the custom dragging

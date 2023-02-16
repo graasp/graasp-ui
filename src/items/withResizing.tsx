@@ -1,20 +1,32 @@
-import { styled } from '@mui/material';
+import { StyledComponent } from '@emotion/styled';
+
+import { Theme, styled } from '@mui/material';
+import { MUIStyledCommonProps } from '@mui/system';
 
 import React, { FC, useEffect, useState } from 'react';
 import { Rnd } from 'react-rnd';
 
 import {
+  UUID,
   getIframeResizeHeightCookie,
   setIframeResizeHeightCookie,
 } from '@graasp/sdk';
 
 import { IFRAME_MIN_HEIGHT, ITEM_MAX_HEIGHT } from '../constants';
 import ResizingIcon from '../icons/ResizingIcon';
-import { UUID } from '../types';
 
-export const StyledIFrame = styled('iframe')<{
+export const StyledIFrame: StyledComponent<
+  MUIStyledCommonProps<Theme> & {
+    isResizable?: boolean | undefined;
+    height?: string | number | undefined;
+  },
+  React.DetailedHTMLProps<
+    React.IframeHTMLAttributes<HTMLIFrameElement>,
+    HTMLIFrameElement
+  >
+> = styled('iframe')<{
   isResizable?: boolean;
-  height: string | number;
+  height?: string | number;
 }>(({ isResizable, height }) => ({
   // remove ugly borders
   border: 'none',

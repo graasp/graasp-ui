@@ -2,15 +2,16 @@ import { ComponentMeta, ComponentStory } from '@storybook/react';
 
 import React from 'react';
 
+import { convertJs } from '@graasp/sdk';
+
 import { BuildIcon } from '../icons';
-import { ImmutableMember } from '../types';
 import withAuthorization from './withAuthorization';
 
 const redirectionLink = 'http://redirect.org';
 
 const ComponentWithAuthorization = withAuthorization(BuildIcon, {
   redirectionLink,
-  currentMember: new ImmutableMember({ id: 'member', name: 'member' }),
+  currentMember: convertJs({ id: 'member', name: 'member' }),
 });
 
 export default {
@@ -25,7 +26,7 @@ export default {
 const Template: ComponentStory<typeof ComponentWithAuthorization> = () => {
   const Component = withAuthorization(BuildIcon, {
     redirectionLink,
-    currentMember: new ImmutableMember({ id: 'member', name: 'member' }),
+    currentMember: convertJs({ id: 'member', name: 'member' }),
   });
   return <Component />;
 };

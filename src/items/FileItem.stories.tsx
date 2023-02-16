@@ -3,10 +3,9 @@ import { ComponentMeta, ComponentStory } from '@storybook/react';
 
 import React from 'react';
 
-import { ItemType, LocalFileItemExtra } from '@graasp/sdk';
+import { ItemType, LocalFileItemType, convertJs } from '@graasp/sdk';
 
 import { MIME_TYPES } from '../constants';
-import { ImmutableItemFactory } from '../types';
 import { TABLE_CATEGORIES } from '../utils/storybook';
 import FileItem from './FileItem';
 
@@ -37,7 +36,7 @@ Image.loaders = [
   }),
 ];
 Image.args = {
-  item: ImmutableItemFactory<LocalFileItemExtra>({
+  item: convertJs<LocalFileItemType>({
     id: 'my-id',
     name: 'my item name',
     extra: {
@@ -45,7 +44,15 @@ Image.args = {
         path: 'https://picsum.photos/100',
         mimetype: MIME_TYPES.IMAGE[0],
         name: 'original file name',
+        size: 2600,
       },
     },
+    type: 'file',
+    description: '',
+    path: 'item-path',
+    settings: {},
+    creator: 'creator',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt',
   }),
 };

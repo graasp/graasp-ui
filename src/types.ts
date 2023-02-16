@@ -1,13 +1,6 @@
 import { Record, RecordOf } from 'immutable';
 
-import {
-  Context,
-  Item,
-  ItemType,
-  Member,
-  MemberType,
-  UnknownExtra,
-} from '@graasp/sdk';
+import { Context, Item, Member, MemberType } from '@graasp/sdk';
 
 export type UUID = string;
 
@@ -24,6 +17,9 @@ export type MemberExtra = {
 export type MemberExtraRecord = RecordOf<MemberExtra>;
 
 export type MemberRecord = RecordOf<Member>;
+/**
+ * @deprecated
+ */
 export class ImmutableMember extends Record<Member>({
   id: '',
   extra: {},
@@ -33,22 +29,6 @@ export class ImmutableMember extends Record<Member>({
   email: '',
   type: MemberType.Individual,
 }) {}
-
-export const ImmutableItemFactory = <T extends UnknownExtra>(
-  arg: Partial<Item<T>>,
-): RecordOf<Item<T>> =>
-  Record<Item<T>>({
-    id: '',
-    name: '',
-    path: '',
-    description: '',
-    extra: {} as T,
-    settings: {},
-    type: ItemType.FOLDER,
-    creator: '',
-    createdAt: '',
-    updatedAt: '',
-  })(arg);
 
 export enum Variant {
   TEXT = 'text',

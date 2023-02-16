@@ -4,7 +4,7 @@ import { Typography } from '@mui/material';
 
 import React, { FC } from 'react';
 
-import { DocumentItemExtra, Item, getDocumentExtra } from '@graasp/sdk';
+import { DocumentItemType, getDocumentExtra } from '@graasp/sdk';
 
 import TextEditor from '../TextEditor';
 
@@ -13,7 +13,7 @@ export interface DocumentItemProps {
   cancelButtonText?: string;
   edit?: boolean;
   id?: string;
-  item: RecordOf<Item<DocumentItemExtra>>;
+  item: RecordOf<DocumentItemType>;
   maxHeight?: string | number;
   onCancel?: (text: string) => void;
   onSave: (text: string) => void;

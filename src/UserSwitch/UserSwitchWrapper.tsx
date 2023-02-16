@@ -1,4 +1,4 @@
-import { List, RecordOf } from 'immutable';
+import { List } from 'immutable';
 
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import MeetingRoomIcon from '@mui/icons-material/MeetingRoom';
@@ -11,8 +11,6 @@ import React, { FC, useEffect } from 'react';
 import type { UseQueryResult } from 'react-query';
 
 import {
-  Member,
-  MemberExtra,
   getCurrentSession,
   getStoredSessions,
   redirect,
@@ -20,9 +18,9 @@ import {
   setCurrentSession,
   storeSession,
 } from '@graasp/sdk';
+import { MemberRecord } from '@graasp/sdk/frontend';
 
 import Loader from '../Loader';
-import type { MemberRecord } from '../types';
 import UserSwitch from './UserSwitch';
 
 interface Props {
@@ -45,9 +43,7 @@ interface Props {
   signOutText?: string;
   switchMember: (args: { memberId: string; domain: string }) => Promise<void>;
   switchMemberText?: string;
-  useMembers: (
-    ids: string[],
-  ) => UseQueryResult<List<RecordOf<Member<RecordOf<MemberExtra>>>>>;
+  useMembers: (ids: string[]) => UseQueryResult<List<MemberRecord>>;
 }
 
 const UserSwitchWrapper: FC<Props> = ({

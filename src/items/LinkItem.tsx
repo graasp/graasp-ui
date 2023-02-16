@@ -1,25 +1,25 @@
-import { RecordOf } from 'immutable';
-
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import { styled } from '@mui/material';
 import Alert from '@mui/material/Alert';
 
 import React, { FC, Fragment, useRef, useState } from 'react';
 
-import {
-  EmbeddedLinkItemExtra,
-  Item,
-  getEmbeddedLinkExtra,
-  redirect,
-} from '@graasp/sdk';
+import { getEmbeddedLinkExtra, redirect } from '@graasp/sdk';
+import { EmbeddedLinkItemTypeRecord, MemberRecord } from '@graasp/sdk/frontend';
 
 import Button from '../buttons/Button';
 import { ITEM_MAX_HEIGHT } from '../constants';
-import { MemberRecord } from '../types';
 import withCaption from './withCaption';
 import withResizing, { StyledIFrame } from './withResizing';
 
 export interface LinkItemProps {
+  /**
+   * Id of the current member used for saving the resizing preferences
+   */
+  memberId?: string;
+  /**
+   * @deprecated Use the `memberId` prop to only pass the id
+   */
   member?: MemberRecord;
   editCaption?: boolean;
   errorMessage?: string;
@@ -28,7 +28,7 @@ export interface LinkItemProps {
    * whether the link can be resized
    */
   isResizable?: boolean;
-  item: RecordOf<Item<EmbeddedLinkItemExtra>>;
+  item: EmbeddedLinkItemTypeRecord;
   loadingMessage?: string;
   onSaveCaption?: (text: string) => void;
   openLinkMessage?: string;
@@ -65,6 +65,7 @@ const StyledLinkButton = styled(Button)(({ theme }) => ({
 const LinkItem: FC<LinkItemProps> = ({
   item,
   member,
+  memberId,
   onSaveCaption,
   saveButtonId,
   editCaption = false,
@@ -143,7 +144,7 @@ const LinkItem: FC<LinkItemProps> = ({
     const ResizableLink = withResizing({
       height,
       component: iframe,
-      memberId: member?.id,
+      memberId: memberId || member?.id,
       itemId: item.id,
     });
 

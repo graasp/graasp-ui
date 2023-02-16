@@ -1,29 +1,27 @@
-import { RecordOf } from 'immutable';
-
 import Grid from '@mui/material/Grid';
 
 import React from 'react';
 
-import type { Item, UnknownExtra } from '@graasp/sdk';
+import { ItemRecord } from '@graasp/sdk/frontend';
 
 import TextEditor from '../TextEditor';
 import { DEFAULT_ITEM_DESCRIPTION } from '../constants';
 
-interface WithCaptionProps<T extends UnknownExtra> {
-  item: RecordOf<Item<T>>;
+interface WithCaptionProps {
+  item: ItemRecord;
   edit?: boolean;
   onSave?: (text: string) => void;
   saveButtonText?: string;
   saveButtonId?: string;
 }
 
-function withCaption<T extends UnknownExtra>({
+function withCaption({
   item,
   edit,
   onSave,
   saveButtonText,
   saveButtonId,
-}: WithCaptionProps<T>) {
+}: WithCaptionProps) {
   return (component: JSX.Element): JSX.Element => {
     class ComponentWithCaption extends React.Component {
       render(): JSX.Element {

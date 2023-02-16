@@ -3,9 +3,16 @@ import { StatusCodes, getReasonPhrase } from 'http-status-codes';
 import Alert from '@mui/material/Alert';
 
 import React, { ReactElement } from 'react';
+import { UseQueryResult } from 'react-query';
+
+import { UUID } from '@graasp/sdk';
+import {
+  ItemLoginRecord,
+  ItemRecord,
+  MemberRecord,
+} from '@graasp/sdk/frontend';
 
 import CustomInitialLoader from '../CustomInitialLoader';
-import { ItemLoginRecord, ItemRecord, MemberRecord, UUID } from '../types';
 import ForbiddenText from './ForbiddenText';
 import ItemLoginScreen, { SignInPropertiesType } from './ItemLoginScreen';
 
@@ -13,20 +20,9 @@ export type ItemLoginAuthorizationProps = {
   signOut: () => void;
   signIn: (args: { itemId: string } & SignInPropertiesType) => void;
   itemId: UUID;
-  useCurrentMember: () => {
-    data: MemberRecord;
-    isLoading: boolean;
-    isError: boolean;
-  };
-  useItem: (itemId: string) => {
-    data: ItemRecord;
-    isLoading: boolean;
-    isError: boolean;
-    error: Error;
-  };
-  useItemLogin: (itemId: string) => {
-    data: ItemLoginRecord;
-  };
+  useCurrentMember: () => UseQueryResult<MemberRecord>;
+  useItem: (itemId: string) => UseQueryResult<ItemRecord>;
+  useItemLogin: (itemId: string) => UseQueryResult<ItemLoginRecord>;
   Error?: ReactElement;
   memberIdInputId?: string;
   usernameInputId?: string;
@@ -51,7 +47,7 @@ const ItemLoginAuthorization =
     modeSelectId,
     ForbiddenContent = <ForbiddenText />,
   }: ItemLoginAuthorizationProps) =>
-  (ChildComponent: typeof React.Component) => {
+  (ChildComponent: typeof React.Component | (() => JSX.Element)) => {
     const ComposedComponent = (): ReactElement => {
       const {
         data: user,
@@ -84,7 +80,7 @@ const ItemLoginAuthorization =
         [
           getReasonPhrase(StatusCodes.BAD_REQUEST),
           getReasonPhrase(StatusCodes.NOT_FOUND),
-        ].includes(itemError.message)
+        ].includes((itemError as Error).message)
       ) {
         return (
           ErrorComponent ?? <Alert severity='error'>An error occurred.</Alert>

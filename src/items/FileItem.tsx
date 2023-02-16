@@ -1,5 +1,3 @@
-import { RecordOf } from 'immutable';
-
 import { SxProps } from '@mui/material';
 import Alert from '@mui/material/Alert';
 import Skeleton from '@mui/material/Skeleton';
@@ -7,13 +5,16 @@ import Skeleton from '@mui/material/Skeleton';
 import React, { FC, useEffect, useState } from 'react';
 
 import {
-  Item,
   LocalFileItemExtra,
   S3FileItemExtra,
-  UnknownExtra,
   getFileExtra,
   getS3FileExtra,
 } from '@graasp/sdk';
+import {
+  DocumentItemTypeRecord,
+  LocalFileItemTypeRecord,
+  S3FileItemTypeRecord,
+} from '@graasp/sdk/frontend';
 
 import {
   MIME_TYPES,
@@ -42,7 +43,7 @@ export interface FileItemProps {
   editCaption?: boolean;
   errorMessage?: string;
   id?: string;
-  item: RecordOf<Item<UnknownExtra>>;
+  item: LocalFileItemTypeRecord | S3FileItemTypeRecord | DocumentItemTypeRecord;
   maxHeight?: number;
   onSaveCaption?: (text: string) => void;
   /**

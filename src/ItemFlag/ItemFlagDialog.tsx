@@ -10,9 +10,10 @@ import Typography from '@mui/material/Typography';
 
 import React, { FC, MouseEventHandler, useState } from 'react';
 
+import { FlagRecord } from '@graasp/sdk/frontend';
+
 import Button from '../buttons/Button';
 import { FLAG_LIST_MAX_HEIGHT } from '../constants';
-import { FlagRecord } from '../types';
 
 const ListTitle = styled(Typography)({
   fontSize: 'small',

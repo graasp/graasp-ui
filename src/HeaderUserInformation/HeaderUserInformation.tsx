@@ -6,8 +6,9 @@ import Typography from '@mui/material/Typography';
 
 import React, { FC, MouseEventHandler } from 'react';
 
+import { UUID } from '@graasp/sdk';
+
 import { SHORT_TEXT_WIDTH, SMALL_AVATAR_SIZE } from '../constants';
-import { UUID } from '../types';
 
 const WrapperDiv = styled('div')({
   display: 'flex',
