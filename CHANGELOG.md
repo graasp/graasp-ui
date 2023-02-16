@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.11.1](https://github.com/graasp/graasp-ui/compare/v0.11.0...v0.11.1) (2023-02-16)
+
+
+### Bug Fixes
+
+* add URL transforms for all platforms ([#234](https://github.com/graasp/graasp-ui/issues/234)) ([927f303](https://github.com/graasp/graasp-ui/commit/927f303b2085a05aebb58a73d5d8094e5b93707f))
+
 ## [0.11.0](https://github.com/graasp/graasp-ui/compare/v0.10.5...v0.11.0) (2023-02-16)
 
 
