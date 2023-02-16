@@ -1,12 +1,11 @@
-import { RecordOf } from 'immutable';
 import qs from 'qs';
 
 import Skeleton from '@mui/material/Skeleton';
 
 import React, { Component } from 'react';
 
-import { AppItemType, UUID, getAppExtra } from '@graasp/sdk';
-import { MemberRecord } from '@graasp/sdk/frontend';
+import { UUID, getAppExtra } from '@graasp/sdk';
+import { AppItemTypeRecord, MemberRecord } from '@graasp/sdk/frontend';
 
 import {
   APP_DEFAULT_HEIGHT,
@@ -41,7 +40,7 @@ export interface AppItemProps {
   /**
    * corresponding item of the app
    */
-  item: RecordOf<AppItemType>;
+  item: AppItemTypeRecord;
   /**
    * function to fetch the app token
    */

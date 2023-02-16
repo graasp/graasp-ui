@@ -1,11 +1,10 @@
-import { RecordOf } from 'immutable';
-
 import { SxProps } from '@mui/material';
 import Alert from '@mui/material/Alert';
 
 import React, { useEffect, useState } from 'react';
 
-import { S3FileItemType, getS3FileExtra } from '@graasp/sdk';
+import { getS3FileExtra } from '@graasp/sdk';
+import { S3FileItemTypeRecord } from '@graasp/sdk/frontend';
 
 import Loader from '../Loader';
 import { MIME_TYPES, UNEXPECTED_ERROR_MESSAGE } from '../constants';
@@ -19,7 +18,7 @@ import withCaption from './withCaption';
 
 interface S3FileItemProps {
   id?: string;
-  item: RecordOf<S3FileItemType>;
+  item: S3FileItemTypeRecord;
   content: Blob;
   defaultItem?: JSX.Element;
   downloadText?: string;
