@@ -23,6 +23,7 @@ import {
   getFileExtra,
   getS3FileExtra,
 } from '@graasp/sdk';
+import { ItemRecord } from '@graasp/sdk/frontend';
 
 import { StyledImage } from '../StyledComponents/StyledBaseComponents';
 import { ITEM_ICON_MAX_SIZE, MIME_TYPES } from '../constants';
@@ -37,7 +38,7 @@ export interface ItemIconProps {
   /**
    * item extra
    */
-  extra?: UnknownExtra;
+  extra?: ItemRecord['extra'] | UnknownExtra;
   /**
    * @deprecated use sx
    * */
