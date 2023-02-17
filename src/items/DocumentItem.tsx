@@ -24,6 +24,7 @@ export interface DocumentItemProps {
   saveButtonText?: string;
   showActions?: boolean;
   showEmpty?: boolean;
+  styles?: React.CSSProperties;
 }
 
 const DocumentItem: FC<DocumentItemProps> = ({
@@ -42,6 +43,7 @@ const DocumentItem: FC<DocumentItemProps> = ({
   saveButtonText,
   showActions,
   showEmpty,
+  styles,
 }) => {
   const extra = getDocumentExtra(item.extra);
   if (!extra?.content && showEmpty) {
@@ -82,6 +84,15 @@ const DocumentItem: FC<DocumentItemProps> = ({
       saveButtonText={saveButtonText}
       showActions={showActions}
       value={extra?.content}
+      styles={
+        // hack: if document is in read mode and has flavor, remove padding
+        edit === true && extra?.flavor
+          ? undefined
+          : {
+              padding: 0,
+              ...styles,
+            }
+      }
     />,
   );
 };
