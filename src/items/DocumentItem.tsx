@@ -12,33 +12,36 @@ export interface DocumentItemProps {
   cancelButtonId?: string;
   cancelButtonText?: string;
   edit?: boolean;
+  emptyMessage?: string;
   id?: string;
-  item: RecordOf<DocumentItemType>;
+  item: Pick<RecordOf<DocumentItemType>, 'extra'>;
   maxHeight?: string | number;
   onCancel?: (text: string) => void;
-  onSave: (text: string) => void;
+  onChange?: (text: string) => void;
+  onSave?: (text: string) => void;
+  placeholderText?: string;
   saveButtonId?: string;
   saveButtonText?: string;
-  /**
-   * whether a message should be displayed if the text is empty
-   */
+  showActions?: boolean;
   showEmpty?: boolean;
-  emptyMessage?: string;
 }
 
 const DocumentItem: FC<DocumentItemProps> = ({
   cancelButtonId,
   cancelButtonText,
   edit,
+  emptyMessage = 'This document is empty…',
   id,
   item,
   maxHeight,
   onCancel,
+  onChange,
   onSave,
+  placeholderText,
   saveButtonId,
   saveButtonText,
+  showActions,
   showEmpty,
-  emptyMessage = 'This document is empty…',
 }) => {
   const extra = getDocumentExtra(item.extra);
   if (!extra?.content && showEmpty) {
@@ -66,16 +69,19 @@ const DocumentItem: FC<DocumentItemProps> = ({
 
   return withFlavor(
     <TextEditor
-      id={id}
-      value={extra?.content}
+      cancelButtonId={cancelButtonId}
+      cancelButtonText={cancelButtonText}
       edit={edit}
-      onSave={onSave}
+      id={id}
+      maxHeight={maxHeight}
       onCancel={onCancel}
+      onChange={onChange}
+      onSave={onSave}
+      placeholderText={placeholderText}
       saveButtonId={saveButtonId}
       saveButtonText={saveButtonText}
-      maxHeight={maxHeight}
-      cancelButtonText={cancelButtonText}
-      cancelButtonId={cancelButtonId}
+      showActions={showActions}
+      value={extra?.content}
     />,
   );
 };
