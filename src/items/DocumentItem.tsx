@@ -86,12 +86,12 @@ const DocumentItem: FC<DocumentItemProps> = ({
       value={extra?.content}
       styles={
         // hack: if document is in read mode and has flavor, remove padding
-        edit === true && extra?.flavor
-          ? undefined
-          : {
+        edit !== true && extra?.flavor
+          ? {
               padding: 0,
               ...styles,
             }
+          : undefined
       }
     />,
   );
