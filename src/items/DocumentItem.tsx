@@ -1,6 +1,6 @@
 import { RecordOf } from 'immutable';
 
-import { Typography } from '@mui/material';
+import { Alert, Typography } from '@mui/material';
 
 import React, { FC } from 'react';
 
@@ -40,8 +40,8 @@ const DocumentItem: FC<DocumentItemProps> = ({
   showEmpty,
   emptyMessage = 'This document is empty…',
 }) => {
-  const content = getDocumentExtra(item.extra)?.content;
-  if (!content && showEmpty) {
+  const extra = getDocumentExtra(item.extra);
+  if (!extra?.content && showEmpty) {
     return (
       <Typography
         variant='body2'
@@ -52,10 +52,22 @@ const DocumentItem: FC<DocumentItemProps> = ({
     );
   }
 
-  return (
+  const withFlavor = (textView: React.ReactElement): React.ReactElement => {
+    return (
+      <>
+        {extra?.flavor ? (
+          <Alert severity={extra.flavor}>{textView}</Alert>
+        ) : (
+          textView
+        )}
+      </>
+    );
+  };
+
+  return withFlavor(
     <TextEditor
       id={id}
-      value={content}
+      value={extra?.content}
       edit={edit}
       onSave={onSave}
       onCancel={onCancel}
@@ -64,7 +76,7 @@ const DocumentItem: FC<DocumentItemProps> = ({
       maxHeight={maxHeight}
       cancelButtonText={cancelButtonText}
       cancelButtonId={cancelButtonId}
-    />
+    />,
   );
 };
 
