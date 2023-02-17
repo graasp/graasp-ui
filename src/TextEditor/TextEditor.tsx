@@ -55,6 +55,39 @@ export type TextEditorProps = {
   value?: string;
 };
 
+const Div = styled('div')(
+  ({
+    edit,
+    maxHeight,
+    styles,
+  }: {
+    edit?: boolean;
+    maxHeight?: number | string;
+    styles?: React.CSSProperties;
+  }) => ({
+    '& .ql-editor': {
+      // adapt height if read only
+      minHeight: !edit ? 0 : TEXT_EDITOR_MIN_HEIGHT,
+      // necessary styles to avoid window scrolling top on paste
+      // set a max height only on edition
+      maxHeight: edit ? maxHeight ?? TEXT_EDITOR_MAX_HEIGHT : '100%',
+      overflow: 'auto',
+
+      '& p': {
+        paddingBottom: 3,
+        paddingTop: 3,
+      },
+
+      ...styles,
+    },
+    '& .ql-container': {
+      border: !edit ? 'none !important' : undefined,
+      // use font size from mui theme
+      fontSize: 'unset',
+    },
+  }),
+);
+
 const TextEditor: FC<TextEditorProps> = ({
   cancelButtonId,
   cancelButtonText = 'Cancel',
@@ -72,31 +105,6 @@ const TextEditor: FC<TextEditorProps> = ({
   styles,
   value: initialValue = '',
 }) => {
-  const Div = styled('div')(
-    ({ edit, maxHeight }: { edit?: boolean; maxHeight?: number | string }) => ({
-      '& .ql-editor': {
-        // adapt height if read only
-        minHeight: !edit ? 0 : TEXT_EDITOR_MIN_HEIGHT,
-        // necessary styles to avoid window scrolling top on paste
-        // set a max height only on edition
-        maxHeight: edit ? maxHeight ?? TEXT_EDITOR_MAX_HEIGHT : '100%',
-        overflow: 'auto',
-
-        '& p': {
-          paddingBottom: 3,
-          paddingTop: 3,
-        },
-
-        ...styles,
-      },
-      '& .ql-container': {
-        border: !edit ? 'none !important' : undefined,
-        // use font size from mui theme
-        fontSize: 'unset',
-      },
-    }),
-  );
-
   // keep current content
   const [content, setContent] = useState(initialValue ?? '');
 
@@ -125,7 +133,7 @@ const TextEditor: FC<TextEditorProps> = ({
 
   return (
     <React.Fragment>
-      <Div edit={edit} maxHeight={maxHeight}>
+      <Div edit={edit} maxHeight={maxHeight} styles={styles}>
         <ReactQuill
           id={id}
           placeholder={placeholderText}
