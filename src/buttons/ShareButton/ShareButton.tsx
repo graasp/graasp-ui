@@ -26,15 +26,17 @@ const ShareButton: FC<Props> = ({
 }) => {
   return (
     <Tooltip title={tooltip}>
-      <IconButton
-        aria-label={ariaLabel ?? tooltip}
-        className={className}
-        onClick={onClick}
-        id={id}
-        size={size}
-      >
-        {open ? <CloseIcon /> : <Groups />}
-      </IconButton>
+      <span>
+        <IconButton
+          aria-label={ariaLabel ?? tooltip}
+          className={className}
+          onClick={onClick}
+          id={id}
+          size={size}
+        >
+          {open ? <CloseIcon /> : <Groups />}
+        </IconButton>
+      </span>
     </Tooltip>
   );
 };

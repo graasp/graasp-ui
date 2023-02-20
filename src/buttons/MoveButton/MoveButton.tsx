@@ -44,16 +44,18 @@ const MoveButton: FC<MoveButtonProps> = ({
     default:
       return (
         <Tooltip title={text}>
-          <IconButton
-            size={size}
-            id={id}
-            color={color}
-            className={iconClassName}
-            aria-label={text}
-            onClick={onClick}
-          >
-            <OpenWith />
-          </IconButton>
+          <span>
+            <IconButton
+              size={size}
+              id={id}
+              color={color}
+              className={iconClassName}
+              aria-label={text}
+              onClick={onClick}
+            >
+              <OpenWith />
+            </IconButton>
+          </span>
         </Tooltip>
       );
   }

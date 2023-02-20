@@ -40,15 +40,17 @@ const CopyButton: FC<Props> = ({
     default:
       return (
         <Tooltip title={text}>
-          <IconButton
-            id={id}
-            color={color}
-            className={iconClassName}
-            aria-label={text}
-            onClick={onClick}
-          >
-            <FilterNone />
-          </IconButton>
+          <span>
+            <IconButton
+              id={id}
+              color={color}
+              className={iconClassName}
+              aria-label={text}
+              onClick={onClick}
+            >
+              <FilterNone />
+            </IconButton>
+          </span>
         </Tooltip>
       );
   }

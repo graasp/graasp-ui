@@ -12,4 +12,5 @@ module.exports = {
   features: {
     interactionsDebugger: true, // 👈 Enable playback controls
   },
+  staticDirs: ['./public'],
 };

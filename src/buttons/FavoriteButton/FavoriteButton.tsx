@@ -73,13 +73,15 @@ const FavoriteButton: FC<FavoriteButtonProps> = ({
     default:
       return (
         <Tooltip title={tooltipText}>
-          <IconButton
-            aria-label={ariaLabel}
-            sx={{ color: iconColor, ...sx }}
-            onClick={onClick}
-          >
-            {icon}
-          </IconButton>
+          <span>
+            <IconButton
+              aria-label={ariaLabel}
+              sx={{ color: iconColor, ...sx }}
+              onClick={onClick}
+            >
+              {icon}
+            </IconButton>
+          </span>
         </Tooltip>
       );
   }

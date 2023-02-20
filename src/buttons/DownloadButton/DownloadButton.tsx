@@ -54,9 +54,11 @@ const DownloadButton: FC<DownloadButtonProps> = ({
     default:
       return (
         <Tooltip title={title} placement={placement}>
-          <IconButton onClick={handleDownload} aria-label={ariaLabel}>
-            <GetAppIcon />
-          </IconButton>
+          <span>
+            <IconButton onClick={handleDownload} aria-label={ariaLabel}>
+              <GetAppIcon />
+            </IconButton>
+          </span>
         </Tooltip>
       );
   }
