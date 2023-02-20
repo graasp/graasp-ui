@@ -48,14 +48,16 @@ const PinButton: FC<PinButtonProps> = ({
     case BUTTON_TYPES.ICON_BUTTON:
       return (
         <Tooltip title={text}>
-          <IconButton
-            size={size}
-            aria-label={text}
-            className={iconClassName}
-            onClick={onClick}
-          >
-            {icon}
-          </IconButton>
+          <span>
+            <IconButton
+              size={size}
+              aria-label={text}
+              className={iconClassName}
+              onClick={onClick}
+            >
+              {icon}
+            </IconButton>
+          </span>
         </Tooltip>
       );
   }

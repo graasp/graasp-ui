@@ -39,15 +39,17 @@ const DeleteButton: FC<Props> = ({
     default:
       return (
         <Tooltip title={text}>
-          <IconButton
-            id={id}
-            color={color}
-            className={className}
-            aria-label={text}
-            onClick={onClick}
-          >
-            <DeleteIcon />
-          </IconButton>
+          <span>
+            <IconButton
+              id={id}
+              color={color}
+              className={className}
+              aria-label={text}
+              onClick={onClick}
+            >
+              <DeleteIcon />
+            </IconButton>
+          </span>
         </Tooltip>
       );
   }

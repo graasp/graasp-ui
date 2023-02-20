@@ -47,18 +47,20 @@ const LikeButton: FC<LikeButtonProps> = ({
 }) => {
   return (
     <Tooltip title={isLiked ? tooltipUnlike : tooltipLike}>
-      <IconButton
-        aria-label={ariaLabel}
-        sx={sx}
-        color={color}
-        onClick={isLiked ? handleUnlike : handleLike}
-      >
-        {isLiked ? (
-          <FavoriteIcon fontSize={size} />
-        ) : (
-          <FavoriteBorderIcon fontSize={size} />
-        )}
-      </IconButton>
+      <span>
+        <IconButton
+          aria-label={ariaLabel}
+          sx={sx}
+          color={color}
+          onClick={isLiked ? handleUnlike : handleLike}
+        >
+          {isLiked ? (
+            <FavoriteIcon fontSize={size} />
+          ) : (
+            <FavoriteBorderIcon fontSize={size} />
+          )}
+        </IconButton>
+      </span>
     </Tooltip>
   );
 };

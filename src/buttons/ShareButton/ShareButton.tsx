@@ -1,5 +1,5 @@
 import CloseIcon from '@mui/icons-material/Close';
-import ShareIcon from '@mui/icons-material/Share';
+import Groups from '@mui/icons-material/Groups';
 import IconButton, { IconButtonProps } from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 
@@ -26,15 +26,17 @@ const ShareButton: FC<Props> = ({
 }) => {
   return (
     <Tooltip title={tooltip}>
-      <IconButton
-        aria-label={ariaLabel ?? tooltip}
-        className={className}
-        onClick={onClick}
-        id={id}
-        size={size}
-      >
-        {open ? <CloseIcon /> : <ShareIcon />}
-      </IconButton>
+      <span>
+        <IconButton
+          aria-label={ariaLabel ?? tooltip}
+          className={className}
+          onClick={onClick}
+          id={id}
+          size={size}
+        >
+          {open ? <CloseIcon /> : <Groups />}
+        </IconButton>
+      </span>
     </Tooltip>
   );
 };
