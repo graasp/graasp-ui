@@ -2,16 +2,13 @@
   "name": "@graasp/ui",
   "version": "0.11.1",
   "description": "React components for the Graasp ecosystem.",
-  "author": "graasp",
+  "author": "Graasp",
   "contributors": [
     "Juan Carlos Farah",
     "Kim Lan Phan Hoang",
     "Abdallah Al Chami",
     "Alexandre Chau",
     "Basile Spaenlehauer"
-  ],
-  "workspaces": [
-    "example"
   ],
   "license": "AGPL-3.0-only",
   "repository": "graasp/graasp-ui",
@@ -23,7 +20,7 @@
     "definition": "dist/index.d.ts"
   },
   "engines": {
-    "node": ">=10"
+    "node": ">=16"
   },
   "scripts": {
     "build": "rimraf dist && tsc && rollup -c rollup.config.js",
@@ -53,7 +50,7 @@
     "storybook:build": "build-storybook"
   },
   "dependencies": {
-    "@graasp/sdk": "0.4.0",
+    "@graasp/sdk": "0.4.1",
     "clsx": "1.1.1",
     "http-status-codes": "2.2.0",
     "immutable": "4.2.4",
@@ -177,5 +174,5 @@
   "resolutions": {
     "@types/react": "17.0.47"
   },
-  "packageManager": "yarn@3.3.0"
+  "packageManager": "yarn@3.4.1"
 }
