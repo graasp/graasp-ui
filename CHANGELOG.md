@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.11.2](https://github.com/graasp/graasp-ui/compare/v0.11.1...v0.11.2) (2023-02-21)
+
+
+### Bug Fixes
+
+* add `span`s below tooltip to ensure icon stay round ([8877111](https://github.com/graasp/graasp-ui/commit/88771117906c8fdc3c228ff8a464b14e94fbe148))
+* do not show placeholder text when in readOnly mode ([8877111](https://github.com/graasp/graasp-ui/commit/88771117906c8fdc3c228ff8a464b14e94fbe148))
+* **ui:** change `ShareButton` icon ([#245](https://github.com/graasp/graasp-ui/issues/245)) ([8877111](https://github.com/graasp/graasp-ui/commit/88771117906c8fdc3c228ff8a464b14e94fbe148))
+
 ## [0.11.1](https://github.com/graasp/graasp-ui/compare/v0.11.0...v0.11.1) (2023-02-16)
 
 
