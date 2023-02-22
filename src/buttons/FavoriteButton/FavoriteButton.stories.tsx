@@ -2,6 +2,7 @@ import { ComponentMeta, ComponentStory } from '@storybook/react';
 
 import React from 'react';
 
+import { ButtonTypeEnum } from '../../types';
 import { TABLE_CATEGORIES } from '../../utils/storybook';
 import FavoriteButton from './FavoriteButton';
 

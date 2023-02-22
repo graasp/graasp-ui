@@ -35,7 +35,7 @@ const DeleteButton: FC<Props> = ({
           {text}
         </MenuItem>
       );
-    case ButtonTypeEnum.ICON:
+    case ButtonTypeEnum.ICON_BUTTON:
     default:
       return (
         <Tooltip title={text}>

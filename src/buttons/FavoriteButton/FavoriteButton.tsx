@@ -69,7 +69,7 @@ const FavoriteButton: FC<FavoriteButtonProps> = ({
           {text}
         </MenuItem>
       );
-    case ButtonTypeEnum.ICON:
+    case ButtonTypeEnum.ICON_BUTTON:
     default:
       return (
         <Tooltip title={tooltipText}>
