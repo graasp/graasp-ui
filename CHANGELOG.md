@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.12.0](https://github.com/graasp/graasp-ui/compare/v0.11.2...v0.12.0) (2023-02-22)
+
+
+### Features
+
+* return lang from member and item in app item ([#238](https://github.com/graasp/graasp-ui/issues/238)) ([5608bf0](https://github.com/graasp/graasp-ui/commit/5608bf03a4eaed12e647c99923d64820f04f1ca4))
+
 ## [0.11.2](https://github.com/graasp/graasp-ui/compare/v0.11.1...v0.11.2) (2023-02-21)
 
 
