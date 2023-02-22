@@ -25,9 +25,11 @@ export const ItemFlagButton: FC<ItemFlagButtonProps> = ({
 
   return (
     <Tooltip title={tooltip}>
-      <IconButton color={buttonColor} onClick={openItemFlagDialog}>
-        <ReportIcon fontSize={iconSize} />
-      </IconButton>
+      <span>
+        <IconButton color={buttonColor} onClick={openItemFlagDialog}>
+          <ReportIcon fontSize={iconSize} />
+        </IconButton>
+      </span>
     </Tooltip>
   );
 };

@@ -23,15 +23,17 @@ const EditButton: FC<Props> = ({
 }) => {
   return (
     <Tooltip title={tooltip}>
-      <IconButton
-        id={id}
-        aria-label={ariaLabel}
-        className={className}
-        onClick={onClick}
-        size={size}
-      >
-        <EditIcon />
-      </IconButton>
+      <span>
+        <IconButton
+          id={id}
+          aria-label={ariaLabel}
+          className={className}
+          onClick={onClick}
+          size={size}
+        >
+          <EditIcon />
+        </IconButton>
+      </span>
     </Tooltip>
   );
 };

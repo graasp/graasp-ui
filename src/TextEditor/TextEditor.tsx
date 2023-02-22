@@ -136,7 +136,7 @@ const TextEditor: FC<TextEditorProps> = ({
       <Div edit={edit} maxHeight={maxHeight} styles={styles}>
         <ReactQuill
           id={id}
-          placeholder={placeholderText}
+          placeholder={edit ? placeholderText : ''}
           readOnly={!edit}
           theme='snow'
           value={content}

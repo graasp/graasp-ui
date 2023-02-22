@@ -14,9 +14,11 @@ export type Props = {
 const ChatboxButton: FC<Props> = ({ tooltip, id, onClick, size }) => {
   return (
     <Tooltip title={tooltip}>
-      <IconButton id={id} onClick={onClick} size={size}>
-        <ForumIcon />
-      </IconButton>
+      <span>
+        <IconButton id={id} onClick={onClick} size={size}>
+          <ForumIcon />
+        </IconButton>
+      </span>
     </Tooltip>
   );
 };
