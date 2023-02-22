@@ -42,7 +42,7 @@ const FavoriteButton: FC<FavoriteButtonProps> = ({
   handleFavorite,
   handleUnfavorite,
   isFavorite = false,
-  size = 'large',
+  size = 'medium',
   sx,
   text,
   tooltip,

@@ -45,3 +45,6 @@ Default.args = {};
 
 export const IsFavorite = Template.bind({});
 IsFavorite.args = { isFavorite: true };
+
+export const MenuItem = Template.bind({});
+MenuItem.args = { text: 'Add to Favorites', type: ButtonTypeEnum.MENU_ITEM };
