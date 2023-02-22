@@ -4,7 +4,7 @@ import Skeleton from '@mui/material/Skeleton';
 
 import React, { Component } from 'react';
 
-import { UUID, getAppExtra } from '@graasp/sdk';
+import { DEFAULT_LANG, UUID, getAppExtra } from '@graasp/sdk';
 import { AppItemTypeRecord, MemberRecord } from '@graasp/sdk/frontend';
 
 import {
@@ -62,7 +62,6 @@ export interface AppItemProps {
    * whether manual resize is enabled (as opposed to automatic resize, default)
    */
   isResizable?: boolean;
-  lang?: string;
   /**
    * Id of the current member used for saving the resizing preferences
    */
@@ -205,8 +204,7 @@ export class AppItem extends Component<AppItemProps> {
   };
 
   windowOnMessage = (e: MessageEvent): void => {
-    const { item, member, memberId, apiHost, lang, context, permission } =
-      this.props;
+    const { item, member, memberId, apiHost, context, permission } = this.props;
     const { url } = this.state;
     const { data, origin: requestOrigin } = e;
 
@@ -239,7 +237,7 @@ export class AppItem extends Component<AppItemProps> {
             settings: item.settings,
             memberId: memberId || member?.id,
             permission,
-            lang,
+            lang: item.settings?.lang || member?.extra?.lang || DEFAULT_LANG,
             context,
           },
         }),
