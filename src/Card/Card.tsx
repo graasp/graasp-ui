@@ -1,7 +1,6 @@
-import { SxProps, styled } from '@mui/material';
+import { Box, Stack, SxProps, styled } from '@mui/material';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
-import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 
 import React, { FC, ReactElement } from 'react';
@@ -54,62 +53,80 @@ const Item: FC<CardProps> = ({
   sx,
   Thumbnail,
 }) => {
-  const renderImage = (): ReactElement => {
-    if (!Thumbnail) {
-      return <StyledImage src={image} alt={name} />;
-    }
+  const ThumbnailWrapper = styled(Box)({
+    // use a square box to display the image
+    width: height,
+    height,
+    maxWidth: '50%',
+    // don't shrink the image on flex
+    flexShrink: 0,
+  });
 
-    return Thumbnail;
+  const renderImage = (): ReactElement => {
+    return Thumbnail || <StyledImage src={image} alt={name} />;
   };
 
   return (
     <Card id={cardId} sx={sx}>
-      <Grid container sx={{ height }}>
-        <Grid item xs={5} sx={{ width: '100%', height: '100%' }}>
-          {renderImage()}
-        </Grid>
+      <Stack
+        sx={{ height, boxSizing: 'border-box' }}
+        direction='row'
+        spacing={1}
+      >
+        <ThumbnailWrapper>{renderImage()}</ThumbnailWrapper>
 
-        <Grid item xs={7}>
-          <Grid
-            container
-            direction='column'
+        <Stack
+          direction='column'
+          // necessary to respect flex layout, otherwise it does not compress
+          minWidth={0}
+          // ensure that if there is no description the element still goes edge to edge
+          width='100%'
+          boxSizing='border-box'
+        >
+          <CardHeader
+            name={name}
+            creator={creator}
+            ItemMenu={ItemMenu}
+            NameWrapper={NameWrapper}
+          />
+          <Typography
+            justifySelf='start'
+            // necessary for the `position: absolute` on the :before to work
+            position='relative'
+            // allow compression in flex layout
+            minHeight={0}
+            flexShrink={1}
+            // this element will take all available space
+            flexGrow={1}
+            variant='caption'
+            color='textSecondary'
             sx={{
-              width: '100%',
-              height: '100%',
-              justifyContent: 'space-between',
+              // margin to the right
+              mr: 1,
+              // hide overflowing text
+              overflow: 'hidden',
+              // use a before element to create a gradient to suggest there is more text
+              '&:before': {
+                content: '""',
+                width: '100%',
+                height: '30px',
+                position: 'absolute',
+                left: '0px',
+                bottom: '0px',
+                background: (theme) =>
+                  `linear-gradient(transparent 10px, ${theme.palette.background.paper})`,
+              },
             }}
           >
-            <Grid item sx={{ width: '100%' }}>
-              <CardHeader
-                name={name}
-                creator={creator}
-                ItemMenu={ItemMenu}
-                NameWrapper={NameWrapper}
-              />
-            </Grid>
-            {description && (
-              <Grid item sx={{ height: 5, width: '100%', paddingX: 1 }}>
-                <Typography
-                  variant='caption'
-                  color='textSecondary'
-                  component='div'
-                  noWrap
-                >
-                  {description}
-                </Typography>
-              </Grid>
-            )}
-            {/* keep grid to avoid weird behavior with space between */}
-            <Grid item>
-              {Actions && (
-                <CardActions sx={{ justifyContent: 'right', p: 0 }}>
-                  {Actions}
-                </CardActions>
-              )}
-            </Grid>
-          </Grid>
-        </Grid>
-      </Grid>
+            {description}
+          </Typography>
+          {Actions && (
+            <CardActions sx={{ justifyContent: 'right', p: 0 }}>
+              {Actions}
+            </CardActions>
+          )}
+        </Stack>
+      </Stack>
     </Card>
   );
 };
