@@ -4,7 +4,7 @@ export const DRAWER_HEADER_HEIGHT = 55;
 export const LOADING_TEXT = '…';
 
 export const MIME_TYPES = {
-  IMAGE: ['image/png', 'image/jpg', 'image/gif', 'image/jpeg'],
+  IMAGE: ['image/png', 'image/jpg', 'image/gif', 'image/jpeg', 'image/svg+xml'],
   VIDEO: [
     'video/mp4',
     'video/x-m4v',

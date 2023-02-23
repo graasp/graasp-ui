@@ -56,3 +56,31 @@ Image.args = {
     updatedAt: 'updatedAt',
   }),
 };
+
+export const ImageSVG = Template.bind({});
+ImageSVG.loaders = [
+  async () => ({
+    content: await fetch('https://upload.wikimedia.org/wikipedia/commons/b/bd/Test.svg').then((r) => r.blob()),
+  }),
+];
+ImageSVG.args = {
+  item: convertJs<LocalFileItemType>({
+    id: 'my-id',
+    name: 'my item name',
+    extra: {
+      [ItemType.LOCAL_FILE]: {
+        path: 'https://upload.wikimedia.org/wikipedia/commons/b/bd/Test.svg',
+        mimetype: MIME_TYPES.IMAGE[4], // Should be image/svg+xml
+        name: 'original file name',
+        size: 2600,
+      },
+    },
+    type: 'file',
+    description: '',
+    path: 'item-path',
+    settings: {},
+    creator: 'creator',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt',
+  }),
+};
