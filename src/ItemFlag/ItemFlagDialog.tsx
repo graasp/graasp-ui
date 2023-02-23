@@ -8,9 +8,9 @@ import DialogTitle from '@mui/material/DialogTitle';
 import { default as MuiList } from '@mui/material/List';
 import Typography from '@mui/material/Typography';
 
-import React, { FC, MouseEventHandler, useState } from 'react';
+import React, { FC, useState } from 'react';
 
-import { FlagRecord } from '@graasp/sdk/frontend';
+import { FlagType } from '@graasp/sdk';
 
 import Button from '../buttons/Button';
 import { FLAG_LIST_MAX_HEIGHT } from '../constants';
@@ -25,14 +25,15 @@ const StyledList = styled(MuiList)({
 });
 
 export interface ItemFlagDialogProps {
-  flags: List<FlagRecord>;
-  onFlag: MouseEventHandler;
+  flags: List<FlagType>;
+  onFlag: (flag?: FlagType) => void;
   open: boolean;
   onClose: () => void;
   descriptionText?: string;
   title?: string;
   cancelButtonText?: string;
   confirmButtonText?: string;
+  formatFlag?: (flag: string) => string;
 }
 
 export const ItemFlagDialog: FC<ItemFlagDialogProps> = ({
@@ -44,10 +45,18 @@ export const ItemFlagDialog: FC<ItemFlagDialogProps> = ({
   title = 'Flag Item',
   cancelButtonText = 'Cancel',
   confirmButtonText = 'Flag',
+  formatFlag,
 }) => {
-  const [selectedFlag, setSelectedFlag] = useState<FlagRecord>();
+  const [selectedFlag, setSelectedFlag] = useState<FlagType>();
 
-  const handleSelect = (flag: FlagRecord) => () => setSelectedFlag(flag);
+  const handleSelect = (flag: FlagType) => () => setSelectedFlag(flag);
+
+  const flagToString = (flag: FlagType): string => {
+    if (formatFlag) {
+      return formatFlag(flag);
+    }
+    return flag;
+  };
 
   return (
     <Dialog open={open} onClose={onClose} maxWidth='sm' fullWidth>
@@ -55,14 +64,14 @@ export const ItemFlagDialog: FC<ItemFlagDialogProps> = ({
       <DialogContent>
         <ListTitle variant='h6'>{descriptionText}</ListTitle>
         <StyledList>
-          {flags?.map((flag: FlagRecord) => (
+          {flags?.map((flag) => (
             <ListItemButton
-              key={flag.id}
-              id={`flagListItem-${flag.id}`}
-              selected={selectedFlag?.id === flag.id}
+              key={flag}
+              id={`flagListItem-${flag}`}
+              selected={selectedFlag === flag}
               onClick={handleSelect(flag)}
             >
-              <ListItemText primary={flag.name} />
+              <ListItemText primary={flagToString(flag)} />
             </ListItemButton>
           ))}
         </StyledList>
@@ -71,7 +80,11 @@ export const ItemFlagDialog: FC<ItemFlagDialogProps> = ({
         <Button onClick={onClose} variant='text'>
           {cancelButtonText}
         </Button>
-        <Button color='error' onClick={onFlag} disabled={!selectedFlag}>
+        <Button
+          color='error'
+          onClick={() => onFlag(selectedFlag)}
+          disabled={!selectedFlag}
+        >
           {confirmButtonText}
         </Button>
       </DialogActions>

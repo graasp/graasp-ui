@@ -5,8 +5,7 @@ import { List } from 'immutable';
 
 import React from 'react';
 
-import { convertJs } from '@graasp/sdk';
-import { FlagRecord } from '@graasp/sdk/frontend';
+import { FlagType, convertJs } from '@graasp/sdk';
 
 import { TABLE_CATEGORIES } from '../utils/storybook';
 import ItemFlagDialog from './ItemFlagDialog';
@@ -30,11 +29,7 @@ export default {
   },
 } as ComponentMeta<typeof ItemFlagDialog>;
 
-const flags: List<FlagRecord> = convertJs([
-  { id: 'flag-1', name: 'flag-1' },
-  { id: 'flag-2', name: 'flag-2' },
-  { id: 'flag-3', name: 'flag-3' },
-]);
+const flags: List<FlagType> = convertJs(Object.values(FlagType));
 
 const Template: ComponentStory<typeof ItemFlagDialog> = (args) => (
   <ItemFlagDialog {...args} flags={flags} open />
@@ -46,7 +41,7 @@ Primary.args = {};
 Primary.play = async () => {
   const modal = within(screen.getByRole('dialog'));
 
-  flags.forEach(({ name }) => {
+  flags.forEach((name) => {
     expect(modal.getByText(name)).toBeInTheDocument();
   });
 
@@ -54,7 +49,7 @@ Primary.play = async () => {
   expect(modal.getByText('Flag')).toBeDisabled();
 
   // choose a flag and validate
-  const flagName = flags.first()?.name;
+  const flagName = flags.first();
   if (flagName) {
     await userEvent.click(modal.getByText(flagName));
   }

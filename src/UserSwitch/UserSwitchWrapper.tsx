@@ -1,5 +1,3 @@
-import { List } from 'immutable';
-
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import MeetingRoomIcon from '@mui/icons-material/MeetingRoom';
 import { Divider } from '@mui/material';
@@ -11,6 +9,7 @@ import React, { FC, useEffect } from 'react';
 import type { UseQueryResult } from 'react-query';
 
 import {
+  Member,
   getCurrentSession,
   getStoredSessions,
   redirect,
@@ -18,7 +17,7 @@ import {
   setCurrentSession,
   storeSession,
 } from '@graasp/sdk';
-import { MemberRecord } from '@graasp/sdk/frontend';
+import { MemberRecord, ResultOfRecord } from '@graasp/sdk/frontend';
 
 import Loader from '../Loader';
 import UserSwitch from './UserSwitch';
@@ -43,7 +42,7 @@ interface Props {
   signOutText?: string;
   switchMember: (args: { memberId: string; domain: string }) => Promise<void>;
   switchMemberText?: string;
-  useMembers: (ids: string[]) => UseQueryResult<List<MemberRecord>>;
+  useMembers: (ids: string[]) => UseQueryResult<ResultOfRecord<Member>>;
 }
 
 const UserSwitchWrapper: FC<Props> = ({
@@ -70,7 +69,8 @@ const UserSwitchWrapper: FC<Props> = ({
 }) => {
   // get stored sessions
   const sessions = getStoredSessions();
-  const { data: members } = useMembers(sessions.map(({ id }) => id));
+  const { data } = useMembers(sessions.map(({ id }) => id));
+  const members = data?.data?.toSeq()?.toList();
 
   // save current member in sessions if it doesn't exist
   // it is not possible to do it on /auth since it's a backend call

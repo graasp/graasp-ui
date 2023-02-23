@@ -6,6 +6,7 @@ import React from 'react';
 
 import { AppItemType, ItemType, convertJs } from '@graasp/sdk';
 
+import { MOCK_MEMBER } from '../utils/fixtures';
 import { TABLE_CATEGORIES } from '../utils/storybook';
 import AppItem from './AppItem';
 
@@ -45,9 +46,9 @@ Example.args = {
     type: 'app',
     path: 'item-path',
     settings: {},
-    creator: 'mock-member-id',
-    createdAt: 'createdAt',
-    updatedAt: 'updatedAt',
+    creator: MOCK_MEMBER,
+    createdAt: new Date(),
+    updatedAt: new Date(),
   }),
 };
 Example.play = async ({ canvasElement, args }) => {

@@ -24,8 +24,7 @@ import React, {
 } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { UUID } from '@graasp/sdk';
-import { ItemLoginRecord } from '@graasp/sdk/frontend';
+import { ItemLoginSchemaType, UUID } from '@graasp/sdk';
 
 import Button from '../buttons/Button';
 import { SETTINGS } from '../constants';
@@ -79,7 +78,7 @@ export interface ItemLoginScreenProps {
   /**
    * item login schema object
    */
-  itemLogin: ItemLoginRecord;
+  itemLoginSchemaType: ItemLoginSchemaType;
   signIn: (args: { itemId: string } & SignInPropertiesType) => void;
   /**
    * content to display when the user doesn't have access
@@ -96,7 +95,7 @@ export interface ItemLoginScreenProps {
 const ItemLoginScreen: FC<ItemLoginScreenProps> = ({
   ForbiddenContent = <ForbiddenText />,
   itemId,
-  itemLogin,
+  itemLoginSchemaType,
   memberIdInputId,
   modeSelectId,
   modeSelectLabel,
@@ -113,20 +112,18 @@ const ItemLoginScreen: FC<ItemLoginScreenProps> = ({
   const [signInMode, setSignInMode] = useState<string>(
     SETTINGS.ITEM_LOGIN.SIGN_IN_MODE.PSEUDONYM,
   );
-  const loginSchema = itemLogin?.loginSchema;
 
   // no item login detected
   if (
-    !itemLogin ||
-    !itemLogin.loginSchema ||
-    !Object.values(SETTINGS.ITEM_LOGIN.OPTIONS).includes(loginSchema)
+    !itemLoginSchemaType ||
+    !Object.values(ItemLoginSchemaType).includes(itemLoginSchemaType)
   ) {
     return ForbiddenContent;
   }
 
-  const withPassword = [
-    SETTINGS.ITEM_LOGIN.OPTIONS.USERNAME_AND_PASSWORD,
-  ].includes(loginSchema);
+  const withPassword = [ItemLoginSchemaType.USERNAME_AND_PASSWORD].includes(
+    itemLoginSchemaType,
+  );
 
   const onClickSignIn = (): void => {
     const signInProperties: SignInPropertiesType = {};

@@ -37,38 +37,20 @@ const Template: ComponentStory<typeof Thumbnail> = (
 export const Default = Template.bind({});
 Default.args = {
   maxWidth: 100,
-  // @ts-expect-error following function is not a query
-  useThumbnail: () => ({ data: null }),
   alt: 'myname',
-  defaultValue: <img src='https://picsum.photos/100' />,
+  defaultComponent: <img src='https://picsum.photos/100' />,
 };
 
 export const Loading = Template.bind({});
 Loading.args = {
   maxWidth: 100,
-  // @ts-expect-error following function is not a query
-  useThumbnail: () => ({ isLoading: true }),
   maxHeight: 100,
+  isLoading: true,
 };
 
 export const ItemThumbnail = Template.bind({});
-ItemThumbnail.loaders = [
-  async () => ({
-    data: await fetch('https://picsum.photos/100').then((img) => img.blob()),
-  }),
-];
 ItemThumbnail.args = {
   maxHeight: 100,
   maxWidth: 100,
-  // @ts-expect-error following function is not a query
-  useThumbnail: () => ({}),
-};
-
-export const LinkThumbnail = Template.bind({});
-LinkThumbnail.args = {
-  maxHeight: 100,
-  maxWidth: 100,
-  // @ts-expect-error following function is not a query
-  useThumbnail: () => ({}),
-  thumbnailSrc: 'https://picsum.photos/100',
+  url: 'https://picsum.photos/100',
 };

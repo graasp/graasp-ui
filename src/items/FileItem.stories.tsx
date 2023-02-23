@@ -5,6 +5,7 @@ import React from 'react';
 
 import { ItemType, LocalFileItemType, MimeTypes, convertJs } from '@graasp/sdk';
 
+import { MOCK_MEMBER } from '../utils/fixtures';
 import { TABLE_CATEGORIES } from '../utils/storybook';
 import FileItem from './FileItem';
 
@@ -50,9 +51,9 @@ Image.args = {
     description: 'my image description',
     path: 'item-path',
     settings: {},
-    creator: 'creator',
-    createdAt: 'createdAt',
-    updatedAt: 'updatedAt',
+    creator: MOCK_MEMBER,
+    createdAt: new Date(),
+    updatedAt: new Date(),
   }),
 };
 
@@ -80,9 +81,9 @@ ImageSVG.args = {
     description: 'my svg description',
     path: 'item-path',
     settings: {},
-    creator: 'creator',
-    createdAt: 'createdAt',
-    updatedAt: 'updatedAt',
+    creator: MOCK_MEMBER,
+    createdAt: new Date(),
+    updatedAt: new Date(),
   }),
 };
 
@@ -110,8 +111,8 @@ WAVAudio.args = {
     description: 'my audio description',
     path: 'item-path',
     settings: {},
-    creator: 'creator',
-    createdAt: 'createdAt',
-    updatedAt: 'updatedAt',
+    creator: MOCK_MEMBER,
+    createdAt: new Date(),
+    updatedAt: new Date(),
   }),
 };
