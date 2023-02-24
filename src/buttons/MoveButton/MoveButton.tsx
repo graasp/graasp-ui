@@ -6,8 +6,7 @@ import Tooltip from '@mui/material/Tooltip';
 
 import React, { FC } from 'react';
 
-import { BUTTON_TYPES } from '../../constants';
-import { ButtonType } from '../../types';
+import { ButtonType, ButtonTypeEnum } from '../../types';
 
 type MoveButtonProps = {
   color?: IconButtonProps['color'];
@@ -28,10 +27,10 @@ const MoveButton: FC<MoveButtonProps> = ({
   onClick,
   size,
   text = 'Move',
-  type = BUTTON_TYPES.ICON_BUTTON,
+  type = ButtonTypeEnum.ICON_BUTTON,
 }) => {
   switch (type) {
-    case BUTTON_TYPES.MENU_ITEM:
+    case ButtonTypeEnum.MENU_ITEM:
       return (
         <MenuItem key={text} onClick={onClick} className={menuItemClassName}>
           <ListItemIcon>
@@ -40,7 +39,7 @@ const MoveButton: FC<MoveButtonProps> = ({
           {text}
         </MenuItem>
       );
-    case BUTTON_TYPES.ICON_BUTTON:
+    case ButtonTypeEnum.ICON_BUTTON:
     default:
       return (
         <Tooltip title={text}>

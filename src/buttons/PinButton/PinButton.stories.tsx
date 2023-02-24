@@ -2,7 +2,7 @@ import { ComponentMeta, ComponentStory } from '@storybook/react';
 
 import React from 'react';
 
-import { BUTTON_TYPES } from '../../constants';
+import { ButtonTypeEnum } from '../../types';
 import { TABLE_CATEGORIES } from '../../utils/storybook';
 import PinButton from './PinButton';
 
@@ -36,10 +36,10 @@ IsPinned.args = {
 
 export const Icon = Template.bind({});
 Icon.args = {
-  type: BUTTON_TYPES.ICON_BUTTON,
+  type: ButtonTypeEnum.ICON_BUTTON,
 };
 
 export const MenuItem = Template.bind({});
 MenuItem.args = {
-  type: BUTTON_TYPES.MENU_ITEM,
+  type: ButtonTypeEnum.MENU_ITEM,
 };

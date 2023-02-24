@@ -103,9 +103,4 @@ export const GRAASP_ASSETS_PROTOCOL = 'https://';
 
 export const SCREEN_MAX_HEIGHT = window.innerHeight * 0.8;
 
-export const BUTTON_TYPES = {
-  MENU_ITEM: 'menuItem',
-  ICON_BUTTON: 'iconButton',
-};
-
 export const FAVORITE_COLOR = '#ffc107';
