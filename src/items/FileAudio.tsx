@@ -2,12 +2,12 @@ import { SxProps, styled } from '@mui/material';
 
 import React, { FC } from 'react';
 
-interface FileAudioProps {
+type FileAudioProps = {
   id?: string;
   url?: string;
   type: string;
   sx?: SxProps;
-}
+};
 
 const FileAudio: FC<FileAudioProps> = ({ id, url, type, sx }) => {
   const StyledAudio = styled('audio')({

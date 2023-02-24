@@ -60,7 +60,9 @@ Image.args = {
 export const ImageSVG = Template.bind({});
 ImageSVG.loaders = [
   async () => ({
-    content: await fetch('https://upload.wikimedia.org/wikipedia/commons/b/bd/Test.svg').then((r) => r.blob()),
+    content: await fetch(
+      'https://upload.wikimedia.org/wikipedia/commons/b/bd/Test.svg',
+    ).then((r) => r.blob()),
   }),
 ];
 ImageSVG.args = {
@@ -73,6 +75,36 @@ ImageSVG.args = {
         mimetype: MIME_TYPES.IMAGE[4], // Should be image/svg+xml
         name: 'original file name',
         size: 2600,
+      },
+    },
+    type: 'file',
+    description: '',
+    path: 'item-path',
+    settings: {},
+    creator: 'creator',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt',
+  }),
+};
+
+export const WAVAudio = Template.bind({});
+WAVAudio.loaders = [
+  async () => ({
+    content: await fetch(
+      'https://upload.wikimedia.org/wikipedia/commons/8/8f/Bass_loop_2_%28Carrai_Pass%29.wav',
+    ).then((r) => r.blob()),
+  }),
+];
+WAVAudio.args = {
+  item: convertJs<LocalFileItemType>({
+    id: 'my-id',
+    name: 'my item name',
+    extra: {
+      [ItemType.LOCAL_FILE]: {
+        path: 'https://upload.wikimedia.org/wikipedia/commons/8/8f/Bass_loop_2_%28Carrai_Pass%29.wav',
+        mimetype: MIME_TYPES.AUDIO[3], // Should be audio/wav
+        name: 'original file name',
+        size: 10000000,
       },
     },
     type: 'file',
