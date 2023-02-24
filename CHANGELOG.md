@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.13.0](https://github.com/graasp/graasp-ui/compare/v0.12.0...v0.13.0) (2023-02-24)
+
+
+### Features
+
+* support `wav` and `svg` formats ([#256](https://github.com/graasp/graasp-ui/issues/256)) ([b7ece2d](https://github.com/graasp/graasp-ui/commit/b7ece2dd1f7bb50b8937051299d1c391c52ca172))
+
 ## [0.12.0](https://github.com/graasp/graasp-ui/compare/v0.11.2...v0.12.0) (2023-02-22)
 
 
