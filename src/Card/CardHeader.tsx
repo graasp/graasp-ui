@@ -1,4 +1,4 @@
-import Grid from '@mui/material/Grid';
+import { Stack } from '@mui/material';
 import Typography from '@mui/material/Typography';
 
 import React, { FC, ReactElement } from 'react';
@@ -17,38 +17,27 @@ const CustomCardHeader: FC<CardHeaderProps> = ({
   NameWrapper = ({ children }: { children: ReactElement }) => children,
 }) => {
   return (
-    <Grid
-      container
+    <Stack
+      direction='row'
       justifyContent='space-between'
-      alignItems='center'
-      sx={{ width: '100%', pl: 1 }}
+      // align to the top so the button does not move when there is no creator
+      alignItems='start'
+      boxSizing='border-box'
     >
-      <Grid item xs={9} sx={{ display: 'flex', width: '100%' }}>
-        <Grid container>
-          <Grid item xs={12}>
-            <NameWrapper>
-              <Typography
-                noWrap
-                variant='subtitle1'
-                sx={{ fontWeight: 'bold' }}
-              >
-                {name}
-              </Typography>
-            </NameWrapper>
-          </Grid>
-          {creator && (
-            <Grid item xs={12}>
-              <Typography noWrap variant='caption'>
-                {creator}
-              </Typography>
-            </Grid>
-          )}
-        </Grid>
-      </Grid>
-      <Grid item xs={3} sx={{ textAlign: 'right' }}>
-        {ItemMenu}
-      </Grid>
-    </Grid>
+      <Stack minWidth={0} direction='column'>
+        <NameWrapper>
+          <Typography noWrap variant='subtitle1' sx={{ fontWeight: 'bold' }}>
+            {name}
+          </Typography>
+        </NameWrapper>
+        {creator && (
+          <Typography noWrap variant='caption'>
+            {creator}
+          </Typography>
+        )}
+      </Stack>
+      {ItemMenu}
+    </Stack>
   );
 };
 

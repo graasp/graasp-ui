@@ -29,8 +29,50 @@ Example.args = {
   name: 'my card title',
   description:
     'my card description might be really long that is why we cut it after some lines of text to allow some space for more data',
-  image: 'https://picsum.photos/200',
+  image: 'https://picsum.photos/200/100',
   creator: 'graasp',
+  Actions: (
+    <>
+      <IconButton>
+        <AcUnitIcon />
+      </IconButton>
+      <IconButton>
+        <AcUnitIcon />
+      </IconButton>
+      <IconButton>
+        <AcUnitIcon />
+      </IconButton>
+    </>
+  ),
+  ItemMenu: (
+    <IconButton>
+      <MoreVertIcon />
+    </IconButton>
+  ),
+};
+
+export const NoActions = Template.bind({});
+NoActions.args = {
+  name: 'my card title',
+  description:
+    'my card description might be really long that is why we cut it after some lines of text to allow some space for more data and we can see the overflow also here it i going to be visible ?',
+  image: 'https://picsum.photos/100/100',
+  creator: 'graasp',
+  ItemMenu: (
+    <IconButton>
+      <MoreVertIcon />
+    </IconButton>
+  ),
+};
+
+export const TallCard = Template.bind({});
+TallCard.args = {
+  name: 'my card title',
+  description:
+    'my card description might be really long that is why we cut it after some lines of text to allow some space for more data',
+  image: 'https://picsum.photos/200/500',
+  creator: 'graasp',
+  height: 300,
   Actions: (
     <>
       <IconButton>
