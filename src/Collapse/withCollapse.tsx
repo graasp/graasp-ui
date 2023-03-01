@@ -1,16 +1,14 @@
-import { RecordOf } from 'immutable';
-
 import React from 'react';
 
-import type { Item, UnknownExtra } from '@graasp/sdk';
+import { ItemRecord } from '@graasp/sdk/frontend';
 
 import Collapse from './Collapse';
 
-interface WithCollapseProps<T extends UnknownExtra> {
-  item: RecordOf<Item<T>>;
+interface WithCollapseProps {
+  item: ItemRecord;
 }
 
-function withCollapse<T extends UnknownExtra>({ item }: WithCollapseProps<T>) {
+function withCollapse({ item }: WithCollapseProps) {
   return (component: JSX.Element): JSX.Element => {
     class ComponentWithCollapse extends React.Component {
       render(): JSX.Element {

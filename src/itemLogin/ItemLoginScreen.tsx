@@ -75,7 +75,7 @@ const UsernameInfoIcon = styled(InfoIcon)(({ theme }) => ({
 }));
 
 export interface ItemLoginScreenProps {
-  itemId?: UUID;
+  itemId: UUID;
   /**
    * item login schema object
    */
