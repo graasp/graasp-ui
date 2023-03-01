@@ -75,7 +75,7 @@ const UsernameInfoIcon = styled(InfoIcon)(({ theme }) => ({
 }));
 
 export interface ItemLoginScreenProps {
-  itemId: UUID;
+  itemId?: UUID;
   /**
    * item login schema object
    */
@@ -107,9 +107,9 @@ const ItemLoginScreen: FC<ItemLoginScreenProps> = ({
 }) => {
   const { t } = useTranslation();
   const loginModeRef = useRef(null);
-  const [password, setPassword] = useState<string | undefined>(undefined);
-  const [username, setUsername] = useState<string | undefined>(undefined);
-  const [memberId, setMemberId] = useState<string | undefined>(undefined);
+  const [password, setPassword] = useState<string>();
+  const [username, setUsername] = useState<string>();
+  const [memberId, setMemberId] = useState<string>();
   const [signInMode, setSignInMode] = useState<string>(
     SETTINGS.ITEM_LOGIN.SIGN_IN_MODE.PSEUDONYM,
   );

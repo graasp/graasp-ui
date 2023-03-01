@@ -19,10 +19,10 @@ import ItemLoginScreen, { SignInPropertiesType } from './ItemLoginScreen';
 export type ItemLoginAuthorizationProps = {
   signOut: () => void;
   signIn: (args: { itemId: string } & SignInPropertiesType) => void;
-  itemId: UUID;
+  itemId?: UUID;
   useCurrentMember: () => UseQueryResult<MemberRecord>;
-  useItem: (itemId: string) => UseQueryResult<ItemRecord>;
-  useItemLogin: (itemId: string) => UseQueryResult<ItemLoginRecord>;
+  useItem: (itemId?: string) => UseQueryResult<ItemRecord>;
+  useItemLogin: (itemId?: string) => UseQueryResult<ItemLoginRecord>;
   Error?: ReactElement;
   memberIdInputId?: string;
   usernameInputId?: string;
