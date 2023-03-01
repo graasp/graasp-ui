@@ -32,7 +32,7 @@ type CardProps = {
    */
   image?: string;
   ItemMenu?: ReactElement;
-  NameWrapper?: FC;
+  NameWrapper?: ({ children }: { children: JSX.Element }) => JSX.Element;
   sx?: SxProps;
   /**
    * thumbnail component, override image

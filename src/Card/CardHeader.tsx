@@ -7,7 +7,7 @@ type CardHeaderProps = {
   name: string;
   creator?: string;
   ItemMenu?: ReactElement;
-  NameWrapper?: FC;
+  NameWrapper?: ({ children }: { children: JSX.Element }) => JSX.Element;
 };
 
 const CustomCardHeader: FC<CardHeaderProps> = ({
