@@ -44,7 +44,7 @@ const Avatar: FC<AvatarProps> = ({
   blob: thumbnailBlob,
   maxWidth = '100%',
   maxHeight = '100%',
-  variant,
+  variant = 'circular',
   component = 'img',
   isLoading,
   className,
