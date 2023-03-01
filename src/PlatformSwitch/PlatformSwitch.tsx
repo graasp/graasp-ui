@@ -145,6 +145,7 @@ export const PlatformSwitch: FC<PlatformSwitchProps> = ({
 
   const buttons = Object.values(Platform).map((platform, index, platforms) => (
     <PlatformButton
+      key={platform}
       // the last icon does not need margin at the end
       sx={{ mr: index === platforms.length - 1 ? 0 : spacing }}
       platform={platform}
