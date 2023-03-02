@@ -57,4 +57,4 @@ To navigate the UI components click the link bellow:
 
 ## License
 
-MIT © [Graasp Association](https://graasp.org)
+AGPL-3.0 © [Graasp Association](https://graasp.org)
