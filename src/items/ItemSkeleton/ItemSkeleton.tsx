@@ -54,7 +54,7 @@ const ItemSkeleton: React.FC<ItemSkeletonProps> = ({
         ItemType.S3_FILE,
         ItemType.LINK,
         ItemType.APP,
-      ] as string[]
+      ] as `${ItemType}`[]
     ).includes(itemType): {
       return (
         <Skeleton
