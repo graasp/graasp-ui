@@ -16,7 +16,7 @@ export interface DocumentItemProps {
   item: RecordOf<DocumentItemType>;
   maxHeight?: string | number;
   onCancel?: (text: string) => void;
-  onSave: (text: string) => void;
+  onSave?: (text: string) => void;
   saveButtonId?: string;
   saveButtonText?: string;
   /**
