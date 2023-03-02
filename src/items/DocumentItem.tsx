@@ -1,11 +1,11 @@
-import { RecordOf } from 'immutable';
-
 import { Alert, Typography } from '@mui/material';
 
 import React, { FC } from 'react';
 
-import { DocumentItemType, getDocumentExtra } from '@graasp/sdk';
+import { getDocumentExtra } from '@graasp/sdk';
+import { DocumentItemTypeRecord } from '@graasp/sdk/frontend';
 
+import withCollapse from '../Collapse/withCollapse';
 import TextEditor from '../TextEditor';
 
 export interface DocumentItemProps {
@@ -14,7 +14,7 @@ export interface DocumentItemProps {
   edit?: boolean;
   emptyMessage?: string;
   id?: string;
-  item: Pick<RecordOf<DocumentItemType>, 'extra'>;
+  item: DocumentItemTypeRecord;
   maxHeight?: string | number;
   onCancel?: (text: string) => void;
   onChange?: (text: string) => void;
@@ -24,6 +24,7 @@ export interface DocumentItemProps {
   saveButtonText?: string;
   showActions?: boolean;
   showEmpty?: boolean;
+  showCollapse?: boolean;
   styles?: React.CSSProperties;
 }
 
@@ -43,19 +44,11 @@ const DocumentItem: FC<DocumentItemProps> = ({
   saveButtonText,
   showActions,
   showEmpty,
+  showCollapse = false,
   styles,
 }) => {
+  let component: JSX.Element;
   const extra = getDocumentExtra(item.extra);
-  if (!extra?.content && showEmpty) {
-    return (
-      <Typography
-        variant='body2'
-        sx={{ fontStyle: 'italic', color: 'lightgrey' }}
-      >
-        {emptyMessage}
-      </Typography>
-    );
-  }
 
   const withFlavor = (textView: React.ReactElement): React.ReactElement => {
     return (
@@ -69,32 +62,49 @@ const DocumentItem: FC<DocumentItemProps> = ({
     );
   };
 
-  return withFlavor(
-    <TextEditor
-      cancelButtonId={cancelButtonId}
-      cancelButtonText={cancelButtonText}
-      edit={edit}
-      id={id}
-      maxHeight={maxHeight}
-      onCancel={onCancel}
-      onChange={onChange}
-      onSave={onSave}
-      placeholderText={placeholderText}
-      saveButtonId={saveButtonId}
-      saveButtonText={saveButtonText}
-      showActions={showActions}
-      value={extra?.content}
-      styles={
-        // hack: if document is in read mode and has flavor, remove padding
-        edit !== true && extra?.flavor
-          ? {
-              padding: 0,
-              ...styles,
-            }
-          : undefined
-      }
-    />,
-  );
+  if (!extra?.content && showEmpty) {
+    component = (
+      <Typography
+        variant='body2'
+        sx={{ fontStyle: 'italic', color: 'lightgrey' }}
+      >
+        {emptyMessage}
+      </Typography>
+    );
+  } else {
+    component = withFlavor(
+      <TextEditor
+        cancelButtonId={cancelButtonId}
+        cancelButtonText={cancelButtonText}
+        edit={edit}
+        id={id}
+        maxHeight={maxHeight}
+        onCancel={onCancel}
+        onChange={onChange}
+        onSave={onSave}
+        placeholderText={placeholderText}
+        saveButtonId={saveButtonId}
+        saveButtonText={saveButtonText}
+        showActions={showActions}
+        value={extra?.content}
+        styles={
+          // hack: if document is in read mode and has flavor, remove padding
+          edit !== true && extra?.flavor
+            ? {
+                padding: 0,
+                ...styles,
+              }
+            : undefined
+        }
+      />,
+    );
+  }
+
+  if (showCollapse) {
+    component = withCollapse({ itemName: item.name })(component);
+  }
+
+  return component;
 };
 
 export default DocumentItem;

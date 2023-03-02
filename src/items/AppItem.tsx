@@ -7,6 +7,7 @@ import React, { Component } from 'react';
 import { DEFAULT_LANG, UUID, getAppExtra } from '@graasp/sdk';
 import { AppItemTypeRecord, MemberRecord } from '@graasp/sdk/frontend';
 
+import withCollapse from '../Collapse/withCollapse';
 import {
   APP_DEFAULT_HEIGHT,
   APP_ITEM_WIDTH,
@@ -78,6 +79,7 @@ export interface AppItemProps {
    */
   showCaption?: boolean;
   saveButtonId?: string;
+  showCollapse?: boolean;
   cancelButtonId?: string;
 }
 
@@ -260,6 +262,7 @@ export class AppItem extends Component<AppItemProps> {
       cancelButtonId,
       editCaption,
       isResizable,
+      showCollapse = false,
     }: AppItemProps = this.props;
     const { iframeIsLoading, url, height } = this.state;
 
@@ -296,7 +299,7 @@ export class AppItem extends Component<AppItemProps> {
       component: iframe,
     });
 
-    const component = (
+    let component = (
       <>
         {iframeIsLoading && (
           <Skeleton
@@ -316,7 +319,7 @@ export class AppItem extends Component<AppItemProps> {
     );
 
     if (showCaption) {
-      return withCaption({
+      component = withCaption({
         item,
         onSave: onSaveCaption,
         onCancel: onCancelCaption,
@@ -324,6 +327,10 @@ export class AppItem extends Component<AppItemProps> {
         saveButtonId,
         cancelButtonId,
       })(component);
+    }
+
+    if (showCollapse) {
+      component = withCollapse({ itemName: item.name })(component);
     }
 
     return component;
