@@ -2,6 +2,35 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0](https://github.com/graasp/graasp-ui/compare/v0.13.0...v1.0.0) (2023-03-03)
+
+
+### ⚠ BREAKING CHANGES
+
+* remove `BUTTON_TYPES` constant and use `ButtonTypeEnum` ([#260](https://github.com/graasp/graasp-ui/issues/260))
+
+### Features
+
+* implement document style flavors ([#241](https://github.com/graasp/graasp-ui/issues/241)) ([8dbecb7](https://github.com/graasp/graasp-ui/commit/8dbecb74082849b06c5dcb342dd9300c16adbc12))
+
+
+### Bug Fixes
+
+* add key to list element in platform switch ([#266](https://github.com/graasp/graasp-ui/issues/266)) ([bc7d5f2](https://github.com/graasp/graasp-ui/commit/bc7d5f2081183f2f2853be2b4f3279578459d357))
+* change default favoritebutton icon size to medium and add a menuItem story ([6302d46](https://github.com/graasp/graasp-ui/commit/6302d46ec6bb12de7c9862b12c07e5b10ff0c78e))
+* improve card component and add stories ([#259](https://github.com/graasp/graasp-ui/issues/259)) ([fc3e120](https://github.com/graasp/graasp-ui/commit/fc3e12054cfa19d779abbfd06601814f01059def))
+* improve optional types on `ItemLoginAuthorization` ([#268](https://github.com/graasp/graasp-ui/issues/268)) ([d8e20a3](https://github.com/graasp/graasp-ui/commit/d8e20a307c6b391d632240f99fea60c1672c8110))
+* remove `BUTTON_TYPES` constant and use `ButtonTypeEnum` ([#260](https://github.com/graasp/graasp-ui/issues/260)) ([6302d46](https://github.com/graasp/graasp-ui/commit/6302d46ec6bb12de7c9862b12c07e5b10ff0c78e))
+* set default skeleton variant to circular for Avatar ([#264](https://github.com/graasp/graasp-ui/issues/264)) ([30fddbc](https://github.com/graasp/graasp-ui/commit/30fddbc091df3a26c20647d5e37fe9f263f050a2))
+* **types:** `withCollapse` uses `ItemRecord` ([d8e20a3](https://github.com/graasp/graasp-ui/commit/d8e20a307c6b391d632240f99fea60c1672c8110))
+* **types:** improve types of itemType prop in SkeletonItem ([30fddbc](https://github.com/graasp/graasp-ui/commit/30fddbc091df3a26c20647d5e37fe9f263f050a2))
+* **types:** make `onSave` optional in `DocumentItem` for readOnly mode ([d8e20a3](https://github.com/graasp/graasp-ui/commit/d8e20a307c6b391d632240f99fea60c1672c8110))
+
+
+### Documentation
+
+* update license in readme ([#270](https://github.com/graasp/graasp-ui/issues/270)) ([26f5478](https://github.com/graasp/graasp-ui/commit/26f547808b46f05382bc8fba76bc7c7174537fe3))
+
 ## [0.13.0](https://github.com/graasp/graasp-ui/compare/v0.12.0...v0.13.0) (2023-02-24)
 
 
