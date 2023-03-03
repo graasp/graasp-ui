@@ -42,7 +42,7 @@ const FavoriteButton: FC<FavoriteButtonProps> = ({
   handleFavorite,
   handleUnfavorite,
   isFavorite = false,
-  size = 'large',
+  size = 'medium',
   sx,
   text,
   tooltip,
@@ -69,7 +69,7 @@ const FavoriteButton: FC<FavoriteButtonProps> = ({
           {text}
         </MenuItem>
       );
-    case ButtonTypeEnum.ICON:
+    case ButtonTypeEnum.ICON_BUTTON:
     default:
       return (
         <Tooltip title={tooltipText}>

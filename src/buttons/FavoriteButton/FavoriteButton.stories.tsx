@@ -2,6 +2,7 @@ import { ComponentMeta, ComponentStory } from '@storybook/react';
 
 import React from 'react';
 
+import { ButtonTypeEnum } from '../../types';
 import { TABLE_CATEGORIES } from '../../utils/storybook';
 import FavoriteButton from './FavoriteButton';
 
@@ -44,3 +45,6 @@ Default.args = {};
 
 export const IsFavorite = Template.bind({});
 IsFavorite.args = { isFavorite: true };
+
+export const MenuItem = Template.bind({});
+MenuItem.args = { text: 'Add to Favorites', type: ButtonTypeEnum.MENU_ITEM };

@@ -21,8 +21,8 @@ export type ItemLoginAuthorizationProps = {
   signIn: (args: { itemId: string } & SignInPropertiesType) => void;
   itemId: UUID;
   useCurrentMember: () => UseQueryResult<MemberRecord>;
-  useItem: (itemId: string) => UseQueryResult<ItemRecord>;
-  useItemLogin: (itemId: string) => UseQueryResult<ItemLoginRecord>;
+  useItem: (itemId?: string) => UseQueryResult<ItemRecord>;
+  useItemLogin: (itemId?: string) => UseQueryResult<ItemLoginRecord>;
   Error?: ReactElement;
   memberIdInputId?: string;
   usernameInputId?: string;

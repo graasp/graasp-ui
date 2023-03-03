@@ -91,7 +91,8 @@ export const ImmutableItemLoginFactory = Record({
 });
 
 export enum ButtonTypeEnum {
-  ICON = 'icon',
+  ICON_BUTTON = 'icon',
   MENU_ITEM = 'menuItem',
 }
-export type ButtonType = 'icon' | 'menuItem' | ButtonTypeEnum | string;
+
+export type ButtonType = `${ButtonTypeEnum}`;

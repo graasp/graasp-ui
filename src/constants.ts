@@ -4,7 +4,7 @@ export const DRAWER_HEADER_HEIGHT = 55;
 export const LOADING_TEXT = '…';
 
 export const MIME_TYPES = {
-  IMAGE: ['image/png', 'image/jpg', 'image/gif', 'image/jpeg'],
+  IMAGE: ['image/png', 'image/jpg', 'image/gif', 'image/jpeg', 'image/svg+xml'],
   VIDEO: [
     'video/mp4',
     'video/x-m4v',
@@ -12,7 +12,7 @@ export const MIME_TYPES = {
     'video/quicktime',
     'video/webm',
   ],
-  AUDIO: ['audio/mpeg', 'audio/mp3'],
+  AUDIO: ['audio/mpeg', 'audio/mp3', 'audio/wav', 'audio/x-wav'],
   PDF: ['application/pdf'],
   ZIP: ['application/zip'],
 };
@@ -102,10 +102,5 @@ export const PDF_VIEWER_LINK = `${process.env.REACT_APP_GRAASP_ASSETS_URL}/pdf-v
 export const GRAASP_ASSETS_PROTOCOL = 'https://';
 
 export const SCREEN_MAX_HEIGHT = window.innerHeight * 0.8;
-
-export const BUTTON_TYPES = {
-  MENU_ITEM: 'menuItem',
-  ICON_BUTTON: 'iconButton',
-};
 
 export const FAVORITE_COLOR = '#ffc107';

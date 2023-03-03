@@ -16,7 +16,7 @@ export interface ItemSkeletonProps {
    */
   isChildren: boolean;
   isCollapsible?: boolean;
-  itemType: ItemType;
+  itemType: `${ItemType}` | ItemType;
   screenMaxHeight?: number;
 }
 
@@ -48,12 +48,14 @@ const ItemSkeleton: React.FC<ItemSkeletonProps> = ({
         />
       );
     }
-    case [
-      ItemType.LOCAL_FILE,
-      ItemType.S3_FILE,
-      ItemType.LINK,
-      ItemType.APP,
-    ].includes(itemType): {
+    case (
+      [
+        ItemType.LOCAL_FILE,
+        ItemType.S3_FILE,
+        ItemType.LINK,
+        ItemType.APP,
+      ] as `${ItemType}`[]
+    ).includes(itemType): {
       return (
         <Skeleton
           variant='rectangular'
