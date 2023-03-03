@@ -1,6 +1,6 @@
 import { RecordOf } from 'immutable';
 
-import { Typography } from '@mui/material';
+import { Alert, Typography } from '@mui/material';
 
 import React, { FC } from 'react';
 
@@ -12,36 +12,41 @@ export interface DocumentItemProps {
   cancelButtonId?: string;
   cancelButtonText?: string;
   edit?: boolean;
+  emptyMessage?: string;
   id?: string;
-  item: RecordOf<DocumentItemType>;
+  item: Pick<RecordOf<DocumentItemType>, 'extra'>;
   maxHeight?: string | number;
   onCancel?: (text: string) => void;
+  onChange?: (text: string) => void;
   onSave?: (text: string) => void;
+  placeholderText?: string;
   saveButtonId?: string;
   saveButtonText?: string;
-  /**
-   * whether a message should be displayed if the text is empty
-   */
+  showActions?: boolean;
   showEmpty?: boolean;
-  emptyMessage?: string;
+  styles?: React.CSSProperties;
 }
 
 const DocumentItem: FC<DocumentItemProps> = ({
   cancelButtonId,
   cancelButtonText,
   edit,
+  emptyMessage = 'This document is empty…',
   id,
   item,
   maxHeight,
   onCancel,
+  onChange,
   onSave,
+  placeholderText,
   saveButtonId,
   saveButtonText,
+  showActions,
   showEmpty,
-  emptyMessage = 'This document is empty…',
+  styles,
 }) => {
-  const content = getDocumentExtra(item.extra)?.content;
-  if (!content && showEmpty) {
+  const extra = getDocumentExtra(item.extra);
+  if (!extra?.content && showEmpty) {
     return (
       <Typography
         variant='body2'
@@ -52,19 +57,43 @@ const DocumentItem: FC<DocumentItemProps> = ({
     );
   }
 
-  return (
+  const withFlavor = (textView: React.ReactElement): React.ReactElement => {
+    return (
+      <>
+        {extra?.flavor ? (
+          <Alert severity={extra.flavor}>{textView}</Alert>
+        ) : (
+          textView
+        )}
+      </>
+    );
+  };
+
+  return withFlavor(
     <TextEditor
-      id={id}
-      value={content}
+      cancelButtonId={cancelButtonId}
+      cancelButtonText={cancelButtonText}
       edit={edit}
-      onSave={onSave}
+      id={id}
+      maxHeight={maxHeight}
       onCancel={onCancel}
+      onChange={onChange}
+      onSave={onSave}
+      placeholderText={placeholderText}
       saveButtonId={saveButtonId}
       saveButtonText={saveButtonText}
-      maxHeight={maxHeight}
-      cancelButtonText={cancelButtonText}
-      cancelButtonId={cancelButtonId}
-    />
+      showActions={showActions}
+      value={extra?.content}
+      styles={
+        // hack: if document is in read mode and has flavor, remove padding
+        edit !== true && extra?.flavor
+          ? {
+              padding: 0,
+              ...styles,
+            }
+          : undefined
+      }
+    />,
   );
 };
 

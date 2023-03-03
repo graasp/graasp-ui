@@ -38,24 +38,33 @@ Quill.register(
 );
 
 export type TextEditorProps = {
-  onSave?: (text: string) => void;
-  value?: string;
-  id?: string;
-  placeholderText?: string;
-  edit?: boolean;
-  onChange?: (text: string) => void;
-  onCancel?: (text: string) => void;
-  savedButtonText?: string;
-  saveButtonText?: string;
-  saveButtonId?: string;
-  cancelButtonText?: string;
   cancelButtonId?: string;
-  showActions?: boolean;
+  cancelButtonText?: string;
+  edit?: boolean;
+  id?: string;
   maxHeight?: string | number;
+  onCancel?: (text: string) => void;
+  onChange?: (text: string) => void;
+  onSave?: (text: string) => void;
+  placeholderText?: string;
+  saveButtonId?: string;
+  saveButtonText?: string;
+  savedButtonText?: string;
+  showActions?: boolean;
+  styles?: React.CSSProperties;
+  value?: string;
 };
 
 const Div = styled('div')(
-  ({ edit, maxHeight }: { edit?: boolean; maxHeight?: number | string }) => ({
+  ({
+    edit,
+    maxHeight,
+    styles,
+  }: {
+    edit?: boolean;
+    maxHeight?: number | string;
+    styles?: React.CSSProperties;
+  }) => ({
     '& .ql-editor': {
       // adapt height if read only
       minHeight: !edit ? 0 : TEXT_EDITOR_MIN_HEIGHT,
@@ -68,6 +77,8 @@ const Div = styled('div')(
         paddingBottom: 3,
         paddingTop: 3,
       },
+
+      ...styles,
     },
     '& .ql-container': {
       border: !edit ? 'none !important' : undefined,
@@ -78,20 +89,21 @@ const Div = styled('div')(
 );
 
 const TextEditor: FC<TextEditorProps> = ({
+  cancelButtonId,
+  cancelButtonText = 'Cancel',
+  edit = false,
   id,
+  maxHeight,
+  onCancel,
   onChange,
+  onSave,
+  placeholderText = 'Write something…',
   saveButtonId,
   saveButtonText,
   savedButtonText,
-  cancelButtonId,
-  cancelButtonText = 'Cancel',
-  onSave,
-  onCancel,
-  value: initialValue = '',
   showActions = true,
-  edit = false,
-  placeholderText = 'Write something…',
-  maxHeight,
+  styles,
+  value: initialValue = '',
 }) => {
   // keep current content
   const [content, setContent] = useState(initialValue ?? '');
@@ -121,7 +133,7 @@ const TextEditor: FC<TextEditorProps> = ({
 
   return (
     <React.Fragment>
-      <Div edit={edit} maxHeight={maxHeight}>
+      <Div edit={edit} maxHeight={maxHeight} styles={styles}>
         <ReactQuill
           id={id}
           placeholder={edit ? placeholderText : ''}
