@@ -7,7 +7,7 @@ import Tooltip from '@mui/material/Tooltip';
 
 import React, { FC } from 'react';
 
-import { ButtonType, ButtonTypeEnum } from '../../types';
+import { ActionButton, ActionButtonVariant } from '../../types';
 
 export type PinButtonProps = {
   color?: IconButtonProps['color'];
@@ -19,7 +19,7 @@ export type PinButtonProps = {
   size?: IconButtonProps['size'];
   pinText?: string;
   unPinText?: string;
-  type?: ButtonType;
+  type?: ActionButtonVariant;
 };
 
 const PinButton: FC<PinButtonProps> = ({
@@ -36,7 +36,7 @@ const PinButton: FC<PinButtonProps> = ({
   const text = isPinned ? unPinText : pinText;
 
   switch (type) {
-    case ButtonTypeEnum.MENU_ITEM:
+    case ActionButton.MENU_ITEM:
       return (
         <MenuItem key={text} onClick={onClick} className={menuItemClassName}>
           <ListItemIcon>{icon}</ListItemIcon>
@@ -44,7 +44,7 @@ const PinButton: FC<PinButtonProps> = ({
         </MenuItem>
       );
     default:
-    case ButtonTypeEnum.ICON_BUTTON:
+    case ActionButton.ICON_BUTTON:
       return (
         <Tooltip title={text}>
           <span>

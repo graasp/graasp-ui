@@ -13,7 +13,7 @@ import { SxProps } from '@mui/material/styles';
 import React, { FC, MouseEventHandler } from 'react';
 
 import { FAVORITE_COLOR } from '../../constants';
-import { ButtonType, ButtonTypeEnum } from '../../types';
+import { ActionButton, ActionButtonVariant } from '../../types';
 
 export interface FavoriteButtonProps {
   sx?: SxProps;
@@ -29,7 +29,7 @@ export interface FavoriteButtonProps {
    * IconButton's size
    */
   size?: SvgIconProps['fontSize'];
-  type?: ButtonType;
+  type?: ActionButtonVariant;
   ariaLabel?: string;
   tooltip?: string;
   text?: string;
@@ -62,14 +62,14 @@ const FavoriteButton: FC<FavoriteButtonProps> = ({
   const onClick = isFavorite ? handleUnfavorite : handleFavorite;
 
   switch (type) {
-    case ButtonTypeEnum.MENU_ITEM:
+    case ActionButton.MENU_ITEM:
       return (
         <MenuItem key={text} onClick={onClick} className={className}>
           <ListItemIcon color={iconColor}>{icon}</ListItemIcon>
           {text}
         </MenuItem>
       );
-    case ButtonTypeEnum.ICON_BUTTON:
+    case ActionButton.ICON_BUTTON:
     default:
       return (
         <Tooltip title={tooltipText}>

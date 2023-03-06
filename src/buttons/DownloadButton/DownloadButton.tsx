@@ -6,7 +6,7 @@ import Tooltip, { TooltipProps } from '@mui/material/Tooltip';
 import React, { FC, MouseEventHandler } from 'react';
 
 import { DEFAULT_LOADER_SIZE } from '../../constants';
-import { ButtonType } from '../../types';
+import { ActionButtonVariant } from '../../types';
 
 export interface DownloadButtonProps {
   ariaLabel: string;
@@ -31,7 +31,7 @@ export interface DownloadButtonProps {
    * Tooltip's placement
    */
   placement?: TooltipProps['placement'];
-  type?: ButtonType;
+  type?: ActionButtonVariant;
 }
 
 const DownloadButton: FC<DownloadButtonProps> = ({
