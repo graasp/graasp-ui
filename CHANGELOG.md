@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0](https://github.com/graasp/graasp-ui/compare/v1.0.0...v2.0.0) (2023-03-06)
+
+
+### ⚠ BREAKING CHANGES
+
+* refactor exported types, remove old navigation ([#271](https://github.com/graasp/graasp-ui/issues/271))
+
+### Features
+
+* refactor exported types, remove old navigation ([#271](https://github.com/graasp/graasp-ui/issues/271)) ([0cc9f94](https://github.com/graasp/graasp-ui/commit/0cc9f9480d30ff65e0bb14ca5ce899fac39619e7))
+
 ## [1.0.0](https://github.com/graasp/graasp-ui/compare/v0.13.0...v1.0.0) (2023-03-03)
 
 
