@@ -6,7 +6,7 @@ import Tooltip from '@mui/material/Tooltip';
 
 import React, { FC, MouseEventHandler } from 'react';
 
-import { ButtonType, ButtonTypeEnum } from '../../types';
+import { ActionButton, ActionButtonVariant } from '../../types';
 
 export type Props = {
   className?: string;
@@ -14,7 +14,7 @@ export type Props = {
   id?: string;
   onClick?: MouseEventHandler<HTMLButtonElement | HTMLLIElement>;
   text?: string;
-  type?: ButtonType;
+  type?: ActionButtonVariant;
 };
 
 const DeleteButton: FC<Props> = ({
@@ -26,7 +26,7 @@ const DeleteButton: FC<Props> = ({
   type,
 }) => {
   switch (type) {
-    case ButtonTypeEnum.MENU_ITEM:
+    case ActionButton.MENU_ITEM:
       return (
         <MenuItem key={text} onClick={onClick}>
           <ListItemIcon>
@@ -35,7 +35,7 @@ const DeleteButton: FC<Props> = ({
           {text}
         </MenuItem>
       );
-    case ButtonTypeEnum.ICON_BUTTON:
+    case ActionButton.ICON_BUTTON:
     default:
       return (
         <Tooltip title={text}>

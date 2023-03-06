@@ -47,7 +47,6 @@ export * from './ItemFlag';
 
 export { default as CookiesBanner } from './CookiesBanner';
 
-export { default as Navigation } from './Navigation';
 export * from './Authorization';
 
 export { UserSwitch, UserSwitchWrapper } from './UserSwitch';
@@ -64,3 +63,5 @@ export * from './Select';
 
 export { default as PlatformSwitch } from './PlatformSwitch';
 export * from './PlatformSwitch';
+
+export * from './types';

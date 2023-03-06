@@ -6,7 +6,7 @@ import Tooltip from '@mui/material/Tooltip';
 
 import React, { FC } from 'react';
 
-import { ButtonType, ButtonTypeEnum } from '../../types';
+import { ActionButton, ActionButtonVariant } from '../../types';
 
 type MoveButtonProps = {
   color?: IconButtonProps['color'];
@@ -16,7 +16,7 @@ type MoveButtonProps = {
   onClick?: () => void;
   size?: IconButtonProps['size'];
   text?: string;
-  type?: ButtonType;
+  type?: ActionButtonVariant;
 };
 
 const MoveButton: FC<MoveButtonProps> = ({
@@ -27,10 +27,10 @@ const MoveButton: FC<MoveButtonProps> = ({
   onClick,
   size,
   text = 'Move',
-  type = ButtonTypeEnum.ICON_BUTTON,
+  type = ActionButton.ICON_BUTTON,
 }) => {
   switch (type) {
-    case ButtonTypeEnum.MENU_ITEM:
+    case ActionButton.MENU_ITEM:
       return (
         <MenuItem key={text} onClick={onClick} className={menuItemClassName}>
           <ListItemIcon>
@@ -39,7 +39,7 @@ const MoveButton: FC<MoveButtonProps> = ({
           {text}
         </MenuItem>
       );
-    case ButtonTypeEnum.ICON_BUTTON:
+    case ActionButton.ICON_BUTTON:
     default:
       return (
         <Tooltip title={text}>
