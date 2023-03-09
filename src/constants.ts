@@ -5,23 +5,6 @@ export const DEFAULT_DIRECTION = 'ltr';
 export const DRAWER_HEADER_HEIGHT = 55;
 export const LOADING_TEXT = '…';
 
-/**
- * @deprecated use from graasp/sdk
- */
-export const MIME_TYPES = {
-  IMAGE: ['image/png', 'image/jpg', 'image/gif', 'image/jpeg', 'image/svg+xml'],
-  VIDEO: [
-    'video/mp4',
-    'video/x-m4v',
-    'video/ogg',
-    'video/quicktime',
-    'video/webm',
-  ],
-  AUDIO: ['audio/mpeg', 'audio/mp3', 'audio/wav', 'audio/x-wav'],
-  PDF: ['application/pdf'],
-  ZIP: ['application/zip'],
-};
-
 export const TEXT_EDITOR_TOOLBAR = [
   [{ header: [1, 2, 3, 4, 5, 6, false] }],
   [{ font: [] }],
