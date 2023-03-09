@@ -10,11 +10,8 @@ import Looks5Icon from '@mui/icons-material/Looks5';
 import MovieIcon from '@mui/icons-material/Movie';
 import MusicNoteIcon from '@mui/icons-material/MusicNote';
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
-import { SvgIcon, SvgIconTypeMap, SxProps } from '@mui/material';
-import {
-  OverridableComponent,
-  OverridableTypeMap,
-} from '@mui/material/OverridableComponent';
+import { SvgIconTypeMap, SxProps } from '@mui/material';
+import { OverridableComponent } from '@mui/material/OverridableComponent';
 
 import React, { FC } from 'react';
 
