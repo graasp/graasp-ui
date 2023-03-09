@@ -2337,9 +2337,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@graasp/sdk@npm:0.6.0":
-  version: 0.6.0
-  resolution: "@graasp/sdk@npm:0.6.0"
+"@graasp/sdk@npm:0.8.0":
+  version: 0.8.0
+  resolution: "@graasp/sdk@npm:0.8.0"
   dependencies:
     "@fastify/secure-session": 5.3.0
     aws-sdk: 2.1310.0
@@ -2350,7 +2350,7 @@ __metadata:
     qs: 6.11.0
     slonik: 28.1.1
     uuid: 9.0.0
-  checksum: 450ec10d93b2139ea21728b6ce633e6947092707b1caa66055a0a251607b0c2b28ed03d3c9baa1864e930a460289927209256aef7509e7b8ff4973d17703a2ba
+  checksum: c2bdb0e0dc38b2636ca3698e30dd90dcf5eb2e01bf4b6af28b5fd2310e6ae167012cbbd4d1217ef3acc19da5bbc810e02fcd649a24cfc10d1937213762ef9266
   languageName: node
   linkType: hard
 
@@ -2366,7 +2366,7 @@ __metadata:
     "@commitlint/config-conventional": 17.4.4
     "@emotion/react": 11.10.6
     "@emotion/styled": 11.10.6
-    "@graasp/sdk": 0.6.0
+    "@graasp/sdk": 0.8.0
     "@mdx-js/react": 1.6.22
     "@mui/icons-material": 5.11.9
     "@mui/lab": 5.0.0-alpha.120

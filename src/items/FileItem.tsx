@@ -6,6 +6,7 @@ import React, { FC, useEffect, useState } from 'react';
 
 import {
   LocalFileItemExtra,
+  MIME_TYPES,
   S3FileItemExtra,
   getFileExtra,
   getS3FileExtra,
@@ -16,11 +17,7 @@ import {
   S3FileItemTypeRecord,
 } from '@graasp/sdk/frontend';
 
-import {
-  MIME_TYPES,
-  SCREEN_MAX_HEIGHT,
-  UNEXPECTED_ERROR_MESSAGE,
-} from '../constants';
+import { SCREEN_MAX_HEIGHT, UNEXPECTED_ERROR_MESSAGE } from '../constants';
 import { ERRORS } from '../enums';
 import DownloadButtonFileItem from './DownloadButtonFileItem';
 import FileAudio from './FileAudio';
@@ -119,14 +116,14 @@ const FileItem: FC<FileItemProps> = ({
 
   let component;
   if (mimetype) {
-    if (MIME_TYPES.IMAGE.includes(mimetype)) {
+    if (MIME_TYPES.isImage(mimetype)) {
       component = <FileImage id={id} url={url} alt={name} sx={sx} />;
-    } else if (MIME_TYPES.AUDIO.includes(mimetype)) {
+    } else if (MIME_TYPES.isAudio(mimetype)) {
       component = <FileAudio id={id} url={url} type={mimetype} sx={sx} />;
-    } else if (MIME_TYPES.VIDEO.includes(mimetype)) {
+    } else if (MIME_TYPES.isVideo(mimetype)) {
       // does not specify mimetype in video source, this way, it works with more container formats in more browsers (especially Chrome with video/quicktime)
       component = <FileVideo id={id} url={url} sx={sx} />;
-    } else if (MIME_TYPES.PDF.includes(mimetype)) {
+    } else if (MIME_TYPES.isPdf(mimetype)) {
       component = (
         <FilePdf
           id={id}

@@ -20,8 +20,6 @@ export type TooltipPlacement =
 
 export type IconSizeVariant = 'small' | 'medium' | 'large' | 'inherit';
 
-export type ThumbnailSizeVariant = 'small' | 'medium' | 'large' | 'original';
-
 export enum ActionButton {
   ICON_BUTTON = 'icon',
   MENU_ITEM = 'menuItem',

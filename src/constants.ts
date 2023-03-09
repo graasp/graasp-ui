@@ -3,6 +3,9 @@ export const DEFAULT_DIRECTION = 'ltr';
 export const DRAWER_HEADER_HEIGHT = 55;
 export const LOADING_TEXT = '…';
 
+/**
+ * @deprecated use from graasp/sdk
+ */
 export const MIME_TYPES = {
   IMAGE: ['image/png', 'image/jpg', 'image/gif', 'image/jpeg', 'image/svg+xml'],
   VIDEO: [
@@ -74,6 +77,9 @@ export const FORBIDDEN_TEXT = 'You cannot access this item';
 export const ITEM_MAX_HEIGHT = '70vh';
 export const DEFAULT_CARD_HEIGHT = 130;
 
+/**
+ * @deprecated
+ */
 export const THUMBNAIL_SIZES = {
   SMALL: 'small',
   MEDIUM: 'medium',
