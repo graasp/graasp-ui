@@ -3,7 +3,7 @@ import Alert from '@mui/material/Alert';
 
 import React, { useEffect, useState } from 'react';
 
-import { MIME_TYPES, getS3FileExtra } from '@graasp/sdk';
+import { MimeTypes, getS3FileExtra } from '@graasp/sdk';
 import { S3FileItemTypeRecord } from '@graasp/sdk/frontend';
 
 import Loader from '../Loader';
@@ -81,19 +81,19 @@ const S3FileItem = ({
 
   let component;
   if (mimetype) {
-    if (MIME_TYPES.isImage(mimetype)) {
+    if (MimeTypes.isImage(mimetype)) {
       component = <FileImage id={id} url={url} alt={name} sx={sx} />;
     }
 
-    if (MIME_TYPES.isAudio(mimetype)) {
+    if (MimeTypes.isAudio(mimetype)) {
       component = <FileAudio id={id} url={url} type={mimetype} sx={sx} />;
     }
 
-    if (MIME_TYPES.isVideo(mimetype)) {
+    if (MimeTypes.isVideo(mimetype)) {
       component = <FileVideo id={id} url={url} sx={sx} />;
     }
 
-    if (MIME_TYPES.isPdf(mimetype)) {
+    if (MimeTypes.isPdf(mimetype)) {
       component = <FilePdf id={id} url={url} height={maxHeight} sx={sx} />;
     }
   }

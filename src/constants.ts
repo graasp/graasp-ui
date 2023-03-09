@@ -1,4 +1,4 @@
-import { ThumbnailSize } from '@graasp/sdk/frontend';
+import { ThumbnailSize } from '@graasp/sdk';
 
 export const DRAWER_WIDTH = 240;
 export const DEFAULT_DIRECTION = 'ltr';
@@ -62,7 +62,7 @@ export const FORBIDDEN_TEXT = 'You cannot access this item';
 export const ITEM_MAX_HEIGHT = '70vh';
 export const DEFAULT_CARD_HEIGHT = 130;
 
-export const DEFAULT_THUMBNAIL_SIZE = ThumbnailSize.SMALL;
+export const DEFAULT_THUMBNAIL_SIZE = ThumbnailSize.Small;
 
 export const FLAG_LIST_MAX_HEIGHT = 250;
 export const DEFAULT_PERMISSION = 'read';

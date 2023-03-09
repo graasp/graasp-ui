@@ -6,7 +6,7 @@ import React, { FC, useEffect, useState } from 'react';
 
 import {
   LocalFileItemExtra,
-  MIME_TYPES,
+  MimeTypes,
   S3FileItemExtra,
   getFileExtra,
   getS3FileExtra,
@@ -116,14 +116,14 @@ const FileItem: FC<FileItemProps> = ({
 
   let component;
   if (mimetype) {
-    if (MIME_TYPES.isImage(mimetype)) {
+    if (MimeTypes.isImage(mimetype)) {
       component = <FileImage id={id} url={url} alt={name} sx={sx} />;
-    } else if (MIME_TYPES.isAudio(mimetype)) {
+    } else if (MimeTypes.isAudio(mimetype)) {
       component = <FileAudio id={id} url={url} type={mimetype} sx={sx} />;
-    } else if (MIME_TYPES.isVideo(mimetype)) {
+    } else if (MimeTypes.isVideo(mimetype)) {
       // does not specify mimetype in video source, this way, it works with more container formats in more browsers (especially Chrome with video/quicktime)
       component = <FileVideo id={id} url={url} sx={sx} />;
-    } else if (MIME_TYPES.isPdf(mimetype)) {
+    } else if (MimeTypes.isPdf(mimetype)) {
       component = (
         <FilePdf
           id={id}

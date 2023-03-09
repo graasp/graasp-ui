@@ -3,12 +3,7 @@ import { ComponentMeta, ComponentStory } from '@storybook/react';
 
 import React from 'react';
 
-import {
-  ItemType,
-  LocalFileItemType,
-  MIME_TYPES,
-  convertJs,
-} from '@graasp/sdk';
+import { ItemType, LocalFileItemType, MimeTypes, convertJs } from '@graasp/sdk';
 
 import { TABLE_CATEGORIES } from '../utils/storybook';
 import FileItem from './FileItem';
@@ -46,7 +41,7 @@ Image.args = {
     extra: {
       [ItemType.LOCAL_FILE]: {
         path: 'https://picsum.photos/100',
-        mimetype: MIME_TYPES.IMAGE.PNG,
+        mimetype: MimeTypes.Image.PNG,
         name: 'original file name',
         size: 2600,
       },
@@ -76,7 +71,7 @@ ImageSVG.args = {
     extra: {
       [ItemType.LOCAL_FILE]: {
         path: 'https://upload.wikimedia.org/wikipedia/commons/b/bd/Test.svg',
-        mimetype: MIME_TYPES.IMAGE.SVG, // Should be image/svg+xml
+        mimetype: MimeTypes.Image.SVG, // Should be image/svg+xml
         name: 'original file name',
         size: 2600,
       },
@@ -106,7 +101,7 @@ WAVAudio.args = {
     extra: {
       [ItemType.LOCAL_FILE]: {
         path: 'https://upload.wikimedia.org/wikipedia/commons/8/8f/Bass_loop_2_%28Carrai_Pass%29.wav',
-        mimetype: MIME_TYPES.AUDIO.WAV, // Should be audio/wav
+        mimetype: MimeTypes.Audio.WAV, // Should be audio/wav
         name: 'original file name',
         size: 10000000,
       },

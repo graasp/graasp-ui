@@ -18,7 +18,7 @@ import React, { FC } from 'react';
 import {
   ItemType,
   LocalFileItemExtra,
-  MIME_TYPES,
+  MimeTypes,
   S3FileItemExtra,
   UnknownExtra,
   getFileExtra,
@@ -94,23 +94,23 @@ const ItemIcon: FC<ItemIconProps> = ({
     case ItemType.LOCAL_FILE:
     case ItemType.S3_FILE: {
       if (mimetype) {
-        if (MIME_TYPES.isImage(mimetype)) {
+        if (MimeTypes.isImage(mimetype)) {
           Icon = ImageIcon;
           break;
         }
-        if (MIME_TYPES.isVideo(mimetype)) {
+        if (MimeTypes.isVideo(mimetype)) {
           Icon = MovieIcon;
           break;
         }
-        if (MIME_TYPES.isAudio(mimetype)) {
+        if (MimeTypes.isAudio(mimetype)) {
           Icon = MusicNoteIcon;
           break;
         }
-        if (MIME_TYPES.isPdf(mimetype)) {
+        if (MimeTypes.isPdf(mimetype)) {
           Icon = PictureAsPdfIcon;
           break;
         }
-        if (MIME_TYPES.isZip(mimetype)) {
+        if (MimeTypes.isZip(mimetype)) {
           Icon = FolderZipIcon;
           break;
         }
