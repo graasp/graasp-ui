@@ -44,13 +44,13 @@
     "prepublishOnly": "pinst --disable",
     "postpublish": "pinst --enable",
     "post-commit": "git status",
-    "pre-commit": "yarn prettier:check && yarn lint",
+    "pre-commit": "yarn check",
     "storybook": "start-storybook -p 6006",
     "storybook:test": "test-storybook --coverage",
     "storybook:build": "build-storybook"
   },
   "dependencies": {
-    "@graasp/sdk": "0.6.0",
+    "@graasp/sdk": "0.8.1",
     "clsx": "1.1.1",
     "http-status-codes": "2.2.0",
     "immutable": "4.2.4",

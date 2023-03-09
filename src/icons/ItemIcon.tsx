@@ -18,6 +18,7 @@ import React, { FC } from 'react';
 import {
   ItemType,
   LocalFileItemExtra,
+  MimeTypes,
   S3FileItemExtra,
   UnknownExtra,
   getFileExtra,
@@ -26,7 +27,7 @@ import {
 import { ItemRecord } from '@graasp/sdk/frontend';
 
 import { StyledImage } from '../StyledComponents/StyledBaseComponents';
-import { ITEM_ICON_MAX_SIZE, MIME_TYPES } from '../constants';
+import { ITEM_ICON_MAX_SIZE } from '../constants';
 
 export interface ItemIconProps {
   alt: string;
@@ -93,23 +94,23 @@ const ItemIcon: FC<ItemIconProps> = ({
     case ItemType.LOCAL_FILE:
     case ItemType.S3_FILE: {
       if (mimetype) {
-        if (MIME_TYPES.IMAGE.includes(mimetype)) {
+        if (MimeTypes.isImage(mimetype)) {
           Icon = ImageIcon;
           break;
         }
-        if (MIME_TYPES.VIDEO.includes(mimetype)) {
+        if (MimeTypes.isVideo(mimetype)) {
           Icon = MovieIcon;
           break;
         }
-        if (MIME_TYPES.AUDIO.includes(mimetype)) {
+        if (MimeTypes.isAudio(mimetype)) {
           Icon = MusicNoteIcon;
           break;
         }
-        if (MIME_TYPES.PDF.includes(mimetype)) {
+        if (MimeTypes.isPdf(mimetype)) {
           Icon = PictureAsPdfIcon;
           break;
         }
-        if (MIME_TYPES.ZIP.includes(mimetype)) {
+        if (MimeTypes.isZip(mimetype)) {
           Icon = FolderZipIcon;
           break;
         }

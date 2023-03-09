@@ -2,7 +2,8 @@ import { ComponentMeta, ComponentStory } from '@storybook/react';
 
 import React from 'react';
 
-import { MIME_TYPES } from '../constants';
+import { MimeTypes } from '@graasp/sdk';
+
 import { TABLE_CATEGORIES } from '../utils/storybook';
 import FileAudio from './FileAudio';
 
@@ -27,7 +28,7 @@ export const MP3Audio = Template.bind({});
 MP3Audio.args = {
   id: 'some-audio-file-id',
   url: 'https://upload.wikimedia.org/wikipedia/commons/e/e1/Heart_Monitor_Beep--freesound.org.mp3',
-  type: MIME_TYPES.AUDIO[2], // should be mp3 format
+  type: MimeTypes.Audio.MP3, // should be mp3 format
 };
 MP3Audio.storyName = 'MP3 Audio';
 
@@ -35,5 +36,5 @@ export const WAVAudio = Template.bind({});
 WAVAudio.args = {
   id: 'some-audio-file-id',
   url: 'https://upload.wikimedia.org/wikipedia/commons/b/be/Bigroom_kick.wav',
-  type: MIME_TYPES.AUDIO[3], // should be wav format
+  type: MimeTypes.Audio.WAV, // should be wav format
 };

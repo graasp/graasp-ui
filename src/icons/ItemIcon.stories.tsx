@@ -2,9 +2,8 @@ import { ComponentMeta, ComponentStory } from '@storybook/react';
 
 import React from 'react';
 
-import { ItemType } from '@graasp/sdk';
+import { ItemType, MimeTypes } from '@graasp/sdk';
 
-import { MIME_TYPES } from '../constants';
 import { TABLE_CATEGORIES } from '../utils/storybook';
 import ItemIcon from './ItemIcon';
 
@@ -47,7 +46,7 @@ Image.args = {
   color: 'black',
   extra: {
     [ItemType.S3_FILE]: {
-      mimetype: MIME_TYPES.IMAGE[0],
+      mimetype: MimeTypes.Image.JPEG,
     },
   },
 };
@@ -58,7 +57,7 @@ Video.args = {
   color: 'black',
   extra: {
     [ItemType.S3_FILE]: {
-      mimetype: MIME_TYPES.VIDEO[0],
+      mimetype: MimeTypes.Video.MP4,
     },
   },
 };
@@ -68,7 +67,7 @@ Audio.args = {
   color: 'black',
   extra: {
     [ItemType.S3_FILE]: {
-      mimetype: MIME_TYPES.AUDIO[0],
+      mimetype: MimeTypes.Audio.MP3,
     },
   },
 };
@@ -79,7 +78,7 @@ PDF.args = {
   color: 'black',
   extra: {
     [ItemType.S3_FILE]: {
-      mimetype: MIME_TYPES.PDF[0],
+      mimetype: MimeTypes.PDF,
     },
   },
 };
@@ -90,7 +89,7 @@ ZIP.args = {
   color: 'black',
   extra: {
     [ItemType.S3_FILE]: {
-      mimetype: MIME_TYPES.ZIP[0],
+      mimetype: MimeTypes.ZIP,
     },
   },
 };

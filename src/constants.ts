@@ -1,21 +1,9 @@
+import { ThumbnailSize } from '@graasp/sdk';
+
 export const DRAWER_WIDTH = 240;
 export const DEFAULT_DIRECTION = 'ltr';
 export const DRAWER_HEADER_HEIGHT = 55;
 export const LOADING_TEXT = '…';
-
-export const MIME_TYPES = {
-  IMAGE: ['image/png', 'image/jpg', 'image/gif', 'image/jpeg', 'image/svg+xml'],
-  VIDEO: [
-    'video/mp4',
-    'video/x-m4v',
-    'video/ogg',
-    'video/quicktime',
-    'video/webm',
-  ],
-  AUDIO: ['audio/mpeg', 'audio/mp3', 'audio/wav', 'audio/x-wav'],
-  PDF: ['application/pdf'],
-  ZIP: ['application/zip'],
-};
 
 export const TEXT_EDITOR_TOOLBAR = [
   [{ header: [1, 2, 3, 4, 5, 6, false] }],
@@ -74,14 +62,7 @@ export const FORBIDDEN_TEXT = 'You cannot access this item';
 export const ITEM_MAX_HEIGHT = '70vh';
 export const DEFAULT_CARD_HEIGHT = 130;
 
-export const THUMBNAIL_SIZES = {
-  SMALL: 'small',
-  MEDIUM: 'medium',
-  LARGE: 'large',
-  ORIGINAL: 'original',
-};
-
-export const DEFAULT_THUMBNAIL_SIZE = THUMBNAIL_SIZES.SMALL;
+export const DEFAULT_THUMBNAIL_SIZE = ThumbnailSize.Small;
 
 export const FLAG_LIST_MAX_HEIGHT = 250;
 export const DEFAULT_PERMISSION = 'read';

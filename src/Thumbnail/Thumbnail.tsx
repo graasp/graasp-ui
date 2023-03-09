@@ -4,9 +4,11 @@ import Skeleton from '@mui/material/Skeleton';
 import React, { FC, useEffect, useState } from 'react';
 import { QueryObserverResult } from 'react-query';
 
+import { ThumbnailSizeVariant } from '@graasp/sdk/frontend';
+
 import { StyledImage } from '../StyledComponents/StyledBaseComponents';
 import { DEFAULT_THUMBNAIL_SIZE } from '../constants';
-import { ThumbnailSizeVariant, Variant } from '../types';
+import { Variant } from '../types';
 import { getItemImage } from '../utils/image';
 
 type ThumbnailProps = {
