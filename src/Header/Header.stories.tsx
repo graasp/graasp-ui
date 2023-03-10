@@ -5,6 +5,8 @@ import Typography from '@mui/material/Typography';
 
 import React from 'react';
 
+import { Context } from '@graasp/sdk';
+
 import { TABLE_CATEGORIES } from '../utils/storybook';
 import Header from './Header';
 
@@ -35,4 +37,28 @@ Example.args = {
   leftContent: <Typography sx={{ ml: 2 }}>Header</Typography>,
   rightContent: <Avatar sx={{ mr: 2 }}>H</Avatar>,
   centerContent: <Typography sx={{ ml: 2 }}>Title</Typography>,
+};
+
+export const Builder = Template.bind({});
+Builder.args = {
+  ...Example.args,
+  context: Context.BUILDER,
+};
+
+export const Player = Template.bind({});
+Player.args = {
+  ...Example.args,
+  context: Context.PLAYER,
+};
+
+export const Library = Template.bind({});
+Library.args = {
+  ...Example.args,
+  context: Context.LIBRARY,
+};
+
+export const Analytics = Template.bind({});
+Analytics.args = {
+  ...Example.args,
+  context: Context.ANALYTICS,
 };
