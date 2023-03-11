@@ -12,7 +12,12 @@ export default {
   component: CreativeCommons,
 
   argTypes: {
+    requireAccreditation: {
+      name: 'Require Accreditation',
+      defaultValue: true,
+    },
     allowSharedAdaptation: {
+      name: 'Allow Shared Adaptation',
       options: Object.keys(CCSharing)
         .map((x) => Number(x))
         .filter((x) => !Number.isNaN(x)),
@@ -20,6 +25,11 @@ export default {
         type: 'radio',
         labels: Object.keys(CCSharing).filter((x) => Number.isNaN(Number(x))),
       },
+      if: { arg: 'requireAccreditation', truthy: true },
+    },
+    allowCommercialUse: {
+      name: 'Allow Commercial Use',
+      if: { arg: 'requireAccreditation', truthy: true },
     },
   },
 } as ComponentMeta<typeof CreativeCommons>;
@@ -31,7 +41,7 @@ const Template: ComponentStory<typeof CreativeCommons> = (args) => {
       : undefined;
 
   return (
-    <Box width={boxWidth}>
+    <Box width={boxWidth} margin={5}>
       <CreativeCommons {...args} />
     </Box>
   );
@@ -39,20 +49,31 @@ const Template: ComponentStory<typeof CreativeCommons> = (args) => {
 
 export const Example = Template.bind({});
 Example.args = {
+  requireAccreditation: true,
   allowCommercialUse: false,
+  allowSharedAdaptation: CCSharing.Yes,
+  iconSize: 50,
+};
+
+export const CC0 = Template.bind({});
+CC0.args = {
+  requireAccreditation: false,
+  allowCommercialUse: true,
   allowSharedAdaptation: CCSharing.Yes,
   iconSize: 50,
 };
 
 export const NoDerivatives = Template.bind({});
 NoDerivatives.args = {
+  requireAccreditation: true,
   allowCommercialUse: true,
   allowSharedAdaptation: CCSharing.No,
   iconSize: 50,
 };
 
-export const NonCommercialShareAlike = Template.bind({});
-NonCommercialShareAlike.args = {
+export const NoncommercialShareAlike = Template.bind({});
+NoncommercialShareAlike.args = {
+  requireAccreditation: true,
   allowCommercialUse: false,
   allowSharedAdaptation: CCSharing.Alike,
   iconSize: 50,

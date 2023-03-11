@@ -14,6 +14,12 @@ const ccData: { [key: string]: CCIconProps } = {
     description: '',
     icon: require('./assets/cc.svg'),
   },
+  cc0: {
+    title: 'Public Domain Dedication',
+    description:
+      'You can copy, modify, distribute and perform the work, even for commercial purposes, all without asking permission.',
+    icon: require('./assets/zero.svg'),
+  },
   by: {
     title: 'Attribution',
     description:
@@ -74,20 +80,20 @@ const CCIcon: FC<CCIconProps> = ({ icon, title, description, size }) => {
 };
 
 type CreativeCommonsProps = {
+  requireAccreditation?: boolean | undefined;
   allowSharedAdaptation: CCSharing;
   allowCommercialUse: boolean;
-
   iconSize: string | number | undefined;
 };
 
 const Item: FC<CreativeCommonsProps> = ({
+  requireAccreditation = true,
   allowCommercialUse,
   allowSharedAdaptation,
   iconSize,
 }) => {
-  return (
-    <Box justifyContent='space-around' display='flex' flexDirection='row'>
-      <CCIcon {...ccData.cc} size={iconSize} />
+  const additionalIcons = requireAccreditation ? (
+    <>
       <CCIcon {...ccData.by} size={iconSize} />
       {!allowCommercialUse && <CCIcon {...ccData.nc} size={iconSize} />}
       {allowSharedAdaptation === CCSharing.No && (
@@ -96,6 +102,15 @@ const Item: FC<CreativeCommonsProps> = ({
       {allowSharedAdaptation === CCSharing.Alike && (
         <CCIcon {...ccData.sa} size={iconSize} />
       )}
+    </>
+  ) : (
+    <CCIcon {...ccData.cc0} size={iconSize} />
+  );
+
+  return (
+    <Box justifyContent='space-around' display='flex' flexDirection='row'>
+      <CCIcon {...ccData.cc} size={iconSize} />
+      {additionalIcons}
     </Box>
   );
 };
