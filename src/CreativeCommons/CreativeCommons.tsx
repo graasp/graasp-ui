@@ -1,12 +1,7 @@
 import { Box, Tooltip, Typography } from '@mui/material';
 
 import React, { FC } from 'react';
-
-export enum CCSharing {
-  Yes,
-  No,
-  Alike,
-}
+import { CCSharing } from '../constants';
 
 const ccData: { [key: string]: CCIconProps } = {
   cc: {
