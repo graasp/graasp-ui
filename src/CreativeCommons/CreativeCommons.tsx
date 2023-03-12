@@ -1,6 +1,6 @@
 import { Box, Tooltip, Typography } from '@mui/material';
 
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 
 export enum CCSharing {
   Yes,
@@ -54,10 +54,6 @@ type CCIconProps = {
 };
 
 const CCIcon: FC<CCIconProps> = ({ icon, title, description, size }) => {
-  const [open, setOpen] = useState(false);
-
-  const toggleDescription = (): void => setOpen(!open);
-
   const tooltip = (
     <>
       <Typography fontWeight='bold'>{title}</Typography>
@@ -72,7 +68,6 @@ const CCIcon: FC<CCIconProps> = ({ icon, title, description, size }) => {
           src={icon}
           width={size}
           height={size}
-          onClick={toggleDescription}
         />
       </Tooltip>
     </div>
