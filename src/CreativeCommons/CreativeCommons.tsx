@@ -114,7 +114,7 @@ const ccData = (size: string | number): { [key: string]: CCIconProps } => ({
   },
 });
 
-const CCIcon: FC<CCIconProps> = ({ icon, title, description, size }) => {
+const CCIcon: FC<CCIconProps> = ({ icon, title, description }) => {
   const tooltip = (
     <>
       <Typography fontWeight='bold'>{title}</Typography>
