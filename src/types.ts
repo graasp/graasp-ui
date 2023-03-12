@@ -25,4 +25,10 @@ export enum ActionButton {
   MENU_ITEM = 'menuItem',
 }
 
+export enum CCSharing {
+  Yes,
+  No,
+  Alike,
+}
+
 export type ActionButtonVariant = ActionButton | `${ActionButton}`;

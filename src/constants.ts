@@ -72,12 +72,6 @@ export enum CCLicenseAdaption {
   ALIKE = 'alike',
 }
 
-export enum CCSharing {
-  Yes,
-  No,
-  Alike,
-}
-
 export const DEFAULT_LOADER_SIZE = 20;
 
 export const DRAG_ICON_SIZE = 18;

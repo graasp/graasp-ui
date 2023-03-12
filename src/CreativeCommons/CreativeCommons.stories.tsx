@@ -5,7 +5,7 @@ import { Box } from '@mui/material';
 import React from 'react';
 
 import CreativeCommons from '.';
-import { CCSharing } from '../constants';
+import { CCSharing } from '../types';
 
 export default {
   title: 'Common/CreativeCommons',

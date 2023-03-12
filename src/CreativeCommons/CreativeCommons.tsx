@@ -1,7 +1,7 @@
 import { Box, Tooltip, Typography } from '@mui/material';
 
 import React, { FC } from 'react';
-import { CCSharing } from '../constants';
+import { CCSharing } from '../types';
 
 const ccData: { [key: string]: CCIconProps } = {
   cc: {
@@ -76,7 +76,7 @@ type CreativeCommonsProps = {
   iconSize: string | number | undefined;
 };
 
-const Item: FC<CreativeCommonsProps> = ({
+const CreativeCommons: FC<CreativeCommonsProps> = ({
   requireAccreditation = true,
   allowCommercialUse,
   allowSharedAdaptation,
@@ -105,4 +105,4 @@ const Item: FC<CreativeCommonsProps> = ({
   );
 };
 
-export default Item;
+export default CreativeCommons;
