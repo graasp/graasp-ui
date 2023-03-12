@@ -1,5 +1,4 @@
 import { Box, Tooltip, Typography, styled } from '@mui/material';
-import { MUIStyledCommonProps } from '@mui/system';
 
 import React, { FC } from 'react';
 
