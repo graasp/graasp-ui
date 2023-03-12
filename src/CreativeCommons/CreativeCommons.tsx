@@ -1,7 +1,9 @@
-import { Box, Tooltip, Typography } from '@mui/material';
+import { Box, Tooltip, Typography, styled } from '@mui/material';
+import { MUIStyledCommonProps } from '@mui/system';
 
 import React, { FC } from 'react';
 
+import { PRIMARY_COLOR } from '../theme';
 import { CCSharing } from '../types';
 
 type CCIconProps = {
@@ -71,6 +73,7 @@ const ccData = (size: string | number): { [key: string]: CCIconProps } => ({
         xmlns='http://www.w3.org/2000/svg'
         width={size}
         height={size}
+        viewBox='0 0 64 64'
         xmlSpace='preserve'
       >
         <circle fill='#FFF' cx={32.064} cy={31.788} r={29.013} />
@@ -114,6 +117,16 @@ const ccData = (size: string | number): { [key: string]: CCIconProps } => ({
   },
 });
 
+const licenses = {
+  attr: 'Attribution 4.0 International',
+  attrNoDeriv: 'Attribution-NoDerivatives 4.0 International',
+  attrShareAlike: 'Attribution-ShareAlike 4.0 International',
+  attrNC: 'Attribution-NonCommercial 4.0 International',
+  attrNoDerivNC: 'Attribution-NonCommercial-NoDerivatives 4.0 International',
+  attrShareAlikeNC: 'Attribution-NonCommercial-ShareAlike 4.0 International',
+  cc0: 'CC0 1.0 Universal',
+};
+
 const CCIcon: FC<CCIconProps> = ({ icon, title, description }) => {
   const tooltip = (
     <>
@@ -135,15 +148,24 @@ type CreativeCommonsProps = {
   requireAccreditation?: boolean | undefined;
   allowSharedAdaptation: CCSharing;
   allowCommercialUse: boolean;
-  iconSize: string | number | undefined;
+  iconSize: number | undefined;
 };
 
-const CreativeCommons: FC<CreativeCommonsProps> = ({
-  requireAccreditation = true,
-  allowCommercialUse,
-  allowSharedAdaptation,
-  iconSize = 50,
-}) => {
+const StyledBox = styled(Box)({
+  borderColor: '#efefef',
+  borderRadius: 14,
+  borderWidth: 2,
+  borderStyle: 'solid',
+});
+
+const CreativeCommons: FC<CreativeCommonsProps> = (props) => {
+  const {
+    requireAccreditation,
+    allowCommercialUse,
+    allowSharedAdaptation,
+    iconSize = 50,
+  } = props;
+
   const iconData = React.useMemo(() => ccData(iconSize), [iconSize]);
 
   const additionalIcons = requireAccreditation ? (
@@ -157,11 +179,38 @@ const CreativeCommons: FC<CreativeCommonsProps> = ({
     <CCIcon {...iconData.cc0} />
   );
 
+  const license = requireAccreditation
+    ? allowCommercialUse
+      ? allowSharedAdaptation === CCSharing.Yes
+        ? licenses.attr
+        : allowSharedAdaptation === CCSharing.No
+        ? licenses.attrNoDeriv
+        : licenses.attrShareAlike
+      : allowSharedAdaptation === CCSharing.Yes
+      ? licenses.attrNC
+      : allowSharedAdaptation === CCSharing.No
+      ? licenses.attrNoDerivNC
+      : licenses.attrShareAlikeNC
+    : licenses.cc0;
+
   return (
-    <Box justifyContent='space-around' display='flex' flexDirection='row'>
-      <CCIcon {...iconData.cc} />
-      {additionalIcons}
-    </Box>
+    <StyledBox paddingX={2} paddingY={3}>
+      <Box justifyContent='space-around' display='flex' flexDirection='row'>
+        <CCIcon {...iconData.cc} />
+        {additionalIcons}
+      </Box>
+      <Box justifyContent='center' display='flex' marginTop={2}>
+        <Typography
+          variant='caption'
+          color={PRIMARY_COLOR}
+          fontSize={iconSize / 4}
+          fontWeight='bold'
+          textAlign='center'
+        >
+          {license}
+        </Typography>
+      </Box>
+    </StyledBox>
   );
 };
 

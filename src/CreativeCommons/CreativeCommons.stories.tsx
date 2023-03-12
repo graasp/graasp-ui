@@ -37,7 +37,7 @@ export default {
 const Template: ComponentStory<typeof CreativeCommons> = (args) => {
   const boxWidth =
     args.iconSize && Number.isSafeInteger(args.iconSize)
-      ? Number(args.iconSize) * 4 + Number(args.iconSize) * 0.4
+      ? Number(args.iconSize) * 4 + Number(args.iconSize) * 0.4 + 120
       : undefined;
 
   return (
