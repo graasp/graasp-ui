@@ -147,22 +147,30 @@ type CreativeCommonsProps = {
   requireAccreditation?: boolean | undefined;
   allowSharedAdaptation: CCSharing;
   allowCommercialUse: boolean;
-  iconSize: number | undefined;
+  iconSize?: number | undefined;
+  borderWith?: number | undefined;
+  withLicenseName?: boolean | undefined;
 };
 
-const StyledBox = styled(Box)({
+type StyledBoxProps = {
+  borderWidth: number;
+};
+
+const StyledBox = styled(Box)<StyledBoxProps>(({ borderWidth }) => ({
   borderColor: '#efefef',
   borderRadius: 14,
-  borderWidth: 2,
   borderStyle: 'solid',
-});
+  borderWidth: borderWidth,
+}));
 
 const CreativeCommons: FC<CreativeCommonsProps> = (props) => {
   const {
-    requireAccreditation,
+    requireAccreditation = true,
     allowCommercialUse,
     allowSharedAdaptation,
     iconSize = 50,
+    withLicenseName = true,
+    borderWith = 2,
   } = props;
 
   const iconData = React.useMemo(() => ccData(iconSize), [iconSize]);
@@ -193,22 +201,24 @@ const CreativeCommons: FC<CreativeCommonsProps> = (props) => {
     : licenses.cc0;
 
   return (
-    <StyledBox paddingX={2} paddingY={3}>
+    <StyledBox paddingX={2} paddingY={3} borderWidth={borderWith}>
       <Box justifyContent='space-around' display='flex' flexDirection='row'>
         <CCIcon {...iconData.cc} />
         {additionalIcons}
       </Box>
-      <Box justifyContent='center' display='flex' marginTop={2}>
-        <Typography
-          variant='caption'
-          color={PRIMARY_COLOR}
-          fontSize={iconSize / 4}
-          fontWeight='bold'
-          textAlign='center'
-        >
-          {license}
-        </Typography>
-      </Box>
+      {withLicenseName && (
+        <Box justifyContent='center' display='flex' marginTop={2}>
+          <Typography
+            variant='caption'
+            color={PRIMARY_COLOR}
+            fontSize={iconSize / 4}
+            fontWeight='bold'
+            textAlign='center'
+          >
+            {license}
+          </Typography>
+        </Box>
+      )}
     </StyledBox>
   );
 };
