@@ -1,5 +1,5 @@
 import { Public, PushPin, VisibilityOff } from '@mui/icons-material';
-import { Avatar, AvatarGroup } from '@mui/material';
+import { Avatar, AvatarGroup, Tooltip } from '@mui/material';
 
 import React from 'react';
 
@@ -8,40 +8,51 @@ import { ThumbnailSize } from '@graasp/sdk';
 import { LibraryIcon } from '../icons';
 
 type ItemBadgeProps = {
+  tooltip: string;
   children: JSX.Element;
 };
 
-const ItemBadge = ({ children }: ItemBadgeProps): JSX.Element => (
-  <Avatar sx={{ width: 24, height: 24 }}>{children}</Avatar>
+const ItemBadge = ({ tooltip, children }: ItemBadgeProps): JSX.Element => (
+  <Tooltip title={tooltip}>
+    <Avatar sx={{ width: 24, height: 24 }}>{children}</Avatar>
+  </Tooltip>
 );
 
 type Props = {
   isHidden?: boolean;
+  isHiddenTooltip?: string;
   isPublic?: boolean;
+  isPublicTooltip?: string;
   isPublished?: boolean;
+  isPublishedTooltip?: string;
   isPinned?: boolean;
+  isPinnedTooltip?: string;
 };
 
 const ItemBadges = ({
   isHidden = false,
-  isPublic = false,
+  isHiddenTooltip = 'Hidden',
   isPinned = false,
+  isPinnedTooltip = 'Pinned',
   isPublished = false,
+  isPublishedTooltip = 'Published',
+  isPublic = false,
+  isPublicTooltip = 'Public',
 }: Props): JSX.Element => {
   return (
     <AvatarGroup>
       {isHidden && (
-        <ItemBadge>
+        <ItemBadge tooltip={isHiddenTooltip}>
           <VisibilityOff fontSize={ThumbnailSize.Small} />
         </ItemBadge>
       )}
       {isPinned && (
-        <ItemBadge>
+        <ItemBadge tooltip={isPinnedTooltip}>
           <PushPin fontSize={ThumbnailSize.Small} />
         </ItemBadge>
       )}
       {isPublished && (
-        <ItemBadge>
+        <ItemBadge tooltip={isPublishedTooltip}>
           <LibraryIcon
             secondaryColor='white'
             primaryColor='rgb(189, 189, 189)'
@@ -50,7 +61,7 @@ const ItemBadges = ({
         </ItemBadge>
       )}
       {isPublic && (
-        <ItemBadge>
+        <ItemBadge tooltip={isPublicTooltip}>
           <Public fontSize={ThumbnailSize.Small} />
         </ItemBadge>
       )}
