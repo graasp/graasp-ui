@@ -23,7 +23,7 @@ import React, {
   useState,
 } from 'react';
 
-import { DRAG_COLUMN_WIDTH, DRAG_ICON_SIZE } from '../constants';
+import { DRAG_COLUMN_WIDTH } from '../constants';
 import DragCellRenderer from './DragCellRenderer';
 import TableNoRowsContent from './TableNoRowsContent';
 import TableToolbar from './TableToolbar';
@@ -212,7 +212,7 @@ function GraaspTable<T>({
         display: 'flex',
       },
       headerClass: DRAG_CELL_CLASS_NAME,
-      width: DRAG_ICON_SIZE,
+      width: DRAG_COLUMN_WIDTH,
       maxWidth: DRAG_COLUMN_WIDTH,
       sortable: false,
       headerName: '',

@@ -74,8 +74,7 @@ export enum CCLicenseAdaption {
 
 export const DEFAULT_LOADER_SIZE = 20;
 
-export const DRAG_ICON_SIZE = 18;
-export const DRAG_COLUMN_WIDTH = 20;
+export const DRAG_COLUMN_WIDTH = 22;
 
 export const HEADER_USERNAME_MAX_WIDTH = 120;
 
