@@ -17,7 +17,12 @@ const agGridCategory = 'Ag Grid';
 const rowData = [
   { id: 1, name: 'name 1', type: 'file', updatedAt: new Date() },
   { id: 2, name: 'name 2', type: 'h5p', updatedAt: new Date() },
-  { id: 3, name: 'name 3', type: 'folder', updatedAt: new Date() },
+  {
+    id: 3,
+    name: 'name 3 is a very long file name ',
+    type: 'folder',
+    updatedAt: new Date(),
+  },
   { id: 1, name: 'name 4', type: 'file', updatedAt: new Date() },
   { id: 2, name: 'name 5', type: 'h5p', updatedAt: new Date() },
   { id: 3, name: 'name 6', type: 'folder', updatedAt: new Date() },
@@ -120,25 +125,32 @@ Simple.args = {
   tableHeight: 300,
   columnDefs: [
     {
-      headerCheckboxSelection: true,
-      checkboxSelection: true,
       field: 'name',
       headerName: 'Name',
+      headerCheckboxSelection: true,
+      checkboxSelection: true,
       // rowDrag: true,
     },
     {
       field: 'type',
       headerName: 'Type',
       type: 'rightAligned',
+      suppressSizeToFit: true,
+      maxWidth: 80,
     },
     {
       field: 'updatedAt',
       headerName: 'Updated At',
       type: 'rightAligned',
+      suppressSizeToFit: true,
+      maxWidth: 160,
       valueFormatter: dateFormatter,
     },
     {
       field: 'actions',
+      headerName: 'Actions',
+      suppressSizeToFit: true,
+      maxWidth: 100, // approx 50 per iconButton (40px + 8px margin on each side)
       suppressKeyboardEvent: Table.suppressKeyboardEventForParentCell,
       cellRenderer: ({ data }: any) => {
         return (
@@ -148,7 +160,6 @@ Simple.args = {
           </>
         );
       },
-      headerName: 'actions',
     },
   ],
   rowData,
