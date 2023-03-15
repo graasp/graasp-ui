@@ -1,6 +1,6 @@
 import MenuIcon from '@mui/icons-material/Menu';
 import MenuOpenIcon from '@mui/icons-material/MenuOpen';
-import { Theme, styled } from '@mui/material';
+import { SxProps, Theme, styled } from '@mui/material';
 import AppBar from '@mui/material/AppBar';
 import Grid from '@mui/material/Grid';
 import IconButton from '@mui/material/IconButton';
@@ -8,9 +8,16 @@ import Toolbar from '@mui/material/Toolbar';
 
 import React, { FC } from 'react';
 
+import { Context } from '@graasp/sdk';
+
 import { CLOSE_DRAWER_LABEL, OPEN_DRAWER_LABEL } from '../labels';
+import { AccentColors, PRIMARY_COLOR } from '../theme';
+
+export const buildHeaderGradient = (color: string): string =>
+  `linear-gradient(90deg, ${PRIMARY_COLOR} 0%, ${PRIMARY_COLOR} 35%, ${color} 100%);`;
 
 export type HeaderProps = {
+  context?: Context;
   centerContent?: React.ReactElement;
   handleDrawerOpen?: () => void;
   handleDrawerClose?: () => void;
@@ -22,6 +29,7 @@ export type HeaderProps = {
   openDrawerAriaLabel?: string;
   closeDrawerAriaLabel?: string;
   rightContent?: React.ReactElement;
+  sx?: SxProps;
 };
 
 const StyledIconButton = styled(IconButton)(
@@ -38,6 +46,7 @@ const StyledToolbar = styled(Toolbar)({
 });
 
 export const Header: FC<HeaderProps> = ({
+  context,
   centerContent,
   menuButtonId,
   id,
@@ -49,6 +58,7 @@ export const Header: FC<HeaderProps> = ({
   closeDrawerAriaLabel = CLOSE_DRAWER_LABEL,
   leftContent,
   rightContent,
+  sx,
 }) => {
   const renderMenuIcon = (): JSX.Element | null => {
     if (!hasSidebar) {
@@ -82,7 +92,16 @@ export const Header: FC<HeaderProps> = ({
   };
 
   return (
-    <AppBar id={id} position='fixed'>
+    <AppBar
+      id={id}
+      position='fixed'
+      sx={{
+        background: context
+          ? buildHeaderGradient(AccentColors[context])
+          : PRIMARY_COLOR,
+        ...sx,
+      }}
+    >
       <StyledToolbar disableGutters>
         {renderMenuIcon()}
         <Grid container>

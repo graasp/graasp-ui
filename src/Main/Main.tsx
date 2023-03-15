@@ -1,6 +1,8 @@
-import { styled } from '@mui/material';
+import { SxProps, styled } from '@mui/material';
 
 import React, { Component } from 'react';
+
+import { Context } from '@graasp/sdk';
 
 import Header from '../Header';
 import Sidebar from '../Sidebar';
@@ -20,6 +22,7 @@ const DrawerHeaderContainer = styled('div')(({ theme }) => ({
 }));
 
 export interface MainProps {
+  context?: Context;
   children?: JSX.Element | JSX.Element[];
   fullScreen?: boolean;
   /**
@@ -38,6 +41,7 @@ export interface MainProps {
    * Whether the sidebar is open by default
    */
   headerId?: string;
+  headerSx?: SxProps;
   open?: boolean;
   sidebar?: React.ReactElement;
   menuButtonId?: string;
@@ -108,6 +112,7 @@ export class Main extends Component<MainProps, MainState> {
     return (
       <StyledRoot>
         <Header
+          context={this.props.context}
           hasSidebar={hasSidebar}
           isSidebarOpen={open}
           handleDrawerOpen={this.handleDrawerOpen}
@@ -117,6 +122,7 @@ export class Main extends Component<MainProps, MainState> {
           centerContent={headerCenterContent}
           id={headerId}
           menuButtonId={menuButtonId}
+          sx={this.props.headerSx}
         />
 
         {hasSidebar && <Sidebar isSidebarOpen={open}>{sidebar}</Sidebar>}
