@@ -15,7 +15,7 @@ All notable changes to this project will be documented in this file. See [standa
 ### Bug Fixes
 
 * fix operator priority on `FavoriteButton` tooltip ([#287](https://github.com/graasp/graasp-ui/issues/287)) ([b42b38b](https://github.com/graasp/graasp-ui/commit/b42b38be72cd3087e606250045b29d669d956a03))
-* **table:** reduce spacing of drag icon column and padding round elements ([23e3ffb](https://github.com/graasp/graasp-ui/commit/23e3ffb3a011e6094e3ecddc77cda8326f5703fd))
+* **table:** reduce spacing of drag icon column and padding around elements ([23e3ffb](https://github.com/graasp/graasp-ui/commit/23e3ffb3a011e6094e3ecddc77cda8326f5703fd))
 
 ## [2.0.1](https://github.com/graasp/graasp-ui/compare/v2.0.0...v2.0.1) (2023-03-09)
 
