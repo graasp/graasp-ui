@@ -23,7 +23,7 @@ import React, {
   useState,
 } from 'react';
 
-import { DRAG_ICON_SIZE } from '../constants';
+import { DRAG_COLUMN_WIDTH } from '../constants';
 import DragCellRenderer from './DragCellRenderer';
 import TableNoRowsContent from './TableNoRowsContent';
 import TableToolbar from './TableToolbar';
@@ -75,6 +75,14 @@ const StyledDiv = styled('div')(({ theme }) => ({
     color: theme.palette.primary.main,
   },
   height: '100%',
+  '.ag-selection-checkbox, .ag-header-select-all': {
+    // reduce margin after checkbox in cells and header
+    marginRight: `${theme.spacing(2)}!important`,
+  },
+  '.ag-cell, .ag-header-cell': {
+    // reduce padding on left and right of cells
+    padding: theme.spacing(0, 1),
+  },
 }));
 
 const ROW_CLASS_NAME = 'row-class-name';
@@ -152,6 +160,8 @@ function GraaspTable<T>({
     if (!gridApi) {
       setGridApi(params.api);
     }
+    // size columns to fit the width of the screen
+    gridApi?.sizeColumnsToFit();
   };
 
   const changeSelection = (): void => {
@@ -202,7 +212,8 @@ function GraaspTable<T>({
         display: 'flex',
       },
       headerClass: DRAG_CELL_CLASS_NAME,
-      width: DRAG_ICON_SIZE,
+      width: DRAG_COLUMN_WIDTH,
+      maxWidth: DRAG_COLUMN_WIDTH,
       sortable: false,
       headerName: '',
       flex: 0,

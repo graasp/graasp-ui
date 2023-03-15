@@ -20,6 +20,7 @@ type CardProps = {
    * actions displayed at the bottom of the card
    */
   Actions?: ReactElement;
+  Badges?: ReactElement;
   cardId?: string;
   /**
    * creator name
@@ -42,6 +43,7 @@ type CardProps = {
 
 const Item: FC<CardProps> = ({
   Actions,
+  Badges,
   cardId,
   creator,
   description,
@@ -120,9 +122,19 @@ const Item: FC<CardProps> = ({
           >
             {description}
           </Typography>
-          {Actions && (
-            <CardActions sx={{ justifyContent: 'right', p: 0 }}>
-              {Actions}
+          {(Actions || Badges) && (
+            <CardActions sx={{ pt: 0, pl: 0 }}>
+              <Stack
+                width='100%'
+                alignItems='end'
+                direction='row'
+                justifyContent='space-between'
+              >
+                {Badges || <span />}
+                <Box margin={(theme) => `-${theme.spacing(1)}`}>
+                  {Actions || <span />}
+                </Box>
+              </Stack>
             </CardActions>
           )}
         </Stack>
