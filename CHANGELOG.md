@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.1.0](https://github.com/graasp/graasp-ui/compare/v2.0.1...v2.1.0) (2023-03-15)
+
+
+### Features
+
+* add etherpad logo ([#277](https://github.com/graasp/graasp-ui/issues/277)) ([4ddc7e9](https://github.com/graasp/graasp-ui/commit/4ddc7e989c3cda085b6c174887e0d8b03e7b412e))
+* add header platform colors ([#279](https://github.com/graasp/graasp-ui/issues/279)) ([1eac4be](https://github.com/graasp/graasp-ui/commit/1eac4beb17164a3383e3b4f2cc674edad8c87eec))
+* **ui:** add `ItemBadges` component ([#283](https://github.com/graasp/graasp-ui/issues/283)) ([23e3ffb](https://github.com/graasp/graasp-ui/commit/23e3ffb3a011e6094e3ecddc77cda8326f5703fd))
+
+
+### Bug Fixes
+
+* fix operator priority on `FavoriteButton` tooltip ([#287](https://github.com/graasp/graasp-ui/issues/287)) ([b42b38b](https://github.com/graasp/graasp-ui/commit/b42b38be72cd3087e606250045b29d669d956a03))
+* **table:** reduce spacing of drag icon column and padding around elements ([23e3ffb](https://github.com/graasp/graasp-ui/commit/23e3ffb3a011e6094e3ecddc77cda8326f5703fd))
+
 ## [2.0.1](https://github.com/graasp/graasp-ui/compare/v2.0.0...v2.0.1) (2023-03-09)
 
 
