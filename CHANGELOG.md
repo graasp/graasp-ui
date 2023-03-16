@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.2.0](https://github.com/graasp/graasp-ui/compare/v2.1.0...v2.2.0) (2023-03-16)
+
+
+### Features
+
+* bump @graasp/sdk ([#297](https://github.com/graasp/graasp-ui/issues/297)) ([586661f](https://github.com/graasp/graasp-ui/commit/586661f3e497b40314405eab4e455974d2fa9bf6))
+
+
+### Bug Fixes
+
+* etherpad icon use current color as default ([#295](https://github.com/graasp/graasp-ui/issues/295)) ([8132a39](https://github.com/graasp/graasp-ui/commit/8132a39c4cbd584a559ee14b52d314dd598dd8e2))
+* search bar can be compressed and is responsive ([#291](https://github.com/graasp/graasp-ui/issues/291)) ([72f22af](https://github.com/graasp/graasp-ui/commit/72f22af259e712deb1d3a0b76685ed2be69bbcff))
+* use a darker color for itemBadges ([#296](https://github.com/graasp/graasp-ui/issues/296)) ([e2f2f7a](https://github.com/graasp/graasp-ui/commit/e2f2f7a451c99b14362fa666e2883ab2de901768))
+
 ## [2.1.0](https://github.com/graasp/graasp-ui/compare/v2.0.1...v2.1.0) (2023-03-15)
 
 
