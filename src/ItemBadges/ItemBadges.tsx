@@ -10,11 +10,16 @@ import { LibraryIcon } from '../icons';
 type ItemBadgeProps = {
   tooltip: string;
   children: JSX.Element;
+  backgroundColor: string;
 };
 
-const ItemBadge = ({ tooltip, children }: ItemBadgeProps): JSX.Element => (
+const ItemBadge = ({
+  tooltip,
+  children,
+  backgroundColor,
+}: ItemBadgeProps): JSX.Element => (
   <Tooltip title={tooltip}>
-    <Avatar sx={{ width: 24, height: 24 }}>{children}</Avatar>
+    <Avatar sx={{ width: 24, height: 24, backgroundColor }}>{children}</Avatar>
   </Tooltip>
 );
 
@@ -27,6 +32,7 @@ type Props = {
   isPublishedTooltip?: string;
   isPinned?: boolean;
   isPinnedTooltip?: string;
+  backgroundColor?: string;
 };
 
 const ItemBadges = ({
@@ -38,21 +44,25 @@ const ItemBadges = ({
   isPublishedTooltip = 'Published',
   isPublic = false,
   isPublicTooltip = 'Public',
+  backgroundColor = 'grey.600',
 }: Props): JSX.Element => {
   return (
     <AvatarGroup>
       {isHidden && (
-        <ItemBadge tooltip={isHiddenTooltip}>
+        <ItemBadge backgroundColor={backgroundColor} tooltip={isHiddenTooltip}>
           <VisibilityOff fontSize={ThumbnailSize.Small} />
         </ItemBadge>
       )}
       {isPinned && (
-        <ItemBadge tooltip={isPinnedTooltip}>
+        <ItemBadge backgroundColor={backgroundColor} tooltip={isPinnedTooltip}>
           <PushPin fontSize={ThumbnailSize.Small} />
         </ItemBadge>
       )}
       {isPublished && (
-        <ItemBadge tooltip={isPublishedTooltip}>
+        <ItemBadge
+          backgroundColor={backgroundColor}
+          tooltip={isPublishedTooltip}
+        >
           <LibraryIcon
             secondaryColor='white'
             primaryColor='rgb(189, 189, 189)'
@@ -61,7 +71,7 @@ const ItemBadges = ({
         </ItemBadge>
       )}
       {isPublic && (
-        <ItemBadge tooltip={isPublicTooltip}>
+        <ItemBadge backgroundColor={backgroundColor} tooltip={isPublicTooltip}>
           <Public fontSize={ThumbnailSize.Small} />
         </ItemBadge>
       )}
