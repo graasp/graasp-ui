@@ -8,7 +8,7 @@ type Props = {
 };
 
 const EtherpadIcon = ({ style, sx }: Props): JSX.Element => {
-  const color = style?.color ?? 'rgba(0, 0, 0, 0.87)';
+  const color = style?.color ?? 'currentcolor';
 
   return (
     <SvgIcon
