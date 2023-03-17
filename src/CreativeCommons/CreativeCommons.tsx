@@ -3,7 +3,7 @@ import { Box, SxProps, Tooltip, Typography } from '@mui/material';
 import React, { FC } from 'react';
 
 import { PRIMARY_COLOR } from '../theme';
-import { CCSharing, CCSharingVariant } from '../types';
+import { CCSharingVariant } from '../types';
 
 type CCIconProps = {
   title: string;
