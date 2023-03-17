@@ -1,9 +1,9 @@
-import { Box, Tooltip, Typography, styled } from '@mui/material';
+import { Box, SxProps, Tooltip, Typography } from '@mui/material';
 
 import React, { FC } from 'react';
 
 import { PRIMARY_COLOR } from '../theme';
-import { CCSharing } from '../types';
+import { CCSharing, CCSharingVariant } from '../types';
 
 type CCIconProps = {
   title: string;
@@ -145,23 +145,14 @@ const CCIcon: FC<CCIconProps> = ({ icon, title, description }) => {
 
 type CreativeCommonsProps = {
   requireAccreditation?: boolean | undefined;
-  allowSharedAdaptation: CCSharing;
+  allowSharedAdaptation: CCSharingVariant;
   allowCommercialUse: boolean;
   iconSize?: number | undefined;
-  borderWith?: number | undefined;
   withLicenseName?: boolean | undefined;
+  textColor?: string | undefined;
+  textSize?: number | undefined;
+  sx?: SxProps;
 };
-
-type StyledBoxProps = {
-  borderWidth: number;
-};
-
-const StyledBox = styled(Box)<StyledBoxProps>(({ borderWidth }) => ({
-  borderColor: '#efefef',
-  borderRadius: 14,
-  borderStyle: 'solid',
-  borderWidth: borderWidth,
-}));
 
 const CreativeCommons: FC<CreativeCommonsProps> = (props) => {
   const {
@@ -170,7 +161,9 @@ const CreativeCommons: FC<CreativeCommonsProps> = (props) => {
     allowSharedAdaptation,
     iconSize = 50,
     withLicenseName = true,
-    borderWith = 2,
+    sx,
+    textColor = PRIMARY_COLOR,
+    textSize = Math.max(iconSize / 4, 10),
   } = props;
 
   const iconData = React.useMemo(() => ccData(iconSize), [iconSize]);
@@ -179,29 +172,31 @@ const CreativeCommons: FC<CreativeCommonsProps> = (props) => {
     <>
       <CCIcon {...iconData.by} />
       {!allowCommercialUse && <CCIcon {...iconData.nc} />}
-      {allowSharedAdaptation === CCSharing.No && <CCIcon {...iconData.nd} />}
-      {allowSharedAdaptation === CCSharing.Alike && <CCIcon {...iconData.sa} />}
+      {allowSharedAdaptation === 'no' && <CCIcon {...iconData.nd} />}
+      {allowSharedAdaptation === 'alike' && <CCIcon {...iconData.sa} />}
     </>
   ) : (
     <CCIcon {...iconData.cc0} />
   );
 
+  console.log(allowSharedAdaptation);
+
   const license = requireAccreditation
     ? allowCommercialUse
-      ? allowSharedAdaptation === CCSharing.Yes
+      ? allowSharedAdaptation === 'yes'
         ? licenses.attr
-        : allowSharedAdaptation === CCSharing.No
+        : allowSharedAdaptation === 'no'
         ? licenses.attrNoDeriv
         : licenses.attrShareAlike
-      : allowSharedAdaptation === CCSharing.Yes
+      : allowSharedAdaptation === 'yes'
       ? licenses.attrNC
-      : allowSharedAdaptation === CCSharing.No
+      : allowSharedAdaptation === 'no'
       ? licenses.attrNoDerivNC
       : licenses.attrShareAlikeNC
     : licenses.cc0;
 
   return (
-    <StyledBox paddingX={2} paddingY={3} borderWidth={borderWith}>
+    <Box paddingX={2} paddingY={3} sx={sx}>
       <Box justifyContent='space-around' display='flex' flexDirection='row'>
         <CCIcon {...iconData.cc} />
         {additionalIcons}
@@ -210,8 +205,8 @@ const CreativeCommons: FC<CreativeCommonsProps> = (props) => {
         <Box justifyContent='center' display='flex' marginTop={2}>
           <Typography
             variant='caption'
-            color={PRIMARY_COLOR}
-            fontSize={iconSize / 4}
+            color={textColor}
+            fontSize={textSize}
             fontWeight='bold'
             textAlign='center'
           >
@@ -219,7 +214,7 @@ const CreativeCommons: FC<CreativeCommonsProps> = (props) => {
           </Typography>
         </Box>
       )}
-    </StyledBox>
+    </Box>
   );
 };
 
