@@ -55,7 +55,7 @@ const FavoriteButton: FC<FavoriteButtonProps> = ({
   );
 
   const tooltipText =
-    tooltip ?? isFavorite ? 'Remove from Favorites' : 'Add to Favorites';
+    tooltip ?? (isFavorite ? 'Remove from Favorites' : 'Add to Favorites');
 
   const iconColor = isFavorite ? FAVORITE_COLOR : color;
 

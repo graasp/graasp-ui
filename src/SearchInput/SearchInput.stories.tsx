@@ -21,3 +21,8 @@ const Template: ComponentStory<typeof SearchInput> = (args) => (
 
 export const Default = Template.bind({});
 Default.args = {};
+
+export const MaxWidth = Template.bind({});
+MaxWidth.args = {
+  width: 300,
+};

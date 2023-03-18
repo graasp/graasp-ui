@@ -20,13 +20,18 @@ export const SearchInput: FC<Props> = ({
   onChange,
   placeholder = 'Search…',
   value = '',
-  width = 400,
+  width,
 }) => {
   return (
     <Paper
       variant='outlined'
       component='form'
-      sx={{ display: 'flex', alignItems: 'center', width, minWidth: 100 }}
+      sx={{
+        display: 'flex',
+        alignItems: 'center',
+        maxWidth: width,
+        minWidth: 0,
+      }}
     >
       <InputBase
         id={inputBaseId}

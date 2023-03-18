@@ -2,7 +2,6 @@ import AppsIcon from '@mui/icons-material/Apps';
 import DescriptionIcon from '@mui/icons-material/Description';
 import FolderIcon from '@mui/icons-material/Folder';
 import FolderZipIcon from '@mui/icons-material/FolderZip';
-import GroupsIcon from '@mui/icons-material/Groups';
 import ImageIcon from '@mui/icons-material/Image';
 import ShortcutIcon from '@mui/icons-material/Input';
 import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
@@ -11,7 +10,8 @@ import Looks5Icon from '@mui/icons-material/Looks5';
 import MovieIcon from '@mui/icons-material/Movie';
 import MusicNoteIcon from '@mui/icons-material/MusicNote';
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
-import { SxProps } from '@mui/material';
+import { SvgIconTypeMap, SxProps } from '@mui/material';
+import { OverridableComponent } from '@mui/material/OverridableComponent';
 
 import React, { FC } from 'react';
 
@@ -28,6 +28,7 @@ import { ItemRecord } from '@graasp/sdk/frontend';
 
 import { StyledImage } from '../StyledComponents/StyledBaseComponents';
 import { ITEM_ICON_MAX_SIZE } from '../constants';
+import EtherpadIcon from './EtherpadIcon';
 
 export interface ItemIconProps {
   alt: string;
@@ -79,7 +80,7 @@ const ItemIcon: FC<ItemIconProps> = ({
     );
   }
 
-  let Icon = InsertDriveFileIcon;
+  let Icon: OverridableComponent<SvgIconTypeMap> = InsertDriveFileIcon;
   switch (type) {
     case ItemType.FOLDER:
       Icon = FolderIcon;
@@ -132,7 +133,7 @@ const ItemIcon: FC<ItemIconProps> = ({
       break;
     }
     case ItemType.ETHERPAD: {
-      Icon = GroupsIcon;
+      Icon = EtherpadIcon;
       break;
     }
     default:

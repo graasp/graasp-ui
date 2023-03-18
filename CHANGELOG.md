@@ -2,6 +2,35 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.2.0](https://github.com/graasp/graasp-ui/compare/v2.1.0...v2.2.0) (2023-03-16)
+
+
+### Features
+
+* bump @graasp/sdk ([#297](https://github.com/graasp/graasp-ui/issues/297)) ([586661f](https://github.com/graasp/graasp-ui/commit/586661f3e497b40314405eab4e455974d2fa9bf6))
+
+
+### Bug Fixes
+
+* etherpad icon use current color as default ([#295](https://github.com/graasp/graasp-ui/issues/295)) ([8132a39](https://github.com/graasp/graasp-ui/commit/8132a39c4cbd584a559ee14b52d314dd598dd8e2))
+* search bar can be compressed and is responsive ([#291](https://github.com/graasp/graasp-ui/issues/291)) ([72f22af](https://github.com/graasp/graasp-ui/commit/72f22af259e712deb1d3a0b76685ed2be69bbcff))
+* use a darker color for itemBadges ([#296](https://github.com/graasp/graasp-ui/issues/296)) ([e2f2f7a](https://github.com/graasp/graasp-ui/commit/e2f2f7a451c99b14362fa666e2883ab2de901768))
+
+## [2.1.0](https://github.com/graasp/graasp-ui/compare/v2.0.1...v2.1.0) (2023-03-15)
+
+
+### Features
+
+* add etherpad logo ([#277](https://github.com/graasp/graasp-ui/issues/277)) ([4ddc7e9](https://github.com/graasp/graasp-ui/commit/4ddc7e989c3cda085b6c174887e0d8b03e7b412e))
+* add header platform colors ([#279](https://github.com/graasp/graasp-ui/issues/279)) ([1eac4be](https://github.com/graasp/graasp-ui/commit/1eac4beb17164a3383e3b4f2cc674edad8c87eec))
+* **ui:** add `ItemBadges` component ([#283](https://github.com/graasp/graasp-ui/issues/283)) ([23e3ffb](https://github.com/graasp/graasp-ui/commit/23e3ffb3a011e6094e3ecddc77cda8326f5703fd))
+
+
+### Bug Fixes
+
+* fix operator priority on `FavoriteButton` tooltip ([#287](https://github.com/graasp/graasp-ui/issues/287)) ([b42b38b](https://github.com/graasp/graasp-ui/commit/b42b38be72cd3087e606250045b29d669d956a03))
+* **table:** reduce spacing of drag icon column and padding around elements ([23e3ffb](https://github.com/graasp/graasp-ui/commit/23e3ffb3a011e6094e3ecddc77cda8326f5703fd))
+
 ## [2.0.1](https://github.com/graasp/graasp-ui/compare/v2.0.0...v2.0.1) (2023-03-09)
 
 
