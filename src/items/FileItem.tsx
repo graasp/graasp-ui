@@ -43,6 +43,7 @@ export interface FileItemProps {
   item: LocalFileItemTypeRecord | S3FileItemTypeRecord | DocumentItemTypeRecord;
   maxHeight?: number;
   onSaveCaption?: (text: string) => void;
+  onCancelCaption?: (text: string) => void;
   /**
    * use a custom pdf reader from the link if defined
    * */
@@ -64,6 +65,7 @@ const FileItem: FC<FileItemProps> = ({
   item,
   maxHeight = '100%',
   onSaveCaption,
+  onCancelCaption,
   saveButtonId,
   showCaption = true,
   showCollapse,
@@ -145,6 +147,7 @@ const FileItem: FC<FileItemProps> = ({
       return withCaption({
         item,
         onSave: onSaveCaption,
+        onCancel: onCancelCaption,
         edit: editCaption,
         saveButtonId,
       })(component);
