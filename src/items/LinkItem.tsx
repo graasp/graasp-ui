@@ -31,6 +31,7 @@ export interface LinkItemProps {
   item: EmbeddedLinkItemTypeRecord;
   loadingMessage?: string;
   onSaveCaption?: (text: string) => void;
+  onCancelCaption?: (text: string) => void;
   openLinkMessage?: string;
   /**
    * id of the save button
@@ -67,6 +68,7 @@ const LinkItem: FC<LinkItemProps> = ({
   member,
   memberId,
   onSaveCaption,
+  onCancelCaption,
   saveButtonId,
   editCaption = false,
   showCaption = true,
@@ -88,6 +90,7 @@ const LinkItem: FC<LinkItemProps> = ({
   const CaptionWrapper = withCaption({
     item,
     onSave: onSaveCaption,
+    onCancel: onCancelCaption,
     saveButtonId,
     edit: editCaption,
   });

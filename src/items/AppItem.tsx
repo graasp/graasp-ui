@@ -70,9 +70,8 @@ export interface AppItemProps {
    * @deprecated Use the `memberId` prop to only pass the id
    */
   member?: MemberRecord;
-  // todo: one of enum
-  mode?: string;
   onSaveCaption?: (text: string) => void;
+  onCancelCaption?: (text: string) => void;
   permission?: string;
   /**
    * whether the caption is shown
@@ -255,6 +254,7 @@ export class AppItem extends Component<AppItemProps> {
       id,
       showCaption,
       onSaveCaption,
+      onCancelCaption,
       saveButtonId,
       editCaption,
       isResizable,
@@ -317,6 +317,7 @@ export class AppItem extends Component<AppItemProps> {
       return withCaption({
         item,
         onSave: onSaveCaption,
+        onCancel: onCancelCaption,
         edit: editCaption,
         saveButtonId,
       })(component);
