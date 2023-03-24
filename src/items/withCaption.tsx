@@ -14,6 +14,7 @@ interface WithCaptionProps {
   onCancel?: (text: string) => void;
   saveButtonText?: string;
   saveButtonId?: string;
+  cancelButtonId?: string;
 }
 
 function withCaption({
@@ -23,6 +24,7 @@ function withCaption({
   onCancel,
   saveButtonText,
   saveButtonId,
+  cancelButtonId,
 }: WithCaptionProps) {
   return (component: JSX.Element): JSX.Element => {
     class ComponentWithCaption extends React.Component {
@@ -39,6 +41,7 @@ function withCaption({
                 onSave={onSave}
                 onCancel={onCancel}
                 saveButtonId={saveButtonId}
+                cancelButtonId={cancelButtonId}
                 saveButtonText={saveButtonText}
               />
             </Grid>

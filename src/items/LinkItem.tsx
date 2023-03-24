@@ -31,11 +31,16 @@ export interface LinkItemProps {
   item: EmbeddedLinkItemTypeRecord;
   loadingMessage?: string;
   onSaveCaption?: (text: string) => void;
+  onCancelCaption?: (text: string) => void;
   openLinkMessage?: string;
   /**
    * id of the save button
    */
   saveButtonId?: string;
+  /**
+   * id of the cancel button
+   */
+  cancelButtonId?: string;
   /**
    * whether the caption should be displayed
    */
@@ -67,7 +72,9 @@ const LinkItem: FC<LinkItemProps> = ({
   member,
   memberId,
   onSaveCaption,
+  onCancelCaption,
   saveButtonId,
+  cancelButtonId,
   editCaption = false,
   showCaption = true,
   showIframe = false,
@@ -88,7 +95,9 @@ const LinkItem: FC<LinkItemProps> = ({
   const CaptionWrapper = withCaption({
     item,
     onSave: onSaveCaption,
+    onCancel: onCancelCaption,
     saveButtonId,
+    cancelButtonId,
     edit: editCaption,
   });
 

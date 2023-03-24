@@ -49,6 +49,7 @@ export interface FileItemProps {
    * */
   pdfViewerLink?: string;
   saveButtonId?: string;
+  cancelButtonId?: string;
   showCaption?: boolean;
   showCollapse?: boolean;
   sx?: SxProps;
@@ -67,6 +68,7 @@ const FileItem: FC<FileItemProps> = ({
   onSaveCaption,
   onCancelCaption,
   saveButtonId,
+  cancelButtonId,
   showCaption = true,
   showCollapse,
   sx,
@@ -150,6 +152,7 @@ const FileItem: FC<FileItemProps> = ({
         onCancel: onCancelCaption,
         edit: editCaption,
         saveButtonId,
+        cancelButtonId,
       })(component);
     }
 
