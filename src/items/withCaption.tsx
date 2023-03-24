@@ -11,6 +11,7 @@ interface WithCaptionProps {
   item: ItemRecord;
   edit?: boolean;
   onSave?: (text: string) => void;
+  onCancel?: (text: string) => void;
   saveButtonText?: string;
   saveButtonId?: string;
 }
@@ -19,6 +20,7 @@ function withCaption({
   item,
   edit,
   onSave,
+  onCancel,
   saveButtonText,
   saveButtonId,
 }: WithCaptionProps) {
@@ -35,6 +37,7 @@ function withCaption({
                 value={item.description || DEFAULT_ITEM_DESCRIPTION}
                 edit={edit}
                 onSave={onSave}
+                onCancel={onCancel}
                 saveButtonId={saveButtonId}
                 saveButtonText={saveButtonText}
               />
