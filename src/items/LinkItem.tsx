@@ -38,6 +38,10 @@ export interface LinkItemProps {
    */
   saveButtonId?: string;
   /**
+   * id of the cancel button
+   */
+  cancelButtonId?: string;
+  /**
    * whether the caption should be displayed
    */
   showCaption?: boolean;
@@ -70,6 +74,7 @@ const LinkItem: FC<LinkItemProps> = ({
   onSaveCaption,
   onCancelCaption,
   saveButtonId,
+  cancelButtonId,
   editCaption = false,
   showCaption = true,
   showIframe = false,
@@ -92,6 +97,7 @@ const LinkItem: FC<LinkItemProps> = ({
     onSave: onSaveCaption,
     onCancel: onCancelCaption,
     saveButtonId,
+    cancelButtonId,
     edit: editCaption,
   });
 

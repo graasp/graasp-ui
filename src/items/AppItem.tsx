@@ -78,6 +78,7 @@ export interface AppItemProps {
    */
   showCaption?: boolean;
   saveButtonId?: string;
+  cancelButtonId?: string;
 }
 
 interface AppItemState {
@@ -256,6 +257,7 @@ export class AppItem extends Component<AppItemProps> {
       onSaveCaption,
       onCancelCaption,
       saveButtonId,
+      cancelButtonId,
       editCaption,
       isResizable,
     }: AppItemProps = this.props;
@@ -320,6 +322,7 @@ export class AppItem extends Component<AppItemProps> {
         onCancel: onCancelCaption,
         edit: editCaption,
         saveButtonId,
+        cancelButtonId,
       })(component);
     }
 
