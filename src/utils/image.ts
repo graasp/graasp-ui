@@ -14,7 +14,7 @@ export const getItemImage = ({
   if (url) {
     return url;
   }
-  // todo: check that the type is correct
+
   const linkThumbnail = getEmbeddedLinkExtra(extra)?.thumbnails?.[0];
   if (linkThumbnail) {
     return linkThumbnail;
