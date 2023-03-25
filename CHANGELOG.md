@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.2.1](https://github.com/graasp/graasp-ui/compare/v2.2.0...v2.2.1) (2023-03-25)
+
+
+### Bug Fixes
+
+* add `cancelButtonId` prop to FileItem LinkItem an AppItem ([26d92e5](https://github.com/graasp/graasp-ui/commit/26d92e593693df61c898d3c377730bb9f9cc9eb7))
+* add `onCancelCaption` prop to FileItem ([#301](https://github.com/graasp/graasp-ui/issues/301)) ([f6fda11](https://github.com/graasp/graasp-ui/commit/f6fda1136472cc58b4e8f020d90af9af82d35b77))
+* add `onCancelCaption` prop to LinkItem and AppItem ([#306](https://github.com/graasp/graasp-ui/issues/306)) ([26d92e5](https://github.com/graasp/graasp-ui/commit/26d92e593693df61c898d3c377730bb9f9cc9eb7))
+
 ## [2.2.0](https://github.com/graasp/graasp-ui/compare/v2.1.0...v2.2.0) (2023-03-16)
 
 
