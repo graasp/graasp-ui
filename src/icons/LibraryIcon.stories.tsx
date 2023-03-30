@@ -31,7 +31,10 @@ export const Default = Template.bind({});
 Default.args = {};
 
 export const Small = Template.bind({});
-Small.args = { size: 20 };
+Small.args = { size: 24 };
 
 export const Big = Template.bind({});
 Big.args = { size: 100 };
+
+export const Settings = Template.bind({});
+Settings.args = { size: 24, showSetting: true };
