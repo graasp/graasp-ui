@@ -82,6 +82,7 @@ export const PDF_VIEWER_LINK = `${process.env.REACT_APP_GRAASP_ASSETS_URL}/pdf-v
 
 export const GRAASP_ASSETS_PROTOCOL = 'https://';
 
-export const SCREEN_MAX_HEIGHT = window.innerHeight * 0.8;
+export const SCREEN_MAX_HEIGHT =
+  typeof window !== 'undefined' ? window.innerHeight * 0.8 : 1000;
 
 export const FAVORITE_COLOR = '#ffc107';
