@@ -5,7 +5,7 @@ import React from 'react';
 
 import VerticalMenuButton from '../buttons/VerticalMenuButton';
 
-type Props = {
+type ItemMenuProps = {
   menuButtonId?: string;
   menuId?: string;
   menuButtonClassName?: string;
@@ -14,7 +14,7 @@ type Props = {
   openMenuText?: string;
 };
 
-const ItemMenu: FC<Props> = ({
+const ItemMenu: FC<ItemMenuProps> = ({
   menuButtonId,
   menuId,
   menuButtonClassName,
