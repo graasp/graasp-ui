@@ -1,10 +1,8 @@
-import {
-  Chat,
-  Public,
-  PushPin,
-  UnfoldLess,
-  VisibilityOff,
-} from '@mui/icons-material';
+import Chat from '@mui/icons-material/Chat';
+import Public from '@mui/icons-material/Public';
+import PushPin from '@mui/icons-material/PushPin';
+import UnfoldLess from '@mui/icons-material/UnfoldLess';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { Avatar, AvatarGroup, Tooltip } from '@mui/material';
 
 import React from 'react';
