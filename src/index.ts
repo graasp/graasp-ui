@@ -66,3 +66,5 @@ export { default as PlatformSwitch } from './PlatformSwitch';
 export * from './PlatformSwitch';
 
 export * from './types';
+
+export { default as ItemMenu } from './ItemMenu';
