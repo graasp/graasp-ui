@@ -24,7 +24,7 @@ const VerticalMenuButton: FC<VerticalMenuButtonProps> = ({
   className,
   openText,
   closeText,
-  isOpen,
+  isOpen = false,
   type,
 }) => {
   const tooltip = isOpen ? closeText : openText;
