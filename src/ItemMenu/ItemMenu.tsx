@@ -27,6 +27,7 @@ const ItemMenu: FC<ItemMenuProps> = ({
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>): void => {
     setAnchorEl(event.currentTarget);
+    isOpen = true;
   };
 
   const handleClose = (): void => {
