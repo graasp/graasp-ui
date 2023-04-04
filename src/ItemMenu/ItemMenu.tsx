@@ -1,6 +1,6 @@
 import Menu from '@mui/material/Menu';
 
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import React from 'react';
 
 import VerticalMenuButton from '../buttons/VerticalMenuButton';
@@ -12,6 +12,7 @@ type ItemMenuProps = {
   menuClassName?: string;
   children?: React.ReactElement | React.ReactElement[];
   openMenuText?: string;
+  isOpen?: boolean;
 };
 
 const ItemMenu: FC<ItemMenuProps> = ({
@@ -20,6 +21,7 @@ const ItemMenu: FC<ItemMenuProps> = ({
   menuButtonClassName,
   children,
   openMenuText,
+  isOpen = false,
 }) => {
   const [anchorEl, setAnchorEl] = useState<Element | null>(null);
 
@@ -30,6 +32,12 @@ const ItemMenu: FC<ItemMenuProps> = ({
   const handleClose = (): void => {
     setAnchorEl(null);
   };
+
+  useEffect(() => {
+    if (!isOpen) {
+      handleClose();
+    }
+  }, [isOpen]);
 
   return (
     <>
