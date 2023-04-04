@@ -1,6 +1,6 @@
 import Menu from '@mui/material/Menu';
 
-import { FC, useEffect, useState } from 'react';
+import { FC, useEffect, useRef, useState } from 'react';
 import React from 'react';
 
 import VerticalMenuButton from '../buttons/VerticalMenuButton';
@@ -34,6 +34,7 @@ const ItemMenu: FC<ItemMenuProps> = ({
 
   const handleClose = (): void => {
     setAnchorEl(null);
+    toggleOpenFromParent ? toggleOpenFromParent(false) : null;
   };
 
   useEffect(() => {
