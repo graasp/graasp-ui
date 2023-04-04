@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.3.0](https://github.com/graasp/graasp-ui/compare/v2.2.1...v2.3.0) (2023-04-04)
+
+
+### Features
+
+* add library icon setting cog option ([#312](https://github.com/graasp/graasp-ui/issues/312)) ([4b534bc](https://github.com/graasp/graasp-ui/commit/4b534bcfcb3c79e133007d39e6cdf0000f10d089))
+
 ## [2.2.1](https://github.com/graasp/graasp-ui/compare/v2.2.0...v2.2.1) (2023-03-25)
 
 
