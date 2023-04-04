@@ -13,6 +13,7 @@ type ItemMenuProps = {
   children?: React.ReactElement | React.ReactElement[];
   openMenuText?: string;
   isOpen?: boolean;
+  setMenuOpen?: () => void;
 };
 
 const ItemMenu: FC<ItemMenuProps> = ({
@@ -22,12 +23,13 @@ const ItemMenu: FC<ItemMenuProps> = ({
   children,
   openMenuText,
   isOpen = false,
+  setMenuOpen,
 }) => {
   const [anchorEl, setAnchorEl] = useState<Element | null>(null);
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>): void => {
     setAnchorEl(event.currentTarget);
-    isOpen = true;
+    setMenuOpen ? setMenuOpen() : null;
   };
 
   const handleClose = (): void => {
