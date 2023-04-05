@@ -1,6 +1,6 @@
 import Menu from '@mui/material/Menu';
 
-import { FC, MouseEventHandler, useEffect, useState } from 'react';
+import { FC, MouseEventHandler, useEffect, useRef, useState } from 'react';
 import React from 'react';
 
 import VerticalMenuButton from '../buttons/VerticalMenuButton';
@@ -29,6 +29,7 @@ const ItemMenu: FC<ItemMenuProps> = ({
 }) => {
   const [anchorEl, setAnchorEl] = useState<Element | null>(null);
   const [open, setOpen] = useState(isOpen);
+  const firstRender = useRef(true);
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>): void => {
     setAnchorEl(event.currentTarget);
@@ -43,7 +44,14 @@ const ItemMenu: FC<ItemMenuProps> = ({
   };
 
   useEffect(() => {
-    setOpen(!open);
+    if (!firstRender.current) {
+      if (isOpen) {
+        setOpen(false);
+      } else {
+        setOpen(true);
+      }
+    }
+    firstRender.current = false;
   }, [isOpen]);
 
   return (
@@ -54,7 +62,7 @@ const ItemMenu: FC<ItemMenuProps> = ({
         onClick={handleClick}
         openText={openMenuText}
       />
-      {Boolean(anchorEl) && (
+      {open && (
         <Menu
           id={menuId}
           anchorEl={anchorEl}
