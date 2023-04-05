@@ -11,8 +11,9 @@ import { ActionButton, ActionButtonVariant } from '../../types';
 export type ShortcutButtonProps = {
   color?: IconButtonProps['color'];
   iconClassName?: string;
-  id?: string;
+  iconId?: string;
   menuItemClassName?: string;
+  menuItemId?: string;
   onClick?: MouseEventHandler<HTMLButtonElement | HTMLLIElement>;
   text?: string;
   type?: ActionButtonVariant;
@@ -22,8 +23,9 @@ export type ShortcutButtonProps = {
 const ShortcutButton: FC<ShortcutButtonProps> = ({
   color = 'default',
   iconClassName,
-  id = '',
+  iconId,
   menuItemClassName,
+  menuItemId,
   onClick,
   text = 'Create Shortcut',
   type = 'icon',
@@ -32,7 +34,12 @@ const ShortcutButton: FC<ShortcutButtonProps> = ({
   switch (type) {
     case ActionButton.MENU_ITEM:
       return (
-        <MenuItem key={text} onClick={onClick} className={menuItemClassName}>
+        <MenuItem
+          key={text}
+          id={menuItemId}
+          onClick={onClick}
+          className={menuItemClassName}
+        >
           <ListItemIcon>
             <LabelImportantIcon />
           </ListItemIcon>
@@ -44,7 +51,7 @@ const ShortcutButton: FC<ShortcutButtonProps> = ({
         <Tooltip title={text}>
           <span>
             <IconButton
-              id={id}
+              id={iconId}
               size={size}
               color={color}
               className={iconClassName}

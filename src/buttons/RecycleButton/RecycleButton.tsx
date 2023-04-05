@@ -11,8 +11,9 @@ import { ActionButton, ActionButtonVariant } from '../../types';
 export type RecycleButtonProps = {
   color?: IconButtonProps['color'];
   iconClassName?: string;
-  id?: string;
+  iconId?: string;
   menuItemClassName?: string;
+  menuItemId?: string;
   onClick?: MouseEventHandler<HTMLButtonElement | HTMLLIElement>;
   text?: string;
   type?: ActionButtonVariant;
@@ -22,7 +23,8 @@ export type RecycleButtonProps = {
 const RecycleButton: FC<RecycleButtonProps> = ({
   color = 'default',
   iconClassName,
-  id = '',
+  iconId,
+  menuItemId,
   menuItemClassName,
   onClick,
   text = 'Trash',
@@ -32,7 +34,12 @@ const RecycleButton: FC<RecycleButtonProps> = ({
   switch (type) {
     case ActionButton.MENU_ITEM:
       return (
-        <MenuItem key={text} onClick={onClick} className={menuItemClassName}>
+        <MenuItem
+          key={text}
+          id={menuItemId}
+          onClick={onClick}
+          className={menuItemClassName}
+        >
           <ListItemIcon>
             <DeleteIcon />
           </ListItemIcon>
@@ -44,7 +51,7 @@ const RecycleButton: FC<RecycleButtonProps> = ({
         <Tooltip title={text}>
           <span>
             <IconButton
-              id={id}
+              id={iconId}
               size={size}
               color={color}
               className={iconClassName}

@@ -12,10 +12,11 @@ import { ActionButton, ActionButtonVariant } from '../../types';
 export type HideButtonProps = {
   color?: IconButtonProps['color'];
   iconClassName?: string;
-  id?: string;
+  iconId?: string;
   isHidden?: boolean;
   isHiddenRootItem?: boolean;
   menuItemClassName?: string;
+  menuItemId?: string;
   onClick?: () => void;
   size?: IconButtonProps['size'];
   hideText?: string;
@@ -25,9 +26,11 @@ export type HideButtonProps = {
 };
 
 const HideButton: FC<HideButtonProps> = ({
+  iconId,
   type,
   onClick,
   menuItemClassName,
+  menuItemId,
   iconClassName,
   isHidden,
   isHiddenRootItem,
@@ -45,6 +48,7 @@ const HideButton: FC<HideButtonProps> = ({
       const menuItem = (
         <MenuItem
           key={text}
+          id={menuItemId}
           onClick={onClick}
           className={menuItemClassName}
           disabled={!isHiddenRootItem}
@@ -70,6 +74,7 @@ const HideButton: FC<HideButtonProps> = ({
         <Tooltip title={tooltip}>
           <span>
             <IconButton
+              id={iconId}
               size={size}
               aria-label={text}
               className={iconClassName}

@@ -12,9 +12,10 @@ import { ActionButton, ActionButtonVariant } from '../../types';
 export type CollapseButtonProps = {
   color?: IconButtonProps['color'];
   iconClassName?: string;
-  id?: string;
+  iconId?: string;
   isCollapsed?: boolean;
   menuItemClassName?: string;
+  menuItemId?: string;
   onClick?: () => void;
   size?: IconButtonProps['size'];
   collapseText?: string;
@@ -23,9 +24,12 @@ export type CollapseButtonProps = {
 };
 
 const CollapseButton: FC<CollapseButtonProps> = ({
+  iconId,
+  color,
   type,
   onClick,
   menuItemClassName,
+  menuItemId,
   iconClassName,
   isCollapsed,
   collapseText = 'Collapse',
@@ -38,7 +42,12 @@ const CollapseButton: FC<CollapseButtonProps> = ({
   switch (type) {
     case ActionButton.MENU_ITEM:
       return (
-        <MenuItem key={text} onClick={onClick} className={menuItemClassName}>
+        <MenuItem
+          key={text}
+          id={menuItemId}
+          onClick={onClick}
+          className={menuItemClassName}
+        >
           <ListItemIcon>{icon}</ListItemIcon>
           {text}
         </MenuItem>
@@ -49,6 +58,8 @@ const CollapseButton: FC<CollapseButtonProps> = ({
         <Tooltip title={text}>
           <span>
             <IconButton
+              id={iconId}
+              color={color}
               size={size}
               aria-label={text}
               className={iconClassName}
