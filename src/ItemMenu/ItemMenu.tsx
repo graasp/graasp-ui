@@ -1,6 +1,6 @@
 import Menu from '@mui/material/Menu';
 
-import { FC, useEffect, useState } from 'react';
+import { FC, MouseEventHandler, useEffect, useState } from 'react';
 import React from 'react';
 
 import VerticalMenuButton from '../buttons/VerticalMenuButton';
@@ -13,7 +13,8 @@ type ItemMenuProps = {
   children?: React.ReactElement | React.ReactElement[];
   openMenuText?: string;
   isOpen?: boolean;
-  toggleOpenFromParent?: (isOpen: boolean) => void;
+  onClick?: MouseEventHandler<HTMLButtonElement>;
+  onClose?: () => void;
 };
 
 const ItemMenu: FC<ItemMenuProps> = ({
@@ -23,24 +24,26 @@ const ItemMenu: FC<ItemMenuProps> = ({
   children,
   openMenuText,
   isOpen = false,
-  toggleOpenFromParent,
+  onClick,
+  onClose,
 }) => {
   const [anchorEl, setAnchorEl] = useState<Element | null>(null);
+  const [open, setOpen] = useState(isOpen);
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>): void => {
     setAnchorEl(event.currentTarget);
-    toggleOpenFromParent ? toggleOpenFromParent(true) : null;
+    setOpen(true);
+    onClick?.(event);
   };
 
   const handleClose = (): void => {
     setAnchorEl(null);
-    toggleOpenFromParent ? toggleOpenFromParent(false) : null;
+    setOpen(false);
+    onClose?.();
   };
 
   useEffect(() => {
-    if (!isOpen) {
-      handleClose();
-    }
+    setOpen(!open);
   }, [isOpen]);
 
   return (
@@ -56,7 +59,7 @@ const ItemMenu: FC<ItemMenuProps> = ({
           id={menuId}
           anchorEl={anchorEl}
           keepMounted
-          open={Boolean(anchorEl)}
+          open={open}
           onClose={handleClose}
         >
           {children}
