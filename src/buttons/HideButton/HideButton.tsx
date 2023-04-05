@@ -23,7 +23,7 @@ export type HideButtonProps = {
   showText?: string;
   hiddenParentText?: string;
   type?: ActionButtonVariant;
-  testData?: boolean[];
+  testData?: string;
 };
 
 const HideButton: FC<HideButtonProps> = ({
