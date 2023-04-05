@@ -23,21 +23,24 @@ export type HideButtonProps = {
   showText?: string;
   hiddenParentText?: string;
   type?: ActionButtonVariant;
+  testData?: boolean[];
 };
 
 const HideButton: FC<HideButtonProps> = ({
-  iconId,
-  type,
-  onClick,
-  menuItemClassName,
-  menuItemId,
+  color,
   iconClassName,
+  iconId,
   isHidden,
   isHiddenRootItem,
+  menuItemClassName,
+  menuItemId,
+  onClick,
+  size,
   hideText = 'Hide',
   showText = 'Show',
   hiddenParentText,
-  size,
+  type,
+  testData,
 }) => {
   const icon = isHidden ? <VisibilityOff /> : <Visibility />;
   const text = isHidden ? showText : hideText;
@@ -52,6 +55,7 @@ const HideButton: FC<HideButtonProps> = ({
           onClick={onClick}
           className={menuItemClassName}
           disabled={!isHiddenRootItem}
+          data-cy={testData}
         >
           <ListItemIcon>{icon}</ListItemIcon>
           {text}
@@ -79,6 +83,7 @@ const HideButton: FC<HideButtonProps> = ({
               aria-label={text}
               className={iconClassName}
               onClick={onClick}
+              color={color}
             >
               {icon}
             </IconButton>
