@@ -20,7 +20,7 @@ jobs:
 
       - name: Tag major and minor versions
         uses: jacobsvante/tag-major-minor-action@v0.1
-        if: ${{ steps.release.outputs.release_created }}
+        if: ${{ steps.release.outputs.releases_created }}
         with:
           major: ${{ steps.release.outputs.major }}
           minor: ${{ steps.release.outputs.minor }}
