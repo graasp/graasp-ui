@@ -7,24 +7,26 @@ import React, { FC, MouseEventHandler } from 'react';
 import { ActionButtonVariant } from '../../types';
 
 export type VerticalMenuButtonProps = {
+  className?: string;
+  color?: IconButtonProps['color'];
   id?: string;
+  isOpen?: boolean;
   onClick?: MouseEventHandler<HTMLButtonElement>;
   size?: IconButtonProps['size'];
-  className?: string;
   openText?: string;
   closeText?: string;
-  isOpen?: boolean;
   type?: ActionButtonVariant;
 };
 
 const VerticalMenuButton: FC<VerticalMenuButtonProps> = ({
-  id,
-  size,
-  onClick,
   className,
+  color,
+  id,
+  isOpen = false,
+  onClick,
+  size,
   openText,
   closeText,
-  isOpen = false,
   type,
 }) => {
   const tooltip = isOpen ? closeText : openText;
@@ -39,6 +41,7 @@ const VerticalMenuButton: FC<VerticalMenuButtonProps> = ({
               onClick={onClick}
               className={className}
               size={size}
+              color={color}
             >
               <MoreVertIcon />
             </IconButton>
