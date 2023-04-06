@@ -31,11 +31,9 @@ const Template: ComponentStory<typeof ItemMenu> = (args) => (
 export const Example = Template.bind({});
 Example.args = {
   openMenuText: 'Open Menu',
-  children: (
-    <>
-      <MenuItem text='Item 1' icon={<AcUnitIcon />} />
-      <MenuItem text='Item 2' icon={<AddCircleIcon />} />
-      <MenuItem text='Item 3' icon={<AutoAwesomeIcon />} />
-    </>
-  ),
+  children: [
+    <MenuItem text='Item 1' icon={<AcUnitIcon />} />,
+    <MenuItem text='Item 2' icon={<AddCircleIcon />} />,
+    <MenuItem text='Item 3' icon={<AutoAwesomeIcon />} />,
+  ],
 };
