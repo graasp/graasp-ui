@@ -10,7 +10,7 @@ type ItemMenuProps = {
   menuId?: string;
   menuButtonClassName?: string;
   menuClassName?: string;
-  children?: React.ReactElement[];
+  children?: JSX.Element[];
   openMenuText?: string;
   onClick?: MouseEventHandler<HTMLButtonElement>;
   onClose?: () => void;
