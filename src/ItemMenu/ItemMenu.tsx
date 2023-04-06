@@ -10,7 +10,7 @@ type ItemMenuProps = {
   menuId?: string;
   menuButtonClassName?: string;
   menuClassName?: string;
-  children?: React.ReactElement[];
+  children?: React.ReactElement | React.ReactElement[];
   openMenuText?: string;
   onClick?: MouseEventHandler<HTMLButtonElement>;
   onClose?: () => void;
@@ -37,6 +37,20 @@ const ItemMenu: FC<ItemMenuProps> = ({
     onClose?.();
   };
 
+  const renderChildren = (): null | JSX.Element | JSX.Element[] => {
+    if (!children) {
+      return null;
+    }
+
+    if (Array.isArray(children)) {
+      return children.map((menuItem) =>
+        React.cloneElement(menuItem, { onClose: handleClose }),
+      );
+    } else {
+      return React.cloneElement(children, { onClose: handleClose });
+    }
+  };
+
   return (
     <>
       <VerticalMenuButton
@@ -53,9 +67,7 @@ const ItemMenu: FC<ItemMenuProps> = ({
           open={Boolean(anchorEl)}
           onClose={handleClose}
         >
-          {children?.map((menuItem) =>
-            React.cloneElement(menuItem, { onClose: handleClose }),
-          )}
+          {renderChildren()}
         </Menu>
       )}
     </>
