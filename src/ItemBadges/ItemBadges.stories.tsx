@@ -19,4 +19,6 @@ AllIcons.args = {
   isPinned: true,
   isPublished: true,
   isPublic: true,
+  isCollapsible: true,
+  showChatbox: true,
 };
