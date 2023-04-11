@@ -198,6 +198,10 @@ export class AppItem extends Component<AppItemProps> {
           return;
         }
         this.iframeRef.current.height = payload.toString();
+        if (this.state.iframeIsLoading) {
+          // hack to force the iframe into loaded state when a message is received
+          this.setState({ iframeIsLoading: false });
+        }
         break;
       }
     }
@@ -264,9 +268,7 @@ export class AppItem extends Component<AppItemProps> {
     }: AppItemProps = this.props;
     const { iframeIsLoading, url, height } = this.state;
 
-    const onLoad = iframeIsLoading
-      ? () => this.setState({ iframeIsLoading: false })
-      : undefined;
+    const onLoad = (): void => this.setState({ iframeIsLoading: false });
 
     const appUrl = `${url}${qs.stringify(
       { itemId: item?.id },
