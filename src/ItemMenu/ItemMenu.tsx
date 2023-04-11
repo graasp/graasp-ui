@@ -44,11 +44,13 @@ const ItemMenu: FC<ItemMenuProps> = ({
 
     if (Array.isArray(children)) {
       // eslint-disable-next-line
-      console.log('test');
+      console.log('test-1');
       return children.map((menuItem) =>
         React.cloneElement(menuItem, { onClose: handleClose }),
       );
     } else {
+      // eslint-disable-next-line
+      console.log('test-2');
       return React.cloneElement(children, { onClose: handleClose });
     }
   };
