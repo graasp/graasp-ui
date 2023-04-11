@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.3.1](https://github.com/graasp/graasp-ui/compare/v2.3.0...v2.3.1) (2023-04-11)
+
+
+### Bug Fixes
+
+* add collapsible and chat to itemstatus ([#313](https://github.com/graasp/graasp-ui/issues/313)) ([7014665](https://github.com/graasp/graasp-ui/commit/7014665d75d360843e5f4fdb4b24a4c5bebd2628))
+* remove title tag from LibraryIcon ([#321](https://github.com/graasp/graasp-ui/issues/321)) ([2ff6dbf](https://github.com/graasp/graasp-ui/commit/2ff6dbf1721c7536f183b88668285eed1605ad6f))
+* typo in release please workflow ([#318](https://github.com/graasp/graasp-ui/issues/318)) ([997f9cb](https://github.com/graasp/graasp-ui/commit/997f9cb32bdb35ea75457b8c88f18ee0dfe1bb22))
+
 ## [2.3.0](https://github.com/graasp/graasp-ui/compare/v2.2.1...v2.3.0) (2023-04-04)
 
 
