@@ -18,7 +18,9 @@ export const theme = createTheme({
     primary: {
       main: PRIMARY_COLOR,
     },
-    secondary: { main: '#ffffff' },
+    secondary: {
+      main: SECONDARY_COLOR,
+    },
   },
   zIndex: {
     drawer: 100,
