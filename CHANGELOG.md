@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.4.0](https://github.com/graasp/graasp-ui/compare/v2.3.1...v2.4.0) (2023-04-14)
+
+
+### Features
+
+* Adds showCollapse to H5PItem, FileItem, AppItem, DocumentItem and LinkItem ([9b9ef52](https://github.com/graasp/graasp-ui/commit/9b9ef52442c00026a80c5bcfab74652af5321c89))
+
+
+### Bug Fixes
+
+* add DEFAULT_LINK_SHOW_BUTTON constant ([#328](https://github.com/graasp/graasp-ui/issues/328)) ([e0a3762](https://github.com/graasp/graasp-ui/commit/e0a3762ae7cec203a0ce170edf34cce8e68a2f66))
+
 ## [2.3.1](https://github.com/graasp/graasp-ui/compare/v2.3.0...v2.3.1) (2023-04-11)
 
 
