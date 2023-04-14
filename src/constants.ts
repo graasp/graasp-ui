@@ -85,3 +85,5 @@ export const GRAASP_ASSETS_PROTOCOL = 'https://';
 export const SCREEN_MAX_HEIGHT = window.innerHeight * 0.8;
 
 export const FAVORITE_COLOR = '#ffc107';
+
+export const DEFAULT_LINK_SHOW_BUTTON = true;
