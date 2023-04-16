@@ -5,8 +5,9 @@ import Typography from '@mui/material/Typography';
 
 import React, { FC, ReactElement } from 'react';
 
-import { DEFAULT_CARD_HEIGHT } from '../constants';
 import CardHeader from './CardHeader';
+
+const DEFAULT_CARD_HEIGHT = 130;
 
 const StyledImage = styled('img')({
   width: '100%',

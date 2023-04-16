@@ -9,7 +9,8 @@ import { EmbeddedLinkItemTypeRecord, MemberRecord } from '@graasp/sdk/frontend';
 
 import withCollapse from '../Collapse/withCollapse';
 import Button from '../buttons/Button';
-import { DEFAULT_LINK_SHOW_BUTTON, ITEM_MAX_HEIGHT } from '../constants';
+import { DEFAULT_LINK_SHOW_BUTTON } from '../constants';
+import { ITEM_MAX_HEIGHT } from './constants';
 import withCaption from './withCaption';
 import withResizing, { StyledIFrame } from './withResizing';
 

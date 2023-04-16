@@ -22,12 +22,10 @@ import { isError, isPseudonymizedMember, isSessionExpired } from '@graasp/sdk';
 import { MemberRecord } from '@graasp/sdk/frontend';
 
 import Button from '../buttons/Button';
-import {
-  HEADER_USERNAME_MAX_WIDTH,
-  SHORT_TEXT_WIDTH,
-  SMALL_AVATAR_SIZE,
-} from '../constants';
+import { SHORT_TEXT_WIDTH, SMALL_AVATAR_SIZE } from '../constants';
 import { Variant } from '../types';
+
+const HEADER_USERNAME_MAX_WIDTH = 120;
 
 const StyledWrapper = styled(Box)(() => ({
   display: 'flex',

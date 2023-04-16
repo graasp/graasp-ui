@@ -12,11 +12,6 @@ import 'react-quill/dist/quill.snow.css';
 
 import Button from '../buttons/Button';
 import SaveButton from '../buttons/SaveButton';
-import {
-  TEXT_EDITOR_MAX_HEIGHT,
-  TEXT_EDITOR_MIN_HEIGHT,
-  TEXT_EDITOR_TOOLBAR,
-} from '../constants';
 
 declare const window: Window &
   typeof globalThis & {
@@ -24,6 +19,20 @@ declare const window: Window &
   };
 
 window.katex = katex;
+
+const TEXT_EDITOR_TOOLBAR = [
+  [{ header: [1, 2, 3, 4, 5, 6, false] }],
+  [{ font: [] }],
+  ['bold', 'italic', 'underline', 'strike'],
+  [{ color: [] }], // default colors depending on theme
+  [{ background: [] }], // default colors depending on theme
+  [{ align: [] }],
+  [{ list: 'ordered' }, { list: 'bullet' }, 'code-block', 'link', 'formula'],
+  ['emoji'],
+];
+
+const TEXT_EDITOR_MIN_HEIGHT = 200;
+const TEXT_EDITOR_MAX_HEIGHT = 400;
 
 const { EmojiBlot, ShortNameEmoji, ToolbarEmoji, TextAreaEmoji } = quillEmoji;
 
