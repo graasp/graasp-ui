@@ -91,7 +91,7 @@ const AppItem = ({
   requestApiAccessToken,
   height = DEFAULT_APP_HEIGHT,
   editCaption = false,
-  showCaption = false,
+  showCaption = true,
   permission = PermissionLevel.Read,
   isResizable = false,
   showCollapse,
