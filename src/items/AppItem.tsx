@@ -2,7 +2,7 @@ import qs from 'qs';
 
 import Skeleton from '@mui/material/Skeleton';
 
-import React, { Component } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import { DEFAULT_LANG, PermissionLevel, UUID, getAppExtra } from '@graasp/sdk';
 import { AppItemTypeRecord, MemberRecord } from '@graasp/sdk/frontend';
@@ -31,7 +31,7 @@ const buildPostMessageKeys = (
 
 type Token = string;
 
-export interface AppItemProps {
+type AppItemProps = {
   /**
    * app api host
    */
@@ -79,262 +79,218 @@ export interface AppItemProps {
   saveButtonId?: string;
   showCollapse?: boolean;
   cancelButtonId?: string;
-}
+};
 
-interface AppItemState {
-  height: number | string;
-  iframeIsLoading: boolean;
-  channel?: MessageChannel;
-  url?: string;
-}
+const AppItem = ({
+  id,
+  item,
+  memberId,
+  member,
+  apiHost,
+  context,
+  requestApiAccessToken,
+  height = DEFAULT_APP_HEIGHT,
+  editCaption = false,
+  showCaption = false,
+  permission = PermissionLevel.Read,
+  isResizable = false,
+  showCollapse,
+  onSaveCaption,
+  onCancelCaption,
+  saveButtonId,
+  cancelButtonId,
+}: AppItemProps): JSX.Element => {
+  // state
+  const [isiFrameLoading, setIsiFrameLoading] = useState(true);
+  const [channel, setChannel] = useState<MessageChannel>();
+  const iFrameRef = useRef<HTMLIFrameElement>(null);
 
-export class AppItem extends Component<AppItemProps> {
-  static defaultProps = {
-    editCaption: false,
-    showCaption: true,
-    // todo: get this value from common graasp constants
-    permission: PermissionLevel.Read,
-    isResizable: false, // by default, use auto-resize
-  };
+  const appUrl = getAppExtra(item?.extra)?.url;
 
-  state: AppItemState = {
-    iframeIsLoading: true,
-    height: this.props.height ?? DEFAULT_APP_HEIGHT,
-  };
+  useEffect(() => {
+    const getToken = async ({
+      app,
+      origin,
+    }: {
+      app: string;
+      origin: string;
+    }): Promise<Token> => {
+      // get token from backend
+      const { token } = await requestApiAccessToken(
+        {
+          id: item.id,
 
-  iframeRef: React.RefObject<HTMLIFrameElement>;
+          // the app should provide this (in the message)
+          // this id is "manually" added as a "registered" app id.
+          // each app that uses the API needs one.
+          app,
+          origin,
+        },
+        { API_HOST: apiHost },
+      );
 
-  constructor(props: AppItemProps) {
-    super(props);
-    this.iframeRef = React.createRef();
-  }
+      return token;
+    };
 
-  componentDidMount(): void {
-    window.addEventListener('message', this.windowOnMessage);
-    this.setState({ url: getAppExtra(this.props.item?.extra)?.url });
-  }
+    // receive message from app through MessageChannel
+    const onMessage = async (e: MessageEvent): Promise<void> => {
+      const { data, origin: requestOrigin } = e;
 
-  componentDidUpdate(prevProps: AppItemProps): void {
-    const { item } = this.props;
-    const { item: nextItem } = prevProps;
-    if (item !== nextItem) {
-      this.setState({ url: getAppExtra(item?.extra)?.url });
-    }
-  }
+      const POST_MESSAGE_KEYS = buildPostMessageKeys(item.id);
 
-  shouldComponentUpdate(_: AppItemProps, nextState: AppItemState): boolean {
-    if (nextState.channel !== this.state.channel) {
-      return false;
-    }
-    return true;
-  }
+      // responds only to corresponding app
+      if (!appUrl?.includes(requestOrigin)) {
+        return;
+      }
 
-  getToken = async ({
-    app,
-    origin,
-  }: {
-    app: string;
-    origin: string;
-  }): Promise<Token> => {
-    const { item, apiHost, requestApiAccessToken } = this.props;
+      const { type, payload } = JSON.parse(data);
 
-    // get token from backend
-    const { token } = await requestApiAccessToken(
-      {
-        id: item.id,
+      switch (type) {
+        case POST_MESSAGE_KEYS.GET_AUTH_TOKEN: {
+          // eslint-disable-next-line no-unused-expressions
+          channel?.port1.postMessage(
+            JSON.stringify({
+              type: POST_MESSAGE_KEYS.GET_AUTH_TOKEN_SUCCESS,
+              payload: {
+                token: await getToken(payload),
+              },
+            }),
+          );
+          break;
+        }
 
-        // the app should provide this (in the message)
-        // this id is "manually" added as a "registered" app id.
-        // each app that uses the API needs one.
-        app,
-        origin,
-      },
-      { API_HOST: apiHost },
-    );
+        case POST_MESSAGE_KEYS.POST_AUTO_RESIZE: {
+          // item should not be manually resizable
+          if (isResizable) {
+            return;
+          }
+          // iframe must be mounted
+          if (iFrameRef.current === null) {
+            return;
+          }
+          // payload should be number
+          if (typeof payload !== 'number') {
+            return;
+          }
+          iFrameRef.current.height = payload.toString();
+          break;
+        }
+      }
+    };
 
-    return token;
-  };
+    const windowOnMessage = (e: MessageEvent): void => {
+      const { data, origin: requestOrigin } = e;
 
-  // receive message from app through MessageChannel
-  onMessage = async (e: MessageEvent): Promise<void> => {
-    const { data, origin: requestOrigin } = e;
-    const { channel, url } = this.state;
-    const { item } = this.props;
+      const POST_MESSAGE_KEYS = buildPostMessageKeys(item.id);
 
-    const POST_MESSAGE_KEYS = buildPostMessageKeys(item.id);
+      // responds only to corresponding app
+      if (!appUrl?.includes(requestOrigin)) {
+        return;
+      }
 
-    // responds only to corresponding app
-    if (!url?.includes(requestOrigin)) {
-      return;
-    }
+      // return context data and message channel port to app
+      const { type } = JSON.parse(data);
+      if (type === POST_MESSAGE_KEYS.GET_CONTEXT) {
+        // create/reset channel and
+        // Listen for messages on port1
+        const channel = new MessageChannel();
+        const { port1 } = channel;
+        setChannel(channel);
+        port1.onmessage = onMessage;
 
-    const { type, payload } = JSON.parse(data);
-
-    switch (type) {
-      case POST_MESSAGE_KEYS.GET_AUTH_TOKEN: {
+        // Transfer port2 to the iframe
+        // provide port2 to app and item's data
         // eslint-disable-next-line no-unused-expressions
-        channel?.port1.postMessage(
+        iFrameRef?.current?.contentWindow?.postMessage(
           JSON.stringify({
-            type: POST_MESSAGE_KEYS.GET_AUTH_TOKEN_SUCCESS,
+            type: POST_MESSAGE_KEYS.GET_CONTEXT_SUCCESS,
             payload: {
-              token: await this.getToken(payload),
+              apiHost,
+              itemId: item.id,
+              settings: item.settings,
+              memberId,
+              permission,
+              lang: item.settings?.lang || member?.extra?.lang || DEFAULT_LANG,
+              context,
             },
           }),
+          '*',
+          [channel.port2],
         );
-        break;
       }
+    };
 
-      case POST_MESSAGE_KEYS.POST_AUTO_RESIZE: {
-        // item should not be manually resizable
-        if (this.props.isResizable) {
-          return;
-        }
-        // iframe must be mounted
-        if (this.iframeRef.current === null) {
-          return;
-        }
-        // payload should be number
-        if (typeof payload !== 'number') {
-          return;
-        }
-        this.iframeRef.current.height = payload.toString();
-        if (this.state.iframeIsLoading) {
-          // hack to force the iframe into loaded state when a message is received
-          this.setState({ iframeIsLoading: false });
-        }
-        break;
-      }
-    }
-  };
+    window.addEventListener('message', windowOnMessage);
 
-  windowOnMessage = (e: MessageEvent): void => {
-    const { item, member, memberId, apiHost, context, permission } = this.props;
-    const { url } = this.state;
-    const { data, origin: requestOrigin } = e;
+    return () => window.removeEventListener('message', windowOnMessage);
+  }, []);
 
-    const POST_MESSAGE_KEYS = buildPostMessageKeys(item.id);
+  const onLoad = (): void => setIsiFrameLoading(false);
 
-    // responds only to corresponding app
-    if (!url?.includes(requestOrigin)) {
-      return;
-    }
+  const appUrlWithQuery = `${appUrl}${qs.stringify(
+    { itemId: item?.id },
+    {
+      addQueryPrefix: true,
+    },
+  )}`;
 
-    // return context data and message channel port to app
-    const { type } = JSON.parse(data);
-    if (type === POST_MESSAGE_KEYS.GET_CONTEXT) {
-      // create/reset channel and
-      // Listen for messages on port1
-      const channel = new MessageChannel();
-      const { port1 } = channel;
-      this.setState({ channel });
-      port1.onmessage = this.onMessage;
+  const iframe = (
+    <StyledIFrame
+      height={height}
+      id={id}
+      isResizable={isResizable}
+      onLoad={onLoad}
+      ref={iFrameRef}
+      src={appUrlWithQuery}
+      sx={{ visibility: isiFrameLoading ? 'hidden' : 'visible' }}
+      title={item?.name}
+      width={APP_ITEM_WIDTH}
+      allow='fullscreen'
+    />
+  );
 
-      // Transfer port2 to the iframe
-      // provide port2 to app and item's data
-      // eslint-disable-next-line no-unused-expressions
-      this.iframeRef?.current?.contentWindow?.postMessage(
-        JSON.stringify({
-          type: POST_MESSAGE_KEYS.GET_CONTEXT_SUCCESS,
-          payload: {
-            apiHost,
-            itemId: item.id,
-            settings: item.settings,
-            memberId: memberId || member?.id,
-            permission,
-            lang: item.settings?.lang || member?.extra?.lang || DEFAULT_LANG,
-            context,
-          },
-        }),
-        '*',
-        [channel.port2],
-      );
-    }
-  };
+  const ResizableIframe = withResizing({
+    height,
+    memberId: memberId || member?.id,
+    itemId: item.id,
+    component: iframe,
+  });
 
-  render(): JSX.Element {
-    const {
+  let component = (
+    <>
+      {isiFrameLoading && (
+        <Skeleton
+          variant='rectangular'
+          width={'100%'}
+          height={SCREEN_MAX_HEIGHT}
+        />
+      )}
+      {isResizable ? (
+        <div>
+          <ResizableIframe />
+        </div>
+      ) : (
+        iframe
+      )}
+    </>
+  );
+
+  if (showCaption) {
+    component = withCaption({
       item,
-      member,
-      memberId,
-      id,
-      showCaption,
-      onSaveCaption,
-      onCancelCaption,
+      onSave: onSaveCaption,
+      onCancel: onCancelCaption,
+      edit: editCaption,
       saveButtonId,
       cancelButtonId,
-      editCaption,
-      isResizable,
-      showCollapse = false,
-    }: AppItemProps = this.props;
-    const { iframeIsLoading, url, height } = this.state;
-
-    const onLoad = (): void => this.setState({ iframeIsLoading: false });
-
-    const appUrl = `${url}${qs.stringify(
-      { itemId: item?.id },
-      {
-        addQueryPrefix: true,
-      },
-    )}`;
-
-    const iframe = (
-      <StyledIFrame
-        height={height}
-        id={id}
-        isResizable={isResizable}
-        onLoad={onLoad}
-        ref={this.iframeRef}
-        src={appUrl}
-        sx={{ visibility: iframeIsLoading ? 'hidden' : 'visible' }}
-        title={item?.name}
-        width={APP_ITEM_WIDTH}
-        allow='fullscreen'
-      />
-    );
-
-    const ResizableIframe = withResizing({
-      height,
-      memberId: memberId || member?.id,
-      itemId: item.id,
-      component: iframe,
-    });
-
-    let component = (
-      <>
-        {iframeIsLoading && (
-          <Skeleton
-            variant='rectangular'
-            width={'100%'}
-            height={SCREEN_MAX_HEIGHT}
-          />
-        )}
-        {isResizable ? (
-          <div>
-            <ResizableIframe />
-          </div>
-        ) : (
-          iframe
-        )}
-      </>
-    );
-
-    if (showCaption) {
-      component = withCaption({
-        item,
-        onSave: onSaveCaption,
-        onCancel: onCancelCaption,
-        edit: editCaption,
-        saveButtonId,
-        cancelButtonId,
-      })(component);
-    }
-
-    if (showCollapse) {
-      component = withCollapse({ itemName: item.name })(component);
-    }
-
-    return component;
+    })(component);
   }
-}
+
+  if (showCollapse) {
+    component = withCollapse({ itemName: item.name })(component);
+  }
+
+  return component;
+};
 
 export default React.memo(AppItem);
