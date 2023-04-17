@@ -4,11 +4,10 @@ import React from 'react';
 
 import { ItemType } from '@graasp/sdk';
 
-import {
-  SCREEN_MAX_HEIGHT,
-  SKELETON_COLLAPSE_HEIGHT,
-  SKELETON_FOLDER_BUTTON_HEIGHT,
-} from '../../constants';
+import { SCREEN_MAX_HEIGHT } from '../../constants';
+
+const SKELETON_COLLAPSE_HEIGHT = '3.5em';
+const SKELETON_FOLDER_BUTTON_HEIGHT = '8.125em';
 
 export interface ItemSkeletonProps {
   /**

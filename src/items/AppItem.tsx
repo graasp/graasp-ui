@@ -4,18 +4,16 @@ import Skeleton from '@mui/material/Skeleton';
 
 import React, { Component } from 'react';
 
-import { DEFAULT_LANG, UUID, getAppExtra } from '@graasp/sdk';
+import { DEFAULT_LANG, PermissionLevel, UUID, getAppExtra } from '@graasp/sdk';
 import { AppItemTypeRecord, MemberRecord } from '@graasp/sdk/frontend';
 
 import withCollapse from '../Collapse/withCollapse';
-import {
-  APP_DEFAULT_HEIGHT,
-  APP_ITEM_WIDTH,
-  DEFAULT_PERMISSION,
-  SCREEN_MAX_HEIGHT,
-} from '../constants';
+import { SCREEN_MAX_HEIGHT } from '../constants';
 import withCaption from './withCaption';
 import withResizing, { StyledIFrame } from './withResizing';
+
+const DEFAULT_APP_HEIGHT = 400;
+const APP_ITEM_WIDTH = '100%';
 
 const buildPostMessageKeys = (
   itemId: UUID,
@@ -95,13 +93,13 @@ export class AppItem extends Component<AppItemProps> {
     editCaption: false,
     showCaption: true,
     // todo: get this value from common graasp constants
-    permission: DEFAULT_PERMISSION,
+    permission: PermissionLevel.Read,
     isResizable: false, // by default, use auto-resize
   };
 
   state: AppItemState = {
     iframeIsLoading: true,
-    height: this.props.height ?? APP_DEFAULT_HEIGHT,
+    height: this.props.height ?? DEFAULT_APP_HEIGHT,
   };
 
   iframeRef: React.RefObject<HTMLIFrameElement>;

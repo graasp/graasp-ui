@@ -6,10 +6,10 @@ import React from 'react';
 
 import { ItemLoginSchema, convertJs } from '@graasp/sdk';
 
-import { FORBIDDEN_TEXT } from '../constants';
 import { TABLE_CATEGORIES } from '../utils/storybook';
 import ItemLoginScreen from './ItemLoginScreen';
 import MemberIdTextField from './MemberIdTextField';
+import { FORBIDDEN_TEXT } from './constants';
 
 export default {
   title: 'Actions/ItemLogin/ItemLoginScreen',

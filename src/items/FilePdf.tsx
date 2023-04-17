@@ -2,7 +2,7 @@ import { SxProps, styled } from '@mui/material';
 
 import React, { FC, ReactEventHandler, useRef, useState } from 'react';
 
-import { ITEM_MAX_HEIGHT } from '../constants';
+import { ITEM_MAX_HEIGHT } from './constants';
 
 interface FilePdfProps {
   id?: string;

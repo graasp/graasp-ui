@@ -5,7 +5,8 @@ import React from 'react';
 import { ItemRecord } from '@graasp/sdk/frontend';
 
 import TextEditor from '../TextEditor';
-import { DEFAULT_ITEM_DESCRIPTION } from '../constants';
+
+const DEFAULT_ITEM_DESCRIPTION = '';
 
 interface WithCaptionProps {
   item: ItemRecord;

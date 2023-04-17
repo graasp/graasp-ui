@@ -27,8 +27,9 @@ import {
 import { ItemRecord } from '@graasp/sdk/frontend';
 
 import { StyledImage } from '../StyledComponents/StyledBaseComponents';
-import { ITEM_ICON_MAX_SIZE } from '../constants';
 import EtherpadIcon from './EtherpadIcon';
+
+const ITEM_ICON_MAX_SIZE = 25;
 
 export interface ItemIconProps {
   alt: string;

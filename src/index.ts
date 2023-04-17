@@ -1,6 +1,7 @@
 export * from './assets/styles.module.css';
 
 export * from './theme';
+export * from './constants';
 
 export * from './items';
 export * from './hooks';

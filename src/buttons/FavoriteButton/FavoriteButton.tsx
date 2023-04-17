@@ -12,8 +12,9 @@ import { SxProps } from '@mui/material/styles';
 
 import React, { FC, MouseEventHandler } from 'react';
 
-import { FAVORITE_COLOR } from '../../constants';
 import { ActionButton, ActionButtonVariant } from '../../types';
+
+const FAVORITE_COLOR = '#ffc107';
 
 export interface FavoriteButtonProps {
   sx?: SxProps;
