@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.4.1](https://github.com/graasp/graasp-ui/compare/v2.4.0...v2.4.1) (2023-04-17)
+
+
+### Bug Fixes
+
+* export public constants and refactor internal constants closer to their usage ([#330](https://github.com/graasp/graasp-ui/issues/330)) ([3e758b5](https://github.com/graasp/graasp-ui/commit/3e758b563792505b08af65052b44581f0e7a78b9))
+
 ## [2.4.0](https://github.com/graasp/graasp-ui/compare/v2.3.1...v2.4.0) (2023-04-14)
 
 
