@@ -2,7 +2,7 @@ import qs from 'qs';
 
 import Skeleton from '@mui/material/Skeleton';
 
-import React, { useRef, useState } from 'react';
+import React, { useMemo, useRef, useState } from 'react';
 
 import { Context, PermissionLevel, getAppExtra } from '@graasp/sdk';
 import { AppItemTypeRecord, MemberRecord } from '@graasp/sdk/frontend';
@@ -107,12 +107,15 @@ const AppItem = ({
 
   const onLoad = (): void => setIsiFrameLoading(false);
 
-  const appUrlWithQuery = `${appUrl}${qs.stringify(
-    { itemId: item?.id },
-    {
-      addQueryPrefix: true,
-    },
-  )}`;
+  const appUrlWithQuery = useMemo(() => {
+    console.log('running memoized appWithUrl');
+    return `${appUrl}${qs.stringify(
+      { itemId: item?.id },
+      {
+        addQueryPrefix: true,
+      },
+    )}`;
+  }, [item]);
 
   const iframe = (
     <StyledIFrame
