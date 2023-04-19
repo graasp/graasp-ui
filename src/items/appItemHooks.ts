@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 import { Context, DEFAULT_LANG, UUID } from '@graasp/sdk';
 import { ItemRecord, MemberRecord } from '@graasp/sdk/frontend';
@@ -44,54 +44,58 @@ const useAppCommunication = ({
     token: Token;
   }>;
 }): void => {
-  const [channel, setChannel] = useState<MessageChannel>();
-
   useEffect(() => {
     // receive message from app through MessageChannel
-    const onMessage = async (e: MessageEvent): Promise<void> => {
-      const { data, origin: requestOrigin } = e;
+    const setupOnMessage =
+      (port: MessagePort) =>
+      async (e: MessageEvent): Promise<void> => {
+        const { data, origin: requestOrigin } = e;
 
-      const POST_MESSAGE_KEYS = buildPostMessageKeys(item.id);
+        const POST_MESSAGE_KEYS = buildPostMessageKeys(item.id);
 
-      // responds only to corresponding app
-      if (!appUrl?.includes(requestOrigin)) {
-        return;
-      }
-
-      const { type, payload } = JSON.parse(data);
-
-      switch (type) {
-        case POST_MESSAGE_KEYS.GET_AUTH_TOKEN: {
-          // eslint-disable-next-line no-unused-expressions
-          channel?.port1.postMessage(
-            JSON.stringify({
-              type: POST_MESSAGE_KEYS.GET_AUTH_TOKEN_SUCCESS,
-              payload: {
-                token: await requestApiAccessToken({ id: item.id, ...payload }),
-              },
-            }),
-          );
-          break;
+        // responds only to corresponding app
+        if (!appUrl?.includes(requestOrigin)) {
+          return;
         }
+        console.log('received a message !', data);
 
-        case POST_MESSAGE_KEYS.POST_AUTO_RESIZE: {
-          // item should not be manually resizable
-          if (item.settings.isResizable) {
-            return;
+        const { type, payload } = JSON.parse(data);
+
+        switch (type) {
+          case POST_MESSAGE_KEYS.GET_AUTH_TOKEN: {
+            // eslint-disable-next-line no-unused-expressions
+            port.postMessage(
+              JSON.stringify({
+                type: POST_MESSAGE_KEYS.GET_AUTH_TOKEN_SUCCESS,
+                payload: {
+                  token: await requestApiAccessToken({
+                    id: item.id,
+                    ...payload,
+                  }),
+                },
+              }),
+            );
+            break;
           }
-          // iframe must be mounted
-          if (iFrameRef.current === null) {
-            return;
+
+          case POST_MESSAGE_KEYS.POST_AUTO_RESIZE: {
+            // item should not be manually resizable
+            if (item.settings.isResizable) {
+              return;
+            }
+            // iframe must be mounted
+            if (iFrameRef.current === null) {
+              return;
+            }
+            // payload should be number
+            if (typeof payload !== 'number') {
+              return;
+            }
+            iFrameRef.current.height = payload.toString();
+            break;
           }
-          // payload should be number
-          if (typeof payload !== 'number') {
-            return;
-          }
-          iFrameRef.current.height = payload.toString();
-          break;
         }
-      }
-    };
+      };
 
     const windowOnMessage = (e: MessageEvent): void => {
       const { data, origin: requestOrigin } = e;
@@ -102,7 +106,7 @@ const useAppCommunication = ({
       if (!appUrl?.includes(requestOrigin)) {
         return;
       }
-
+      console.log('initial negociation', data);
       // return context data and message channel port to app
       const { type } = JSON.parse(data);
       if (type === POST_MESSAGE_KEYS.GET_CONTEXT) {
@@ -110,8 +114,7 @@ const useAppCommunication = ({
         // Listen for messages on port1
         const channel = new MessageChannel();
         const { port1 } = channel;
-        setChannel(channel);
-        port1.onmessage = onMessage;
+        port1.onmessage = setupOnMessage(port1);
 
         // Transfer port2 to the iframe
         // provide port2 to app and item's data
@@ -138,6 +141,6 @@ const useAppCommunication = ({
     window.addEventListener('message', windowOnMessage);
 
     return () => window.removeEventListener('message', windowOnMessage);
-  }, []);
+  }, [item, iFrameRef]);
 };
 export { useAppCommunication };
