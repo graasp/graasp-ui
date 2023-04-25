@@ -30,7 +30,7 @@ export const useFullscreen = (): FullscreenHookType => {
   useEffect(() => {
     const fullScreenChangeHandler = (): void => {
       if (!document.fullscreenElement) {
-        // exists fullScreen
+        // exits fullScreen
         setIsFullscreen(false);
       } else {
         // enters fullScreen
