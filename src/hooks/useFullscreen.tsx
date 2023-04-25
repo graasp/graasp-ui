@@ -26,9 +26,10 @@ export const useFullscreen = (): FullscreenHookType => {
     }
   };
 
+  // listen to fullscreen changes happening when pressing "ESC" etc ...
   useEffect(() => {
     const fullScreenChangeHandler = (): void => {
-      if (document.fullscreenElement === null) {
+      if (!document.fullscreenElement) {
         // exists fullScreen
         setIsFullscreen(false);
       } else {
@@ -38,10 +39,8 @@ export const useFullscreen = (): FullscreenHookType => {
     };
     window.addEventListener('fullscreenchange', fullScreenChangeHandler);
 
-    return window.removeEventListener(
-      'fullscreenchange',
-      fullScreenChangeHandler,
-    );
+    return () =>
+      window.removeEventListener('fullscreenchange', fullScreenChangeHandler);
   }, []);
 
   return { isFullscreen, toggleFullscreen };
