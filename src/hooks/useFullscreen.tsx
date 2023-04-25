@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export type FullscreenHookType = {
   isFullscreen: boolean;
@@ -25,6 +25,23 @@ export const useFullscreen = (): FullscreenHookType => {
       setIsFullscreen(false);
     }
   };
+
+  // listen to fullscreen changes happening when pressing "ESC" etc ...
+  useEffect(() => {
+    const fullScreenChangeHandler = (): void => {
+      if (!document.fullscreenElement) {
+        // exits fullScreen
+        setIsFullscreen(false);
+      } else {
+        // enters fullScreen
+        setIsFullscreen(true);
+      }
+    };
+    window.addEventListener('fullscreenchange', fullScreenChangeHandler);
+
+    return () =>
+      window.removeEventListener('fullscreenchange', fullScreenChangeHandler);
+  }, []);
 
   return { isFullscreen, toggleFullscreen };
 };
