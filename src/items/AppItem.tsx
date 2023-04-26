@@ -1,10 +1,8 @@
-import qs from 'qs';
-
 import Skeleton from '@mui/material/Skeleton';
 
 import React, { useMemo, useRef, useState } from 'react';
 
-import { getAppExtra } from '@graasp/sdk';
+import { appendQueryParamToUrl, getAppExtra } from '@graasp/sdk';
 import { AppItemTypeRecord, MemberRecord } from '@graasp/sdk/frontend';
 
 import withCollapse from '../Collapse/withCollapse';
@@ -99,13 +97,7 @@ const AppItem = ({
   const onLoad = (): void => setIsIFrameLoading(false);
 
   const appUrlWithQuery = useMemo(
-    () =>
-      `${appUrl}${qs.stringify(
-        { itemId: item?.id },
-        {
-          addQueryPrefix: true,
-        },
-      )}`,
+    () => appendQueryParamToUrl(appUrl, { itemId: item.id }),
     [item],
   );
 

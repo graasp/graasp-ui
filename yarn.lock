@@ -2350,9 +2350,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@graasp/sdk@npm:0.11.0":
+"@graasp/sdk@github:graasp/graasp-sdk#155-add-utility-function-to-append-query-params-to-urls":
   version: 0.11.0
-  resolution: "@graasp/sdk@npm:0.11.0"
+  resolution: "@graasp/sdk@https://github.com/graasp/graasp-sdk.git#commit=da2c970adab2c12637d1f4161c90417c6e1814cc"
   dependencies:
     "@fastify/secure-session": 5.3.0
     "@graasp/etherpad-api": 2.1.1
@@ -2364,7 +2364,7 @@ __metadata:
     qs: 6.11.1
     slonik: 28.1.1
     uuid: 9.0.0
-  checksum: 72b99bd60190e3d9385c13b9a61bc4f0dbfffdf925bbf994a47805e35ddf6c50de43f8d3539564d1a41298ce6d6792e2caa47ff21a77038ffe7800367786989b
+  checksum: 5d258d3464122db5bea3fb14faa96291becf4445371440b5831a0c2fc4a952aa5ffbf18cadb8880fdabe3fda4d9cb79254f0f94a5745c23be80f5c47944ca12e
   languageName: node
   linkType: hard
 
@@ -2380,7 +2380,7 @@ __metadata:
     "@commitlint/config-conventional": 17.4.4
     "@emotion/react": 11.10.6
     "@emotion/styled": 11.10.6
-    "@graasp/sdk": 0.11.0
+    "@graasp/sdk": "github:graasp/graasp-sdk#155-add-utility-function-to-append-query-params-to-urls"
     "@mdx-js/react": 1.6.22
     "@mui/icons-material": 5.11.9
     "@mui/lab": 5.0.0-alpha.120

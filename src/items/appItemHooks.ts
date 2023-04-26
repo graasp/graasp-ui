@@ -57,15 +57,13 @@ const useAppCommunication = ({
     const setupOnMessage =
       (port: MessagePort) =>
       async (e: MessageEvent): Promise<void> => {
-        const { data, origin: requestOrigin, source } = e;
+        const { data, origin: requestOrigin } = e;
 
         const POST_MESSAGE_KEYS = buildPostMessageKeys(item.id);
-        console.log(source);
         // responds only to corresponding app
         if (!appUrl?.includes(requestOrigin)) {
           return;
         }
-        console.log('received a message !', data);
 
         const { type, payload } = JSON.parse(data);
 
@@ -112,7 +110,7 @@ const useAppCommunication = ({
       if (!appUrl?.includes(requestOrigin)) {
         return;
       }
-      console.log('initial negociation', data);
+
       // return context data and message channel port to app
       const { type } = JSON.parse(data);
       if (type === POST_MESSAGE_KEYS.GET_CONTEXT) {
@@ -121,8 +119,10 @@ const useAppCommunication = ({
         const channel = new MessageChannel();
         const { port1 } = channel;
         port1.onmessage = setupOnMessage(port1);
+
+        // ensure to only send the message to the domain where the app is hosted for security reasons
         const targetOrigin = new URL(appUrl).origin;
-        console.log('sending the context to:', targetOrigin);
+
         // Transfer port2 to the iframe
         // provide port2 to app and item's data
         // eslint-disable-next-line no-unused-expressions

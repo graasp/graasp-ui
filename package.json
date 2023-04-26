@@ -50,7 +50,7 @@
     "storybook:build": "build-storybook"
   },
   "dependencies": {
-    "@graasp/sdk": "0.11.0",
+    "@graasp/sdk": "github:graasp/graasp-sdk#155-add-utility-function-to-append-query-params-to-urls",
     "clsx": "1.1.1",
     "http-status-codes": "2.2.0",
     "immutable": "4.3.0",
