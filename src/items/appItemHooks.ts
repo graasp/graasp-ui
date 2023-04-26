@@ -67,12 +67,10 @@ const useAppCommunication = ({
             port.postMessage(
               JSON.stringify({
                 type: POST_MESSAGE_KEYS.GET_AUTH_TOKEN_SUCCESS,
-                payload: {
-                  token: await requestApiAccessToken({
-                    id: item.id,
-                    ...payload,
-                  }),
-                },
+                payload: await requestApiAccessToken({
+                  id: item.id,
+                  ...payload,
+                }),
               }),
             );
             break;
