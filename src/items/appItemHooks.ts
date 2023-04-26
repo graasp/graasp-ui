@@ -1,9 +1,23 @@
 import { useEffect } from 'react';
 
-import { Context, DEFAULT_LANG, UUID } from '@graasp/sdk';
-import { ItemRecord, MemberRecord } from '@graasp/sdk/frontend';
+import { Context, PermissionLevel, UUID } from '@graasp/sdk';
+import {
+  AppItemTypeRecord,
+  ItemRecord,
+  MemberRecord,
+} from '@graasp/sdk/frontend';
 
 export type Token = string;
+
+export type ContextPayload = {
+  apiHost: string;
+  itemId: AppItemTypeRecord['id'];
+  settings: AppItemTypeRecord['settings'];
+  memberId: MemberRecord['id'];
+  permission: `${PermissionLevel}` | PermissionLevel;
+  lang: string;
+  context: `${Context}` | Context;
+};
 
 const buildPostMessageKeys = (
   itemId: UUID,
@@ -21,20 +35,14 @@ const buildPostMessageKeys = (
 
 const useAppCommunication = ({
   item,
-  member,
+  contextPayload,
   appUrl,
-  apiHost,
-  permission,
-  context,
   iFrameRef,
   requestApiAccessToken,
 }: {
   item: ItemRecord;
-  member?: MemberRecord;
   appUrl: string;
-  apiHost: string;
-  permission: string;
-  context?: `${Context}` | Context;
+  contextPayload: ContextPayload;
   iFrameRef: React.RefObject<HTMLIFrameElement>;
   requestApiAccessToken: (payload: {
     id: UUID;
@@ -49,10 +57,10 @@ const useAppCommunication = ({
     const setupOnMessage =
       (port: MessagePort) =>
       async (e: MessageEvent): Promise<void> => {
-        const { data, origin: requestOrigin } = e;
+        const { data, origin: requestOrigin, source } = e;
 
         const POST_MESSAGE_KEYS = buildPostMessageKeys(item.id);
-
+        console.log(source);
         // responds only to corresponding app
         if (!appUrl?.includes(requestOrigin)) {
           return;
@@ -113,24 +121,17 @@ const useAppCommunication = ({
         const channel = new MessageChannel();
         const { port1 } = channel;
         port1.onmessage = setupOnMessage(port1);
-
+        const targetOrigin = new URL(appUrl).origin;
+        console.log('sending the context to:', targetOrigin);
         // Transfer port2 to the iframe
         // provide port2 to app and item's data
         // eslint-disable-next-line no-unused-expressions
         iFrameRef?.current?.contentWindow?.postMessage(
           JSON.stringify({
             type: POST_MESSAGE_KEYS.GET_CONTEXT_SUCCESS,
-            payload: {
-              apiHost,
-              itemId: item.id,
-              settings: item.settings,
-              memberId: member?.id,
-              permission,
-              lang: item.settings?.lang || member?.extra?.lang || DEFAULT_LANG,
-              context,
-            },
+            payload: contextPayload,
           }),
-          '*',
+          targetOrigin,
           [channel.port2],
         );
       }

@@ -4,12 +4,12 @@ import Skeleton from '@mui/material/Skeleton';
 
 import React, { useMemo, useRef, useState } from 'react';
 
-import { Context, PermissionLevel, getAppExtra } from '@graasp/sdk';
+import { getAppExtra } from '@graasp/sdk';
 import { AppItemTypeRecord, MemberRecord } from '@graasp/sdk/frontend';
 
 import withCollapse from '../Collapse/withCollapse';
 import { SCREEN_MAX_HEIGHT } from '../constants';
-import { Token, useAppCommunication } from './appItemHooks';
+import { ContextPayload, Token, useAppCommunication } from './appItemHooks';
 import withCaption from './withCaption';
 import withResizing, { StyledIFrame } from './withResizing';
 
@@ -17,10 +17,6 @@ const DEFAULT_APP_HEIGHT = 400;
 const APP_ITEM_WIDTH = '100%';
 
 type AppItemProps = {
-  /**
-   * app api host
-   */
-  apiHost: string;
   /**
    * corresponding item of the app
    */
@@ -34,9 +30,9 @@ type AppItemProps = {
     origin: string;
   }) => Promise<{ token: Token }>;
   /**
-   * indicate the platform (builder, player, analyzer ...)
+   * context passed to the app
    */
-  context?: `${Context}` | Context;
+  contextPayload: ContextPayload;
   /**
    * whether the caption is being edited
    */
@@ -45,43 +41,41 @@ type AppItemProps = {
    * app height
    */
   height?: number | string;
-  id?: string;
   /**
-   * whether manual resize is enabled (as opposed to automatic resize, default)
+   * id prop passed to the iframe
+   */
+  frameId?: string;
+  /**
+   * Whether manual resize is enabled (as opposed to automatic resize, default)
    */
   isResizable?: boolean;
   /**
-   * Id of the current member used for saving the resizing preferences
+   * id of the member currently signed in
    */
-  memberId?: string;
+  memberId?: MemberRecord['id'];
   /**
-   * @deprecated Use the `memberId` prop to only pass the id
-   */
-  member?: MemberRecord;
-  onSaveCaption?: (text: string) => void;
-  onCancelCaption?: (text: string) => void;
-  permission?: string;
-  /**
-   * whether the caption is shown
+   * Whether the caption is shown
    */
   showCaption?: boolean;
-  saveButtonId?: string;
+  /**
+   * Whether the item should be shown in a collapsible element
+   */
   showCollapse?: boolean;
+  onSaveCaption?: (text: string) => void;
+  saveButtonId?: string;
+  onCancelCaption?: (text: string) => void;
   cancelButtonId?: string;
 };
 
 const AppItem = ({
-  id,
+  frameId,
   item,
   memberId,
-  member,
-  apiHost,
-  context,
+  contextPayload,
   requestApiAccessToken,
   height = DEFAULT_APP_HEIGHT,
   editCaption = false,
   showCaption = true,
-  permission = PermissionLevel.Read,
   isResizable = false,
   showCollapse,
   onSaveCaption,
@@ -90,42 +84,40 @@ const AppItem = ({
   cancelButtonId,
 }: AppItemProps): JSX.Element => {
   // state
-  const [isiFrameLoading, setIsiFrameLoading] = useState(true);
+  const [isIFrameLoading, setIsIFrameLoading] = useState(true);
   const iFrameRef = useRef<HTMLIFrameElement>(null);
   const appUrl = getAppExtra(item.extra)?.url || '';
 
   useAppCommunication({
     item,
-    member,
     appUrl,
-    apiHost,
-    context,
-    permission,
     iFrameRef,
+    contextPayload,
     requestApiAccessToken,
   });
 
-  const onLoad = (): void => setIsiFrameLoading(false);
+  const onLoad = (): void => setIsIFrameLoading(false);
 
-  const appUrlWithQuery = useMemo(() => {
-    console.log('running memoized appWithUrl');
-    return `${appUrl}${qs.stringify(
-      { itemId: item?.id },
-      {
-        addQueryPrefix: true,
-      },
-    )}`;
-  }, [item]);
+  const appUrlWithQuery = useMemo(
+    () =>
+      `${appUrl}${qs.stringify(
+        { itemId: item?.id },
+        {
+          addQueryPrefix: true,
+        },
+      )}`,
+    [item],
+  );
 
   const iframe = (
     <StyledIFrame
+      id={frameId}
+      ref={iFrameRef}
       height={height}
-      id={id}
       isResizable={isResizable}
       onLoad={onLoad}
-      ref={iFrameRef}
       src={appUrlWithQuery}
-      sx={{ visibility: isiFrameLoading ? 'hidden' : 'visible' }}
+      sx={{ visibility: isIFrameLoading ? 'hidden' : 'visible' }}
       title={item?.name}
       width={APP_ITEM_WIDTH}
       allow='fullscreen'
@@ -134,14 +126,14 @@ const AppItem = ({
 
   const ResizableIframe = withResizing({
     height,
-    memberId: memberId || member?.id,
+    memberId: memberId,
     itemId: item.id,
     component: iframe,
   });
 
   let component = (
     <>
-      {isiFrameLoading && (
+      {isIFrameLoading && (
         <Skeleton
           variant='rectangular'
           width={'100%'}
