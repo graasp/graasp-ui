@@ -2,6 +2,64 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.4.2](https://github.com/graasp/graasp-ui/compare/v2.4.1...v2.4.2) (2023-04-27)
+
+
+### Bug Fixes
+
+* ⚠️ Breaking change in the `AppItem` component props ([359d7ea](https://github.com/graasp/graasp-ui/commit/359d7ead4f89d0845af8477091ab85b2f30aa14f))
+* app iframe loading forever ([#331](https://github.com/graasp/graasp-ui/issues/331)) ([359d7ea](https://github.com/graasp/graasp-ui/commit/359d7ead4f89d0845af8477091ab85b2f30aa14f))
+* **ci:** storybook deploy to pages using artifacts ([#338](https://github.com/graasp/graasp-ui/issues/338)) ([c463fa0](https://github.com/graasp/graasp-ui/commit/c463fa0462a7e3302be83b84604f99b5b2d214ea))
+* **deps:** update packages (sdk, immutable) and yarn ([#334](https://github.com/graasp/graasp-ui/issues/334)) ([d1970fa](https://github.com/graasp/graasp-ui/commit/d1970faacb5efe65fc09989fa8f14d35d9f84724))
+* detect fullscreen changes ([#335](https://github.com/graasp/graasp-ui/issues/335)) ([190cbd2](https://github.com/graasp/graasp-ui/commit/190cbd222993524766e773c1e306e7e8599a3c87))
+* refactor AppItem to functional component ([359d7ea](https://github.com/graasp/graasp-ui/commit/359d7ead4f89d0845af8477091ab85b2f30aa14f))
+* use a custom hook to setup the channel communication ([359d7ea](https://github.com/graasp/graasp-ui/commit/359d7ead4f89d0845af8477091ab85b2f30aa14f))
+* use secondary color constant in theme ([359d7ea](https://github.com/graasp/graasp-ui/commit/359d7ead4f89d0845af8477091ab85b2f30aa14f))
+
+## [2.4.1](https://github.com/graasp/graasp-ui/compare/v2.4.0...v2.4.1) (2023-04-17)
+
+
+### Bug Fixes
+
+* export public constants and refactor internal constants closer to their usage ([#330](https://github.com/graasp/graasp-ui/issues/330)) ([3e758b5](https://github.com/graasp/graasp-ui/commit/3e758b563792505b08af65052b44581f0e7a78b9))
+
+## [2.4.0](https://github.com/graasp/graasp-ui/compare/v2.3.1...v2.4.0) (2023-04-14)
+
+
+### Features
+
+* Adds showCollapse to H5PItem, FileItem, AppItem, DocumentItem and LinkItem ([9b9ef52](https://github.com/graasp/graasp-ui/commit/9b9ef52442c00026a80c5bcfab74652af5321c89))
+
+
+### Bug Fixes
+
+* add DEFAULT_LINK_SHOW_BUTTON constant ([#328](https://github.com/graasp/graasp-ui/issues/328)) ([e0a3762](https://github.com/graasp/graasp-ui/commit/e0a3762ae7cec203a0ce170edf34cce8e68a2f66))
+
+## [2.3.1](https://github.com/graasp/graasp-ui/compare/v2.3.0...v2.3.1) (2023-04-11)
+
+
+### Bug Fixes
+
+* add collapsible and chat to itemstatus ([#313](https://github.com/graasp/graasp-ui/issues/313)) ([7014665](https://github.com/graasp/graasp-ui/commit/7014665d75d360843e5f4fdb4b24a4c5bebd2628))
+* remove title tag from LibraryIcon ([#321](https://github.com/graasp/graasp-ui/issues/321)) ([2ff6dbf](https://github.com/graasp/graasp-ui/commit/2ff6dbf1721c7536f183b88668285eed1605ad6f))
+* typo in release please workflow ([#318](https://github.com/graasp/graasp-ui/issues/318)) ([997f9cb](https://github.com/graasp/graasp-ui/commit/997f9cb32bdb35ea75457b8c88f18ee0dfe1bb22))
+
+## [2.3.0](https://github.com/graasp/graasp-ui/compare/v2.2.1...v2.3.0) (2023-04-04)
+
+
+### Features
+
+* add library icon setting cog option ([#312](https://github.com/graasp/graasp-ui/issues/312)) ([4b534bc](https://github.com/graasp/graasp-ui/commit/4b534bcfcb3c79e133007d39e6cdf0000f10d089))
+
+## [2.2.1](https://github.com/graasp/graasp-ui/compare/v2.2.0...v2.2.1) (2023-03-25)
+
+
+### Bug Fixes
+
+* add `cancelButtonId` prop to FileItem LinkItem an AppItem ([26d92e5](https://github.com/graasp/graasp-ui/commit/26d92e593693df61c898d3c377730bb9f9cc9eb7))
+* add `onCancelCaption` prop to FileItem ([#301](https://github.com/graasp/graasp-ui/issues/301)) ([f6fda11](https://github.com/graasp/graasp-ui/commit/f6fda1136472cc58b4e8f020d90af9af82d35b77))
+* add `onCancelCaption` prop to LinkItem and AppItem ([#306](https://github.com/graasp/graasp-ui/issues/306)) ([26d92e5](https://github.com/graasp/graasp-ui/commit/26d92e593693df61c898d3c377730bb9f9cc9eb7))
+
 ## [2.2.0](https://github.com/graasp/graasp-ui/compare/v2.1.0...v2.2.0) (2023-03-16)
 
 

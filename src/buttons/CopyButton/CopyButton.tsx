@@ -1,4 +1,4 @@
-import { FilterNone } from '@mui/icons-material';
+import FilterNone from '@mui/icons-material/FilterNone';
 import IconButton, { IconButtonProps } from '@mui/material/IconButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import MenuItem from '@mui/material/MenuItem';

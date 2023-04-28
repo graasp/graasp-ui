@@ -23,11 +23,12 @@ import React, {
   useState,
 } from 'react';
 
-import { DRAG_COLUMN_WIDTH } from '../constants';
 import DragCellRenderer from './DragCellRenderer';
 import TableNoRowsContent from './TableNoRowsContent';
 import TableToolbar from './TableToolbar';
 import { suppressKeyboardEventForParentCell } from './utils';
+
+const DRAG_COLUMN_WIDTH = 22;
 
 export interface TableProps<T> {
   className?: string;

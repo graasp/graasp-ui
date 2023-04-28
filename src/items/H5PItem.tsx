@@ -2,14 +2,18 @@ import * as uuid from 'uuid';
 
 import React, { FC, useEffect, useRef } from 'react';
 
+import withCollapse from '../Collapse/withCollapse';
+
 /**
  * React props types for {@link H5PItem}
  */
 interface H5PItemProps {
+  itemName: string;
   itemId: string;
   contentId: string;
   integrationUrl: string;
   iframeId?: string;
+  showCollapse?: boolean;
 }
 /**
  * The H5PItem component displays an iframe with the content of an H5P
@@ -18,10 +22,12 @@ interface H5PItemProps {
  * package and the Graasp React ecosystem
  */
 const H5PItem: FC<H5PItemProps> = ({
+  itemName,
   itemId,
   contentId,
   integrationUrl: integrationBase,
   iframeId = `h5p-container-${itemId}`,
+  showCollapse = false,
 }) => {
   /*
     h5p-standalone (and H5P itself) expect the integration to be done on the
@@ -86,7 +92,7 @@ const H5PItem: FC<H5PItemProps> = ({
     return () => window.removeEventListener('message', onResize);
   }, []);
 
-  return (
+  let iframeH5Pitem = (
     <iframe
       ref={iframeRef}
       id={iframeId}
@@ -96,6 +102,12 @@ const H5PItem: FC<H5PItemProps> = ({
       style={{ width: '100%', border: 'none', display: 'block' }}
     ></iframe>
   );
+
+  if (showCollapse) {
+    iframeH5Pitem = withCollapse({ itemName })(iframeH5Pitem);
+  }
+
+  return iframeH5Pitem;
 };
 
 export default H5PItem;

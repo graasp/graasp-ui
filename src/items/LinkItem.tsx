@@ -7,8 +7,10 @@ import React, { FC, Fragment, useRef, useState } from 'react';
 import { getEmbeddedLinkExtra, redirect } from '@graasp/sdk';
 import { EmbeddedLinkItemTypeRecord, MemberRecord } from '@graasp/sdk/frontend';
 
+import withCollapse from '../Collapse/withCollapse';
 import Button from '../buttons/Button';
-import { ITEM_MAX_HEIGHT } from '../constants';
+import { DEFAULT_LINK_SHOW_BUTTON } from '../constants';
+import { ITEM_MAX_HEIGHT } from './constants';
 import withCaption from './withCaption';
 import withResizing, { StyledIFrame } from './withResizing';
 
@@ -31,11 +33,16 @@ export interface LinkItemProps {
   item: EmbeddedLinkItemTypeRecord;
   loadingMessage?: string;
   onSaveCaption?: (text: string) => void;
+  onCancelCaption?: (text: string) => void;
   openLinkMessage?: string;
   /**
    * id of the save button
    */
   saveButtonId?: string;
+  /**
+   * id of the cancel button
+   */
+  cancelButtonId?: string;
   /**
    * whether the caption should be displayed
    */
@@ -48,6 +55,10 @@ export interface LinkItemProps {
    * whether the button should be displayed
    */
   showButton?: boolean;
+  /**
+   * whether the component should be collapse
+   */
+  showCollapse?: boolean;
 }
 
 const IFrameContainer = styled('div')({
@@ -67,16 +78,19 @@ const LinkItem: FC<LinkItemProps> = ({
   member,
   memberId,
   onSaveCaption,
+  onCancelCaption,
   saveButtonId,
+  cancelButtonId,
   editCaption = false,
   showCaption = true,
   showIframe = false,
-  showButton = true,
+  showButton = DEFAULT_LINK_SHOW_BUTTON,
   loadingMessage = 'Link is Loading...',
   openLinkMessage = 'Click here to open the link manually',
   height: defaultHeight = 400,
   errorMessage = 'The link is malformed.',
   isResizable = false,
+  showCollapse = false,
 }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [height] = useState<string | number>(defaultHeight);
@@ -84,33 +98,20 @@ const LinkItem: FC<LinkItemProps> = ({
 
   const id = item.id;
   const extra = getEmbeddedLinkExtra(item.extra);
-
-  const CaptionWrapper = withCaption({
-    item,
-    onSave: onSaveCaption,
-    saveButtonId,
-    edit: editCaption,
-  });
-
-  // if available, display specific player
   const html = extra?.html;
-  if (html) {
-    const component = (
-      <div id={id} dangerouslySetInnerHTML={{ __html: html }} />
-    );
-    if (showCaption) {
-      return CaptionWrapper(component);
-    }
-    return component;
-  }
 
   // default case is an iframe with given link
   const url = extra?.url;
   const name = item.name;
 
-  if (!url) {
-    return <Alert severity='error'>{errorMessage}</Alert>;
-  }
+  const CaptionWrapper = withCaption({
+    item,
+    onSave: onSaveCaption,
+    onCancel: onCancelCaption,
+    saveButtonId,
+    cancelButtonId,
+    edit: editCaption,
+  });
 
   const handleLoad = (): void => {
     setIsLoading(false);
@@ -121,7 +122,9 @@ const LinkItem: FC<LinkItemProps> = ({
   };
 
   const onClick = (): void => {
-    redirect(url, { openInNewTab: true });
+    if (url) {
+      redirect(url, { openInNewTab: true });
+    }
   };
 
   const renderIframe = (): JSX.Element | null => {
@@ -166,24 +169,41 @@ const LinkItem: FC<LinkItemProps> = ({
     );
   };
 
-  const button = (
-    <StyledLinkButton onClick={onClick} startIcon={<OpenInNewIcon />}>
-      {item.name ?? openLinkMessage}
-    </StyledLinkButton>
-  );
+  const getComponent = (): JSX.Element => {
+    // if available, display specific player
+    if (html) {
+      return <div id={id} dangerouslySetInnerHTML={{ __html: html }} />;
+    }
 
-  const component = (
-    <Fragment>
-      {renderIframe()}
-      {(isLoading || showButton) && button}
-    </Fragment>
-  );
+    if (!url) {
+      return <Alert severity='error'>{errorMessage}</Alert>;
+    }
+
+    const button = (
+      <StyledLinkButton onClick={onClick} startIcon={<OpenInNewIcon />}>
+        {item.name ?? openLinkMessage}
+      </StyledLinkButton>
+    );
+
+    return (
+      <Fragment>
+        {renderIframe()}
+        {(isLoading || showButton) && button}
+      </Fragment>
+    );
+  };
+
+  let linkItem = getComponent();
 
   if (showCaption) {
-    return CaptionWrapper(component);
+    linkItem = CaptionWrapper(linkItem);
   }
 
-  return component;
+  if (showCollapse) {
+    linkItem = withCollapse({ itemName: name })(linkItem);
+  }
+
+  return linkItem;
 };
 
 export default React.memo(LinkItem);

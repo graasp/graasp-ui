@@ -5,22 +5,27 @@ import React from 'react';
 import { ItemRecord } from '@graasp/sdk/frontend';
 
 import TextEditor from '../TextEditor';
-import { DEFAULT_ITEM_DESCRIPTION } from '../constants';
+
+const DEFAULT_ITEM_DESCRIPTION = '';
 
 interface WithCaptionProps {
   item: ItemRecord;
   edit?: boolean;
   onSave?: (text: string) => void;
+  onCancel?: (text: string) => void;
   saveButtonText?: string;
   saveButtonId?: string;
+  cancelButtonId?: string;
 }
 
 function withCaption({
   item,
   edit,
   onSave,
+  onCancel,
   saveButtonText,
   saveButtonId,
+  cancelButtonId,
 }: WithCaptionProps) {
   return (component: JSX.Element): JSX.Element => {
     class ComponentWithCaption extends React.Component {
@@ -35,7 +40,9 @@ function withCaption({
                 value={item.description || DEFAULT_ITEM_DESCRIPTION}
                 edit={edit}
                 onSave={onSave}
+                onCancel={onCancel}
                 saveButtonId={saveButtonId}
+                cancelButtonId={cancelButtonId}
                 saveButtonText={saveButtonText}
               />
             </Grid>

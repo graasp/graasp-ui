@@ -12,8 +12,9 @@ import {
   setIframeResizeHeightCookie,
 } from '@graasp/sdk';
 
-import { IFRAME_MIN_HEIGHT, ITEM_MAX_HEIGHT } from '../constants';
+import { IFRAME_MIN_HEIGHT } from '../constants';
 import ResizingIcon from '../icons/ResizingIcon';
+import { ITEM_MAX_HEIGHT } from './constants';
 
 export const StyledIFrame: StyledComponent<
   MUIStyledCommonProps<Theme> & {

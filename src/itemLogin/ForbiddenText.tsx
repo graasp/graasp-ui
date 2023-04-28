@@ -5,7 +5,7 @@ import React, { FC } from 'react';
 
 import { UUID } from '@graasp/sdk';
 
-import { FORBIDDEN_TEXT } from '../constants';
+import { FORBIDDEN_TEXT } from './constants';
 
 export interface ForbiddenTextProps {
   id?: UUID;

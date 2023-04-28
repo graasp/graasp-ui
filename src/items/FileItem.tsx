@@ -17,6 +17,7 @@ import {
   S3FileItemTypeRecord,
 } from '@graasp/sdk/frontend';
 
+import withCollapse from '../Collapse/withCollapse';
 import { SCREEN_MAX_HEIGHT, UNEXPECTED_ERROR_MESSAGE } from '../constants';
 import { ERRORS } from '../enums';
 import DownloadButtonFileItem from './DownloadButtonFileItem';
@@ -43,11 +44,13 @@ export interface FileItemProps {
   item: LocalFileItemTypeRecord | S3FileItemTypeRecord | DocumentItemTypeRecord;
   maxHeight?: number;
   onSaveCaption?: (text: string) => void;
+  onCancelCaption?: (text: string) => void;
   /**
    * use a custom pdf reader from the link if defined
    * */
   pdfViewerLink?: string;
   saveButtonId?: string;
+  cancelButtonId?: string;
   showCaption?: boolean;
   showCollapse?: boolean;
   sx?: SxProps;
@@ -64,7 +67,9 @@ const FileItem: FC<FileItemProps> = ({
   item,
   maxHeight = '100%',
   onSaveCaption,
+  onCancelCaption,
   saveButtonId,
+  cancelButtonId,
   showCaption = true,
   showCollapse,
   sx,
@@ -114,57 +119,63 @@ const FileItem: FC<FileItemProps> = ({
     return <Alert severity='error'>{errorMessage}</Alert>;
   }
 
-  let component;
-  if (mimetype) {
-    if (MimeTypes.isImage(mimetype)) {
-      component = <FileImage id={id} url={url} alt={name} sx={sx} />;
-    } else if (MimeTypes.isAudio(mimetype)) {
-      component = <FileAudio id={id} url={url} type={mimetype} sx={sx} />;
-    } else if (MimeTypes.isVideo(mimetype)) {
-      // does not specify mimetype in video source, this way, it works with more container formats in more browsers (especially Chrome with video/quicktime)
-      component = <FileVideo id={id} url={url} sx={sx} />;
-    } else if (MimeTypes.isPdf(mimetype)) {
-      component = (
-        <FilePdf
-          id={id}
-          url={url}
-          height={maxHeight}
-          sx={sx}
-          showCollapse={showCollapse}
-          pdfViewerLink={pdfViewerLink}
-        />
-      );
+  const getComponent = (): JSX.Element => {
+    if (mimetype) {
+      if (MimeTypes.isImage(mimetype)) {
+        return <FileImage id={id} url={url} alt={name} sx={sx} />;
+      } else if (MimeTypes.isAudio(mimetype)) {
+        return <FileAudio id={id} url={url} type={mimetype} sx={sx} />;
+      } else if (MimeTypes.isVideo(mimetype)) {
+        // does not specify mimetype in video source, this way, it works with more container formats in more browsers (especially Chrome with video/quicktime)
+        return <FileVideo id={id} url={url} sx={sx} />;
+      } else if (MimeTypes.isPdf(mimetype)) {
+        return (
+          <FilePdf
+            id={id}
+            url={url}
+            height={maxHeight}
+            sx={sx}
+            showCollapse={showCollapse}
+            pdfViewerLink={pdfViewerLink}
+          />
+        );
+      }
     }
-  }
+
+    if (defaultItem) {
+      return defaultItem;
+    }
+
+    return (
+      <DownloadButtonFileItem
+        id={id}
+        name={originalFileName}
+        url={url}
+        text={downloadText}
+      />
+    );
+  };
 
   // todo: add more file extensions
+  let fileItem = getComponent();
 
-  if (component) {
-    // display element with caption
-    if (showCaption) {
-      return withCaption({
-        item,
-        onSave: onSaveCaption,
-        edit: editCaption,
-        saveButtonId,
-      })(component);
-    }
-
-    return component;
+  // display element with caption
+  if (showCaption) {
+    fileItem = withCaption({
+      item,
+      onSave: onSaveCaption,
+      onCancel: onCancelCaption,
+      edit: editCaption,
+      saveButtonId,
+      cancelButtonId,
+    })(fileItem);
   }
 
-  if (defaultItem) {
-    return defaultItem;
+  if (showCollapse) {
+    fileItem = withCollapse({ itemName: name })(fileItem);
   }
 
-  return (
-    <DownloadButtonFileItem
-      id={id}
-      name={originalFileName}
-      url={url}
-      text={downloadText}
-    />
-  );
+  return fileItem;
 };
 
 export default React.memo(FileItem);
