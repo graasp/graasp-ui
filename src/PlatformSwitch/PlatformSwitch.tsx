@@ -20,7 +20,7 @@ export type PlatformSwitchProps = {
   accentColor?: string;
   /** Color of the icons when the corresponding platform is disabled */
   disabledColor?: string;
-  /** Tooltips to add to the buttons, in order left to right, default is taken from platform */
+  /** Tooltips to add to the buttons, in order left to right */
   tooltips?: string[];
   /** Placements of tooltips, in order left to right */
   placements?: TooltipProps['placement'][];
@@ -79,7 +79,7 @@ export const PlatformSwitch: FC<PlatformSwitchProps> = ({
   color = SECONDARY_COLOR,
   accentColor = PRIMARY_COLOR,
   disabledColor = '#CCC',
-  tooltips,
+  tooltips = Object.values(Platform),
   placements,
   sx,
   selected,
@@ -90,12 +90,12 @@ export const PlatformSwitch: FC<PlatformSwitchProps> = ({
     /** Platform which button should be rendered */
     platform: Platform;
     /** Tooltip to be used for button */
-    tooltip: string;
+    title?: string;
     /** Tooltip's placement*/
     placement?: TooltipProps['placement'];
     /** Styles applied to the underlying icon */
     sx?: SxProps;
-  }> = ({ platform, tooltip, placement, sx }) => {
+  }> = ({ platform, title, placement, sx }) => {
     // Emulate mouseover: we want to change the color of the icons that are props
     const [isHover, setHover] = useState(false);
 
@@ -138,7 +138,7 @@ export const PlatformSwitch: FC<PlatformSwitchProps> = ({
     // Ordering of the spread props is important: later styles override former ones
     return (
       <Tooltip
-        title={platformProps?.disabled ? undefined : tooltip}
+        title={platformProps?.disabled ? undefined : title}
         placement={placement}
       >
         <a
@@ -166,7 +166,7 @@ export const PlatformSwitch: FC<PlatformSwitchProps> = ({
       sx={{ mr: index === platforms.length - 1 ? 0 : spacing }}
       platform={platform}
       // if no custom tooltip name from the platform is used
-      tooltip={tooltips ? tooltips[index] : platform}
+      title={tooltips ? tooltips[index] : undefined}
       placement={placements ? placements[index] : undefined}
     />
   ));
