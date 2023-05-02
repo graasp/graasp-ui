@@ -79,6 +79,7 @@ export const PlatformSwitch: FC<PlatformSwitchProps> = ({
   color = SECONDARY_COLOR,
   accentColor = PRIMARY_COLOR,
   disabledColor = '#CCC',
+  // if no custom tooltip, name from the platform is used
   tooltips = Object.values(Platform),
   placements,
   sx,
@@ -165,7 +166,6 @@ export const PlatformSwitch: FC<PlatformSwitchProps> = ({
       // the last icon does not need margin at the end
       sx={{ mr: index === platforms.length - 1 ? 0 : spacing }}
       platform={platform}
-      // if no custom tooltip name from the platform is used
       title={tooltips ? tooltips[index] : undefined}
       placement={placements ? placements[index] : undefined}
     />
