@@ -1,4 +1,5 @@
 import { Box, SxProps } from '@mui/material';
+import Tooltip, { TooltipProps } from '@mui/material/Tooltip';
 
 import React, { FC, useState } from 'react';
 
@@ -19,6 +20,10 @@ export type PlatformSwitchProps = {
   accentColor?: string;
   /** Color of the icons when the corresponding platform is disabled */
   disabledColor?: string;
+  /** Tooltips to add to the buttons, in order left to right, default is taken from platform */
+  tooltips?: string[];
+  /** Placements of tooltips, in order left to right */
+  placements?: TooltipProps['placement'][];
   /** Style overrides to apply to the switch frame */
   sx?: SxProps;
   /** Platform that should be currently highlighted */
@@ -74,6 +79,8 @@ export const PlatformSwitch: FC<PlatformSwitchProps> = ({
   color = SECONDARY_COLOR,
   accentColor = PRIMARY_COLOR,
   disabledColor = '#CCC',
+  tooltips,
+  placements,
   sx,
   selected,
   platformsProps,
@@ -82,9 +89,13 @@ export const PlatformSwitch: FC<PlatformSwitchProps> = ({
   const PlatformButton: FC<{
     /** Platform which button should be rendered */
     platform: Platform;
+    /** Tooltip to be used for button */
+    tooltip: string;
+    /** Tooltip's placement*/
+    placement?: TooltipProps['placement'];
     /** Styles applied to the underlying icon */
     sx?: SxProps;
-  }> = ({ platform, sx }) => {
+  }> = ({ platform, tooltip, placement, sx }) => {
     // Emulate mouseover: we want to change the color of the icons that are props
     const [isHover, setHover] = useState(false);
 
@@ -126,20 +137,25 @@ export const PlatformSwitch: FC<PlatformSwitchProps> = ({
 
     // Ordering of the spread props is important: later styles override former ones
     return (
-      <a
-        id={platformProps?.id}
-        style={{
-          display: 'flex',
-          cursor: platformProps?.disabled ? 'default' : 'pointer',
-        }}
-        {...mouseHoverEvents}
-        onClick={platformProps?.disabled ? undefined : platformProps?.onClick}
-        onMouseDown={
-          platformProps?.disabled ? undefined : platformProps?.onMouseDown
-        }
+      <Tooltip
+        title={platformProps?.disabled ? undefined : tooltip}
+        placement={placement}
       >
-        <Icon {...iconProps} {...hoverStyles} {...disabledStyles} />
-      </a>
+        <a
+          id={platformProps?.id}
+          style={{
+            display: 'flex',
+            cursor: platformProps?.disabled ? 'default' : 'pointer',
+          }}
+          {...mouseHoverEvents}
+          onClick={platformProps?.disabled ? undefined : platformProps?.onClick}
+          onMouseDown={
+            platformProps?.disabled ? undefined : platformProps?.onMouseDown
+          }
+        >
+          <Icon {...iconProps} {...hoverStyles} {...disabledStyles} />
+        </a>
+      </Tooltip>
     );
   };
 
@@ -149,6 +165,9 @@ export const PlatformSwitch: FC<PlatformSwitchProps> = ({
       // the last icon does not need margin at the end
       sx={{ mr: index === platforms.length - 1 ? 0 : spacing }}
       platform={platform}
+      // if no custom tooltip name from the platform is used
+      tooltip={tooltips ? tooltips[index] : platform}
+      placement={placements ? placements[index] : undefined}
     />
   ));
 
