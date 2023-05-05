@@ -54,3 +54,26 @@ Disabled.args = {
     },
   },
 };
+
+export const CustomTooltips = Template.bind({});
+CustomTooltips.args = {
+  color: PRIMARY_COLOR,
+  accentColor: SECONDARY_COLOR,
+  selected: Platform.Builder,
+  platformsProps: {
+    Builder: {
+      tooltip: 'Platform 1',
+    },
+    Player: {
+      tooltip: 'Platform 2',
+    },
+    Library: {
+      disabled: true,
+      tooltip: 'Platform 3',
+    },
+    Analytics: {
+      tooltip: 'Platform 4',
+      placement: 'right',
+    },
+  },
+};
