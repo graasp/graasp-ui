@@ -20,10 +20,6 @@ export type PlatformSwitchProps = {
   accentColor?: string;
   /** Color of the icons when the corresponding platform is disabled */
   disabledColor?: string;
-  /** Tooltips to add to the buttons, in order left to right */
-  tooltips?: string[];
-  /** Placements of tooltips, in order left to right */
-  placements?: TooltipProps['placement'][];
   /** Style overrides to apply to the switch frame */
   sx?: SxProps;
   /** Platform that should be currently highlighted */
@@ -44,6 +40,10 @@ export type PlatformSwitchProps = {
          * (any mouse button, use the {@see MouseEvent} parameter to discriminate)
          */
         onMouseDown?: React.MouseEventHandler<HTMLElement>;
+        /** Tooltips to add to the buttons, in order left to right */
+        tooltip?: string;
+        /** Placements of tooltips, in order left to right */
+        placement?: TooltipProps['placement'];
         /** Style overrides for this platform's icon */
         sx?: SxProps;
       }
@@ -79,9 +79,6 @@ export const PlatformSwitch: FC<PlatformSwitchProps> = ({
   color = SECONDARY_COLOR,
   accentColor = PRIMARY_COLOR,
   disabledColor = '#CCC',
-  // if no custom tooltip, name from the platform is used
-  tooltips = Object.values(Platform),
-  placements,
   sx,
   selected,
   platformsProps,
@@ -96,7 +93,7 @@ export const PlatformSwitch: FC<PlatformSwitchProps> = ({
     placement?: TooltipProps['placement'];
     /** Styles applied to the underlying icon */
     sx?: SxProps;
-  }> = ({ platform, title, placement, sx }) => {
+  }> = ({ platform, sx }) => {
     // Emulate mouseover: we want to change the color of the icons that are props
     const [isHover, setHover] = useState(false);
 
@@ -139,8 +136,8 @@ export const PlatformSwitch: FC<PlatformSwitchProps> = ({
     // Ordering of the spread props is important: later styles override former ones
     return (
       <Tooltip
-        title={platformProps?.disabled ? undefined : title}
-        placement={placement}
+        title={platformProps?.disabled ? undefined : platformProps?.tooltip}
+        placement={platformProps?.placement}
       >
         <a
           id={platformProps?.id}
@@ -166,8 +163,6 @@ export const PlatformSwitch: FC<PlatformSwitchProps> = ({
       // the last icon does not need margin at the end
       sx={{ mr: index === platforms.length - 1 ? 0 : spacing }}
       platform={platform}
-      title={tooltips ? tooltips[index] : undefined}
-      placement={placements ? placements[index] : undefined}
     />
   ));
 
