@@ -1,4 +1,5 @@
 import { Box, SxProps } from '@mui/material';
+import Tooltip, { TooltipProps } from '@mui/material/Tooltip';
 
 import React, { FC, useState } from 'react';
 
@@ -32,6 +33,10 @@ export type PlatformSwitchProps = {
         id?: string;
         /** Whether this platform should be disabled (non-clickable) */
         disabled?: boolean;
+        /** Tooltips to add to the buttons, in order left to right */
+        tooltip?: string;
+        /** Placements of tooltips, in order left to right */
+        placement?: TooltipProps['placement'];
         /** Target when this platform button is clicked */
         href?: string;
         /** Style overrides for this platform's icon */
@@ -94,6 +99,8 @@ export const PlatformSwitch: FC<PlatformSwitchProps> = ({
 
     const Icon = PlatformIcons[platform];
 
+    const tooltip = platformProps?.tooltip ?? Platform[platform];
+
     const iconProps = {
       size,
       secondaryColor: isSelectedPlatform ? accentColor : color,
@@ -121,17 +128,22 @@ export const PlatformSwitch: FC<PlatformSwitchProps> = ({
 
     // Ordering of the spread props is important: later styles override former ones
     return (
-      <a
-        id={platformProps?.id}
-        style={{
-          display: 'flex',
-          cursor: platformProps?.disabled ? 'default' : 'pointer',
-        }}
-        {...mouseHoverEvents}
-        href={(!platformProps?.disabled && platformProps?.href) || '#'}
+      <Tooltip
+        title={platformProps?.disabled ? undefined : tooltip}
+        placement={platformProps?.placement}
       >
-        <Icon {...iconProps} {...hoverStyles} {...disabledStyles} />
-      </a>
+        <a
+          id={platformProps?.id}
+          style={{
+            display: 'flex',
+            cursor: platformProps?.disabled ? 'default' : 'pointer',
+          }}
+          {...mouseHoverEvents}
+          href={(!platformProps?.disabled && platformProps?.href) || '#'}
+        >
+          <Icon {...iconProps} {...hoverStyles} {...disabledStyles} />
+        </a>
+      </Tooltip>
     );
   };
 
