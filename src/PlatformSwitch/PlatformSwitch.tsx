@@ -82,10 +82,6 @@ export const PlatformSwitch: FC<PlatformSwitchProps> = ({
   const PlatformButton: FC<{
     /** Platform which button should be rendered */
     platform: Platform;
-    /** Tooltip to be used for button */
-    title?: string;
-    /** Tooltip's placement*/
-    placement?: TooltipProps['placement'];
     /** Styles applied to the underlying icon */
     sx?: SxProps;
   }> = ({ platform, sx }) => {
