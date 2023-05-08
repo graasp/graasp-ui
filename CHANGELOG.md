@@ -16,6 +16,20 @@ All notable changes to this project will be documented in this file. See [standa
 * add constraint for custom cell renderers ([#351](https://github.com/graasp/graasp-ui/issues/351)) ([15d1952](https://github.com/graasp/graasp-ui/commit/15d195272fbd7cfa054746614315b037d6695f99))
 * render platform switch button as link, redirect to library home ([#349](https://github.com/graasp/graasp-ui/issues/349)) ([6020dc9](https://github.com/graasp/graasp-ui/commit/6020dc922a257888efbe7fd8a4487a236c57da62))
 
+## [2.5.0](https://github.com/graasp/graasp-ui/compare/v2.4.3...v2.5.0) (2023-05-08)
+
+
+### Features
+
+* add creative commons ([#281](https://github.com/graasp/graasp-ui/issues/281)) ([0fc9a0f](https://github.com/graasp/graasp-ui/commit/0fc9a0fabafa11842b88b3a5466982e154148d4e))
+* add tooltips to platform switch buttons ([#340](https://github.com/graasp/graasp-ui/issues/340)) ([a8fb6c0](https://github.com/graasp/graasp-ui/commit/a8fb6c0ba42c7cc8914a968cc37bb80d778baa36))
+
+
+### Bug Fixes
+
+* add constraint for custom cell renderers ([#351](https://github.com/graasp/graasp-ui/issues/351)) ([15d1952](https://github.com/graasp/graasp-ui/commit/15d195272fbd7cfa054746614315b037d6695f99))
+* render platform switch button as link, redirect to library home ([#349](https://github.com/graasp/graasp-ui/issues/349)) ([6020dc9](https://github.com/graasp/graasp-ui/commit/6020dc922a257888efbe7fd8a4487a236c57da62))
+
 ## [2.4.3](https://github.com/graasp/graasp-ui/compare/v2.4.2...v2.4.3) (2023-05-05)
 
 
