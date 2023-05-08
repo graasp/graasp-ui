@@ -2,6 +2,27 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.4.3](https://github.com/graasp/graasp-ui/compare/v2.4.2...v2.4.3) (2023-05-05)
+
+
+### Bug Fixes
+
+* use precise item type in DocumentItem given showCollapse ([#342](https://github.com/graasp/graasp-ui/issues/342)) ([b5a12e3](https://github.com/graasp/graasp-ui/commit/b5a12e30cccfb6383a762129d96cac399f64d11b))
+
+## [2.4.2](https://github.com/graasp/graasp-ui/compare/v2.4.1...v2.4.2) (2023-04-27)
+
+
+### Bug Fixes
+
+* ⚠️ Breaking change in the `AppItem` component props ([359d7ea](https://github.com/graasp/graasp-ui/commit/359d7ead4f89d0845af8477091ab85b2f30aa14f))
+* app iframe loading forever ([#331](https://github.com/graasp/graasp-ui/issues/331)) ([359d7ea](https://github.com/graasp/graasp-ui/commit/359d7ead4f89d0845af8477091ab85b2f30aa14f))
+* **ci:** storybook deploy to pages using artifacts ([#338](https://github.com/graasp/graasp-ui/issues/338)) ([c463fa0](https://github.com/graasp/graasp-ui/commit/c463fa0462a7e3302be83b84604f99b5b2d214ea))
+* **deps:** update packages (sdk, immutable) and yarn ([#334](https://github.com/graasp/graasp-ui/issues/334)) ([d1970fa](https://github.com/graasp/graasp-ui/commit/d1970faacb5efe65fc09989fa8f14d35d9f84724))
+* detect fullscreen changes ([#335](https://github.com/graasp/graasp-ui/issues/335)) ([190cbd2](https://github.com/graasp/graasp-ui/commit/190cbd222993524766e773c1e306e7e8599a3c87))
+* refactor AppItem to functional component ([359d7ea](https://github.com/graasp/graasp-ui/commit/359d7ead4f89d0845af8477091ab85b2f30aa14f))
+* use a custom hook to setup the channel communication ([359d7ea](https://github.com/graasp/graasp-ui/commit/359d7ead4f89d0845af8477091ab85b2f30aa14f))
+* use secondary color constant in theme ([359d7ea](https://github.com/graasp/graasp-ui/commit/359d7ead4f89d0845af8477091ab85b2f30aa14f))
+
 ## [2.4.1](https://github.com/graasp/graasp-ui/compare/v2.4.0...v2.4.1) (2023-04-17)
 
 

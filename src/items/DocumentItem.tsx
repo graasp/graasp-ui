@@ -2,19 +2,18 @@ import { Alert, Typography } from '@mui/material';
 
 import React, { FC } from 'react';
 
-import { getDocumentExtra } from '@graasp/sdk';
+import { DocumentItemType, getDocumentExtra } from '@graasp/sdk';
 import { DocumentItemTypeRecord } from '@graasp/sdk/frontend';
 
 import withCollapse from '../Collapse/withCollapse';
 import TextEditor from '../TextEditor';
 
-export interface DocumentItemProps {
+export type DocumentItemProps = {
   cancelButtonId?: string;
   cancelButtonText?: string;
   edit?: boolean;
   emptyMessage?: string;
   id?: string;
-  item: DocumentItemTypeRecord;
   maxHeight?: string | number;
   onCancel?: (text: string) => void;
   onChange?: (text: string) => void;
@@ -24,9 +23,11 @@ export interface DocumentItemProps {
   saveButtonText?: string;
   showActions?: boolean;
   showEmpty?: boolean;
-  showCollapse?: boolean;
   styles?: React.CSSProperties;
-}
+} & (
+  | { showCollapse: true; item: DocumentItemTypeRecord }
+  | { showCollapse?: false; item: Pick<DocumentItemType, 'extra'> }
+);
 
 const DocumentItem: FC<DocumentItemProps> = ({
   cancelButtonId,
@@ -44,7 +45,7 @@ const DocumentItem: FC<DocumentItemProps> = ({
   saveButtonText,
   showActions,
   showEmpty,
-  showCollapse = false,
+  showCollapse,
   styles,
 }) => {
   let component: JSX.Element;

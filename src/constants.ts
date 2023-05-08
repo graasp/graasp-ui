@@ -36,4 +36,5 @@ export enum CCLicenseAdaption {
   ALIKE = 'alike',
 }
 
-export const SCREEN_MAX_HEIGHT = window.innerHeight * 0.8;
+export const SCREEN_MAX_HEIGHT =
+  typeof window !== 'undefined' ? window.innerHeight * 0.8 : 1000;
