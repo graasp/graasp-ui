@@ -103,6 +103,8 @@ export const PlatformSwitch: FC<PlatformSwitchProps> = ({
 
     const Icon = PlatformIcons[platform];
 
+    const tooltip = platformProps?.tooltip ?? Platform[platform];
+
     const iconProps = {
       size,
       secondaryColor: isSelectedPlatform ? accentColor : color,
@@ -131,7 +133,7 @@ export const PlatformSwitch: FC<PlatformSwitchProps> = ({
     // Ordering of the spread props is important: later styles override former ones
     return (
       <Tooltip
-        title={platformProps?.disabled ? undefined : platformProps?.tooltip}
+        title={platformProps?.disabled ? undefined : tooltip}
         placement={platformProps?.placement}
       >
         <a
