@@ -84,6 +84,9 @@ const StyledDiv = styled('div')(({ theme }) => ({
     // reduce padding on left and right of cells
     padding: theme.spacing(0, 1),
   },
+  '.ag-cell-wrapper': {
+    minWidth: '0px',
+  },
 }));
 
 const ROW_CLASS_NAME = 'row-class-name';
