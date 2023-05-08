@@ -47,6 +47,8 @@ export { default as ItemBadges } from './ItemBadges';
 
 export * from './ItemFlag';
 
+export { default as CreativeCommons } from './CreativeCommons';
+
 export { default as CookiesBanner } from './CookiesBanner';
 
 export * from './Authorization';
