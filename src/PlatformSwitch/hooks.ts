@@ -1,10 +1,3 @@
-import { MouseEvent } from 'react';
-
-import { redirect } from '@graasp/sdk';
-
-const MOUSE_MIDDLE_BUTTON = 1;
-const TARGET_BLANK_NEW_TAB = '_blank';
-
 /** Enumeration of available platforms */
 export enum Platform {
   Builder = 'Builder',
@@ -40,8 +33,11 @@ export function defaultHostsMapper(
       `${origin}/items/${itemId}`,
     [Platform.Player]: (origin: string, itemId: string) =>
       `${origin}/${itemId}`,
-    [Platform.Library]: (origin: string, itemId: string) =>
-      `${origin}/collections/${itemId}`,
+    [Platform.Library]: (origin: string, _itemId: string) =>
+      // for now redirect to library home
+      // in the future we may want to redirect to itemId and
+      // redirect to home only if it is not published from there
+      `${origin}`,
     [Platform.Analytics]: (origin: string, itemId: string) =>
       `${origin}/${itemId}`,
   };
@@ -73,13 +69,7 @@ export function usePlatformNavigation(
     const url = hostsMapper[platform]?.(itemId);
     const href = url ?? '#';
     return {
-      onClick: (_event: MouseEvent) => redirect(href),
-      onMouseDown: (event: MouseEvent) => {
-        if (event.button !== MOUSE_MIDDLE_BUTTON || url === undefined) {
-          return;
-        }
-        window.open(href, TARGET_BLANK_NEW_TAB);
-      },
+      href,
     };
   };
 }

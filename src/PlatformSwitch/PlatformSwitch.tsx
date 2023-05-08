@@ -32,13 +32,8 @@ export type PlatformSwitchProps = {
         id?: string;
         /** Whether this platform should be disabled (non-clickable) */
         disabled?: boolean;
-        /** Action when this platform button is clicked */
-        onClick?: React.MouseEventHandler<HTMLElement>;
-        /**
-         * Action when this platform button is clicked
-         * (any mouse button, use the {@see MouseEvent} parameter to discriminate)
-         */
-        onMouseDown?: React.MouseEventHandler<HTMLElement>;
+        /** Target when this platform button is clicked */
+        href?: string;
         /** Style overrides for this platform's icon */
         sx?: SxProps;
       }
@@ -133,10 +128,7 @@ export const PlatformSwitch: FC<PlatformSwitchProps> = ({
           cursor: platformProps?.disabled ? 'default' : 'pointer',
         }}
         {...mouseHoverEvents}
-        onClick={platformProps?.disabled ? undefined : platformProps?.onClick}
-        onMouseDown={
-          platformProps?.disabled ? undefined : platformProps?.onMouseDown
-        }
+        href={(!platformProps?.disabled && platformProps?.href) || '#'}
       >
         <Icon {...iconProps} {...hoverStyles} {...disabledStyles} />
       </a>

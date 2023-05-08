@@ -38,19 +38,8 @@ Disabled.args = {
   accentColor: SECONDARY_COLOR,
   selected: Platform.Builder,
   platformsProps: {
-    Builder: {
-      onClick: () => alert('You clicked on Builder'),
-    },
-    Player: {
-      onClick: () => alert('You clicked on Player'),
-    },
-    Library: {
-      onClick: () => alert('You clicked on Library'),
-    },
     Analytics: {
       disabled: true,
-      // this onClick should not trigger when disabled: true
-      onClick: () => alert('You clicked on Analytics'),
     },
   },
 };
