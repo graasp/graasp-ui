@@ -26,7 +26,7 @@ export type DocumentItemProps = {
   styles?: React.CSSProperties;
 } & (
   | { showCollapse: true; item: DocumentItemTypeRecord }
-  | { showCollapse?: false; item: Pick<DocumentItemType, 'extra'> }
+  | { showCollapse?: false; item: Pick<DocumentItemTypeRecord, 'extra'> }
 );
 
 const DocumentItem: FC<DocumentItemProps> = ({
