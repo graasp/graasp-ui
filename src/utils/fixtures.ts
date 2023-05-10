@@ -1,6 +1,4 @@
-import {
-  MemberType,
-} from '@graasp/sdk';
+import { MemberType } from '@graasp/sdk';
 
 export const MOCK_MEMBER = {
   id: 'id',
@@ -10,4 +8,4 @@ export const MOCK_MEMBER = {
   createdAt: new Date(),
   updatedAt: new Date(),
   type: MemberType.Individual,
-}
+};

@@ -53,7 +53,7 @@ const Template: ComponentStory<typeof ItemLoginScreen> = (args) => (
 export const ItemLoginUsernameAndPassword = Template.bind({});
 ItemLoginUsernameAndPassword.args = {
   itemLoginSchemaType: convertJs({
-    loginSchema: ItemLoginSchemaType.USERNAME_AND_PASSWORD,
+    loginSchema: ItemLoginSchemaType.UsernameAndPassword,
   }),
 };
 ItemLoginUsernameAndPassword.play = async ({ args, canvasElement }) => {
@@ -72,7 +72,7 @@ ItemLoginUsernameAndPassword.play = async ({ args, canvasElement }) => {
 export const ItemLoginUsername = Template.bind({});
 ItemLoginUsername.args = {
   itemLoginSchemaType: convertJs({
-    loginSchema: ItemLoginSchemaType.USERNAME,
+    loginSchema: ItemLoginSchemaType.Username,
   }),
 };
 ItemLoginUsername.play = async ({ args, canvasElement }) => {

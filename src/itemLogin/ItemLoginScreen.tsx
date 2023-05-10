@@ -121,7 +121,7 @@ const ItemLoginScreen: FC<ItemLoginScreenProps> = ({
     return ForbiddenContent;
   }
 
-  const withPassword = [ItemLoginSchemaType.USERNAME_AND_PASSWORD].includes(
+  const withPassword = [ItemLoginSchemaType.UsernameAndPassword].includes(
     itemLoginSchemaType,
   );
 

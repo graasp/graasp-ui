@@ -42,23 +42,23 @@ Example.args = {
 export const Builder = Template.bind({});
 Builder.args = {
   ...Example.args,
-  context: Context.BUILDER,
+  context: Context.Builder,
 };
 
 export const Player = Template.bind({});
 Player.args = {
   ...Example.args,
-  context: Context.PLAYER,
+  context: Context.Player,
 };
 
 export const Library = Template.bind({});
 Library.args = {
   ...Example.args,
-  context: Context.LIBRARY,
+  context: Context.Library,
 };
 
 export const Analytics = Template.bind({});
 Analytics.args = {
   ...Example.args,
-  context: Context.ANALYTICS,
+  context: Context.Analytics,
 };

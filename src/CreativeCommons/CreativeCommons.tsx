@@ -4,12 +4,12 @@ import React, { FC } from 'react';
 
 import { PRIMARY_COLOR } from '../theme';
 import { CCSharingVariant } from '../types';
+import By from './icons/By';
 import Cc from './icons/Cc';
 import Cc0 from './icons/Cc0';
 import Nc from './icons/Nc';
 import Nd from './icons/Nd';
 import Sa from './icons/Sa';
-import By from './icons/By';
 
 type CCIconProps = {
   title: string;
@@ -95,9 +95,7 @@ const CCIcon: FC<CCIconProps> = ({ icon, title, description }) => {
   return (
     <div>
       <Tooltip id={title} title={tooltip} arrow>
-        <Box>
-          {icon}
-        </Box>
+        <Box>{icon}</Box>
       </Tooltip>
     </div>
   );
