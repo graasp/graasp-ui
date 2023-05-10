@@ -24,7 +24,7 @@ type AppItemProps = {
    */
   requestApiAccessToken: (args: {
     id: string;
-    app: string;
+    key: string;
     origin: string;
   }) => Promise<{ token: Token }>;
   /**
