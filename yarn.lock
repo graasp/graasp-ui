@@ -2490,13 +2490,13 @@ __metadata:
     "@mui/icons-material": ~5.11.9
     "@mui/lab": ~5.0.0-alpha.120
     "@mui/material": ~5.11.9
-    ag-grid-community: 28.1.1
-    ag-grid-react: 28.1.1
-    i18next: ~21.8.9
-    react: 17.0.2
-    react-dom: 17.0.2
-    react-i18next: 11.17.0
-    react-router-dom: 6.2.2
+    ag-grid-community: ^28.1.1
+    ag-grid-react: ^28.1.1
+    i18next: ^22.4.15
+    react: ^17.0.2
+    react-dom: ^17.0.2
+    react-i18next: ^12.2.0
+    react-router-dom: ^6.11.0
   peerDependenciesMeta:
     ag-grid-community:
       optional: true
