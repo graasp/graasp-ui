@@ -33,8 +33,8 @@ interface Props {
   signOut: (memberId: string) => void;
   signOutMenuItemId?: string;
   signOutText?: string;
-  switchMember: (args: { memberId: string; domain: string }) => Promise<void>;
-  switchMemberText?: string;
+  // switchMember: (args: { memberId: string; domain: string }) => Promise<void>;
+  // switchMemberText?: string;
   useMembers: (ids: string[]) => UseQueryResult<ResultOfRecord<Member>>;
 }
 
