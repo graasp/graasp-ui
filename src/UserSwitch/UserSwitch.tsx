@@ -3,7 +3,6 @@ import { List } from 'immutable';
 import { styled } from '@mui/material';
 import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
-import ListItemIcon from '@mui/material/ListItemIcon';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Skeleton from '@mui/material/Skeleton';
@@ -18,7 +17,7 @@ import React, {
   useState,
 } from 'react';
 
-import { isError, isPseudonymizedMember, isSessionExpired } from '@graasp/sdk';
+import { isPseudonymizedMember } from '@graasp/sdk';
 import { MemberRecord } from '@graasp/sdk/frontend';
 
 import Button from '../buttons/Button';
@@ -53,13 +52,10 @@ interface Props {
 
 const UserSwitch: FC<Props> = ({
   Actions,
-  buildMemberMenuItemId,
   ButtonContent,
   buttonId,
   isMemberLoading = false,
   member,
-  members = List(),
-  onMemberClick = () => () => undefined,
   onSeeProfileClick,
   renderAvatar = () => <></>,
   seeProfileButtonId,
@@ -79,48 +75,49 @@ const UserSwitch: FC<Props> = ({
     setAnchorEl(null);
   };
 
-  const renderStoredSessions = (): (JSX.Element | null)[] | null => {
-    const menuItems = members.map((m) => {
-      // an error happened and the member is null or is an error
-      if (!m || isError(m)) {
-        return null;
-      }
+  // disable feature: sessions shouldn't be saved in the cookies
+  // const renderStoredSessions = (): (JSX.Element | null)[] | null => {
+  //   const menuItems = members.map((m) => {
+  //     // an error happened and the member is null or is an error
+  //     if (!m || isError(m)) {
+  //       return null;
+  //     }
 
-      const { id, name, email } = m;
+  //     const { id, name, email } = m;
 
-      // do not show current member
-      if (id === member?.id) {
-        return null;
-      }
+  //     // do not show current member
+  //     if (id === member?.id) {
+  //       return null;
+  //     }
 
-      const hasExpired = isSessionExpired(id);
+  //     const hasExpired = isSessionExpired(id);
 
-      return (
-        <MenuItem
-          id={buildMemberMenuItemId?.(id)}
-          key={id}
-          onClick={onMemberClick(id)}
-          disabled={hasExpired}
-        >
-          <ListItemIcon>{renderAvatar(m)}</ListItemIcon>
-          <div>
-            <Typography variant='body1' noWrap>
-              {name}
-            </Typography>
-            {/* show info only for normal member */}
-            {/* todo: show which item a pseudonymized member as access to */}
-            {!isPseudonymizedMember(email) && (
-              <Typography variant='subtitle2' noWrap>
-                {email}
-              </Typography>
-            )}
-          </div>
-        </MenuItem>
-      );
-    });
+  //     return (
+  //       <MenuItem
+  //         id={buildMemberMenuItemId?.(id)}
+  //         key={id}
+  //         onClick={onMemberClick(id)}
+  //         disabled={hasExpired}
+  //       >
+  //         <ListItemIcon>{renderAvatar(m)}</ListItemIcon>
+  //         <div>
+  //           <Typography variant='body1' noWrap>
+  //             {name}
+  //           </Typography>
+  //           {/* show info only for normal member */}
+  //           {/* todo: show which item a pseudonymized member as access to */}
+  //           {!isPseudonymizedMember(email) && (
+  //             <Typography variant='subtitle2' noWrap>
+  //               {email}
+  //             </Typography>
+  //           )}
+  //         </div>
+  //       </MenuItem>
+  //     );
+  //   });
 
-    return menuItems?.toJS() as (JSX.Element | null)[];
-  };
+  //   return menuItems?.toJS() as (JSX.Element | null)[];
+  // };
 
   const renderCurrentMemberInfo = (): ReactElement | null => {
     if (!member || !member.id) {
@@ -197,7 +194,8 @@ const UserSwitch: FC<Props> = ({
   };
 
   const currentMemberInfo = renderCurrentMemberInfo();
-  const storedSessions = renderStoredSessions();
+  // disable feature: sessions shouldn't be saved in the cookies
+  // const storedSessions = renderStoredSessions();
 
   return (
     <>
@@ -211,8 +209,8 @@ const UserSwitch: FC<Props> = ({
         onClose={handleClose}
       >
         {currentMemberInfo}
-        {Boolean(currentMemberInfo && storedSessions) && <Divider />}
-        {storedSessions}
+        {/* {Boolean(currentMemberInfo && storedSessions) && <Divider />}
+        {storedSessions} */}
         {Boolean(currentMemberInfo && Actions) && <Divider />}
         {Actions}
       </Menu>
