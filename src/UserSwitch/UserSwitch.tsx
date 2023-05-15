@@ -178,7 +178,7 @@ const UserSwitch: FC<Props> = ({
     return (
       <>
         <Tooltip title={memberName ?? signedOutTooltipText}>
-          {renderAvatar(member)}
+          <span>{renderAvatar(member)}</span>
         </Tooltip>
         {memberName && (
           <Typography

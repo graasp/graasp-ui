@@ -126,22 +126,20 @@ const UserSwitchWrapper: FC<Props> = ({
   }
 
   return (
-    <>
-      <UserSwitch
-        ButtonContent={ButtonContent}
-        Actions={Actions}
-        // onMemberClick={onMemberClick}
-        onSeeProfileClick={goToProfile}
-        member={currentMember}
-        // members={members}
-        seeProfileText={seeProfileText}
-        signedOutTooltipText={signedOutTooltipText}
-        buttonId={buttonId}
-        buildMemberMenuItemId={buildMemberMenuItemId}
-        seeProfileButtonId={seeProfileButtonId}
-        renderAvatar={renderAvatar}
-      />
-    </>
+    <UserSwitch
+      ButtonContent={ButtonContent}
+      Actions={Actions}
+      // onMemberClick={onMemberClick}
+      onSeeProfileClick={goToProfile}
+      member={currentMember}
+      // members={members}
+      seeProfileText={seeProfileText}
+      signedOutTooltipText={signedOutTooltipText}
+      buttonId={buttonId}
+      buildMemberMenuItemId={buildMemberMenuItemId}
+      seeProfileButtonId={seeProfileButtonId}
+      renderAvatar={renderAvatar}
+    />
   );
 };
 
