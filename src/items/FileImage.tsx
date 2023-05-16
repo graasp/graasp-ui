@@ -14,7 +14,7 @@ const FileImage: FC<FileImageProps> = ({ id, url, alt, sx }) => {
   const StyledImage = styled('img')({
     maxWidth: '100%',
   });
-  return <StyledImage id={id} sx={sx} src={url} alt={alt} />;
+  return <StyledImage id={id} sx={sx} src={url} alt={alt} title={alt} />;
 };
 
 export default FileImage;

@@ -4,13 +4,7 @@ import Skeleton from '@mui/material/Skeleton';
 
 import React, { FC, useEffect, useState } from 'react';
 
-import {
-  LocalFileItemExtra,
-  MimeTypes,
-  S3FileItemExtra,
-  getFileExtra,
-  getS3FileExtra,
-} from '@graasp/sdk';
+import { ItemType, MimeTypes, getFileExtra, getS3FileExtra } from '@graasp/sdk';
 import {
   DocumentItemTypeRecord,
   LocalFileItemTypeRecord,
@@ -76,11 +70,6 @@ const FileItem: FC<FileItemProps> = ({
   pdfViewerLink,
 }) => {
   const [url, setUrl] = useState<string>();
-  const extra =
-    getFileExtra(item.extra as LocalFileItemExtra) ??
-    getS3FileExtra(item.extra as S3FileItemExtra);
-  const { mimetype, name: originalFileName } = extra ?? {};
-  const name = item.name;
 
   useEffect(() => {
     (async () => {
@@ -120,9 +109,22 @@ const FileItem: FC<FileItemProps> = ({
   }
 
   const getComponent = (): JSX.Element => {
+    const fileExtra =
+      item.type === ItemType.LOCAL_FILE ? getFileExtra(item.extra) : undefined;
+    const s3FileExtra =
+      item.type === ItemType.S3_FILE ? getS3FileExtra(item.extra) : undefined;
+    const {
+      mimetype,
+      name: originalFileName,
+      altText = item.name,
+    } = {
+      ...fileExtra,
+      ...s3FileExtra,
+    };
+
     if (mimetype) {
       if (MimeTypes.isImage(mimetype)) {
-        return <FileImage id={id} url={url} alt={name} sx={sx} />;
+        return <FileImage id={id} url={url} alt={altText} sx={sx} />;
       } else if (MimeTypes.isAudio(mimetype)) {
         return <FileAudio id={id} url={url} type={mimetype} sx={sx} />;
       } else if (MimeTypes.isVideo(mimetype)) {
@@ -149,7 +151,7 @@ const FileItem: FC<FileItemProps> = ({
     return (
       <DownloadButtonFileItem
         id={id}
-        name={originalFileName}
+        name={originalFileName ?? item.name}
         url={url}
         text={downloadText}
       />
@@ -172,7 +174,7 @@ const FileItem: FC<FileItemProps> = ({
   }
 
   if (showCollapse) {
-    fileItem = withCollapse({ itemName: name })(fileItem);
+    fileItem = withCollapse({ itemName: item.name })(fileItem);
   }
 
   return fileItem;
