@@ -22,7 +22,7 @@ interface DynamicTreeViewProps {
   items: List<ItemRecord>;
   initialExpendedItems?: string[];
   showCheckbox?: boolean;
-  selectedId: string;
+  selectedId?: string;
   onTreeItemSelect?: (id: string) => void;
   useItem: (id: string) => UseQueryResult<ItemRecord>;
   useChildren: (

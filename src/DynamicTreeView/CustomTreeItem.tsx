@@ -23,7 +23,7 @@ interface CustomItemTreeProps {
   itemId: string;
   parentIsDisabled?: boolean;
   expandedItems?: string[];
-  selectedId: string;
+  selectedId?: string;
   buildTreeItemClass?: (id: string) => string;
   isTreeItemDisabled?: (args: {
     parentIsDisabled: boolean;
