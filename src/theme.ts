@@ -11,6 +11,7 @@ export const AccentColors = {
   [Context.Player]: '#009eff',
   [Context.Library]: '#9300c6',
   [Context.Analytics]: '#0707a3',
+  [Context.Unknown]: '#1ecaa5',
 };
 
 export const theme = createTheme({

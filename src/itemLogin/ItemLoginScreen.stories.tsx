@@ -4,7 +4,7 @@ import { userEvent, within } from '@storybook/testing-library';
 
 import React from 'react';
 
-import { ItemLoginSchemaType, convertJs } from '@graasp/sdk';
+import { ItemLoginSchemaType } from '@graasp/sdk';
 
 import { TABLE_CATEGORIES } from '../utils/storybook';
 import ItemLoginScreen from './ItemLoginScreen';
