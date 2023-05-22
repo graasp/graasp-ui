@@ -99,27 +99,27 @@ const DEFAULT_COL_DEF = {
   flex: 1,
 };
 
-const StyledBox = styled(Box)<{ tableHeight: string | number }>(
-  ({ theme, tableHeight }) => ({
-    fontSize: theme.typography.fontSize,
-    width: '100%',
-    height: tableHeight,
-    [`.${ROW_CLASS_NAME}`]: {
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-    },
-    [`.${ROW_CLICKABLE_CLASS_NAME}`]: {
-      cursor: 'pointer',
-    },
-    [`.${DRAG_CELL_CLASS_NAME}`]: {
-      paddingLeft: '0!important',
-      paddingRight: '0!important',
-      display: 'flex',
-      alignItems: 'center',
-    },
-  }),
-);
+const StyledBox = styled(Box, {
+  shouldForwardProp: (prop) => prop !== 'tableHeight',
+})<{ tableHeight: string | number }>(({ theme, tableHeight }) => ({
+  fontSize: theme.typography.fontSize,
+  width: '100%',
+  height: tableHeight,
+  [`.${ROW_CLASS_NAME}`]: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  [`.${ROW_CLICKABLE_CLASS_NAME}`]: {
+    cursor: 'pointer',
+  },
+  [`.${DRAG_CELL_CLASS_NAME}`]: {
+    paddingLeft: '0!important',
+    paddingRight: '0!important',
+    display: 'flex',
+    alignItems: 'center',
+  },
+}));
 
 function GraaspTable<T>({
   className = 'ag-theme-material',
