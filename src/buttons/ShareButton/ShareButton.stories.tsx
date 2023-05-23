@@ -1,11 +1,9 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
-
-import React from 'react';
+import type { Meta, StoryObj } from '@storybook/react';
 
 import { TABLE_CATEGORIES } from '../../utils/storybook';
 import ShareButton from './ShareButton';
 
-export default {
+const meta: Meta<typeof ShareButton> = {
   title: 'Buttons/ShareButton',
   component: ShareButton,
 
@@ -16,18 +14,20 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof ShareButton>;
-
-const Template: ComponentStory<typeof ShareButton> = (args) => (
-  <ShareButton {...args} />
-);
-
-export const Default = Template.bind({});
-Default.args = {
-  open: false,
 };
 
-export const SharingOpen = Template.bind({});
-SharingOpen.args = {
-  open: true,
+export default meta;
+
+type Story = StoryObj<typeof ShareButton>;
+
+export const Default: Story = {
+  args: {
+    open: false,
+  },
+};
+
+export const SharingOpen: Story = {
+  args: {
+    open: true,
+  },
 };

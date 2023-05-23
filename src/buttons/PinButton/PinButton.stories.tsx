@@ -1,12 +1,10 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
-
-import React from 'react';
+import type { Meta, StoryObj } from '@storybook/react';
 
 import { ActionButton } from '../../types';
 import { TABLE_CATEGORIES } from '../../utils/storybook';
 import PinButton from './PinButton';
 
-export default {
+const meta: Meta<typeof PinButton> = {
   title: 'Buttons/PinButton',
   component: PinButton,
 
@@ -23,23 +21,26 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof PinButton>;
-
-const Template: ComponentStory<typeof PinButton> = (args) => (
-  <PinButton {...args} />
-);
-
-export const IsPinned = Template.bind({});
-IsPinned.args = {
-  isPinned: true,
 };
 
-export const Icon = Template.bind({});
-Icon.args = {
-  type: ActionButton.ICON_BUTTON,
+export default meta;
+
+type Story = StoryObj<typeof PinButton>;
+
+export const IsPinned: Story = {
+  args: {
+    isPinned: true,
+  },
 };
 
-export const MenuItem = Template.bind({});
-MenuItem.args = {
-  type: ActionButton.MENU_ITEM,
+export const Icon: Story = {
+  args: {
+    type: ActionButton.ICON_BUTTON,
+  },
+};
+
+export const MenuItem: Story = {
+  args: {
+    type: ActionButton.MENU_ITEM,
+  },
 };

@@ -1,4 +1,4 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 
 import React from 'react';
 
@@ -10,16 +10,13 @@ const ComponentWithResizing = withResizing({
   component: <img src='https://picsum.photos/500' height='100%' />,
 });
 
-export default {
+const meta: Meta<typeof ComponentWithResizing> = {
   title: 'Common/withResizing',
   component: ComponentWithResizing,
+};
 
-  argTypes: {
-    onRedirect: { action: 'onRedirect' },
-  },
-} as ComponentMeta<typeof ComponentWithResizing>;
+export default meta;
 
-const Template: ComponentStory<typeof ComponentWithResizing> = () => (
-  <ComponentWithResizing />
-);
-export const Authorized = Template.bind({});
+type Story = StoryObj<typeof ComponentWithResizing>;
+
+export const Authorized: Story = {};

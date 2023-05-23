@@ -1,6 +1,4 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
-
-import React from 'react';
+import type { StoryObj } from '@storybook/react';
 
 import { TABLE_CATEGORIES } from '../../utils/storybook';
 import LikeButton from './LikeButton';
@@ -48,11 +46,8 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof LikeButton>;
+};
 
-const Template: ComponentStory<typeof LikeButton> = (args) => (
-  <LikeButton {...args} />
-);
+type Story = StoryObj<typeof LikeButton>;
 
-export const Default = Template.bind({});
-Default.args = {};
+export const Default: Story = {};

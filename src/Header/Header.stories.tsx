@@ -1,4 +1,4 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
@@ -10,7 +10,7 @@ import { Context } from '@graasp/sdk';
 import { TABLE_CATEGORIES } from '../utils/storybook';
 import Header from './Header';
 
-export default {
+const meta: Meta<typeof Header> = {
   title: 'Common/Header',
   component: Header,
 
@@ -27,38 +27,45 @@ export default {
     },
     handleDrawerOpen: { action: 'open' },
   },
-} as ComponentMeta<typeof Header>;
-
-const Template: ComponentStory<typeof Header> = (args) => <Header {...args} />;
-
-export const Example = Template.bind({});
-Example.args = {
-  hasSidebar: true,
-  leftContent: <Typography sx={{ ml: 2 }}>Header</Typography>,
-  rightContent: <Avatar sx={{ mr: 2 }}>H</Avatar>,
-  centerContent: <Typography sx={{ ml: 2 }}>Title</Typography>,
 };
 
-export const Builder = Template.bind({});
-Builder.args = {
-  ...Example.args,
-  context: Context.Builder,
+export default meta;
+
+type Story = StoryObj<typeof Header>;
+
+export const Example: Story = {
+  args: {
+    hasSidebar: true,
+    leftContent: <Typography sx={{ ml: 2 }}>Header</Typography>,
+    rightContent: <Avatar sx={{ mr: 2 }}>H</Avatar>,
+    centerContent: <Typography sx={{ ml: 2 }}>Title</Typography>,
+  },
 };
 
-export const Player = Template.bind({});
-Player.args = {
-  ...Example.args,
-  context: Context.Player,
+export const Builder: Story = {
+  args: {
+    ...Example.args,
+    context: Context.Builder,
+  },
 };
 
-export const Library = Template.bind({});
-Library.args = {
-  ...Example.args,
-  context: Context.Library,
+export const Player: Story = {
+  args: {
+    ...Example.args,
+    context: Context.Player,
+  },
 };
 
-export const Analytics = Template.bind({});
-Analytics.args = {
-  ...Example.args,
-  context: Context.Analytics,
+export const Library: Story = {
+  args: {
+    ...Example.args,
+    context: Context.Library,
+  },
+};
+
+export const Analytics: Story = {
+  args: {
+    ...Example.args,
+    context: Context.Analytics,
+  },
 };

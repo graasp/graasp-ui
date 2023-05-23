@@ -1,6 +1,4 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
-
-import React from 'react';
+import type { StoryObj } from '@storybook/react';
 
 import { TABLE_CATEGORIES } from '../../utils/storybook';
 import DownloadButton from './DownloadButton';
@@ -37,11 +35,8 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof DownloadButton>;
+};
 
-const Template: ComponentStory<typeof DownloadButton> = (args) => (
-  <DownloadButton {...args} />
-);
+type Story = StoryObj<typeof DownloadButton>;
 
-export const Default = Template.bind({});
-Default.args = {};
+export const Default: Story = {};

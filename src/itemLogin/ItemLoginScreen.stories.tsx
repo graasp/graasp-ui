@@ -1,8 +1,6 @@
 import { expect } from '@storybook/jest';
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 import { userEvent, within } from '@storybook/testing-library';
-
-import React from 'react';
 
 import { ItemLoginSchemaType } from '@graasp/sdk';
 
@@ -11,7 +9,7 @@ import ItemLoginScreen from './ItemLoginScreen';
 import MemberIdTextField from './MemberIdTextField';
 import { FORBIDDEN_TEXT } from './constants';
 
-export default {
+const meta: Meta<typeof ItemLoginScreen> = {
   title: 'Actions/ItemLogin/ItemLoginScreen',
   component: ItemLoginScreen,
   subcomponents: { MemberIdTextField },
@@ -44,16 +42,18 @@ export default {
     },
     signIn: { action: 'signin' },
   },
-} as ComponentMeta<typeof ItemLoginScreen>;
-
-const Template: ComponentStory<typeof ItemLoginScreen> = (args) => (
-  <ItemLoginScreen {...args} />
-);
-
-export const ItemLoginUsernameAndPassword = Template.bind({});
-ItemLoginUsernameAndPassword.args = {
-  itemLoginSchemaType: ItemLoginSchemaType.UsernameAndPassword,
 };
+
+export default meta;
+
+type Story = StoryObj<typeof ItemLoginScreen>;
+
+export const ItemLoginUsernameAndPassword: Story = {
+  args: {
+    itemLoginSchemaType: ItemLoginSchemaType.UsernameAndPassword,
+  },
+};
+
 ItemLoginUsernameAndPassword.play = async ({ args, canvasElement }) => {
   const canvas = within(canvasElement);
 
@@ -67,10 +67,12 @@ ItemLoginUsernameAndPassword.play = async ({ args, canvasElement }) => {
   expect(args.signIn).toHaveBeenCalled();
 };
 
-export const ItemLoginUsername = Template.bind({});
-ItemLoginUsername.args = {
-  itemLoginSchemaType: ItemLoginSchemaType.Username,
+export const ItemLoginUsername: Story = {
+  args: {
+    itemLoginSchemaType: ItemLoginSchemaType.Username,
+  },
 };
+
 ItemLoginUsername.play = async ({ args, canvasElement }) => {
   const canvas = within(canvasElement);
 
@@ -83,8 +85,10 @@ ItemLoginUsername.play = async ({ args, canvasElement }) => {
   expect(args.signIn).toHaveBeenCalled();
 };
 
-export const Forbidden = Template.bind({});
-Forbidden.args = {};
+export const Forbidden: Story = {
+  args: {},
+};
+
 Forbidden.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
 

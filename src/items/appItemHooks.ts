@@ -56,50 +56,50 @@ const useAppCommunication = ({
     // receive message from app through MessageChannel
     const setupOnMessage =
       (port: MessagePort) =>
-        async (e: MessageEvent): Promise<void> => {
-          const { data, origin: requestOrigin } = e;
+      async (e: MessageEvent): Promise<void> => {
+        const { data, origin: requestOrigin } = e;
 
-          const POST_MESSAGE_KEYS = buildPostMessageKeys(item.id);
-          // responds only to corresponding app
-          if (!appUrl?.includes(requestOrigin)) {
-            return;
-          }
+        const POST_MESSAGE_KEYS = buildPostMessageKeys(item.id);
+        // responds only to corresponding app
+        if (!appUrl?.includes(requestOrigin)) {
+          return;
+        }
 
-          const { type, payload } = JSON.parse(data);
+        const { type, payload } = JSON.parse(data);
 
-          switch (type) {
-            case POST_MESSAGE_KEYS.GET_AUTH_TOKEN: {
-              // eslint-disable-next-line no-unused-expressions
-              port.postMessage(
-                JSON.stringify({
-                  type: POST_MESSAGE_KEYS.GET_AUTH_TOKEN_SUCCESS,
-                  payload: await requestApiAccessToken({
-                    id: item.id,
-                    ...payload,
-                  }),
+        switch (type) {
+          case POST_MESSAGE_KEYS.GET_AUTH_TOKEN: {
+            // eslint-disable-next-line no-unused-expressions
+            port.postMessage(
+              JSON.stringify({
+                type: POST_MESSAGE_KEYS.GET_AUTH_TOKEN_SUCCESS,
+                payload: await requestApiAccessToken({
+                  id: item.id,
+                  ...payload,
                 }),
-              );
-              break;
-            }
-
-            case POST_MESSAGE_KEYS.POST_AUTO_RESIZE: {
-              // item should not be manually resizable
-              if (item.settings.isResizable) {
-                return;
-              }
-              // iframe must be mounted
-              if (iFrameRef.current === null) {
-                return;
-              }
-              // payload should be number
-              if (typeof payload !== 'number') {
-                return;
-              }
-              iFrameRef.current.height = payload.toString();
-              break;
-            }
+              }),
+            );
+            break;
           }
-        };
+
+          case POST_MESSAGE_KEYS.POST_AUTO_RESIZE: {
+            // item should not be manually resizable
+            if (item.settings.isResizable) {
+              return;
+            }
+            // iframe must be mounted
+            if (iFrameRef.current === null) {
+              return;
+            }
+            // payload should be number
+            if (typeof payload !== 'number') {
+              return;
+            }
+            iFrameRef.current.height = payload.toString();
+            break;
+          }
+        }
+      };
 
     const windowOnMessage = (e: MessageEvent): void => {
       const { data, origin: requestOrigin } = e;

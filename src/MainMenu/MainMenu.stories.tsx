@@ -1,4 +1,4 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 
 import AcUnitIcon from '@mui/icons-material/AcUnit';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
@@ -10,7 +10,7 @@ import { TABLE_CATEGORIES } from '../utils/storybook';
 import MainMenu from './MainMenu';
 import MenuItem from './MenuItem';
 
-export default {
+const meta: Meta<typeof MainMenu> = {
   title: 'Common/MainMenu',
   component: MainMenu,
   subcomponents: { MenuItem },
@@ -22,19 +22,20 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof MainMenu>;
+  render: (args) => <MainMenu {...args}>{args.children}</MainMenu>,
+};
+export default meta;
 
-const Template: ComponentStory<typeof MainMenu> = (args) => (
-  <MainMenu {...args}>{args.children}</MainMenu>
-);
+type Story = StoryObj<typeof MainMenu>;
 
-export const Example = Template.bind({});
-Example.args = {
-  children: (
-    <>
-      <MenuItem text='Item 1' icon={<AcUnitIcon />} />
-      <MenuItem text='Item 2' icon={<AddCircleIcon />} />
-      <MenuItem text='Item 3' icon={<AutoAwesomeIcon />} />
-    </>
-  ),
+export const Example: Story = {
+  args: {
+    children: (
+      <>
+        <MenuItem text='Item 1' icon={<AcUnitIcon />} />
+        <MenuItem text='Item 2' icon={<AddCircleIcon />} />
+        <MenuItem text='Item 3' icon={<AutoAwesomeIcon />} />
+      </>
+    ),
+  },
 };

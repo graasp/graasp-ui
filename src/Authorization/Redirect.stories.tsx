@@ -1,5 +1,5 @@
 import { expect } from '@storybook/jest';
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 import { within } from '@storybook/testing-library';
 
 import React from 'react';
@@ -10,7 +10,9 @@ import withAuthorization from './withAuthorization';
 
 const ComponentWithAuthorization = withAuthorization(BuildIcon, {});
 
-export default {
+// this story is separated from the others
+// because the redirection breaks a bit the navigation in storybook
+const meta: Meta<typeof ComponentWithAuthorization> = {
   title: 'Actions/Autorization/Redirect',
   component: ComponentWithAuthorization,
   parameters: {
@@ -26,13 +28,12 @@ export default {
       return <BrowserRouter>{story()}</BrowserRouter>;
     },
   ],
-} as ComponentMeta<typeof ComponentWithAuthorization>;
+};
+export default meta;
 
-const Template: ComponentStory<typeof ComponentWithAuthorization> = (args) => (
-  <ComponentWithAuthorization {...args} />
-);
+type Story = StoryObj<typeof ComponentWithAuthorization>;
 
-export const Redirect = Template.bind({});
+export const Redirect: Story = {};
 
 Redirect.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);

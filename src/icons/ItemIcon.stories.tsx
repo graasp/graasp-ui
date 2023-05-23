@@ -1,13 +1,11 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
-
-import React from 'react';
+import type { Meta, StoryObj } from '@storybook/react';
 
 import { ItemType, MimeTypes } from '@graasp/sdk';
 
 import { TABLE_CATEGORIES } from '../utils/storybook';
 import ItemIcon from './ItemIcon';
 
-export default {
+const meta: Meta<typeof ItemIcon> = {
   title: 'Icons/ItemIcon',
   component: ItemIcon,
 
@@ -23,73 +21,81 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof ItemIcon>;
-
-const Template: ComponentStory<typeof ItemIcon> = (args) => (
-  <ItemIcon {...args} />
-);
-
-export const Folder = Template.bind({});
-Folder.args = {
-  type: ItemType.FOLDER,
 };
 
-export const Default = Template.bind({});
-Default.args = {
-  type: ItemType.FOLDER,
-  iconSrc: 'https://picsum.photos/100',
+export default meta;
+
+type Story = StoryObj<typeof ItemIcon>;
+
+export const Folder: Story = {
+  args: {
+    type: ItemType.FOLDER,
+  },
 };
 
-export const Image = Template.bind({});
-Image.args = {
-  type: ItemType.S3_FILE,
-  color: 'black',
-  extra: {
-    [ItemType.S3_FILE]: {
-      mimetype: MimeTypes.Image.JPEG,
+export const Default: Story = {
+  args: {
+    type: ItemType.FOLDER,
+    iconSrc: 'https://picsum.photos/100',
+  },
+};
+
+export const Image: Story = {
+  args: {
+    type: ItemType.S3_FILE,
+    color: 'black',
+    extra: {
+      [ItemType.S3_FILE]: {
+        mimetype: MimeTypes.Image.JPEG,
+      },
     },
   },
 };
 
-export const Video = Template.bind({});
-Video.args = {
-  type: ItemType.S3_FILE,
-  color: 'black',
-  extra: {
-    [ItemType.S3_FILE]: {
-      mimetype: MimeTypes.Video.MP4,
-    },
-  },
-};
-export const Audio = Template.bind({});
-Audio.args = {
-  type: ItemType.S3_FILE,
-  color: 'black',
-  extra: {
-    [ItemType.S3_FILE]: {
-      mimetype: MimeTypes.Audio.MP3,
+export const Video: Story = {
+  args: {
+    type: ItemType.S3_FILE,
+    color: 'black',
+    extra: {
+      [ItemType.S3_FILE]: {
+        mimetype: MimeTypes.Video.MP4,
+      },
     },
   },
 };
 
-export const PDF = Template.bind({});
-PDF.args = {
-  type: ItemType.S3_FILE,
-  color: 'black',
-  extra: {
-    [ItemType.S3_FILE]: {
-      mimetype: MimeTypes.PDF,
+export const Audio: Story = {
+  args: {
+    type: ItemType.S3_FILE,
+    color: 'black',
+    extra: {
+      [ItemType.S3_FILE]: {
+        mimetype: MimeTypes.Audio.MP3,
+      },
     },
   },
 };
 
-export const ZIP = Template.bind({});
-ZIP.args = {
-  type: ItemType.S3_FILE,
-  color: 'black',
-  extra: {
-    [ItemType.S3_FILE]: {
-      mimetype: MimeTypes.ZIP,
+export const PDF: Story = {
+  args: {
+    type: ItemType.S3_FILE,
+    color: 'black',
+    extra: {
+      [ItemType.S3_FILE]: {
+        mimetype: MimeTypes.PDF,
+      },
+    },
+  },
+};
+
+export const ZIP: Story = {
+  args: {
+    type: ItemType.S3_FILE,
+    color: 'black',
+    extra: {
+      [ItemType.S3_FILE]: {
+        mimetype: MimeTypes.ZIP,
+      },
     },
   },
 };

@@ -1,11 +1,11 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 
 import React from 'react';
 
 import { TABLE_CATEGORIES } from '../../utils/storybook';
 import CopyButton from './CopyButton';
 
-export default {
+const meta: Meta<typeof CopyButton> = {
   title: 'Buttons/CopyButton',
   component: CopyButton,
 
@@ -38,20 +38,22 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof CopyButton>;
-
-const Template: ComponentStory<typeof CopyButton> = (args) => (
-  <CopyButton {...args}>{args.children}</CopyButton>
-);
-
-export const Icon = Template.bind({});
-Icon.args = {
-  color: 'primary',
-  type: 'icon',
-  text: 'Copier',
+  render: (args) => <CopyButton {...args}>{args.children}</CopyButton>,
 };
 
-export const MenuItem = Template.bind({});
-MenuItem.args = {
-  type: 'menuItem',
+export default meta;
+type Story = StoryObj<typeof CopyButton>;
+
+export const Icon: Story = {
+  args: {
+    color: 'primary',
+    type: 'icon',
+    text: 'Copier',
+  },
+};
+
+export const MenuItem: Story = {
+  args: {
+    type: 'menuItem',
+  },
 };

@@ -1,4 +1,4 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 
 import AcUnitIcon from '@mui/icons-material/AcUnit';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
@@ -10,7 +10,7 @@ import ItemBadges from '../ItemBadges/ItemBadges';
 import { TABLE_CATEGORIES } from '../utils/storybook';
 import Card from './Card';
 
-export default {
+const meta: Meta<typeof Card> = {
   title: 'Common/Card',
   component: Card,
 
@@ -21,103 +21,108 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof Card>;
-
-const Template: ComponentStory<typeof Card> = (args) => <Card {...args} />;
-
-export const Example = Template.bind({});
-Example.args = {
-  name: 'my card title',
-  description:
-    'my card description might be really long that is why we cut it after some lines of text to allow some space for more data',
-  image: 'https://picsum.photos/200/100',
-  creator: 'graasp',
-  Actions: (
-    <>
-      <IconButton>
-        <AcUnitIcon />
-      </IconButton>
-      <IconButton>
-        <AcUnitIcon />
-      </IconButton>
-      <IconButton>
-        <AcUnitIcon />
-      </IconButton>
-    </>
-  ),
-  ItemMenu: (
-    <IconButton>
-      <MoreVertIcon />
-    </IconButton>
-  ),
 };
 
-export const Badges = Template.bind({});
-Badges.args = {
-  name: 'my card title',
-  description:
-    'my card description might be really long that is why we cut it after some lines of text to allow some space for more data',
-  image: 'https://picsum.photos/200/100',
-  creator: 'graasp',
-  Actions: (
-    <>
+export default meta;
+type Story = StoryObj<typeof Card>;
+
+export const Example: Story = {
+  args: {
+    name: 'my card title',
+    description:
+      'my card description might be really long that is why we cut it after some lines of text to allow some space for more data',
+    image: 'https://picsum.photos/200/100',
+    creator: 'graasp',
+    Actions: (
+      <>
+        <IconButton>
+          <AcUnitIcon />
+        </IconButton>
+        <IconButton>
+          <AcUnitIcon />
+        </IconButton>
+        <IconButton>
+          <AcUnitIcon />
+        </IconButton>
+      </>
+    ),
+    ItemMenu: (
       <IconButton>
-        <AcUnitIcon />
+        <MoreVertIcon />
       </IconButton>
-      <IconButton>
-        <AcUnitIcon />
-      </IconButton>
-      <IconButton>
-        <AcUnitIcon />
-      </IconButton>
-    </>
-  ),
-  Badges: <ItemBadges isHidden isPublic isPublished isPinned />,
-  ItemMenu: (
-    <IconButton>
-      <MoreVertIcon />
-    </IconButton>
-  ),
+    ),
+  },
 };
 
-export const NoActions = Template.bind({});
-NoActions.args = {
-  name: 'my card title',
-  description:
-    'my card description might be really long that is why we cut it after some lines of text to allow some space for more data and we can see the overflow also here it i going to be visible ?',
-  image: 'https://picsum.photos/100/100',
-  creator: 'graasp',
-  ItemMenu: (
-    <IconButton>
-      <MoreVertIcon />
-    </IconButton>
-  ),
+export const Badges: Story = {
+  args: {
+    name: 'my card title',
+    description:
+      'my card description might be really long that is why we cut it after some lines of text to allow some space for more data',
+    image: 'https://picsum.photos/200/100',
+    creator: 'graasp',
+    Actions: (
+      <>
+        <IconButton>
+          <AcUnitIcon />
+        </IconButton>
+        <IconButton>
+          <AcUnitIcon />
+        </IconButton>
+        <IconButton>
+          <AcUnitIcon />
+        </IconButton>
+      </>
+    ),
+    Badges: <ItemBadges isHidden isPublic isPublished isPinned />,
+    ItemMenu: (
+      <IconButton>
+        <MoreVertIcon />
+      </IconButton>
+    ),
+  },
 };
 
-export const TallCard = Template.bind({});
-TallCard.args = {
-  name: 'my card title',
-  description:
-    'my card description might be really long that is why we cut it after some lines of text to allow some space for more data',
-  image: 'https://picsum.photos/200/500',
-  creator: 'graasp',
-  height: 300,
-  Actions: (
-    <>
+export const NoActions: Story = {
+  args: {
+    name: 'my card title',
+    description:
+      'my card description might be really long that is why we cut it after some lines of text to allow some space for more data and we can see the overflow also here it i going to be visible ?',
+    image: 'https://picsum.photos/100/100',
+    creator: 'graasp',
+    ItemMenu: (
       <IconButton>
-        <AcUnitIcon />
+        <MoreVertIcon />
       </IconButton>
+    ),
+  },
+};
+
+export const TallCard: Story = {
+  args: {
+    name: 'my card title',
+    description:
+      'my card description might be really long that is why we cut it after some lines of text to allow some space for more data',
+    image: 'https://picsum.photos/200/500',
+    creator: 'graasp',
+    height: 300,
+    Actions: (
+      <>
+        <IconButton>
+          <AcUnitIcon />
+        </IconButton>
+        <IconButton>
+          <AcUnitIcon />
+        </IconButton>
+        <IconButton>
+          <AcUnitIcon />
+        </IconButton>
+      </>
+    ),
+    ItemMenu: (
       <IconButton>
-        <AcUnitIcon />
+        <MoreVertIcon />
       </IconButton>
-      <IconButton>
-        <AcUnitIcon />
-      </IconButton>
-    </>
-  ),
-  ItemMenu: (
-    <IconButton>
-      <MoreVertIcon />
-    </IconButton>
-  ),
+    ),
+  },
 };

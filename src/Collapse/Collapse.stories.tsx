@@ -1,11 +1,11 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 
 import React from 'react';
 
 import { TABLE_CATEGORIES } from '../utils/storybook';
 import Collapse from './Collapse';
 
-export default {
+const meta: Meta<typeof Collapse> = {
   title: 'Common/Collapse',
   component: Collapse,
 
@@ -16,15 +16,19 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof Collapse>;
+  render: (args) => (
+    <Collapse {...args}>
+      <img src='https://picsum.photos/100' />
+    </Collapse>
+  ),
+};
 
-const Template: ComponentStory<typeof Collapse> = (args) => (
-  <Collapse {...args}>
-    <img src='https://picsum.photos/100' />
-  </Collapse>
-);
+export default meta;
 
-export const CollapsedImage = Template.bind({});
-CollapsedImage.args = {
-  title: 'My collapsed element',
+type Story = StoryObj<typeof Collapse>;
+
+export const CollapsedImage: Story = {
+  args: {
+    title: 'My collapsed element',
+  },
 };

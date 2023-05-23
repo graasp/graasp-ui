@@ -1,47 +1,51 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
-
-import React from 'react';
+import type { Meta, StoryObj } from '@storybook/react';
 
 import { ItemType } from '@graasp/sdk';
 
 import ItemSkeleton from './ItemSkeleton';
 
-export default {
+const meta: Meta<typeof ItemSkeleton> = {
   title: 'Items/ItemSkeleton',
   component: ItemSkeleton,
-} as ComponentMeta<typeof ItemSkeleton>;
-
-const Template: ComponentStory<typeof ItemSkeleton> = (args) => (
-  <ItemSkeleton {...args} />
-);
-
-export const Folder = Template.bind({});
-Folder.args = {
-  itemType: ItemType.FOLDER,
 };
 
-export const File = Template.bind({});
-File.args = {
-  itemType: ItemType.LOCAL_FILE,
+export default meta;
+
+type Story = StoryObj<typeof ItemSkeleton>;
+
+export const Folder: Story = {
+  args: {
+    itemType: ItemType.FOLDER,
+  },
 };
 
-export const App = Template.bind({});
-App.args = {
-  itemType: ItemType.APP,
+export const File: Story = {
+  args: {
+    itemType: ItemType.LOCAL_FILE,
+  },
 };
 
-export const Document = Template.bind({});
-Document.args = {
-  itemType: ItemType.DOCUMENT,
+export const App: Story = {
+  args: {
+    itemType: ItemType.APP,
+  },
 };
 
-export const Link = Template.bind({});
-Link.args = {
-  itemType: ItemType.LINK,
+export const Document: Story = {
+  args: {
+    itemType: ItemType.DOCUMENT,
+  },
 };
 
-export const Collpasible = Template.bind({});
-Collpasible.args = {
-  isCollapsible: true,
-  itemType: ItemType.LINK,
+export const Link: Story = {
+  args: {
+    itemType: ItemType.LINK,
+  },
+};
+
+export const Collpasible: Story = {
+  args: {
+    isCollapsible: true,
+    itemType: ItemType.LINK,
+  },
 };

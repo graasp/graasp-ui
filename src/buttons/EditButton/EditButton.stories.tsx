@@ -1,6 +1,4 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
-
-import React from 'react';
+import type { StoryObj } from '@storybook/react';
 
 import { TABLE_CATEGORIES } from '../../utils/storybook';
 import EditButton from './EditButton';
@@ -26,16 +24,16 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof EditButton>;
+};
 
-const Template: ComponentStory<typeof EditButton> = (args) => (
-  <EditButton {...args} />
-);
+type Story = StoryObj<typeof EditButton>;
 
-export const Default = Template.bind({});
-Default.args = {};
+export const Default: Story = {
+  args: {},
+};
 
-export const Medium = Template.bind({});
-Medium.args = {
-  size: 'medium',
+export const Medium: Story = {
+  args: {
+    size: 'medium',
+  },
 };

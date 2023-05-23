@@ -1,11 +1,9 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
-
-import React from 'react';
+import type { Meta, StoryObj } from '@storybook/react';
 
 import { TABLE_CATEGORIES } from '../../utils/storybook';
 import SaveButton from './SaveButton';
 
-export default {
+const meta: Meta<typeof SaveButton> = {
   title: 'Buttons/SaveButton',
   component: SaveButton,
 
@@ -26,27 +24,30 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof SaveButton>;
-
-const Template: ComponentStory<typeof SaveButton> = (args) => (
-  <SaveButton {...args} />
-);
-
-export const Default = Template.bind({});
-Default.args = {
-  hasChanges: true,
 };
 
-export const Secondary = Template.bind({});
-Secondary.args = {
-  color: 'secondary',
-  hasChanges: true,
-  variant: 'outlined',
+export default meta;
+
+type Story = StoryObj<typeof SaveButton>;
+
+export const Default: Story = {
+  args: {
+    hasChanges: true,
+  },
 };
 
-export const Text = Template.bind({});
-Text.args = {
-  hasChanges: true,
-  text: 'You should save',
-  savedText: 'No change detected',
+export const Secondary: Story = {
+  args: {
+    color: 'secondary',
+    hasChanges: true,
+    variant: 'outlined',
+  },
+};
+
+export const Text: Story = {
+  args: {
+    hasChanges: true,
+    text: 'You should save',
+    savedText: 'No change detected',
+  },
 };

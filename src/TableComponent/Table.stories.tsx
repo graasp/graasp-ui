@@ -1,6 +1,6 @@
 import { action } from '@storybook/addon-actions';
 import { expect } from '@storybook/jest';
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 import { userEvent, waitFor, within } from '@storybook/testing-library';
 import { ColDef } from 'ag-grid-community';
 import 'ag-grid-community/dist/styles/ag-grid.min.css';
@@ -11,7 +11,6 @@ import React from 'react';
 import { DeleteButton, EditButton } from '../buttons';
 import { TABLE_CATEGORIES } from '../utils/storybook';
 import Table, { TableProps } from './Table';
-import TableToolbar from './TableToolbar';
 
 const agGridCategory = 'Ag Grid';
 const rowData = [
@@ -42,10 +41,9 @@ const ToolbarActions: TableProps<any>['ToolbarActions'] = ({ selectedIds }) => (
   />
 );
 
-export default {
+const meta: Meta<typeof Table> = {
   title: 'Common/Table',
   component: Table,
-  subcomponents: { TableToolbar },
 
   argTypes: {
     enableDrag: {},
@@ -55,11 +53,6 @@ export default {
       },
     },
     className: {
-      table: {
-        category: TABLE_CATEGORIES.SELECTORS,
-      },
-    },
-    dragClassName: {
       table: {
         category: TABLE_CATEGORIES.SELECTORS,
       },
@@ -116,54 +109,56 @@ export default {
       action: 'cell clicked',
     },
   },
-} as ComponentMeta<typeof Table>;
+};
+export default meta;
 
-const Template: ComponentStory<typeof Table> = (args) => <Table {...args} />;
+type Story = StoryObj<typeof Table>;
 
-export const Simple = Template.bind({});
-Simple.args = {
-  tableHeight: 300,
-  columnDefs: [
-    {
-      field: 'name',
-      headerName: 'Name',
-      headerCheckboxSelection: true,
-      checkboxSelection: true,
-      // rowDrag: true,
-    },
-    {
-      field: 'type',
-      headerName: 'Type',
-      type: 'rightAligned',
-      suppressSizeToFit: true,
-      maxWidth: 80,
-    },
-    {
-      field: 'updatedAt',
-      headerName: 'Updated At',
-      type: 'rightAligned',
-      suppressSizeToFit: true,
-      maxWidth: 160,
-      valueFormatter: dateFormatter,
-    },
-    {
-      field: 'actions',
-      headerName: 'Actions',
-      suppressSizeToFit: true,
-      maxWidth: 100, // approx 50 per iconButton (40px + 8px margin on each side)
-      suppressKeyboardEvent: Table.suppressKeyboardEventForParentCell,
-      cellRenderer: ({ data }: any) => {
-        return (
-          <>
-            <DeleteButton id={'delete' + data.id} />
-            <EditButton />
-          </>
-        );
+export const Simple: Story = {
+  args: {
+    tableHeight: 300,
+    columnDefs: [
+      {
+        field: 'name',
+        headerName: 'Name',
+        headerCheckboxSelection: true,
+        checkboxSelection: true,
+        // rowDrag: true,
       },
-    },
-  ],
-  rowData,
-  ToolbarActions,
+      {
+        field: 'type',
+        headerName: 'Type',
+        type: 'rightAligned',
+        suppressSizeToFit: true,
+        maxWidth: 80,
+      },
+      {
+        field: 'updatedAt',
+        headerName: 'Updated At',
+        type: 'rightAligned',
+        suppressSizeToFit: true,
+        maxWidth: 160,
+        valueFormatter: dateFormatter,
+      },
+      {
+        field: 'actions',
+        headerName: 'Actions',
+        suppressSizeToFit: true,
+        maxWidth: 100, // approx 50 per iconButton (40px + 8px margin on each side)
+        suppressKeyboardEvent: Table.suppressKeyboardEventForParentCell,
+        cellRenderer: ({ data }: any) => {
+          return (
+            <>
+              <DeleteButton id={'delete' + data.id} />
+              <EditButton />
+            </>
+          );
+        },
+      },
+    ],
+    rowData,
+    ToolbarActions,
+  },
 };
 
 Simple.play = async ({ args, canvasElement }) => {
@@ -200,56 +195,58 @@ Simple.play = async ({ args, canvasElement }) => {
   // so we cannot test inner navigation
 };
 
-export const SimpleWithDrag = Template.bind({});
-SimpleWithDrag.args = {
-  tableHeight: 300,
-  enableDrag: true,
-  columnDefs: [
-    {
-      headerCheckboxSelection: true,
-      checkboxSelection: true,
-      field: 'name',
-      headerName: 'Name',
-      // rowDrag: true,
-    },
-    {
-      field: 'type',
-      headerName: 'Type',
-      type: 'rightAligned',
-    },
-    {
-      field: 'updatedAt',
-      headerName: 'Updated At',
-      type: 'rightAligned',
-      valueFormatter: dateFormatter,
-    },
-  ],
-  rowData,
+export const SimpleWithDrag: Story = {
+  args: {
+    tableHeight: 300,
+    enableDrag: true,
+    columnDefs: [
+      {
+        headerCheckboxSelection: true,
+        checkboxSelection: true,
+        field: 'name',
+        headerName: 'Name',
+        // rowDrag: true,
+      },
+      {
+        field: 'type',
+        headerName: 'Type',
+        type: 'rightAligned',
+      },
+      {
+        field: 'updatedAt',
+        headerName: 'Updated At',
+        type: 'rightAligned',
+        valueFormatter: dateFormatter,
+      },
+    ],
+    rowData,
+  },
 };
 
-export const Empty = Template.bind({});
-Empty.args = {
-  tableHeight: 300,
-  columnDefs: [
-    {
-      headerCheckboxSelection: true,
-      checkboxSelection: true,
-      field: 'name',
-      headerName: 'Name',
-    },
-    {
-      field: 'type',
-      headerName: 'Type',
-      type: 'rightAligned',
-      flex: 2,
-    },
-    {
-      field: 'updatedAt',
-      headerName: 'Updated At',
-      flex: 3,
-      type: 'rightAligned',
-      valueFormatter: dateFormatter,
-    },
-  ],
-  rowData: [],
+export const Empty: Story = {
+  args: {
+    tableHeight: 300,
+    columnDefs: [
+      {
+        headerCheckboxSelection: true,
+        checkboxSelection: true,
+        field: 'name',
+        headerName: 'Name',
+      },
+      {
+        field: 'type',
+        headerName: 'Type',
+        type: 'rightAligned',
+        flex: 2,
+      },
+      {
+        field: 'updatedAt',
+        headerName: 'Updated At',
+        flex: 3,
+        type: 'rightAligned',
+        valueFormatter: dateFormatter,
+      },
+    ],
+    rowData: [],
+  },
 };

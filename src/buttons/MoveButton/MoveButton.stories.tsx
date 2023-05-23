@@ -1,12 +1,10 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
-
-import React from 'react';
+import { Meta, StoryObj } from '@storybook/react';
 
 import { ActionButton } from '../../types';
 import { TABLE_CATEGORIES } from '../../utils/storybook';
 import MoveButton from './MoveButton';
 
-export default {
+const meta: Meta<typeof MoveButton> = {
   title: 'Buttons/MoveButton',
   component: MoveButton,
 
@@ -23,18 +21,20 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof MoveButton>;
-
-const Template: ComponentStory<typeof MoveButton> = (args) => (
-  <MoveButton {...args} />
-);
-
-export const MenuItem = Template.bind({});
-MenuItem.args = {
-  type: ActionButton.MENU_ITEM,
 };
 
-export const Icon = Template.bind({});
-Icon.args = {
-  type: ActionButton.ICON_BUTTON,
+export default meta;
+
+type Story = StoryObj<typeof MoveButton>;
+
+export const MenuItem: Story = {
+  args: {
+    type: ActionButton.MENU_ITEM,
+  },
+};
+
+export const Icon: Story = {
+  args: {
+    type: ActionButton.ICON_BUTTON,
+  },
 };

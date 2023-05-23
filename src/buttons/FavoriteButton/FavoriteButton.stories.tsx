@@ -1,6 +1,4 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
-
-import React from 'react';
+import type { StoryObj } from '@storybook/react';
 
 import { ActionButton } from '../../types';
 import { TABLE_CATEGORIES } from '../../utils/storybook';
@@ -34,20 +32,21 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof FavoriteButton>;
+};
 
-const Template: ComponentStory<typeof FavoriteButton> = (args) => (
-  <FavoriteButton {...args} />
-);
+type Story = StoryObj<typeof FavoriteButton>;
 
-export const Default = Template.bind({});
-Default.args = {};
+export const Default: Story = {
+  args: {},
+};
 
-export const IsFavorite = Template.bind({});
-IsFavorite.args = { isFavorite: true };
+export const IsFavorite: Story = {
+  args: { isFavorite: true },
+};
 
-export const MenuItem = Template.bind({});
-MenuItem.args = {
-  text: 'Add to Favorites',
-  type: ActionButton.MENU_ITEM,
+export const MenuItem: Story = {
+  args: {
+    text: 'Add to Favorites',
+    type: ActionButton.MENU_ITEM,
+  },
 };

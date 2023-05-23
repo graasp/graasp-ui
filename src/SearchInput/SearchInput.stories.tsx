@@ -1,6 +1,4 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
-
-import React from 'react';
+import type { StoryObj } from '@storybook/react';
 
 import { SearchInput } from './SearchInput';
 
@@ -13,16 +11,16 @@ export default {
       action: 'on change',
     },
   },
-} as ComponentMeta<typeof SearchInput>;
+};
 
-const Template: ComponentStory<typeof SearchInput> = (args) => (
-  <SearchInput {...args} />
-);
+type Story = StoryObj<typeof SearchInput>;
 
-export const Default = Template.bind({});
-Default.args = {};
+export const Default: Story = {
+  args: {},
+};
 
-export const MaxWidth = Template.bind({});
-MaxWidth.args = {
-  width: 300,
+export const MaxWidth: Story = {
+  args: {
+    width: 300,
+  },
 };
