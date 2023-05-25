@@ -2162,9 +2162,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@graasp/sdk@github:graasp/graasp-sdk#typeorm":
+"@graasp/sdk@github:graasp/graasp-sdk":
   version: 0.12.0
-  resolution: "@graasp/sdk@https://github.com/graasp/graasp-sdk.git#commit=9785da304108cd6dd23e526ea36bcc37c822b522"
+  resolution: "@graasp/sdk@https://github.com/graasp/graasp-sdk.git#commit=4e2a3cbcd642393ebaa8ea0e4b860981aa7cd9f3"
   dependencies:
     "@fastify/secure-session": 5.3.0
     "@graasp/etherpad-api": 2.1.1
@@ -2177,7 +2177,7 @@ __metadata:
     typeorm: 0.3.15
     uuid: 9.0.0
     validator: 13.9.0
-  checksum: dbace3361243a4a6f7bb4b45f0468a0c84b6bcd49857d8a753d5c937352cf29c9a177c2d81323e0cfe9867b0c67187714fb462787cbf14ddb6c95c42ad03df40
+  checksum: 425fcae80f18af25616c579c70fab0ea3803e65b89d807f1b051708854c72bbf814253e5ae8d6babe444125a6bb7cee3849c6125529479b3f3b0e50a25b1a8b9
   languageName: node
   linkType: hard
 
@@ -2194,7 +2194,7 @@ __metadata:
     "@commitlint/config-conventional": 17.6.3
     "@emotion/react": 11.11.0
     "@emotion/styled": 11.11.0
-    "@graasp/sdk": "github:graasp/graasp-sdk#typeorm"
+    "@graasp/sdk": "github:graasp/graasp-sdk"
     "@mdx-js/react": 1.6.22
     "@mui/icons-material": 5.11.16
     "@mui/lab": 5.0.0-alpha.130
