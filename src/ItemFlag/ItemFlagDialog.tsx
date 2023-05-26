@@ -1,11 +1,9 @@
-import { List } from 'immutable';
-
 import { ListItemButton, ListItemText, styled } from '@mui/material';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
-import { default as MuiList } from '@mui/material/List';
+import List from '@mui/material/List';
 import Typography from '@mui/material/Typography';
 
 import React, { FC, useState } from 'react';
@@ -18,14 +16,14 @@ import { FLAG_LIST_MAX_HEIGHT } from '../constants';
 const ListTitle = styled(Typography)({
   fontSize: 'small',
 });
-const StyledList = styled(MuiList)({
+const StyledList = styled(List)({
   width: '100%',
   overflow: 'auto',
   maxHeight: FLAG_LIST_MAX_HEIGHT,
 });
 
 export interface ItemFlagDialogProps {
-  flags: List<FlagType>;
+  flags: Immutable.List<FlagType>;
   onFlag: (flag?: FlagType) => void;
   open: boolean;
   onClose: () => void;
