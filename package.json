@@ -50,7 +50,7 @@
     "storybook:build": "storybook build"
   },
   "dependencies": {
-    "@graasp/sdk": "github:graasp/graasp-sdk",
+    "@graasp/sdk": "1.0.0-rc1",
     "clsx": "1.2.1",
     "http-status-codes": "2.2.0",
     "immutable": "4.3.0",
@@ -176,5 +176,5 @@
   "resolutions": {
     "@types/react": "17.0.47"
   },
-  "packageManager": "yarn@3.5.0"
+  "packageManager": "yarn@3.5.1"
 }
