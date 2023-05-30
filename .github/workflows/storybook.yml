@@ -30,7 +30,7 @@ jobs:
         uses: graasp/graasp-deploy/.github/actions/yarn-install-and-cache@v1
 
       - name: Build storybook
-        run: yarn build-storybook
+        run: yarn storybook:build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
