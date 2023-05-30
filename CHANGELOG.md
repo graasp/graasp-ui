@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.0.0-rc1](https://github.com/graasp/graasp-ui/compare/v2.5.0...v3.0.0-rc1) (2023-05-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* typeorm ([#298](https://github.com/graasp/graasp-ui/issues/298))
+
+### Features
+
+* typeorm ([#298](https://github.com/graasp/graasp-ui/issues/298)) ([655d9b1](https://github.com/graasp/graasp-ui/commit/655d9b1b11353e1364c6137d9bd7be994e5ad003))
+
 ## [2.5.0](https://github.com/graasp/graasp-ui/compare/v2.4.3...v2.5.0) (2023-05-08)
 
 
