@@ -95,3 +95,10 @@ export const Small: Story = {
     children: 'Button',
   },
 };
+
+export const Submit: Story = {
+  args: {
+    type: 'submit',
+    children: 'Submit',
+  },
+};
