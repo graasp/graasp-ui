@@ -1,6 +1,4 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
-
-import React from 'react';
+import { StoryObj } from '@storybook/react';
 
 import { ItemType, convertJs } from '@graasp/sdk';
 
@@ -53,27 +51,27 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof DocumentItem>;
-
-const Template: ComponentStory<typeof DocumentItem> = (args) => (
-  <DocumentItem {...args} />
-);
-
-export const Editing = Template.bind({});
-Editing.args = {
-  item: convertJs(item),
-  edit: true,
 };
 
-export const EmptyMessage = Template.bind({});
-EmptyMessage.args = {
-  item: convertJs({
-    ...item,
-    extra: {
-      [ItemType.DOCUMENT]: {
-        content: '',
+type Story = StoryObj<typeof DocumentItem>;
+
+export const Editing: Story = {
+  args: {
+    item: convertJs(item),
+    edit: true,
+  },
+};
+
+export const EmptyMessage: Story = {
+  args: {
+    item: convertJs({
+      ...item,
+      extra: {
+        [ItemType.DOCUMENT]: {
+          content: '',
+        },
       },
-    },
-  }),
-  showEmpty: true,
+    }),
+    showEmpty: true,
+  },
 };

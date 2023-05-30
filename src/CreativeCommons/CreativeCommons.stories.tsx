@@ -1,4 +1,4 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 
 import { Box } from '@mui/material';
 
@@ -12,7 +12,7 @@ import { TABLE_CATEGORIES } from '../utils/storybook';
 const TABLE_CATEGORY_LICENSE = 'License';
 const TABLE_CATEGORY_APPEARANCE = 'Appearance';
 
-export default {
+const meta: Meta<typeof CreativeCommons> = {
   title: 'Common/CreativeCommons',
   component: CreativeCommons,
 
@@ -65,51 +65,58 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof CreativeCommons>;
+  render: (args) => {
+    // Computes the width required to display nicely the icons in the box
+    // based on their size.
+    const boxWidth =
+      args.iconSize && Number.isSafeInteger(args.iconSize)
+        ? Number(args.iconSize) * 4 + Number(args.iconSize) * 0.4 + 120
+        : undefined;
 
-const Template: ComponentStory<typeof CreativeCommons> = (args) => {
-  // Computes the width required to display nicely the icons in the box
-  // based on their size.
-  const boxWidth =
-    args.iconSize && Number.isSafeInteger(args.iconSize)
-      ? Number(args.iconSize) * 4 + Number(args.iconSize) * 0.4 + 120
-      : undefined;
-
-  return (
-    <Box width={boxWidth} margin={5}>
-      <CreativeCommons {...args} />
-    </Box>
-  );
+    return (
+      <Box width={boxWidth} margin={5}>
+        <CreativeCommons {...args} />
+      </Box>
+    );
+  },
 };
 
-export const Example = Template.bind({});
-Example.args = {
-  requireAccreditation: true,
-  allowCommercialUse: false,
-  allowSharedAdaptation: 'yes',
-  iconSize: 50,
+export default meta;
+
+type Story = StoryObj<typeof CreativeCommons>;
+
+export const Example: Story = {
+  args: {
+    requireAccreditation: true,
+    allowCommercialUse: false,
+    allowSharedAdaptation: 'yes',
+    iconSize: 50,
+  },
 };
 
-export const CC0 = Template.bind({});
-CC0.args = {
-  requireAccreditation: false,
-  allowCommercialUse: true,
-  allowSharedAdaptation: 'yes',
-  iconSize: 50,
+export const CC0: Story = {
+  args: {
+    requireAccreditation: false,
+    allowCommercialUse: true,
+    allowSharedAdaptation: 'yes',
+    iconSize: 50,
+  },
 };
 
-export const NoDerivatives = Template.bind({});
-NoDerivatives.args = {
-  requireAccreditation: true,
-  allowCommercialUse: true,
-  allowSharedAdaptation: 'no',
-  iconSize: 50,
+export const NoDerivatives: Story = {
+  args: {
+    requireAccreditation: true,
+    allowCommercialUse: true,
+    allowSharedAdaptation: 'no',
+    iconSize: 50,
+  },
 };
 
-export const NoncommercialShareAlike = Template.bind({});
-NoncommercialShareAlike.args = {
-  requireAccreditation: true,
-  allowCommercialUse: false,
-  allowSharedAdaptation: 'alike',
-  iconSize: 50,
+export const NoncommercialShareAlike: Story = {
+  args: {
+    requireAccreditation: true,
+    allowCommercialUse: false,
+    allowSharedAdaptation: 'alike',
+    iconSize: 50,
+  },
 };

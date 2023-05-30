@@ -59,6 +59,7 @@ export default {
     'ag-grid-react',
     'katex',
     'react',
+    'react-i18next',
     'react-dom',
     'react-router-dom',
   ],

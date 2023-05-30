@@ -49,7 +49,7 @@ export function defaultHostsMapper(
         platform,
         // if passed itemId is undefined, redirect to home page of platform
         (itemId: string) =>
-          itemId ? urlBuilders[platform](origin, itemId) : origin,
+          itemId ? urlBuilders[platform as Platform](origin, itemId) : origin,
       ];
     }),
   ) as HostsMapper;

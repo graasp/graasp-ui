@@ -1,28 +1,28 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
-
-import React from 'react';
+import type { Meta, StoryObj } from '@storybook/react';
 
 import { PRIMARY_COLOR } from '../theme';
 import GraaspLogo from './GraaspLogo';
 
-export default {
+const meta: Meta<typeof GraaspLogo> = {
   title: 'Icons/GraaspLogo',
   component: GraaspLogo,
 
   argTypes: {},
-} as ComponentMeta<typeof GraaspLogo>;
-
-const Template: ComponentStory<typeof GraaspLogo> = (args) => (
-  <GraaspLogo {...args} />
-);
-
-export const Default = Template.bind({});
-Default.args = {
-  height: 40,
 };
 
-export const Primary = Template.bind({});
-Primary.args = {
-  height: 100,
-  sx: { fill: PRIMARY_COLOR },
+export default meta;
+
+type Story = StoryObj<typeof GraaspLogo>;
+
+export const Default: Story = {
+  args: {
+    height: 40,
+  },
+};
+
+export const Primary: Story = {
+  args: {
+    height: 100,
+    sx: { fill: PRIMARY_COLOR },
+  },
 };

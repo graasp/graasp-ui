@@ -2,7 +2,7 @@ import { Alert, Typography } from '@mui/material';
 
 import React, { FC } from 'react';
 
-import { DocumentItemType, getDocumentExtra } from '@graasp/sdk';
+import { getDocumentExtra } from '@graasp/sdk';
 import { DocumentItemTypeRecord } from '@graasp/sdk/frontend';
 
 import withCollapse from '../Collapse/withCollapse';
@@ -26,7 +26,7 @@ export type DocumentItemProps = {
   styles?: React.CSSProperties;
 } & (
   | { showCollapse: true; item: DocumentItemTypeRecord }
-  | { showCollapse?: false; item: Pick<DocumentItemType, 'extra'> }
+  | { showCollapse?: false; item: Pick<DocumentItemTypeRecord, 'extra'> }
 );
 
 const DocumentItem: FC<DocumentItemProps> = ({

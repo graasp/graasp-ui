@@ -1,24 +1,23 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
-
-import React from 'react';
+import type { Meta, StoryObj } from '@storybook/react';
 
 import ItemBadges from './ItemBadges';
 
-export default {
+const meta: Meta<typeof ItemBadges> = {
   title: 'Icons/ItemBadges',
   component: ItemBadges,
-} as ComponentMeta<typeof ItemBadges>;
+};
 
-const Template: ComponentStory<typeof ItemBadges> = (args) => (
-  <ItemBadges {...args} />
-);
+export default meta;
 
-export const AllIcons = Template.bind({});
-AllIcons.args = {
-  isHidden: true,
-  isPinned: true,
-  isPublished: true,
-  isPublic: true,
-  isCollapsible: true,
-  showChatbox: true,
+type Story = StoryObj<typeof ItemBadges>;
+
+export const AllIcons: Story = {
+  args: {
+    isHidden: true,
+    isPinned: true,
+    isPublished: true,
+    isPublic: true,
+    isCollapsible: true,
+    showChatbox: true,
+  },
 };

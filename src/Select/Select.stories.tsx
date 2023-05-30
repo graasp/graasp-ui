@@ -1,4 +1,4 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 
 import React from 'react';
 
@@ -11,7 +11,7 @@ const values = [
   { value: 3, text: 'three' },
 ];
 
-export default {
+const meta: Meta<typeof Select> = {
   title: 'Common/Select',
   component: Select,
 
@@ -42,31 +42,38 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof Select>;
-
-const Template: ComponentStory<typeof Select> = (args) => (
-  <Select defaultValue={values[0].value} {...args} values={values} />
-);
-
-export const Primary = Template.bind({});
-Primary.args = {
-  color: 'primary',
-  label: 'My Label',
+  render: (args) => (
+    <Select defaultValue={values[0].value} {...args} values={values} />
+  ),
 };
 
-export const Secondary = Template.bind({});
-Secondary.args = {
-  color: 'secondary',
-  defaultValue: 'none',
-  displayEmpty: true,
+export default meta;
+
+type Story = StoryObj<typeof Select>;
+
+export const Primary: Story = {
+  args: {
+    color: 'primary',
+    label: 'My Label',
+  },
 };
 
-export const Filled = Template.bind({});
-Filled.args = {
-  variant: 'filled',
+export const Secondary: Story = {
+  args: {
+    color: 'secondary',
+    defaultValue: 'none',
+    displayEmpty: true,
+  },
 };
 
-export const Standard = Template.bind({});
-Standard.args = {
-  variant: 'standard',
+export const Filled: Story = {
+  args: {
+    variant: 'filled',
+  },
+};
+
+export const Standard: Story = {
+  args: {
+    variant: 'standard',
+  },
 };

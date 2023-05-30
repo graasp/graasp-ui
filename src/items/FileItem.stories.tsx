@@ -1,14 +1,15 @@
 // TODO
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 
 import React from 'react';
 
 import { ItemType, LocalFileItemType, MimeTypes, convertJs } from '@graasp/sdk';
 
+import { MOCK_MEMBER } from '../utils/fixtures';
 import { TABLE_CATEGORIES } from '../utils/storybook';
 import FileItem from './FileItem';
 
-export default {
+const meta: Meta<typeof FileItem> = {
   title: 'Items/FileItem',
   component: FileItem,
 
@@ -19,99 +20,102 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof FileItem>;
-
-const Template: ComponentStory<typeof FileItem> = (
-  args,
-  { loaded: { content } },
-) => {
-  return <FileItem {...args} content={content} />;
+  render: (args, { loaded: { content } }) => {
+    return <FileItem {...args} content={content} />;
+  },
 };
 
-export const Image = Template.bind({});
-Image.loaders = [
-  async () => ({
-    content: await fetch('https://picsum.photos/100').then((r) => r.blob()),
-  }),
-];
-Image.args = {
-  item: convertJs<LocalFileItemType>({
-    id: 'my-id',
-    name: 'my item name',
-    extra: {
-      [ItemType.LOCAL_FILE]: {
-        path: 'https://picsum.photos/100',
-        mimetype: MimeTypes.Image.PNG,
-        name: 'original file name',
-        size: 2600,
+export default meta;
+
+type Story = StoryObj<typeof FileItem>;
+
+export const Image: Story = {
+  loaders: [
+    async () => ({
+      content: await fetch('https://picsum.photos/100').then((r) => r.blob()),
+    }),
+  ],
+  args: {
+    item: convertJs<LocalFileItemType>({
+      id: 'my-id',
+      name: 'my item name',
+      extra: {
+        [ItemType.LOCAL_FILE]: {
+          path: 'https://picsum.photos/100',
+          mimetype: MimeTypes.Image.PNG,
+          name: 'original file name',
+          size: 2600,
+        },
       },
-    },
-    type: 'file',
-    description: 'my image description',
-    path: 'item-path',
-    settings: {},
-    creator: 'creator',
-    createdAt: 'createdAt',
-    updatedAt: 'updatedAt',
-  }),
+      type: 'file',
+      description: 'my image description',
+      path: 'item-path',
+      settings: {},
+      creator: MOCK_MEMBER,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    }),
+  },
 };
 
-export const ImageSVG = Template.bind({});
-ImageSVG.loaders = [
-  async () => ({
-    content: await fetch(
-      'https://upload.wikimedia.org/wikipedia/commons/b/bd/Test.svg',
-    ).then((r) => r.blob()),
-  }),
-];
-ImageSVG.args = {
-  item: convertJs<LocalFileItemType>({
-    id: 'my-id',
-    name: 'my item name',
-    extra: {
-      [ItemType.LOCAL_FILE]: {
-        path: 'https://upload.wikimedia.org/wikipedia/commons/b/bd/Test.svg',
-        mimetype: MimeTypes.Image.SVG, // Should be image/svg+xml
-        name: 'original file name',
-        size: 2600,
+export const ImageSVG: Story = {
+  loaders: [
+    async () => ({
+      content: await fetch(
+        'https://upload.wikimedia.org/wikipedia/commons/b/bd/Test.svg',
+      ).then((r) => r.blob()),
+    }),
+  ],
+  args: {
+    item: convertJs<LocalFileItemType>({
+      id: 'my-id',
+      name: 'my item name',
+      extra: {
+        [ItemType.LOCAL_FILE]: {
+          path: 'https://upload.wikimedia.org/wikipedia/commons/b/bd/Test.svg',
+          mimetype: MimeTypes.Image.SVG, // Should be image/svg+xml
+          name: 'original file name',
+          size: 2600,
+        },
       },
-    },
-    type: 'file',
-    description: 'my svg description',
-    path: 'item-path',
-    settings: {},
-    creator: 'creator',
-    createdAt: 'createdAt',
-    updatedAt: 'updatedAt',
-  }),
+      type: 'file',
+      description: 'my svg description',
+      path: 'item-path',
+      settings: {},
+      creator: MOCK_MEMBER,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    }),
+  },
 };
 
-export const WAVAudio = Template.bind({});
-WAVAudio.loaders = [
-  async () => ({
-    content: await fetch(
-      'https://upload.wikimedia.org/wikipedia/commons/8/8f/Bass_loop_2_%28Carrai_Pass%29.wav',
-    ).then((r) => r.blob()),
-  }),
-];
-WAVAudio.args = {
-  item: convertJs<LocalFileItemType>({
-    id: 'my-id',
-    name: 'my item name',
-    extra: {
-      [ItemType.LOCAL_FILE]: {
-        path: 'https://upload.wikimedia.org/wikipedia/commons/8/8f/Bass_loop_2_%28Carrai_Pass%29.wav',
-        mimetype: MimeTypes.Audio.WAV, // Should be audio/wav
-        name: 'original file name',
-        size: 10000000,
+export const WAVAudio: Story = {
+  loaders: [
+    async () => ({
+      content: await fetch(
+        'https://upload.wikimedia.org/wikipedia/commons/8/8f/Bass_loop_2_%28Carrai_Pass%29.wav',
+      ).then((r) => r.blob()),
+    }),
+  ],
+  args: {
+    item: convertJs<LocalFileItemType>({
+      id: 'my-id',
+      name: 'my item name',
+      extra: {
+        [ItemType.LOCAL_FILE]: {
+          path: 'https://upload.wikimedia.org/wikipedia/commons/8/8f/Bass_loop_2_%28Carrai_Pass%29.wav',
+          mimetype: MimeTypes.Audio.WAV, // Should be audio/wav
+          name: 'original file name',
+          size: 10000000,
+        },
       },
-    },
-    type: 'file',
-    description: 'my audio description',
-    path: 'item-path',
-    settings: {},
-    creator: 'creator',
-    createdAt: 'createdAt',
-    updatedAt: 'updatedAt',
-  }),
+      type: 'file',
+      description: 'my audio description',
+      path: 'item-path',
+      settings: {},
+      creator: MOCK_MEMBER,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    }),
+  },
 };

@@ -1,8 +1,6 @@
 import { expect } from '@storybook/jest';
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 import { userEvent, within } from '@storybook/testing-library';
-
-import React from 'react';
 
 import { ItemType, convertJs } from '@graasp/sdk';
 import { EmbeddedLinkItemTypeRecord } from '@graasp/sdk/frontend';
@@ -29,7 +27,7 @@ const item: EmbeddedLinkItemTypeRecord = convertJs({
   description: 'my link description',
 });
 
-export default {
+const meta: Meta<typeof LinkItem> = {
   title: 'Items/LinkItem',
   component: LinkItem,
 
@@ -40,33 +38,36 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof LinkItem>;
-
-const Template: ComponentStory<typeof LinkItem> = (args) => (
-  <LinkItem {...args} />
-);
-
-export const Iframe = Template.bind({});
-Iframe.args = {
-  item,
-  isResizable: true,
-  showButton: false,
-  showIframe: true,
-  memberId: 'link-iframe-id',
 };
-Iframe.play = async ({ canvasElement, args }) => {
-  const canvas = within(canvasElement);
+export default meta;
 
-  expect(canvas.getByText(args.item.description)).toBeInTheDocument();
-  expect(canvas.getByTitle(args.item.name)).toBeInTheDocument();
+type Story = StoryObj<typeof LinkItem>;
+
+export const Iframe: Story = {
+  args: {
+    item,
+    isResizable: true,
+    showButton: false,
+    showIframe: true,
+    memberId: 'link-iframe-id',
+  },
+
+  play: async ({ canvasElement, args }) => {
+    const canvas = within(canvasElement);
+
+    expect(canvas.getByText(args.item.description)).toBeInTheDocument();
+    expect(canvas.getByTitle(args.item.name)).toBeInTheDocument();
+  },
 };
 
-export const LinkButton = Template.bind({});
-LinkButton.args = {
-  item,
-  showButton: true,
-  showIframe: false,
+export const LinkButton: Story = {
+  args: {
+    item,
+    showButton: true,
+    showIframe: false,
+  },
 };
+
 LinkButton.play = async ({ canvasElement, args }) => {
   const canvas = within(canvasElement);
 
@@ -74,17 +75,17 @@ LinkButton.play = async ({ canvasElement, args }) => {
   await userEvent.click(canvas.getByText(args.item.name));
 };
 
-export const IframeAndLinkButton = Template.bind({});
-IframeAndLinkButton.args = {
-  item,
-  showButton: true,
-  showIframe: true,
-};
+export const IframeAndLinkButton: Story = {
+  args: {
+    item,
+    showButton: true,
+    showIframe: true,
+  },
+  play: async ({ canvasElement, args }) => {
+    const canvas = within(canvasElement);
 
-IframeAndLinkButton.play = async ({ canvasElement, args }) => {
-  const canvas = within(canvasElement);
-
-  expect(canvas.getByText(args.item.description)).toBeInTheDocument();
-  expect(canvas.getByTitle(args.item.name)).toBeInTheDocument();
-  await userEvent.click(canvas.getByText(args.item.name));
+    expect(canvas.getByText(args.item.description)).toBeInTheDocument();
+    expect(canvas.getByTitle(args.item.name)).toBeInTheDocument();
+    await userEvent.click(canvas.getByText(args.item.name));
+  },
 };

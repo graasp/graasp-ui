@@ -1,12 +1,10 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
-
-import React from 'react';
+import type { Meta, StoryObj } from '@storybook/react';
 
 import { CCLicenseAdaption } from '../constants';
 import { TABLE_CATEGORIES } from '../utils/storybook';
 import CCLicenseIcon from './CCLicenseIcon';
 
-export default {
+const meta: Meta<typeof CCLicenseIcon> = {
   title: 'Icons/CCLicenseIcon',
   component: CCLicenseIcon,
 
@@ -17,14 +15,16 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof CCLicenseIcon>;
+};
 
-const Template: ComponentStory<typeof CCLicenseIcon> = (args) => (
-  <CCLicenseIcon {...args} />
-);
+export default meta;
 
-export const Alike = Template.bind({});
-Alike.args = { adaption: CCLicenseAdaption.ALIKE };
+type Story = StoryObj<typeof CCLicenseIcon>;
 
-export const Allow = Template.bind({});
-Allow.args = { sx: { m: 1 }, adaption: CCLicenseAdaption.ALLOW };
+export const Alike: Story = {
+  args: { adaption: CCLicenseAdaption.ALIKE },
+};
+
+export const Allow: Story = {
+  args: { sx: { m: 1 }, adaption: CCLicenseAdaption.ALLOW },
+};

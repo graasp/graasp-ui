@@ -1,12 +1,10 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
-
-import React from 'react';
+import type { Meta, StoryObj } from '@storybook/react';
 
 import { TABLE_CATEGORIES } from '../utils/storybook';
 import ForbiddenContent from './ForbiddenContent';
 import ForbiddenText from './ForbiddenText';
 
-export default {
+const meta: Meta<typeof ForbiddenContent> = {
   title: 'Common/ForbiddenContent',
   component: ForbiddenContent,
   subcomponents: { ForbiddenText },
@@ -18,24 +16,27 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof ForbiddenContent>;
-
-const Template: ComponentStory<typeof ForbiddenContent> = (args) => (
-  <ForbiddenContent {...args} />
-);
-
-export const SignedIn = Template.bind({});
-SignedIn.args = {
-  memberId: 'member-id',
 };
 
-export const SignedOut = Template.bind({});
-SignedOut.args = {
-  memberId: undefined,
+export default meta;
+
+type Story = StoryObj<typeof ForbiddenContent>;
+
+export const SignedIn: Story = {
+  args: {
+    memberId: 'member-id',
+  },
 };
 
-export const SignedOutShowPseudonymized = Template.bind({});
-SignedOutShowPseudonymized.args = {
-  showPseudonymized: true,
-  memberId: 'member-id',
+export const SignedOut: Story = {
+  args: {
+    memberId: undefined,
+  },
+};
+
+export const SignedOutShowPseudonymized: Story = {
+  args: {
+    showPseudonymized: true,
+    memberId: 'member-id',
+  },
 };

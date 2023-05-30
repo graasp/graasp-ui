@@ -1,6 +1,4 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
-
-import React from 'react';
+import type { StoryObj } from '@storybook/react';
 
 import { TABLE_CATEGORIES } from '../utils/storybook';
 import LibraryIcon from './LibraryIcon';
@@ -21,20 +19,22 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof LibraryIcon>;
+};
 
-const Template: ComponentStory<typeof LibraryIcon> = (args) => (
-  <LibraryIcon {...args} />
-);
+type Story = StoryObj<typeof LibraryIcon>;
 
-export const Default = Template.bind({});
-Default.args = {};
+export const Default: Story = {
+  args: {},
+};
 
-export const Small = Template.bind({});
-Small.args = { size: 24 };
+export const Small: Story = {
+  args: { size: 24 },
+};
 
-export const Big = Template.bind({});
-Big.args = { size: 100 };
+export const Big: Story = {
+  args: { size: 100 },
+};
 
-export const Settings = Template.bind({});
-Settings.args = { size: 24, showSetting: true };
+export const Settings: Story = {
+  args: { size: 24, showSetting: true },
+};

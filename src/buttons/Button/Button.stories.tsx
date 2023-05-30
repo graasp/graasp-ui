@@ -1,11 +1,11 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 
 import React from 'react';
 
 import { TABLE_CATEGORIES } from '../../utils/storybook';
 import { GraaspButton as Button } from './Button';
 
-export default {
+const meta: Meta<typeof Button> = {
   title: 'Buttons/Button',
   component: Button,
 
@@ -61,32 +61,37 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof Button>;
-
-const Template: ComponentStory<typeof Button> = (args) => (
-  <Button {...args}>{args.children}</Button>
-);
-
-export const Primary = Template.bind({});
-Primary.args = {
-  color: 'primary',
-  children: 'Button',
+  render: (args) => <Button {...args}>{args.children}</Button>,
 };
 
-export const Secondary = Template.bind({});
-Secondary.args = {
-  color: 'secondary',
-  children: 'Button',
+export default meta;
+
+type Story = StoryObj<typeof Button>;
+
+export const Primary: Story = {
+  args: {
+    color: 'primary',
+    children: 'Button',
+  },
 };
 
-export const Large = Template.bind({});
-Large.args = {
-  size: 'large',
-  children: 'Button',
+export const Secondary: Story = {
+  args: {
+    color: 'secondary',
+    children: 'Button',
+  },
 };
 
-export const Small = Template.bind({});
-Small.args = {
-  size: 'small',
-  children: 'Button',
+export const Large: Story = {
+  args: {
+    size: 'large',
+    children: 'Button',
+  },
+};
+
+export const Small: Story = {
+  args: {
+    size: 'small',
+    children: 'Button',
+  },
 };

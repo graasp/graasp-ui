@@ -1,6 +1,4 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
-
-import React from 'react';
+import type { StoryObj } from '@storybook/react';
 
 import { MimeTypes } from '@graasp/sdk';
 
@@ -18,23 +16,23 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof FileAudio>;
+};
 
-const Template: ComponentStory<typeof FileAudio> = (args) => (
-  <FileAudio {...args} />
-);
+type Story = StoryObj<typeof FileAudio>;
 
-export const MP3Audio = Template.bind({});
-MP3Audio.args = {
-  id: 'some-audio-file-id',
-  url: 'https://upload.wikimedia.org/wikipedia/commons/e/e1/Heart_Monitor_Beep--freesound.org.mp3',
-  type: MimeTypes.Audio.MP3, // should be mp3 format
+export const MP3Audio: Story = {
+  args: {
+    id: 'some-audio-file-id',
+    url: 'https://upload.wikimedia.org/wikipedia/commons/e/e1/Heart_Monitor_Beep--freesound.org.mp3',
+    type: MimeTypes.Audio.MP3, // should be mp3 format
+  },
 };
 MP3Audio.storyName = 'MP3 Audio';
 
-export const WAVAudio = Template.bind({});
-WAVAudio.args = {
-  id: 'some-audio-file-id',
-  url: 'https://upload.wikimedia.org/wikipedia/commons/b/be/Bigroom_kick.wav',
-  type: MimeTypes.Audio.WAV, // should be wav format
+export const WAVAudio: Story = {
+  args: {
+    id: 'some-audio-file-id',
+    url: 'https://upload.wikimedia.org/wikipedia/commons/b/be/Bigroom_kick.wav',
+    type: MimeTypes.Audio.WAV, // should be wav format
+  },
 };

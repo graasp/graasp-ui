@@ -3,26 +3,24 @@ import { StatusCodes, getReasonPhrase } from 'http-status-codes';
 import Alert from '@mui/material/Alert';
 
 import React, { ReactElement } from 'react';
-import { UseQueryResult } from 'react-query';
+import { UseMutateFunction, UseQueryResult } from 'react-query';
 
-import { UUID } from '@graasp/sdk';
-import {
-  ItemLoginRecord,
-  ItemRecord,
-  MemberRecord,
-} from '@graasp/sdk/frontend';
+import { ItemLoginSchemaType, UUID } from '@graasp/sdk';
+import { ItemRecord, MemberRecord } from '@graasp/sdk/frontend';
 
 import CustomInitialLoader from '../CustomInitialLoader';
 import ForbiddenText from './ForbiddenText';
 import ItemLoginScreen, { SignInPropertiesType } from './ItemLoginScreen';
 
 export type ItemLoginAuthorizationProps = {
-  signOut: () => void;
+  signOut: UseMutateFunction<void, unknown, string, unknown>;
   signIn: (args: { itemId: string } & SignInPropertiesType) => void;
   itemId: UUID;
   useCurrentMember: () => UseQueryResult<MemberRecord>;
   useItem: (itemId?: string) => UseQueryResult<ItemRecord>;
-  useItemLogin: (itemId?: string) => UseQueryResult<ItemLoginRecord>;
+  useItemLoginSchemaType: (args: {
+    itemId?: string;
+  }) => UseQueryResult<ItemLoginSchemaType>;
   Error?: ReactElement;
   memberIdInputId?: string;
   usernameInputId?: string;
@@ -36,7 +34,7 @@ const ItemLoginAuthorization =
   ({
     useCurrentMember,
     useItem,
-    useItemLogin,
+    useItemLoginSchemaType,
     itemId,
     signIn,
     Error: ErrorComponent,
@@ -54,7 +52,7 @@ const ItemLoginAuthorization =
         isLoading: isMemberLoading,
         isError: isCurrentMemberError,
       } = useCurrentMember();
-      const { data: itemLogin } = useItemLogin(itemId);
+      const { data: itemLoginSchemaType } = useItemLoginSchemaType({ itemId });
       const {
         data: item,
         isLoading: isItemLoading,
@@ -95,12 +93,12 @@ const ItemLoginAuthorization =
       }
 
       // signed out but can sign in with item login
-      if ((!user || !user.id) && itemLogin && itemLogin.loginSchema) {
+      if ((!user || !user.id) && itemLoginSchemaType) {
         return (
           <ItemLoginScreen
             itemId={itemId}
             signIn={signIn}
-            itemLogin={itemLogin}
+            itemLoginSchemaType={itemLoginSchemaType}
             memberIdInputId={memberIdInputId}
             usernameInputId={usernameInputId}
             signInButtonId={signInButtonId}

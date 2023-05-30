@@ -1,11 +1,9 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
-
-import React from 'react';
+import type { Meta, StoryObj } from '@storybook/react';
 
 import { TABLE_CATEGORIES } from '../utils/storybook';
 import HeaderUserInformation from './HeaderUserInformation';
 
-export default {
+const meta: Meta<typeof HeaderUserInformation> = {
   title: 'Common/HeaderUserInformation',
   component: HeaderUserInformation,
 
@@ -17,17 +15,19 @@ export default {
     },
     onClick: { action: 'click' },
   },
-} as ComponentMeta<typeof HeaderUserInformation>;
-
-const Template: ComponentStory<typeof HeaderUserInformation> = (args) => (
-  <HeaderUserInformation {...args} />
-);
-
-export const SignedIn = Template.bind({});
-SignedIn.args = {
-  avatar: 'https://picsum.photos/100',
-  username: 'username',
 };
 
-export const SignedOut = Template.bind({});
-SignedOut.args = {};
+export default meta;
+
+type Story = StoryObj<typeof HeaderUserInformation>;
+
+export const SignedIn: Story = {
+  args: {
+    avatar: 'https://picsum.photos/100',
+    username: 'username',
+  },
+};
+
+export const SignedOut: Story = {
+  args: {},
+};

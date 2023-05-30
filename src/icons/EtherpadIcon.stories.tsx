@@ -1,17 +1,16 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
-
-import React from 'react';
+import type { Meta, StoryObj } from '@storybook/react';
 
 import EtherpadIcon from './EtherpadIcon';
 
-export default {
+const meta: Meta<typeof EtherpadIcon> = {
   title: 'Icons/EtherpadIcon',
   component: EtherpadIcon,
-} as ComponentMeta<typeof EtherpadIcon>;
+};
 
-const Template: ComponentStory<typeof EtherpadIcon> = (args) => (
-  <EtherpadIcon {...args} />
-);
+export default meta;
 
-export const Default = Template.bind({});
-Default.args = {};
+type Story = StoryObj<typeof EtherpadIcon>;
+
+export const Default: Story = {
+  args: {},
+};

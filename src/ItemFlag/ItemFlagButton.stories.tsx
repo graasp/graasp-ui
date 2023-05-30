@@ -1,16 +1,14 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
-
-import React from 'react';
+import type { Meta, StoryObj } from '@storybook/react';
 
 import ItemFlagButton from './ItemFlagButton';
 
-export default {
+const meta: Meta<typeof ItemFlagButton> = {
   title: 'Actions/Flag/ItemFlagButton',
   component: ItemFlagButton,
-} as ComponentMeta<typeof ItemFlagButton>;
+};
 
-const Template: ComponentStory<typeof ItemFlagButton> = (args) => (
-  <ItemFlagButton {...args} />
-);
+export default meta;
 
-export const Default = Template.bind({});
+type Story = StoryObj<typeof ItemFlagButton>;
+
+export const Default: Story = {};

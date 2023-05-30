@@ -13,7 +13,7 @@ export type ContextPayload = {
   apiHost: string;
   itemId: AppItemTypeRecord['id'];
   settings: AppItemTypeRecord['settings'];
-  memberId: MemberRecord['id'];
+  memberId?: MemberRecord['id'];
   permission: `${PermissionLevel}` | PermissionLevel;
   lang: string;
   context: `${Context}` | Context;
@@ -46,7 +46,7 @@ const useAppCommunication = ({
   iFrameRef: React.RefObject<HTMLIFrameElement>;
   requestApiAccessToken: (payload: {
     id: UUID;
-    app: string;
+    key: string;
     origin: string;
   }) => Promise<{
     token: Token;

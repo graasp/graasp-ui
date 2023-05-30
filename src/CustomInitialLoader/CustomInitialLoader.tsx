@@ -1,8 +1,10 @@
 import { useTheme } from '@mui/material';
-import { Container, styled } from '@mui/material';
-import LinearProgress, {
+import {
+  Container,
+  LinearProgress,
   linearProgressClasses,
-} from '@mui/material/LinearProgress';
+  styled,
+} from '@mui/material';
 
 import React from 'react';
 

@@ -1,10 +1,10 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 
 import React from 'react';
 
 import CustomInitialLoader from './CustomInitialLoader';
 
-export default {
+const meta: Meta<typeof CustomInitialLoader> = {
   title: 'Actions/CustomInitialLoader',
   component: CustomInitialLoader,
   decorators: [
@@ -17,11 +17,15 @@ export default {
     },
   ],
   argTypes: {},
-} as ComponentMeta<typeof CustomInitialLoader>;
+  render: (args) => (
+    <CustomInitialLoader {...args}>{args.children}</CustomInitialLoader>
+  ),
+};
 
-const Template: ComponentStory<typeof CustomInitialLoader> = (args) => (
-  <CustomInitialLoader {...args}>{args.children}</CustomInitialLoader>
-);
+export default meta;
 
-export const Default = Template.bind({});
-Default.args = {};
+type Story = StoryObj<typeof CustomInitialLoader>;
+
+export const Default: Story = {
+  args: {},
+};

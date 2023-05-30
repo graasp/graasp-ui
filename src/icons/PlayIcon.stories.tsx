@@ -1,11 +1,9 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
-
-import React from 'react';
+import type { Meta, StoryObj } from '@storybook/react';
 
 import { TABLE_CATEGORIES } from '../utils/storybook';
 import PlayIcon from './PlayIcon';
 
-export default {
+const meta: Meta<typeof PlayIcon> = {
   title: 'Icons/PlayIcon',
   component: PlayIcon,
 
@@ -21,14 +19,16 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof PlayIcon>;
+};
 
-const Template: ComponentStory<typeof PlayIcon> = (args) => (
-  <PlayIcon {...args} />
-);
+export default meta;
 
-export const Default = Template.bind({});
-Default.args = { size: 50 };
+type Story = StoryObj<typeof PlayIcon>;
 
-export const Small = Template.bind({});
-Small.args = { size: 30 };
+export const Default: Story = {
+  args: { size: 50 },
+};
+
+export const Small: Story = {
+  args: { size: 30 },
+};

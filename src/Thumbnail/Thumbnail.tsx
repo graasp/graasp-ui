@@ -1,29 +1,16 @@
 import { SxProps } from '@mui/material';
-import Skeleton from '@mui/material/Skeleton';
+import Skeleton, { SkeletonProps } from '@mui/material/Skeleton';
 
-import React, { FC, useEffect, useState } from 'react';
-import { QueryObserverResult } from 'react-query';
+import React, { FC } from 'react';
 
 import { ThumbnailSizeVariant } from '@graasp/sdk/frontend';
 
 import { StyledImage } from '../StyledComponents/StyledBaseComponents';
-import { DEFAULT_THUMBNAIL_SIZE } from '../constants';
 import { Variant } from '../types';
-import { getItemImage } from '../utils/image';
 
 type ThumbnailProps = {
   alt: string;
-  /**
-   * item id to get the thumbnail for
-   */
-  id: string;
-  useThumbnail: ({
-    id,
-    size,
-  }: {
-    id?: string | undefined;
-    size?: string | undefined;
-  }) => QueryObserverResult<Blob, Error>;
+  id?: string;
   /**
    * @deprecated use sx
    */
@@ -31,7 +18,8 @@ type ThumbnailProps = {
   /**
    * default thumbnail component
    */
-  defaultValue?: JSX.Element;
+  defaultComponent?: JSX.Element;
+  isLoading?: boolean;
   maxWidth?: string | number;
   maxHeight?: string | number;
   /**
@@ -42,63 +30,33 @@ type ThumbnailProps = {
   /**
    * default thumbnail src link, override defaultValue
    */
-  thumbnailSrc?: string;
+  url?: string;
   /**
    * skeleton's variant
    */
-  variant?: Variant;
+  variant?: SkeletonProps['variant'];
 };
 
 const Thumbnail: FC<ThumbnailProps> = ({
   id,
-  thumbnailSrc,
-  defaultValue,
+  url,
+  defaultComponent,
   alt,
-  useThumbnail,
   sx,
   maxWidth = '100%',
   maxHeight = '100%',
   variant = Variant.RECT,
-  size = DEFAULT_THUMBNAIL_SIZE,
+  isLoading = false,
 }) => {
-  const [thumbnailUrl, setThumbnailUrl] = useState<string | undefined>(
-    undefined,
-  );
-  const {
-    data: thumbnailData,
-    isLoading,
-    isFetching,
-  } = useThumbnail({
-    id,
-    size,
-  });
-
-  useEffect(() => {
-    if (thumbnailData) {
-      const src = URL.createObjectURL(thumbnailData);
-      setThumbnailUrl(src);
-    }
-
-    return () => {
-      if (thumbnailUrl) {
-        URL.revokeObjectURL(thumbnailUrl);
-      }
-    };
-  }, [thumbnailData]);
-
-  if (isLoading || isFetching) {
+  if (isLoading) {
     return <Skeleton variant={variant} width={maxWidth} height={maxHeight} />;
   }
 
-  const thumbnail = getItemImage({
-    url: thumbnailUrl,
-    thumbnailSrc,
-  });
-
-  if (thumbnail) {
+  if (url) {
     return (
       <StyledImage
-        src={thumbnail}
+        src={url}
+        id={id}
         alt={alt}
         sx={[
           {
@@ -112,8 +70,8 @@ const Thumbnail: FC<ThumbnailProps> = ({
     );
   }
 
-  if (defaultValue) {
-    return defaultValue;
+  if (defaultComponent) {
+    return defaultComponent;
   }
 
   return null;

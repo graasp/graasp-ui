@@ -1,4 +1,4 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 
 import React from 'react';
 
@@ -6,7 +6,7 @@ import CookiesBanner from './CookiesBanner';
 
 const cookieName = 'cookieName';
 
-export default {
+const meta: Meta<typeof CookiesBanner> = {
   title: 'Common/CookiesBanner',
   component: CookiesBanner,
   parameters: {
@@ -24,11 +24,12 @@ export default {
       return <>{story()}</>;
     },
   ],
-} as ComponentMeta<typeof CookiesBanner>;
+  render: (args) => <CookiesBanner {...args} cookieName={cookieName} />,
+};
+export default meta;
 
-const Template: ComponentStory<typeof CookiesBanner> = (args) => (
-  <CookiesBanner {...args} cookieName={cookieName} />
-);
+type Story = StoryObj<typeof CookiesBanner>;
 
-export const Banner = Template.bind({});
-Banner.args = {};
+export const Banner: Story = {
+  args: {},
+};

@@ -1,17 +1,16 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
-
-import React from 'react';
+import type { Meta, StoryObj } from '@storybook/react';
 
 import ResizingIcon from './ResizingIcon';
 
-export default {
+const meta: Meta<typeof ResizingIcon> = {
   title: 'Icons/ResizingIcon',
   component: ResizingIcon,
-} as ComponentMeta<typeof ResizingIcon>;
+};
 
-const Template: ComponentStory<typeof ResizingIcon> = (args) => (
-  <ResizingIcon {...args} />
-);
+export default meta;
 
-export const Default = Template.bind({});
-Default.args = {};
+type Story = StoryObj<typeof ResizingIcon>;
+
+export const Default: Story = {
+  args: {},
+};

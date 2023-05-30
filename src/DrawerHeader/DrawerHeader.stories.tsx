@@ -1,4 +1,4 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 
 import Typography from '@mui/material/Typography';
 
@@ -6,7 +6,7 @@ import React from 'react';
 
 import DrawerHeader from './DrawerHeader';
 
-export default {
+const meta: Meta<typeof DrawerHeader> = {
   title: 'Common/DrawerHeader',
   component: DrawerHeader,
 
@@ -15,13 +15,18 @@ export default {
       action: 'clicked',
     },
   },
-} as ComponentMeta<typeof DrawerHeader>;
 
-const Template: ComponentStory<typeof DrawerHeader> = (args) => (
-  <DrawerHeader {...args}>
-    <Typography>My Title</Typography>
-  </DrawerHeader>
-);
+  render: (args) => (
+    <DrawerHeader {...args}>
+      <Typography>My Title</Typography>
+    </DrawerHeader>
+  ),
+};
 
-export const Example = Template.bind({});
-Example.args = {};
+export default meta;
+
+type Story = StoryObj<typeof DrawerHeader>;
+
+export const Example: Story = {
+  args: {},
+};

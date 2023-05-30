@@ -1,4 +1,4 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 
 import React from 'react';
 
@@ -14,20 +14,25 @@ const ComponentWithAuthorization = withAuthorization(BuildIcon, {
   currentMember: convertJs({ id: 'member', name: 'member' }),
 });
 
-export default {
+const meta: Meta<typeof withAuthorization> = {
   title: 'Actions/Autorization',
   component: ComponentWithAuthorization,
 
   argTypes: {
     onRedirect: { action: 'onRedirect' },
   },
-} as ComponentMeta<typeof ComponentWithAuthorization>;
-
-const Template: ComponentStory<typeof ComponentWithAuthorization> = () => {
-  const Component = withAuthorization(BuildIcon, {
-    redirectionLink,
-    currentMember: convertJs({ id: 'member', name: 'member' }),
-  });
-  return <Component />;
 };
-export const Authorized = Template.bind({});
+
+export default meta;
+
+type Story = StoryObj<typeof withAuthorization>;
+
+export const Authorized: Story = {
+  render: () => {
+    const Component = withAuthorization(BuildIcon, {
+      redirectionLink,
+      currentMember: convertJs({ id: 'member', name: 'member' }),
+    });
+    return <Component />;
+  },
+};
