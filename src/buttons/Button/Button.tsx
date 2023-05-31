@@ -36,6 +36,7 @@ export type GraaspButtonProps = {
    * styles
    */
   sx?: SxProps;
+  type?: ButtonProps['type'];
   variant?: ButtonProps['variant'];
 };
 
@@ -60,6 +61,7 @@ export const GraaspButton: FC<GraaspButtonProps> = ({
   size = 'medium',
   startIcon,
   sx,
+  type,
   variant = 'contained',
 }) => {
   return (
@@ -77,6 +79,7 @@ export const GraaspButton: FC<GraaspButtonProps> = ({
       size={size}
       startIcon={startIcon}
       sx={sx}
+      type={type}
       variant={variant}
     >
       {children}
