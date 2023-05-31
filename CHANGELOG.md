@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.0.0-rc.2](https://github.com/graasp/graasp-ui/compare/v3.0.0-rc1...v3.0.0-rc.2) (2023-05-31)
+
+
+### Features
+
+* adds type to button ([#361](https://github.com/graasp/graasp-ui/issues/361)) ([64a4646](https://github.com/graasp/graasp-ui/commit/64a464652834469cb57b3846a1ad76bf7e6adf71))
+
+
+### Bug Fixes
+
+* storybook build command in storybook build workflow ([#358](https://github.com/graasp/graasp-ui/issues/358)) ([d6c999e](https://github.com/graasp/graasp-ui/commit/d6c999eee1c90b002d101def14cdd96d01ff3488))
+
 ## [3.0.0-rc1](https://github.com/graasp/graasp-ui/compare/v2.5.0...v3.0.0-rc1) (2023-05-30)
 
 
