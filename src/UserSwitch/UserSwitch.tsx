@@ -42,6 +42,7 @@ interface Props {
   isMemberLoading?: boolean;
   member?: MemberRecord;
   members?: List<MemberRecord>;
+  menuId?: string;
   onMemberClick?: (_id: string) => MouseEventHandler;
   onSeeProfileClick?: MouseEventHandler;
   renderAvatar?: (member?: MemberRecord) => JSX.Element;
@@ -56,6 +57,7 @@ const UserSwitch: FC<Props> = ({
   buttonId,
   isMemberLoading = false,
   member,
+  menuId,
   onSeeProfileClick,
   renderAvatar = () => <></>,
   seeProfileButtonId,
@@ -199,10 +201,19 @@ const UserSwitch: FC<Props> = ({
 
   return (
     <>
-      <StyledWrapper onClick={handleClick} id={buttonId}>
+      <StyledWrapper
+        onClick={handleClick}
+        id={buttonId}
+        role='button'
+        aria-haspopup={'menu'}
+        aria-controls={menuId}
+        aria-expanded={Boolean(anchorEl)}
+        tabIndex={0}
+      >
         {renderButtonContent()}
       </StyledWrapper>
       <Menu
+        id={menuId}
         anchorEl={anchorEl}
         keepMounted
         open={Boolean(anchorEl)}
