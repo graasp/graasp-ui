@@ -36,8 +36,21 @@ export interface HeaderUserInformationProps {
   username: string;
   id?: UUID;
   isLoading?: boolean;
+  isPopUpOpen?: boolean;
   noUsernameMessage?: string;
   onClick?: MouseEventHandler<HTMLDivElement>;
+  popUpType?:
+    | boolean
+    | 'dialog'
+    | 'menu'
+    | 'grid'
+    | 'listbox'
+    | 'false'
+    | 'true'
+    | 'tree'
+    | undefined;
+  popUpId?: string;
+  role?: string;
 }
 
 const HeaderUserInformation: FC<HeaderUserInformationProps> = ({
@@ -47,6 +60,10 @@ const HeaderUserInformation: FC<HeaderUserInformationProps> = ({
   noUsernameMessage,
   onClick,
   username,
+  popUpType,
+  popUpId,
+  isPopUpOpen,
+  role,
 }) => {
   if (isLoading) {
     return (
@@ -62,7 +79,14 @@ const HeaderUserInformation: FC<HeaderUserInformationProps> = ({
   }
 
   return (
-    <WrapperDiv onClick={onClick} id={id}>
+    <WrapperDiv
+      onClick={onClick}
+      id={id}
+      role={role}
+      aria-haspopup={popUpType}
+      aria-controls={popUpId}
+      aria-expanded={isPopUpOpen}
+    >
       <Tooltip
         title={username || noUsernameMessage || 'You are not signed in.'}
       >
