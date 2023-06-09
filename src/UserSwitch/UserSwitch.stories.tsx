@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 
 import Avatar from '../Avatar/Avatar';
-import { MOCK_MEMBER } from '../utils/fixtures';
+import { MOCK_MEMBER_RECORD } from '../utils/fixtures';
 import { TABLE_CATEGORIES } from '../utils/storybook';
 import UserSwitch from './UserSwitch';
 
@@ -26,11 +26,11 @@ type Story = StoryObj<typeof UserSwitch>;
 
 export const SignedIn: Story = {
   args: {
-    member: MOCK_MEMBER,
+    member: MOCK_MEMBER_RECORD,
     renderAvatar: () => (
       <Avatar
         url={'https://picsum.photos/100'}
-        alt={`profile image ${MOCK_MEMBER?.name}`}
+        alt={`profile image ${MOCK_MEMBER_RECORD?.name}`}
         component={'avatar'}
         sx={{ mx: 1 }}
       />
