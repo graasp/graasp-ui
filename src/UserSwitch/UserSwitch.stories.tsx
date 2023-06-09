@@ -4,20 +4,11 @@ import React from 'react';
 
 import Avatar from '../Avatar/Avatar';
 import { MOCK_MEMBER_RECORD } from '../utils/fixtures';
-import { TABLE_CATEGORIES } from '../utils/storybook';
 import UserSwitch from './UserSwitch';
 
 const meta: Meta<typeof UserSwitch> = {
   title: 'Common/UserSwitch',
   component: UserSwitch,
-
-  argTypes: {
-    id: {
-      table: {
-        category: TABLE_CATEGORIES.SELECTORS,
-      },
-    },
-  },
 };
 
 export default meta;
