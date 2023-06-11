@@ -140,6 +140,7 @@ export const PlatformSwitch: FC<PlatformSwitchProps> = ({
           }}
           {...mouseHoverEvents}
           href={(!platformProps?.disabled && platformProps?.href) || '#'}
+          aria-disabled={platformProps?.disabled}
         >
           <Icon {...iconProps} {...hoverStyles} {...disabledStyles} />
         </a>
