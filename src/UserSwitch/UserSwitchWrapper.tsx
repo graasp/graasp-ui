@@ -1,3 +1,5 @@
+import type { UseQueryResult } from '@tanstack/react-query';
+
 import MeetingRoomIcon from '@mui/icons-material/MeetingRoom';
 import { Divider } from '@mui/material';
 import ListItemIcon from '@mui/material/ListItemIcon';
@@ -5,7 +7,6 @@ import MenuItem from '@mui/material/MenuItem';
 import Typography from '@mui/material/Typography';
 
 import React, { FC } from 'react';
-import type { UseQueryResult } from 'react-query';
 
 import { Member, redirect } from '@graasp/sdk';
 import { MemberRecord, ResultOfRecord } from '@graasp/sdk/frontend';

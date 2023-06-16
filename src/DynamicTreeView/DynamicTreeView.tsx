@@ -1,3 +1,4 @@
+import type { UseQueryResult } from '@tanstack/react-query';
 import { List } from 'immutable';
 
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
@@ -7,7 +8,6 @@ import TreeView from '@mui/lab/TreeView';
 import Skeleton from '@mui/material/Skeleton';
 
 import React, { FC, useState } from 'react';
-import type { UseQueryResult } from 'react-query';
 
 import { ItemRecord } from '@graasp/sdk/frontend';
 

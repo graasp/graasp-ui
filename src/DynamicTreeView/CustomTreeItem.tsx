@@ -5,7 +5,7 @@ import { styled } from '@mui/material';
 import Skeleton from '@mui/material/Skeleton';
 
 import React, { FC } from 'react';
-import type { UseQueryResult } from 'react-query';
+import type { UseQueryResult } from '@tanstack/react-query';
 
 import { ItemRecord } from '@graasp/sdk/frontend';
 

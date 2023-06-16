@@ -1,9 +1,9 @@
+import type { UseMutateFunction, UseQueryResult } from '@tanstack/react-query';
 import { StatusCodes, getReasonPhrase } from 'http-status-codes';
 
 import Alert from '@mui/material/Alert';
 
 import React, { ReactElement } from 'react';
-import { UseMutateFunction, UseQueryResult } from 'react-query';
 
 import { ItemLoginSchemaType, UUID } from '@graasp/sdk';
 import { ItemRecord, MemberRecord } from '@graasp/sdk/frontend';
