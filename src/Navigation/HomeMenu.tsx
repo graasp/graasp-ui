@@ -14,7 +14,13 @@ import { Separator, StyledIconButton, StyledLink } from './utils';
 
 type Props = {
   selected: { name: string; id: string; to: string };
-  elements: { name: string; id: string; to: string }[];
+  elements: {
+    name: string;
+    id: string;
+    to: string;
+  }[];
+  buildMenuId?: (itemId: string) => string;
+  buildMenuItemId?: (itemId: string) => string;
 };
 
 const HomeMenu = ({ elements, selected }: Props): JSX.Element | null => {

@@ -56,7 +56,7 @@ const parents = List([buildItem('parent 1'), buildItem('parent 2')]);
 const children = List([buildItem('child 1'), buildItem('child 2')]);
 const useChildren: ItemMenuProps['useChildren'] = (id) => {
   console.debug('show children of ' + id);
-  return { data: children };
+  return { data: children } as any;
 };
 const buildToItemPath = (id: string): string => id;
 
@@ -82,7 +82,7 @@ export const Default: Story = {
                   buildItem('Home item 1'),
                   buildItem('Home item 2'),
                 ]),
-              };
+              } as any;
             }}
             buildToItemPath={buildToItemPath}
           />
