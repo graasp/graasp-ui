@@ -122,6 +122,7 @@
     "@trivago/prettier-plugin-sort-imports": "4.1.1",
     "@types/jest": "29.5.1",
     "@types/katex": "0.16.0",
+    "@types/lodash.truncate": "4.4.7",
     "@types/node": "20.2.3",
     "@types/qs": "6.9.7",
     "@types/react": "18.0.10",
