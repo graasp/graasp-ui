@@ -1,11 +1,13 @@
 import { List } from 'immutable';
 import truncate from 'lodash.truncate';
 
+import { SxProps } from '@mui/material';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Typography from '@mui/material/Typography';
 
 import React from 'react';
 
+import { ItemType } from '@graasp/sdk';
 import { ItemRecord } from '@graasp/sdk/frontend';
 
 import ItemMenu, { ItemMenuProps } from './ItemMenu';
@@ -25,6 +27,7 @@ export type NavigationProps = {
   parents?: List<ItemRecord>;
   useChildren: ItemMenuProps['useChildren'];
   renderRoot?: (item?: ItemRecord) => JSX.Element;
+  sx?: SxProps;
 };
 
 const Navigation = ({
@@ -36,6 +39,7 @@ const Navigation = ({
   parents,
   renderRoot,
   useChildren,
+  sx,
 }: NavigationProps): JSX.Element | null => {
   const renderParents = (): JSX.Element[] | undefined =>
     parents?.toJS()?.map(({ name, id }) => (
@@ -69,12 +73,20 @@ const Navigation = ({
             {truncate(item.name, { length: ITEM_NAME_MAX_LENGTH })}
           </Typography>
         </StyledLink>
+        {item.type === ItemType.FOLDER && (
+          <ItemMenu
+            useChildren={useChildren}
+            itemId={item.id}
+            buildToItemPath={buildToItemPath}
+          />
+        )}
       </CenterAlignWrapper>
     );
   };
 
   return (
     <Breadcrumbs
+      sx={sx}
       id={id}
       separator={<></>}
       aria-label='breadcrumb'
