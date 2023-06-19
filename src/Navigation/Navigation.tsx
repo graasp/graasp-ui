@@ -13,7 +13,6 @@ import {
   CenterAlignWrapper,
   ITEM_NAME_MAX_LENGTH,
   ParentLink,
-  Separator,
   StyledLink,
 } from './utils';
 
@@ -50,7 +49,6 @@ const Navigation = ({
           useChildren={useChildren}
           itemId={id}
           buildToItemPath={buildToItemPath}
-          icon={Separator}
         />
       </CenterAlignWrapper>
     ));
@@ -82,7 +80,7 @@ const Navigation = ({
       aria-label='breadcrumb'
       style={{ backgroundColor }}
     >
-      {renderRoot?.(item)}
+      <CenterAlignWrapper>{renderRoot?.(item)}</CenterAlignWrapper>
       {item?.id && renderParents()}
       {item?.id && renderCurrentItem()}
     </Breadcrumbs>

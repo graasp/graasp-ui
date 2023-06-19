@@ -1,6 +1,5 @@
 import { List } from 'immutable';
 
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import { IconButtonProps, Menu, MenuItem, Typography } from '@mui/material';
 
 import React from 'react';
@@ -8,7 +7,7 @@ import { Link } from 'react-router-dom';
 
 import { ItemRecord } from '@graasp/sdk/frontend';
 
-import { StyledIconButton } from './utils';
+import { Separator, StyledIconButton } from './utils';
 
 export type ItemMenuProps = {
   itemId: string;
@@ -25,7 +24,7 @@ const ItemMenu = ({
   buildMenuItemId,
   buildToItemPath,
   useChildren,
-  icon,
+  icon = Separator,
 }: ItemMenuProps): JSX.Element | null => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -52,7 +51,7 @@ const ItemMenu = ({
         aria-haspopup='true'
         aria-expanded={open ? true : undefined}
       >
-        {icon ?? <ArrowDropDownIcon />}
+        {icon}
       </StyledIconButton>
       <Menu
         anchorEl={anchorEl}

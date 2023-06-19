@@ -29,7 +29,7 @@ const HomeMenu = ({ elements, selected }: Props): JSX.Element | null => {
     setAnchorEl(null);
   };
 
-  const onClick: MenuProps['onClick'] = (e): void => {
+  const onClick: MenuProps['onClick'] = (): void => {
     handleClose();
   };
 

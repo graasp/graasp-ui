@@ -11,7 +11,6 @@ import { MOCK_MEMBER } from '../utils/fixtures';
 import HomeMenu from './HomeMenu';
 import ItemMenu, { ItemMenuProps } from './ItemMenu';
 import Navigation from './Navigation';
-import { CenterAlignWrapper, Separator } from './utils';
 
 const buildItem = (name: string): ItemRecord =>
   convertJs<LocalFileItemType>({
@@ -70,13 +69,12 @@ export const Default: Story = {
   args: {
     buildToItemPath,
     useChildren,
-    item,
+
     renderRoot: () => {
       return (
-        <CenterAlignWrapper>
+        <>
           <HomeMenu selected={menu[0]} elements={menu} />
           <ItemMenu
-            icon={Separator}
             itemId={item.id}
             useChildren={() => {
               return {
@@ -88,7 +86,7 @@ export const Default: Story = {
             }}
             buildToItemPath={buildToItemPath}
           />
-        </CenterAlignWrapper>
+        </>
       );
     },
     parents,
