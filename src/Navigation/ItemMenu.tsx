@@ -15,8 +15,9 @@ export type ItemMenuProps = {
   buildMenuId?: (itemId: string) => string;
   buildMenuItemId?: (itemId: string) => string;
   buildToItemPath: (itemId: string) => string;
-  useChildren: (id: string) => UseQueryResult<List<ItemRecord>>;
+  useChildren: (...args: unknown[]) => UseQueryResult<List<ItemRecord>>;
   icon?: JSX.Element;
+  buildIconId?: (id: string) => string;
 };
 
 const ItemMenu = ({
@@ -25,6 +26,7 @@ const ItemMenu = ({
   buildMenuItemId,
   buildToItemPath,
   useChildren,
+  buildIconId,
   icon = Separator,
 }: ItemMenuProps): JSX.Element | null => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -48,6 +50,7 @@ const ItemMenu = ({
     <>
       <StyledIconButton
         onClick={handleClick}
+        id={buildIconId?.(itemId)}
         aria-controls={open ? buildMenuId?.(itemId) : undefined}
         aria-haspopup='true'
         aria-expanded={open ? true : undefined}

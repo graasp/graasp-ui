@@ -26,7 +26,7 @@ export type NavigationProps = {
   item?: ItemRecord;
   parents?: List<ItemRecord>;
   useChildren: ItemMenuProps['useChildren'];
-  renderRoot?: (item?: ItemRecord) => JSX.Element;
+  renderRoot?: (item?: ItemRecord) => JSX.Element | null;
   sx?: SxProps;
 };
 

@@ -21,9 +21,14 @@ type Props = {
   }[];
   buildMenuId?: (itemId: string) => string;
   buildMenuItemId?: (itemId: string) => string;
+  homeDropdownId?: string;
 };
 
-const HomeMenu = ({ elements, selected }: Props): JSX.Element | null => {
+const HomeMenu = ({
+  elements,
+  selected,
+  homeDropdownId,
+}: Props): JSX.Element | null => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
@@ -44,6 +49,7 @@ const HomeMenu = ({ elements, selected }: Props): JSX.Element | null => {
       <HomeIcon />
       <StyledIconButton
         onClick={handleClick}
+        id={homeDropdownId}
         aria-controls={open ? 'root' : undefined}
         aria-haspopup='true'
         aria-expanded={open ? true : undefined}
