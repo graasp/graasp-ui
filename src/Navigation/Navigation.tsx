@@ -21,25 +21,31 @@ import {
 export type NavigationProps = {
   backgroundColor?: string;
   buildBreadcrumbsItemLinkId?: (id: string) => string;
+  buildIconId?: (id: string) => string;
+  buildMenuItemId?: (id: string) => string;
   buildToItemPath: (id: string) => string;
+  buildMenuId?: (id: string) => string;
   id?: string;
   item?: ItemRecord;
   parents?: List<ItemRecord>;
-  useChildren: ItemMenuProps['useChildren'];
   renderRoot?: (item?: ItemRecord) => JSX.Element | null;
   sx?: SxProps;
+  useChildren: ItemMenuProps['useChildren'];
 };
 
 const Navigation = ({
   backgroundColor,
   buildBreadcrumbsItemLinkId,
+  buildIconId,
+  buildMenuItemId,
   buildToItemPath,
   id,
   item,
   parents,
   renderRoot,
-  useChildren,
   sx,
+  useChildren,
+  buildMenuId,
 }: NavigationProps): JSX.Element | null => {
   const renderParents = (): JSX.Element[] | undefined =>
     parents?.toJS()?.map(({ name, id }) => (
@@ -78,6 +84,9 @@ const Navigation = ({
             useChildren={useChildren}
             itemId={item.id}
             buildToItemPath={buildToItemPath}
+            buildIconId={buildIconId}
+            buildMenuItemId={buildMenuItemId}
+            buildMenuId={buildMenuId}
           />
         )}
       </CenterAlignWrapper>

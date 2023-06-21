@@ -11,23 +11,23 @@ import { ItemRecord } from '@graasp/sdk/frontend';
 import { Separator, StyledIconButton } from './utils';
 
 export type ItemMenuProps = {
-  itemId: string;
+  buildIconId?: (id: string) => string;
   buildMenuId?: (itemId: string) => string;
   buildMenuItemId?: (itemId: string) => string;
   buildToItemPath: (itemId: string) => string;
-  useChildren: (...args: unknown[]) => UseQueryResult<List<ItemRecord>>;
   icon?: JSX.Element;
-  buildIconId?: (id: string) => string;
+  itemId: string;
+  useChildren: (...args: unknown[]) => UseQueryResult<List<ItemRecord>>;
 };
 
 const ItemMenu = ({
-  itemId,
+  buildIconId,
   buildMenuId,
   buildMenuItemId,
   buildToItemPath,
-  useChildren,
-  buildIconId,
   icon = Separator,
+  itemId,
+  useChildren,
 }: ItemMenuProps): JSX.Element | null => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
