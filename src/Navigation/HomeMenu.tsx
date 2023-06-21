@@ -19,15 +19,17 @@ type Props = {
     id: string;
     to: string;
   }[];
-  buildMenuId?: (itemId: string) => string;
+  menuId?: string;
   buildMenuItemId?: (itemId: string) => string;
   homeDropdownId?: string;
 };
 
 const HomeMenu = ({
+  buildMenuItemId,
   elements,
-  selected,
   homeDropdownId,
+  menuId,
+  selected,
 }: Props): JSX.Element | null => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -59,7 +61,7 @@ const HomeMenu = ({
       <Menu
         anchorEl={anchorEl}
         open={open}
-        id='root'
+        id={menuId}
         onClose={handleClose}
         onClick={onClick}
         anchorOrigin={{
@@ -73,7 +75,12 @@ const HomeMenu = ({
       >
         {elements.map(({ name, id, to }) => {
           return (
-            <MenuItem key={id} component={Link} to={to}>
+            <MenuItem
+              key={id}
+              component={Link}
+              to={to}
+              id={buildMenuItemId?.(id)}
+            >
               <Typography>{name}</Typography>
             </MenuItem>
           );
