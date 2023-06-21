@@ -52,7 +52,7 @@ const Navigation = ({
       <CenterAlignWrapper key={id}>
         <ParentLink
           name={truncate(name, { length: ITEM_NAME_MAX_LENGTH })}
-          id={id}
+          id={buildBreadcrumbsItemLinkId?.(id)}
           to={buildToItemPath(id)}
         />
         <ItemMenu

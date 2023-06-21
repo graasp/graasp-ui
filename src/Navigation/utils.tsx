@@ -18,7 +18,7 @@ export const StyledLink = styled(Link)({
 });
 
 export type ParentLinkProps = {
-  id: string;
+  id?: string;
   name: string;
   to: string;
 };
