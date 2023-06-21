@@ -4,7 +4,7 @@ import Skeleton from '@mui/material/Skeleton';
 import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
 
-import React, { FC, MouseEventHandler } from 'react';
+import React, { AriaAttributes, FC, MouseEventHandler } from 'react';
 
 import { UUID } from '@graasp/sdk';
 
@@ -36,8 +36,12 @@ export interface HeaderUserInformationProps {
   username: string;
   id?: UUID;
   isLoading?: boolean;
+  isPopUpOpen?: boolean;
   noUsernameMessage?: string;
   onClick?: MouseEventHandler<HTMLDivElement>;
+  popUpType?: AriaAttributes['aria-haspopup'];
+  popUpId?: string;
+  role?: string;
 }
 
 const HeaderUserInformation: FC<HeaderUserInformationProps> = ({
@@ -47,6 +51,10 @@ const HeaderUserInformation: FC<HeaderUserInformationProps> = ({
   noUsernameMessage,
   onClick,
   username,
+  popUpType,
+  popUpId,
+  isPopUpOpen,
+  role,
 }) => {
   if (isLoading) {
     return (
@@ -62,7 +70,14 @@ const HeaderUserInformation: FC<HeaderUserInformationProps> = ({
   }
 
   return (
-    <WrapperDiv onClick={onClick} id={id}>
+    <WrapperDiv
+      onClick={onClick}
+      id={id}
+      role={role}
+      aria-haspopup={popUpType}
+      aria-controls={popUpId}
+      aria-expanded={isPopUpOpen}
+    >
       <Tooltip
         title={username || noUsernameMessage || 'You are not signed in.'}
       >
