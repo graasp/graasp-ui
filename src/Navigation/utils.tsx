@@ -1,5 +1,5 @@
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
-import { IconButton, Typography, styled } from '@mui/material';
+import { IconButton, styled } from '@mui/material';
 
 import React from 'react';
 import { Link } from 'react-router-dom';
@@ -16,18 +16,6 @@ export const StyledLink = styled(Link)({
   textDecoration: 'none',
   color: 'text.primary',
 });
-
-export type ParentLinkProps = {
-  id?: string;
-  name: string;
-  to: string;
-};
-
-export const ParentLink = ({ name, id, to }: ParentLinkProps): JSX.Element => (
-  <StyledLink id={id} to={to}>
-    <Typography>{name}</Typography>
-  </StyledLink>
-);
 
 export const Separator = <NavigateNextIcon />;
 

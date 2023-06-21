@@ -50,6 +50,7 @@ const HomeMenu = ({
     <>
       <HomeIcon />
       <StyledIconButton
+        sx={{ marginRight: 2 }}
         onClick={handleClick}
         id={homeDropdownId}
         aria-controls={open ? 'root' : undefined}

@@ -42,7 +42,7 @@ const ItemMenu = ({
     setAnchorEl(null);
   };
 
-  if (!items) {
+  if (!items || items.isEmpty()) {
     return null;
   }
 

@@ -4,6 +4,7 @@ import truncate from 'lodash.truncate';
 import { SxProps } from '@mui/material';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Typography from '@mui/material/Typography';
+import { styled } from '@mui/material/styles';
 
 import React from 'react';
 
@@ -11,12 +12,13 @@ import { ItemType } from '@graasp/sdk';
 import { ItemRecord } from '@graasp/sdk/frontend';
 
 import ItemMenu, { ItemMenuProps } from './ItemMenu';
-import {
-  CenterAlignWrapper,
-  ITEM_NAME_MAX_LENGTH,
-  ParentLink,
-  StyledLink,
-} from './utils';
+import { CenterAlignWrapper, ITEM_NAME_MAX_LENGTH, StyledLink } from './utils';
+
+const StyledBreadcrumbs = styled(Breadcrumbs)(({ theme }) => ({
+  '& ol': {
+    textIndent: -theme.typography.fontSize,
+  },
+}));
 
 export type NavigationProps = {
   backgroundColor?: string;
@@ -52,11 +54,14 @@ const Navigation = ({
   const renderParents = (): JSX.Element[] | undefined =>
     parents?.toJS()?.map(({ name, id }) => (
       <CenterAlignWrapper key={id}>
-        <ParentLink
-          name={truncate(name, { length: ITEM_NAME_MAX_LENGTH })}
+        <StyledLink
           id={buildBreadcrumbsItemLinkId?.(id)}
           to={buildToItemPath(id)}
-        />
+        >
+          <Typography>
+            {truncate(name, { length: ITEM_NAME_MAX_LENGTH })}
+          </Typography>
+        </StyledLink>
         <ItemMenu
           useChildren={useChildren}
           itemId={id}
@@ -96,7 +101,7 @@ const Navigation = ({
   };
 
   return (
-    <Breadcrumbs
+    <StyledBreadcrumbs
       sx={sx}
       id={id}
       maxItems={maxItems}
@@ -107,7 +112,7 @@ const Navigation = ({
       <CenterAlignWrapper>{renderRoot?.(item)}</CenterAlignWrapper>
       {item?.id && renderParents()}
       {item?.id && renderCurrentItem()}
-    </Breadcrumbs>
+    </StyledBreadcrumbs>
   );
 };
 
