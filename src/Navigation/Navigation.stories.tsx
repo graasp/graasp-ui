@@ -1,18 +1,12 @@
 import { expect } from '@storybook/jest';
 import type { Meta, StoryObj } from '@storybook/react';
-import { userEvent, within } from '@storybook/testing-library';
+import { within } from '@storybook/testing-library';
 import { List } from 'immutable';
 
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 
-import {
-  FolderItemType,
-  ItemType,
-  LocalFileItemType,
-  MimeTypes,
-  convertJs,
-} from '@graasp/sdk';
+import { ItemType, LocalFileItemType, MimeTypes, convertJs } from '@graasp/sdk';
 import { FolderItemTypeRecord, ItemRecord } from '@graasp/sdk/frontend';
 
 import { MOCK_MEMBER } from '../utils/fixtures';
