@@ -59,7 +59,7 @@
     "qs": "6.11.2",
     "quill-emoji": "0.2.0",
     "react-cookie-consent": "7.4.1",
-    "react-quill": "2.0.0",
+    "react-quill": "2.0.0-beta.4",
     "react-rnd": "10.4.1",
     "react-text-mask": "5.5.0",
     "uuid": "9.0.0"
