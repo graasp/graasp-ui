@@ -31,6 +31,7 @@ export type NavigationProps = {
   renderRoot?: (item?: ItemRecord) => JSX.Element | null;
   sx?: SxProps;
   useChildren: ItemMenuProps['useChildren'];
+  maxItems?: number;
 };
 
 const Navigation = ({
@@ -46,6 +47,7 @@ const Navigation = ({
   sx,
   useChildren,
   buildMenuId,
+  maxItems = 4,
 }: NavigationProps): JSX.Element | null => {
   const renderParents = (): JSX.Element[] | undefined =>
     parents?.toJS()?.map(({ name, id }) => (
@@ -97,6 +99,7 @@ const Navigation = ({
     <Breadcrumbs
       sx={sx}
       id={id}
+      maxItems={maxItems}
       separator={<></>}
       aria-label='breadcrumb'
       style={{ backgroundColor }}
