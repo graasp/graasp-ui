@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.0.0](https://github.com/graasp/graasp-ui/compare/v3.0.0-rc.2...v3.0.0) (2023-06-21)
+
+
+### Features
+
+* **a11y:** add role to userSwitchButton ([#363](https://github.com/graasp/graasp-ui/issues/363)) ([807d7f0](https://github.com/graasp/graasp-ui/commit/807d7f0fbb52e6081e05191ae0a9dca244f77758))
+* sets aria-disabled on disabled links in platform switch ([7b82abd](https://github.com/graasp/graasp-ui/commit/7b82abd598684af0cacf9104ff88c01526ca279a))
+
+
+### Bug Fixes
+
+* **deps:** revert react-quill to 2.0.0-beta.4 ([#370](https://github.com/graasp/graasp-ui/issues/370)) ([c3e8282](https://github.com/graasp/graasp-ui/commit/c3e828258843a3607b360b8dbd9bc9c8a8fdb6bf))
+
+
+### chore
+
+* **releases:** release 3.0.0 ([bfb125b](https://github.com/graasp/graasp-ui/commit/bfb125bf274ad04db95f355c59f62a786de4d72c))
+
 ## [3.0.0-rc.2](https://github.com/graasp/graasp-ui/compare/v3.0.0-rc1...v3.0.0-rc.2) (2023-05-31)
 
 
