@@ -75,7 +75,7 @@ const HeaderUserInformation: FC<HeaderUserInformationProps> = ({
       id={id}
       role={role}
       aria-haspopup={popUpType}
-      {...(popUpId ? { 'aria-controls': popUpId } : {})}
+      aria-controls={popUpId}
       aria-expanded={isPopUpOpen}
     >
       <Tooltip
