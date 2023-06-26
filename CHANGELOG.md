@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.2.0](https://github.com/graasp/graasp-ui/compare/v3.1.0...v3.2.0) (2023-06-26)
+
+
+### Features
+
+* makes altText changable for images in FileItem ([#356](https://github.com/graasp/graasp-ui/issues/356)) ([ff34701](https://github.com/graasp/graasp-ui/commit/ff34701b6908b8a38ddeb60f87ad9e90ef072b24))
+
 ## [3.1.0](https://github.com/graasp/graasp-ui/compare/v3.0.0...v3.1.0) (2023-06-26)
 
 
