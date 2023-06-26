@@ -52,7 +52,8 @@ const Navigation = ({
   maxItems = 4,
 }: NavigationProps): JSX.Element | null => {
   const renderParents = (): JSX.Element[] | undefined =>
-    parents?.toJS()?.map(({ name, id }) => (
+    // need to convert otherwise it returns List<Element>
+    parents?.toArray()?.map(({ name, id }) => (
       <CenterAlignWrapper key={id}>
         <StyledLink
           id={buildBreadcrumbsItemLinkId?.(id)}

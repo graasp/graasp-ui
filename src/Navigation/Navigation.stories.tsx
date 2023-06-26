@@ -7,7 +7,7 @@ import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 
 import { ItemType, LocalFileItemType, MimeTypes, convertJs } from '@graasp/sdk';
-import { FolderItemTypeRecord, ItemRecord } from '@graasp/sdk/frontend';
+import { ItemRecord } from '@graasp/sdk/frontend';
 
 import { MOCK_MEMBER } from '../utils/fixtures';
 import HomeMenu from './HomeMenu';
@@ -77,7 +77,7 @@ const folder = convertJs({
   creator: MOCK_MEMBER,
   createdAt: new Date(),
   updatedAt: new Date(),
-}) as FolderItemTypeRecord;
+});
 
 const menu = [
   { name: 'Home', id: 'home', to: 'home' },

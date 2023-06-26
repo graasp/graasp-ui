@@ -30,7 +30,7 @@ const HomeMenu = ({
   homeDropdownId,
   menuId,
   selected,
-}: Props): JSX.Element | null => {
+}: Props): JSX.Element => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
@@ -74,18 +74,16 @@ const HomeMenu = ({
           horizontal: 'left',
         }}
       >
-        {elements.map(({ name, id, to }) => {
-          return (
-            <MenuItem
-              key={id}
-              component={Link}
-              to={to}
-              id={buildMenuItemId?.(id)}
-            >
-              <Typography>{name}</Typography>
-            </MenuItem>
-          );
-        })}
+        {elements.map(({ name, id, to }) => (
+          <MenuItem
+            key={id}
+            component={Link}
+            to={to}
+            id={buildMenuItemId?.(id)}
+          >
+            <Typography>{name}</Typography>
+          </MenuItem>
+        ))}
       </Menu>
       <StyledLink to={selected.to} key={selected.id}>
         <Typography>{selected.name}</Typography>
