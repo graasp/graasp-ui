@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.1.0](https://github.com/graasp/graasp-ui/compare/v3.0.0...v3.1.0) (2023-06-26)
+
+
+### Features
+
+* add breadcrumb navigation ([#368](https://github.com/graasp/graasp-ui/issues/368)) ([7d03ac9](https://github.com/graasp/graasp-ui/commit/7d03ac975aa6c290790fd2f1c704187db8f13e5d))
+
+
+### Bug Fixes
+
+* **deps:** update dependency @graasp/sdk to v1.0.0 ([7322c8e](https://github.com/graasp/graasp-ui/commit/7322c8e4b321ca35d22d7e2fbf75a62f8266b9a5))
+
 ## [3.0.0](https://github.com/graasp/graasp-ui/compare/v3.0.0-rc.2...v3.0.0) (2023-06-21)
 
 
