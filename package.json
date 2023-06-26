@@ -54,7 +54,7 @@
     "clsx": "1.2.1",
     "http-status-codes": "2.2.0",
     "immutable": "4.3.0",
-    "katex": "0.16.7",
+    "katex": "0.16.8",
     "lodash.truncate": "4.4.2",
     "qs": "6.11.2",
     "quill-emoji": "0.2.0",
