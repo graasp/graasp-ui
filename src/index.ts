@@ -23,6 +23,9 @@ export * from './DrawerHeader';
 export { default as MainMenu } from './MainMenu';
 export * from './MainMenu';
 
+export { default as Navigation, HomeMenu, ItemMenu } from './Navigation';
+export * from './Navigation';
+
 export { default as Main } from './Main';
 export * from './Main';
 
