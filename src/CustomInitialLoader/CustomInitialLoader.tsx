@@ -35,7 +35,7 @@ const StyledLinearProgress = styled(LinearProgress)(({ theme }) => ({
   },
 }));
 
-const CustomInitialLoader: React.FC<CustomInitialLoaderProps> = ({ id }) => {
+const CustomInitialLoader = ({ id }: CustomInitialLoaderProps): JSX.Element => {
   const theme = useTheme();
   return (
     <StyledContainer id={id}>

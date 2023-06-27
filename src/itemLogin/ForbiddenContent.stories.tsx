@@ -2,12 +2,10 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import { TABLE_CATEGORIES } from '../utils/storybook';
 import ForbiddenContent from './ForbiddenContent';
-import ForbiddenText from './ForbiddenText';
 
 const meta: Meta<typeof ForbiddenContent> = {
   title: 'Common/ForbiddenContent',
   component: ForbiddenContent,
-  subcomponents: { ForbiddenText },
 
   argTypes: {
     id: {

@@ -6,7 +6,7 @@ import 'quill-emoji/dist/quill-emoji.css';
 
 import { styled } from '@mui/material';
 
-import React, { FC, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ReactQuill, { Quill } from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 
@@ -97,7 +97,7 @@ const Div = styled('div')(
   }),
 );
 
-const TextEditor: FC<TextEditorProps> = ({
+const TextEditor = ({
   cancelButtonId,
   cancelButtonText = 'Cancel',
   edit = false,
@@ -113,7 +113,7 @@ const TextEditor: FC<TextEditorProps> = ({
   showActions = true,
   styles,
   value: initialValue = '',
-}) => {
+}: TextEditorProps): JSX.Element | null => {
   // keep current content
   const [content, setContent] = useState(initialValue ?? '');
 

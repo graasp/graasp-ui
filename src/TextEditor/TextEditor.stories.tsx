@@ -16,7 +16,7 @@ const FORMULA =
 const meta: Meta<typeof TextEditor> = {
   title: 'Common/TextEditor',
   component: TextEditor,
-  render: (args) => <TextEditor {...args}>{args.children}</TextEditor>,
+  render: (args) => <TextEditor {...args} />,
 };
 
 export default meta;
