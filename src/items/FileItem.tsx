@@ -23,7 +23,7 @@ import withCaption from './withCaption';
 
 export interface FileItemProps {
   /**
-   * blob content of the file, overriden by fileUrl
+   * blob content of the file, overridden by fileUrl
    * */
   content?: Blob;
   /**
@@ -113,14 +113,12 @@ const FileItem: FC<FileItemProps> = ({
       item.type === ItemType.LOCAL_FILE ? getFileExtra(item.extra) : undefined;
     const s3FileExtra =
       item.type === ItemType.S3_FILE ? getS3FileExtra(item.extra) : undefined;
+
     const {
       mimetype,
       name: originalFileName,
       altText = item.name,
-    } = {
-      ...fileExtra,
-      ...s3FileExtra,
-    };
+    } = { ...fileExtra?.toJS(), ...s3FileExtra?.toJS() };
 
     if (mimetype) {
       if (MimeTypes.isImage(mimetype)) {
