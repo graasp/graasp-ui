@@ -163,7 +163,7 @@
     "rollup-jest": "2.0.0",
     "rollup-plugin-copy": "3.4.0",
     "rollup-plugin-peer-deps-external": "2.2.4",
-    "rollup-plugin-scss": "3.0.0",
+    "rollup-plugin-scss": "4.0.0",
     "sass": "1.63.6",
     "storybook": "7.0.24",
     "ts-jest": "29.1.0",
