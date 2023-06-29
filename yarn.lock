@@ -4489,7 +4489,7 @@ __metadata:
     "@mui/lab": 5.0.0-alpha.134
     "@mui/material": 5.13.6
     "@rollup/plugin-babel": 6.0.3
-    "@rollup/plugin-commonjs": 24.1.0
+    "@rollup/plugin-commonjs": 25.0.2
     "@rollup/plugin-node-resolve": 15.1.0
     "@rollup/plugin-typescript": 11.1.2
     "@storybook/addon-a11y": 7.0.24
@@ -5621,9 +5621,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rollup/plugin-commonjs@npm:24.1.0":
-  version: 24.1.0
-  resolution: "@rollup/plugin-commonjs@npm:24.1.0"
+"@rollup/plugin-commonjs@npm:25.0.2":
+  version: 25.0.2
+  resolution: "@rollup/plugin-commonjs@npm:25.0.2"
   dependencies:
     "@rollup/pluginutils": ^5.0.1
     commondir: ^1.0.1
@@ -5636,7 +5636,7 @@ __metadata:
   peerDependenciesMeta:
     rollup:
       optional: true
-  checksum: 42faafc9bc8e04d75c86bb50d693ebb9c5eee19bf9ab3c09780b872547d12ff5ea85cfec7da75f5176d0aa4b5233101f667f44b85b331450a7bb14c95180852e
+  checksum: d8c4e22d264c5b9286f697653c2f9288149c0fe0169d49b83b5dc8b542f96cc0b9113da3f30d241f2f277513fbf3f8c207d95def5559eb3800190f1872add794
   languageName: node
   linkType: hard
 
