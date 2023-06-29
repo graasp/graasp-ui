@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.2.1](https://github.com/graasp/graasp-ui/compare/v3.2.0...v3.2.1) (2023-06-29)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @graasp/sdk to v1.1.1 ([#400](https://github.com/graasp/graasp-ui/issues/400)) ([2c1da3b](https://github.com/graasp/graasp-ui/commit/2c1da3bdbb319589aced05be5926b0a8c4c4a8d0))
+* **deps:** update dependency katex to v0.16.8 ([0b67e36](https://github.com/graasp/graasp-ui/commit/0b67e36ef0dc8260421d1b8a88b850fa25331435))
+* **deps:** update dependency react-cookie-consent to v7.6.0 ([#388](https://github.com/graasp/graasp-ui/issues/388)) ([47af96a](https://github.com/graasp/graasp-ui/commit/47af96a10e94a5ae76c2d99aca147ebf1bf68cee))
+* InputLoginScreen, storybook `subcomponent` and update devdependencies (non-major) (minor) ([#383](https://github.com/graasp/graasp-ui/issues/383)) ([892694e](https://github.com/graasp/graasp-ui/commit/892694ef582cc88351335bff35fcbd5d46ced3b7))
+* mimetype is undefined when items are immutable ([#399](https://github.com/graasp/graasp-ui/issues/399)) ([129f128](https://github.com/graasp/graasp-ui/commit/129f12886a1292b0514e0603dacdefb8313ef29b))
+
 ## [3.2.0](https://github.com/graasp/graasp-ui/compare/v3.1.0...v3.2.0) (2023-06-26)
 
 
