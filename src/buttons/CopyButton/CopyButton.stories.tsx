@@ -38,7 +38,7 @@ const meta: Meta<typeof CopyButton> = {
       },
     },
   },
-  render: (args) => <CopyButton {...args}>{args.children}</CopyButton>,
+  render: (args) => <CopyButton {...args} />,
 };
 
 export default meta;

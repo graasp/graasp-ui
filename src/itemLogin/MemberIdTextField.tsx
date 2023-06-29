@@ -1,11 +1,11 @@
-import React, { FC } from 'react';
+import React, { InputHTMLAttributes } from 'react';
 import MaskedInput from 'react-text-mask';
 
-interface Props {
+type Props = {
   showMask?: boolean;
-}
+} & InputHTMLAttributes<HTMLInputElement>;
 
-const MemberIdTextField: FC<Props> = (props) => {
+const MemberIdTextField = (props: Props): JSX.Element => {
   const { showMask, ...other } = props;
 
   return (
@@ -26,7 +26,7 @@ const MemberIdTextField: FC<Props> = (props) => {
         /[0-9a-f]/,
         /[0-9a-f]/,
         '-',
-        /[0-9a-f]/,
+        /[4]/,
         /[0-9a-f]/,
         /[0-9a-f]/,
         /[0-9a-f]/,
@@ -51,7 +51,7 @@ const MemberIdTextField: FC<Props> = (props) => {
       ]}
       placeholderChar='_'
       showMask={showMask}
-      placeholder=' '
+      placeholder=''
     />
   );
 };

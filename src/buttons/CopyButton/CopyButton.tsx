@@ -4,7 +4,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import MenuItem from '@mui/material/MenuItem';
 import Tooltip from '@mui/material/Tooltip';
 
-import React, { FC, MouseEventHandler } from 'react';
+import React, { MouseEventHandler } from 'react';
 
 import { ActionButton, ActionButtonVariant } from '../../types';
 
@@ -18,7 +18,7 @@ export type Props = {
   type?: ActionButtonVariant;
 };
 
-const CopyButton: FC<Props> = ({
+const CopyButton = ({
   color = 'default',
   iconClassName,
   id = '',
@@ -26,7 +26,7 @@ const CopyButton: FC<Props> = ({
   onClick,
   text = 'Copy',
   type = 'icon',
-}) => {
+}: Props): JSX.Element => {
   switch (type) {
     case ActionButton.MENU_ITEM:
       return (

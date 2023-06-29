@@ -1,27 +1,16 @@
 import InfoIcon from '@mui/icons-material/Info';
 import {
   Container,
-  InputBaseComponentProps,
   SelectChangeEvent,
   TextField,
   Tooltip,
   styled,
 } from '@mui/material';
-import FormControl from '@mui/material/FormControl';
 import FormControlLabel from '@mui/material/FormControlLabel';
-import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
-import OutlinedInput from '@mui/material/OutlinedInput';
 import Select from '@mui/material/Select';
 
-import React, {
-  ElementType,
-  FC,
-  ReactElement,
-  ReactNode,
-  useRef,
-  useState,
-} from 'react';
+import React, { FC, ReactElement, ReactNode, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { ItemLoginSchemaType, UUID } from '@graasp/sdk';
@@ -49,14 +38,8 @@ const WrapperContainer = styled(Container)({
 const StyledTextField = styled(TextField)(({ theme }) => ({
   margin: theme.spacing(1, 0),
 }));
-const StyledOutlinedInput = styled(OutlinedInput)(({ theme }) => ({
+const StyledOutlinedInput = styled(TextField)(({ theme }) => ({
   margin: theme.spacing(1, 0),
-}));
-const MemberIdFormControl = styled(FormControl)({
-  width: '100%',
-});
-const MemberIdInputLabel = styled(InputLabel)(({ theme }) => ({
-  marginLeft: theme.spacing(2),
 }));
 const UsernameAndMemberIdContainer = styled('div')({
   display: 'flex',
@@ -165,7 +148,7 @@ const ItemLoginScreen: FC<ItemLoginScreenProps> = ({
       (!username?.length || isMemberIdValid(username));
     const memberIdError =
       signInMode === SETTINGS.ITEM_LOGIN.SIGN_IN_MODE.MEMBER_ID &&
-      !isMemberIdValid(memberId);
+      (!memberId?.length || !isMemberIdValid(memberId));
     const passwordError = withPassword && !password?.length;
     return usernameError || passwordError || memberIdError;
   };
@@ -176,26 +159,28 @@ const ItemLoginScreen: FC<ItemLoginScreenProps> = ({
     }
 
     const error = memberId?.length && !isMemberIdValid(memberId);
-
+    console.log(error, memberId);
     return (
-      <MemberIdFormControl>
-        <MemberIdInputLabel error={Boolean(error)} shrink>
-          {t('Member Id')}
-        </MemberIdInputLabel>
-        <StyledOutlinedInput
-          autoFocus
-          error={Boolean(error)}
-          onChange={onMemberIdChange}
-          label={t('Member Id')}
-          inputComponent={
-            MemberIdTextField as ElementType<InputBaseComponentProps>
-          }
-          color='primary'
-          fullWidth
-          id={memberIdInputId}
-          value={memberId}
-        />
-      </MemberIdFormControl>
+      // <MemberIdFormControl>
+      // {/* <MemberIdInputLabel error={Boolean(error)} shrink>
+      //   {t('Member Id')}
+      // </MemberIdInputLabel> */}
+      <StyledOutlinedInput
+        variant='outlined'
+        autoFocus
+        error={Boolean(error)}
+        onChange={onMemberIdChange}
+        label={t('Member Id')}
+        InputProps={{
+          inputComponent: MemberIdTextField,
+        }}
+        InputLabelProps={{ shrink: true }}
+        color='primary'
+        fullWidth
+        id={memberIdInputId}
+        value={memberId}
+      />
+      // </MemberIdFormControl>
     );
   };
 

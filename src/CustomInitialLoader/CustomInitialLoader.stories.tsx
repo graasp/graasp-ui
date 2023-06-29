@@ -17,9 +17,7 @@ const meta: Meta<typeof CustomInitialLoader> = {
     },
   ],
   argTypes: {},
-  render: (args) => (
-    <CustomInitialLoader {...args}>{args.children}</CustomInitialLoader>
-  ),
+  render: (args) => <CustomInitialLoader {...args} />,
 };
 
 export default meta;

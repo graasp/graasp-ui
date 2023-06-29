@@ -13,7 +13,6 @@ import MenuItem from './MenuItem';
 const meta: Meta<typeof MainMenu> = {
   title: 'Common/MainMenu',
   component: MainMenu,
-  subcomponents: { MenuItem },
 
   argTypes: {
     children: {

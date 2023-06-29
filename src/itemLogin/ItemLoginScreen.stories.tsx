@@ -6,13 +6,11 @@ import { ItemLoginSchemaType } from '@graasp/sdk';
 
 import { TABLE_CATEGORIES } from '../utils/storybook';
 import ItemLoginScreen from './ItemLoginScreen';
-import MemberIdTextField from './MemberIdTextField';
 import { FORBIDDEN_TEXT } from './constants';
 
 const meta: Meta<typeof ItemLoginScreen> = {
   title: 'Actions/ItemLogin/ItemLoginScreen',
   component: ItemLoginScreen,
-  subcomponents: { MemberIdTextField },
 
   argTypes: {
     memberIdInputId: {
