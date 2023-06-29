@@ -4571,8 +4571,8 @@ __metadata:
     uuid: 9.0.0
     wait-on: 7.0.1
   peerDependencies:
-    "@emotion/react": ~11.10.6
-    "@emotion/styled": ~11.10.6
+    "@emotion/react": ~11.10.6 || ~11.11.0
+    "@emotion/styled": ~11.10.6 || ~11.11.0
     "@mui/icons-material": ~5.11.9
     "@mui/lab": ~5.0.0-alpha.120
     "@mui/material": ~5.11.9 || ~5.13.0
