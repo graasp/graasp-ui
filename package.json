@@ -160,7 +160,7 @@
     "react-test-renderer": "18.2.0",
     "rimraf": "5.0.1",
     "rollup": "2.79.1",
-    "rollup-jest": "2.0.0",
+    "rollup-jest": "3.1.0",
     "rollup-plugin-copy": "3.4.0",
     "rollup-plugin-peer-deps-external": "2.2.4",
     "rollup-plugin-scss": "3.0.0",
