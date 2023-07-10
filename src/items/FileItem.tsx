@@ -117,12 +117,14 @@ const FileItem: FC<FileItemProps> = ({
     const {
       mimetype,
       name: originalFileName,
-      altText = item.name,
+      altText,
     } = { ...fileExtra?.toJS(), ...s3FileExtra?.toJS() };
 
     if (mimetype) {
       if (MimeTypes.isImage(mimetype)) {
-        return <FileImage id={id} url={url} alt={altText} sx={sx} />;
+        return (
+          <FileImage id={id} url={url} alt={altText || item.name} sx={sx} />
+        );
       } else if (MimeTypes.isAudio(mimetype)) {
         return <FileAudio id={id} url={url} type={mimetype} sx={sx} />;
       } else if (MimeTypes.isVideo(mimetype)) {
