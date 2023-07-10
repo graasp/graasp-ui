@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.2.2](https://github.com/graasp/graasp-ui/compare/v3.2.1...v3.2.2) (2023-07-10)
+
+
+### Bug Fixes
+
+* **a11y:** use item name when alttext is falsy ([#415](https://github.com/graasp/graasp-ui/issues/415)) ([32ee9e8](https://github.com/graasp/graasp-ui/commit/32ee9e80baf0fbe4c89e42791db259de49d55dbf))
+
 ## [3.2.1](https://github.com/graasp/graasp-ui/compare/v3.2.0...v3.2.1) (2023-06-29)
 
 
