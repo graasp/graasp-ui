@@ -4641,7 +4641,7 @@ __metadata:
     react-text-mask: 5.5.0
     rimraf: 5.0.1
     rollup: 2.79.1
-    rollup-jest: 2.0.0
+    rollup-jest: 3.1.0
     rollup-plugin-copy: 3.4.0
     rollup-plugin-peer-deps-external: 2.2.4
     rollup-plugin-scss: 3.0.0
@@ -18179,14 +18179,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rollup-jest@npm:2.0.0":
-  version: 2.0.0
-  resolution: "rollup-jest@npm:2.0.0"
+"rollup-jest@npm:3.1.0":
+  version: 3.1.0
+  resolution: "rollup-jest@npm:3.1.0"
   dependencies:
     concat-merge: ^1.0.2
   peerDependencies:
-    rollup: ^1.1.0 || ^2
-  checksum: 5ace115399c9ae6e1e888d1b81a070375ef508889bbea772a4ac8c63aa2d963936a2e92efdf257c92b929e651ae4d90c842bf6bb25bf45c0a30d01f64e53a6b2
+    rollup: ^2.3.0 || ^3
+  checksum: 61497b0f8b7b478858a47e6814c9f2f0355d4a07c5eccdbc196e85c1b5db5c205a604b5bf57dd6790254ebe0ca8bec707e23a178f6cdd01365054f2345777c35
   languageName: node
   linkType: hard
 
