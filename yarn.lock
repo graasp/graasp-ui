@@ -4644,7 +4644,7 @@ __metadata:
     rollup-jest: 3.1.0
     rollup-plugin-copy: 3.4.0
     rollup-plugin-peer-deps-external: 2.2.4
-    rollup-plugin-scss: 3.0.0
+    rollup-plugin-scss: 4.0.0
     sass: 1.63.6
     storybook: 7.0.26
     ts-jest: 29.1.1
@@ -18212,12 +18212,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rollup-plugin-scss@npm:3.0.0":
-  version: 3.0.0
-  resolution: "rollup-plugin-scss@npm:3.0.0"
+"rollup-plugin-scss@npm:4.0.0":
+  version: 4.0.0
+  resolution: "rollup-plugin-scss@npm:4.0.0"
   dependencies:
     rollup-pluginutils: ^2.3.3
-  checksum: 6f7ef820693db0a355f8477d2d2b629e709709eb257e26d427264fb21481fc3ec7f35acefe4c6c131c4536ce7f4993a0d8abadc6652531ccc2e9ee0fc46225a1
+  checksum: 0c554bdaad4cdd92d7fffdf7d326e67ca9fe857c08fa5e3897dc3490660a0e628885d1a9dbdeef06fb8b2fb5ff87d7f28c3ea9a3bd7fd07500fa531fa9d4eb51
   languageName: node
   linkType: hard
 
