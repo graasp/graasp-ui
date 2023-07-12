@@ -4540,9 +4540,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@graasp/sdk@npm:1.1.1":
-  version: 1.1.1
-  resolution: "@graasp/sdk@npm:1.1.1"
+"@graasp/sdk@npm:1.1.2":
+  version: 1.1.2
+  resolution: "@graasp/sdk@npm:1.1.2"
   dependencies:
     "@aws-sdk/client-s3": 3.353.0
     "@fastify/secure-session": 6.1.0
@@ -4555,7 +4555,7 @@ __metadata:
     typeorm: 0.3.16
     uuid: 9.0.0
     validator: 13.9.0
-  checksum: 48eda9d8528591df34f27763cd86835b3f2be52c22eb21cf0d432b5a21ef8a2654c910528178611883d1bb05f0b4908b69771cd5fbebbd19c2cebbc1994dbd3b
+  checksum: 57792d9701515f53f7d8c8203e36195c7fa0164b348bf3b95cdbc1876bd8983388d88cde904f7847b94e13de5917c26ec97be1495516e3e736650930f3239a72
   languageName: node
   linkType: hard
 
@@ -4572,7 +4572,7 @@ __metadata:
     "@commitlint/config-conventional": 17.6.6
     "@emotion/react": 11.11.1
     "@emotion/styled": 11.11.0
-    "@graasp/sdk": 1.1.1
+    "@graasp/sdk": 1.1.2
     "@mdx-js/react": 2.3.0
     "@mui/icons-material": 5.14.0
     "@mui/lab": 5.0.0-alpha.136
