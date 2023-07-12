@@ -120,7 +120,7 @@
     "@testing-library/react": "14.0.0",
     "@testing-library/user-event": "14.4.3",
     "@trivago/prettier-plugin-sort-imports": "4.1.1",
-    "@types/jest": "29.5.2",
+    "@types/jest": "29.5.3",
     "@types/katex": "0.16.0",
     "@types/lodash.truncate": "4.4.7",
     "@types/node": "20.4.1",
