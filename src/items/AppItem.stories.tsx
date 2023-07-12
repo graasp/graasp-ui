@@ -48,7 +48,8 @@ export const Example: Story = {
 
 Example.play = async ({ canvasElement, args }) => {
   const canvas = within(canvasElement);
-
-  await expect(canvas.getByText(args.item.description)).toBeInTheDocument();
+  if (args.item.description) {
+    await expect(canvas.getByText(args.item.description)).toBeInTheDocument();
+  }
   await expect(canvas.getByTitle(args.item.name)).toBeInTheDocument();
 };

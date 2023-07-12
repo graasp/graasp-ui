@@ -54,8 +54,9 @@ export const Iframe: Story = {
 
   play: async ({ canvasElement, args }) => {
     const canvas = within(canvasElement);
-
-    expect(canvas.getByText(args.item.description)).toBeInTheDocument();
+    if (args.item.description) {
+      expect(canvas.getByText(args.item.description)).toBeInTheDocument();
+    }
     expect(canvas.getByTitle(args.item.name)).toBeInTheDocument();
   },
 };
@@ -70,8 +71,9 @@ export const LinkButton: Story = {
 
 LinkButton.play = async ({ canvasElement, args }) => {
   const canvas = within(canvasElement);
-
-  expect(canvas.getByText(args.item.description)).toBeInTheDocument();
+  if (args.item.description) {
+    expect(canvas.getByText(args.item.description)).toBeInTheDocument();
+  }
   await userEvent.click(canvas.getByText(args.item.name));
 };
 
@@ -83,8 +85,10 @@ export const IframeAndLinkButton: Story = {
   },
   play: async ({ canvasElement, args }) => {
     const canvas = within(canvasElement);
+    if (args.item.description) {
+      expect(canvas.getByText(args.item.description)).toBeInTheDocument();
+    }
 
-    expect(canvas.getByText(args.item.description)).toBeInTheDocument();
     expect(canvas.getByTitle(args.item.name)).toBeInTheDocument();
     await userEvent.click(canvas.getByText(args.item.name));
   },
