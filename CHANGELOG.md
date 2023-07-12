@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.2.3](https://github.com/graasp/graasp-ui/compare/v3.2.2...v3.2.3) (2023-07-12)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @graasp/sdk to v1.1.2 ([#433](https://github.com/graasp/graasp-ui/issues/433)) ([1c602e8](https://github.com/graasp/graasp-ui/commit/1c602e8dd4e68cd6b526b87aa8209e944be9f542))
+* **deps:** update dependency react-cookie-consent to v8 ([#412](https://github.com/graasp/graasp-ui/issues/412)) ([5199b18](https://github.com/graasp/graasp-ui/commit/5199b1897e929cd37ac2811dccf7b71a2fbefd3a))
+* replace `output` by `fileName` in rollup-plugin-scss options ([#423](https://github.com/graasp/graasp-ui/issues/423)) ([1ec596e](https://github.com/graasp/graasp-ui/commit/1ec596e7570d961ed4379e81b9140c932d98f7a2))
+
 ## [3.2.2](https://github.com/graasp/graasp-ui/compare/v3.2.1...v3.2.2) (2023-07-10)
 
 
