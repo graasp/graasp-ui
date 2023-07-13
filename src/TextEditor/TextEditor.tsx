@@ -15,7 +15,7 @@ import SaveButton from '../buttons/SaveButton';
 
 declare const window: Window &
   typeof globalThis & {
-    katex: katex;
+    katex: typeof katex;
   };
 
 window.katex = katex;
