@@ -1,6 +1,5 @@
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import MeetingRoomIcon from '@mui/icons-material/MeetingRoom';
-import { Divider } from '@mui/material';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import MenuItem from '@mui/material/MenuItem';
 import Typography from '@mui/material/Typography';
