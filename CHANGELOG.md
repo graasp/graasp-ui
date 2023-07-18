@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.2.4](https://github.com/graasp/graasp-ui/compare/v3.2.3...v3.2.4) (2023-07-18)
+
+
+### Bug Fixes
+
+* show sign out in user switch ([#441](https://github.com/graasp/graasp-ui/issues/441)) ([6727c3a](https://github.com/graasp/graasp-ui/commit/6727c3a2de47df10d83bbeca1ed5a33ecac74caa))
+
 ## [3.2.3](https://github.com/graasp/graasp-ui/compare/v3.2.2...v3.2.3) (2023-07-12)
 
 
