@@ -1,14 +1,13 @@
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import MeetingRoomIcon from '@mui/icons-material/MeetingRoom';
-import { Divider } from '@mui/material';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import MenuItem from '@mui/material/MenuItem';
 import Typography from '@mui/material/Typography';
 
 import React, { FC } from 'react';
-import type { UseQueryResult } from 'react-query';
 
-import { Member, redirect } from '@graasp/sdk';
-import { MemberRecord, ResultOfRecord } from '@graasp/sdk/frontend';
+import { redirect } from '@graasp/sdk';
+import { MemberRecord } from '@graasp/sdk/frontend';
 
 import Loader from '../Loader';
 import UserSwitch from './UserSwitch';
@@ -20,9 +19,9 @@ interface Props {
   ButtonContent?: JSX.Element;
   buttonId?: string;
   currentMember?: MemberRecord;
-  domain: string;
+  // domain: string;
   isCurrentMemberLoading: boolean;
-  isCurrentMemberSuccess: boolean;
+  // isCurrentMemberSuccess: boolean;
   profilePath: string;
   redirectPath: string;
   renderAvatar: (member?: MemberRecord) => JSX.Element;
@@ -34,8 +33,8 @@ interface Props {
   signOutMenuItemId?: string;
   signOutText?: string;
   // switchMember: (args: { memberId: string; domain: string }) => Promise<void>;
-  // switchMemberText?: string;
-  useMembers: (ids: string[]) => UseQueryResult<ResultOfRecord<Member>>;
+  switchMemberText?: string;
+  // useMembers: (ids: string[]) => UseQueryResult<ResultOfRecord<Member>>;
 }
 
 const UserSwitchWrapper: FC<Props> = ({
@@ -52,12 +51,12 @@ const UserSwitchWrapper: FC<Props> = ({
   seeProfileButtonId,
   seeProfileText = 'See Profile',
   signedOutTooltipText = 'You are not signed in.',
-  // signInMenuItemId,
+  signInMenuItemId,
   signOut,
   signOutMenuItemId,
   signOutText = 'Sign Out',
   // switchMember,
-  // switchMemberText = 'Sign in with another account',
+  switchMemberText = 'Sign in',
   // useMembers,
 }) => {
   // get stored sessions
@@ -91,11 +90,11 @@ const UserSwitchWrapper: FC<Props> = ({
     redirect(redirectPath);
   };
 
-  // const handleSignIn = (): void => {
-  //   setCurrentSession(null, domain);
-  //   saveUrlForRedirection(window.location.href, domain);
-  //   return redirect(redirectPath);
-  // };
+  const handleSignIn = (): void => {
+    // setCurrentSession(null, domain);
+    // saveUrlForRedirection(window.location.href, domain);
+    return redirect(redirectPath);
+  };
 
   const goToProfile = (): void => {
     redirect(profilePath);
@@ -104,25 +103,26 @@ const UserSwitchWrapper: FC<Props> = ({
   // const onMemberClick = (memberId: string) => () =>
   //   switchMember({ memberId, domain });
 
-  let Actions: JSX.Element[] = [
-    // <MenuItem key='signin' onClick={handleSignIn} id={signInMenuItemId}>
-    //   <ListItemIcon>
-    //     <AccountCircleIcon fontSize='large' />
-    //   </ListItemIcon>
-    //   <Typography variant='subtitle2'>{switchMemberText}</Typography>
-    // </MenuItem>,
-  ];
+  let Actions: JSX.Element[];
 
   if (currentMember && currentMember.id) {
-    Actions = Actions.concat([
-      <Divider key='divider' />,
+    Actions = [
       <MenuItem key='signout' onClick={handleSignOut} id={signOutMenuItemId}>
         <ListItemIcon>
           <MeetingRoomIcon fontSize='large' />
         </ListItemIcon>
         <Typography variant='subtitle2'>{signOutText}</Typography>
       </MenuItem>,
-    ]);
+    ];
+  } else {
+    Actions = [
+      <MenuItem key='signin' onClick={handleSignIn} id={signInMenuItemId}>
+        <ListItemIcon>
+          <AccountCircleIcon fontSize='large' />
+        </ListItemIcon>
+        <Typography variant='subtitle2'>{switchMemberText}</Typography>
+      </MenuItem>,
+    ];
   }
 
   return (
