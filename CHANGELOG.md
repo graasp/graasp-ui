@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.2.5](https://github.com/graasp/graasp-ui/compare/v3.2.4...v3.2.5) (2023-07-21)
+
+
+### Bug Fixes
+
+* add title and use real link instead of js redirect ([#452](https://github.com/graasp/graasp-ui/issues/452)) ([b16d05b](https://github.com/graasp/graasp-ui/commit/b16d05bddc82faba84d08e6004e2e2a3752956bb))
+* **deps:** update dependency @graasp/sdk to v1.1.3 ([#446](https://github.com/graasp/graasp-ui/issues/446)) ([919e78f](https://github.com/graasp/graasp-ui/commit/919e78f04fb561a9bceb99ff672a370242c047f1))
+* fill-rule issue ([#451](https://github.com/graasp/graasp-ui/issues/451)) ([63100d7](https://github.com/graasp/graasp-ui/commit/63100d7ed389c817c2a88b07f753492a0880ef93))
+
 ## [3.2.4](https://github.com/graasp/graasp-ui/compare/v3.2.3...v3.2.4) (2023-07-18)
 
 
