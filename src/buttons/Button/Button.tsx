@@ -1,7 +1,7 @@
 import { SxProps, Theme, styled } from '@mui/material';
 import Button, { ButtonProps } from '@mui/material/Button';
 
-import React, { ElementType, FC, ReactNode } from 'react';
+import React, { AnchorHTMLAttributes, ElementType, FC, ReactNode } from 'react';
 
 export type GraaspButtonProps = {
   autoFocus?: boolean;
@@ -38,7 +38,7 @@ export type GraaspButtonProps = {
   sx?: SxProps;
   type?: ButtonProps['type'];
   variant?: ButtonProps['variant'];
-};
+} & Pick<AnchorHTMLAttributes<HTMLAnchorElement>, 'href' | 'target'>;
 
 const StyledButton = styled(Button)<ButtonProps | { component?: ElementType }>(
   ({ theme }: { theme: Theme }) => ({
@@ -63,6 +63,8 @@ export const GraaspButton: FC<GraaspButtonProps> = ({
   sx,
   type,
   variant = 'contained',
+  href,
+  ...other
 }) => {
   return (
     <StyledButton
@@ -81,6 +83,8 @@ export const GraaspButton: FC<GraaspButtonProps> = ({
       sx={sx}
       type={type}
       variant={variant}
+      title={href}
+      {...other}
     >
       {children}
     </StyledButton>

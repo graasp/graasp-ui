@@ -4,7 +4,7 @@ import Alert from '@mui/material/Alert';
 
 import React, { FC, Fragment, useRef, useState } from 'react';
 
-import { getEmbeddedLinkExtra, redirect } from '@graasp/sdk';
+import { getEmbeddedLinkExtra } from '@graasp/sdk';
 import { EmbeddedLinkItemTypeRecord, MemberRecord } from '@graasp/sdk/frontend';
 
 import withCollapse from '../Collapse/withCollapse';
@@ -71,7 +71,7 @@ const StyledLinkButton = styled(Button)(({ theme }) => ({
   marginLeft: 'auto',
   marginRight: 'auto',
   marginTop: theme.spacing(1),
-}));
+})) as typeof Button;
 
 const LinkItem: FC<LinkItemProps> = ({
   item,
@@ -119,12 +119,6 @@ const LinkItem: FC<LinkItemProps> = ({
     // if (iframeRef?.current?.contentWindow) {
     //   setHeight(iframeRef.current.contentWindow.document.body.scrollHeight);
     // }
-  };
-
-  const onClick = (): void => {
-    if (url) {
-      redirect(url, { openInNewTab: true });
-    }
   };
 
   const renderIframe = (): JSX.Element | null => {
@@ -180,7 +174,11 @@ const LinkItem: FC<LinkItemProps> = ({
     }
 
     const button = (
-      <StyledLinkButton onClick={onClick} startIcon={<OpenInNewIcon />}>
+      <StyledLinkButton
+        startIcon={<OpenInNewIcon />}
+        href={url}
+        target='_blank'
+      >
         {item.name ?? openLinkMessage}
       </StyledLinkButton>
     );
