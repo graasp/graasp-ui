@@ -4,7 +4,9 @@ import {
   ColDef,
   GridApi,
   IRowDragItem,
+  RowDataUpdatedEvent,
   RowNode,
+  SelectionChangedEvent,
 } from 'ag-grid-community';
 import { AgGridReact } from 'ag-grid-react';
 import clsx from 'clsx';
@@ -30,7 +32,7 @@ import { suppressKeyboardEventForParentCell } from './utils';
 
 const DRAG_COLUMN_WIDTH = 22;
 
-export interface TableProps<T> {
+export interface TableProps<T = unknown> {
   className?: string;
   /**
    * definition of the columns following AG Grid definitions
@@ -48,10 +50,10 @@ export interface TableProps<T> {
   isClickable?: boolean;
   NoRowsComponent?: ReactElement;
   NoSelectionToolbar?: () => JSX.Element;
-  onCellClicked?: ((event: CellClickedEvent<T, any>) => void) | undefined;
+  onCellClicked?: ((event: CellClickedEvent<T, unknown>) => void) | undefined;
   onDragEnd?: (nodes: RowNode[]) => void;
-  onRowDataChanged?: (context: any) => void;
-  onSelectionChanged?: (context: any) => void;
+  onRowDataChanged?: (context: RowDataUpdatedEvent<T>) => void;
+  onSelectionChanged?: (context: SelectionChangedEvent<T>) => void;
   rowData: T[];
   rowDragManaged?: boolean;
   rowDragText?: (params: IRowDragItem, dragItemCount: number) => string;
@@ -100,7 +102,7 @@ const DEFAULT_COL_DEF = {
 };
 
 const StyledBox = styled(Box, {
-  shouldForwardProp: (prop) => prop !== 'tableHeight',
+  shouldForwardProp: (prop: string) => prop !== 'tableHeight',
 })<{ tableHeight: string | number }>(({ theme, tableHeight }) => ({
   fontSize: theme.typography.fontSize,
   width: '100%',
@@ -178,13 +180,13 @@ function GraaspTable<T>({
     }
   };
 
-  const handleRowDataChanged = (context: any): void => {
+  const handleRowDataChanged = (context: RowDataUpdatedEvent<T>): void => {
     changeSelection();
     // eslint-disable-next-line no-unused-expressions
     onRowDataChanged?.(context);
   };
 
-  const handleSelectionChanged = (context: any): void => {
+  const handleSelectionChanged = (context: SelectionChangedEvent<T>): void => {
     changeSelection();
     // eslint-disable-next-line no-unused-expressions
     onSelectionChanged?.(context);
@@ -266,7 +268,7 @@ function GraaspTable<T>({
           })}
           getRowHeight={() => rowHeight}
           getRowId={getRowId}
-          onRowDataChanged={handleRowDataChanged}
+          onRowDataUpdated={handleRowDataChanged}
           suppressRowHoverHighlight={!isClickable}
           enableBrowserTooltips={enableBrowserTooltips}
           enableCellTextSelection

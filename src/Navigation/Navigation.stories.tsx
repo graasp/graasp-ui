@@ -52,13 +52,14 @@ const meta: Meta<typeof Navigation> = {
 export default meta;
 
 type Story = StoryObj<typeof Navigation>;
+type UseChildrenHookType = ReturnType<ItemMenuProps['useChildren']>;
 
 const item = buildItem('my item');
 const parents = List([buildItem('parent 1'), buildItem('parent 2')]);
 const children = List([buildItem('child 1'), buildItem('child 2')]);
 const useChildren: ItemMenuProps['useChildren'] = (id) => {
   console.debug('show children of ' + id);
-  return { data: children } as any;
+  return { data: children } as UseChildrenHookType;
 };
 const buildToItemPath = (id: string): string => id;
 const dataTestId = 'NavigateNextIcon';
@@ -101,7 +102,7 @@ export const HomeRoot: Story = {
                   buildItem('Home item 1'),
                   buildItem('Home item 2'),
                 ]),
-              } as any;
+              } as UseChildrenHookType;
             }}
             buildToItemPath={buildToItemPath}
           />
@@ -136,7 +137,7 @@ export const FolderWithParents: Story = {
                   buildItem('Home item 1'),
                   buildItem('Home item 2'),
                 ]),
-              } as any;
+              } as UseChildrenHookType;
             }}
             buildToItemPath={buildToItemPath}
           />
@@ -181,7 +182,7 @@ export const FileWithParents: Story = {
                   buildItem('Home item 1'),
                   buildItem('Home item 2'),
                 ]),
-              } as any;
+              } as UseChildrenHookType;
             }}
             buildToItemPath={buildToItemPath}
           />

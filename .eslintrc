@@ -5,7 +5,11 @@
     "prettier",
     "plugin:@typescript-eslint/recommended"
   ],
-  "plugins": ["import", "jsx-a11y", "@typescript-eslint"],
+  "plugins": [
+    "import",
+    "jsx-a11y",
+    "@typescript-eslint"
+  ],
   "env": {
     "node": true,
     "browser": true
@@ -30,10 +34,15 @@
     "react/jsx-fragments": 0,
     "react/no-unused-prop-types": 0,
     "import/export": 0,
-    // "no-unused-vars": "off",
-    // "@typescript-eslint/no-unused-vars": [
-    //   "error"
-    // ],
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      {
+        "argsIgnorePattern": "^_",
+        "varsIgnorePattern": "^_",
+        "caughtErrorsIgnorePattern": "^_"
+      }
+    ],
     // disable the rule for all files
     "@typescript-eslint/explicit-function-return-type": "off",
     // enum error
@@ -44,7 +53,10 @@
   "overrides": [
     {
       // enable the rule specifically for TypeScript files
-      "files": ["*.ts", "*.tsx"],
+      "files": [
+        "*.ts",
+        "*.tsx"
+      ],
       "rules": {
         "@typescript-eslint/explicit-function-return-type": [
           "error",

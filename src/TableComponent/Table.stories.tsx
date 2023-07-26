@@ -29,10 +29,10 @@ const rowData = [
   { id: 2, name: 'name 8', type: 'h5p', updatedAt: new Date() },
   { id: 3, name: 'name 9', type: 'folder', updatedAt: new Date() },
 ];
-const dateFormatter: ColDef<any>['valueFormatter'] = ({ value: date }) =>
+const dateFormatter: ColDef['valueFormatter'] = ({ value: date }) =>
   date.toLocaleString('en-US');
 
-const ToolbarActions: TableProps<any>['ToolbarActions'] = ({ selectedIds }) => (
+const ToolbarActions: TableProps['ToolbarActions'] = ({ selectedIds }) => (
   <DeleteButton
     color='secondary'
     onClick={(e) => {
@@ -146,7 +146,7 @@ export const Simple: Story = {
         suppressSizeToFit: true,
         maxWidth: 100, // approx 50 per iconButton (40px + 8px margin on each side)
         suppressKeyboardEvent: Table.suppressKeyboardEventForParentCell,
-        cellRenderer: ({ data }: any) => {
+        cellRenderer: ({ data }: { data: { id: string } }) => {
           return (
             <>
               <DeleteButton id={'delete' + data.id} />
