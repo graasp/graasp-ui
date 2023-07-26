@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.2.6](https://github.com/graasp/graasp-ui/compare/v3.2.5...v3.2.6) (2023-07-26)
+
+
+### Bug Fixes
+
+* link button ([#458](https://github.com/graasp/graasp-ui/issues/458)) ([9f20e15](https://github.com/graasp/graasp-ui/commit/9f20e15861e87b9b630cbff5af259bc2f806ebfb))
+* **ui/style:** miniature magnifying glass in builder  ([#456](https://github.com/graasp/graasp-ui/issues/456)) ([15ba98b](https://github.com/graasp/graasp-ui/commit/15ba98b21e7a2371c7dcdb4791c322d3bb843a09))
+
 ## [3.2.5](https://github.com/graasp/graasp-ui/compare/v3.2.4...v3.2.5) (2023-07-21)
 
 
