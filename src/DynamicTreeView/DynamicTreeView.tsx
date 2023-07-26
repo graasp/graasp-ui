@@ -64,6 +64,7 @@ const DynamicTreeView: FC<DynamicTreeViewProps> = ({
   const [expandedItems, setExpandedItems] = useState(initialExpendedItems);
 
   // types based on TreeView types
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const onSelect = (event: any, value: any): void => {
     if (!showCheckbox) {
       return onTreeItemSelect?.(value);
@@ -76,6 +77,7 @@ const DynamicTreeView: FC<DynamicTreeViewProps> = ({
   };
 
   // types based on TreeView types
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const onToggle = (event: any, nodeIds: any): void => {
     // toggle only when not clicking on the checkbox/input
     if (showCheckbox && event.target.nodeName.toLowerCase() === 'input') {

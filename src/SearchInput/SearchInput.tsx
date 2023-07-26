@@ -41,7 +41,7 @@ export const SearchInput: FC<Props> = ({
         placeholder={placeholder}
         inputProps={{ 'aria-label': ariaLabel }}
       />
-      <SearchIcon sx={{ p: 1 }} aria-label='search' />
+      <SearchIcon sx={{ m: 1 }} aria-label='search' />
     </Paper>
   );
 };

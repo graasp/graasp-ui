@@ -3,7 +3,11 @@
     "outDir": "dist",
     "rootDir": "./src",
     "module": "esnext",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "moduleResolution": "node",
     "jsx": "react",
     "sourceMap": true,
@@ -14,6 +18,7 @@
     "noImplicitReturns": true,
     "noImplicitThis": true,
     "noImplicitAny": true,
+    "strictPropertyInitialization": true,
     "strictNullChecks": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
@@ -28,6 +33,13 @@
     "noEmit": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src", "index.ts"],
-  "exclude": ["node_modules", "dist", "example"]
+  "include": [
+    "src",
+    "index.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "example"
+  ]
 }
