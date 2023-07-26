@@ -8,7 +8,7 @@ import { getEmbeddedLinkExtra } from '@graasp/sdk';
 import { EmbeddedLinkItemTypeRecord, MemberRecord } from '@graasp/sdk/frontend';
 
 import withCollapse from '../Collapse/withCollapse';
-import Button from '../buttons/Button';
+import { Button } from '../buttons';
 import { DEFAULT_LINK_SHOW_BUTTON } from '../constants';
 import { ITEM_MAX_HEIGHT } from './constants';
 import withCaption from './withCaption';
@@ -71,7 +71,7 @@ const StyledLinkButton = styled(Button)(({ theme }) => ({
   marginLeft: 'auto',
   marginRight: 'auto',
   marginTop: theme.spacing(1),
-})) as typeof Button;
+}));
 
 const LinkItem: FC<LinkItemProps> = ({
   item,

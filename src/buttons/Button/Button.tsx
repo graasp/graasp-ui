@@ -83,6 +83,7 @@ export const GraaspButton: FC<GraaspButtonProps> = ({
       sx={sx}
       type={type}
       variant={variant}
+      href={href}
       title={href}
       {...other}
     >
