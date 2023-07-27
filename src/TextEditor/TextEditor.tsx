@@ -64,38 +64,35 @@ export type TextEditorProps = {
   value?: string;
 };
 
-const Div = styled('div')(
-  ({
-    edit,
-    maxHeight,
-    styles,
-  }: {
-    edit?: boolean;
-    maxHeight?: number | string;
-    styles?: React.CSSProperties;
-  }) => ({
-    '& .ql-editor': {
-      // adapt height if read only
-      minHeight: !edit ? 0 : TEXT_EDITOR_MIN_HEIGHT,
-      // necessary styles to avoid window scrolling top on paste
-      // set a max height only on edition
-      maxHeight: edit ? maxHeight ?? TEXT_EDITOR_MAX_HEIGHT : '100%',
-      overflow: 'auto',
+const Div = styled('div')<{
+  edit?: boolean;
+  maxHeight?: number | string;
+  styles?: React.CSSProperties;
+}>(({ theme, edit, maxHeight, styles }) => ({
+  '.ql-tooltip': {
+    zIndex: theme.zIndex.tooltip,
+  },
+  '& .ql-editor': {
+    // adapt height if read only
+    minHeight: !edit ? 0 : TEXT_EDITOR_MIN_HEIGHT,
+    // necessary styles to avoid window scrolling top on paste
+    // set a max height only on edition
+    maxHeight: edit ? maxHeight ?? TEXT_EDITOR_MAX_HEIGHT : '100%',
+    overflow: 'auto',
 
-      '& p': {
-        paddingBottom: 3,
-        paddingTop: 3,
-      },
+    '& p': {
+      paddingBottom: 3,
+      paddingTop: 3,
+    },
 
-      ...styles,
-    },
-    '& .ql-container': {
-      border: !edit ? 'none !important' : undefined,
-      // use font size from mui theme
-      fontSize: 'unset',
-    },
-  }),
-);
+    ...styles,
+  },
+  '& .ql-container': {
+    border: !edit ? 'none !important' : undefined,
+    // use font size from mui theme
+    fontSize: 'unset',
+  },
+}));
 
 const TextEditor = ({
   cancelButtonId,
