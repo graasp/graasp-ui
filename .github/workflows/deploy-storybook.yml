@@ -6,7 +6,6 @@ on:
   push:
     branches:
       - main
-      - master
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
@@ -24,9 +23,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-      - name: Yarn Install and Cache
+      - name: Yarn install and cache
         uses: graasp/graasp-deploy/.github/actions/yarn-install-and-cache@v1
 
       - name: Build storybook
