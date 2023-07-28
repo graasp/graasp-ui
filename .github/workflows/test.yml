@@ -7,22 +7,33 @@ jobs:
     runs-on: ubuntu-latest
     concurrency:
       group: storybook-tests-${{ github.head_ref || github.ref }}
-      cancel-in-progress: true
+      # we do not cancel the workflows in progress as the runs are quite fast.
+      cancel-in-progress: false
     steps:
-      - uses: actions/checkout@v3
-      - name: Use Node.js 16.x
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node 16.x
         uses: actions/setup-node@v3
         with:
           node-version: 16.x
-      - name: yarn install
+
+      - name: Install dependencies
         run: yarn
-      - name: yarn build # ensures type-checks and compiles
+
+      - name: Check code style and linting
+        run: yarn prettier:check && yarn lint
+
+      - name: Build # ensures type-checks and compiles
         run: yarn build
-      - name: install playwright
+
+      - name: Install playwright
         run: npx playwright install --with-deps
-      - name: build storybook
+
+      - name: Build storybook
         run: yarn storybook:build --quiet
-      - name: start and test storybook
+
+      - name: Run storybook tests
         run: |
           npx concurrently -k -s first -n "SB,TEST" -c "magenta,blue" \
             "npx http-server storybook-static --port 6006 --silent" \
