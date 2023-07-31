@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.2.7](https://github.com/graasp/graasp-ui/compare/v3.2.6...v3.2.7) (2023-07-31)
+
+
+### Bug Fixes
+
+* **deps:** update dependency clsx to v2 ([#439](https://github.com/graasp/graasp-ui/issues/439)) ([cc2fd3e](https://github.com/graasp/graasp-ui/commit/cc2fd3eeb394c8eae4e906900076b90e037c4374))
+* zIndex on quill tooltip ([#460](https://github.com/graasp/graasp-ui/issues/460)) ([34b1da6](https://github.com/graasp/graasp-ui/commit/34b1da64c6ddaf0d81b8ab63a7a99c36cd32a538))
+
 ## [3.2.6](https://github.com/graasp/graasp-ui/compare/v3.2.5...v3.2.6) (2023-07-26)
 
 
