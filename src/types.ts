@@ -1,3 +1,5 @@
+import { Direction } from '@mui/material';
+
 export enum Variant {
   TEXT = 'text',
   RECT = 'rectangular',
@@ -34,3 +36,10 @@ export enum CCSharing {
 }
 
 export type CCSharingVariant = CCSharing | `${CCSharing}`;
+
+export type I18nInstance = {
+  language: string;
+  t: (s: string) => string;
+  dir: (l: string) => Direction;
+  changeLanguage: (lang: string) => void;
+};

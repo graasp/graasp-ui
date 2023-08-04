@@ -13,7 +13,7 @@ type Props<T> = {
   id?: string;
   label?: MuiSelectProps['label'];
   labelId?: MuiSelectProps['labelId'];
-  onChange?: MuiSelectProps['onChange'];
+  onChange?: MuiSelectProps<T>['onChange'];
   sx?: SxProps;
   values: { value: T; text: string }[];
   variant?: MuiSelectProps['variant'];
