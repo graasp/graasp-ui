@@ -21,6 +21,7 @@ type Props = {
   languageSelectSx: SxProps;
   languageSelectLabel?: string | null;
   languageSelectVariant?: MuiSelectProps['variant'];
+  languageSelectSize?: MuiSelectProps['size'];
 };
 
 type Context = {
@@ -45,7 +46,8 @@ const ThemeProvider = ({
   langs,
   languageSelectSx,
   languageSelectLabel,
-  languageSelectVariant = 'standard',
+  languageSelectVariant = 'outlined',
+  languageSelectSize = 'small',
 }: Props): JSX.Element => {
   const [direction, setDirection] = useState<Direction>(theme.direction);
   const languageSelect = (
@@ -55,7 +57,8 @@ const ThemeProvider = ({
       setDirection={setDirection}
       langs={langs}
       variant={languageSelectVariant}
-      languageSelectLabel={languageSelectLabel}
+      label={languageSelectLabel}
+      size={languageSelectSize}
     />
   );
   const value = useMemo(

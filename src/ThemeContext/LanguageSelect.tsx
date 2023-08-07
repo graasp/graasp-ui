@@ -11,15 +11,17 @@ const LanguageSelect = ({
   setDirection,
   languageSelectSx,
   langs,
-  languageSelectLabel = 'Language',
+  label = 'Language',
+  size,
   variant,
 }: {
   i18n: I18nInstance;
   setDirection?: Dispatch<Direction>;
   languageSelectSx?: SxProps;
   langs: { [key: string]: string };
-  languageSelectLabel?: string | null;
+  label?: string | null;
   variant?: MuiSelectProps['variant'];
+  size?: MuiSelectProps['size'];
 }): JSX.Element => {
   // init local lang, it does not update if we use i18n language directly
   const [lang, setLang] = useState(i18n.language);
@@ -34,9 +36,10 @@ const LanguageSelect = ({
 
   return (
     <Select
-      label={languageSelectLabel}
+      size={size}
+      label={label}
       variant={variant}
-      labelId={languageSelectLabel ? 'language-select-label' : undefined}
+      labelId={label ? 'language-select-label' : undefined}
       defaultValue={lang}
       sx={{ minWidth: 80, ...languageSelectSx }}
       onChange={handleLangSelect}
