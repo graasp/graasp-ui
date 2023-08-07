@@ -38,6 +38,7 @@ const LanguageSelect = ({
       defaultValue={lang}
       sx={languageSelectSx}
       onChange={handleLangSelect}
+      buildOptionId={value=>`language-${value}`}
       values={Object.entries(langs).map(([k, l]) => ({ value: k, text: l }))}
     />
   );
