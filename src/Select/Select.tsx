@@ -13,10 +13,11 @@ type Props<T> = {
   id?: string;
   label?: MuiSelectProps['label'];
   labelId?: MuiSelectProps['labelId'];
-  onChange?: MuiSelectProps['onChange'];
+  onChange?: MuiSelectProps<T>['onChange'];
   sx?: SxProps;
   values: { value: T; text: string }[];
   variant?: MuiSelectProps['variant'];
+  size?: MuiSelectProps['size'];
 };
 
 function Select<T extends string | number | readonly string[] | undefined>({
@@ -32,10 +33,11 @@ function Select<T extends string | number | readonly string[] | undefined>({
   sx,
   values,
   variant,
+  size,
 }: Props<T>): JSX.Element {
   const showLabel = Boolean(labelId ?? label);
   return (
-    <FormControl sx={{ mt: 1 }}>
+    <FormControl sx={{ mt: 1 }} size={size}>
       {showLabel && <InputLabel id={labelId}>{label}</InputLabel>}
       <MuiSelect
         labelId={labelId}
