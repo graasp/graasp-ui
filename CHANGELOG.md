@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.3.0](https://github.com/graasp/graasp-ui/compare/v3.2.7...v3.3.0) (2023-08-07)
+
+
+### Features
+
+* add ThemeContext with rtl support ([#473](https://github.com/graasp/graasp-ui/issues/473)) ([99f38f8](https://github.com/graasp/graasp-ui/commit/99f38f8b9d58391e01c222d3ec887458d0f48bad))
+
+
+### Bug Fixes
+
+* upgrade prettier ([#471](https://github.com/graasp/graasp-ui/issues/471)) ([d9bfec7](https://github.com/graasp/graasp-ui/commit/d9bfec7dba13df24075f734365bde20e709c4588))
+
 ## [3.2.7](https://github.com/graasp/graasp-ui/compare/v3.2.6...v3.2.7) (2023-07-31)
 
 
