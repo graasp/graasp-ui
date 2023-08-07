@@ -5,6 +5,7 @@ import rtlPlugin from 'stylis-plugin-rtl';
 
 import { Direction, SxProps } from '@mui/material';
 import { ThemeProvider as MuiThemeProvider } from '@mui/material';
+import { SelectProps as MuiSelectProps } from '@mui/material/Select';
 
 import React, { useContext, useMemo } from 'react';
 import { createContext, useState } from 'react';
@@ -18,7 +19,8 @@ type Props = {
   i18n: I18nInstance;
   langs: { [key: string]: string };
   languageSelectSx: SxProps;
-  languageSelectLabel?: string;
+  languageSelectLabel?: string | null;
+  languageSelectVariant?: MuiSelectProps['variant'];
 };
 
 type Context = {
@@ -43,6 +45,7 @@ const ThemeProvider = ({
   langs,
   languageSelectSx,
   languageSelectLabel,
+  languageSelectVariant = 'standard',
 }: Props): JSX.Element => {
   const [direction, setDirection] = useState<Direction>(theme.direction);
   const languageSelect = (
@@ -51,6 +54,7 @@ const ThemeProvider = ({
       i18n={i18n}
       setDirection={setDirection}
       langs={langs}
+      variant={languageSelectVariant}
       languageSelectLabel={languageSelectLabel}
     />
   );

@@ -33,8 +33,20 @@ const i18n = {
   },
 };
 
-export const Simple: Story = {
+export const Default: Story = {
   args: {
+    children: <Child />,
+    i18n,
+    langs: {
+      en: 'English',
+      ar: 'Arabic',
+    },
+  },
+};
+
+export const WithoutLabel: Story = {
+  args: {
+    languageSelectLabel: null,
     children: <Child />,
     i18n,
     langs: {

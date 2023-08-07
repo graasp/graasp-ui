@@ -1,4 +1,5 @@
 import { Direction, SelectChangeEvent, SxProps } from '@mui/material';
+import { SelectProps as MuiSelectProps } from '@mui/material/Select';
 
 import React, { Dispatch, useState } from 'react';
 
@@ -10,13 +11,15 @@ const LanguageSelect = ({
   setDirection,
   languageSelectSx,
   langs,
-  languageSelectLabel,
+  languageSelectLabel = 'Language',
+  variant,
 }: {
   i18n: I18nInstance;
   setDirection?: Dispatch<Direction>;
   languageSelectSx?: SxProps;
   langs: { [key: string]: string };
-  languageSelectLabel?: string;
+  languageSelectLabel?: string | null;
+  variant?: MuiSelectProps['variant'];
 }): JSX.Element => {
   // init local lang, it does not update if we use i18n language directly
   const [lang, setLang] = useState(i18n.language);
@@ -29,16 +32,15 @@ const LanguageSelect = ({
     setLang(event.target.value);
   };
 
-  const label = languageSelectLabel ?? 'Language';
-
   return (
     <Select
-      label={label}
-      labelId='language-select-label'
+      label={languageSelectLabel}
+      variant={variant}
+      labelId={languageSelectLabel ? 'language-select-label' : undefined}
       defaultValue={lang}
-      sx={languageSelectSx}
+      sx={{ minWidth: 80, ...languageSelectSx }}
       onChange={handleLangSelect}
-      buildOptionId={value=>`language-${value}`}
+      buildOptionId={(value) => `language-${value}`}
       values={Object.entries(langs).map(([k, l]) => ({ value: k, text: l }))}
     />
   );
