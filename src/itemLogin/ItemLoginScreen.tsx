@@ -159,7 +159,6 @@ const ItemLoginScreen: FC<ItemLoginScreenProps> = ({
     }
 
     const error = memberId?.length && !isMemberIdValid(memberId);
-    console.log(error, memberId);
     return (
       // <MemberIdFormControl>
       // {/* <MemberIdInputLabel error={Boolean(error)} shrink>
