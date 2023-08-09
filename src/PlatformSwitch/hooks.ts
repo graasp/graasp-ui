@@ -19,6 +19,7 @@ export type HostsMapper = Partial<
  *  BUILDER_HOST/items/<itemId>
  *  PLAYER_HOST/<itemId>
  *  LIBRARY_HOST/<itemId>
+ *  ANALYTICS/items/<itemId>
  *
  * For any advanced usage, create your own {@see HostsMapper}
  */
@@ -39,7 +40,7 @@ export function defaultHostsMapper(
       // redirect to home only if it is not published from there
       `${origin}`,
     [Platform.Analytics]: (origin: string, itemId: string) =>
-      `${origin}/${itemId}`,
+      `${origin}/items/${itemId}`,
   };
 
   return Object.fromEntries(
