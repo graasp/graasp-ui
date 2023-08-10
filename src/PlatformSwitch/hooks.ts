@@ -19,7 +19,7 @@ export type HostsMapper = Partial<
  *  BUILDER_HOST/items/<itemId>
  *  PLAYER_HOST/<itemId>
  *  LIBRARY_HOST/<itemId>
- *  ANALYTICS/items/<itemId>
+ *  ANALYTICS_HOST/items/<itemId>
  *
  * For any advanced usage, create your own {@see HostsMapper}
  */
