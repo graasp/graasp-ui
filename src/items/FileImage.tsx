@@ -1,12 +1,10 @@
-import { FC } from 'react';
-
 export interface FileImageProps {
   alt: string;
   url?: string;
   id?: string;
 }
 
-const FileImage: FC<FileImageProps> = ({ id, url, alt }) => {
+const FileImage = ({ id, url, alt }: FileImageProps): JSX.Element => {
   return (
     <img id={id} src={url} alt={alt} title={alt} style={{ maxWidth: '100%' }} />
   );

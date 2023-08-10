@@ -1,5 +1,7 @@
 import { ThemeProvider } from '@mui/system';
 
+import * as React from 'react';
+
 import { theme } from '../src/theme';
 import './global.css';
 

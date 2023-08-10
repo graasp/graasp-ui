@@ -8,7 +8,12 @@ import CurrentItemNavigation from './CurrentItemNavigation';
 import ExtraItemsNavigation, { ExtraItem } from './ExtraItemsNavigation';
 import { ItemMenuProps } from './ItemMenu';
 import ParentsNavigation from './ParentsNavigation';
-import { CenterAlignWrapper } from './utils';
+
+const CenterAlignWrapper = styled('div')({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+});
 
 const StyledBreadcrumbs = styled(Breadcrumbs)(({ theme }) => ({
   '& ol': {

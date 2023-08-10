@@ -8,10 +8,12 @@ import Toolbar from '@mui/material/Toolbar';
 
 import { Context } from '@graasp/sdk';
 
-import { CLOSE_DRAWER_LABEL, OPEN_DRAWER_LABEL } from '../labels';
 import { AccentColors, PRIMARY_COLOR } from '../theme';
 
-const buildHeaderGradient = (color: string): string =>
+const OPEN_DRAWER_LABEL = 'Open Drawer';
+const CLOSE_DRAWER_LABEL = 'Close Drawer';
+
+export const buildHeaderGradient = (color: string): string =>
   `linear-gradient(90deg, ${PRIMARY_COLOR} 0%, ${PRIMARY_COLOR} 35%, ${color} 100%);`;
 
 type Props = {

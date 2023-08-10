@@ -1,15 +1,13 @@
 // formula dependencies
 import katex from 'katex';
-import 'katex/dist/katex.min.css';
-import quillEmoji from 'quill-emoji';
-import 'quill-emoji/dist/quill-emoji.css';
 
+// import 'katex/dist/katex.min.css';
 import { styled } from '@mui/material';
 
 import React, { useEffect, useState } from 'react';
-import ReactQuill, { Quill } from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
+import ReactQuill from 'react-quill';
 
+// import 'react-quill/dist/quill.snow.css';
 import Button from '../buttons/Button';
 import SaveButton from '../buttons/SaveButton';
 
@@ -28,23 +26,10 @@ const TEXT_EDITOR_TOOLBAR = [
   [{ background: [] }], // default colors depending on theme
   [{ align: [] }],
   [{ list: 'ordered' }, { list: 'bullet' }, 'code-block', 'link', 'formula'],
-  ['emoji'],
 ];
 
 const TEXT_EDITOR_MIN_HEIGHT = 200;
 const TEXT_EDITOR_MAX_HEIGHT = 400;
-
-const { EmojiBlot, ShortNameEmoji, ToolbarEmoji, TextAreaEmoji } = quillEmoji;
-
-Quill.register(
-  {
-    'formats/emoji': EmojiBlot,
-    'modules/emoji-shortname': ShortNameEmoji,
-    'modules/emoji-toolbar': ToolbarEmoji,
-    'modules/emoji-textarea': TextAreaEmoji,
-  },
-  true,
-);
 
 export type TextEditorProps = {
   cancelButtonId?: string;
@@ -149,9 +134,6 @@ const TextEditor = ({
           onChange={onTextChange}
           modules={{
             toolbar: edit ? TEXT_EDITOR_TOOLBAR : null,
-            'emoji-toolbar': true,
-            'emoji-textarea': false,
-            'emoji-shortname': false,
             clipboard: {
               matchVisual: false,
             },

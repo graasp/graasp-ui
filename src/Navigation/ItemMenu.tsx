@@ -1,4 +1,11 @@
-import { IconButtonProps, Menu, MenuItem, Typography } from '@mui/material';
+import NavigateNextIcon from '@mui/icons-material/NavigateNext';
+import {
+  IconButton,
+  IconButtonProps,
+  Menu,
+  MenuItem,
+  Typography,
+} from '@mui/material';
 
 import React from 'react';
 import type { UseQueryResult } from 'react-query';
@@ -6,7 +13,7 @@ import { Link } from 'react-router-dom';
 
 import { DiscriminatedItem } from '@graasp/sdk';
 
-import { Separator, StyledIconButton } from './utils';
+export const Separator = <NavigateNextIcon />;
 
 export type ItemMenuProps = {
   buildIconId?: (id: string) => string;
@@ -51,7 +58,7 @@ const ItemMenu = ({
   }
   return (
     <>
-      <StyledIconButton
+      <IconButton
         onClick={handleClick}
         id={buildIconId?.(itemId)}
         aria-controls={open ? buildMenuId?.(itemId) : undefined}
@@ -59,7 +66,7 @@ const ItemMenu = ({
         aria-expanded={open ? true : undefined}
       >
         {icon}
-      </StyledIconButton>
+      </IconButton>
       <Menu
         anchorEl={anchorEl}
         id={buildMenuId?.(itemId)}

@@ -1,6 +1,11 @@
-import { FormControl, InputLabel, SxProps } from '@mui/material';
-import MenuItem from '@mui/material/MenuItem';
-import MuiSelect, { SelectProps as MuiSelectProps } from '@mui/material/Select';
+import {
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select as MuiSelect,
+  SelectProps as MuiSelectProps,
+  SxProps,
+} from '@mui/material';
 
 type Props<T> = {
   buildOptionId?: (v: T) => string;
@@ -20,7 +25,7 @@ type Props<T> = {
   size?: MuiSelectProps['size'];
 };
 
-function Select<T extends string | number | readonly string[] | undefined>({
+const Select = <T extends string | number | readonly string[] | undefined>({
   buildOptionId,
   className,
   color,
@@ -36,7 +41,7 @@ function Select<T extends string | number | readonly string[] | undefined>({
   variant,
   size,
   value,
-}: Props<T>): JSX.Element {
+}: Props<T>): JSX.Element => {
   const showLabel = Boolean(labelId ?? label);
   return (
     <FormControl
@@ -75,6 +80,6 @@ function Select<T extends string | number | readonly string[] | undefined>({
       </MuiSelect>
     </FormControl>
   );
-}
+};
 
 export default Select;

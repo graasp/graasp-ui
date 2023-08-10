@@ -3,7 +3,7 @@ name: CI tests
 on: [push]
 
 jobs:
-  storybook-test:
+  test:
     timeout-minutes: 20
     runs-on: ubuntu-latest
     concurrency:
