@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.3.1](https://github.com/graasp/graasp-ui/compare/v3.3.0...v3.3.1) (2023-08-10)
+
+
+### Bug Fixes
+
+* update analytics url for platform switch ([#482](https://github.com/graasp/graasp-ui/issues/482)) ([431951c](https://github.com/graasp/graasp-ui/commit/431951cd0000a470d82f862d08a7b2e8129a78a6))
+
 ## [3.3.0](https://github.com/graasp/graasp-ui/compare/v3.2.7...v3.3.0) (2023-08-07)
 
 
