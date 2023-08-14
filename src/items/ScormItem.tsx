@@ -102,6 +102,7 @@ const ScormItem: FC<ScormItemProps> = ({
         ref={iframeRef}
         src={storageUrl}
         title={name}
+        sandbox='allow-scripts'
       />
     );
 
