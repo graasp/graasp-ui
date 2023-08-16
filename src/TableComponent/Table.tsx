@@ -52,6 +52,7 @@ export interface TableProps<T = unknown> {
   NoSelectionToolbar?: () => JSX.Element;
   onCellClicked?: ((event: CellClickedEvent<T, unknown>) => void) | undefined;
   onDragEnd?: (nodes: RowNode[]) => void;
+  onDragMove?: () => void;
   onRowDataChanged?: (context: RowDataUpdatedEvent<T>) => void;
   onSelectionChanged?: (context: SelectionChangedEvent<T>) => void;
   rowData: T[];
@@ -137,6 +138,7 @@ function GraaspTable<T>({
   NoSelectionToolbar,
   onCellClicked,
   onDragEnd,
+  onDragMove,
   onRowDataChanged,
   onSelectionChanged,
   rowData: initialData,
@@ -202,6 +204,10 @@ function GraaspTable<T>({
     onDragEnd?.(nodes);
   };
 
+  const handleDragMove = (): void => {
+    onDragMove?.();
+  };
+
   const buildColumnDefs = useCallback((): ColDef[] => {
     if (!enableDrag) {
       return columnDefs;
@@ -259,6 +265,7 @@ function GraaspTable<T>({
           suppressCellFocus={suppressCellFocus}
           noRowsOverlayComponent={NoRowsComponent ?? EmptyTableComponent}
           onRowDragEnd={handleDragEnd}
+          onRowDragMove={handleDragMove}
           onSelectionChanged={handleSelectionChanged}
           onCellKeyPress={isClickable ? onKeyPress : undefined}
           onCellClicked={isClickable ? onCellClicked : undefined}
