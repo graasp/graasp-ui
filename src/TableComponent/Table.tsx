@@ -9,7 +9,6 @@ import {
   SelectionChangedEvent,
 } from 'ag-grid-community';
 import { AgGridReact } from 'ag-grid-react';
-import clsx from 'clsx';
 
 import { SxProps, styled } from '@mui/material';
 import Box from '@mui/material/Box';
@@ -262,10 +261,9 @@ function GraaspTable<T>({
           onSelectionChanged={handleSelectionChanged}
           onCellKeyPress={isClickable ? onKeyPress : undefined}
           onCellClicked={isClickable ? onCellClicked : undefined}
-          rowClass={clsx({
-            [ROW_CLASS_NAME]: !isClickable,
-            [ROW_CLICKABLE_CLASS_NAME]: isClickable,
-          })}
+          rowClass={`${
+            isClickable ? ROW_CLICKABLE_CLASS_NAME : ROW_CLASS_NAME
+          }`}
           getRowHeight={() => rowHeight}
           getRowId={getRowId}
           onRowDataUpdated={handleRowDataChanged}
