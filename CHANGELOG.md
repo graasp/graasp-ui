@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.3.2](https://github.com/graasp/graasp-ui/compare/v3.3.1...v3.3.2) (2023-08-18)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @graasp/sdk to v1.2.0 ([#480](https://github.com/graasp/graasp-ui/issues/480)) ([07a22a0](https://github.com/graasp/graasp-ui/commit/07a22a0137c7d7f608171d94d364cda7851547da))
+* **deps:** update dependency immutable to v4.3.2 ([#470](https://github.com/graasp/graasp-ui/issues/470)) ([c942760](https://github.com/graasp/graasp-ui/commit/c9427609af772bbfc26376549d17ac5ffcebd263))
+
 ## [3.3.1](https://github.com/graasp/graasp-ui/compare/v3.3.0...v3.3.1) (2023-08-10)
 
 
