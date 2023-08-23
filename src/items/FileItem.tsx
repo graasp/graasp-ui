@@ -1,12 +1,12 @@
-import { SxProps } from '@mui/material';
+import { Container, SxProps } from '@mui/material';
 import Alert from '@mui/material/Alert';
 import Skeleton from '@mui/material/Skeleton';
 
-import React, { FC, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { ItemType, MimeTypes, getFileExtra, getS3FileExtra } from '@graasp/sdk';
 import {
-  DocumentItemTypeRecord,
+  ItemRecord,
   LocalFileItemTypeRecord,
   S3FileItemTypeRecord,
 } from '@graasp/sdk/frontend';
@@ -35,8 +35,8 @@ export interface FileItemProps {
   editCaption?: boolean;
   errorMessage?: string;
   id?: string;
-  item: LocalFileItemTypeRecord | S3FileItemTypeRecord | DocumentItemTypeRecord;
-  maxHeight?: number;
+  item: LocalFileItemTypeRecord | S3FileItemTypeRecord;
+  maxHeight?: number | string;
   onSaveCaption?: (text: string) => void;
   onCancelCaption?: (text: string) => void;
   /**
@@ -50,7 +50,7 @@ export interface FileItemProps {
   sx?: SxProps;
 }
 
-const FileItem: FC<FileItemProps> = ({
+const FileItem = ({
   content,
   fileUrl,
   defaultItem,
@@ -68,7 +68,7 @@ const FileItem: FC<FileItemProps> = ({
   showCollapse,
   sx,
   pdfViewerLink,
-}) => {
+}: FileItemProps): JSX.Element => {
   const [url, setUrl] = useState<string>();
 
   useEffect(() => {
@@ -122,9 +122,7 @@ const FileItem: FC<FileItemProps> = ({
 
     if (mimetype) {
       if (MimeTypes.isImage(mimetype)) {
-        return (
-          <FileImage id={id} url={url} alt={altText || item.name} sx={sx} />
-        );
+        return <FileImage id={id} url={url} alt={altText || item.name} />;
       } else if (MimeTypes.isAudio(mimetype)) {
         return <FileAudio id={id} url={url} type={mimetype} sx={sx} />;
       } else if (MimeTypes.isVideo(mimetype)) {
@@ -159,12 +157,26 @@ const FileItem: FC<FileItemProps> = ({
   };
 
   // todo: add more file extensions
-  let fileItem = getComponent();
+
+  // the container allows to resize the file to a given responsive standard
+  // There is a threadoff because of the description:
+  // - description does not look good when align to the left while the file is centered
+  // - description does not look good when centered/cut alongside the centered file
+  let fileItem = (
+    <Container
+      disableGutters
+      // m=0 align the file to the left.
+      sx={{ m: 0, ...sx }}
+      maxWidth={item.settings.maxWidth ?? 'xl'}
+    >
+      {getComponent()}
+    </Container>
+  );
 
   // display element with caption
   if (showCaption) {
     fileItem = withCaption({
-      item,
+      item: item as ItemRecord,
       onSave: onSaveCaption,
       onCancel: onCancelCaption,
       edit: editCaption,

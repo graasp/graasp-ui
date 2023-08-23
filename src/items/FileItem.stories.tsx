@@ -1,9 +1,14 @@
-// TODO
 import type { Meta, StoryObj } from '@storybook/react';
 
 import React from 'react';
 
-import { ItemType, LocalFileItemType, MimeTypes, convertJs } from '@graasp/sdk';
+import {
+  ItemType,
+  LocalFileItemType,
+  MaxWidth,
+  MimeTypes,
+  convertJs,
+} from '@graasp/sdk';
 
 import { MOCK_MEMBER } from '../utils/fixtures';
 import { TABLE_CATEGORIES } from '../utils/storybook';
@@ -52,6 +57,71 @@ export const Image: Story = {
       description: 'my image description',
       path: 'item-path',
       settings: {},
+      creator: MOCK_MEMBER,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    }),
+  },
+};
+
+export const BigContainedImage: Story = {
+  loaders: [
+    async () => ({
+      content: await fetch('https://picsum.photos/1000').then((r) => r.blob()),
+    }),
+  ],
+  args: {
+    item: convertJs<LocalFileItemType>({
+      id: 'my-id',
+      name: 'my item name',
+      extra: {
+        [ItemType.LOCAL_FILE]: {
+          path: 'https://picsum.photos/1000',
+          mimetype: MimeTypes.Image.PNG,
+          name: 'original file name',
+          size: 2600,
+          altText: 'my image alt text',
+        },
+      },
+      type: ItemType.LOCAL_FILE,
+      description:
+        'This image is really big but is contrained to its container',
+      path: 'item-path',
+      settings: {
+        maxWidth: MaxWidth.Small,
+      },
+      creator: MOCK_MEMBER,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    }),
+  },
+};
+
+export const SmallContainedImage: Story = {
+  loaders: [
+    async () => ({
+      content: await fetch('https://picsum.photos/100').then((r) => r.blob()),
+    }),
+  ],
+  args: {
+    item: convertJs<LocalFileItemType>({
+      id: 'my-id',
+      name: 'my item name',
+      extra: {
+        [ItemType.LOCAL_FILE]: {
+          path: 'https://picsum.photos/100',
+          mimetype: MimeTypes.Image.PNG,
+          name: 'original file name',
+          size: 2600,
+          altText: 'my image alt text',
+        },
+      },
+      type: ItemType.LOCAL_FILE,
+      description: 'This image is small but is contrained to its big container',
+      path: 'item-path',
+      settings: {
+        maxWidth: MaxWidth.Large,
+      },
       creator: MOCK_MEMBER,
       createdAt: new Date(),
       updatedAt: new Date(),

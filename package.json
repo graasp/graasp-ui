@@ -50,7 +50,7 @@
     "storybook:build": "storybook build"
   },
   "dependencies": {
-    "@graasp/sdk": "1.2.1",
+    "@graasp/sdk": "github:graasp/graasp-sdk#248-max-width-file",
     "http-status-codes": "2.2.0",
     "immutable": "4.3.2",
     "katex": "0.16.8",
