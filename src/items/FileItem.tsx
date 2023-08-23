@@ -4,7 +4,13 @@ import Skeleton from '@mui/material/Skeleton';
 
 import React, { useEffect, useState } from 'react';
 
-import { ItemType, MimeTypes, getFileExtra, getS3FileExtra } from '@graasp/sdk';
+import {
+  ItemType,
+  MaxWidth,
+  MimeTypes,
+  getFileExtra,
+  getS3FileExtra,
+} from '@graasp/sdk';
 import {
   ItemRecord,
   LocalFileItemTypeRecord,
@@ -167,7 +173,7 @@ const FileItem = ({
       disableGutters
       // m=0 align the file to the left.
       sx={{ m: 0, ...sx }}
-      maxWidth={item.settings.maxWidth ?? 'xl'}
+      maxWidth={item.settings.maxWidth ?? MaxWidth.ExtraLarge}
     >
       {getComponent()}
     </Container>

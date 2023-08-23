@@ -3767,7 +3767,7 @@ __metadata:
 
 "@graasp/sdk@github:graasp/graasp-sdk#248-max-width-file":
   version: 1.2.1
-  resolution: "@graasp/sdk@https://github.com/graasp/graasp-sdk.git#commit=d6a1d495afbdf7273a3763e13a3ecc2e757f5317"
+  resolution: "@graasp/sdk@https://github.com/graasp/graasp-sdk.git#commit=d135407c1c55dc51d79ea2af3200fafeaf2a49d9"
   dependencies:
     "@aws-sdk/client-s3": 3.370.0
     "@fastify/secure-session": 6.1.0
@@ -3780,7 +3780,7 @@ __metadata:
     typeorm: 0.3.17
     uuid: 9.0.0
     validator: 13.11.0
-  checksum: 116d6f19cfb18cf106af2e9f2b7a3838723bd2048c55bbbf3997c02c10a6c07808b6031b67cbcb5f875ccce7bbe8030a21ea68c285cae7a04a4b7c3e53b12a71
+  checksum: afd0d33f22842d7f381183d646de4b398274ab0fe439bc5d8ba034c96dc047ca4d48b847edd8c2c01073c52eabf278900e1fd4c63718a0a31d282cb35830374c
   languageName: node
   linkType: hard
 
