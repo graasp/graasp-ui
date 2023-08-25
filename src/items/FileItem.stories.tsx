@@ -85,7 +85,7 @@ export const BigContainedImage: Story = {
       },
       type: ItemType.LOCAL_FILE,
       description:
-        'This image is really big but is contrained to its container',
+        'This image is really big but is constrained to its container',
       path: 'item-path',
       settings: {
         maxWidth: MaxWidth.Small,
@@ -117,7 +117,8 @@ export const SmallContainedImage: Story = {
         },
       },
       type: ItemType.LOCAL_FILE,
-      description: 'This image is small but is contrained to its big container',
+      description:
+        'This image is small but is constrained to its big container',
       path: 'item-path',
       settings: {
         maxWidth: MaxWidth.Large,

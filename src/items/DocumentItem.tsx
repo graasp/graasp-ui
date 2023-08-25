@@ -102,7 +102,7 @@ const DocumentItem: FC<DocumentItemProps> = ({
   }
 
   if (showCollapse) {
-    component = withCollapse({ itemName: item.name })(component);
+    component = withCollapse({ item })(component);
   }
 
   return component;

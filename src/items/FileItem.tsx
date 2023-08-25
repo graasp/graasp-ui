@@ -12,7 +12,6 @@ import {
   getS3FileExtra,
 } from '@graasp/sdk';
 import {
-  ItemRecord,
   LocalFileItemTypeRecord,
   S3FileItemTypeRecord,
 } from '@graasp/sdk/frontend';
@@ -162,27 +161,12 @@ const FileItem = ({
     );
   };
 
-  // todo: add more file extensions
-
-  // the container allows to resize the file to a given responsive standard
-  // There is a threadoff because of the description:
-  // - description does not look good when align to the left while the file is centered
-  // - description does not look good when centered/cut alongside the centered file
-  let fileItem = (
-    <Container
-      disableGutters
-      // m=0 align the file to the left.
-      sx={{ m: 0, ...sx }}
-      maxWidth={item.settings.maxWidth ?? MaxWidth.ExtraLarge}
-    >
-      {getComponent()}
-    </Container>
-  );
+  let fileItem = getComponent();
 
   // display element with caption
   if (showCaption) {
     fileItem = withCaption({
-      item: item as ItemRecord,
+      item,
       onSave: onSaveCaption,
       onCancel: onCancelCaption,
       edit: editCaption,
@@ -192,10 +176,23 @@ const FileItem = ({
   }
 
   if (showCollapse) {
-    fileItem = withCollapse({ itemName: item.name })(fileItem);
+    fileItem = withCollapse({ item })(fileItem);
   }
 
-  return fileItem;
+  // the container allows to resize the file to a given responsive standard
+  // There is a tradeoff because of the description:
+  // - description does not look good when align to the left while the file is centered
+  // - description does not look good when centered/cut alongside the centered file
+  return (
+    <Container
+      disableGutters
+      // m=0 align the file to the left.
+      sx={{ m: 0, ...sx }}
+      maxWidth={item.settings.maxWidth ?? MaxWidth.ExtraLarge}
+    >
+      {fileItem}
+    </Container>
+  );
 };
 
 export default React.memo(FileItem);

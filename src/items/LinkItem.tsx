@@ -198,7 +198,7 @@ const LinkItem: FC<LinkItemProps> = ({
   }
 
   if (showCollapse) {
-    linkItem = withCollapse({ itemName: name })(linkItem);
+    linkItem = withCollapse({ item: { name } })(linkItem);
   }
 
   return linkItem;

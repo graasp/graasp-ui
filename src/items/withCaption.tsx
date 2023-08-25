@@ -2,14 +2,12 @@ import Grid from '@mui/material/Grid';
 
 import React from 'react';
 
-import { ItemRecord } from '@graasp/sdk/frontend';
-
 import TextEditor from '../TextEditor';
 
 const DEFAULT_ITEM_DESCRIPTION = '';
 
-interface WithCaptionProps {
-  item: ItemRecord;
+interface WithCaptionProps<T> {
+  item: T;
   edit?: boolean;
   onSave?: (text: string) => void;
   onCancel?: (text: string) => void;
@@ -18,7 +16,7 @@ interface WithCaptionProps {
   cancelButtonId?: string;
 }
 
-function withCaption({
+function withCaption<T extends { description: string | null }>({
   item,
   edit,
   onSave,
@@ -26,7 +24,7 @@ function withCaption({
   saveButtonText,
   saveButtonId,
   cancelButtonId,
-}: WithCaptionProps) {
+}: WithCaptionProps<T>) {
   return (component: JSX.Element): JSX.Element => {
     class ComponentWithCaption extends React.Component {
       render(): JSX.Element {
