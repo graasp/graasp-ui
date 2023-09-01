@@ -104,7 +104,7 @@ const H5PItem: FC<H5PItemProps> = ({
   );
 
   if (showCollapse) {
-    iframeH5Pitem = withCollapse({ itemName })(iframeH5Pitem);
+    iframeH5Pitem = withCollapse({ item: { name: itemName } })(iframeH5Pitem);
   }
 
   return iframeH5Pitem;
