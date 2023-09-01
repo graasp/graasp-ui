@@ -3765,9 +3765,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@graasp/sdk@github:graasp/graasp-sdk#248-max-width-file":
-  version: 1.2.1
-  resolution: "@graasp/sdk@https://github.com/graasp/graasp-sdk.git#commit=d135407c1c55dc51d79ea2af3200fafeaf2a49d9"
+"@graasp/sdk@npm:1.4.0":
+  version: 1.4.0
+  resolution: "@graasp/sdk@npm:1.4.0"
   dependencies:
     "@aws-sdk/client-s3": 3.370.0
     "@fastify/secure-session": 6.1.0
@@ -3780,7 +3780,7 @@ __metadata:
     typeorm: 0.3.17
     uuid: 9.0.0
     validator: 13.11.0
-  checksum: afd0d33f22842d7f381183d646de4b398274ab0fe439bc5d8ba034c96dc047ca4d48b847edd8c2c01073c52eabf278900e1fd4c63718a0a31d282cb35830374c
+  checksum: 224ed990ed7b68fe4b463d2d1e24fc503c5f5434703cb818a54d22ee9aa8e9997c3a02768ceec082bea604853aa4804ac4d454c746e38089e3e327e0ffcd4c27
   languageName: node
   linkType: hard
 
@@ -3798,7 +3798,7 @@ __metadata:
     "@emotion/cache": ~11.11.0
     "@emotion/react": 11.11.1
     "@emotion/styled": 11.11.0
-    "@graasp/sdk": "github:graasp/graasp-sdk#248-max-width-file"
+    "@graasp/sdk": 1.4.0
     "@mdx-js/react": 2.3.0
     "@mui/icons-material": 5.14.3
     "@mui/lab": 5.0.0-alpha.140
