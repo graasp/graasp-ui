@@ -35,13 +35,14 @@ export const isMemberIdValid = (memberId?: string): boolean => {
 
 const { toUUID } = shortUUID();
 
-export const getUUID = (shortenUUID: string = ''): string | undefined => {
-  if (shortenUUID) {
-    try {
+export const getUUID = (shortenUUID: string = ''): string => {
+  try {
+    if (shortenUUID) {
       const uuid = toUUID(shortenUUID);
       return uuid;
-    } catch (err) {
-      return shortenUUID;
     }
+    throw new Error('uuid should have a value');
+  } catch (err) {
+    return shortenUUID;
   }
 };
