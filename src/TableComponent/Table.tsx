@@ -7,6 +7,7 @@ import {
   RowDataUpdatedEvent,
   RowNode,
   SelectionChangedEvent,
+  SortChangedEvent,
 } from 'ag-grid-community';
 import { AgGridReact } from 'ag-grid-react';
 
@@ -30,6 +31,7 @@ import TableToolbar from './TableToolbar';
 import { suppressKeyboardEventForParentCell } from './utils';
 
 const DRAG_COLUMN_WIDTH = 22;
+const ITEMS_DEFAULT_PAGE_SIZE = 10;
 
 export interface TableProps<T = unknown> {
   className?: string;
@@ -62,13 +64,18 @@ export interface TableProps<T = unknown> {
   suppressRowClickSelection?: boolean;
   sx?: SxProps;
   tableHeight?: number | string;
+  onSortChanged?: (event: SortChangedEvent) => void;
   ToolbarActions?: ({ selectedIds }: { selectedIds: string[] }) => JSX.Element;
   /**
    * enable pagination
    * We don't use AG Grid's pagination because it disables the custom dragging
    */
   pagination?: boolean;
+  page?: number;
+  onPageChange?: (event: unknown, newPage: number) => void;
+  totalCount?: number;
   labelDisplayedRows?: TablePaginationProps['labelDisplayedRows'];
+  pageSize?: number;
 }
 
 const StyledDiv = styled('div')(({ theme }) => ({
@@ -149,6 +156,12 @@ function GraaspTable<T>({
   sx,
   tableHeight = 500,
   ToolbarActions,
+  page = 1,
+  onPageChange,
+  totalCount,
+  rowDragManaged,
+  onSortChanged,
+  pageSize = ITEMS_DEFAULT_PAGE_SIZE,
 }: TableProps<T>): JSX.Element {
   const gridRef = useRef<AgGridReact>(null);
   const [selected, setSelected] = useState<string[]>([]);
@@ -251,7 +264,7 @@ function GraaspTable<T>({
           ref={gridRef}
           columnDefs={buildColumnDefs()}
           rowData={rowData}
-          rowDragManaged={true}
+          rowDragManaged={rowDragManaged}
           defaultColDef={DEFAULT_COL_DEF}
           rowSelection={rowSelection}
           suppressRowClickSelection={suppressRowClickSelection}
@@ -259,6 +272,7 @@ function GraaspTable<T>({
           noRowsOverlayComponent={NoRowsComponent ?? EmptyTableComponent}
           onRowDragEnd={handleDragEnd}
           onSelectionChanged={handleSelectionChanged}
+          onSortChanged={onSortChanged}
           onCellKeyPress={isClickable ? onKeyPress : undefined}
           onCellClicked={isClickable ? onCellClicked : undefined}
           rowClass={`${
@@ -273,18 +287,15 @@ function GraaspTable<T>({
           ensureDomOrder
           animateRows={true}
         />
-        {/* TODO: implement pagination */}
         {pagination && (
           <TablePagination
-            count={rowData.length}
+            count={totalCount ?? rowData.length}
             labelDisplayedRows={labelDisplayedRows}
-            page={0}
+            page={Math.max(0, page)}
+            onPageChange={onPageChange ?? (() => {})}
             rowsPerPageOptions={[]}
-            onPageChange={() => {
-              // todo
-            }}
             component='div'
-            rowsPerPage={-1}
+            rowsPerPage={page >= 0 ? pageSize : -1}
           />
         )}
       </StyledBox>
