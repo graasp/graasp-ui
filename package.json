@@ -61,6 +61,7 @@
     "react-quill": "2.0.0-beta.4",
     "react-rnd": "10.4.1",
     "react-text-mask": "5.5.0",
+    "short-uuid": "4.2.2",
     "uuid": "9.0.0"
   },
   "peerDependencies": {

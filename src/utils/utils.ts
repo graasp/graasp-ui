@@ -1,3 +1,4 @@
+import shortUUID from 'short-uuid';
 import { validate } from 'uuid';
 
 // todo: use graasp-utils repo
@@ -30,4 +31,19 @@ export const isMemberIdValid = (memberId?: string): boolean => {
     return false;
   }
   return validate(memberId?.trim());
+};
+
+const { toUUID } = shortUUID();
+
+export const getUUID = (shortenUUID: string = ''): string => {
+  try {
+    if (shortenUUID) {
+      const uuid = toUUID(shortenUUID);
+      return uuid;
+    }
+    throw new Error('uuid should have a value');
+  } catch (err) {
+    console.error(err);
+    return shortenUUID;
+  }
 };
