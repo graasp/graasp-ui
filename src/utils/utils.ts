@@ -43,6 +43,7 @@ export const getUUID = (shortenUUID: string = ''): string => {
     }
     throw new Error('uuid should have a value');
   } catch (err) {
+    console.error(err)
     return shortenUUID;
   }
 };
