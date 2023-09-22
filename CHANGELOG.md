@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.5.0](https://github.com/graasp/graasp-ui/compare/v3.4.0...v3.5.0) (2023-09-22)
+
+
+### Features
+
+* custom hook to get uuid url params ([#517](https://github.com/graasp/graasp-ui/issues/517)) ([cd2716d](https://github.com/graasp/graasp-ui/commit/cd2716d7ec9b204b1ca80a759627785112cb61b7))
+
+
+### Bug Fixes
+
+* **deps:** update dependency @graasp/sdk to v1.5.0 ([#513](https://github.com/graasp/graasp-ui/issues/513)) ([4b69501](https://github.com/graasp/graasp-ui/commit/4b69501dd9bb75ed92ded2e45b4b7f07f136c700))
+
 ## [3.4.0](https://github.com/graasp/graasp-ui/compare/v3.3.2...v3.4.0) (2023-09-01)
 
 
