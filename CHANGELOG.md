@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.5.1](https://github.com/graasp/graasp-ui/compare/v3.5.0...v3.5.1) (2023-09-25)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @graasp/sdk to v1.6.0 ([#525](https://github.com/graasp/graasp-ui/issues/525)) ([c2233d0](https://github.com/graasp/graasp-ui/commit/c2233d02e5403175c87cee0e39c56b8eecbe4de4))
+
 ## [3.5.0](https://github.com/graasp/graasp-ui/compare/v3.4.0...v3.5.0) (2023-09-22)
 
 
