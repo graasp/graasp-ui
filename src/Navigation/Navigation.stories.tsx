@@ -24,6 +24,7 @@ const buildItem = (name: string): ItemRecord =>
         mimetype: MimeTypes.Image.PNG,
         name: 'original file name',
         size: 2600,
+        content: '',
       },
     },
     type: 'file',

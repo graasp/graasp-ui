@@ -34,7 +34,7 @@
     "prettier:check": "prettier --check \"{src,example}/**/*.{js,ts,tsx}\"",
     "prettier:write": "prettier --write \"{src,example}/**/*.{js,ts,tsx}\"",
     "pretest": "cd example && yarn",
-    "test": "yarn storybook:test",
+    "test": "yarn storybook:build && concurrently -k -s first -n \"SB, TEST\" -c \"magenta,blue\" \"yarn storybook:preview\" \"yarn storybook:test-ci\"",
     "test:unit": "cross-env CI=1 jest src --env=jsdom",
     "test:watch": "jest src --watchAll --env=jsdom",
     "hooks:uninstall": "husky uninstall",
@@ -46,11 +46,13 @@
     "pre-commit": "yarn check",
     "pre-push": "yarn build",
     "storybook": "storybook dev",
+    "storybook:preview": "http-server storybook-static --port 6006 --silent",
     "storybook:test": "test-storybook --coverage",
+    "storybook:test-ci": "wait-on http://127.0.0.1:6006 && yarn storybook:test",
     "storybook:build": "storybook build"
   },
   "dependencies": {
-    "@graasp/sdk": "1.5.0",
+    "@graasp/sdk": "1.6.0",
     "http-status-codes": "2.2.0",
     "immutable": "4.3.2",
     "katex": "0.16.8",
