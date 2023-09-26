@@ -3,7 +3,7 @@ import { StatusCodes, getReasonPhrase } from 'http-status-codes';
 import Alert from '@mui/material/Alert';
 
 import React, { ReactElement } from 'react';
-import { UseMutateFunction, UseQueryResult } from 'react-query';
+import { UseQueryResult } from 'react-query';
 
 import { ItemLoginSchemaType, UUID } from '@graasp/sdk';
 import { ItemRecord, MemberRecord } from '@graasp/sdk/frontend';
@@ -13,7 +13,6 @@ import ForbiddenText from './ForbiddenText';
 import ItemLoginScreen, { SignInPropertiesType } from './ItemLoginScreen';
 
 export type ItemLoginAuthorizationProps = {
-  signOut: UseMutateFunction<void, unknown, string, unknown>;
   signIn: (args: { itemId: string } & SignInPropertiesType) => void;
   itemId: UUID;
   useCurrentMember: () => UseQueryResult<MemberRecord>;
