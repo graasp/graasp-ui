@@ -4,6 +4,7 @@ on: [push]
 
 jobs:
   storybook-test:
+    timeout-minutes: 20
     runs-on: ubuntu-latest
     concurrency:
       group: storybook-tests-${{ github.head_ref || github.ref }}
