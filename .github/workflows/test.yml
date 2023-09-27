@@ -13,10 +13,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup Node 16.x
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16.x
+      # - name: Setup Node 16.x
+      #   uses: actions/setup-node@v3
+      #   with:
+      #     node-version: 16.x
 
       - name: Install dependencies
         run: yarn
@@ -26,6 +26,9 @@ jobs:
 
       - name: Build # ensures type-checks and compiles
         run: yarn build
+
+      - name: Unit test
+        run: yarn test:unit
 
       - name: Install playwright
         run: npx playwright install --with-deps
