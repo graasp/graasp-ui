@@ -1,4 +1,4 @@
-name: Storybook tests
+name: CI tests
 
 on: [push]
 
@@ -13,10 +13,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # - name: Setup Node 16.x
-      #   uses: actions/setup-node@v3
-      #   with:
-      #     node-version: 16.x
+      - name: Setup Node 16
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
 
       - name: Install dependencies
         run: yarn
