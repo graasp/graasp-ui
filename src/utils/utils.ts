@@ -1,5 +1,5 @@
 import shortUUID from 'short-uuid';
-import { validate } from 'uuid';
+import { validate, version } from 'uuid';
 
 // todo: use graasp-utils repo
 export const getParentsIdsFromPath = (
@@ -34,16 +34,26 @@ export const isMemberIdValid = (memberId?: string): boolean => {
 };
 
 const { toUUID } = shortUUID();
-
-export const getUUID = (shortenUUID: string = ''): string => {
-  try {
-    if (shortenUUID) {
-      const uuid = toUUID(shortenUUID);
-      return uuid;
-    }
-    throw new Error('uuid should have a value');
-  } catch (err) {
-    console.error(err);
+/**
+ * Expand a short UUID into its v4 counterpart. If given a long uuid as import it return it as is.
+ * @param shortenUUID a string holding a short-uuid or a uuid v4 (long)
+ * @returns long version of the uuid v4
+ */
+export const getUUID = (shortenUUID?: string): string | undefined => {
+  // start by checking if the UUID is a v4
+  if (shortenUUID && validate(shortenUUID) && version(shortenUUID) === 4) {
+    // return as is
     return shortenUUID;
+  } else {
+    try {
+      if (shortenUUID) {
+        const uuid = toUUID(shortenUUID);
+        return uuid;
+      }
+      throw new Error('uuid should have a value');
+    } catch (err) {
+      console.error(err);
+      return shortenUUID;
+    }
   }
 };
