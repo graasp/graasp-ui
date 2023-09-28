@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.5.2](https://github.com/graasp/graasp-ui/compare/v3.5.1...v3.5.2) (2023-09-27)
+
+
+### Bug Fixes
+
+* remove signOut prop ([#530](https://github.com/graasp/graasp-ui/issues/530)) ([c30a5b9](https://github.com/graasp/graasp-ui/commit/c30a5b9938bd6168f3f33ac37190c1d9397cb773))
+
 ## [3.5.1](https://github.com/graasp/graasp-ui/compare/v3.5.0...v3.5.1) (2023-09-25)
 
 
