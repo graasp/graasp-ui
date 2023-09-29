@@ -169,6 +169,9 @@ Simple.play = async ({ args, canvasElement }) => {
     await expect(canvas.getAllByRole('row')).toBeTruthy();
   });
 
+  await waitFor(async () => {
+    await expect(canvas.getByText('name 1')).toBeTruthy();
+  });
   // check mouse onclick trigger event
   await userEvent.click(canvas.getByText('name 1'));
   await waitFor(async () => {

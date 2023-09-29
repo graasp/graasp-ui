@@ -1,9 +1,10 @@
-name: Storybook tests
+name: CI tests
 
 on: [push]
 
 jobs:
   storybook-test:
+    timeout-minutes: 20
     runs-on: ubuntu-latest
     concurrency:
       group: storybook-tests-${{ github.head_ref || github.ref }}
@@ -13,11 +14,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup Node 16.x
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16.x
-
       - name: Install dependencies
         run: yarn
 
@@ -26,6 +22,9 @@ jobs:
 
       - name: Build # ensures type-checks and compiles
         run: yarn build
+
+      - name: Unit test
+        run: yarn test:unit
 
       - name: Install playwright
         run: npx playwright install --with-deps
@@ -37,4 +36,4 @@ jobs:
         run: |
           npx concurrently -k -s first -n "SB,TEST" -c "magenta,blue" \
             "npx http-server storybook-static --port 6006 --silent" \
-            "npx wait-on tcp:6006 && yarn storybook:test"
+            "npx wait-on http://127.0.0.1:6006 && yarn storybook:test"
