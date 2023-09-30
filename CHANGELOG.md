@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.5.3](https://github.com/graasp/graasp-ui/compare/v3.5.2...v3.5.3) (2023-09-30)
+
+
+### Bug Fixes
+
+* add tests and re-enable jest unit test in workflow and locally ([2b67d73](https://github.com/graasp/graasp-ui/commit/2b67d7377fdac82bc0e780e3d716ec31c0f64531))
+* **deps:** update dependency http-status-codes to v2.3.0 ([#526](https://github.com/graasp/graasp-ui/issues/526)) ([0af10aa](https://github.com/graasp/graasp-ui/commit/0af10aaf9475ac4efb5e37e760779e0c17f56695))
+* **deps:** update dependency uuid to v9.0.1 ([de2e487](https://github.com/graasp/graasp-ui/commit/de2e4871d6cf3edccdea82ce86c88804a265282a))
+* improve getUUID and add tests ([#533](https://github.com/graasp/graasp-ui/issues/533)) ([2b67d73](https://github.com/graasp/graasp-ui/commit/2b67d7377fdac82bc0e780e3d716ec31c0f64531))
+
 ## [3.5.2](https://github.com/graasp/graasp-ui/compare/v3.5.1...v3.5.2) (2023-09-27)
 
 
