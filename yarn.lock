@@ -3964,7 +3964,7 @@ __metadata:
     http-server: 14.1.1
     http-status-codes: 2.3.0
     husky: 8.0.3
-    immutable: 4.3.2
+    immutable: 4.3.4
     jest: 29.7.0
     jest-dom: 4.0.0
     jest-environment-jsdom: 29.7.0
@@ -14351,6 +14351,13 @@ __metadata:
   version: 4.3.2
   resolution: "immutable@npm:4.3.2"
   checksum: bb1d0f3eb8ebef04aa9e2c698ba1a248976a4dc0257fa2f1bffaaae575f891395fe9ef39eaf49856d6c4edd31704e300ec563ed44ea9d7c7996186deab91d0ff
+  languageName: node
+  linkType: hard
+
+"immutable@npm:4.3.4":
+  version: 4.3.4
+  resolution: "immutable@npm:4.3.4"
+  checksum: de3edd964c394bab83432429d3fb0b4816b42f56050f2ca913ba520bd3068ec3e504230d0800332d3abc478616e8f55d3787424a90d0952e6aba864524f1afc3
   languageName: node
   linkType: hard
 
