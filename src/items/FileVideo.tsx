@@ -19,7 +19,7 @@ const FileVideo: FC<FileVideoProps> = ({ id, url, sx, handleLoad }) => {
       sx={sx}
       id={id}
       controls
-      {...(handleLoad && { onClick: handleLoad })}
+      {...(handleLoad && { onLoadEnd: handleLoad })}
     >
       <source src={url} />
     </StyledVideo>
