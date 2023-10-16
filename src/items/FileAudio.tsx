@@ -19,7 +19,7 @@ const FileAudio: FC<FileAudioProps> = ({ id, url, type, sx, handleLoad }) => {
       sx={sx}
       id={id}
       controls
-      {...(handleLoad && { onLoadEnd: handleLoad })}
+      {...(handleLoad && { onLoadedData: handleLoad })}
     >
       <source src={url} type={type} />
     </StyledAudio>
