@@ -14,6 +14,7 @@ interface DownloadButtonFileItemProps {
   url?: string;
   id?: string;
   text?: string;
+  handleLoad?: () => void;
 }
 
 const DownloadButtonFileItem: FC<DownloadButtonFileItemProps> = ({
@@ -21,6 +22,7 @@ const DownloadButtonFileItem: FC<DownloadButtonFileItemProps> = ({
   name = 'File',
   url,
   text,
+  handleLoad,
 }) => {
   const buttonText = text || `Download ${name}`;
 
@@ -32,7 +34,11 @@ const DownloadButtonFileItem: FC<DownloadButtonFileItemProps> = ({
       rel='noreferrer'
       download={name}
     >
-      <Button size='large' startIcon={<GetAppIcon />}>
+      <Button
+        size='large'
+        startIcon={<GetAppIcon />}
+        {...(handleLoad && { onClick: handleLoad })}
+      >
         {buttonText}
       </Button>
     </StyledLink>

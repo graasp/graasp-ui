@@ -53,6 +53,7 @@ export interface FileItemProps {
   showCaption?: boolean;
   showCollapse?: boolean;
   sx?: SxProps;
+  handleLoad?: () => void;
 }
 
 const FileItem = ({
@@ -73,6 +74,7 @@ const FileItem = ({
   showCollapse,
   sx,
   pdfViewerLink,
+  handleLoad,
 }: FileItemProps): JSX.Element => {
   const [url, setUrl] = useState<string>();
 
@@ -129,10 +131,18 @@ const FileItem = ({
       if (MimeTypes.isImage(mimetype)) {
         return <FileImage id={id} url={url} alt={altText || item.name} />;
       } else if (MimeTypes.isAudio(mimetype)) {
-        return <FileAudio id={id} url={url} type={mimetype} sx={sx} />;
+        return (
+          <FileAudio
+            id={id}
+            url={url}
+            type={mimetype}
+            sx={sx}
+            handleLoad={handleLoad}
+          />
+        );
       } else if (MimeTypes.isVideo(mimetype)) {
         // does not specify mimetype in video source, this way, it works with more container formats in more browsers (especially Chrome with video/quicktime)
-        return <FileVideo id={id} url={url} sx={sx} />;
+        return <FileVideo id={id} url={url} sx={sx} handleLoad={handleLoad} />;
       } else if (MimeTypes.isPdf(mimetype)) {
         return (
           <FilePdf
@@ -142,6 +152,7 @@ const FileItem = ({
             sx={sx}
             showCollapse={showCollapse}
             pdfViewerLink={pdfViewerLink}
+            handleLoad={handleLoad}
           />
         );
       }
@@ -157,6 +168,7 @@ const FileItem = ({
         name={originalFileName ?? item.name}
         url={url}
         text={downloadText}
+        handleLoad={handleLoad}
       />
     );
   };

@@ -7,14 +7,20 @@ type FileAudioProps = {
   url?: string;
   type: string;
   sx?: SxProps;
+  handleLoad?: () => void;
 };
 
-const FileAudio: FC<FileAudioProps> = ({ id, url, type, sx }) => {
+const FileAudio: FC<FileAudioProps> = ({ id, url, type, sx, handleLoad }) => {
   const StyledAudio = styled('audio')({
     maxWidth: '100%',
   });
   return (
-    <StyledAudio sx={sx} id={id} controls>
+    <StyledAudio
+      sx={sx}
+      id={id}
+      controls
+      {...(handleLoad && { onClick: handleLoad })}
+    >
       <source src={url} type={type} />
     </StyledAudio>
   );
