@@ -34,6 +34,9 @@ interface Props {
   signOutText?: string;
   // switchMember: (args: { memberId: string; domain: string }) => Promise<void>;
   switchMemberText?: string;
+  hasProfile?: boolean;
+  customProfile?: string;
+  seeCustomProfileText?: string;
   // useMembers: (ids: string[]) => UseQueryResult<ResultOfRecord<Member>>;
 }
 
@@ -57,6 +60,9 @@ const UserSwitchWrapper: FC<Props> = ({
   signOutText = 'Sign Out',
   // switchMember,
   switchMemberText = 'Sign in',
+  hasProfile = false,
+  customProfile,
+  seeCustomProfileText,
   // useMembers,
 }) => {
   // get stored sessions
@@ -96,10 +102,15 @@ const UserSwitchWrapper: FC<Props> = ({
     return redirect(redirectPath);
   };
 
-  const goToProfile = (): void => {
+  const goToSettings = (): void => {
     redirect(profilePath);
   };
 
+  const goToProfile = (): void => {
+    if (customProfile) {
+      redirect(customProfile);
+    }
+  };
   // const onMemberClick = (memberId: string) => () =>
   //   switchMember({ memberId, domain });
 
@@ -113,6 +124,16 @@ const UserSwitchWrapper: FC<Props> = ({
         </ListItemIcon>
         <Typography variant='subtitle2'>{signOutText}</Typography>
       </MenuItem>,
+      <MenuItem
+        key='seeSettings'
+        onClick={goToSettings}
+        id={seeProfileButtonId}
+      >
+        <ListItemIcon>
+          <MeetingRoomIcon fontSize='large' />
+        </ListItemIcon>
+        <Typography variant='subtitle2'>{seeProfileText}</Typography>
+      </MenuItem>,
     ];
   } else {
     Actions = [
@@ -125,19 +146,26 @@ const UserSwitchWrapper: FC<Props> = ({
     ];
   }
 
+  if (hasProfile) {
+    Actions.push(
+      <MenuItem key='seeProfile' onClick={goToProfile} id={signOutMenuItemId}>
+        <ListItemIcon>
+          <MeetingRoomIcon fontSize='large' />
+        </ListItemIcon>
+        <Typography variant='subtitle2'>{seeCustomProfileText}</Typography>
+      </MenuItem>,
+    );
+  }
   return (
     <UserSwitch
       ButtonContent={ButtonContent}
       Actions={Actions}
       // onMemberClick={onMemberClick}
-      onSeeProfileClick={goToProfile}
       member={currentMember}
       // members={members}
-      seeProfileText={seeProfileText}
       signedOutTooltipText={signedOutTooltipText}
       buttonId={buttonId}
       buildMemberMenuItemId={buildMemberMenuItemId}
-      seeProfileButtonId={seeProfileButtonId}
       renderAvatar={renderAvatar}
     />
   );
