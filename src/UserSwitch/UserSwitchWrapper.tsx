@@ -1,5 +1,7 @@
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import MeetingRoomIcon from '@mui/icons-material/MeetingRoom';
+import ProfileIcon from '@mui/icons-material/Person2';
+import SettingsIcon from '@mui/icons-material/Settings';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import MenuItem from '@mui/material/MenuItem';
 import Typography from '@mui/material/Typography';
@@ -114,25 +116,33 @@ const UserSwitchWrapper: FC<Props> = ({
   // const onMemberClick = (memberId: string) => () =>
   //   switchMember({ memberId, domain });
 
-  let Actions: JSX.Element[];
+  let Actions: (JSX.Element | null)[];
 
   if (currentMember && currentMember.id) {
     Actions = [
-      <MenuItem key='signout' onClick={handleSignOut} id={signOutMenuItemId}>
-        <ListItemIcon>
-          <MeetingRoomIcon fontSize='large' />
-        </ListItemIcon>
-        <Typography variant='subtitle2'>{signOutText}</Typography>
-      </MenuItem>,
       <MenuItem
         key='seeSettings'
         onClick={goToSettings}
         id={seeProfileButtonId}
       >
         <ListItemIcon>
-          <MeetingRoomIcon fontSize='large' />
+          <SettingsIcon fontSize='large' />
         </ListItemIcon>
         <Typography variant='subtitle2'>{seeProfileText}</Typography>
+      </MenuItem>,
+      hasProfile ? (
+        <MenuItem key='seeProfile' onClick={goToProfile} id={signOutMenuItemId}>
+          <ListItemIcon>
+            <ProfileIcon fontSize='large' />
+          </ListItemIcon>
+          <Typography variant='subtitle2'>{seeCustomProfileText}</Typography>
+        </MenuItem>
+      ) : null,
+      <MenuItem key='signout' onClick={handleSignOut} id={signOutMenuItemId}>
+        <ListItemIcon>
+          <MeetingRoomIcon fontSize='large' />
+        </ListItemIcon>
+        <Typography variant='subtitle2'>{signOutText}</Typography>
       </MenuItem>,
     ];
   } else {
@@ -146,16 +156,6 @@ const UserSwitchWrapper: FC<Props> = ({
     ];
   }
 
-  if (hasProfile) {
-    Actions.push(
-      <MenuItem key='seeProfile' onClick={goToProfile} id={signOutMenuItemId}>
-        <ListItemIcon>
-          <MeetingRoomIcon fontSize='large' />
-        </ListItemIcon>
-        <Typography variant='subtitle2'>{seeCustomProfileText}</Typography>
-      </MenuItem>,
-    );
-  }
   return (
     <UserSwitch
       ButtonContent={ButtonContent}
