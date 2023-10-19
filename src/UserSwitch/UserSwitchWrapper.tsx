@@ -1,4 +1,5 @@
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 import MeetingRoomIcon from '@mui/icons-material/MeetingRoom';
 import ProfileIcon from '@mui/icons-material/Person2';
 import SettingsIcon from '@mui/icons-material/Settings';
@@ -36,9 +37,14 @@ interface Props {
   signOutText?: string;
   // switchMember: (args: { memberId: string; domain: string }) => Promise<void>;
   switchMemberText?: string;
-  hasProfile?: boolean;
-  customProfile?: string;
-  seeCustomProfileText?: string;
+  likedItemsProfile?: boolean;
+  likedItemsPath?: string;
+  likedItemsText?: string;
+
+  hasLibraryProfile?: boolean;
+  libraryProfilePath?: string;
+  libraryProfileText?: string;
+
   // useMembers: (ids: string[]) => UseQueryResult<ResultOfRecord<Member>>;
 }
 
@@ -62,9 +68,12 @@ const UserSwitchWrapper: FC<Props> = ({
   signOutText = 'Sign Out',
   // switchMember,
   switchMemberText = 'Sign in',
-  hasProfile = false,
-  customProfile,
-  seeCustomProfileText,
+  likedItemsProfile = false,
+  likedItemsPath,
+  likedItemsText = 'Liked Items',
+  hasLibraryProfile = false,
+  libraryProfilePath,
+  libraryProfileText = 'Profile',
   // useMembers,
 }) => {
   // get stored sessions
@@ -108,9 +117,14 @@ const UserSwitchWrapper: FC<Props> = ({
     redirect(profilePath);
   };
 
-  const goToProfile = (): void => {
-    if (customProfile) {
-      redirect(customProfile);
+  const goToLikedItems = (): void => {
+    if (likedItemsPath) {
+      redirect(likedItemsPath);
+    }
+  };
+  const goToLibraryProfile = (): void => {
+    if (libraryProfilePath) {
+      redirect(libraryProfilePath);
     }
   };
   // const onMemberClick = (memberId: string) => () =>
@@ -130,12 +144,28 @@ const UserSwitchWrapper: FC<Props> = ({
         </ListItemIcon>
         <Typography variant='subtitle2'>{seeProfileText}</Typography>
       </MenuItem>,
-      hasProfile ? (
-        <MenuItem key='seeProfile' onClick={goToProfile} id={signOutMenuItemId}>
+      hasLibraryProfile ? (
+        <MenuItem
+          key='libraryProfile'
+          onClick={goToLibraryProfile}
+          id={signOutMenuItemId}
+        >
           <ListItemIcon>
             <ProfileIcon fontSize='large' />
           </ListItemIcon>
-          <Typography variant='subtitle2'>{seeCustomProfileText}</Typography>
+          <Typography variant='subtitle2'>{libraryProfileText}</Typography>
+        </MenuItem>
+      ) : null,
+      likedItemsProfile ? (
+        <MenuItem
+          key='likedItems'
+          onClick={goToLikedItems}
+          id={signOutMenuItemId}
+        >
+          <ListItemIcon>
+            <FavoriteIcon fontSize='large' />
+          </ListItemIcon>
+          <Typography variant='subtitle2'>{likedItemsText}</Typography>
         </MenuItem>
       ) : null,
       <MenuItem key='signout' onClick={handleSignOut} id={signOutMenuItemId}>
