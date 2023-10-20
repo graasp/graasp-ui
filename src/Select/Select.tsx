@@ -9,6 +9,7 @@ type Props<T> = {
   className?: string;
   color?: MuiSelectProps['color'];
   defaultValue?: T;
+  value?: T;
   displayEmpty?: MuiSelectProps['displayEmpty'];
   id?: string;
   label?: MuiSelectProps['label'];
@@ -34,6 +35,7 @@ function Select<T extends string | number | readonly string[] | undefined>({
   values,
   variant,
   size,
+  value,
 }: Props<T>): JSX.Element {
   const showLabel = Boolean(labelId ?? label);
   return (
@@ -52,6 +54,7 @@ function Select<T extends string | number | readonly string[] | undefined>({
         color={color}
         variant={variant}
         id={id}
+        {...(value && { value })}
         sx={sx}
       >
         {values.map(({ value, text }) => (
