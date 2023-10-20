@@ -20,11 +20,9 @@ import {
   LocalFileItemExtra,
   MimeTypes,
   S3FileItemExtra,
-  UnknownExtra,
   getFileExtra,
   getS3FileExtra,
 } from '@graasp/sdk';
-import { ItemRecord } from '@graasp/sdk/frontend';
 
 import { StyledImage } from '../StyledComponents/StyledBaseComponents';
 import EtherpadIcon from './EtherpadIcon';
@@ -36,12 +34,12 @@ export interface ItemIconProps {
   /**
    * item type
    */
-  type: ItemType | `${ItemType}`;
+  type: ItemType | `${ItemType}` | 'upload';
   color?: string;
   /**
    * item extra
    */
-  extra?: ItemRecord['extra'] | UnknownExtra;
+  extra?: LocalFileItemExtra | S3FileItemExtra;
   /**
    * @deprecated use sx
    * */
@@ -64,9 +62,10 @@ const ItemIcon: FC<ItemIconProps> = ({
   type,
 }) => {
   const mimetype =
-    getFileExtra(extra as unknown as LocalFileItemExtra)?.mimetype ||
-    getS3FileExtra(extra as unknown as S3FileItemExtra)?.mimetype;
-
+    extra && 'file' in extra
+      ? getFileExtra(extra)?.mimetype
+      : getS3FileExtra(extra)?.mimetype;
+  console.log('mimetype', mimetype);
   if (iconSrc) {
     return (
       <StyledImage
