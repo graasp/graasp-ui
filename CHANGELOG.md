@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.6.0](https://github.com/graasp/graasp-ui/compare/v3.5.4...v3.6.0) (2023-10-20)
+
+
+### Features
+
+* add value to select component ([#548](https://github.com/graasp/graasp-ui/issues/548)) ([5698e4a](https://github.com/graasp/graasp-ui/commit/5698e4a7dde3ce40179615f9602dd7801acf95e4))
+
 ## [3.5.4](https://github.com/graasp/graasp-ui/compare/v3.5.3...v3.5.4) (2023-10-04)
 
 
