@@ -187,7 +187,7 @@ const LinkItem: FC<LinkItemProps> = ({
         startIcon={<OpenInNewIcon />}
         href={url}
         target='_blank'
-        {...(onClick && { onClick })}
+        onClick={onClick}
       >
         {item.name ?? openLinkMessage}
       </StyledLinkButton>
