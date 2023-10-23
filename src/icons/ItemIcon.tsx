@@ -1,3 +1,4 @@
+import { UploadFile } from '@mui/icons-material';
 import AppsIcon from '@mui/icons-material/Apps';
 import DescriptionIcon from '@mui/icons-material/Description';
 import FolderIcon from '@mui/icons-material/Folder';
@@ -65,7 +66,7 @@ const ItemIcon: FC<ItemIconProps> = ({
     extra && 'file' in extra
       ? getFileExtra(extra)?.mimetype
       : getS3FileExtra(extra)?.mimetype;
-  console.log('mimetype', mimetype);
+
   if (iconSrc) {
     return (
       <StyledImage
@@ -134,6 +135,10 @@ const ItemIcon: FC<ItemIconProps> = ({
     }
     case ItemType.ETHERPAD: {
       Icon = EtherpadIcon;
+      break;
+    }
+    case 'upload': {
+      Icon = UploadFile;
       break;
     }
     default:
