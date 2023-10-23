@@ -34,7 +34,7 @@ const StyledWrapper = styled(Box)(() => ({
 }));
 
 interface Props {
-  Actions?: JSX.Element | (JSX.Element | null)[];
+  Actions?: JSX.Element | JSX.Element[];
   buildMemberMenuItemId?: (id: string) => string;
   ButtonContent?: JSX.Element;
   buttonId?: string;

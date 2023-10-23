@@ -1,7 +1,5 @@
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import FavoriteIcon from '@mui/icons-material/Favorite';
 import MeetingRoomIcon from '@mui/icons-material/MeetingRoom';
-import ProfileIcon from '@mui/icons-material/Person2';
 import SettingsIcon from '@mui/icons-material/Settings';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import MenuItem from '@mui/material/MenuItem';
@@ -15,8 +13,12 @@ import { MemberRecord } from '@graasp/sdk/frontend';
 import Loader from '../Loader';
 import UserSwitch from './UserSwitch';
 
-// disable user switch functionality: the sessions shouldn't be accessible from the cookies
-
+type UserMenuItem = {
+  icon: JSX.Element;
+  text: string;
+  redirect_path: string;
+  id?: string;
+};
 interface Props {
   buildMemberMenuItemId?: (id: string) => string;
   ButtonContent?: JSX.Element;
@@ -37,13 +39,8 @@ interface Props {
   signOutText?: string;
   // switchMember: (args: { memberId: string; domain: string }) => Promise<void>;
   switchMemberText?: string;
-  likedItemsProfile?: boolean;
-  likedItemsPath?: string;
-  likedItemsText?: string;
 
-  hasLibraryProfile?: boolean;
-  libraryProfilePath?: string;
-  libraryProfileText?: string;
+  userMenuItems: UserMenuItem[];
 
   // useMembers: (ids: string[]) => UseQueryResult<ResultOfRecord<Member>>;
 }
@@ -68,12 +65,8 @@ const UserSwitchWrapper: FC<Props> = ({
   signOutText = 'Sign Out',
   // switchMember,
   switchMemberText = 'Sign in',
-  likedItemsProfile = false,
-  likedItemsPath,
-  likedItemsText = 'Liked Items',
-  hasLibraryProfile = false,
-  libraryProfilePath,
-  libraryProfileText = 'Profile',
+  userMenuItems,
+
   // useMembers,
 }) => {
   // get stored sessions
@@ -117,21 +110,21 @@ const UserSwitchWrapper: FC<Props> = ({
     redirect(profilePath);
   };
 
-  const goToLikedItems = (): void => {
-    if (likedItemsPath) {
-      redirect(likedItemsPath);
-    }
-  };
-  const goToLibraryProfile = (): void => {
-    if (libraryProfilePath) {
-      redirect(libraryProfilePath);
-    }
-  };
   // const onMemberClick = (memberId: string) => () =>
   //   switchMember({ memberId, domain });
 
-  let Actions: (JSX.Element | null)[];
+  let Actions: JSX.Element[];
 
+  const MenuItems = userMenuItems.map((item: UserMenuItem) => (
+    <MenuItem
+      key={item.text}
+      onClick={() => redirect(item.redirect_path)}
+      id={item.id}
+    >
+      <ListItemIcon>{item.icon}</ListItemIcon>
+      <Typography variant='subtitle2'>{item.text}</Typography>
+    </MenuItem>
+  ));
   if (currentMember && currentMember.id) {
     Actions = [
       <MenuItem
@@ -144,30 +137,7 @@ const UserSwitchWrapper: FC<Props> = ({
         </ListItemIcon>
         <Typography variant='subtitle2'>{seeProfileText}</Typography>
       </MenuItem>,
-      hasLibraryProfile ? (
-        <MenuItem
-          key='libraryProfile'
-          onClick={goToLibraryProfile}
-          id={signOutMenuItemId}
-        >
-          <ListItemIcon>
-            <ProfileIcon fontSize='large' />
-          </ListItemIcon>
-          <Typography variant='subtitle2'>{libraryProfileText}</Typography>
-        </MenuItem>
-      ) : null,
-      likedItemsProfile ? (
-        <MenuItem
-          key='likedItems'
-          onClick={goToLikedItems}
-          id={signOutMenuItemId}
-        >
-          <ListItemIcon>
-            <FavoriteIcon fontSize='large' />
-          </ListItemIcon>
-          <Typography variant='subtitle2'>{likedItemsText}</Typography>
-        </MenuItem>
-      ) : null,
+      ...MenuItems,
       <MenuItem key='signout' onClick={handleSignOut} id={signOutMenuItemId}>
         <ListItemIcon>
           <MeetingRoomIcon fontSize='large' />
