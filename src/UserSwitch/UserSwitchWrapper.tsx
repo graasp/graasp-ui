@@ -65,7 +65,7 @@ const UserSwitchWrapper: FC<Props> = ({
   signOutText = 'Sign Out',
   // switchMember,
   switchMemberText = 'Sign in',
-  userMenuItems,
+  userMenuItems = [],
 
   // useMembers,
 }) => {
