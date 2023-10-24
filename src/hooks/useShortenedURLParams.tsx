@@ -6,7 +6,9 @@ export const useShortenURLParams = (key: string): string | undefined => {
   const params = useParams();
 
   const shortenUUID = params[key];
-
+  if (!shortenUUID) {
+    return;
+  }
   const uuid = getUUID(shortenUUID);
 
   return uuid;
