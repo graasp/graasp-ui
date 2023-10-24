@@ -3867,9 +3867,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@graasp/sdk@github:graasp/graasp-sdk#remove-unknown-extra":
-  version: 1.9.1
-  resolution: "@graasp/sdk@https://github.com/graasp/graasp-sdk.git#commit=c37f1140a344b62cf68ff681d6232443799c9446"
+"@graasp/sdk@npm:1.9.2":
+  version: 1.9.2
+  resolution: "@graasp/sdk@npm:1.9.2"
   dependencies:
     "@aws-sdk/client-s3": 3.427.0
     "@fastify/secure-session": 6.1.0
@@ -3883,7 +3883,7 @@ __metadata:
     typeorm: 0.3.17
     uuid: 9.0.1
     validator: 13.11.0
-  checksum: 2cb8d95729ed30747b28cb405b53d57a11ae3ddb11b2bca8ce722b62393069b05b7c1dbc0fe3da2a489356afe534479a64cdc6c6ff80165193c3fd3155ad1a65
+  checksum: 608a9a28f525b5ccd928a8c015b785deac2ba9bdfc0adf188991842aac00c8be5d70f3b7a19a136786b725a938635ac289156b1e2e146679f83e9f410e887f77
   languageName: node
   linkType: hard
 
@@ -3901,7 +3901,7 @@ __metadata:
     "@emotion/cache": ~11.11.0
     "@emotion/react": 11.11.1
     "@emotion/styled": 11.11.0
-    "@graasp/sdk": "github:graasp/graasp-sdk#remove-unknown-extra"
+    "@graasp/sdk": 1.9.2
     "@mdx-js/react": 2.3.0
     "@mui/icons-material": 5.14.12
     "@mui/lab": 5.0.0-alpha.147
