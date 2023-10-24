@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.6.1](https://github.com/graasp/graasp-ui/compare/v3.6.0...v3.6.1) (2023-10-24)
+
+
+### Bug Fixes
+
+* **deps:** update dependency katex to v0.16.9 ([#541](https://github.com/graasp/graasp-ui/issues/541)) ([ea467e7](https://github.com/graasp/graasp-ui/commit/ea467e7f2ee14561aa2a1a885c3928e4d4843dcb))
+* return undefined when no uuid and add upload icon ([#553](https://github.com/graasp/graasp-ui/issues/553)) ([de9f270](https://github.com/graasp/graasp-ui/commit/de9f2706cf40f2ca6aa545d346ec98dc0809c7ab))
+
 ## [3.6.0](https://github.com/graasp/graasp-ui/compare/v3.5.4...v3.6.0) (2023-10-20)
 
 
