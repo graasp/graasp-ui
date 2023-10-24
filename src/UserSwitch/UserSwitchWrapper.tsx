@@ -1,6 +1,5 @@
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import MeetingRoomIcon from '@mui/icons-material/MeetingRoom';
-import SettingsIcon from '@mui/icons-material/Settings';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import MenuItem from '@mui/material/MenuItem';
 import Typography from '@mui/material/Typography';
@@ -133,7 +132,7 @@ const UserSwitchWrapper: FC<Props> = ({
         id={seeProfileButtonId}
       >
         <ListItemIcon>
-          <SettingsIcon fontSize='large' />
+          <AccountCircleIcon fontSize='large' />
         </ListItemIcon>
         <Typography variant='subtitle2'>{seeProfileText}</Typography>
       </MenuItem>,
