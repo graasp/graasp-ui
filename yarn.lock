@@ -3927,7 +3927,7 @@ __metadata:
     "@trivago/prettier-plugin-sort-imports": 4.2.0
     "@types/jest": 29.5.4
     "@types/katex": 0.16.2
-    "@types/lodash.truncate": 4.4.7
+    "@types/lodash.truncate": 4.4.8
     "@types/node": 20.8.2
     "@types/qs": 6.9.7
     "@types/react": 18.2.21
@@ -8392,12 +8392,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/lodash.truncate@npm:4.4.7":
-  version: 4.4.7
-  resolution: "@types/lodash.truncate@npm:4.4.7"
+"@types/lodash.truncate@npm:4.4.8":
+  version: 4.4.8
+  resolution: "@types/lodash.truncate@npm:4.4.8"
   dependencies:
     "@types/lodash": "*"
-  checksum: d95ed373b514d63535f07a523244c6513bdbf4512f6b96cac28fde408be5a1212d9f5de847614c521508752a4cc150cc470b1295ad543ee31b79cb0bd310e716
+  checksum: 98430f4aa01d0ea3ec9638a18a463caca64dd08544742a66385ca4f314520236932a8c027b280ec1be88f3d7b4234bc0a0c6325ef89a2cb0cfb8d5281e8b2e68
   languageName: node
   linkType: hard
 
