@@ -3911,7 +3911,7 @@ __metadata:
     "@emotion/react": 11.11.1
     "@emotion/styled": 11.11.0
     "@graasp/sdk": 1.9.2
-    "@mdx-js/react": 2.3.0
+    "@mdx-js/react": 3.0.0
     "@mui/icons-material": 5.14.14
     "@mui/lab": 5.0.0-alpha.149
     "@mui/material": 5.14.14
@@ -4749,7 +4749,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mdx-js/react@npm:2.3.0, @mdx-js/react@npm:^2.1.5":
+"@mdx-js/react@npm:3.0.0":
+  version: 3.0.0
+  resolution: "@mdx-js/react@npm:3.0.0"
+  dependencies:
+    "@types/mdx": ^2.0.0
+  peerDependencies:
+    "@types/react": ">=16"
+    react: ">=16"
+  checksum: a780cff9d7f7639d6fc21c9d4e0a6ac1370c3209ea0db176923df7f9145785309591cf871f227f5135d1fe2accce0d5df9a22fc0530e5dda0c7b4b105705f20d
+  languageName: node
+  linkType: hard
+
+"@mdx-js/react@npm:^2.1.5":
   version: 2.3.0
   resolution: "@mdx-js/react@npm:2.3.0"
   dependencies:
