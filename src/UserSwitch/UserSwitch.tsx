@@ -20,7 +20,6 @@ import React, {
 import { isPseudonymizedMember } from '@graasp/sdk';
 import { MemberRecord } from '@graasp/sdk/frontend';
 
-import Button from '../buttons/Button';
 import { SHORT_TEXT_WIDTH, SMALL_AVATAR_SIZE } from '../constants';
 import { Variant } from '../types';
 
@@ -44,10 +43,7 @@ interface Props {
   members?: List<MemberRecord>;
   menuId?: string;
   onMemberClick?: (_id: string) => MouseEventHandler;
-  onSeeProfileClick?: MouseEventHandler;
   renderAvatar?: (member?: MemberRecord) => JSX.Element;
-  seeProfileButtonId?: string;
-  seeProfileText?: string;
   signedOutTooltipText?: string;
 }
 
@@ -58,10 +54,7 @@ const UserSwitch: FC<Props> = ({
   isMemberLoading = false,
   member,
   menuId,
-  onSeeProfileClick,
   renderAvatar = () => <></>,
-  seeProfileButtonId,
-  seeProfileText = 'See Profile',
   signedOutTooltipText = 'You are not signed in.',
 }) => {
   const [anchorEl, setAnchorEl] = useState<(EventTarget & Element) | null>(
@@ -141,15 +134,6 @@ const UserSwitch: FC<Props> = ({
               <Typography variant='subtitle2' noWrap>
                 {member.email}
               </Typography>
-              <Button
-                size='small'
-                variant='outlined'
-                sx={{ mt: 1 }}
-                id={seeProfileButtonId}
-                onClick={onSeeProfileClick}
-              >
-                {seeProfileText}
-              </Button>
             </>
           )}
         </div>
