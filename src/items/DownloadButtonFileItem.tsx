@@ -34,11 +34,7 @@ const DownloadButtonFileItem: FC<DownloadButtonFileItemProps> = ({
       rel='noreferrer'
       download={name}
     >
-      <Button
-        size='large'
-        startIcon={<GetAppIcon />}
-        onClick={handleLoad}
-      >
+      <Button size='large' startIcon={<GetAppIcon />} onClick={handleLoad}>
         {buttonText}
       </Button>
     </StyledLink>

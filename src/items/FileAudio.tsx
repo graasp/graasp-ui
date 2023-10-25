@@ -14,11 +14,7 @@ const FileAudio: FC<FileAudioProps> = ({ id, url, type, sx }) => {
     maxWidth: '100%',
   });
   return (
-    <StyledAudio
-      sx={sx}
-      id={id}
-      controls
-    >
+    <StyledAudio sx={sx} id={id} controls>
       <source src={url} type={type} />
     </StyledAudio>
   );
