@@ -12,8 +12,12 @@ import { MemberRecord } from '@graasp/sdk/frontend';
 import Loader from '../Loader';
 import UserSwitch from './UserSwitch';
 
-// disable user switch functionality: the sessions shouldn't be accessible from the cookies
-
+type UserMenuItem = {
+  icon: JSX.Element;
+  text: string;
+  redirect_path: string;
+  id?: string;
+};
 interface Props {
   buildMemberMenuItemId?: (id: string) => string;
   ButtonContent?: JSX.Element;
@@ -34,6 +38,9 @@ interface Props {
   signOutText?: string;
   // switchMember: (args: { memberId: string; domain: string }) => Promise<void>;
   switchMemberText?: string;
+
+  userMenuItems: UserMenuItem[];
+
   // useMembers: (ids: string[]) => UseQueryResult<ResultOfRecord<Member>>;
 }
 
@@ -57,6 +64,8 @@ const UserSwitchWrapper: FC<Props> = ({
   signOutText = 'Sign Out',
   // switchMember,
   switchMemberText = 'Sign in',
+  userMenuItems = [],
+
   // useMembers,
 }) => {
   // get stored sessions
@@ -96,7 +105,7 @@ const UserSwitchWrapper: FC<Props> = ({
     return redirect(redirectPath);
   };
 
-  const goToProfile = (): void => {
+  const goToSettings = (): void => {
     redirect(profilePath);
   };
 
@@ -105,8 +114,29 @@ const UserSwitchWrapper: FC<Props> = ({
 
   let Actions: JSX.Element[];
 
+  const MenuItems = userMenuItems.map((item: UserMenuItem) => (
+    <MenuItem
+      key={item.text}
+      onClick={() => redirect(item.redirect_path)}
+      id={item.id}
+    >
+      <ListItemIcon>{item.icon}</ListItemIcon>
+      <Typography variant='subtitle2'>{item.text}</Typography>
+    </MenuItem>
+  ));
   if (currentMember && currentMember.id) {
     Actions = [
+      <MenuItem
+        key='seeSettings'
+        onClick={goToSettings}
+        id={seeProfileButtonId}
+      >
+        <ListItemIcon>
+          <AccountCircleIcon fontSize='large' />
+        </ListItemIcon>
+        <Typography variant='subtitle2'>{seeProfileText}</Typography>
+      </MenuItem>,
+      ...MenuItems,
       <MenuItem key='signout' onClick={handleSignOut} id={signOutMenuItemId}>
         <ListItemIcon>
           <MeetingRoomIcon fontSize='large' />
@@ -130,14 +160,11 @@ const UserSwitchWrapper: FC<Props> = ({
       ButtonContent={ButtonContent}
       Actions={Actions}
       // onMemberClick={onMemberClick}
-      onSeeProfileClick={goToProfile}
       member={currentMember}
       // members={members}
-      seeProfileText={seeProfileText}
       signedOutTooltipText={signedOutTooltipText}
       buttonId={buttonId}
       buildMemberMenuItemId={buildMemberMenuItemId}
-      seeProfileButtonId={seeProfileButtonId}
       renderAvatar={renderAvatar}
     />
   );

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { ItemType, MimeTypes } from '@graasp/sdk';
+import { ItemType, MimeTypes, S3FileItemExtra } from '@graasp/sdk';
 
 import { TABLE_CATEGORIES } from '../utils/storybook';
 import ItemIcon from './ItemIcon';
@@ -46,9 +46,11 @@ export const Image: Story = {
     color: 'black',
     extra: {
       [ItemType.S3_FILE]: {
+        name: '',
+
         mimetype: MimeTypes.Image.JPEG,
       },
-    },
+    } as S3FileItemExtra,
   },
 };
 
@@ -60,7 +62,7 @@ export const Video: Story = {
       [ItemType.S3_FILE]: {
         mimetype: MimeTypes.Video.MP4,
       },
-    },
+    } as S3FileItemExtra,
   },
 };
 
@@ -72,7 +74,7 @@ export const Audio: Story = {
       [ItemType.S3_FILE]: {
         mimetype: MimeTypes.Audio.MP3,
       },
-    },
+    } as S3FileItemExtra,
   },
 };
 
@@ -84,7 +86,7 @@ export const PDF: Story = {
       [ItemType.S3_FILE]: {
         mimetype: MimeTypes.PDF,
       },
-    },
+    } as S3FileItemExtra,
   },
 };
 
@@ -96,6 +98,6 @@ export const ZIP: Story = {
       [ItemType.S3_FILE]: {
         mimetype: MimeTypes.ZIP,
       },
-    },
+    } as S3FileItemExtra,
   },
 };

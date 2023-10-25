@@ -20,7 +20,6 @@ type Story = StoryObj<typeof UserSwitch>;
 export const SignedIn: Story = {
   args: {
     member: MOCK_MEMBER_RECORD,
-    seeProfileText: 'See Profile',
     renderAvatar: () => (
       <Avatar
         url={'https://picsum.photos/100'}
@@ -39,10 +38,7 @@ SignedIn.play = async ({ canvasElement }) => {
   const nameText = canvas.getByLabelText(MOCK_MEMBER_RECORD.name);
   await userEvent.click(nameText);
 
-  // profile button
   const menuCanvas = within(await screen.getByRole('menu'));
-  const profileButton = menuCanvas.getByText(SignedIn.args!.seeProfileText!);
-  expect(profileButton).toBeInTheDocument();
 
   // email
   const emailText = menuCanvas.getByText(MOCK_MEMBER_RECORD.email);
