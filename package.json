@@ -103,7 +103,6 @@
     "@emotion/cache": "~11.11.0",
     "@emotion/react": "11.11.1",
     "@emotion/styled": "11.11.0",
-    "@mdx-js/react": "2.3.0",
     "@mui/icons-material": "5.14.14",
     "@mui/lab": "5.0.0-alpha.149",
     "@mui/material": "5.14.14",
@@ -190,5 +189,5 @@
   "resolutions": {
     "@types/react": "18.2.21"
   },
-  "packageManager": "yarn@3.6.4"
+  "packageManager": "yarn@4.0.0"
 }
