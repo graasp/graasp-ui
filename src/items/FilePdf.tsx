@@ -14,7 +14,6 @@ interface FilePdfProps {
    * use a custom pdf reader from the link if defined
    * */
   pdfViewerLink?: string;
-  handleLoad?: () => void;
 }
 
 const StyledEmbed = styled('embed')({
@@ -28,7 +27,6 @@ const FilePdf: FC<FilePdfProps> = ({
   height: defaultHeight,
   showCollapse,
   pdfViewerLink,
-  handleLoad,
 }) => {
   const embedRef = useRef<HTMLEmbedElement>(null);
   const [height, setHeight] = useState<number | string>(
@@ -43,7 +41,6 @@ const FilePdf: FC<FilePdfProps> = ({
         ?.scrollHeight;
       newHeight && setHeight(newHeight);
     }
-    handleLoad?.();
   };
 
   // use custom pdf viewer if defined

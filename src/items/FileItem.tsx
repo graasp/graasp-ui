@@ -131,18 +131,10 @@ const FileItem = ({
       if (MimeTypes.isImage(mimetype)) {
         return <FileImage id={id} url={url} alt={altText || item.name} />;
       } else if (MimeTypes.isAudio(mimetype)) {
-        return (
-          <FileAudio
-            id={id}
-            url={url}
-            type={mimetype}
-            sx={sx}
-            handleLoad={handleLoad}
-          />
-        );
+        return <FileAudio id={id} url={url} type={mimetype} sx={sx} />;
       } else if (MimeTypes.isVideo(mimetype)) {
         // does not specify mimetype in video source, this way, it works with more container formats in more browsers (especially Chrome with video/quicktime)
-        return <FileVideo id={id} url={url} sx={sx} handleLoad={handleLoad} />;
+        return <FileVideo id={id} url={url} sx={sx} />;
       } else if (MimeTypes.isPdf(mimetype)) {
         return (
           <FilePdf
@@ -152,7 +144,6 @@ const FileItem = ({
             sx={sx}
             showCollapse={showCollapse}
             pdfViewerLink={pdfViewerLink}
-            handleLoad={handleLoad}
           />
         );
       }
