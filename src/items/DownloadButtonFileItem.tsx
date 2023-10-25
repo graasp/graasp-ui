@@ -37,7 +37,7 @@ const DownloadButtonFileItem: FC<DownloadButtonFileItemProps> = ({
       <Button
         size='large'
         startIcon={<GetAppIcon />}
-        {...(handleLoad && { onClick: handleLoad })}
+        onClick={handleLoad}
       >
         {buttonText}
       </Button>

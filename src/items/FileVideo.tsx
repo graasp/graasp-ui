@@ -6,21 +6,15 @@ interface FileVideoProps {
   id?: string;
   url?: string;
   sx?: SxProps;
-  handleLoad?: () => void;
 }
 
 const StyledVideo = styled('video')({
   maxWidth: '100%',
 });
 
-const FileVideo: FC<FileVideoProps> = ({ id, url, sx, handleLoad }) => {
+const FileVideo: FC<FileVideoProps> = ({ id, url, sx }) => {
   return (
-    <StyledVideo
-      sx={sx}
-      id={id}
-      controls
-      {...(handleLoad && { onLoadedData: handleLoad })}
-    >
+    <StyledVideo sx={sx} id={id} controls>
       <source src={url} />
     </StyledVideo>
   );

@@ -172,7 +172,7 @@ const LinkItem: FC<LinkItemProps> = ({
       return (
         <div
           id={id}
-          {...(onClick && { onClick })}
+          onClick={onClick}
           dangerouslySetInnerHTML={{ __html: html }}
         />
       );
