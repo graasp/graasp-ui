@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.7.0](https://github.com/graasp/graasp-ui/compare/v3.6.1...v3.7.0) (2023-10-26)
+
+
+### Features
+
+* add custom profile option to user dropdown ([#550](https://github.com/graasp/graasp-ui/issues/550)) ([167b6e8](https://github.com/graasp/graasp-ui/commit/167b6e82b8cf674010b4104d224dec212a58b9a1))
+
+
+### Bug Fixes
+
+* update yarn and remove mdx-js/react dep ([#565](https://github.com/graasp/graasp-ui/issues/565)) ([ee0acf9](https://github.com/graasp/graasp-ui/commit/ee0acf94c9cdd6c1851290bdcbdceedc59ee5a32))
+
 ## [3.6.1](https://github.com/graasp/graasp-ui/compare/v3.6.0...v3.6.1) (2023-10-24)
 
 
