@@ -1,5 +1,3 @@
-import { List } from 'immutable';
-
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import TreeItem from '@mui/lab/TreeItem';
@@ -9,7 +7,7 @@ import Skeleton from '@mui/material/Skeleton';
 import React, { FC, useState } from 'react';
 import type { UseQueryResult } from 'react-query';
 
-import { ItemRecord } from '@graasp/sdk/frontend';
+import { DiscriminatedItem } from '@graasp/sdk';
 
 import CustomTreeItem from './CustomTreeItem';
 import TreeItemLabel from './TreeItemLabel';
@@ -19,18 +17,18 @@ interface DynamicTreeViewProps {
   rootLabel: string;
   rootId: string;
   rootSx?: object;
-  items: List<ItemRecord>;
+  items: DiscriminatedItem[];
   initialExpendedItems?: string[];
   showCheckbox?: boolean;
   selectedId?: string;
   onTreeItemSelect?: (id: string) => void;
-  useItem: (id: string) => UseQueryResult<ItemRecord>;
+  useItem: (id: string) => UseQueryResult<DiscriminatedItem>;
   useChildren: (
     id: string,
     options: { enabled: boolean },
-  ) => UseQueryResult<List<ItemRecord>>;
-  showItemFilter?: (item: ItemRecord) => boolean;
-  shouldFetchChildrenForItem?: (item: ItemRecord) => boolean;
+  ) => UseQueryResult<DiscriminatedItem[]>;
+  showItemFilter?: (item: DiscriminatedItem) => boolean;
+  shouldFetchChildrenForItem?: (item: DiscriminatedItem) => boolean;
   isTreeItemDisabled?: (args: {
     parentIsDisabled: boolean;
     itemId: string;

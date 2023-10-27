@@ -1,5 +1,3 @@
-import { List } from 'immutable';
-
 import { styled } from '@mui/material';
 import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
@@ -17,8 +15,7 @@ import React, {
   useState,
 } from 'react';
 
-import { isPseudonymizedMember } from '@graasp/sdk';
-import { MemberRecord } from '@graasp/sdk/frontend';
+import { Member, isPseudonymizedMember } from '@graasp/sdk';
 
 import { SHORT_TEXT_WIDTH, SMALL_AVATAR_SIZE } from '../constants';
 import { Variant } from '../types';
@@ -39,11 +36,11 @@ interface Props {
   ButtonContent?: JSX.Element;
   buttonId?: string;
   isMemberLoading?: boolean;
-  member?: MemberRecord;
-  members?: List<MemberRecord>;
+  member?: Member;
+  members?: Member[];
   menuId?: string;
   onMemberClick?: (_id: string) => MouseEventHandler;
-  renderAvatar?: (member?: MemberRecord) => JSX.Element;
+  renderAvatar?: (member?: Member) => JSX.Element;
   signedOutTooltipText?: string;
 }
 

@@ -1,5 +1,3 @@
-import { List } from 'immutable';
-
 import TreeItem from '@mui/lab/TreeItem';
 import { styled } from '@mui/material';
 import Skeleton from '@mui/material/Skeleton';
@@ -7,7 +5,7 @@ import Skeleton from '@mui/material/Skeleton';
 import React, { FC } from 'react';
 import type { UseQueryResult } from 'react-query';
 
-import { ItemRecord } from '@graasp/sdk/frontend';
+import { DiscriminatedItem } from '@graasp/sdk';
 
 import { getParentsIdsFromPath } from '../utils/utils';
 import TreeItemLabel from './TreeItemLabel';
@@ -32,10 +30,10 @@ interface CustomItemTreeProps {
   useChildren: (
     id: string,
     options: { enabled: boolean },
-  ) => UseQueryResult<List<ItemRecord>>;
-  useItem: (id: string) => UseQueryResult<ItemRecord>;
-  showItemFilter?: (item: ItemRecord) => boolean;
-  shouldFetchChildrenForItem?: (item: ItemRecord) => boolean;
+  ) => UseQueryResult<DiscriminatedItem[]>;
+  useItem: (id: string) => UseQueryResult<DiscriminatedItem>;
+  showItemFilter?: (item: DiscriminatedItem) => boolean;
+  shouldFetchChildrenForItem?: (item: DiscriminatedItem) => boolean;
   showCheckbox?: boolean;
 }
 
@@ -113,7 +111,7 @@ const CustomTreeItem: FC<CustomItemTreeProps> = ({
     return <React.Fragment>{name}</React.Fragment>;
   };
 
-  const renderChildrenItems = (): List<JSX.Element> | JSX.Element | null => {
+  const renderChildrenItems = (): JSX.Element[] | JSX.Element | null => {
     // does not display collapse while loading children
     if (isDisabled) {
       return null;
@@ -125,7 +123,7 @@ const CustomTreeItem: FC<CustomItemTreeProps> = ({
 
     const filteredChildren = children?.filter((item) => showItemFilter?.(item));
 
-    if (!filteredChildren?.size) {
+    if (!filteredChildren?.length) {
       return null;
     }
 

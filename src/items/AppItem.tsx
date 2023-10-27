@@ -2,8 +2,12 @@ import Skeleton from '@mui/material/Skeleton';
 
 import React, { useMemo, useRef, useState } from 'react';
 
-import { appendQueryParamToUrl, getAppExtra } from '@graasp/sdk';
-import { AppItemTypeRecord, MemberRecord } from '@graasp/sdk/frontend';
+import {
+  AppItemType,
+  Member,
+  appendQueryParamToUrl,
+  getAppExtra,
+} from '@graasp/sdk';
 
 import withCollapse from '../Collapse/withCollapse';
 import { SCREEN_MAX_HEIGHT } from '../constants';
@@ -18,7 +22,7 @@ type AppItemProps = {
   /**
    * corresponding item of the app
    */
-  item: AppItemTypeRecord;
+  item: AppItemType;
   /**
    * function to fetch the app token
    */
@@ -50,7 +54,7 @@ type AppItemProps = {
   /**
    * id of the member currently signed in
    */
-  memberId?: MemberRecord['id'];
+  memberId?: Member['id'];
   /**
    * Whether the caption is shown
    */

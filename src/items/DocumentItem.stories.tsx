@@ -1,6 +1,6 @@
 import { StoryObj } from '@storybook/react';
 
-import { ItemType, convertJs } from '@graasp/sdk';
+import { ItemType } from '@graasp/sdk';
 
 import TextEditor from '../TextEditor';
 import { TABLE_CATEGORIES } from '../utils/storybook';
@@ -57,21 +57,21 @@ type Story = StoryObj<typeof DocumentItem>;
 
 export const Editing: Story = {
   args: {
-    item: convertJs(item),
+    item,
     edit: true,
   },
 };
 
 export const EmptyMessage: Story = {
   args: {
-    item: convertJs({
+    item: {
       ...item,
       extra: {
         [ItemType.DOCUMENT]: {
           content: '',
         },
       },
-    }),
+    },
     showEmpty: true,
   },
 };

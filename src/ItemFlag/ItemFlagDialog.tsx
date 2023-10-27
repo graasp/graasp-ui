@@ -23,7 +23,7 @@ const StyledList = styled(List)({
 });
 
 export interface ItemFlagDialogProps {
-  flags: Immutable.List<FlagType>;
+  flags: FlagType[];
   onFlag: (flag?: FlagType) => void;
   open: boolean;
   onClose: () => void;

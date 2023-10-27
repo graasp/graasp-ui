@@ -2,7 +2,7 @@ import { expect } from '@storybook/jest';
 import type { Meta, StoryObj } from '@storybook/react';
 import { within } from '@storybook/testing-library';
 
-import { AppItemType, ItemType, convertJs } from '@graasp/sdk';
+import { ItemType } from '@graasp/sdk';
 
 import { MOCK_MEMBER } from '../utils/fixtures';
 import { TABLE_CATEGORIES } from '../utils/storybook';
@@ -27,7 +27,7 @@ type Story = StoryObj<typeof AppItem>;
 
 export const Example: Story = {
   args: {
-    item: convertJs<AppItemType>({
+    item: {
       name: 'my app',
       id: 'item-id',
       description: 'item-description',
@@ -42,7 +42,7 @@ export const Example: Story = {
       creator: MOCK_MEMBER,
       createdAt: new Date(),
       updatedAt: new Date(),
-    }),
+    },
   },
 };
 

@@ -2,13 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import React from 'react';
 
-import {
-  ItemType,
-  LocalFileItemType,
-  MaxWidth,
-  MimeTypes,
-  convertJs,
-} from '@graasp/sdk';
+import { ItemType, MaxWidth, MimeTypes } from '@graasp/sdk';
 
 import { MOCK_MEMBER } from '../utils/fixtures';
 import { TABLE_CATEGORIES } from '../utils/storybook';
@@ -41,7 +35,7 @@ export const Image: Story = {
     }),
   ],
   args: {
-    item: convertJs<LocalFileItemType>({
+    item: {
       id: 'my-id',
       name: 'my item name',
       extra: {
@@ -61,7 +55,7 @@ export const Image: Story = {
       creator: MOCK_MEMBER,
       createdAt: new Date(),
       updatedAt: new Date(),
-    }),
+    },
   },
 };
 
@@ -72,7 +66,7 @@ export const BigContainedImage: Story = {
     }),
   ],
   args: {
-    item: convertJs<LocalFileItemType>({
+    item: {
       id: 'my-id',
       name: 'my item name',
       extra: {
@@ -95,7 +89,7 @@ export const BigContainedImage: Story = {
       creator: MOCK_MEMBER,
       createdAt: new Date(),
       updatedAt: new Date(),
-    }),
+    },
   },
 };
 
@@ -106,7 +100,7 @@ export const SmallContainedImage: Story = {
     }),
   ],
   args: {
-    item: convertJs<LocalFileItemType>({
+    item: {
       id: 'my-id',
       name: 'my item name',
       extra: {
@@ -129,7 +123,7 @@ export const SmallContainedImage: Story = {
       creator: MOCK_MEMBER,
       createdAt: new Date(),
       updatedAt: new Date(),
-    }),
+    },
   },
 };
 
@@ -142,7 +136,7 @@ export const ImageSVG: Story = {
     }),
   ],
   args: {
-    item: convertJs<LocalFileItemType>({
+    item: {
       id: 'my-id',
       name: 'my item name',
       extra: {
@@ -162,7 +156,7 @@ export const ImageSVG: Story = {
       creator: MOCK_MEMBER,
       createdAt: new Date(),
       updatedAt: new Date(),
-    }),
+    },
   },
 };
 
@@ -175,7 +169,7 @@ export const WAVAudio: Story = {
     }),
   ],
   args: {
-    item: convertJs<LocalFileItemType>({
+    item: {
       id: 'my-id',
       name: 'my item name',
       extra: {
@@ -194,6 +188,6 @@ export const WAVAudio: Story = {
       creator: MOCK_MEMBER,
       createdAt: new Date(),
       updatedAt: new Date(),
-    }),
+    },
   },
 };

@@ -3,7 +3,7 @@ import Skeleton, { SkeletonProps } from '@mui/material/Skeleton';
 
 import React, { FC } from 'react';
 
-import { ThumbnailSizeVariant } from '@graasp/sdk/frontend';
+import { ThumbnailSizeVariant } from '@graasp/sdk';
 
 import { StyledImage } from '../StyledComponents/StyledBaseComponents';
 import { Variant } from '../types';

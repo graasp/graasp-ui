@@ -2,7 +2,7 @@ import { Container, Typography, styled } from '@mui/material';
 
 import React, { FC, ReactNode } from 'react';
 
-import { MemberRecord } from '@graasp/sdk/frontend';
+import { Member } from '@graasp/sdk';
 
 import Button from '../buttons/Button';
 import ForbiddenText from './ForbiddenText';
@@ -19,7 +19,7 @@ export interface ForbiddenContentProps {
   /**
    * @deprecated Use the `memberId` prop to only pass the id
    */
-  user?: MemberRecord;
+  user?: Member;
   signOut: () => void;
   id?: string;
   showPseudonymized?: boolean;

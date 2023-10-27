@@ -1,19 +1,21 @@
 import { useEffect } from 'react';
 
-import { Context, PermissionLevel, UUID } from '@graasp/sdk';
 import {
-  AppItemTypeRecord,
-  ItemRecord,
-  MemberRecord,
-} from '@graasp/sdk/frontend';
+  AppItemType,
+  Context,
+  DiscriminatedItem,
+  Member,
+  PermissionLevel,
+  UUID,
+} from '@graasp/sdk';
 
 export type Token = string;
 
 export type ContextPayload = {
   apiHost: string;
-  itemId: AppItemTypeRecord['id'];
-  settings: AppItemTypeRecord['settings'];
-  memberId?: MemberRecord['id'];
+  itemId: AppItemType['id'];
+  settings: AppItemType['settings'];
+  memberId?: Member['id'];
   permission: `${PermissionLevel}` | PermissionLevel;
   lang: string;
   context: `${Context}` | Context;
@@ -40,7 +42,7 @@ const useAppCommunication = ({
   iFrameRef,
   requestApiAccessToken,
 }: {
-  item: ItemRecord;
+  item: DiscriminatedItem;
   appUrl: string;
   contextPayload: ContextPayload;
   iFrameRef: React.RefObject<HTMLIFrameElement>;

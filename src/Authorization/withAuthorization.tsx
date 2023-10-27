@@ -1,13 +1,12 @@
 import React, { ComponentType, FC } from 'react';
 
-import { redirect } from '@graasp/sdk';
-import { MemberRecord } from '@graasp/sdk/frontend';
+import { CompleteMember, redirect } from '@graasp/sdk';
 
 import RedirectContent from './RedirectionContent';
 
 export interface withAutorizationProps {
   redirectionLink?: string;
-  currentMember?: MemberRecord;
+  currentMember?: CompleteMember;
   onRedirect?: () => void;
 }
 

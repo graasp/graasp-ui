@@ -4,8 +4,11 @@ import Alert from '@mui/material/Alert';
 
 import React, { FC, Fragment, useRef, useState } from 'react';
 
-import { getEmbeddedLinkExtra } from '@graasp/sdk';
-import { EmbeddedLinkItemTypeRecord, MemberRecord } from '@graasp/sdk/frontend';
+import {
+  EmbeddedLinkItemType,
+  Member,
+  getEmbeddedLinkExtra,
+} from '@graasp/sdk';
 
 import withCollapse from '../Collapse/withCollapse';
 import { Button } from '../buttons';
@@ -22,7 +25,7 @@ export interface LinkItemProps {
   /**
    * @deprecated Use the `memberId` prop to only pass the id
    */
-  member?: MemberRecord;
+  member?: Member;
   editCaption?: boolean;
   errorMessage?: string;
   height?: number | string;
@@ -30,7 +33,7 @@ export interface LinkItemProps {
    * whether the link can be resized
    */
   isResizable?: boolean;
-  item: EmbeddedLinkItemTypeRecord;
+  item: EmbeddedLinkItemType;
   loadingMessage?: string;
   onSaveCaption?: (text: string) => void;
   onCancelCaption?: (text: string) => void;

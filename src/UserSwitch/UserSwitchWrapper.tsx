@@ -6,8 +6,7 @@ import Typography from '@mui/material/Typography';
 
 import React, { FC } from 'react';
 
-import { redirect } from '@graasp/sdk';
-import { MemberRecord } from '@graasp/sdk/frontend';
+import { Member, redirect } from '@graasp/sdk';
 
 import Loader from '../Loader';
 import UserSwitch from './UserSwitch';
@@ -22,13 +21,13 @@ interface Props {
   buildMemberMenuItemId?: (id: string) => string;
   ButtonContent?: JSX.Element;
   buttonId?: string;
-  currentMember?: MemberRecord;
+  currentMember?: Member;
   // domain: string;
   isCurrentMemberLoading: boolean;
   // isCurrentMemberSuccess: boolean;
   profilePath: string;
   redirectPath: string;
-  renderAvatar: (member?: MemberRecord) => JSX.Element;
+  renderAvatar: (member?: Member) => JSX.Element;
   seeProfileButtonId?: string;
   seeProfileText?: string;
   signedOutTooltipText?: string;
@@ -93,7 +92,7 @@ const UserSwitchWrapper: FC<Props> = ({
 
   const handleSignOut = async (): Promise<void> => {
     if (currentMember) {
-      await signOut(currentMember.get('id'));
+      await signOut(currentMember.id);
     }
     // on sign out success should redirect to sign in
     redirect(redirectPath);
