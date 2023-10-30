@@ -2,7 +2,7 @@ import Skeleton from '@mui/material/Skeleton';
 
 import React from 'react';
 
-import { ItemType } from '@graasp/sdk';
+import { ItemType, UnionOfConst } from '@graasp/sdk';
 
 import { SCREEN_MAX_HEIGHT } from '../../constants';
 
@@ -15,7 +15,7 @@ export interface ItemSkeletonProps {
    */
   isChildren: boolean;
   isCollapsible?: boolean;
-  itemType: `${ItemType}` | ItemType;
+  itemType: UnionOfConst<typeof ItemType>;
   screenMaxHeight?: number;
 }
 
@@ -53,7 +53,7 @@ const ItemSkeleton: React.FC<ItemSkeletonProps> = ({
         ItemType.S3_FILE,
         ItemType.LINK,
         ItemType.APP,
-      ] as `${ItemType}`[]
+      ] as UnionOfConst<typeof ItemType>[]
     ).includes(itemType): {
       return (
         <Skeleton

@@ -21,6 +21,7 @@ import {
   LocalFileItemExtra,
   MimeTypes,
   S3FileItemExtra,
+  UnionOfConst,
   getFileExtra,
   getS3FileExtra,
 } from '@graasp/sdk';
@@ -35,7 +36,7 @@ export interface ItemIconProps {
   /**
    * item type
    */
-  type: ItemType | `${ItemType}` | 'upload';
+  type: UnionOfConst<typeof ItemType> | 'upload';
   color?: string;
   /**
    * item extra
@@ -62,10 +63,11 @@ const ItemIcon: FC<ItemIconProps> = ({
   sx,
   type,
 }) => {
-  const mimetype =
-    extra && 'file' in extra
+  const mimetype = extra
+    ? 'file' in extra
       ? getFileExtra(extra)?.mimetype
-      : getS3FileExtra(extra)?.mimetype;
+      : getS3FileExtra(extra)?.mimetype
+    : undefined;
 
   if (iconSrc) {
     return (
