@@ -14,20 +14,45 @@ import Table, { TableProps } from './Table';
 
 const agGridCategory = 'Ag Grid';
 const rowData = [
-  { id: 1, name: 'name 1', type: 'file', updatedAt: new Date() },
-  { id: 2, name: 'name 2', type: 'h5p', updatedAt: new Date() },
+  {
+    id: 1,
+    name: 'name 1',
+    type: 'file',
+    updatedAt: '2023-09-06T11:50:32.894Z',
+  },
+  { id: 2, name: 'name 2', type: 'h5p', updatedAt: '2023-09-06T11:50:32.894Z' },
   {
     id: 3,
     name: 'name 3 is a very long file name ',
     type: 'folder',
-    updatedAt: new Date(),
+    updatedAt: '2023-09-06T11:50:32.894Z',
   },
-  { id: 1, name: 'name 4', type: 'file', updatedAt: new Date() },
-  { id: 2, name: 'name 5', type: 'h5p', updatedAt: new Date() },
-  { id: 3, name: 'name 6', type: 'folder', updatedAt: new Date() },
-  { id: 1, name: 'name 7', type: 'file', updatedAt: new Date() },
-  { id: 2, name: 'name 8', type: 'h5p', updatedAt: new Date() },
-  { id: 3, name: 'name 9', type: 'folder', updatedAt: new Date() },
+  {
+    id: 1,
+    name: 'name 4',
+    type: 'file',
+    updatedAt: '2023-09-06T11:50:32.894Z',
+  },
+  { id: 2, name: 'name 5', type: 'h5p', updatedAt: '2023-09-06T11:50:32.894Z' },
+  {
+    id: 3,
+    name: 'name 6',
+    type: 'folder',
+    updatedAt: '2023-09-06T11:50:32.894Z',
+  },
+  {
+    id: 1,
+    name: 'name 7',
+    type: 'file',
+    updatedAt: '2023-09-06T11:50:32.894Z',
+  },
+  { id: 2, name: 'name 8', type: 'h5p', updatedAt: '2023-09-06T11:50:32.894Z' },
+  {
+    id: 3,
+    name: 'name 9',
+    type: 'folder',
+    updatedAt: '2023-09-06T11:50:32.894Z',
+  },
 ];
 const dateFormatter: ColDef['valueFormatter'] = ({ value: date }) =>
   date.toLocaleString('en-US');

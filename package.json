@@ -20,7 +20,7 @@
     "definition": "dist/index.d.ts"
   },
   "engines": {
-    "node": ">=16"
+    "node": ">=18"
   },
   "scripts": {
     "build": "rimraf dist && tsc && rollup -c rollup.config.js",

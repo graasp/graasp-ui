@@ -22,8 +22,8 @@ const item: EmbeddedLinkItemType = {
   },
   settings: {},
   creator: { id: 'creator-id' } as Member,
-  createdAt: new Date(),
-  updatedAt: new Date(),
+  createdAt: '2023-09-06T11:50:32.894Z',
+  updatedAt: '2023-09-06T11:50:32.894Z',
   description: 'my link description',
 };
 

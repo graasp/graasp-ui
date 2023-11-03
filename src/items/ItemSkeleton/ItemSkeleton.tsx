@@ -2,7 +2,7 @@ import Skeleton from '@mui/material/Skeleton';
 
 import React from 'react';
 
-import { ItemType, UnionOfConst } from '@graasp/sdk';
+import { DiscriminatedItem, ItemType, UnionOfConst } from '@graasp/sdk';
 
 import { SCREEN_MAX_HEIGHT } from '../../constants';
 
@@ -15,7 +15,7 @@ export interface ItemSkeletonProps {
    */
   isChildren: boolean;
   isCollapsible?: boolean;
-  itemType: UnionOfConst<typeof ItemType>;
+  itemType: DiscriminatedItem['type'];
   screenMaxHeight?: number;
 }
 

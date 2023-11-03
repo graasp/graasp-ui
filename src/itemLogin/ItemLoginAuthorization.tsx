@@ -19,7 +19,7 @@ import ItemLoginScreen, { SignInPropertiesType } from './ItemLoginScreen';
 export type ItemLoginAuthorizationProps = {
   signIn: (args: { itemId: string } & SignInPropertiesType) => void;
   itemId: UUID;
-  useCurrentMember: () => UseQueryResult<CompleteMember>;
+  useCurrentMember: () => UseQueryResult<CompleteMember | null>;
   useItem: (itemId?: string) => UseQueryResult<DiscriminatedItem>;
   useItemLoginSchemaType: (args: {
     itemId?: string;

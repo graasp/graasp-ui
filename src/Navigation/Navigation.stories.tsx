@@ -29,8 +29,8 @@ const buildItem = (name: string): LocalFileItemType => ({
   path: 'item-path',
   settings: {},
   creator: MOCK_MEMBER,
-  createdAt: new Date(),
-  updatedAt: new Date(),
+  createdAt: '2023-09-06T11:50:32.894Z',
+  updatedAt: '2023-09-06T11:50:32.894Z',
 });
 
 const meta: Meta<typeof Navigation> = {
@@ -74,8 +74,8 @@ const folder = {
   path: 'item-path',
   settings: {},
   creator: MOCK_MEMBER,
-  createdAt: new Date(),
-  updatedAt: new Date(),
+  createdAt: '2023-09-06T11:50:32.894Z',
+  updatedAt: '2023-09-06T11:50:32.894Z',
 };
 
 const menu = [

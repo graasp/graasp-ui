@@ -40,8 +40,8 @@ export const Example: Story = {
       path: 'item-path',
       settings: {},
       creator: MOCK_MEMBER,
-      createdAt: new Date(),
-      updatedAt: new Date(),
+      createdAt: '2023-09-06T11:50:32.894Z',
+      updatedAt: '2023-09-06T11:50:32.894Z',
     },
   },
 };

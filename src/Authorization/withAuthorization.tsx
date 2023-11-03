@@ -6,7 +6,7 @@ import RedirectContent from './RedirectionContent';
 
 export interface withAutorizationProps {
   redirectionLink?: string;
-  currentMember?: CompleteMember;
+  currentMember?: CompleteMember | null;
   onRedirect?: () => void;
 }
 

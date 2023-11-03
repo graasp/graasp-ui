@@ -3,7 +3,7 @@ import Skeleton, { SkeletonProps } from '@mui/material/Skeleton';
 
 import React, { FC } from 'react';
 
-import { ThumbnailSizeVariant } from '@graasp/sdk';
+import { ThumbnailSizeType } from '@graasp/sdk';
 
 import { StyledImage } from '../StyledComponents/StyledBaseComponents';
 import { Variant } from '../types';
@@ -25,7 +25,7 @@ type ThumbnailProps = {
   /**
    * size of the thumbnail to fetch
    */
-  size?: ThumbnailSizeVariant;
+  size?: ThumbnailSizeType;
   sx?: SxProps;
   /**
    * default thumbnail src link, override defaultValue

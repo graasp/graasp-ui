@@ -6,7 +6,7 @@ import Typography from '@mui/material/Typography';
 
 import React, { FC } from 'react';
 
-import { Member, redirect } from '@graasp/sdk';
+import { CompleteMember, redirect } from '@graasp/sdk';
 
 import Loader from '../Loader';
 import UserSwitch from './UserSwitch';
@@ -21,13 +21,13 @@ interface Props {
   buildMemberMenuItemId?: (id: string) => string;
   ButtonContent?: JSX.Element;
   buttonId?: string;
-  currentMember?: Member;
+  currentMember?: CompleteMember | null;
   // domain: string;
   isCurrentMemberLoading: boolean;
   // isCurrentMemberSuccess: boolean;
   profilePath: string;
   redirectPath: string;
-  renderAvatar: (member?: Member) => JSX.Element;
+  renderAvatar: (member?: CompleteMember | null) => JSX.Element;
   seeProfileButtonId?: string;
   seeProfileText?: string;
   signedOutTooltipText?: string;
@@ -159,7 +159,7 @@ const UserSwitchWrapper: FC<Props> = ({
       ButtonContent={ButtonContent}
       Actions={Actions}
       // onMemberClick={onMemberClick}
-      member={currentMember}
+      currentMember={currentMember}
       // members={members}
       signedOutTooltipText={signedOutTooltipText}
       buttonId={buttonId}
