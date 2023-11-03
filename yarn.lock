@@ -3946,7 +3946,7 @@ __metadata:
     qs: "npm:6.11.2"
     quill-emoji: "npm:0.2.0"
     react: "npm:18.2.0"
-    react-cookie-consent: "npm:8.0.1"
+    react-cookie-consent: "npm:9.0.0"
     react-dom: "npm:18.2.0"
     react-i18next: "npm:13.3.1"
     react-query: "npm:3.39.3"
@@ -19181,14 +19181,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-cookie-consent@npm:8.0.1":
-  version: 8.0.1
-  resolution: "react-cookie-consent@npm:8.0.1"
+"react-cookie-consent@npm:9.0.0":
+  version: 9.0.0
+  resolution: "react-cookie-consent@npm:9.0.0"
   dependencies:
     js-cookie: "npm:^2.2.1"
   peerDependencies:
     react: ">=16"
-  checksum: 16d519c546385f5a853b89989b9ed6729ee082be3a4f1dd51b9abfba0d0cdd90a38d6eb9eeba8f4dcc5e0a008f1abd05dc5bdc9307687dfdad4bf53a89856416
+  checksum: 74398466bd984314f07ebcf5fffb270e0c37508b93189effdbda0517d3f516a99b811f3f9bac4d46286eff863104a2c20fe91236ad0b3cff70edc499d8ef185a
   languageName: node
   linkType: hard
 
