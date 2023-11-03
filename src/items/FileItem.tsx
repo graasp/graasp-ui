@@ -6,15 +6,13 @@ import React, { useEffect, useState } from 'react';
 
 import {
   ItemType,
+  LocalFileItemType,
   MaxWidth,
   MimeTypes,
+  S3FileItemType,
   getFileExtra,
   getS3FileExtra,
 } from '@graasp/sdk';
-import {
-  LocalFileItemTypeRecord,
-  S3FileItemTypeRecord,
-} from '@graasp/sdk/frontend';
 
 import withCollapse from '../Collapse/withCollapse';
 import { SCREEN_MAX_HEIGHT, UNEXPECTED_ERROR_MESSAGE } from '../constants';
@@ -40,7 +38,7 @@ export interface FileItemProps {
   editCaption?: boolean;
   errorMessage?: string;
   id?: string;
-  item: LocalFileItemTypeRecord | S3FileItemTypeRecord;
+  item: LocalFileItemType | S3FileItemType;
   maxHeight?: number | string;
   onSaveCaption?: (text: string) => void;
   onCancelCaption?: (text: string) => void;
@@ -123,7 +121,7 @@ const FileItem = ({
       mimetype,
       name: originalFileName,
       altText,
-    } = { ...fileExtra?.toJS(), ...s3FileExtra?.toJS() };
+    } = { ...fileExtra, ...s3FileExtra };
 
     if (mimetype) {
       if (MimeTypes.isImage(mimetype)) {

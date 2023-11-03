@@ -5,7 +5,7 @@ import { screen, userEvent, within } from '@storybook/testing-library';
 import React from 'react';
 
 import Avatar from '../Avatar/Avatar';
-import { MOCK_MEMBER_RECORD } from '../utils/fixtures';
+import { MOCK_CURRENT_MEMBER } from '../utils/fixtures';
 import UserSwitchWrapper from './UserSwitchWrapper';
 
 const meta: Meta<typeof UserSwitchWrapper> = {
@@ -19,13 +19,13 @@ type Story = StoryObj<typeof UserSwitchWrapper>;
 
 export const SignedIn: Story = {
   args: {
-    currentMember: MOCK_MEMBER_RECORD,
+    currentMember: MOCK_CURRENT_MEMBER,
     seeProfileText: 'See Profile',
     signOutText: 'Sign Out',
     renderAvatar: () => (
       <Avatar
         url={'https://picsum.photos/100'}
-        alt={`profile image ${MOCK_MEMBER_RECORD?.name}`}
+        alt={`profile image ${MOCK_CURRENT_MEMBER?.name}`}
         component={'avatar'}
         sx={{ mx: 1 }}
       />
@@ -36,7 +36,7 @@ SignedIn.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
 
   // open dialog
-  const nameText = canvas.getByLabelText(MOCK_MEMBER_RECORD.name);
+  const nameText = canvas.getByLabelText(MOCK_CURRENT_MEMBER.name);
   await userEvent.click(nameText);
 
   const menuCanvas = within(await screen.getByRole('menu'));
@@ -46,7 +46,7 @@ SignedIn.play = async ({ canvasElement }) => {
   expect(profileButton).toBeInTheDocument();
 
   // email
-  const emailText = menuCanvas.getByText(MOCK_MEMBER_RECORD.email);
+  const emailText = menuCanvas.getByText(MOCK_CURRENT_MEMBER.email);
   expect(emailText).toBeInTheDocument();
 
   // sign out button

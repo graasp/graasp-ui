@@ -5,8 +5,12 @@ import Alert from '@mui/material/Alert';
 import React, { ReactElement } from 'react';
 import { UseQueryResult } from 'react-query';
 
-import { ItemLoginSchemaType, UUID } from '@graasp/sdk';
-import { ItemRecord, MemberRecord } from '@graasp/sdk/frontend';
+import {
+  CompleteMember,
+  DiscriminatedItem,
+  ItemLoginSchemaType,
+  UUID,
+} from '@graasp/sdk';
 
 import CustomInitialLoader from '../CustomInitialLoader';
 import ForbiddenText from './ForbiddenText';
@@ -15,8 +19,8 @@ import ItemLoginScreen, { SignInPropertiesType } from './ItemLoginScreen';
 export type ItemLoginAuthorizationProps = {
   signIn: (args: { itemId: string } & SignInPropertiesType) => void;
   itemId: UUID;
-  useCurrentMember: () => UseQueryResult<MemberRecord>;
-  useItem: (itemId?: string) => UseQueryResult<ItemRecord>;
+  useCurrentMember: () => UseQueryResult<CompleteMember | null>;
+  useItem: (itemId?: string) => UseQueryResult<DiscriminatedItem>;
   useItemLoginSchemaType: (args: {
     itemId?: string;
   }) => UseQueryResult<ItemLoginSchemaType>;

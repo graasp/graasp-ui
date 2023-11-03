@@ -1,14 +1,17 @@
-import { Member, convertJs } from '@graasp/sdk';
-import { MemberRecord } from '@graasp/sdk/frontend';
+import { CompleteMember, Member, MemberType } from '@graasp/sdk';
 
 export const MOCK_MEMBER: Member = {
   id: 'id',
   name: 'creator',
   email: 'email',
-  // extra: {},
-  // createdAt: new Date(),
-  // updatedAt: new Date(),
-  // type: MemberType.Individual,
 };
 
-export const MOCK_MEMBER_RECORD: MemberRecord = convertJs(MOCK_MEMBER);
+export const MOCK_CURRENT_MEMBER: CompleteMember = {
+  id: 'current id',
+  name: 'current member',
+  email: 'current email',
+  createdAt: new Date().toISOString(),
+  updatedAt: new Date().toISOString(),
+  type: MemberType.Individual,
+  extra: {},
+};

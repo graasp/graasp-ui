@@ -1,40 +1,37 @@
 import { expect } from '@storybook/jest';
 import type { Meta, StoryObj } from '@storybook/react';
 import { within } from '@storybook/testing-library';
-import { List } from 'immutable';
 
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 
-import { ItemType, LocalFileItemType, MimeTypes, convertJs } from '@graasp/sdk';
-import { ItemRecord } from '@graasp/sdk/frontend';
+import { ItemType, LocalFileItemType, MimeTypes } from '@graasp/sdk';
 
 import { MOCK_MEMBER } from '../utils/fixtures';
 import HomeMenu from './HomeMenu';
 import ItemMenu, { ItemMenuProps } from './ItemMenu';
 import Navigation from './Navigation';
 
-const buildItem = (name: string): ItemRecord =>
-  convertJs<LocalFileItemType>({
-    id: name,
-    name,
-    extra: {
-      [ItemType.LOCAL_FILE]: {
-        path: 'https://picsum.photos/100',
-        mimetype: MimeTypes.Image.PNG,
-        name: 'original file name',
-        size: 2600,
-        content: '',
-      },
+const buildItem = (name: string): LocalFileItemType => ({
+  id: name,
+  name,
+  extra: {
+    [ItemType.LOCAL_FILE]: {
+      path: 'https://picsum.photos/100',
+      mimetype: MimeTypes.Image.PNG,
+      name: 'original file name',
+      size: 2600,
+      content: '',
     },
-    type: 'file',
-    description: 'my image description',
-    path: 'item-path',
-    settings: {},
-    creator: MOCK_MEMBER,
-    createdAt: new Date(),
-    updatedAt: new Date(),
-  });
+  },
+  type: 'file',
+  description: 'my image description',
+  path: 'item-path',
+  settings: {},
+  creator: MOCK_MEMBER,
+  createdAt: '2023-09-06T11:50:32.894Z',
+  updatedAt: '2023-09-06T11:50:32.894Z',
+});
 
 const meta: Meta<typeof Navigation> = {
   title: 'Common/Navigation',
@@ -56,15 +53,15 @@ type Story = StoryObj<typeof Navigation>;
 type UseChildrenHookType = ReturnType<ItemMenuProps['useChildren']>;
 
 const item = buildItem('my item');
-const parents = List([buildItem('parent 1'), buildItem('parent 2')]);
-const children = List([buildItem('child 1'), buildItem('child 2')]);
+const parents = [buildItem('parent 1'), buildItem('parent 2')];
+const children = [buildItem('child 1'), buildItem('child 2')];
 const useChildren: ItemMenuProps['useChildren'] = (id) => {
   console.debug('show children of ' + id);
   return { data: children } as UseChildrenHookType;
 };
 const buildToItemPath = (id: string): string => id;
 const dataTestId = 'NavigateNextIcon';
-const folder = convertJs({
+const folder = {
   id: 'folder-id',
   name: 'folder',
   extra: {
@@ -77,9 +74,9 @@ const folder = convertJs({
   path: 'item-path',
   settings: {},
   creator: MOCK_MEMBER,
-  createdAt: new Date(),
-  updatedAt: new Date(),
-});
+  createdAt: '2023-09-06T11:50:32.894Z',
+  updatedAt: '2023-09-06T11:50:32.894Z',
+};
 
 const menu = [
   { name: 'Home', id: 'home', to: 'home' },
@@ -99,10 +96,7 @@ export const HomeRoot: Story = {
             itemId={item.id}
             useChildren={() => {
               return {
-                data: List([
-                  buildItem('Home item 1'),
-                  buildItem('Home item 2'),
-                ]),
+                data: [buildItem('Home item 1'), buildItem('Home item 2')],
               } as UseChildrenHookType;
             }}
             buildToItemPath={buildToItemPath}
@@ -134,10 +128,7 @@ export const FolderWithParents: Story = {
             itemId={item.id}
             useChildren={() => {
               return {
-                data: List([
-                  buildItem('Home item 1'),
-                  buildItem('Home item 2'),
-                ]),
+                data: [buildItem('Home item 1'), buildItem('Home item 2')],
               } as UseChildrenHookType;
             }}
             buildToItemPath={buildToItemPath}
@@ -155,7 +146,7 @@ export const FolderWithParents: Story = {
     expect(canvas.getByText(folder.name)).toBeInTheDocument();
 
     // check parents
-    for (const p of parents.toJS()) {
+    for (const p of parents) {
       const b = canvas.getByText(p!.name);
       expect(b).toBeInTheDocument();
     }
@@ -179,10 +170,7 @@ export const FileWithParents: Story = {
             itemId={item.id}
             useChildren={() => {
               return {
-                data: List([
-                  buildItem('Home item 1'),
-                  buildItem('Home item 2'),
-                ]),
+                data: [buildItem('Home item 1'), buildItem('Home item 2')],
               } as UseChildrenHookType;
             }}
             buildToItemPath={buildToItemPath}
@@ -200,7 +188,7 @@ export const FileWithParents: Story = {
     expect(canvas.getByText(item.name)).toBeInTheDocument();
 
     // check parents
-    for (const p of parents.toJS()) {
+    for (const p of parents) {
       const b = canvas.getByText(p!.name);
       expect(b).toBeInTheDocument();
     }

@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import React from 'react';
 
-import { convertJs } from '@graasp/sdk';
+import { CompleteMember } from '@graasp/sdk';
 
 import { BuildIcon } from '../icons';
 import withAuthorization from './withAuthorization';
@@ -11,7 +11,7 @@ const redirectionLink = 'http://redirect.org';
 
 const ComponentWithAuthorization = withAuthorization(BuildIcon, {
   redirectionLink,
-  currentMember: convertJs({ id: 'member', name: 'member' }),
+  currentMember: { id: 'member', name: 'member' } as CompleteMember,
 });
 
 const meta: Meta<typeof withAuthorization> = {
@@ -31,7 +31,7 @@ export const Authorized: Story = {
   render: () => {
     const Component = withAuthorization(BuildIcon, {
       redirectionLink,
-      currentMember: convertJs({ id: 'member', name: 'member' }),
+      currentMember: { id: 'member', name: 'member' } as CompleteMember,
     });
     return <Component />;
   },

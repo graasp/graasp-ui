@@ -1,4 +1,3 @@
-import { List } from 'immutable';
 import truncate from 'lodash.truncate';
 
 import { SxProps } from '@mui/material';
@@ -8,8 +7,7 @@ import { styled } from '@mui/material/styles';
 
 import React from 'react';
 
-import { ItemType } from '@graasp/sdk';
-import { ItemRecord } from '@graasp/sdk/frontend';
+import { DiscriminatedItem, ItemType } from '@graasp/sdk';
 
 import ItemMenu, { ItemMenuProps } from './ItemMenu';
 import { CenterAlignWrapper, ITEM_NAME_MAX_LENGTH, StyledLink } from './utils';
@@ -28,9 +26,9 @@ export type NavigationProps = {
   buildToItemPath: (id: string) => string;
   buildMenuId?: (id: string) => string;
   id?: string;
-  item?: ItemRecord;
-  parents?: List<ItemRecord>;
-  renderRoot?: (item?: ItemRecord) => JSX.Element | null;
+  item?: DiscriminatedItem;
+  parents?: DiscriminatedItem[];
+  renderRoot?: (item?: DiscriminatedItem) => JSX.Element | null;
   sx?: SxProps;
   useChildren: ItemMenuProps['useChildren'];
   maxItems?: number;
@@ -53,7 +51,7 @@ const Navigation = ({
 }: NavigationProps): JSX.Element | null => {
   const renderParents = (): JSX.Element[] | undefined =>
     // need to convert otherwise it returns List<Element>
-    parents?.toArray()?.map(({ name, id }) => (
+    parents?.map(({ name, id }) => (
       <CenterAlignWrapper key={id}>
         <StyledLink
           id={buildBreadcrumbsItemLinkId?.(id)}

@@ -2,13 +2,12 @@ import { expect } from '@storybook/jest';
 import type { Meta, StoryObj } from '@storybook/react';
 import { userEvent, within } from '@storybook/testing-library';
 
-import { ItemType, convertJs } from '@graasp/sdk';
-import { EmbeddedLinkItemTypeRecord } from '@graasp/sdk/frontend';
+import { EmbeddedLinkItemType, ItemType, Member } from '@graasp/sdk';
 
 import { TABLE_CATEGORIES } from '../utils/storybook';
 import LinkItem from './LinkItem';
 
-const item: EmbeddedLinkItemTypeRecord = convertJs({
+const item: EmbeddedLinkItemType = {
   id: 'item-id',
   name: 'item-name',
   type: ItemType.LINK,
@@ -21,11 +20,12 @@ const item: EmbeddedLinkItemTypeRecord = convertJs({
       icons: [],
     },
   },
-  creator: 'creator',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
+  settings: {},
+  creator: { id: 'creator-id' } as Member,
+  createdAt: '2023-09-06T11:50:32.894Z',
+  updatedAt: '2023-09-06T11:50:32.894Z',
   description: 'my link description',
-});
+};
 
 const meta: Meta<typeof LinkItem> = {
   title: 'Items/LinkItem',

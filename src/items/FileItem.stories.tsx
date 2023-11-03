@@ -2,13 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import React from 'react';
 
-import {
-  ItemType,
-  LocalFileItemType,
-  MaxWidth,
-  MimeTypes,
-  convertJs,
-} from '@graasp/sdk';
+import { ItemType, MaxWidth, MimeTypes } from '@graasp/sdk';
 
 import { MOCK_MEMBER } from '../utils/fixtures';
 import { TABLE_CATEGORIES } from '../utils/storybook';
@@ -41,7 +35,7 @@ export const Image: Story = {
     }),
   ],
   args: {
-    item: convertJs<LocalFileItemType>({
+    item: {
       id: 'my-id',
       name: 'my item name',
       extra: {
@@ -59,9 +53,9 @@ export const Image: Story = {
       path: 'item-path',
       settings: {},
       creator: MOCK_MEMBER,
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    }),
+      createdAt: '2023-09-06T11:50:32.894Z',
+      updatedAt: '2023-09-06T11:50:32.894Z',
+    },
   },
 };
 
@@ -72,7 +66,7 @@ export const BigContainedImage: Story = {
     }),
   ],
   args: {
-    item: convertJs<LocalFileItemType>({
+    item: {
       id: 'my-id',
       name: 'my item name',
       extra: {
@@ -93,9 +87,9 @@ export const BigContainedImage: Story = {
         maxWidth: MaxWidth.Small,
       },
       creator: MOCK_MEMBER,
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    }),
+      createdAt: '2023-09-06T11:50:32.894Z',
+      updatedAt: '2023-09-06T11:50:32.894Z',
+    },
   },
 };
 
@@ -106,7 +100,7 @@ export const SmallContainedImage: Story = {
     }),
   ],
   args: {
-    item: convertJs<LocalFileItemType>({
+    item: {
       id: 'my-id',
       name: 'my item name',
       extra: {
@@ -127,9 +121,9 @@ export const SmallContainedImage: Story = {
         maxWidth: MaxWidth.Large,
       },
       creator: MOCK_MEMBER,
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    }),
+      createdAt: '2023-09-06T11:50:32.894Z',
+      updatedAt: '2023-09-06T11:50:32.894Z',
+    },
   },
 };
 
@@ -142,7 +136,7 @@ export const ImageSVG: Story = {
     }),
   ],
   args: {
-    item: convertJs<LocalFileItemType>({
+    item: {
       id: 'my-id',
       name: 'my item name',
       extra: {
@@ -160,9 +154,9 @@ export const ImageSVG: Story = {
       path: 'item-path',
       settings: {},
       creator: MOCK_MEMBER,
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    }),
+      createdAt: '2023-09-06T11:50:32.894Z',
+      updatedAt: '2023-09-06T11:50:32.894Z',
+    },
   },
 };
 
@@ -175,7 +169,7 @@ export const WAVAudio: Story = {
     }),
   ],
   args: {
-    item: convertJs<LocalFileItemType>({
+    item: {
       id: 'my-id',
       name: 'my item name',
       extra: {
@@ -192,8 +186,8 @@ export const WAVAudio: Story = {
       path: 'item-path',
       settings: {},
       creator: MOCK_MEMBER,
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    }),
+      createdAt: '2023-09-06T11:50:32.894Z',
+      updatedAt: '2023-09-06T11:50:32.894Z',
+    },
   },
 };

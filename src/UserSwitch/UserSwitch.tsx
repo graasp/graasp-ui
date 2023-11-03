@@ -1,5 +1,3 @@
-import { List } from 'immutable';
-
 import { styled } from '@mui/material';
 import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
@@ -17,8 +15,7 @@ import React, {
   useState,
 } from 'react';
 
-import { isPseudonymizedMember } from '@graasp/sdk';
-import { MemberRecord } from '@graasp/sdk/frontend';
+import { CompleteMember, Member, isPseudonymizedMember } from '@graasp/sdk';
 
 import { SHORT_TEXT_WIDTH, SMALL_AVATAR_SIZE } from '../constants';
 import { Variant } from '../types';
@@ -39,11 +36,11 @@ interface Props {
   ButtonContent?: JSX.Element;
   buttonId?: string;
   isMemberLoading?: boolean;
-  member?: MemberRecord;
-  members?: List<MemberRecord>;
+  currentMember?: CompleteMember | null;
+  members?: Member[];
   menuId?: string;
   onMemberClick?: (_id: string) => MouseEventHandler;
-  renderAvatar?: (member?: MemberRecord) => JSX.Element;
+  renderAvatar?: (member?: CompleteMember | null) => JSX.Element;
   signedOutTooltipText?: string;
 }
 
@@ -52,7 +49,7 @@ const UserSwitch: FC<Props> = ({
   ButtonContent,
   buttonId,
   isMemberLoading = false,
-  member,
+  currentMember,
   menuId,
   renderAvatar = () => <></>,
   signedOutTooltipText = 'You are not signed in.',
@@ -60,7 +57,7 @@ const UserSwitch: FC<Props> = ({
   const [anchorEl, setAnchorEl] = useState<(EventTarget & Element) | null>(
     null,
   );
-  const memberName = member?.name;
+  const memberName = currentMember?.name;
 
   const handleClick: MouseEventHandler = (event: MouseEvent) => {
     setAnchorEl(event.currentTarget);
@@ -115,13 +112,13 @@ const UserSwitch: FC<Props> = ({
   // };
 
   const renderCurrentMemberInfo = (): ReactElement | null => {
-    if (!member || !member.id) {
+    if (!currentMember || !currentMember.id) {
       return null;
     }
 
     return (
       <MenuItem>
-        {renderAvatar(member)}
+        {renderAvatar(currentMember)}
 
         <div>
           <Typography variant='h6' noWrap>
@@ -129,10 +126,10 @@ const UserSwitch: FC<Props> = ({
           </Typography>
           {/* show info only for normal member */}
           {/* todo: show which item a pseudonymized member as access to */}
-          {!isPseudonymizedMember(member.email) && (
+          {!isPseudonymizedMember(currentMember.email) && (
             <>
               <Typography variant='subtitle2' noWrap>
-                {member.email}
+                {currentMember.email}
               </Typography>
             </>
           )}
@@ -164,7 +161,7 @@ const UserSwitch: FC<Props> = ({
     return (
       <>
         <Tooltip title={memberName ?? signedOutTooltipText}>
-          <span>{renderAvatar(member)}</span>
+          <span>{renderAvatar(currentMember)}</span>
         </Tooltip>
         {memberName && (
           <Typography
