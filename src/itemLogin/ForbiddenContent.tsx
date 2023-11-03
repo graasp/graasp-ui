@@ -2,8 +2,6 @@ import { Container, Typography, styled } from '@mui/material';
 
 import React, { FC, ReactNode } from 'react';
 
-import { Member } from '@graasp/sdk';
-
 import Button from '../buttons/Button';
 import ForbiddenText from './ForbiddenText';
 
@@ -16,10 +14,6 @@ export interface ForbiddenContentProps {
    * Id of the current member used for saving the resizing preferences
    */
   memberId?: string;
-  /**
-   * @deprecated Use the `memberId` prop to only pass the id
-   */
-  user?: Member;
   signOut: () => void;
   id?: string;
   showPseudonymized?: boolean;
@@ -30,7 +24,6 @@ export interface ForbiddenContentProps {
 
 const ForbiddenContent: FC<ForbiddenContentProps> = ({
   signOut,
-  user,
   memberId,
   id,
   forbiddenTextId,
@@ -61,10 +54,7 @@ const ForbiddenContent: FC<ForbiddenContentProps> = ({
   return (
     <StyledContainer id={id}>
       <ForbiddenText id={forbiddenTextId} />
-      {
-        // todo: remove this when deprecating user prop
-        (memberId || user?.id) && renderAuthenticatedAlternatives()
-      }
+      {memberId && renderAuthenticatedAlternatives()}
     </StyledContainer>
   );
 };
