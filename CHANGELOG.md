@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.0.0](https://github.com/graasp/graasp-ui/compare/v3.7.0...v4.0.0) (2023-11-03)
+
+
+### ⚠ BREAKING CHANGES
+
+* remove immutable ([#568](https://github.com/graasp/graasp-ui/issues/568))
+
+### Features
+
+* remove immutable ([#568](https://github.com/graasp/graasp-ui/issues/568)) ([ee77ad8](https://github.com/graasp/graasp-ui/commit/ee77ad8a524541fae0216bcc7724a245decc965b))
+
+
+### Bug Fixes
+
+* **deps:** update dependency @graasp/sdk to v1.10.1 ([#556](https://github.com/graasp/graasp-ui/issues/556)) ([47d800e](https://github.com/graasp/graasp-ui/commit/47d800e7884d6141150ca1322e78304a580a63c1))
+
 ## [3.7.0](https://github.com/graasp/graasp-ui/compare/v3.6.1...v3.7.0) (2023-10-26)
 
 
