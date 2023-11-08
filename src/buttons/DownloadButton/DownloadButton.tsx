@@ -1,12 +1,14 @@
 import GetAppIcon from '@mui/icons-material/GetApp';
 import { CircularProgressProps, IconButton } from '@mui/material';
 import CircularProgress from '@mui/material/CircularProgress';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import MenuItem from '@mui/material/MenuItem';
 import Tooltip, { TooltipProps } from '@mui/material/Tooltip';
 
 import React, { FC, MouseEventHandler } from 'react';
 
 import { DEFAULT_LOADER_SIZE } from '../../constants';
-import { ActionButtonVariant } from '../../types';
+import { ActionButton, ActionButtonVariant } from '../../types';
 
 export interface DownloadButtonProps {
   ariaLabel: string;
@@ -40,18 +42,25 @@ const DownloadButton: FC<DownloadButtonProps> = ({
   isLoading = false,
   loaderColor = 'primary',
   loaderSize = DEFAULT_LOADER_SIZE,
-  title = 'download',
+  title = 'Download',
   placement = 'bottom',
   type = 'icon',
 }) => {
-  if (isLoading) {
-    return <CircularProgress color={loaderColor} size={loaderSize} />;
-  }
-
   switch (type) {
-    case 'menuItem':
-    case 'icon':
+    case ActionButton.MENU_ITEM:
+      return (
+        <MenuItem key={title} onClick={handleDownload}>
+          <ListItemIcon>
+            <GetAppIcon />
+          </ListItemIcon>
+          {title}
+        </MenuItem>
+      );
+    case ActionButton.ICON_BUTTON:
     default:
+      if (isLoading) {
+        return <CircularProgress color={loaderColor} size={loaderSize} />;
+      }
       return (
         <Tooltip title={title} placement={placement}>
           <span>
