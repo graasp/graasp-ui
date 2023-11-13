@@ -75,13 +75,13 @@ const getLicenseName = (
       ? allowSharedAdaptation === 'yes'
         ? licenses.attr
         : allowSharedAdaptation === 'no'
-        ? licenses.attrNoDeriv
-        : licenses.attrShareAlike
+          ? licenses.attrNoDeriv
+          : licenses.attrShareAlike
       : allowSharedAdaptation === 'yes'
-      ? licenses.attrNC
-      : allowSharedAdaptation === 'no'
-      ? licenses.attrNoDerivNC
-      : licenses.attrShareAlikeNC
+        ? licenses.attrNC
+        : allowSharedAdaptation === 'no'
+          ? licenses.attrNoDerivNC
+          : licenses.attrShareAlikeNC
     : licenses.cc0;
 
 const CCIcon: FC<CCIconProps> = ({ icon, title, description }) => {
