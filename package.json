@@ -53,7 +53,7 @@
     "storybook:test-ci": "wait-on http://127.0.0.1:6006 && yarn storybook:test"
   },
   "dependencies": {
-    "@graasp/sdk": "2.0.0",
+    "@graasp/sdk": "2.0.1",
     "http-status-codes": "2.3.0",
     "katex": "0.16.9",
     "lodash.truncate": "4.4.2",
