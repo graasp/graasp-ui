@@ -22,7 +22,7 @@ const DrawerHeaderContainer = styled('div')(({ theme }) => ({
 }));
 
 export interface MainProps {
-  context?: Context;
+  context?: `${Context}` | Context;
   children?: JSX.Element | JSX.Element[];
   fullScreen?: boolean;
   /**
