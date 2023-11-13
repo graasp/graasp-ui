@@ -6,13 +6,14 @@ import { Context } from '@graasp/sdk';
 export const PRIMARY_COLOR = '#5050d2';
 export const SECONDARY_COLOR = '#FFFFFF';
 
-export const AccentColors = {
+export const AccentColors: { [K in Context]: string } = {
   [Context.Builder]: '#1ecaa5',
   [Context.Player]: '#009eff',
   [Context.Library]: '#9300c6',
   [Context.Analytics]: '#0707a3',
+  [Context.Account]: '#e3dc31',
   [Context.Unknown]: '#1ecaa5',
-};
+} as const;
 
 export const theme = createTheme({
   palette: {

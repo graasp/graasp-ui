@@ -17,7 +17,7 @@ export const buildHeaderGradient = (color: string): string =>
   `linear-gradient(90deg, ${PRIMARY_COLOR} 0%, ${PRIMARY_COLOR} 35%, ${color} 100%);`;
 
 export type HeaderProps = {
-  context?: Context;
+  context?: `${Context}` | Context;
   centerContent?: React.ReactElement;
   handleDrawerOpen?: () => void;
   handleDrawerClose?: () => void;
