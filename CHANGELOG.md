@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.0.1](https://github.com/graasp/graasp-ui/compare/v4.0.0...v4.0.1) (2023-11-13)
+
+
+### Bug Fixes
+
+* allow better typing for Context enum and add color for account ([#584](https://github.com/graasp/graasp-ui/issues/584)) ([db40c6a](https://github.com/graasp/graasp-ui/commit/db40c6ab281166715b261dcc4842840b82b4bfbb))
+* **deps:** update dependency @graasp/sdk to v2.0.1 ([#577](https://github.com/graasp/graasp-ui/issues/577)) ([1041814](https://github.com/graasp/graasp-ui/commit/1041814b4dfa9516ff9ba6da50fe7c3c8d8d90cf))
+* **deps:** update dependency react-cookie-consent to v9 ([#560](https://github.com/graasp/graasp-ui/issues/560)) ([e9bf4c1](https://github.com/graasp/graasp-ui/commit/e9bf4c11c87e02dc1e2d6172161d98a842862022))
+
 ## [4.0.0](https://github.com/graasp/graasp-ui/compare/v3.7.0...v4.0.0) (2023-11-03)
 
 
