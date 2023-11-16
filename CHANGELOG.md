@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.1.0](https://github.com/graasp/graasp-ui/compare/v4.0.1...v4.1.0) (2023-11-16)
+
+
+### Features
+
+* add onClick for Link, File and DownloadFileButton ([#549](https://github.com/graasp/graasp-ui/issues/549)) ([a212d92](https://github.com/graasp/graasp-ui/commit/a212d920c12954142a9d6ac972cf6d05bc793893))
+
+
+### Bug Fixes
+
+* support WebP format ([#603](https://github.com/graasp/graasp-ui/issues/603)) ([cd4e6ad](https://github.com/graasp/graasp-ui/commit/cd4e6ad5cb818370874702042b12dd07e1421834))
+
 ## [4.0.1](https://github.com/graasp/graasp-ui/compare/v4.0.0...v4.0.1) (2023-11-13)
 
 
