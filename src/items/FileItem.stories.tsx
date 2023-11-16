@@ -160,6 +160,39 @@ export const ImageSVG: Story = {
   },
 };
 
+export const ImageWebP: Story = {
+  loaders: [
+    async () => ({
+      content: await fetch(
+        'https://upload.wikimedia.org/wikipedia/commons/b/b2/Vulphere_WebP_OTAGROOVE_demonstration_2.webp',
+      ).then((r) => r.blob()),
+    }),
+  ],
+  args: {
+    item: {
+      id: 'my-id',
+      name: 'my item name',
+      extra: {
+        [ItemType.LOCAL_FILE]: {
+          path: 'https://upload.wikimedia.org/wikipedia/commons/b/b2/Vulphere_WebP_OTAGROOVE_demonstration_2.webp',
+          mimetype: MimeTypes.Image.WEBP, // Should be image/svg+xml
+          name: 'original file name',
+          size: 2600,
+          altText: 'my webp alt text',
+          content: '',
+        },
+      },
+      type: ItemType.LOCAL_FILE,
+      description: 'my webp description',
+      path: 'item-path',
+      settings: {},
+      creator: MOCK_MEMBER,
+      createdAt: '2023-09-06T11:50:32.894Z',
+      updatedAt: '2023-09-06T11:50:32.894Z',
+    },
+  },
+};
+
 export const WAVAudio: Story = {
   loaders: [
     async () => ({
