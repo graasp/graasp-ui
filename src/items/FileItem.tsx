@@ -51,6 +51,7 @@ export interface FileItemProps {
   showCaption?: boolean;
   showCollapse?: boolean;
   sx?: SxProps;
+  onClick?: () => void;
 }
 
 const FileItem = ({
@@ -71,6 +72,7 @@ const FileItem = ({
   showCollapse,
   sx,
   pdfViewerLink,
+  onClick,
 }: FileItemProps): JSX.Element => {
   const [url, setUrl] = useState<string>();
 
@@ -155,6 +157,7 @@ const FileItem = ({
         name={originalFileName ?? item.name}
         url={url}
         text={downloadText}
+        onClick={onClick}
       />
     );
   };

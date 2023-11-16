@@ -62,6 +62,8 @@ export interface LinkItemProps {
    * whether the component should be collapse
    */
   showCollapse?: boolean;
+
+  onClick?: () => void;
 }
 
 const IFrameContainer = styled('div')({
@@ -94,6 +96,7 @@ const LinkItem: FC<LinkItemProps> = ({
   errorMessage = 'The link is malformed.',
   isResizable = false,
   showCollapse = false,
+  onClick,
 }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [height] = useState<string | number>(defaultHeight);
@@ -169,7 +172,13 @@ const LinkItem: FC<LinkItemProps> = ({
   const getComponent = (): JSX.Element => {
     // if available, display specific player
     if (html) {
-      return <div id={id} dangerouslySetInnerHTML={{ __html: html }} />;
+      return (
+        <div
+          id={id}
+          onClick={onClick}
+          dangerouslySetInnerHTML={{ __html: html }}
+        />
+      );
     }
 
     if (!url) {
@@ -181,6 +190,7 @@ const LinkItem: FC<LinkItemProps> = ({
         startIcon={<OpenInNewIcon />}
         href={url}
         target='_blank'
+        onClick={onClick}
       >
         {item.name ?? openLinkMessage}
       </StyledLinkButton>
