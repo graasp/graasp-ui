@@ -111,7 +111,7 @@
     "@rollup/plugin-typescript": "11.1.5",
     "@storybook/addon-a11y": "7.6.3",
     "@storybook/addon-actions": "7.6.3",
-    "@storybook/addon-coverage": "0.0.9",
+    "@storybook/addon-coverage": "1.0.0",
     "@storybook/addon-docs": "7.6.3",
     "@storybook/addon-essentials": "7.6.3",
     "@storybook/addon-interactions": "7.6.3",
