@@ -1,10 +1,10 @@
+name: release-please
+
 on:
   push:
     branches:
       - main
-      - master
 
-name: release-please
 jobs:
   release-please:
     runs-on: ubuntu-latest
@@ -13,18 +13,9 @@ jobs:
         id: release
         with:
           release-type: node
-          package-name: graasp-ui
-          changelog-types: '[{"type":"feat","section":"Features","hidden":false},{"type":"fix","section":"Bug Fixes","hidden":false},{"type":"docs","section":"Documentation","hidden":false}]'
 
       - name: Checkout code
         uses: actions/checkout@v4
-
-      - name: Tag major and minor versions
-        uses: jacobsvante/tag-major-minor-action@v0.1
-        if: ${{ steps.release.outputs.releases_created }}
-        with:
-          major: ${{ steps.release.outputs.major }}
-          minor: ${{ steps.release.outputs.minor }}
 
       - name: Auto Tag
         uses: graasp/graasp-deploy/.github/actions/auto-tag-after-release@v1
