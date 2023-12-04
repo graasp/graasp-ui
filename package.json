@@ -186,7 +186,7 @@
     "dist"
   ],
   "resolutions": {
-    "@types/react": "18.2.37"
+    "@types/react": "18.2.41"
   },
   "packageManager": "yarn@4.0.2"
 }
