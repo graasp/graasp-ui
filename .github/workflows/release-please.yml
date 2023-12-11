@@ -27,4 +27,4 @@ jobs:
         uses: graasp/graasp-deploy/.github/actions/publish-to-npm@v1
         with:
           npm-token: ${{ secrets.NPM_TOKEN }}
-        if: ${{ steps.release.outputs.releases_created }}
+        if: ${{ steps.release.outputs.releases_created == "true" }}
