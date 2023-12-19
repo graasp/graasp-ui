@@ -284,7 +284,6 @@ export const WithPagination: Story = {
     page: 2,
     pageSize: 2,
     totalCount: rowData.length,
-    tableHeight: 300,
     columnDefs: [
       {
         headerCheckboxSelection: true,
@@ -306,6 +305,6 @@ export const WithPagination: Story = {
         valueFormatter: dateFormatter,
       },
     ],
-    rowData,
+    rowData: rowData.slice(4, 6),
   },
 };

@@ -109,7 +109,7 @@ const DEFAULT_COL_DEF = {
 
 const StyledBox = styled(Box, {
   shouldForwardProp: (prop: string) => prop !== 'tableHeight',
-})<{ tableHeight: string | number }>(({ theme, tableHeight }) => ({
+})<{ tableHeight?: string | number }>(({ theme, tableHeight }) => ({
   fontSize: theme.typography.fontSize,
   width: '100%',
   height: tableHeight,
@@ -154,7 +154,7 @@ function GraaspTable<T>({
   labelDisplayedRows,
   pagination = true,
   sx,
-  tableHeight = 500,
+  tableHeight,
   ToolbarActions,
   page = 1,
   onPageChange,
@@ -286,6 +286,7 @@ function GraaspTable<T>({
           enableCellTextSelection
           ensureDomOrder
           animateRows={true}
+          domLayout={tableHeight ? undefined : 'autoHeight'}
         />
         {pagination && (
           <TablePagination
