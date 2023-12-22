@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.2.0](https://github.com/graasp/graasp-ui/compare/v4.1.1...v4.2.0) (2023-12-22)
+
+
+### Features
+
+* table pagination ([#520](https://github.com/graasp/graasp-ui/issues/520)) ([e38d618](https://github.com/graasp/graasp-ui/commit/e38d61886cd680fa9476c1a755b60cb4e8db5a59))
+
+
+### Bug Fixes
+
+* udpate release-please condition ([5ca2a7e](https://github.com/graasp/graasp-ui/commit/5ca2a7e0788425a17145250392a13a74b2304d47))
+
 ## [4.1.1](https://github.com/graasp/graasp-ui/compare/v4.1.0...v4.1.1) (2023-12-04)
 
 
