@@ -278,3 +278,33 @@ export const Empty: Story = {
     rowData: [],
   },
 };
+
+export const WithPagination: Story = {
+  args: {
+    page: 2,
+    pageSize: 2,
+    totalCount: rowData.length,
+    columnDefs: [
+      {
+        headerCheckboxSelection: true,
+        checkboxSelection: true,
+        field: 'name',
+        headerName: 'Name',
+      },
+      {
+        field: 'type',
+        headerName: 'Type',
+        type: 'rightAligned',
+        flex: 2,
+      },
+      {
+        field: 'updatedAt',
+        headerName: 'Updated At',
+        flex: 3,
+        type: 'rightAligned',
+        valueFormatter: dateFormatter,
+      },
+    ],
+    rowData: rowData.slice(4, 6),
+  },
+};
