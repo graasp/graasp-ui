@@ -165,7 +165,7 @@
     "react-dom": "18.2.0",
     "react-i18next": "13.5.0",
     "react-query": "3.39.3",
-    "react-router-dom": "6.20.1",
+    "react-router-dom": "6.21.1",
     "react-test-renderer": "18.2.0",
     "rimraf": "5.0.5",
     "rollup": "2.79.1",
