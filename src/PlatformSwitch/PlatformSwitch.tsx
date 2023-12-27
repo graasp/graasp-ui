@@ -128,14 +128,6 @@ export const PlatformSwitch: FC<PlatformSwitchProps> = ({
 
     // Ordering of the spread props is important: later styles override former ones
 
-    if (isMobile) {
-      return (
-        <SpeedDialAction
-          icon={<Icon {...iconProps} {...disabledStyles} />}
-          tooltipTitle={Platform[platform]}
-        />
-      );
-    }
     return (
       <Tooltip
         title={platformProps?.disabled ? undefined : tooltip}
@@ -169,45 +161,46 @@ export const PlatformSwitch: FC<PlatformSwitchProps> = ({
   if (isMobile) {
     const SelectedIcon = PlatformIcons[selected || 'Builder'];
     return (
-      <SpeedDial
-        ariaLabel='SpeedDial basic example'
-        // sx={{ position: 'absolute', bottom: 16, right: 16 }}
-        icon={selected && <SelectedIcon />}
-        direction={'down'}
-      >
-        {Object.values(Platform).map((platform, index) => {
-          const Icon = PlatformIcons[platform];
-          const isSelectedPlatform = platform === selected;
-          const platformProps = platformsProps?.[platform];
-          console.log(platformProps?.href);
-          const iconProps = {
-            size,
-            secondaryColor: isSelectedPlatform ? accentColor : color,
-            primaryColor: isSelectedPlatform ? color : undefined,
-            primaryOpacity: isSelectedPlatform ? 1 : 0,
-            // platform-specific styles should override existing ones
-            sx: { ...sx, ...platformProps?.sx },
-          };
+      <Box sx={{ position: 'relative' }}>
+        <SpeedDial
+          ariaLabel='SpeedDial basic example'
+          sx={{ position: 'absolute', width: '40px', height: '40px' }}
+          icon={selected && <SelectedIcon />}
+          direction={'down'}
+        >
+          {Object.values(Platform).map((platform, index) => {
+            const Icon = PlatformIcons[platform];
+            const isSelectedPlatform = platform === selected;
+            const platformProps = platformsProps?.[platform];
+            const iconProps = {
+              size,
+              secondaryColor: isSelectedPlatform ? accentColor : color,
+              primaryColor: isSelectedPlatform ? color : undefined,
+              primaryOpacity: isSelectedPlatform ? 1 : 0,
+              // platform-specific styles should override existing ones
+              sx: { ...sx, ...platformProps?.sx },
+            };
 
-          const disabledStyles = platformProps?.disabled
-            ? {
-                secondaryColor: disabledColor,
-              }
-            : {};
-          return (
-            <SpeedDialAction
-              key={index}
-              icon={<Icon {...iconProps} {...disabledStyles} />}
-              tooltipTitle={Platform[platform]}
-              onClick={() => {
-                if (!platformProps?.disabled && platformProps?.href) {
-                  location.assign(platformProps?.href);
+            const disabledStyles = platformProps?.disabled
+              ? {
+                  secondaryColor: disabledColor,
                 }
-              }}
-            />
-          );
-        })}
-      </SpeedDial>
+              : {};
+            return (
+              <SpeedDialAction
+                key={index}
+                icon={<Icon {...iconProps} {...disabledStyles} />}
+                tooltipTitle={Platform[platform]}
+                onClick={() => {
+                  if (!platformProps?.disabled && platformProps?.href) {
+                    location.assign(platformProps?.href);
+                  }
+                }}
+              />
+            );
+          })}
+        </SpeedDial>
+      </Box>
     );
   }
   return (
