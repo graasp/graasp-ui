@@ -18,6 +18,7 @@ import React, {
 import { CompleteMember, Member, isPseudonymizedMember } from '@graasp/sdk';
 
 import { SHORT_TEXT_WIDTH, SMALL_AVATAR_SIZE } from '../constants';
+import { useMobileView } from '../hooks';
 import { Variant } from '../types';
 
 const HEADER_USERNAME_MAX_WIDTH = 120;
@@ -57,6 +58,7 @@ const UserSwitch: FC<Props> = ({
   const [anchorEl, setAnchorEl] = useState<(EventTarget & Element) | null>(
     null,
   );
+  const { isMobile } = useMobileView();
   const memberName = currentMember?.name;
 
   const handleClick: MouseEventHandler = (event: MouseEvent) => {
@@ -121,9 +123,11 @@ const UserSwitch: FC<Props> = ({
         {renderAvatar(currentMember)}
 
         <div>
-          <Typography variant='h6' noWrap>
-            {memberName}
-          </Typography>
+          {!isMobile && (
+            <Typography variant='h6' noWrap>
+              {memberName}
+            </Typography>
+          )}
           {/* show info only for normal member */}
           {/* todo: show which item a pseudonymized member as access to */}
           {!isPseudonymizedMember(currentMember.email) && (
