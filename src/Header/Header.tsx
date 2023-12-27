@@ -38,6 +38,10 @@ const StyledIconButton = styled(IconButton)(
     marginRight: theme.spacing(3),
     float: 'left',
     ...(isSidebarOpen ? { display: 'none' } : {}),
+    [theme.breakpoints.down('sm')]: {
+      marginLeft: theme.spacing(1),
+      marginRight: theme.spacing(0),
+    },
   }),
 );
 
