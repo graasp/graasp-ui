@@ -181,8 +181,8 @@ export const PlatformSwitch: FC<PlatformSwitchProps> = ({
             const iconProps = {
               size,
               secondaryColor: isSelectedPlatform ? accentColor : color,
-              primaryColor: isSelectedPlatform ? color : accentColor,
-              fill: isSelectedPlatform ? accentColor : color,
+              primaryColor: isSelectedPlatform ? accentColor : color,
+              fill: isSelectedPlatform ? color : accentColor,
               // platform-specific styles should override existing ones
               sx: { ...sx, ...platformProps?.sx },
             };
