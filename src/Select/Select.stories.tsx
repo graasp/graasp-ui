@@ -7,7 +7,7 @@ import Select from './Select';
 
 const values = [
   { value: 1, text: 'one' },
-  { value: 2, text: 'two' },
+  { value: 2, text: 'two', disabled: true },
   { value: 3, text: 'three' },
 ];
 
@@ -42,9 +42,7 @@ const meta: Meta<typeof Select> = {
       },
     },
   },
-  render: (args) => (
-    <Select defaultValue={values[0].value} {...args} values={values} />
-  ),
+  render: ({ values, ...args }) => <Select {...args} values={values} />,
 };
 
 export default meta;
@@ -55,25 +53,30 @@ export const Primary: Story = {
   args: {
     color: 'primary',
     label: 'My Label',
+    defaultValue: values[0].value,
+    values,
   },
 };
 
 export const Secondary: Story = {
   args: {
     color: 'secondary',
-    defaultValue: 'none',
+    defaultValue: undefined,
     displayEmpty: true,
+    values,
   },
 };
 
 export const Filled: Story = {
   args: {
     variant: 'filled',
+    values,
   },
 };
 
 export const Standard: Story = {
   args: {
     variant: 'standard',
+    values,
   },
 };
