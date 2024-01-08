@@ -16,7 +16,7 @@ type Props<T> = {
   labelId?: MuiSelectProps['labelId'];
   onChange?: MuiSelectProps<T>['onChange'];
   sx?: SxProps;
-  values: { value: T; text: string }[];
+  values: { value: T; text: string; disabled?: boolean }[];
   variant?: MuiSelectProps['variant'];
   size?: MuiSelectProps['size'];
 };
@@ -57,11 +57,12 @@ function Select<T extends string | number | readonly string[] | undefined>({
         {...(value && { value })}
         sx={sx}
       >
-        {values.map(({ value, text }) => (
+        {values.map(({ value, text, disabled }) => (
           <MenuItem
             key={buildOptionId?.(value)}
             id={buildOptionId?.(value)}
             value={value}
+            disabled={Boolean(disabled)}
           >
             {text}
           </MenuItem>
