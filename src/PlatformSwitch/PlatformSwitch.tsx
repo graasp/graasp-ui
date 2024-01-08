@@ -1,9 +1,15 @@
-import { Box, SpeedDial, SpeedDialAction, SxProps } from '@mui/material';
+import {
+  Box,
+  SpeedDial,
+  SpeedDialAction,
+  SxProps,
+  useMediaQuery,
+  useTheme,
+} from '@mui/material';
 import Tooltip, { TooltipProps } from '@mui/material/Tooltip';
 
 import React, { FC, useState } from 'react';
 
-import { useMobileView } from '../hooks/useMobileView';
 import { AnalyticsIcon, BuildIcon, LibraryIcon, PlayIcon } from '../icons';
 import { PRIMARY_COLOR, SECONDARY_COLOR } from '../theme';
 import { Platform } from './hooks';
@@ -79,8 +85,11 @@ export const PlatformSwitch: FC<PlatformSwitchProps> = ({
   selected,
   platformsProps,
 }) => {
+  const theme = useTheme();
+
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+
   /** Helper inner component: generates buttons from icons while capturing parent props */
-  const { isMobile } = useMobileView();
   const PlatformButton: FC<{
     /** Platform which button should be rendered */
     platform: Platform;
@@ -159,20 +168,14 @@ export const PlatformSwitch: FC<PlatformSwitchProps> = ({
   ));
 
   if (isMobile) {
-    const SelectedIcon = PlatformIcons[selected || 'Builder'];
+    const SelectedIcon = PlatformIcons[selected || Platform.Builder];
     return (
       <Box sx={{ position: 'relative' }}>
         <SpeedDial
-          ariaLabel='SpeedDial basic example'
-          sx={{
-            position: 'absolute',
-            '& button': {
-              width: '40px',
-              height: '40px',
-            },
-          }}
+          FabProps={{ size: 'small', sx: { border: '2px solid white' } }}
           icon={selected && <SelectedIcon />}
           direction={'down'}
+          ariaLabel='platform switch dial'
         >
           {Object.values(Platform).map((platform, index) => {
             const Icon = PlatformIcons[platform];
@@ -192,6 +195,7 @@ export const PlatformSwitch: FC<PlatformSwitchProps> = ({
                   secondaryColor: disabledColor,
                 }
               : {};
+
             return (
               <SpeedDialAction
                 key={index}
