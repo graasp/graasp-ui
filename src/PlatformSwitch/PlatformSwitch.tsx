@@ -170,9 +170,14 @@ export const PlatformSwitch: FC<PlatformSwitchProps> = ({
   if (isMobile) {
     const SelectedIcon = PlatformIcons[selected || Platform.Builder];
     return (
-      <Box sx={{ position: 'relative' }}>
+      <Box sx={{ position: 'relative', height: '40px' }}>
         <SpeedDial
-          FabProps={{ size: 'small', sx: { border: '2px solid white' } }}
+          FabProps={{
+            size: 'small',
+            sx: {
+              border: '2px solid white',
+            },
+          }}
           icon={selected && <SelectedIcon />}
           direction={'down'}
           ariaLabel='platform switch dial'
