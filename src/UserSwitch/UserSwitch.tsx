@@ -1,4 +1,4 @@
-import { styled } from '@mui/material';
+import { styled, useMediaQuery, useTheme } from '@mui/material';
 import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
 import Menu from '@mui/material/Menu';
@@ -57,6 +57,11 @@ const UserSwitch: FC<Props> = ({
   const [anchorEl, setAnchorEl] = useState<(EventTarget & Element) | null>(
     null,
   );
+
+  const theme = useTheme();
+
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+
   const memberName = currentMember?.name;
 
   const handleClick: MouseEventHandler = (event: MouseEvent) => {
@@ -124,6 +129,7 @@ const UserSwitch: FC<Props> = ({
           <Typography variant='h6' noWrap>
             {memberName}
           </Typography>
+
           {/* show info only for normal member */}
           {/* todo: show which item a pseudonymized member as access to */}
           {!isPseudonymizedMember(currentMember.email) && (
@@ -163,7 +169,7 @@ const UserSwitch: FC<Props> = ({
         <Tooltip title={memberName ?? signedOutTooltipText}>
           <span>{renderAvatar(currentMember)}</span>
         </Tooltip>
-        {memberName && (
+        {memberName && !isMobile && (
           <Typography
             variant='subtitle1'
             sx={{ mx: 2, maxWidth: HEADER_USERNAME_MAX_WIDTH }}
