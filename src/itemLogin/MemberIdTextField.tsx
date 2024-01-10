@@ -9,6 +9,10 @@ const MemberIdTextField = (props: Props): JSX.Element => {
   const { showMask, ...other } = props;
 
   return (
+    // here we don't care about the type of the children since we do not use it.
+    // this component will most likely be replaced when we redesign the pseudonyme login
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-expect-error
     <MaskedInput
       {...other}
       mask={[
