@@ -8,16 +8,16 @@ import Avatar from '../Avatar/Avatar';
 import { MOCK_CURRENT_MEMBER } from '../utils/fixtures';
 import UserSwitch from './UserSwitch';
 
-const meta: Meta<typeof UserSwitch> = {
+const meta = {
   title: 'Common/UserSwitch/UserSwitch',
   component: UserSwitch,
-};
+} satisfies Meta<typeof UserSwitch>;
 
 export default meta;
 
-type Story = StoryObj<typeof UserSwitch>;
+type Story = StoryObj<typeof meta>;
 
-export const SignedIn: Story = {
+export const SignedIn = {
   args: {
     currentMember: MOCK_CURRENT_MEMBER,
     renderAvatar: () => (
@@ -29,23 +29,22 @@ export const SignedIn: Story = {
       />
     ),
   },
-};
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
 
-SignedIn.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
+    // open dialog
+    const nameText = canvas.getByLabelText(MOCK_CURRENT_MEMBER.name);
+    await userEvent.click(nameText);
 
-  // open dialog
-  const nameText = canvas.getByLabelText(MOCK_CURRENT_MEMBER.name);
-  await userEvent.click(nameText);
+    const menuCanvas = within(await screen.getByRole('menu'));
 
-  const menuCanvas = within(await screen.getByRole('menu'));
+    // email
+    const emailText = menuCanvas.getByText(MOCK_CURRENT_MEMBER.email);
+    expect(emailText).toBeInTheDocument();
+  },
+} satisfies Story;
 
-  // email
-  const emailText = menuCanvas.getByText(MOCK_CURRENT_MEMBER.email);
-  expect(emailText).toBeInTheDocument();
-};
-
-export const SignedOut: Story = {
+export const SignedOut = {
   args: {
     renderAvatar: () => (
       <Avatar
@@ -57,17 +56,16 @@ export const SignedOut: Story = {
     ),
     Actions: [<h3>some content</h3>],
   },
-};
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
 
-SignedOut.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
+    // open dialog
+    const nameText = canvas.getByRole('button');
+    await userEvent.click(nameText);
 
-  // open dialog
-  const nameText = canvas.getByRole('button');
-  await userEvent.click(nameText);
-
-  // custom content
-  const menuCanvas = within(await screen.getByRole('menu'));
-  const profileButton = menuCanvas.getByText('some content');
-  expect(profileButton).toBeInTheDocument();
-};
+    // custom content
+    const menuCanvas = within(await screen.getByRole('menu'));
+    const profileButton = menuCanvas.getByText('some content');
+    expect(profileButton).toBeInTheDocument();
+  },
+} satisfies Story;
