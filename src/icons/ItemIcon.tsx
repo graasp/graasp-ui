@@ -65,7 +65,7 @@ const ItemIcon: FC<ItemIconProps> = ({
   type,
 }) => {
   const mimetype = extra ? getMimetype(extra) : defaultMimetype;
-
+  console.log(mimetype, defaultMimetype);
   if (iconSrc) {
     return (
       <StyledImage
