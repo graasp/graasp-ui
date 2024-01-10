@@ -80,3 +80,14 @@ export const Standard: Story = {
     values,
   },
 };
+
+export const Disabled: Story = {
+  args: {
+    disabled: true,
+    defaultValue: 'admin',
+    values: [
+      { value: 'admin', text: 'admin' },
+      { value: 'read', text: 'read' },
+    ],
+  },
+};
