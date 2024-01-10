@@ -2900,16 +2900,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@graasp/sdk@npm:3.3.0":
+"@graasp/sdk@github:graasp/graasp-sdk#364-getmimetype":
   version: 3.3.0
-  resolution: "@graasp/sdk@npm:3.3.0"
+  resolution: "@graasp/sdk@https://github.com/graasp/graasp-sdk.git#commit=425463f3597407a0e2548a8f7a673bf291373df2"
   dependencies:
     "@graasp/etherpad-api": "npm:2.1.1"
     date-fns: "npm:2.30.0"
     js-cookie: "npm:3.0.5"
     uuid: "npm:9.0.1"
     validator: "npm:13.11.0"
-  checksum: 12a11bfb2ff35d4fdccc38ad10fab8fe4ee4f7cea2a26ac17040d8758e2cf86070cbfa0c02243bb7efc3410f1abd5d0e18834dc6f6226bb216b33e0f83b19e2d
+  checksum: 926070f4edaed4ddf61837e1d356ec583aac007a9dcf3108456f82c1b820b9aed9d61579683f4d959c1815be4c981df46f9f1a9ef4414efa83a8fbe361a5cf32
   languageName: node
   linkType: hard
 
@@ -2927,7 +2927,7 @@ __metadata:
     "@emotion/cache": "npm:~11.11.0"
     "@emotion/react": "npm:11.11.3"
     "@emotion/styled": "npm:11.11.0"
-    "@graasp/sdk": "npm:3.3.0"
+    "@graasp/sdk": "github:graasp/graasp-sdk#364-getmimetype"
     "@mui/icons-material": "npm:5.15.1"
     "@mui/lab": "npm:5.0.0-alpha.157"
     "@mui/material": "npm:5.15.1"

@@ -22,8 +22,7 @@ import {
   MimeTypes,
   S3FileItemExtra,
   UnionOfConst,
-  getFileExtra,
-  getS3FileExtra,
+  getMimetype,
 } from '@graasp/sdk';
 
 import { StyledImage } from '../StyledComponents/StyledBaseComponents';
@@ -42,6 +41,7 @@ export interface ItemIconProps {
    * item extra
    */
   extra?: LocalFileItemExtra | S3FileItemExtra;
+  mimetype?: string;
   /**
    * @deprecated use sx
    * */
@@ -57,17 +57,14 @@ export interface ItemIconProps {
 const ItemIcon: FC<ItemIconProps> = ({
   color,
   extra,
+  mimetype: defaultMimetype,
   iconSrc,
   name,
   alt = '',
   sx,
   type,
 }) => {
-  const mimetype = extra
-    ? 'file' in extra
-      ? getFileExtra(extra)?.mimetype
-      : getS3FileExtra(extra)?.mimetype
-    : undefined;
+  const mimetype = extra ? getMimetype(extra) : defaultMimetype;
 
   if (iconSrc) {
     return (
