@@ -53,13 +53,17 @@
     "storybook:test-ci": "wait-on http://127.0.0.1:6006 && yarn storybook:test"
   },
   "dependencies": {
+    "@faker-js/faker": "8.3.1",
     "@graasp/sdk": "3.4.0",
+    "@tanstack/react-table": "8.11.3",
     "http-status-codes": "2.3.0",
     "katex": "0.16.9",
     "lodash.truncate": "4.4.2",
     "qs": "6.11.2",
     "quill-emoji": "0.2.0",
     "react-cookie-consent": "9.0.0",
+    "react-dnd": "16.0.1",
+    "react-dnd-html5-backend": "16.0.1",
     "react-quill": "2.0.0-beta.4",
     "react-rnd": "10.4.1",
     "react-text-mask": "5.5.0",

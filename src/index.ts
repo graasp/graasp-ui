@@ -74,3 +74,5 @@ export * from './PlatformSwitch';
 export * from './ThemeContext';
 
 export * from './types';
+
+export { default as NewTable } from './TableComponent/NewTable';
