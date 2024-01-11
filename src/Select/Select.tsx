@@ -58,6 +58,7 @@ function Select<T extends string | number | readonly string[] | undefined>({
         id={id}
         {...(value && { value })}
         sx={sx}
+        disabled={values.every(({ disabled }) => disabled)}
       >
         {values.map(({ value, text, disabled }) => (
           <MenuItem
