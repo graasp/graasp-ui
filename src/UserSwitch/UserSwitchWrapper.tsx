@@ -95,17 +95,17 @@ const UserSwitchWrapper: FC<Props> = ({
       await signOut(currentMember.id);
     }
     // on sign out success should redirect to sign in
-    redirect(redirectPath);
+    redirect(window, redirectPath);
   };
 
   const handleSignIn = (): void => {
     // setCurrentSession(null, domain);
     // saveUrlForRedirection(window.location.href, domain);
-    return redirect(redirectPath);
+    return redirect(window, redirectPath);
   };
 
   const goToSettings = (): void => {
-    redirect(profilePath);
+    redirect(window, profilePath);
   };
 
   // const onMemberClick = (memberId: string) => () =>
@@ -116,7 +116,7 @@ const UserSwitchWrapper: FC<Props> = ({
   const MenuItems = userMenuItems.map((item: UserMenuItem) => (
     <MenuItem
       key={item.text}
-      onClick={() => redirect(item.redirect_path)}
+      onClick={() => redirect(window, item.redirect_path)}
       id={item.id}
     >
       <ListItemIcon>{item.icon}</ListItemIcon>

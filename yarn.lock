@@ -2900,16 +2900,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@graasp/sdk@npm:3.3.0":
-  version: 3.3.0
-  resolution: "@graasp/sdk@npm:3.3.0"
+"@graasp/sdk@npm:3.4.0":
+  version: 3.4.0
+  resolution: "@graasp/sdk@npm:3.4.0"
   dependencies:
     "@graasp/etherpad-api": "npm:2.1.1"
-    date-fns: "npm:2.30.0"
+    date-fns: "npm:3.2.0"
     js-cookie: "npm:3.0.5"
     uuid: "npm:9.0.1"
     validator: "npm:13.11.0"
-  checksum: 12a11bfb2ff35d4fdccc38ad10fab8fe4ee4f7cea2a26ac17040d8758e2cf86070cbfa0c02243bb7efc3410f1abd5d0e18834dc6f6226bb216b33e0f83b19e2d
+  checksum: 00bd8d449e8c1bcb4750ddce9dc0eefc23d917d042d5d7db6c1007c7380904de3bc7e9bde43325736df69f3dc584d15717dac01769e06a9f71e1e1133075f7f7
   languageName: node
   linkType: hard
 
@@ -2927,7 +2927,7 @@ __metadata:
     "@emotion/cache": "npm:~11.11.0"
     "@emotion/react": "npm:11.11.3"
     "@emotion/styled": "npm:11.11.0"
-    "@graasp/sdk": "npm:3.3.0"
+    "@graasp/sdk": "npm:3.4.0"
     "@mui/icons-material": "npm:5.15.1"
     "@mui/lab": "npm:5.0.0-alpha.157"
     "@mui/material": "npm:5.15.1"
@@ -9307,7 +9307,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"date-fns@npm:2.30.0, date-fns@npm:^2.30.0":
+"date-fns@npm:3.2.0":
+  version: 3.2.0
+  resolution: "date-fns@npm:3.2.0"
+  checksum: 2f36cb9165a066ae90c0b6f0c25b3c70eb75bc52e64ba6dd8680964ebda144851a244ff4ed0b2afb4a6bab796a1af6a0e6c7c2814529d04c72fa434f931d4e81
+  languageName: node
+  linkType: hard
+
+"date-fns@npm:^2.30.0":
   version: 2.30.0
   resolution: "date-fns@npm:2.30.0"
   dependencies:
