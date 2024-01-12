@@ -1,4 +1,3 @@
-import { faker } from '@faker-js/faker';
 import {
   ColumnDef,
   Row,
@@ -8,113 +7,11 @@ import {
 } from '@tanstack/react-table';
 
 import React from 'react';
+// we could replace dnd with this https://docs.dndkit.com
 import { DndProvider, useDrag, useDrop } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 
-export type Person = {
-  userId: string;
-  firstName: string;
-  lastName: string;
-  age: number;
-  visits: number;
-  progress: number;
-  status: 'relationship' | 'complicated' | 'single';
-  subRows?: Person[];
-};
-
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-const range = (len: number) => {
-  const arr = [];
-  for (let i = 0; i < len; i++) {
-    arr.push(i);
-  }
-  return arr;
-};
-
-const newPerson = (): Person => {
-  return {
-    userId: faker.datatype.uuid(),
-    firstName: faker.person.firstName(),
-    lastName: faker.person.lastName(),
-    age: faker.number.int(40),
-    visits: faker.number.int(1000),
-    progress: faker.number.int(100),
-    status: faker.helpers.shuffle<Person['status']>([
-      'relationship',
-      'complicated',
-      'single',
-    ])[0]!,
-  };
-};
-
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-export const makeData = (...lens: number[]) => {
-  const makeDataLevel = (depth = 0): Person[] => {
-    const len = lens[depth]!;
-    return range(len).map((): Person => {
-      return {
-        ...newPerson(),
-        subRows: lens[depth + 1] ? makeDataLevel(depth + 1) : undefined,
-      };
-    });
-  };
-
-  return makeDataLevel();
-};
-
-const defaultColumns: ColumnDef<Person>[] = [
-  {
-    header: 'Name',
-    footer: (props) => props.column.id,
-    columns: [
-      {
-        accessorKey: 'firstName',
-        cell: (info) => info.getValue(),
-        footer: (props) => props.column.id,
-      },
-      {
-        accessorFn: (row) => row.lastName,
-        id: 'lastName',
-        cell: (info) => info.getValue(),
-        header: () => <span>Last Name</span>,
-        footer: (props) => props.column.id,
-      },
-    ],
-  },
-  {
-    header: 'Info',
-    footer: (props) => props.column.id,
-    columns: [
-      {
-        accessorKey: 'age',
-        header: () => 'Age',
-        footer: (props) => props.column.id,
-      },
-      {
-        header: 'More Info',
-        columns: [
-          {
-            accessorKey: 'visits',
-            header: () => <span>Visits</span>,
-            footer: (props) => props.column.id,
-          },
-          {
-            accessorKey: 'status',
-            header: 'Status',
-            footer: (props) => props.column.id,
-          },
-          {
-            accessorKey: 'progress',
-            header: 'Profile Progress',
-            footer: (props) => props.column.id,
-          },
-        ],
-      },
-    ],
-  },
-];
-
-type Props<T> = {
+type DraggableRowProps<T> = {
   row: Row<T>;
   reorderRow: (draggedRowIndex: number, targetRowIndex: number) => void;
 };
@@ -122,10 +19,13 @@ type Props<T> = {
 const DraggableRow = <T extends object>({
   row,
   reorderRow,
-}: Props<T>): JSX.Element => {
-  const [, dropRef] = useDrop({
+}: DraggableRowProps<T>): JSX.Element => {
+  const [{ isOver }, dropRef] = useDrop({
     accept: 'row',
-    drop: (draggedRow: Row<Person>) => reorderRow(draggedRow.index, row.index),
+    drop: (draggedRow: Row<T>) => reorderRow(draggedRow.index, row.index),
+    collect: (monitor) => ({
+      isOver: !!monitor.isOver(),
+    }),
   });
 
   const [{ isDragging }, dragRef, previewRef] = useDrag({
@@ -139,7 +39,10 @@ const DraggableRow = <T extends object>({
   return (
     <tr
       ref={previewRef} //previewRef could go here
-      style={{ opacity: isDragging ? 0.5 : 1 }}
+      style={{
+        opacity: isDragging ? 0.5 : 1,
+        background: isOver ? 'lightgrey' : 'transparent',
+      }}
     >
       <td ref={dropRef}>
         <button style={{ cursor: 'move' }} ref={dragRef}>
@@ -155,16 +58,55 @@ const DraggableRow = <T extends object>({
   );
 };
 
-const NewTable = ({
-  initialData = makeData(6),
+type InBetweenProps = {
+  colSpan: number;
+};
+
+const InBetween = ({ colSpan }: InBetweenProps): JSX.Element => {
+  const [{ isOver }, drop] = useDrop(
+    () => ({
+      accept: 'row',
+      drop: () => console.log('drop'),
+      canDrop: () => true,
+      collect: (monitor) => ({
+        isOver: !!monitor.isOver(),
+        canDrop: !!monitor.canDrop(),
+      }),
+    }),
+    [],
+  );
+
+  return (
+    <tr ref={drop}>
+      {!isOver && <td colSpan={colSpan} style={{ height: 10 }} />}
+      {isOver && (
+        <td colSpan={colSpan} style={{ height: 10, background: 'green' }} />
+      )}
+    </tr>
+  );
+};
+
+type Props<T> = {
+  initialData: T[];
+  columns: ColumnDef<T>[];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  getRowId?: (row: any) => string;
+  onReorder?: () => Promise<void>;
+  sx: React.CSSProperties;
+};
+
+const NewTable = <T extends object>({
+  initialData,
+  columns,
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   getRowId = (row: any) => row.userId,
-}): JSX.Element => {
-  const [columns] = React.useState(() => [...defaultColumns]);
+  sx = {},
+}: Props<T>): JSX.Element => {
   const [data, setData] = React.useState(initialData);
 
   // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
   const reorderRow = (draggedRowIndex: number, targetRowIndex: number) => {
+    console.log('move into');
     data.splice(targetRowIndex, 0, data.splice(draggedRowIndex, 1)[0]);
     setData([...data]);
   };
@@ -181,10 +123,10 @@ const NewTable = ({
 
   return (
     <DndProvider backend={HTML5Backend}>
-      <div>
-        <table>
-          <thead>
-            {table.getHeaderGroups().map((headerGroup) => (
+      <table style={{ width: '100%', ...sx }}>
+        <thead>
+          {table.getHeaderGroups().map((headerGroup) => (
+            <>
               <tr key={headerGroup.id}>
                 <th />
                 {headerGroup.headers.map((header) => (
@@ -198,15 +140,21 @@ const NewTable = ({
                   </th>
                 ))}
               </tr>
-            ))}
-          </thead>
-          <tbody>
-            {table.getRowModel().rows.map((row) => (
+            </>
+          ))}
+        </thead>
+        <tbody>
+          {/* + 1 for the reorder column */}
+          <InBetween colSpan={columns.length + 1} />
+          {table.getRowModel().rows.map((row) => (
+            <>
               <DraggableRow key={row.id} row={row} reorderRow={reorderRow} />
-            ))}
-          </tbody>
-        </table>
-      </div>
+              {/* + 1 for the reorder column */}
+              <InBetween colSpan={columns.length + 1} />
+            </>
+          ))}
+        </tbody>
+      </table>
     </DndProvider>
   );
 };
