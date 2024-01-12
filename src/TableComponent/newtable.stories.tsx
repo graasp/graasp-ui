@@ -1,10 +1,77 @@
+import { faker } from '@faker-js/faker';
 import { expect } from '@storybook/jest';
 import type { Meta, StoryObj } from '@storybook/react';
 import { waitFor, within } from '@storybook/testing-library';
+import { ColumnDef } from '@tanstack/react-table';
 import 'ag-grid-community/dist/styles/ag-grid.min.css';
 import 'ag-grid-community/dist/styles/ag-theme-material.min.css';
 
 import NewTable from './NewTable';
+
+// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+const range = (len: number) => {
+  const arr = [];
+  for (let i = 0; i < len; i++) {
+    arr.push(i);
+  }
+  return arr;
+};
+
+export type Person = {
+  userId: string;
+  firstName: string;
+  lastName: string;
+  age: number;
+  visits: number;
+};
+
+const columns: ColumnDef<Person>[] = [
+  {
+    accessorFn: (row) => row.firstName,
+    accessorKey: 'firstName',
+    cell: (info) => info.getValue(),
+  },
+  {
+    accessorFn: (row) => row.lastName,
+    id: 'lastName',
+    cell: (info) => info.getValue(),
+    header: <span>Last Name</span>,
+  },
+  {
+    accessorFn: (row) => row.age,
+    accessorKey: 'age',
+    header: 'Age',
+  },
+  {
+    accessorFn: (row) => row.visits,
+    accessorKey: 'visits',
+    header: <span>Visits</span>,
+  },
+];
+const newPerson = (): Person => {
+  return {
+    userId: faker.datatype.uuid(),
+    firstName: faker.person.firstName(),
+    lastName: faker.person.lastName(),
+    age: faker.number.int(40),
+    visits: faker.number.int(1000),
+  };
+};
+
+// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+export const makeData = (...lens: number[]) => {
+  const makeDataLevel = (depth = 0): Person[] => {
+    const len = lens[depth]!;
+    return range(len).map((): Person => {
+      return {
+        ...newPerson(),
+        subRows: lens[depth + 1] ? makeDataLevel(depth + 1) : undefined,
+      };
+    });
+  };
+
+  return makeDataLevel();
+};
 
 // const rowData = [
 //   {
@@ -123,6 +190,8 @@ type Story = StoryObj<typeof NewTable>;
 
 export const Simple: Story = {
   args: {
+    columns,
+    initialData: makeData(6),
     // tableHeight: 300,
     // columnDefs: [
     //   {
