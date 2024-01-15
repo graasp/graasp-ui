@@ -88,13 +88,22 @@ export const Standard: Story = {
   },
 };
 
-export const AllDisabled: Story = {
+export const AllDisabled = {
   args: {
     variant: 'standard',
     values: valuesAllDisabled,
     defaultValue: valuesAllDisabled[0].value,
   },
-};
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    // this checks that the MUI select is disabled.
+    // we can not use the `.toBeDisabled()` as the MUI select is a custom component that does not put a disabled prop on the top level div.
+    expect(canvas.getByRole('combobox')).toHaveAttribute(
+      'aria-disabled',
+      'true',
+    );
+  },
+} satisfies Story;
 
 export const Disabled = {
   args: {
