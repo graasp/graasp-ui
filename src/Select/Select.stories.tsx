@@ -10,6 +10,11 @@ const values = [
   { value: 2, text: 'two', disabled: true },
   { value: 3, text: 'three' },
 ];
+const valuesAllDisabled = [
+  { value: 1, text: 'one', disabled: true },
+  { value: 2, text: 'two', disabled: true },
+  { value: 3, text: 'three', disabled: true },
+];
 
 const meta: Meta<typeof Select> = {
   title: 'Common/Select',
@@ -77,6 +82,25 @@ export const Filled: Story = {
 export const Standard: Story = {
   args: {
     variant: 'standard',
-    values,
+    values: values,
+  },
+};
+
+export const AllDisabled: Story = {
+  args: {
+    variant: 'standard',
+    values: valuesAllDisabled,
+    defaultValue: valuesAllDisabled[0].value,
+  },
+};
+
+export const Disabled: Story = {
+  args: {
+    disabled: true,
+    defaultValue: 'admin',
+    values: [
+      { value: 'admin', text: 'admin' },
+      { value: 'read', text: 'read' },
+    ],
   },
 };

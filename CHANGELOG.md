@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.3.0](https://github.com/graasp/graasp-ui/compare/v4.2.0...v4.3.0) (2024-01-11)
+
+
+### Features
+
+* add disable to select options ([#631](https://github.com/graasp/graasp-ui/issues/631)) ([c2dfe20](https://github.com/graasp/graasp-ui/commit/c2dfe20970b85d62fd474fdf7855b2cc82f8633a))
+* add mimetype option in `ItemIcon` ([#644](https://github.com/graasp/graasp-ui/issues/644)) ([0d69052](https://github.com/graasp/graasp-ui/commit/0d690524799cebd1ccf47c8ab993c7091c401545))
+* diable select if all options disabled ([#640](https://github.com/graasp/graasp-ui/issues/640)) ([45f2860](https://github.com/graasp/graasp-ui/commit/45f286084ffb469a36d1cc34902d8d8879447744))
+
+
+### Bug Fixes
+
+* add a disabled prop to the select ([#634](https://github.com/graasp/graasp-ui/issues/634)) ([0ee48eb](https://github.com/graasp/graasp-ui/commit/0ee48eb9ad30e170e52a2e77d34a40f720063020))
+
 ## [4.2.0](https://github.com/graasp/graasp-ui/compare/v4.1.1...v4.2.0) (2023-12-22)
 
 

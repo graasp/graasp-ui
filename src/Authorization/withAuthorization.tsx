@@ -20,7 +20,7 @@ const withAuthorization =
       if (!redirectionLink) {
         return console.debug('No link has been set for redirection');
       }
-      redirect(redirectionLink);
+      redirect(window, redirectionLink);
     };
 
     // check authorization: user shouldn't be empty

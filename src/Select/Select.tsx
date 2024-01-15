@@ -7,6 +7,7 @@ import React from 'react';
 type Props<T> = {
   buildOptionId?: (v: T) => string;
   className?: string;
+  disabled?: boolean;
   color?: MuiSelectProps['color'];
   defaultValue?: T;
   value?: T;
@@ -25,6 +26,7 @@ function Select<T extends string | number | readonly string[] | undefined>({
   buildOptionId,
   className,
   color,
+  disabled = false,
   defaultValue,
   displayEmpty,
   id,
@@ -39,7 +41,7 @@ function Select<T extends string | number | readonly string[] | undefined>({
 }: Props<T>): JSX.Element {
   const showLabel = Boolean(labelId ?? label);
   return (
-    <FormControl sx={{ mt: 1 }} size={size}>
+    <FormControl sx={{ mt: 1 }} size={size} disabled={disabled}>
       {showLabel && <InputLabel id={labelId}>{label}</InputLabel>}
       <MuiSelect
         labelId={labelId}
@@ -56,6 +58,7 @@ function Select<T extends string | number | readonly string[] | undefined>({
         id={id}
         {...(value && { value })}
         sx={sx}
+        disabled={values.every(({ disabled }) => disabled)}
       >
         {values.map(({ value, text, disabled }) => (
           <MenuItem
