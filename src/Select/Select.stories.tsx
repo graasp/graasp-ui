@@ -1,4 +1,6 @@
+import { expect } from '@storybook/jest';
 import type { Meta, StoryObj } from '@storybook/react';
+import { within } from '@storybook/testing-library';
 
 import React from 'react';
 
@@ -86,16 +88,26 @@ export const Standard: Story = {
   },
 };
 
-export const AllDisabled: Story = {
+export const AllDisabled = {
   args: {
     variant: 'standard',
     values: valuesAllDisabled,
     defaultValue: valuesAllDisabled[0].value,
   },
-};
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    // this checks that the MUI select is disabled.
+    // we can not use the `.toBeDisabled()` as the MUI select is a custom component that does not put a disabled prop on the top level div.
+    expect(canvas.getByRole('combobox')).toHaveAttribute(
+      'aria-disabled',
+      'true',
+    );
+  },
+} satisfies Story;
 
-export const Disabled: Story = {
+export const Disabled = {
   args: {
+    id: 'select-id',
     disabled: true,
     defaultValue: 'admin',
     values: [
@@ -103,4 +115,13 @@ export const Disabled: Story = {
       { value: 'read', text: 'read' },
     ],
   },
-};
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    // this checks that the MUI select is disabled.
+    // we can not use the `.toBeDisabled()` as the MUI select is a custom component that does not put a disabled prop on the top level div.
+    expect(canvas.getByRole('combobox')).toHaveAttribute(
+      'aria-disabled',
+      'true',
+    );
+  },
+} satisfies Story;
