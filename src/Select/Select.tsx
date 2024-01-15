@@ -41,7 +41,12 @@ function Select<T extends string | number | readonly string[] | undefined>({
 }: Props<T>): JSX.Element {
   const showLabel = Boolean(labelId ?? label);
   return (
-    <FormControl sx={{ mt: 1 }} size={size} disabled={disabled}>
+    <FormControl
+      sx={{ mt: 1 }}
+      size={size}
+      data-testid='select-test-id'
+      disabled={disabled || values.every(({ disabled }) => disabled)}
+    >
       {showLabel && <InputLabel id={labelId}>{label}</InputLabel>}
       <MuiSelect
         labelId={labelId}
@@ -58,7 +63,6 @@ function Select<T extends string | number | readonly string[] | undefined>({
         id={id}
         {...(value && { value })}
         sx={sx}
-        disabled={values.every(({ disabled }) => disabled)}
       >
         {values.map(({ value, text, disabled }) => (
           <MenuItem
