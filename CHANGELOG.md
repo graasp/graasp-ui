@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.3.1](https://github.com/graasp/graasp-ui/compare/v4.3.0...v4.3.1) (2024-01-17)
+
+
+### Bug Fixes
+
+* add tests for disabled in `Select` ([2f97387](https://github.com/graasp/graasp-ui/commit/2f973876fa555c5b1db3de13c64dba7ec2b29e77))
+* **deps:** update dependency @graasp/sdk to v3.4.1 ([#653](https://github.com/graasp/graasp-ui/issues/653)) ([7a0ce24](https://github.com/graasp/graasp-ui/commit/7a0ce2490e2b6b2ad4f2966c288b305cbc7c943c))
+* disabled prop issues ([#649](https://github.com/graasp/graasp-ui/issues/649)) ([2f97387](https://github.com/graasp/graasp-ui/commit/2f973876fa555c5b1db3de13c64dba7ec2b29e77))
+
 ## [4.3.0](https://github.com/graasp/graasp-ui/compare/v4.2.0...v4.3.0) (2024-01-11)
 
 
