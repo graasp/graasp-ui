@@ -171,7 +171,7 @@
     "rollup-plugin-copy": "3.5.0",
     "rollup-plugin-peer-deps-external": "2.2.4",
     "rollup-plugin-scss": "4.0.0",
-    "sass": "1.69.7",
+    "sass": "1.70.0",
     "storybook": "7.6.8",
     "stylis": "^4.3.0",
     "stylis-plugin-rtl": "^2.1.1",
