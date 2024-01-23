@@ -91,12 +91,9 @@ const mainContent = (
 );
 
 const headerLeftContent = (
-  <>
-    <Dark />
-    <Typography variant='h6' component='div'>
-      Header
-    </Typography>
-  </>
+  <Typography variant='h6' component='div'>
+    Header
+  </Typography>
 );
 
 export const Default = {
@@ -126,6 +123,7 @@ export const Mobile = {
     headerRightContent: <SignedIn />,
     open: false,
     LinkComponent,
+    PlatformComponent: Dark,
     drawerContent: (
       <MainMenu>
         <MenuItem text='Item 1' icon={<AcUnitIcon />} />
@@ -147,7 +145,6 @@ export const Desktop = {
   args: {
     headerLeftContent: (
       <>
-        <Dark />
         <Typography variant='h6' noWrap component='div'>
           Header with a quite long text is in the header
         </Typography>
@@ -156,6 +153,7 @@ export const Desktop = {
     headerRightContent: <SignedIn />,
     open: true,
     LinkComponent,
+    PlatformComponent: Dark,
     drawerContent: (
       <MainMenu>
         <MenuItem text='Item 1' icon={<AcUnitIcon />} />

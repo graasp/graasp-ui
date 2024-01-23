@@ -89,6 +89,10 @@ type Props = {
    */
   LinkComponent?: (props: { children: JSX.Element }) => JSX.Element;
   /**
+   * Component that should be rendered to show the platform switch
+   */
+  PlatformComponent?: () => JSX.Element;
+  /**
    * Id of the header element for testing purposes
    */
   headerId?: string;
@@ -103,6 +107,7 @@ const MainWithDrawer = ({
   open: openOverride = false,
   headerId,
   LinkComponent,
+  PlatformComponent,
 }: Props): JSX.Element => {
   const [open, setOpen] = React.useState(true);
 
@@ -156,6 +161,7 @@ const MainWithDrawer = ({
                 {open ? <MenuOpen /> : <MenuIcon />}
               </IconButton>
               {LinkComponent && LinkComponent({ children: <LogoHeader /> })}
+              {PlatformComponent && <PlatformComponent />}
               {headerLeftContent}
             </Stack>
             {headerRightContent}
