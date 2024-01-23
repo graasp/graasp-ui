@@ -1,6 +1,6 @@
 import { MenuOpen } from '@mui/icons-material';
 import MenuIcon from '@mui/icons-material/Menu';
-import { AppBar, Stack } from '@mui/material';
+import { AppBar, Stack, Typography } from '@mui/material';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 import Drawer from '@mui/material/Drawer';
@@ -12,16 +12,24 @@ import * as React from 'react';
 
 import { Context } from '@graasp/sdk';
 
+import GraaspLogo from '../GraaspLogo';
 import { AccentColors, PRIMARY_COLOR } from '../theme';
+
+const LogoHeader = (): JSX.Element => (
+  <Stack direction='row' alignItems='center'>
+    <GraaspLogo height={40} sx={{ fill: 'white' }} />
+    <Typography sx={{ display: { xs: 'none', sm: 'block' } }} variant='h6'>
+      Graasp
+    </Typography>
+  </Stack>
+);
 
 const drawerWidth = 240;
 
 const buildHeaderGradient = (color: string): string =>
-  `linear-gradient(90deg, ${PRIMARY_COLOR} 0%, ${PRIMARY_COLOR} 35%, ${color} 100%);`;
+  `linear-gradient(90deg, ${PRIMARY_COLOR} 35%, ${color} 100%);`;
 
 const StyledMain = styled('main')<{ open: boolean }>(({ theme, open }) => ({
-  height: '100vh',
-  overflow: 'scroll',
   flexGrow: 1,
   padding: theme.spacing(3),
   // create transition for width and margin property
@@ -73,6 +81,10 @@ type Props = {
    */
   open?: boolean;
   /**
+   * Whether to show the Graasp logo
+   */
+  showLogo?: boolean;
+  /**
    * Id of the header element for testing purposes
    */
   headerId?: string;
@@ -86,6 +98,7 @@ const MainWithDrawer = ({
   headerRightContent,
   open: openOverride = false,
   headerId,
+  showLogo = true,
 }: Props): JSX.Element => {
   const [open, setOpen] = React.useState(true);
 
@@ -102,16 +115,16 @@ const MainWithDrawer = ({
   }, [openOverride]);
 
   return (
-    <Box sx={{ display: 'flex' }} height='100vh' position='absolute'>
+    <Box height='100vh' overflow='scroll'>
       <CssBaseline />
       <AppBar
+        id={headerId}
         position='fixed'
         sx={{
           background: context
             ? buildHeaderGradient(AccentColors[context])
             : PRIMARY_COLOR,
         }}
-        id={headerId}
       >
         <Toolbar>
           <Stack
@@ -121,18 +134,24 @@ const MainWithDrawer = ({
             justifyContent='space-between'
             spacing={2}
             flex={1}
-            minWidth='0px'
+            minWidth={0}
           >
-            <Stack direction='row' alignItems='center' flex={1} minWidth='0px'>
+            <Stack
+              direction='row'
+              alignItems='center'
+              flex={1}
+              minWidth={0}
+              spacing={1}
+            >
               <IconButton
                 color='inherit'
                 aria-label='open drawer'
                 onClick={handleDrawerToggle}
                 edge='start'
-                sx={{ mr: 2 }}
               >
                 {open ? <MenuOpen /> : <MenuIcon />}
               </IconButton>
+              {showLogo && <LogoHeader />}
               {headerLeftContent}
             </Stack>
             {headerRightContent}
@@ -173,10 +192,8 @@ const MainWithDrawer = ({
           {drawerContent}
         </Drawer>
       </Box>
-      <StyledMain open={open}>
-        <Toolbar />
-        {children}
-      </StyledMain>
+      <Toolbar />
+      <StyledMain open={open}>{children}</StyledMain>
     </Box>
   );
 };

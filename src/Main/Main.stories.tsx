@@ -11,10 +11,12 @@ import React from 'react';
 import { Context } from '@graasp/sdk';
 
 import MainMenu, { MenuItem } from '../MainMenu';
+import * as PlatformSwitchStories from '../PlatformSwitch/PlatformSwitch.stories';
 import * as UserSwitchStories from '../UserSwitch/UserSwitch.stories';
 import Main from './Main';
 
 const { SignedIn } = composeStories(UserSwitchStories);
+const { Dark } = composeStories(PlatformSwitchStories);
 
 const meta = {
   title: 'Common/Main',
@@ -73,6 +75,15 @@ const mainContent = (
   </>
 );
 
+const headerLeftContent = (
+  <>
+    <Dark />
+    <Typography variant='h6' component='div'>
+      Header
+    </Typography>
+  </>
+);
+
 export const Default = {
   args: {
     headerLeftContent: (
@@ -82,6 +93,7 @@ export const Default = {
     ),
     headerRightContent: <Avatar>H</Avatar>,
     open: false,
+    showLogo: false,
     drawerContent: (
       <MainMenu>
         <MenuItem text='Item 1' icon={<AcUnitIcon />} />
@@ -91,15 +103,12 @@ export const Default = {
     ),
     children: mainContent,
   },
+  parameters: { layout: 'fullscreen' },
 } satisfies Story;
 
 export const Mobile = {
   args: {
-    headerLeftContent: (
-      <Typography variant='h6' component='div'>
-        Header
-      </Typography>
-    ),
+    headerLeftContent,
     headerRightContent: <SignedIn />,
     open: false,
     drawerContent: (
@@ -115,15 +124,19 @@ export const Mobile = {
     viewport: {
       defaultViewport: 'mobile2',
     },
+    layout: 'fullscreen',
   },
 } satisfies Story;
 
 export const Desktop = {
   args: {
     headerLeftContent: (
-      <Typography variant='h6' noWrap component='div'>
-        Header with a quite long text is in the header
-      </Typography>
+      <>
+        <Dark />
+        <Typography variant='h6' noWrap component='div'>
+          Header with a quite long text is in the header
+        </Typography>
+      </>
     ),
     headerRightContent: <SignedIn />,
     open: true,
