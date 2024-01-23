@@ -3,6 +3,7 @@ import { Meta, type StoryObj, composeStories } from '@storybook/react';
 import AcUnitIcon from '@mui/icons-material/AcUnit';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
+import { Box, Link } from '@mui/material';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 
@@ -33,8 +34,22 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
+const LinkComponent = ({
+  children,
+}: {
+  children: JSX.Element;
+}): JSX.Element => (
+  <Link
+    sx={{ textDecoration: 'none' }}
+    color='inherit'
+    href='https://graasp.org'
+  >
+    {children}
+  </Link>
+);
+
 const mainContent = (
-  <>
+  <Box p={2}>
     <h1>Lorem ipsum dolor sonvallis</h1>
     <p>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
@@ -72,7 +87,7 @@ const mainContent = (
       accumsan lacus vel facilisis. Nulla posuere sollicitudin aliquam ultrices
       sagittis orci a.
     </p>
-  </>
+  </Box>
 );
 
 const headerLeftContent = (
@@ -93,7 +108,6 @@ export const Default = {
     ),
     headerRightContent: <Avatar>H</Avatar>,
     open: false,
-    showLogo: false,
     drawerContent: (
       <MainMenu>
         <MenuItem text='Item 1' icon={<AcUnitIcon />} />
@@ -111,6 +125,7 @@ export const Mobile = {
     headerLeftContent,
     headerRightContent: <SignedIn />,
     open: false,
+    LinkComponent,
     drawerContent: (
       <MainMenu>
         <MenuItem text='Item 1' icon={<AcUnitIcon />} />
@@ -140,6 +155,7 @@ export const Desktop = {
     ),
     headerRightContent: <SignedIn />,
     open: true,
+    LinkComponent,
     drawerContent: (
       <MainMenu>
         <MenuItem text='Item 1' icon={<AcUnitIcon />} />

@@ -16,7 +16,12 @@ import GraaspLogo from '../GraaspLogo';
 import { AccentColors, PRIMARY_COLOR } from '../theme';
 
 const LogoHeader = (): JSX.Element => (
-  <Stack direction='row' alignItems='center'>
+  <Stack
+    direction='row'
+    alignItems='center'
+    textTransform='none'
+    color='inherit'
+  >
     <GraaspLogo height={40} sx={{ fill: 'white' }} />
     <Typography sx={{ display: { xs: 'none', sm: 'block' } }} variant='h6'>
       Graasp
@@ -31,7 +36,6 @@ const buildHeaderGradient = (color: string): string =>
 
 const StyledMain = styled('main')<{ open: boolean }>(({ theme, open }) => ({
   flexGrow: 1,
-  padding: theme.spacing(3),
   // create transition for width and margin property
   transition: theme.transitions.create(['width', 'margin'], {
     easing: theme.transitions.easing.easeIn,
@@ -81,9 +85,9 @@ type Props = {
    */
   open?: boolean;
   /**
-   * Whether to show the Graasp logo
+   * Wrapper component that supplies a link facility wrapping the logo
    */
-  showLogo?: boolean;
+  LinkComponent?: (props: { children: JSX.Element }) => JSX.Element;
   /**
    * Id of the header element for testing purposes
    */
@@ -98,7 +102,7 @@ const MainWithDrawer = ({
   headerRightContent,
   open: openOverride = false,
   headerId,
-  showLogo = true,
+  LinkComponent,
 }: Props): JSX.Element => {
   const [open, setOpen] = React.useState(true);
 
@@ -151,7 +155,7 @@ const MainWithDrawer = ({
               >
                 {open ? <MenuOpen /> : <MenuIcon />}
               </IconButton>
-              {showLogo && <LogoHeader />}
+              {LinkComponent && LinkComponent({ children: <LogoHeader /> })}
               {headerLeftContent}
             </Stack>
             {headerRightContent}
