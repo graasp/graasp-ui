@@ -1,209 +1,158 @@
-import { styled } from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
+import { AppBar, Stack } from '@mui/material';
+import Box from '@mui/material/Box';
+import CssBaseline from '@mui/material/CssBaseline';
+import Drawer from '@mui/material/Drawer';
+import IconButton from '@mui/material/IconButton';
+import Toolbar from '@mui/material/Toolbar';
+import { styled } from '@mui/material/styles';
 
-import React from 'react';
+import * as React from 'react';
 
-import { Context } from '@graasp/sdk';
+const drawerWidth = 240;
 
-import Header from '../Header/Header';
-import Sidebar from '../Sidebar';
-import { DRAWER_WIDTH } from '../constants';
-
-const StyledRoot = styled('div')({
-  display: 'flex',
-  flexDirection: 'column',
-  width: '100vw',
-  height: '100%',
-});
-
-const StyledMain = styled('main')<{ open?: boolean; fullScreen: boolean }>(
-  ({ theme, open, fullScreen }) => ({
-    flexGrow: 1,
-    marginLeft: 0,
-    boxSizing: 'border-box',
-    transition: theme.transitions.create('margin', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    ...(open && {
-      transition: theme.transitions.create('margin', {
-        easing: theme.transitions.easing.easeOut,
-        duration: theme.transitions.duration.enteringScreen,
-      }),
-      marginLeft: DRAWER_WIDTH,
-    }),
-    ...(fullScreen && {
-      display: 'flex',
-      justifyContent: 'center',
-      flexDirection: 'column',
-      alignItems: 'center',
+const StyledMain = styled('main')<{ open: boolean }>(({ theme, open }) => ({
+  height: '100vh',
+  overflow: 'scroll',
+  flexGrow: 1,
+  padding: theme.spacing(3),
+  // create transition for width and margin property
+  transition: theme.transitions.create(['width', 'margin'], {
+    easing: theme.transitions.easing.easeIn,
+    duration: theme.transitions.duration.leavingScreen,
+  }),
+  // conditional styled applied only when drawer is opened
+  ...(open && {
+    width: '100%',
+    // conditional styles applied when screen is larger than mobile
+    [theme.breakpoints.up('sm')]: {
+      marginLeft: `${drawerWidth}px`,
+      width: `calc(100% - ${drawerWidth}px)`,
+    },
+    // create transition for width and margin property
+    transition: theme.transitions.create(['width', 'margin'], {
+      easing: theme.transitions.easing.easeOut,
+      duration: theme.transitions.duration.enteringScreen,
     }),
   }),
-);
-
-// export interface MainProps {
-//   context?: `${Context}` | Context;
-//   children?: JSX.Element | JSX.Element[];
-//   fullScreen?: boolean;
-//   /**
-//    * Header's center content
-//    */
-//   headerCenterContent?: React.ReactElement;
-//   /**
-//    * Header's left content
-//    */
-//   headerLeftContent?: React.ReactElement;
-//   /**
-//    * Header's right content
-//    */
-//   headerRightContent?: React.ReactElement;
-//   /**
-//    * Whether the sidebar is open by default
-//    */
-//   headerId?: string;
-//   headerSx?: SxProps;
-//   open?: boolean;
-//   sidebar?: React.ReactElement;
-//   menuButtonId?: string;
-//   handleDrawerOpen?: () => void;
-//   handleDrawerClose?: () => void;
-// }
-
-// type MainState = {
-//   open: boolean;
-// };
-
-// export class MainClass extends Component<MainProps, MainState> {
-//   state = ((): MainState => ({
-//     open: this.props.open || false,
-//   }))();
-
-//   static defaultProps = {
-//     fullScreen: false,
-//   };
-
-//   handleDrawerOpen = (): void => {
-//     this.setState({ open: true });
-//     this.props.handleDrawerOpen?.();
-//   };
-
-//   handleDrawerClose = (): void => {
-//     this.setState({ open: false });
-//     this.props.handleDrawerClose?.();
-//   };
-
-//   render(): JSX.Element {
-//     const {
-//       children,
-//       fullScreen,
-//       headerLeftContent,
-//       headerRightContent,
-//       headerCenterContent,
-//       headerId,
-//       menuButtonId,
-//       sidebar,
-//     } = this.props;
-//     const { open } = this.state;
-//     const hasSidebar = Boolean(sidebar);
-
-//     return (
-//       <StyledRoot>
-//         <Header
-//           context={this.props.context}
-//           hasSidebar={hasSidebar}
-//           isSidebarOpen={open}
-//           handleDrawerOpen={this.handleDrawerOpen}
-//           handleDrawerClose={this.handleDrawerClose}
-//           leftContent={headerLeftContent}
-//           rightContent={headerRightContent}
-//           centerContent={headerCenterContent}
-//           id={headerId}
-//           menuButtonId={menuButtonId}
-//           sx={this.props.headerSx}
-//         />
-
-//         {hasSidebar && <Sidebar isSidebarOpen={open}>{sidebar}</Sidebar>}
-
-//         <StyledMain open={open} fullScreen={fullScreen}>
-//           <>
-//             <DrawerHeaderContainer />
-//             {children}
-//           </>
-//         </StyledMain>
-//       </StyledRoot>
-//     );
-//   }
-// }
+}));
 
 type Props = {
-  context?: `${Context}` | Context;
-  sidebar?: JSX.Element;
   /**
-   * Header's center content
+   * Content to display inside the drawer / sidebar
    */
-  headerCenterContent?: JSX.Element;
+  drawerContent: JSX.Element;
   /**
-   * Header's left content
+   * Content to display inside the main area.
+   * This is usually the page content
+   */
+  children: JSX.Element;
+  /**
+   * Left content presented in the header
    */
   headerLeftContent?: JSX.Element;
   /**
-   * Header's right content
+   * Right content presented in the header
    */
   headerRightContent?: JSX.Element;
   /**
-   * Whether the sidebar is open by default
+   * Override the state of the drawer
+   * defaults to `false`
    */
-  sidebarOpen?: boolean;
-  /**
-   * Id for the header
-   */
-  headerId?: string;
-  /**
-   * Id for the burger button that opens and closes the sidebar
-   */
-  menuButtonId?: string;
-
-  handleDrawerOpen?: () => void;
-  handleDrawerClose?: () => void;
-
-  children: JSX.Element;
+  open?: boolean;
 };
 
-const Main = ({
-  context,
-  sidebar,
-  sidebarOpen,
-  headerId,
-  menuButtonId,
-  headerLeftContent,
-  headerCenterContent,
-  headerRightContent,
-  handleDrawerOpen,
-  handleDrawerClose,
+const MainWithDrawer = ({
+  drawerContent,
   children,
+  headerLeftContent,
+  headerRightContent,
+  open: openOverride = false,
 }: Props): JSX.Element => {
+  const [open, setOpen] = React.useState(true);
+
+  const handleDrawerClose = (): void => {
+    setOpen(false);
+  };
+
+  const handleDrawerToggle = (): void => {
+    setOpen((state) => !state);
+  };
+
+  React.useEffect(() => {
+    setOpen(openOverride);
+  }, [openOverride]);
+
   return (
-    <StyledRoot>
-      <Header
-        context={context}
-        hasSidebar={Boolean(sidebar)}
-        isSidebarOpen={sidebarOpen}
-        handleDrawerOpen={handleDrawerOpen}
-        handleDrawerClose={handleDrawerClose}
-        leftContent={headerLeftContent}
-        rightContent={headerRightContent}
-        centerContent={headerCenterContent}
-        id={headerId}
-        menuButtonId={menuButtonId}
-        // sx={sx}
-      />
-
-      {sidebar && <Sidebar isSidebarOpen={sidebarOpen}>{sidebar}</Sidebar>}
-
-      <StyledMain open={sidebarOpen} fullScreen={true}>
+    <Box sx={{ display: 'flex' }} height='100vh' position='absolute'>
+      <CssBaseline />
+      <AppBar position='fixed'>
+        <Toolbar>
+          <Stack
+            width='100%'
+            direction='row'
+            alignItems='center'
+            justifyContent='space-between'
+            spacing={2}
+            flex={1}
+            minWidth='0px'
+          >
+            <Stack direction='row' alignItems='center' flex={1} minWidth='0px'>
+              <IconButton
+                color='inherit'
+                aria-label='open drawer'
+                onClick={handleDrawerToggle}
+                edge='start'
+                sx={{ mr: 2 }}
+              >
+                <MenuIcon />
+              </IconButton>
+              {headerLeftContent}
+            </Stack>
+            {headerRightContent}
+          </Stack>
+        </Toolbar>
+      </AppBar>
+      <Box component='nav' aria-label='navigation'>
+        <Drawer
+          variant='temporary'
+          open={open}
+          onClose={handleDrawerClose}
+          ModalProps={{
+            keepMounted: true, // Better open performance on mobile.
+          }}
+          sx={{
+            display: { xs: 'block', sm: 'none' },
+            '& .MuiDrawer-paper': {
+              boxSizing: 'border-box',
+              width: drawerWidth,
+            },
+          }}
+        >
+          <Toolbar />
+          {drawerContent}
+        </Drawer>
+        <Drawer
+          variant='persistent'
+          sx={{
+            display: { xs: 'none', sm: 'block' },
+            '& .MuiDrawer-paper': {
+              boxSizing: 'border-box',
+              width: drawerWidth,
+            },
+          }}
+          open={open}
+        >
+          <Toolbar />
+          {drawerContent}
+        </Drawer>
+      </Box>
+      <StyledMain open={open}>
+        <Toolbar />
         {children}
       </StyledMain>
-    </StyledRoot>
+    </Box>
   );
 };
 
-export default Main;
+export default MainWithDrawer;
