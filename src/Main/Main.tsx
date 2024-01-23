@@ -96,6 +96,11 @@ type Props = {
    * Id of the header element for testing purposes
    */
   headerId?: string;
+  /**
+   * Aria label to put on the button that opens and closes the drawer
+   * This should be a translated string reading i.e: `open drawer`
+   */
+  drawerOpenAriaLabel: string;
 };
 
 const MainWithDrawer = ({
@@ -106,6 +111,7 @@ const MainWithDrawer = ({
   headerRightContent,
   open: openOverride = false,
   headerId,
+  drawerOpenAriaLabel,
   LinkComponent,
   PlatformComponent,
 }: Props): JSX.Element => {
@@ -154,7 +160,7 @@ const MainWithDrawer = ({
             >
               <IconButton
                 color='inherit'
-                aria-label='open drawer'
+                aria-label={drawerOpenAriaLabel}
                 onClick={handleDrawerToggle}
                 edge='start'
               >

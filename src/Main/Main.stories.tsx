@@ -96,8 +96,13 @@ const headerLeftContent = (
   </Typography>
 );
 
+const defaultArgs = {
+  drawerOpenAriaLabel: 'open drawer',
+} satisfies Partial<Story['args']>;
+
 export const Default = {
   args: {
+    ...defaultArgs,
     headerLeftContent: (
       <Typography variant='h6' component='div'>
         Header
@@ -119,6 +124,7 @@ export const Default = {
 
 export const Mobile = {
   args: {
+    ...defaultArgs,
     headerLeftContent,
     headerRightContent: <SignedIn />,
     open: false,
@@ -143,12 +149,11 @@ export const Mobile = {
 
 export const Desktop = {
   args: {
+    ...defaultArgs,
     headerLeftContent: (
-      <>
-        <Typography variant='h6' noWrap component='div'>
-          Header with a quite long text is in the header
-        </Typography>
-      </>
+      <Typography variant='h6' noWrap component='div'>
+        Header with a quite long text is in the header
+      </Typography>
     ),
     headerRightContent: <SignedIn />,
     open: true,
