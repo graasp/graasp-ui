@@ -1,3 +1,4 @@
+import { MenuOpen } from '@mui/icons-material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { AppBar, Stack } from '@mui/material';
 import Box from '@mui/material/Box';
@@ -71,6 +72,10 @@ type Props = {
    * defaults to `false`
    */
   open?: boolean;
+  /**
+   * Id of the header element for testing purposes
+   */
+  headerId?: string;
 };
 
 const MainWithDrawer = ({
@@ -80,6 +85,7 @@ const MainWithDrawer = ({
   headerLeftContent,
   headerRightContent,
   open: openOverride = false,
+  headerId,
 }: Props): JSX.Element => {
   const [open, setOpen] = React.useState(true);
 
@@ -105,6 +111,7 @@ const MainWithDrawer = ({
             ? buildHeaderGradient(AccentColors[context])
             : PRIMARY_COLOR,
         }}
+        id={headerId}
       >
         <Toolbar>
           <Stack
@@ -124,7 +131,7 @@ const MainWithDrawer = ({
                 edge='start'
                 sx={{ mr: 2 }}
               >
-                <MenuIcon />
+                {open ? <MenuOpen /> : <MenuIcon />}
               </IconButton>
               {headerLeftContent}
             </Stack>
