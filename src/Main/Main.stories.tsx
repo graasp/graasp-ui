@@ -98,26 +98,26 @@ const headerLeftContent = (
 
 const defaultArgs = {
   drawerOpenAriaLabel: 'open drawer',
+  headerLeftContent: (
+    <Typography variant='h6' component='div'>
+      Header
+    </Typography>
+  ),
+  drawerContent: (
+    <MainMenu>
+      <MenuItem text='Item 1' icon={<AcUnitIcon />} />
+      <MenuItem text='Item 2' icon={<AddCircleIcon />} />
+      <MenuItem text='Item 3' icon={<AutoAwesomeIcon />} />
+    </MainMenu>
+  ),
+  children: mainContent,
 } satisfies Partial<Story['args']>;
 
 export const Default = {
   args: {
     ...defaultArgs,
-    headerLeftContent: (
-      <Typography variant='h6' component='div'>
-        Header
-      </Typography>
-    ),
     headerRightContent: <Avatar>H</Avatar>,
     open: false,
-    drawerContent: (
-      <MainMenu>
-        <MenuItem text='Item 1' icon={<AcUnitIcon />} />
-        <MenuItem text='Item 2' icon={<AddCircleIcon />} />
-        <MenuItem text='Item 3' icon={<AutoAwesomeIcon />} />
-      </MainMenu>
-    ),
-    children: mainContent,
   },
   parameters: { layout: 'fullscreen' },
 } satisfies Story;
@@ -130,14 +130,6 @@ export const Mobile = {
     open: false,
     LinkComponent,
     PlatformComponent: <Dark />,
-    drawerContent: (
-      <MainMenu>
-        <MenuItem text='Item 1' icon={<AcUnitIcon />} />
-        <MenuItem text='Item 2' icon={<AddCircleIcon />} />
-        <MenuItem text='Item 3' icon={<AutoAwesomeIcon />} />
-      </MainMenu>
-    ),
-    children: mainContent,
   },
   parameters: {
     viewport: {
@@ -159,14 +151,62 @@ export const Desktop = {
     open: true,
     LinkComponent,
     PlatformComponent: <Dark />,
-    drawerContent: (
-      <MainMenu>
-        <MenuItem text='Item 1' icon={<AcUnitIcon />} />
-        <MenuItem text='Item 2' icon={<AddCircleIcon />} />
-        <MenuItem text='Item 3' icon={<AutoAwesomeIcon />} />
-      </MainMenu>
-    ),
-    children: mainContent,
+  },
+  parameters: {
+    layout: 'fullscreen',
+  },
+} satisfies Story;
+
+export const BuilderMain = {
+  args: {
+    ...defaultArgs,
+    context: 'builder',
+    headerRightContent: <SignedIn />,
+    open: true,
+    LinkComponent,
+    PlatformComponent: <Dark />,
+  },
+  parameters: {
+    layout: 'fullscreen',
+  },
+} satisfies Story;
+
+export const PlayerMain = {
+  args: {
+    ...defaultArgs,
+    context: 'player',
+    headerRightContent: <SignedIn />,
+    open: true,
+    LinkComponent,
+    PlatformComponent: <Dark />,
+  },
+  parameters: {
+    layout: 'fullscreen',
+  },
+} satisfies Story;
+
+export const LibraryMain = {
+  args: {
+    ...defaultArgs,
+    context: 'library',
+    headerRightContent: <SignedIn />,
+    open: false,
+    LinkComponent,
+    PlatformComponent: <Dark />,
+  },
+  parameters: {
+    layout: 'fullscreen',
+  },
+} satisfies Story;
+
+export const AnalyticsMain = {
+  args: {
+    ...defaultArgs,
+    context: 'analytics',
+    headerRightContent: <SignedIn />,
+    open: true,
+    LinkComponent,
+    PlatformComponent: <Dark />,
   },
   parameters: {
     layout: 'fullscreen',
