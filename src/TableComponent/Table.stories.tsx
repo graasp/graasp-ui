@@ -141,7 +141,6 @@ type Story = StoryObj<typeof Table>;
 
 export const Simple: Story = {
   args: {
-    tableHeight: 300,
     columnDefs: [
       {
         field: 'name',

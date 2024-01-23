@@ -33,7 +33,7 @@ import { suppressKeyboardEventForParentCell } from './utils';
 const DRAG_COLUMN_WIDTH = 22;
 const ITEMS_DEFAULT_PAGE_SIZE = 10;
 
-export interface TableProps<T = unknown> {
+export type TableProps<T = unknown> = {
   className?: string;
   /**
    * definition of the columns following AG Grid definitions
@@ -76,7 +76,7 @@ export interface TableProps<T = unknown> {
   totalCount?: number;
   labelDisplayedRows?: TablePaginationProps['labelDisplayedRows'];
   pageSize?: number;
-}
+};
 
 const StyledDiv = styled('div')(({ theme }) => ({
   width: '100%',
@@ -107,12 +107,12 @@ const DEFAULT_COL_DEF = {
   flex: 1,
 };
 
-const StyledBox = styled(Box, {
-  shouldForwardProp: (prop: string) => prop !== 'tableHeight',
-})<{ tableHeight: string | number }>(({ theme, tableHeight }) => ({
+const StyledBox = styled(
+  Box,
+  {},
+)(({ theme }) => ({
   fontSize: theme.typography.fontSize,
   width: '100%',
-  height: tableHeight,
   [`.${ROW_CLASS_NAME}`]: {
     display: 'flex',
     justifyContent: 'center',
@@ -154,7 +154,6 @@ function GraaspTable<T>({
   labelDisplayedRows,
   pagination = true,
   sx,
-  tableHeight = 500,
   ToolbarActions,
   page = 1,
   onPageChange,
@@ -253,13 +252,9 @@ function GraaspTable<T>({
         NoSelectionToolbar={NoSelectionToolbar}
         countTextFunction={countTextFunction}
       />
-      <StyledBox
-        className={className}
-        id={id}
-        sx={sx}
-        tableHeight={tableHeight}
-      >
+      <StyledBox className={className} id={id} sx={sx}>
         <AgGridReact
+          domLayout='autoHeight'
           onGridReady={onGridReady}
           ref={gridRef}
           columnDefs={buildColumnDefs()}

@@ -46,7 +46,7 @@
     "post-commit": "git status",
     "pre-commit": "yarn check",
     "pre-push": "yarn build",
-    "storybook": "storybook dev",
+    "storybook": "storybook dev --port 65000",
     "storybook:build": "storybook build",
     "storybook:preview": "http-server storybook-static --port 6006 --silent",
     "storybook:test": "test-storybook --coverage",
