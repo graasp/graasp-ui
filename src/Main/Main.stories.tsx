@@ -129,7 +129,7 @@ export const Mobile = {
     headerRightContent: <SignedIn />,
     open: false,
     LinkComponent,
-    PlatformComponent: Dark,
+    PlatformComponent: <Dark />,
     drawerContent: (
       <MainMenu>
         <MenuItem text='Item 1' icon={<AcUnitIcon />} />
@@ -158,7 +158,7 @@ export const Desktop = {
     headerRightContent: <SignedIn />,
     open: true,
     LinkComponent,
-    PlatformComponent: Dark,
+    PlatformComponent: <Dark />,
     drawerContent: (
       <MainMenu>
         <MenuItem text='Item 1' icon={<AcUnitIcon />} />

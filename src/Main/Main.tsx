@@ -91,7 +91,7 @@ type Props = {
   /**
    * Component that should be rendered to show the platform switch
    */
-  PlatformComponent?: () => JSX.Element;
+  PlatformComponent?: JSX.Element;
   /**
    * Id of the header element for testing purposes
    */
@@ -167,7 +167,7 @@ const MainWithDrawer = ({
                 {open ? <MenuOpen /> : <MenuIcon />}
               </IconButton>
               {LinkComponent && LinkComponent({ children: <LogoHeader /> })}
-              {PlatformComponent && <PlatformComponent />}
+              {PlatformComponent}
               {headerLeftContent}
             </Stack>
             {headerRightContent}
