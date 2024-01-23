@@ -9,7 +9,14 @@ import { styled } from '@mui/material/styles';
 
 import * as React from 'react';
 
+import { Context } from '@graasp/sdk';
+
+import { AccentColors, PRIMARY_COLOR } from '../theme';
+
 const drawerWidth = 240;
+
+const buildHeaderGradient = (color: string): string =>
+  `linear-gradient(90deg, ${PRIMARY_COLOR} 0%, ${PRIMARY_COLOR} 35%, ${color} 100%);`;
 
 const StyledMain = styled('main')<{ open: boolean }>(({ theme, open }) => ({
   height: '100vh',
@@ -39,6 +46,10 @@ const StyledMain = styled('main')<{ open: boolean }>(({ theme, open }) => ({
 
 type Props = {
   /**
+   * Platform value which defines what color to use in the header.
+   */
+  context?: `${Context}` | Context;
+  /**
    * Content to display inside the drawer / sidebar
    */
   drawerContent: JSX.Element;
@@ -46,7 +57,7 @@ type Props = {
    * Content to display inside the main area.
    * This is usually the page content
    */
-  children: JSX.Element;
+  children: JSX.Element | JSX.Element[];
   /**
    * Left content presented in the header
    */
@@ -63,6 +74,7 @@ type Props = {
 };
 
 const MainWithDrawer = ({
+  context,
   drawerContent,
   children,
   headerLeftContent,
@@ -86,7 +98,14 @@ const MainWithDrawer = ({
   return (
     <Box sx={{ display: 'flex' }} height='100vh' position='absolute'>
       <CssBaseline />
-      <AppBar position='fixed'>
+      <AppBar
+        position='fixed'
+        sx={{
+          background: context
+            ? buildHeaderGradient(AccentColors[context])
+            : PRIMARY_COLOR,
+        }}
+      >
         <Toolbar>
           <Stack
             width='100%'

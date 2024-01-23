@@ -8,6 +8,8 @@ import Typography from '@mui/material/Typography';
 
 import React from 'react';
 
+import { Context } from '@graasp/sdk';
+
 import MainMenu, { MenuItem } from '../MainMenu';
 import * as UserSwitchStories from '../UserSwitch/UserSwitch.stories';
 import Main from './Main';
@@ -17,6 +19,13 @@ const { SignedIn } = composeStories(UserSwitchStories);
 const meta = {
   title: 'Common/Main',
   component: Main,
+
+  argTypes: {
+    context: {
+      control: 'radio',
+      options: Object.values(Context),
+    },
+  },
 } satisfies Meta<typeof Main>;
 export default meta;
 
