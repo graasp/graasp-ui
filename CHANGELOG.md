@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.4.0](https://github.com/graasp/graasp-ui/compare/v4.3.1...v4.4.0) (2024-01-24)
+
+
+### Features
+
+* create mobile view custom hook ([#667](https://github.com/graasp/graasp-ui/issues/667)) ([16c5c2d](https://github.com/graasp/graasp-ui/commit/16c5c2d0d24d506c7d2267a1847baef56c444394))
+
+
+### Bug Fixes
+
+* **deps:** update dependency @graasp/sdk to v3.5.0 ([#663](https://github.com/graasp/graasp-ui/issues/663)) ([83896af](https://github.com/graasp/graasp-ui/commit/83896afca652f7d81b31fe3dc0c1492da49ea351))
+* remove qs dependency ([#655](https://github.com/graasp/graasp-ui/issues/655)) ([3692d55](https://github.com/graasp/graasp-ui/commit/3692d557e328f02eb8adfc2d6b1dc9ef4b8e35ff))
+
 ## [4.3.1](https://github.com/graasp/graasp-ui/compare/v4.3.0...v4.3.1) (2024-01-17)
 
 
