@@ -224,7 +224,6 @@ Simple.play = async ({ args, canvasElement }) => {
 
 export const SimpleWithDrag: Story = {
   args: {
-    tableHeight: 300,
     enableDrag: true,
     columnDefs: [
       {
@@ -252,7 +251,6 @@ export const SimpleWithDrag: Story = {
 
 export const Empty: Story = {
   args: {
-    tableHeight: 300,
     columnDefs: [
       {
         headerCheckboxSelection: true,

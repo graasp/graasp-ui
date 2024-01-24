@@ -63,7 +63,6 @@ export type TableProps<T = unknown> = {
   suppressCellFocus?: boolean;
   suppressRowClickSelection?: boolean;
   sx?: SxProps;
-  tableHeight?: number | string;
   onSortChanged?: (event: SortChangedEvent) => void;
   ToolbarActions?: ({ selectedIds }: { selectedIds: string[] }) => JSX.Element;
   /**
@@ -255,6 +254,8 @@ function GraaspTable<T>({
       <StyledBox className={className} id={id} sx={sx}>
         <AgGridReact
           domLayout='autoHeight'
+          // used to remove the error with ResizeObserver, instead uses polling to periodically update the width and height
+          suppressBrowserResizeObserver
           onGridReady={onGridReady}
           ref={gridRef}
           columnDefs={buildColumnDefs()}
