@@ -29,7 +29,7 @@ const EditButton: FC<Props> = ({
   switch (type) {
     case ActionButton.MENU_ITEM:
       return (
-        <MenuItem key={tooltip} onClick={onClick}>
+        <MenuItem key={tooltip} onClick={onClick} id={id} className={className}>
           <ListItemIcon>
             <EditIcon />
           </ListItemIcon>
