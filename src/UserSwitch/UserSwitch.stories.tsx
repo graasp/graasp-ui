@@ -2,8 +2,6 @@ import { expect } from '@storybook/jest';
 import type { Meta, StoryObj } from '@storybook/react';
 import { screen, userEvent, within } from '@storybook/testing-library';
 
-import React from 'react';
-
 import Avatar from '../Avatar/Avatar';
 import { MOCK_CURRENT_MEMBER } from '../utils/fixtures';
 import UserSwitch from './UserSwitch';

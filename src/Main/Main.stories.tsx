@@ -7,8 +7,6 @@ import { Box, Link } from '@mui/material';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 
-import React from 'react';
-
 import { Context } from '@graasp/sdk';
 
 import MainMenu, { MenuItem } from '../MainMenu';

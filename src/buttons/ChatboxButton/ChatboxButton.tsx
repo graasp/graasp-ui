@@ -2,7 +2,7 @@ import ForumIcon from '@mui/icons-material/Forum';
 import { IconButton, IconButtonProps } from '@mui/material';
 import Tooltip from '@mui/material/Tooltip';
 
-import React, { FC, MouseEventHandler } from 'react';
+import { FC, MouseEventHandler } from 'react';
 
 export type Props = {
   id?: string;

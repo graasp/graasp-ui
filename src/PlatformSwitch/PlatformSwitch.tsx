@@ -8,7 +8,7 @@ import {
 } from '@mui/material';
 import Tooltip, { TooltipProps } from '@mui/material/Tooltip';
 
-import React, { FC, useState } from 'react';
+import { FC, useState } from 'react';
 
 import { AnalyticsIcon, BuildIcon, LibraryIcon, PlayIcon } from '../icons';
 import { PRIMARY_COLOR, SECONDARY_COLOR } from '../theme';

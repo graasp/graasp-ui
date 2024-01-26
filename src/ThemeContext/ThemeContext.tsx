@@ -7,7 +7,7 @@ import { Direction, SxProps } from '@mui/material';
 import { ThemeProvider as MuiThemeProvider } from '@mui/material';
 import { SelectProps as MuiSelectProps } from '@mui/material/Select';
 
-import React, { useContext, useMemo } from 'react';
+import { useContext, useMemo } from 'react';
 import { createContext, useState } from 'react';
 
 import { theme } from '../theme';

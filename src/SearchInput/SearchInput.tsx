@@ -2,7 +2,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import InputBase from '@mui/material/InputBase';
 import Paper from '@mui/material/Paper';
 
-import React, { ChangeEvent, FC } from 'react';
+import { ChangeEvent, FC } from 'react';
 
 export type Props = {
   ariaLabel?: string;

@@ -3,7 +3,7 @@ import Groups from '@mui/icons-material/Groups';
 import IconButton, { IconButtonProps } from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 
-import React, { FC, MouseEventHandler } from 'react';
+import { FC, MouseEventHandler } from 'react';
 
 export type Props = {
   tooltip?: string;

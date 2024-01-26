@@ -2,7 +2,7 @@ import UnfoldMoreIcon from '@mui/icons-material/UnfoldMore';
 import { Theme, styled } from '@mui/material';
 import Box from '@mui/material/Box';
 
-import React, { FC } from 'react';
+import { FC } from 'react';
 
 const RESIZING_ICON_LEVEL_BACKGROUND_COLOR = 300;
 const RESIZING_ICON_LEVEL_BACKGROUND_COLOR_FOCUS = 500;

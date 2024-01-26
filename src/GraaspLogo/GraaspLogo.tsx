@@ -1,5 +1,3 @@
-import React, { FC } from 'react';
-
 export type GraaspLogoProps = {
   height: number;
   /**
@@ -8,7 +6,7 @@ export type GraaspLogoProps = {
   sx?: { fill: string };
 };
 
-const GraaspLogo: FC<GraaspLogoProps> = ({ height, sx }) => {
+const GraaspLogo = ({ height, sx }: GraaspLogoProps): JSX.Element => {
   return (
     <svg
       xmlns='http://www.w3.org/2000/svg'

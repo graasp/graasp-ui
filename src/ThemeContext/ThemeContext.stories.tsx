@@ -1,7 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import React from 'react';
-
 import { ThemeProvider, useTheme } from './ThemeContext';
 
 const Child = (): JSX.Element => {

@@ -4,7 +4,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import MenuItem from '@mui/material/MenuItem';
 import Typography from '@mui/material/Typography';
 
-import React, { FC } from 'react';
+import { FC } from 'react';
 
 import { CompleteMember, redirect } from '@graasp/sdk';
 

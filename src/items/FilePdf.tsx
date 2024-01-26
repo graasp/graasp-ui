@@ -1,6 +1,6 @@
 import { SxProps, styled } from '@mui/material';
 
-import React, { FC, ReactEventHandler, useRef, useState } from 'react';
+import { FC, ReactEventHandler, useRef, useState } from 'react';
 
 import { ITEM_MAX_HEIGHT } from './constants';
 

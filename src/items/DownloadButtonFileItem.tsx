@@ -1,7 +1,7 @@
 import GetAppIcon from '@mui/icons-material/GetApp';
 import { styled } from '@mui/material';
 
-import React, { FC } from 'react';
+import { FC } from 'react';
 
 import Button from '../buttons/Button';
 

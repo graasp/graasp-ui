@@ -1,4 +1,4 @@
-import React, { InputHTMLAttributes } from 'react';
+import { InputHTMLAttributes } from 'react';
 import MaskedInput from 'react-text-mask';
 
 type Props = {

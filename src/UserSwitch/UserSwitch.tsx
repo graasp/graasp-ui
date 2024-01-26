@@ -7,7 +7,7 @@ import Skeleton from '@mui/material/Skeleton';
 import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
 
-import React, { MouseEventHandler, ReactElement, useState } from 'react';
+import { MouseEventHandler, ReactElement, useState } from 'react';
 
 import { CompleteMember, Member, isPseudonymizedMember } from '@graasp/sdk';
 

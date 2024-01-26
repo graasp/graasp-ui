@@ -1,5 +1,3 @@
-import React from 'react';
-
 import Collapse from './Collapse';
 
 const withCollapse = <T extends { name: string }>({ item }: { item: T }) => {

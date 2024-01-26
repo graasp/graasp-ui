@@ -6,8 +6,6 @@ import {
   styled,
 } from '@mui/material';
 
-import React from 'react';
-
 import GraaspLogo from '../GraaspLogo';
 
 export interface CustomInitialLoaderProps {

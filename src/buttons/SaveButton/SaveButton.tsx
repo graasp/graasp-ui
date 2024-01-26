@@ -1,6 +1,6 @@
 import { SxProps } from '@mui/material/styles';
 
-import React, { FC, MouseEventHandler } from 'react';
+import { FC, MouseEventHandler } from 'react';
 
 import GraaspButton, { GraaspButtonProps } from '../Button/Button';
 

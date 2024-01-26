@@ -14,7 +14,7 @@ import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import { SvgIconTypeMap, SxProps } from '@mui/material';
 import { OverridableComponent } from '@mui/material/OverridableComponent';
 
-import React, { FC } from 'react';
+import { FC } from 'react';
 
 import {
   ItemType,

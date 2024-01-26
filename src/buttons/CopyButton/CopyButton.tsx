@@ -4,7 +4,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import MenuItem from '@mui/material/MenuItem';
 import Tooltip from '@mui/material/Tooltip';
 
-import React, { MouseEventHandler } from 'react';
+import { MouseEventHandler } from 'react';
 
 import { ActionButton, ActionButtonVariant } from '../../types';
 

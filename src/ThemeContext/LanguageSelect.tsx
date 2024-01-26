@@ -1,7 +1,7 @@
 import { Direction, SelectChangeEvent, SxProps } from '@mui/material';
 import { SelectProps as MuiSelectProps } from '@mui/material/Select';
 
-import React, { Dispatch, useState } from 'react';
+import { Dispatch, useState } from 'react';
 
 import Select from '../Select';
 import { I18nInstance } from '../types';

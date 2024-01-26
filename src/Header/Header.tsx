@@ -6,8 +6,6 @@ import Grid from '@mui/material/Grid';
 import IconButton from '@mui/material/IconButton';
 import Toolbar from '@mui/material/Toolbar';
 
-import React from 'react';
-
 import { Context } from '@graasp/sdk';
 
 import { CLOSE_DRAWER_LABEL, OPEN_DRAWER_LABEL } from '../labels';

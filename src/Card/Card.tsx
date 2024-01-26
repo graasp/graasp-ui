@@ -3,7 +3,7 @@ import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import Typography from '@mui/material/Typography';
 
-import React, { FC, ReactElement } from 'react';
+import { FC, ReactElement } from 'react';
 
 import CardHeader from './CardHeader';
 

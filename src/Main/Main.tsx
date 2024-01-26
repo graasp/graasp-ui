@@ -1,6 +1,6 @@
 import { MenuOpen } from '@mui/icons-material';
 import MenuIcon from '@mui/icons-material/Menu';
-import { AppBar, Stack, Typography } from '@mui/material';
+import { AppBar, Stack } from '@mui/material';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 import Drawer from '@mui/material/Drawer';
@@ -8,28 +8,14 @@ import IconButton from '@mui/material/IconButton';
 import Toolbar from '@mui/material/Toolbar';
 import { styled } from '@mui/material/styles';
 
-import * as React from 'react';
+import { useEffect, useState } from 'react';
 
 import { Context } from '@graasp/sdk';
 
-import GraaspLogo from '../GraaspLogo';
 import { AccentColors, PRIMARY_COLOR } from '../theme';
+import LogoHeader from './LogoHeader';
 
-const LogoHeader = (): JSX.Element => (
-  <Stack
-    direction='row'
-    alignItems='center'
-    textTransform='none'
-    color='inherit'
-  >
-    <GraaspLogo height={40} sx={{ fill: 'white' }} />
-    <Typography sx={{ display: { xs: 'none', sm: 'block' } }} variant='h6'>
-      Graasp
-    </Typography>
-  </Stack>
-);
-
-const drawerWidth = 240;
+const DRAWER_WIDTH = 240;
 
 const buildHeaderGradient = (color: string): string =>
   `linear-gradient(90deg, ${PRIMARY_COLOR} 35%, ${color} 100%);`;
@@ -46,8 +32,8 @@ const StyledMain = styled('main')<{ open: boolean }>(({ theme, open }) => ({
     width: '100%',
     // conditional styles applied when screen is larger than mobile
     [theme.breakpoints.up('sm')]: {
-      marginLeft: `${drawerWidth}px`,
-      width: `calc(100% - ${drawerWidth}px)`,
+      marginLeft: `${DRAWER_WIDTH}px`,
+      width: `calc(100% - ${DRAWER_WIDTH}px)`,
     },
     // create transition for width and margin property
     transition: theme.transitions.create(['width', 'margin'], {
@@ -115,7 +101,7 @@ const MainWithDrawer = ({
   LinkComponent,
   PlatformComponent,
 }: Props): JSX.Element => {
-  const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = useState(true);
 
   const handleDrawerClose = (): void => {
     setOpen(false);
@@ -125,7 +111,7 @@ const MainWithDrawer = ({
     setOpen((state) => !state);
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     setOpen(openOverride);
   }, [openOverride]);
 
@@ -186,7 +172,7 @@ const MainWithDrawer = ({
             display: { xs: 'block', sm: 'none' },
             '& .MuiDrawer-paper': {
               boxSizing: 'border-box',
-              width: drawerWidth,
+              width: DRAWER_WIDTH,
             },
           }}
         >
@@ -199,7 +185,7 @@ const MainWithDrawer = ({
             display: { xs: 'none', sm: 'block' },
             '& .MuiDrawer-paper': {
               boxSizing: 'border-box',
-              width: drawerWidth,
+              width: DRAWER_WIDTH,
             },
           }}
           open={open}

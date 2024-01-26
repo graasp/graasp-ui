@@ -3,7 +3,7 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 
-import React, { FC, ReactElement, SyntheticEvent } from 'react';
+import { FC, ReactElement, SyntheticEvent } from 'react';
 
 export interface MenuItemProps {
   icon?: ReactElement;
