@@ -1,18 +1,22 @@
 import CloseIcon from '@mui/icons-material/Close';
 import Groups from '@mui/icons-material/Groups';
+import { ListItemIcon, ListItemText, MenuItem } from '@mui/material';
 import IconButton, { IconButtonProps } from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 
 import { FC, MouseEventHandler } from 'react';
 
+import { ActionButton, ActionButtonVariant } from '../../types';
+
 export type Props = {
   tooltip?: string;
   open?: boolean;
-  onClick?: MouseEventHandler<HTMLButtonElement>;
+  onClick?: MouseEventHandler;
   ariaLabel?: string;
   className?: string;
   size?: IconButtonProps['size'];
   id?: string;
+  type?: ActionButtonVariant;
 };
 
 const ShareButton: FC<Props> = ({
@@ -23,22 +27,36 @@ const ShareButton: FC<Props> = ({
   id,
   onClick,
   size,
+  type = ActionButton.ICON_BUTTON,
 }) => {
-  return (
-    <Tooltip title={tooltip}>
-      <span>
-        <IconButton
-          aria-label={ariaLabel ?? tooltip}
-          className={className}
-          onClick={onClick}
-          id={id}
-          size={size}
-        >
-          {open ? <CloseIcon /> : <Groups />}
-        </IconButton>
-      </span>
-    </Tooltip>
-  );
+  switch (type) {
+    case ActionButton.MENU_ITEM:
+      return (
+        <MenuItem key={tooltip} className={className} onClick={onClick}>
+          <ListItemIcon>
+            <Groups />
+          </ListItemIcon>
+          <ListItemText>{tooltip}</ListItemText>
+        </MenuItem>
+      );
+    case ActionButton.ICON_BUTTON:
+    default:
+      return (
+        <Tooltip title={tooltip}>
+          <span>
+            <IconButton
+              aria-label={ariaLabel ?? tooltip}
+              className={className}
+              onClick={onClick}
+              id={id}
+              size={size}
+            >
+              {open ? <CloseIcon /> : <Groups />}
+            </IconButton>
+          </span>
+        </Tooltip>
+      );
+  }
 };
 
 export default ShareButton;
