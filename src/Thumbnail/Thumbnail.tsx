@@ -48,10 +48,6 @@ const Thumbnail: FC<ThumbnailProps> = ({
   variant = Variant.RECT,
   isLoading = false,
 }) => {
-  if (isLoading) {
-    return <Skeleton variant={variant} width={maxWidth} height={maxHeight} />;
-  }
-
   if (url) {
     return (
       <StyledImage
@@ -74,7 +70,11 @@ const Thumbnail: FC<ThumbnailProps> = ({
     return defaultComponent;
   }
 
+  if (isLoading) {
+    return <Skeleton variant={variant} width={maxWidth} height={maxHeight} />;
+  }
+
   return null;
 };
 
-export default React.memo(Thumbnail);
+export default Thumbnail;
