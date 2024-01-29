@@ -3,7 +3,7 @@ import { ListItemIcon, ListItemText, MenuItem } from '@mui/material';
 import IconButton, { IconButtonProps } from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 
-import React, { FC, MouseEventHandler } from 'react';
+import { FC, MouseEventHandler } from 'react';
 
 import { ActionButton, ActionButtonVariant } from '../../types';
 

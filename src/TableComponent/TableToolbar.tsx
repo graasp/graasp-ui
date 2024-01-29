@@ -2,8 +2,6 @@ import { styled } from '@mui/material';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 
-import React from 'react';
-
 interface Props {
   selected: string[];
   Actions?: ({ selectedIds }: { selectedIds: string[] }) => JSX.Element;

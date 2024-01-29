@@ -1,4 +1,4 @@
-import React, { ComponentType, FC } from 'react';
+import { ComponentType, FC } from 'react';
 
 import { CompleteMember, redirect } from '@graasp/sdk';
 

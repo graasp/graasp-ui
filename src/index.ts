@@ -11,8 +11,8 @@ export * from './buttons';
 export { default as Loader } from './Loader';
 export * from './Loader';
 
-export { default as Header } from './Header';
-export * from './Header';
+export { default as Header } from './Header/Header';
+export * from './Header/Header';
 
 export { default as Sidebar } from './Sidebar';
 export * from './Sidebar';

@@ -3,8 +3,6 @@ import type { Meta, StoryObj } from '@storybook/react';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 
-import React from 'react';
-
 import { Context } from '@graasp/sdk';
 
 import { TABLE_CATEGORIES } from '../utils/storybook';

@@ -2,7 +2,6 @@ import { expect } from '@storybook/jest';
 import type { Meta, StoryObj } from '@storybook/react';
 import { within } from '@storybook/testing-library';
 
-import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 
 import { BuildIcon } from '../icons';

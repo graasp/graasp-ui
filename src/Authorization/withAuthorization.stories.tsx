@@ -1,7 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import React from 'react';
-
 import { CompleteMember } from '@graasp/sdk';
 
 import { BuildIcon } from '../icons';

@@ -4,7 +4,7 @@ import TreeItem from '@mui/lab/TreeItem';
 import TreeView from '@mui/lab/TreeView';
 import Skeleton from '@mui/material/Skeleton';
 
-import React, { FC, useState } from 'react';
+import { FC, useState } from 'react';
 import type { UseQueryResult } from 'react-query';
 
 import { DiscriminatedItem } from '@graasp/sdk';

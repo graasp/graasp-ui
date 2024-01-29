@@ -1,8 +1,6 @@
 import { SxProps } from '@mui/material';
 import Skeleton, { SkeletonProps } from '@mui/material/Skeleton';
 
-import React, { FC } from 'react';
-
 import { ThumbnailSizeType } from '@graasp/sdk';
 
 import { StyledImage } from '../StyledComponents/StyledBaseComponents';
@@ -37,7 +35,7 @@ type ThumbnailProps = {
   variant?: SkeletonProps['variant'];
 };
 
-const Thumbnail: FC<ThumbnailProps> = ({
+const Thumbnail = ({
   id,
   url,
   defaultComponent,
@@ -47,7 +45,7 @@ const Thumbnail: FC<ThumbnailProps> = ({
   maxHeight = '100%',
   variant = Variant.RECT,
   isLoading = false,
-}) => {
+}: ThumbnailProps): JSX.Element | null => {
   if (url) {
     return (
       <StyledImage

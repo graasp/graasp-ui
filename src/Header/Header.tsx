@@ -6,29 +6,27 @@ import Grid from '@mui/material/Grid';
 import IconButton from '@mui/material/IconButton';
 import Toolbar from '@mui/material/Toolbar';
 
-import React, { FC } from 'react';
-
 import { Context } from '@graasp/sdk';
 
 import { CLOSE_DRAWER_LABEL, OPEN_DRAWER_LABEL } from '../labels';
 import { AccentColors, PRIMARY_COLOR } from '../theme';
 
-export const buildHeaderGradient = (color: string): string =>
+const buildHeaderGradient = (color: string): string =>
   `linear-gradient(90deg, ${PRIMARY_COLOR} 0%, ${PRIMARY_COLOR} 35%, ${color} 100%);`;
 
-export type HeaderProps = {
+type Props = {
   context?: `${Context}` | Context;
-  centerContent?: React.ReactElement;
+  centerContent?: JSX.Element;
   handleDrawerOpen?: () => void;
   handleDrawerClose?: () => void;
   hasSidebar?: boolean;
   id?: string;
   menuButtonId?: string;
   isSidebarOpen?: boolean;
-  leftContent?: React.ReactElement;
+  leftContent?: JSX.Element;
   openDrawerAriaLabel?: string;
   closeDrawerAriaLabel?: string;
-  rightContent?: React.ReactElement;
+  rightContent?: JSX.Element;
   sx?: SxProps;
 };
 
@@ -49,7 +47,7 @@ const StyledToolbar = styled(Toolbar)({
   justifyContent: 'space-between',
 });
 
-export const Header: FC<HeaderProps> = ({
+export const Header = ({
   context,
   centerContent,
   menuButtonId,
@@ -63,7 +61,7 @@ export const Header: FC<HeaderProps> = ({
   leftContent,
   rightContent,
   sx,
-}) => {
+}: Props): JSX.Element => {
   const renderMenuIcon = (): JSX.Element | null => {
     if (!hasSidebar) {
       return null;
@@ -96,27 +94,30 @@ export const Header: FC<HeaderProps> = ({
   };
 
   return (
-    <AppBar
-      id={id}
-      position='fixed'
-      sx={{
-        background: context
-          ? buildHeaderGradient(AccentColors[context])
-          : PRIMARY_COLOR,
-        ...sx,
-      }}
-    >
-      <StyledToolbar disableGutters>
-        {renderMenuIcon()}
-        <Grid container>
-          <Grid container justifyContent='space-between' alignItems='center'>
-            <Grid item>{leftContent}</Grid>
-            <Grid item>{centerContent}</Grid>
-            <Grid item>{rightContent}</Grid>
+    <>
+      <AppBar
+        id={id}
+        position='sticky'
+        sx={{
+          background: context
+            ? buildHeaderGradient(AccentColors[context])
+            : PRIMARY_COLOR,
+          ...sx,
+        }}
+      >
+        <StyledToolbar disableGutters>
+          {renderMenuIcon()}
+          <Grid container>
+            <Grid container justifyContent='space-between' alignItems='center'>
+              <Grid item>{leftContent}</Grid>
+              <Grid item>{centerContent}</Grid>
+              <Grid item>{rightContent}</Grid>
+            </Grid>
           </Grid>
-        </Grid>
-      </StyledToolbar>
-    </AppBar>
+        </StyledToolbar>
+      </AppBar>
+      <Toolbar />
+    </>
   );
 };
 

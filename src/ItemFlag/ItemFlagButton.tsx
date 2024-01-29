@@ -2,7 +2,7 @@ import ReportIcon from '@mui/icons-material/Report';
 import { Tooltip } from '@mui/material';
 import IconButton, { IconButtonProps } from '@mui/material/IconButton';
 
-import React, { FC } from 'react';
+import { FC } from 'react';
 
 import { IconSizeVariant } from '../types';
 

@@ -1,7 +1,7 @@
 import BlockIcon from '@mui/icons-material/Block';
 import { Typography } from '@mui/material';
 
-import React, { FC } from 'react';
+import { FC } from 'react';
 
 import { UUID } from '@graasp/sdk';
 

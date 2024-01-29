@@ -1,6 +1,6 @@
 import { Container, Typography, styled } from '@mui/material';
 
-import React, { FC, ReactNode } from 'react';
+import { FC, ReactNode } from 'react';
 
 import Button from '../buttons/Button';
 import ForbiddenText from './ForbiddenText';

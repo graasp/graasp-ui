@@ -6,8 +6,6 @@ import { ColDef } from 'ag-grid-community';
 import 'ag-grid-community/dist/styles/ag-grid.min.css';
 import 'ag-grid-community/dist/styles/ag-theme-material.min.css';
 
-import React from 'react';
-
 import { DeleteButton, EditButton } from '../buttons';
 import { TABLE_CATEGORIES } from '../utils/storybook';
 import Table, { TableProps } from './Table';

@@ -1,7 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import React from 'react';
-
 import { ItemType, MaxWidth, MimeTypes } from '@graasp/sdk';
 
 import { MOCK_MEMBER } from '../utils/fixtures';

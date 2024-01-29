@@ -8,7 +8,7 @@ import {
   Tooltip,
 } from '@mui/material';
 
-import React, { FC, MouseEventHandler } from 'react';
+import { FC, MouseEventHandler } from 'react';
 
 export interface LikeButtonProps {
   ariaLabel: string;

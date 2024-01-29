@@ -2,8 +2,6 @@ import { expect } from '@storybook/jest';
 import type { Meta, StoryObj } from '@storybook/react';
 import { screen, userEvent, within } from '@storybook/testing-library';
 
-import React from 'react';
-
 import { FlagType } from '@graasp/sdk';
 
 import ItemFlagDialog from './ItemFlagDialog';

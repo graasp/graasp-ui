@@ -1,7 +1,7 @@
 import DragIndicatorIcon from '@mui/icons-material/DragIndicator';
 import { Box, styled } from '@mui/material';
 
-import React, { FC, useEffect, useRef } from 'react';
+import { FC, useEffect, useRef } from 'react';
 
 const StyledDragIndicatorIcon = styled(DragIndicatorIcon)({
   '&:hover': {

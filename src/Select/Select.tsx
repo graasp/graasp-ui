@@ -2,8 +2,6 @@ import { FormControl, InputLabel, SxProps } from '@mui/material';
 import MenuItem from '@mui/material/MenuItem';
 import MuiSelect, { SelectProps as MuiSelectProps } from '@mui/material/Select';
 
-import React from 'react';
-
 type Props<T> = {
   buildOptionId?: (v: T) => string;
   className?: string;
