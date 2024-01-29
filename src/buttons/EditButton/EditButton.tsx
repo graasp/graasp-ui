@@ -1,5 +1,5 @@
 import EditIcon from '@mui/icons-material/Edit';
-import { ListItemIcon, MenuItem } from '@mui/material';
+import { ListItemIcon, ListItemText, MenuItem } from '@mui/material';
 import IconButton, { IconButtonProps } from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 
@@ -12,7 +12,7 @@ export type Props = {
   className?: string;
   ariaLabel?: string;
   onClick?: MouseEventHandler;
-  tooltip?: string;
+  title?: string;
   size?: IconButtonProps['size'];
   type?: ActionButtonVariant;
 };
@@ -22,24 +22,24 @@ const EditButton: FC<Props> = ({
   className,
   ariaLabel,
   onClick,
-  tooltip = 'Edit',
+  title = 'Edit',
   size = 'small',
-  type = 'icon',
+  type = ActionButton.ICON_BUTTON,
 }) => {
   switch (type) {
     case ActionButton.MENU_ITEM:
       return (
-        <MenuItem key={tooltip} onClick={onClick} id={id} className={className}>
+        <MenuItem key={title} onClick={onClick} id={id} className={className}>
           <ListItemIcon>
             <EditIcon />
           </ListItemIcon>
-          {tooltip}
+          <ListItemText>{title}</ListItemText>
         </MenuItem>
       );
     case ActionButton.ICON_BUTTON:
     default:
       return (
-        <Tooltip title={tooltip}>
+        <Tooltip title={title}>
           <span>
             <IconButton
               id={id}

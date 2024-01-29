@@ -1,6 +1,6 @@
 import CloseIcon from '@mui/icons-material/Close';
 import Groups from '@mui/icons-material/Groups';
-import { ListItemIcon, MenuItem } from '@mui/material';
+import { ListItemIcon, ListItemText, MenuItem } from '@mui/material';
 import IconButton, { IconButtonProps } from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 
@@ -27,20 +27,16 @@ const ShareButton: FC<Props> = ({
   id,
   onClick,
   size,
-  type = 'icon',
+  type = ActionButton.ICON_BUTTON,
 }) => {
   switch (type) {
     case ActionButton.MENU_ITEM:
       return (
-        <MenuItem
-          key={tooltip}
-          {...(onClick && { onClick })}
-          className={className}
-        >
+        <MenuItem key={tooltip} className={className} onClick={onClick}>
           <ListItemIcon>
             <Groups />
           </ListItemIcon>
-          {tooltip}
+          <ListItemText>{tooltip}</ListItemText>
         </MenuItem>
       );
     case ActionButton.ICON_BUTTON:
