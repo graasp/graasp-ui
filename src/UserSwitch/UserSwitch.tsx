@@ -7,13 +7,7 @@ import Skeleton from '@mui/material/Skeleton';
 import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
 
-import React, {
-  FC,
-  MouseEvent,
-  MouseEventHandler,
-  ReactElement,
-  useState,
-} from 'react';
+import { MouseEventHandler, ReactElement, useState } from 'react';
 
 import { CompleteMember, Member, isPseudonymizedMember } from '@graasp/sdk';
 
@@ -30,7 +24,7 @@ const StyledWrapper = styled(Box)(() => ({
   },
 }));
 
-interface Props {
+type Props = {
   Actions?: JSX.Element | JSX.Element[];
   buildMemberMenuItemId?: (id: string) => string;
   ButtonContent?: JSX.Element;
@@ -42,9 +36,9 @@ interface Props {
   onMemberClick?: (_id: string) => MouseEventHandler;
   renderAvatar?: (member?: CompleteMember | null) => JSX.Element;
   signedOutTooltipText?: string;
-}
+};
 
-const UserSwitch: FC<Props> = ({
+const UserSwitch = ({
   Actions,
   ButtonContent,
   buttonId,
@@ -53,7 +47,7 @@ const UserSwitch: FC<Props> = ({
   menuId,
   renderAvatar = () => <></>,
   signedOutTooltipText = 'You are not signed in.',
-}) => {
+}: Props): JSX.Element => {
   const [anchorEl, setAnchorEl] = useState<(EventTarget & Element) | null>(
     null,
   );
@@ -64,7 +58,7 @@ const UserSwitch: FC<Props> = ({
 
   const memberName = currentMember?.name;
 
-  const handleClick: MouseEventHandler = (event: MouseEvent) => {
+  const handleClick: MouseEventHandler = (event) => {
     setAnchorEl(event.currentTarget);
   };
 

@@ -7,12 +7,12 @@ export const PRIMARY_COLOR = '#5050d2';
 export const SECONDARY_COLOR = '#FFFFFF';
 
 export const AccentColors: { [K in Context]: string } = {
-  [Context.Builder]: '#1ecaa5',
-  [Context.Player]: '#009eff',
-  [Context.Library]: '#9300c6',
-  [Context.Analytics]: '#0707a3',
-  [Context.Account]: '#e3dc31',
-  [Context.Unknown]: '#1ecaa5',
+  [Context.Builder]: '#00C38B',
+  [Context.Player]: '#56B0F8',
+  [Context.Library]: '#C658D0',
+  [Context.Analytics]: '#FA5B7D',
+  [Context.Account]: '#F2C955',
+  [Context.Unknown]: PRIMARY_COLOR,
 } as const;
 
 export const theme = createTheme({

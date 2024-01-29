@@ -4,8 +4,6 @@ import { userEvent, within } from '@storybook/testing-library';
 
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 
-import React from 'react';
-
 import { TABLE_CATEGORIES } from '../../utils/storybook';
 import MenuItem from './MenuItem';
 

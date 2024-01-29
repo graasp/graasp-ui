@@ -5,7 +5,7 @@ import IconButton from '@mui/material/IconButton';
 import ListItem from '@mui/material/ListItem';
 import ListItemSecondaryAction from '@mui/material/ListItemSecondaryAction';
 
-import React, { FC } from 'react';
+import { FC } from 'react';
 
 import { DEFAULT_DIRECTION, DRAWER_HEADER_HEIGHT } from '../constants';
 

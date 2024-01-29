@@ -4,8 +4,6 @@ import AcUnitIcon from '@mui/icons-material/AcUnit';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 
-import React from 'react';
-
 import { TABLE_CATEGORIES } from '../utils/storybook';
 import MainMenu from './MainMenu';
 import MenuItem from './MenuItem';

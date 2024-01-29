@@ -1,6 +1,6 @@
 import * as uuid from 'uuid';
 
-import React, { FC, useEffect, useRef } from 'react';
+import { FC, useEffect, useRef } from 'react';
 
 import withCollapse from '../Collapse/withCollapse';
 

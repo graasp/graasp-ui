@@ -5,8 +5,6 @@ import UnfoldLess from '@mui/icons-material/UnfoldLess';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { Avatar, AvatarGroup, Tooltip } from '@mui/material';
 
-import React from 'react';
-
 import { ThumbnailSize } from '@graasp/sdk';
 
 import { LibraryIcon } from '../icons';

@@ -6,7 +6,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import List from '@mui/material/List';
 import Typography from '@mui/material/Typography';
 
-import React, { FC, useState } from 'react';
+import { FC, useState } from 'react';
 
 import { FlagType } from '@graasp/sdk';
 

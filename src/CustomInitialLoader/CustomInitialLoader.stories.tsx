@@ -1,7 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import React from 'react';
-
 import CustomInitialLoader from './CustomInitialLoader';
 
 const meta: Meta<typeof CustomInitialLoader> = {

@@ -5,8 +5,6 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 import Typography from '@mui/material/Typography';
 
-import React from 'react';
-
 import { MenuItem } from '../MainMenu';
 import { TABLE_CATEGORIES } from '../utils/storybook';
 import Sidebar from './Sidebar';

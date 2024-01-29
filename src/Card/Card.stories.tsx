@@ -4,8 +4,6 @@ import AcUnitIcon from '@mui/icons-material/AcUnit';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import IconButton from '@mui/material/IconButton';
 
-import React from 'react';
-
 import ItemBadges from '../ItemBadges/ItemBadges';
 import { TABLE_CATEGORIES } from '../utils/storybook';
 import Card from './Card';

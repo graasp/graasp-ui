@@ -4,7 +4,7 @@ import Skeleton from '@mui/material/Skeleton';
 import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
 
-import React, { AriaAttributes, FC, MouseEventHandler } from 'react';
+import { AriaAttributes, FC, MouseEventHandler } from 'react';
 
 import { UUID } from '@graasp/sdk';
 

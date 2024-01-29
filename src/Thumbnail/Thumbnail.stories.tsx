@@ -1,7 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import React from 'react';
-
 import { TABLE_CATEGORIES } from '../utils/storybook';
 import Thumbnail from './Thumbnail';
 

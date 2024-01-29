@@ -2,8 +2,6 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import { Box } from '@mui/material';
 
-import React from 'react';
-
 import CreativeCommons from '.';
 import { PRIMARY_COLOR } from '../theme';
 import { CCSharing } from '../types';

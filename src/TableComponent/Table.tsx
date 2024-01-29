@@ -17,13 +17,7 @@ import TablePagination, {
   TablePaginationProps,
 } from '@mui/material/TablePagination';
 
-import React, {
-  ReactElement,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
+import { ReactElement, useCallback, useEffect, useRef, useState } from 'react';
 
 import DragCellRenderer from './DragCellRenderer';
 import TableNoRowsContent from './TableNoRowsContent';

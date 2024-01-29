@@ -5,8 +5,6 @@ import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material/styles';
 
-import React from 'react';
-
 import { DiscriminatedItem, ItemType } from '@graasp/sdk';
 
 import ItemMenu, { ItemMenuProps } from './ItemMenu';

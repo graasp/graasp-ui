@@ -25,6 +25,7 @@ const StyledDrawer = styled(Drawer)<SidebarProps>(({ theme, open }) => ({
       duration: theme.transitions.duration.enteringScreen,
     }),
   }),
+  position: 'sticky',
   flexShrink: 0,
   '.MuiDrawer-paper': {
     width: DRAWER_WIDTH,
