@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.5.0](https://github.com/graasp/graasp-ui/compare/v4.4.0...v4.5.0) (2024-01-29)
+
+
+### Features
+
+* add type props to share and edit buttons ([#676](https://github.com/graasp/graasp-ui/issues/676)) ([b7d580a](https://github.com/graasp/graasp-ui/commit/b7d580af710f62fc6f5f88679f771f007aee4d1e))
+* update `Main` component ([#665](https://github.com/graasp/graasp-ui/issues/665)) ([7411a5c](https://github.com/graasp/graasp-ui/commit/7411a5cfdd7104b6974e2b3fc6f0c66ef51f3036))
+
+
+### Bug Fixes
+
+* remove memo and dispaly data first ([#677](https://github.com/graasp/graasp-ui/issues/677)) ([b5b46f4](https://github.com/graasp/graasp-ui/commit/b5b46f49ea94958bb36928ae3ba6cf505e7e3e76))
+
 ## [4.4.0](https://github.com/graasp/graasp-ui/compare/v4.3.1...v4.4.0) (2024-01-24)
 
 
