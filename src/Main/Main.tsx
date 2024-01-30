@@ -116,7 +116,7 @@ const MainWithDrawer = ({
   }, [openOverride]);
 
   return (
-    <Box height='100vh' overflow='scroll'>
+    <Box height='100vh' overflow='scroll' display='flex' flexDirection='column'>
       <CssBaseline />
       <AppBar
         id={headerId}
