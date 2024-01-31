@@ -12,6 +12,7 @@ import { useEffect, useState } from 'react';
 
 import { Context } from '@graasp/sdk';
 
+import { useMobileView } from '../hooks';
 import { AccentColors, PRIMARY_COLOR } from '../theme';
 import LogoHeader from './LogoHeader';
 
@@ -101,7 +102,9 @@ const MainWithDrawer = ({
   LinkComponent,
   PlatformComponent,
 }: Props): JSX.Element => {
-  const [open, setOpen] = useState(true);
+  const { isMobile } = useMobileView();
+  // default is open on desktop and closed on mobile
+  const [open, setOpen] = useState(!isMobile);
 
   const handleDrawerClose = (): void => {
     setOpen(false);
