@@ -8,11 +8,11 @@ import IconButton from '@mui/material/IconButton';
 import Toolbar from '@mui/material/Toolbar';
 import { styled } from '@mui/material/styles';
 
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 import { Context } from '@graasp/sdk';
 
-import { useMobileView } from '../hooks';
+import { useMainMenuOpenContext } from '../MainMenu/hooks';
 import { AccentColors, PRIMARY_COLOR } from '../theme';
 import LogoHeader from './LogoHeader';
 
@@ -96,15 +96,13 @@ const MainWithDrawer = ({
   children,
   headerLeftContent,
   headerRightContent,
-  open: openOverride = false,
+  open: openOverride,
   headerId,
   drawerOpenAriaLabel,
   LinkComponent,
   PlatformComponent,
 }: Props): JSX.Element => {
-  const { isMobile } = useMobileView();
-  // default is open on desktop and closed on mobile
-  const [open, setOpen] = useState(!isMobile);
+  const { open, setOpen } = useMainMenuOpenContext();
 
   const handleDrawerClose = (): void => {
     setOpen(false);
@@ -115,7 +113,9 @@ const MainWithDrawer = ({
   };
 
   useEffect(() => {
-    setOpen(openOverride);
+    if (openOverride !== undefined) {
+      setOpen(openOverride);
+    }
   }, [openOverride]);
 
   return (

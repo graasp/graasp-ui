@@ -5,6 +5,9 @@ import ListItemText from '@mui/material/ListItemText';
 
 import { FC, ReactElement, SyntheticEvent } from 'react';
 
+import { useMobileView } from '../../hooks';
+import { useMainMenuOpenContext } from '../hooks';
+
 export interface MenuItemProps {
   icon?: ReactElement;
   id?: string;
@@ -24,9 +27,23 @@ export const MenuItem: FC<MenuItemProps> = ({
   selected,
   disabled,
 }) => {
+  const { setOpen } = useMainMenuOpenContext();
+  const { isMobile } = useMobileView();
+
+  const onNavigate = (): void => {
+    if (isMobile) {
+      setOpen(false);
+    }
+    onClick?.();
+  };
+
   return (
     <ListItem disablePadding key={key} id={id}>
-      <ListItemButton onClick={onClick} disabled={disabled} selected={selected}>
+      <ListItemButton
+        onClick={onNavigate}
+        disabled={disabled}
+        selected={selected}
+      >
         {icon && <ListItemIcon>{icon}</ListItemIcon>}
         {text && <ListItemText primary={text} />}
       </ListItemButton>
