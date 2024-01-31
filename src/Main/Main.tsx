@@ -12,7 +12,10 @@ import { useEffect } from 'react';
 
 import { Context } from '@graasp/sdk';
 
-import { useMainMenuOpenContext } from '../MainMenu/hooks';
+import {
+  MainMenuOpenContextProvider,
+  useMainMenuOpenContext,
+} from '../MainMenu/hooks';
 import { AccentColors, PRIMARY_COLOR } from '../theme';
 import LogoHeader from './LogoHeader';
 
@@ -90,7 +93,7 @@ type Props = {
   drawerOpenAriaLabel: string;
 };
 
-const MainWithDrawer = ({
+const MainWithDrawerContent = ({
   context,
   drawerContent,
   children,
@@ -119,7 +122,7 @@ const MainWithDrawer = ({
   }, [openOverride]);
 
   return (
-    <Box height='100vh' overflow='scroll' display='flex' flexDirection='column'>
+    <>
       <CssBaseline />
       <AppBar
         id={headerId}
@@ -199,8 +202,18 @@ const MainWithDrawer = ({
       </Box>
       <Toolbar />
       <StyledMain open={open}>{children}</StyledMain>
-    </Box>
+    </>
   );
 };
 
-export default MainWithDrawer;
+// this wrapper is necessary because we use the `useMainMenuOpenContext` in the
+// Content and we need to define the provider before using the hook.
+const MainWithDrawerWrapper = (props: Props): JSX.Element => (
+  <Box height='100vh' overflow='scroll' display='flex' flexDirection='column'>
+    <MainMenuOpenContextProvider>
+      <MainWithDrawerContent {...props} />
+    </MainMenuOpenContextProvider>
+  </Box>
+);
+
+export default MainWithDrawerWrapper;

@@ -8,7 +8,9 @@ type MainMenuOpenContextType = {
 };
 const MainMenuOpenContext = createContext<MainMenuOpenContextType>({
   open: true,
-  setOpen: () => null,
+  setOpen: () => {
+    console.error('No Provider found for this context. Check your tree');
+  },
 });
 
 export const MainMenuOpenContextProvider = ({
