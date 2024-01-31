@@ -24,7 +24,10 @@ const DRAWER_WIDTH = 240;
 const buildHeaderGradient = (color: string): string =>
   `linear-gradient(90deg, ${PRIMARY_COLOR} 35%, ${color} 100%);`;
 
-const StyledMain = styled('main')<{ open: boolean }>(({ theme, open }) => ({
+const StyledMain = styled('main', {
+  shouldForwardProp: (prop) => prop !== 'open',
+})<{ open: boolean }>(({ theme, open }) => ({
+  position: 'relative',
   flexGrow: 1,
   // create transition for width and margin property
   transition: theme.transitions.create(['width', 'margin'], {
