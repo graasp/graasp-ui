@@ -6,6 +6,16 @@ import {
   useReactTable,
 } from '@tanstack/react-table';
 
+import { CheckBox } from '@mui/icons-material';
+import DragIndicatorIcon from '@mui/icons-material/DragIndicator';
+import { TableBody } from '@mui/material';
+import Table from '@mui/material/Table';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TablePagination from '@mui/material/TablePagination';
+import TableRow from '@mui/material/TableRow';
+
 import React from 'react';
 // we could replace dnd with this https://docs.dndkit.com
 import { DndProvider, useDrag, useDrop } from 'react-dnd';
@@ -13,16 +23,20 @@ import { HTML5Backend } from 'react-dnd-html5-backend';
 
 type DraggableRowProps<T> = {
   row: Row<T>;
-  reorderRow: (draggedRowIndex: number, targetRowIndex: number) => void;
+  onDrop: (draggedRowIndex: number, targetRowIndex: number) => void;
+  isMovable?: boolean;
+  showCheckbox?: boolean;
 };
 
 const DraggableRow = <T extends object>({
   row,
-  reorderRow,
+  onDrop,
+  isMovable = false,
+  showCheckbox = false,
 }: DraggableRowProps<T>): JSX.Element => {
   const [{ isOver }, dropRef] = useDrop({
     accept: 'row',
-    drop: (draggedRow: Row<T>) => reorderRow(draggedRow.index, row.index),
+    drop: (draggedRow: Row<T>) => onDrop(draggedRow.index, row.index),
     collect: (monitor) => ({
       isOver: !!monitor.isOver(),
     }),
@@ -37,36 +51,49 @@ const DraggableRow = <T extends object>({
   });
 
   return (
-    <tr
+    <TableRow
       ref={previewRef} //previewRef could go here
       style={{
         opacity: isDragging ? 0.5 : 1,
         background: isOver ? 'lightgrey' : 'transparent',
       }}
     >
-      <td ref={dropRef}>
-        <button style={{ cursor: 'move' }} ref={dragRef}>
-          m
-        </button>
-      </td>
+      {isMovable && (
+        <TableCell sx={{ p: 1 }} ref={dropRef}>
+          <span style={{ cursor: 'move' }} ref={dragRef}>
+            <DragIndicatorIcon fontSize='small' />
+          </span>
+        </TableCell>
+      )}
+      {showCheckbox && (
+        <TableCell>
+          <CheckBox />
+        </TableCell>
+      )}
       {row.getVisibleCells().map((cell) => (
-        <td key={cell.id}>
+        <TableCell sx={{ p: 1 }} key={cell.id}>
           {flexRender(cell.column.columnDef.cell, cell.getContext())}
-        </td>
+        </TableCell>
       ))}
-    </tr>
+    </TableRow>
   );
 };
 
-type InBetweenProps = {
+type InBetweenProps<T> = {
   colSpan: number;
+  idx: number;
+  onDrop: DraggableRowProps<T>['onDrop'];
 };
 
-const InBetween = ({ colSpan }: InBetweenProps): JSX.Element => {
+const InBetween = <T,>({
+  colSpan,
+  idx,
+  onDrop,
+}: InBetweenProps<T>): JSX.Element => {
   const [{ isOver }, drop] = useDrop(
     () => ({
       accept: 'row',
-      drop: () => console.log('drop'),
+      drop: (draggedRow: Row<T>) => onDrop(draggedRow.index, idx),
       canDrop: () => true,
       collect: (monitor) => ({
         isOver: !!monitor.isOver(),
@@ -77,38 +104,70 @@ const InBetween = ({ colSpan }: InBetweenProps): JSX.Element => {
   );
 
   return (
-    <tr ref={drop}>
-      {!isOver && <td colSpan={colSpan} style={{ height: 10 }} />}
-      {isOver && (
-        <td colSpan={colSpan} style={{ height: 10, background: 'green' }} />
+    <TableRow ref={drop}>
+      {!isOver && (
+        <TableCell colSpan={colSpan} style={{ padding: 0, height: 5 }} />
       )}
-    </tr>
+      {isOver && (
+        <TableCell
+          colSpan={colSpan}
+          sx={{ background: 'green', height: 5, padding: 0 }}
+          padding='none'
+        />
+      )}
+    </TableRow>
   );
 };
 
 type Props<T> = {
-  initialData: T[];
+  data: T[];
   columns: ColumnDef<T>[];
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   getRowId?: (row: any) => string;
-  onReorder?: () => Promise<void>;
   sx: React.CSSProperties;
+  onDropBetweenRow?: DraggableRowProps<T>['onDrop'];
+  onDropInRow?: DraggableRowProps<T>['onDrop'];
+  page: number;
+  pageSize: number;
+  onPageChange?: (newPage: number) => void;
+  isMovable?: boolean;
+  showCheckbox?: boolean;
 };
 
 const NewTable = <T extends object>({
-  initialData,
+  data,
   columns,
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   getRowId = (row: any) => row.userId,
   sx = {},
+  onDropInRow: onDropInRowFn,
+  onDropBetweenRow: onDropBetweenRowFn,
+  page,
+  pageSize,
+  onPageChange,
+  isMovable = false,
+  showCheckbox = false,
 }: Props<T>): JSX.Element => {
-  const [data, setData] = React.useState(initialData);
+  console.log(data);
 
   // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-  const reorderRow = (draggedRowIndex: number, targetRowIndex: number) => {
+  const handleChangePage = (_event: unknown, newPage: number) => {
+    onPageChange?.(newPage);
+  };
+
+  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+  const onDropInRow = (draggedRowIndex: number, targetRowIndex: number) => {
     console.log('move into');
-    data.splice(targetRowIndex, 0, data.splice(draggedRowIndex, 1)[0]);
-    setData([...data]);
+    onDropInRowFn?.(draggedRowIndex, targetRowIndex);
+  };
+
+  const onDropBetweenRow = (
+    draggedRowIndex: number,
+    targetRowIndex: number,
+    // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+  ) => {
+    console.log('move into');
+    onDropBetweenRowFn?.(draggedRowIndex, targetRowIndex);
   };
 
   const table = useReactTable({
@@ -121,40 +180,66 @@ const NewTable = <T extends object>({
     debugColumns: true,
   });
 
+  const indentIdx = isMovable || showCheckbox ? 1 : 0;
+
   return (
     <DndProvider backend={HTML5Backend}>
-      <table style={{ width: '100%', ...sx }}>
-        <thead>
-          {table.getHeaderGroups().map((headerGroup) => (
-            <>
-              <tr key={headerGroup.id}>
-                <th />
+      <TableContainer>
+        <Table style={{ width: '100%', ...sx }}>
+          <TableHead>
+            {table.getHeaderGroups().map((headerGroup) => (
+              <TableRow key={headerGroup.id}>
+                {/* one row for moving or checkbox*/}
+                {(isMovable || showCheckbox) && <TableCell width={1} />}
                 {headerGroup.headers.map((header) => (
-                  <th key={header.id} colSpan={header.colSpan}>
+                  <TableCell
+                    key={header.id}
+                    colSpan={header.colSpan}
+                    sx={{ fontWeight: 'bold' }}
+                  >
                     {header.isPlaceholder
                       ? null
                       : flexRender(
                           header.column.columnDef.header,
                           header.getContext(),
                         )}
-                  </th>
+                  </TableCell>
                 ))}
-              </tr>
-            </>
-          ))}
-        </thead>
-        <tbody>
-          {/* + 1 for the reorder column */}
-          <InBetween colSpan={columns.length + 1} />
-          {table.getRowModel().rows.map((row) => (
-            <>
-              <DraggableRow key={row.id} row={row} reorderRow={reorderRow} />
-              {/* + 1 for the reorder column */}
-              <InBetween colSpan={columns.length + 1} />
-            </>
-          ))}
-        </tbody>
-      </table>
+              </TableRow>
+            ))}
+          </TableHead>
+          <TableBody>
+            <InBetween
+              colSpan={columns.length + indentIdx}
+              idx={0}
+              onDrop={onDropBetweenRow}
+            />
+            {table.getRowModel().rows.map((row, idx) => (
+              <>
+                <DraggableRow
+                  isMovable={isMovable}
+                  key={row.id}
+                  row={row}
+                  onDrop={onDropInRow}
+                />
+                <InBetween
+                  colSpan={columns.length + indentIdx}
+                  idx={idx + indentIdx}
+                  onDrop={onDropBetweenRow}
+                />
+              </>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+      <TablePagination
+        component='div'
+        count={data.length}
+        rowsPerPage={pageSize}
+        rowsPerPageOptions={[]}
+        page={page}
+        onPageChange={handleChangePage}
+      />
     </DndProvider>
   );
 };

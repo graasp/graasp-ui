@@ -12,10 +12,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@adobe/css-tools@npm:^4.3.1, @adobe/css-tools@npm:^4.3.2":
+"@adobe/css-tools@npm:^4.3.1":
   version: 4.3.3
   resolution: "@adobe/css-tools@npm:4.3.3"
   checksum: 10/0e77057efb4e18182560855503066b75edca98671be327d3f8a7ae89ec3da6821e693114b55225909fca00d7e7ed8422f3d79d71fe95dd4d5df1f2026a9fda02
+  languageName: node
+  linkType: hard
+
+"@adobe/css-tools@npm:^4.3.2":
+  version: 4.3.2
+  resolution: "@adobe/css-tools@npm:4.3.2"
+  checksum: 10/973dcb7ba5141f57ec726ddec2e94e8947361bb0c5f0e8ebd1e8aa3a84b28e66db4ad843908825f99730d59784ff3c43868b014a7268676a65950cdb850c42cc
   languageName: node
   linkType: hard
 
@@ -2733,7 +2740,7 @@ __metadata:
     "@storybook/test-runner": "npm:0.17.0"
     "@storybook/testing-library": "npm:0.2.2"
     "@tanstack/react-query": "npm:4.36.1"
-    "@tanstack/react-table": "npm:8.11.3"
+    "@tanstack/react-table": "npm:8.16.0"
     "@testing-library/jest-dom": "npm:6.4.2"
     "@testing-library/react": "npm:15.0.6"
     "@testing-library/user-event": "npm:14.5.2"
@@ -4953,22 +4960,22 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tanstack/react-table@npm:8.11.3":
-  version: 8.11.3
-  resolution: "@tanstack/react-table@npm:8.11.3"
+"@tanstack/react-table@npm:8.16.0":
+  version: 8.16.0
+  resolution: "@tanstack/react-table@npm:8.16.0"
   dependencies:
-    "@tanstack/table-core": "npm:8.11.3"
+    "@tanstack/table-core": "npm:8.16.0"
   peerDependencies:
-    react: ">=16"
-    react-dom: ">=16"
-  checksum: 10/0b6377fb5d8c519542990c300d9ceca4c3c2260e71ee18d118d36c25e641576ec3d6126cbd8e67213758cfe2c652fae49ff6f9d097ddbab49d65434ad1933c0f
+    react: ">=16.8"
+    react-dom: ">=16.8"
+  checksum: 10/c67b928f0a5ac21a3ac939594ac27e4548a4227997483a6598094cd7250154c5029fc2fadafb4bfb8297ad484c5fa48e2be6068ce65951679b96cf9995941e8c
   languageName: node
   linkType: hard
 
-"@tanstack/table-core@npm:8.11.3":
-  version: 8.11.3
-  resolution: "@tanstack/table-core@npm:8.11.3"
-  checksum: 10/a7d9721b380a2388698326b9870f4322058054f7ab4fa404323c18afc55374bc2403339a03df44eeaad4b2d82e7d8e72a46cd2c5c18a02c7ca495a55b87da7bd
+"@tanstack/table-core@npm:8.16.0":
+  version: 8.16.0
+  resolution: "@tanstack/table-core@npm:8.16.0"
+  checksum: 10/3a5fb94ec1d8e265d2d2a62e845c56b0124fd8afb96b7ee32df3d42a15538b2f6db816d0ae489841b7362fb21dd2f4d3bb44c945c8e365e246659e5052942183
   languageName: node
   linkType: hard
 

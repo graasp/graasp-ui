@@ -6,11 +6,13 @@ import { ColumnDef } from '@tanstack/react-table';
 import 'ag-grid-community/dist/styles/ag-grid.min.css';
 import 'ag-grid-community/dist/styles/ag-theme-material.min.css';
 
+import React from 'react';
+
 import NewTable from './NewTable';
 
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 const range = (len: number) => {
-  const arr = [];
+  const arr: number[] = [];
   for (let i = 0; i < len; i++) {
     arr.push(i);
   }
@@ -35,7 +37,7 @@ const columns: ColumnDef<Person>[] = [
     accessorFn: (row) => row.lastName,
     id: 'lastName',
     cell: (info) => info.getValue(),
-    header: <span>Last Name</span>,
+    header: () => <span>Last Name</span>,
   },
   {
     accessorFn: (row) => row.age,
@@ -45,7 +47,7 @@ const columns: ColumnDef<Person>[] = [
   {
     accessorFn: (row) => row.visits,
     accessorKey: 'visits',
-    header: <span>Visits</span>,
+    header: () => <span>Visits</span>,
   },
 ];
 const newPerson = (): Person => {
@@ -63,57 +65,12 @@ export const makeData = (...lens: number[]) => {
   const makeDataLevel = (depth = 0): Person[] => {
     const len = lens[depth]!;
     return range(len).map((): Person => {
-      return {
-        ...newPerson(),
-        subRows: lens[depth + 1] ? makeDataLevel(depth + 1) : undefined,
-      };
+      return newPerson();
     });
   };
 
   return makeDataLevel();
 };
-
-// const rowData = [
-//   {
-//     id: 1,
-//     name: 'name 1',
-//     type: 'file',
-//     updatedAt: '2023-09-06T11:50:32.894Z',
-//   },
-//   { id: 2, name: 'name 2', type: 'h5p', updatedAt: '2023-09-06T11:50:32.894Z' },
-//   {
-//     id: 3,
-//     name: 'name 3 is a very long file name ',
-//     type: 'folder',
-//     updatedAt: '2023-09-06T11:50:32.894Z',
-//   },
-//   {
-//     id: 1,
-//     name: 'name 4',
-//     type: 'file',
-//     updatedAt: '2023-09-06T11:50:32.894Z',
-//   },
-//   { id: 2, name: 'name 5', type: 'h5p', updatedAt: '2023-09-06T11:50:32.894Z' },
-//   {
-//     id: 3,
-//     name: 'name 6',
-//     type: 'folder',
-//     updatedAt: '2023-09-06T11:50:32.894Z',
-//   },
-//   {
-//     id: 1,
-//     name: 'name 7',
-//     type: 'file',
-//     updatedAt: '2023-09-06T11:50:32.894Z',
-//   },
-//   { id: 2, name: 'name 8', type: 'h5p', updatedAt: '2023-09-06T11:50:32.894Z' },
-//   {
-//     id: 3,
-//     name: 'name 9',
-//     type: 'folder',
-//     updatedAt: '2023-09-06T11:50:32.894Z',
-//   },
-// ];
 
 const meta: Meta<typeof NewTable> = {
   title: 'Common/NewTable',
@@ -190,8 +147,14 @@ type Story = StoryObj<typeof NewTable>;
 
 export const Simple: Story = {
   args: {
-    columns,
-    initialData: makeData(6),
+    // ts issue
+    // https://github.com/TanStack/table/issues/4382
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    columns: columns as any,
+    pageSize: 6,
+    page: 0,
+    data: makeData(6),
+    isMovable: true,
     // tableHeight: 300,
     // columnDefs: [
     //   {
@@ -233,43 +196,42 @@ export const Simple: Story = {
     // ],
     // rowData,
   },
-};
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
 
-Simple.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
+    // we need to wait a lot because it is ag grid that triggers
+    await waitFor(async () => {
+      await expect(canvas.getAllByRole('row')).toBeTruthy();
+    });
 
-  // we need to wait a lot because it is ag grid that triggers
-  await waitFor(async () => {
-    await expect(canvas.getAllByRole('row')).toBeTruthy();
-  });
+    await waitFor(async () => {
+      await expect(canvas.getByText('name 1')).toBeTruthy();
+    });
+    // check mouse onclick trigger event
+    //   await userEvent.click(canvas.getByText('name 1'));
+    //   await waitFor(async () => {
+    //     await expect(args.onCellClicked).toHaveBeenCalledTimes(1);
+    //   });
 
-  await waitFor(async () => {
-    await expect(canvas.getByText('name 1')).toBeTruthy();
-  });
-  // check mouse onclick trigger event
-  //   await userEvent.click(canvas.getByText('name 1'));
-  //   await waitFor(async () => {
-  //     await expect(args.onCellClicked).toHaveBeenCalledTimes(1);
-  //   });
+    //   // check keyboard navigation
+    //   await userEvent.keyboard('{Tab}{Enter}');
+    //   await waitFor(async () => {
+    //     await expect(args.onCellClicked).toHaveBeenCalledTimes(2);
+    //   });
 
-  //   // check keyboard navigation
-  //   await userEvent.keyboard('{Tab}{Enter}');
-  //   await waitFor(async () => {
-  //     await expect(args.onCellClicked).toHaveBeenCalledTimes(2);
-  //   });
+    //   await userEvent.keyboard('{Tab}{Enter}');
+    //   await waitFor(async () => {
+    //     await expect(args.onCellClicked).toHaveBeenCalledTimes(3);
+    //   });
 
-  //   await userEvent.keyboard('{Tab}{Enter}');
-  //   await waitFor(async () => {
-  //     await expect(args.onCellClicked).toHaveBeenCalledTimes(3);
-  //   });
+    //   await userEvent.keyboard('{Tab}{Enter}');
+    //   await waitFor(async () => {
+    //     await expect(args.onCellClicked).toHaveBeenCalledTimes(4);
+    //   });
 
-  //   await userEvent.keyboard('{Tab}{Enter}');
-  //   await waitFor(async () => {
-  //     await expect(args.onCellClicked).toHaveBeenCalledTimes(4);
-  //   });
-
-  // ag grid does not simulate the tab navigation correctly
-  // so we cannot test inner navigation
+    // ag grid does not simulate the tab navigation correctly
+    // so we cannot test inner navigation
+  },
 };
 
 // export const SimpleWithDrag: Story = {
