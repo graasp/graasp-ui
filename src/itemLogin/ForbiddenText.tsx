@@ -1,5 +1,5 @@
 import BlockIcon from '@mui/icons-material/Block';
-import { Typography } from '@mui/material';
+import { Stack, Typography } from '@mui/material';
 
 import { FC } from 'react';
 
@@ -17,15 +17,10 @@ const ForbiddenText: FC<ForbiddenTextProps> = ({
   text = FORBIDDEN_TEXT,
 }) => {
   return (
-    <Typography
-      id={id}
-      variant='h4'
-      align='center'
-      sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-    >
+    <Stack id={id} direction='row' alignItems='center' justifyContent='center'>
       <BlockIcon fontSize='large' sx={{ mr: 1 }} />
-      {text}
-    </Typography>
+      <Typography variant='h4'>{text}</Typography>
+    </Stack>
   );
 };
 

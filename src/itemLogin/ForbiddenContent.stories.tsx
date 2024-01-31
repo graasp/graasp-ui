@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { TABLE_CATEGORIES } from '../utils/storybook';
 import ForbiddenContent from './ForbiddenContent';
 
-const meta: Meta<typeof ForbiddenContent> = {
+const meta = {
   title: 'Common/ForbiddenContent',
   component: ForbiddenContent,
 
@@ -13,28 +13,25 @@ const meta: Meta<typeof ForbiddenContent> = {
         category: TABLE_CATEGORIES.SELECTORS,
       },
     },
+    forbiddenTextId: {
+      table: {
+        category: TABLE_CATEGORIES.SELECTORS,
+      },
+    },
   },
-};
-
+} satisfies Meta<typeof ForbiddenContent>;
 export default meta;
 
-type Story = StoryObj<typeof ForbiddenContent>;
+type Story = StoryObj<typeof meta>;
 
-export const SignedIn: Story = {
+export const SignedIn = {
   args: {
     memberId: 'member-id',
   },
-};
+} satisfies Story;
 
-export const SignedOut: Story = {
+export const SignedOut = {
   args: {
     memberId: undefined,
   },
-};
-
-export const SignedOutShowPseudonymized: Story = {
-  args: {
-    showPseudonymized: true,
-    memberId: 'member-id',
-  },
-};
+} satisfies Story;
