@@ -9,17 +9,30 @@ import { FORBIDDEN_TEXT } from './constants';
 
 export interface ForbiddenTextProps {
   id?: UUID;
-  text?: string;
+  title?: string;
+  helperText?: string;
 }
 
 const ForbiddenText: FC<ForbiddenTextProps> = ({
   id,
-  text = FORBIDDEN_TEXT,
+  title = FORBIDDEN_TEXT,
+  helperText,
 }) => {
   return (
-    <Stack id={id} direction='row' alignItems='center' justifyContent='center'>
-      <BlockIcon fontSize='large' sx={{ mr: 1 }} />
-      <Typography variant='h4'>{text}</Typography>
+    <Stack
+      id={id}
+      direction='row'
+      alignItems='flex-start'
+      justifyContent='center'
+      spacing={1}
+    >
+      <BlockIcon
+        sx={{ alignSelf: 'stretch', height: '100%', aspectRatio: 1 }}
+      />
+      <Stack direction='column'>
+        <Typography variant='h4'>{title}</Typography>
+        <Typography color='text.secondary'>{helperText}</Typography>
+      </Stack>
     </Stack>
   );
 };

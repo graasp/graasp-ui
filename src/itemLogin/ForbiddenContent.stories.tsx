@@ -13,11 +13,6 @@ const meta = {
         category: TABLE_CATEGORIES.SELECTORS,
       },
     },
-    forbiddenTextId: {
-      table: {
-        category: TABLE_CATEGORIES.SELECTORS,
-      },
-    },
   },
 } satisfies Meta<typeof ForbiddenContent>;
 export default meta;
@@ -33,5 +28,16 @@ export const SignedIn = {
 export const SignedOut = {
   args: {
     memberId: undefined,
+  },
+} satisfies Story;
+
+export const Mobile = {
+  args: {
+    memberId: 'member-id',
+  },
+  parameters: {
+    viewport: {
+      defaultViewport: 'mobile2',
+    },
   },
 } satisfies Story;
