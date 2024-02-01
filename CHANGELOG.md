@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.5.1](https://github.com/graasp/graasp-ui/compare/v4.5.0...v4.5.1) (2024-02-01)
+
+
+### Bug Fixes
+
+* open and dismiss menu and add relative position to content wrapper ([#685](https://github.com/graasp/graasp-ui/issues/685)) ([4956584](https://github.com/graasp/graasp-ui/commit/4956584f92472280828663befbaa977c101955fb))
+* update main with flex box ([#682](https://github.com/graasp/graasp-ui/issues/682)) ([fd8ef67](https://github.com/graasp/graasp-ui/commit/fd8ef67475e9bb83fb53bf960b613ea34cbad700))
+
 ## [4.5.0](https://github.com/graasp/graasp-ui/compare/v4.4.0...v4.5.0) (2024-01-29)
 
 
