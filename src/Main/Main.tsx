@@ -8,10 +8,14 @@ import IconButton from '@mui/material/IconButton';
 import Toolbar from '@mui/material/Toolbar';
 import { styled } from '@mui/material/styles';
 
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 import { Context } from '@graasp/sdk';
 
+import {
+  MainMenuOpenContextProvider,
+  useMainMenuOpenContext,
+} from '../MainMenu/hooks';
 import { AccentColors, PRIMARY_COLOR } from '../theme';
 import LogoHeader from './LogoHeader';
 
@@ -20,7 +24,10 @@ const DRAWER_WIDTH = 240;
 const buildHeaderGradient = (color: string): string =>
   `linear-gradient(90deg, ${PRIMARY_COLOR} 35%, ${color} 100%);`;
 
-const StyledMain = styled('main')<{ open: boolean }>(({ theme, open }) => ({
+const StyledMain = styled('main', {
+  shouldForwardProp: (prop) => prop !== 'open',
+})<{ open: boolean }>(({ theme, open }) => ({
+  position: 'relative',
   flexGrow: 1,
   // create transition for width and margin property
   transition: theme.transitions.create(['width', 'margin'], {
@@ -89,19 +96,19 @@ type Props = {
   drawerOpenAriaLabel: string;
 };
 
-const MainWithDrawer = ({
+const MainWithDrawerContent = ({
   context,
   drawerContent,
   children,
   headerLeftContent,
   headerRightContent,
-  open: openOverride = false,
+  open: openOverride,
   headerId,
   drawerOpenAriaLabel,
   LinkComponent,
   PlatformComponent,
 }: Props): JSX.Element => {
-  const [open, setOpen] = useState(true);
+  const { open, setOpen } = useMainMenuOpenContext();
 
   const handleDrawerClose = (): void => {
     setOpen(false);
@@ -112,11 +119,13 @@ const MainWithDrawer = ({
   };
 
   useEffect(() => {
-    setOpen(openOverride);
+    if (openOverride !== undefined) {
+      setOpen(openOverride);
+    }
   }, [openOverride]);
 
   return (
-    <Box height='100vh' overflow='scroll' display='flex' flexDirection='column'>
+    <>
       <CssBaseline />
       <AppBar
         id={headerId}
@@ -196,8 +205,18 @@ const MainWithDrawer = ({
       </Box>
       <Toolbar />
       <StyledMain open={open}>{children}</StyledMain>
-    </Box>
+    </>
   );
 };
 
-export default MainWithDrawer;
+// this wrapper is necessary because we use the `useMainMenuOpenContext` in the
+// Content and we need to define the provider before using the hook.
+const MainWithDrawerWrapper = (props: Props): JSX.Element => (
+  <Box height='100vh' overflow='scroll' display='flex' flexDirection='column'>
+    <MainMenuOpenContextProvider>
+      <MainWithDrawerContent {...props} />
+    </MainMenuOpenContextProvider>
+  </Box>
+);
+
+export default MainWithDrawerWrapper;
