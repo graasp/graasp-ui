@@ -1,12 +1,14 @@
 import truncate from 'lodash.truncate';
 
-import { SxProps } from '@mui/material';
+import { SvgIconTypeMap, SxProps } from '@mui/material';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material/styles';
+import { OverridableComponent } from '@mui/types';
 
 import { DiscriminatedItem, ItemType } from '@graasp/sdk';
 
+import ItemActionsMenu from './ItemActionsMenu';
 import ItemMenu, { ItemMenuProps } from './ItemMenu';
 import { CenterAlignWrapper, ITEM_NAME_MAX_LENGTH, StyledLink } from './utils';
 
@@ -15,7 +17,10 @@ const StyledBreadcrumbs = styled(Breadcrumbs)(({ theme }) => ({
     textIndent: -theme.typography.fontSize,
   },
 }));
-
+export interface ItemAction {
+  name: string;
+  path: string;
+}
 export type NavigationProps = {
   backgroundColor?: string;
   buildBreadcrumbsItemLinkId?: (id: string) => string;
@@ -30,6 +35,9 @@ export type NavigationProps = {
   sx?: SxProps;
   useChildren: ItemMenuProps['useChildren'];
   maxItems?: number;
+  itemActionTitle?: string;
+  ItemActionIcon?: OverridableComponent<SvgIconTypeMap>;
+  itemActions?: ItemAction[];
 };
 
 const Navigation = ({
@@ -46,6 +54,9 @@ const Navigation = ({
   useChildren,
   buildMenuId,
   maxItems = 4,
+  itemActionTitle = '',
+  ItemActionIcon,
+  itemActions = [],
 }: NavigationProps): JSX.Element | null => {
   const renderParents = (): JSX.Element[] | undefined =>
     // need to convert otherwise it returns List<Element>
@@ -96,6 +107,20 @@ const Navigation = ({
       </CenterAlignWrapper>
     );
   };
+  const renderItemActions = (): JSX.Element | null => {
+    if (!item) {
+      return null;
+    }
+
+    return (
+      <CenterAlignWrapper>
+        {ItemActionIcon && <ItemActionIcon />}
+        <Typography>{itemActionTitle}</Typography>
+
+        <ItemActionsMenu itemActions={itemActions} />
+      </CenterAlignWrapper>
+    );
+  };
 
   return (
     <StyledBreadcrumbs
@@ -109,6 +134,7 @@ const Navigation = ({
       <CenterAlignWrapper>{renderRoot?.(item)}</CenterAlignWrapper>
       {item?.id && renderParents()}
       {item?.id && renderCurrentItem()}
+      {itemActions.length > 0 && renderItemActions()}
     </StyledBreadcrumbs>
   );
 };
