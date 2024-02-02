@@ -36,21 +36,18 @@ export interface ItemIconProps {
    * item type
    */
   type: UnionOfConst<typeof ItemType> | 'upload';
+  /**
+   * An HTML Color to usa for the foreground of the icon
+   */
   color?: string;
   /**
-   * item extra
+   * @deprecated Use the `mimetype` prop.
+   * To extract the mimetype from the item extra use the `getMimeType` function exported from @graasp/sdk
+   * Item extra used to define the mimetype
    */
   extra?: LocalFileItemExtra | S3FileItemExtra;
   mimetype?: string;
-  /**
-   * @deprecated use sx
-   * */
-  iconClass?: string;
   iconSrc?: string;
-  /**
-   * @deprecated use alt
-   */
-  name?: string;
   sx?: SxProps;
 }
 
@@ -59,7 +56,6 @@ const ItemIcon: FC<ItemIconProps> = ({
   extra,
   mimetype: defaultMimetype,
   iconSrc,
-  name,
   alt = '',
   sx,
   type,
@@ -73,8 +69,9 @@ const ItemIcon: FC<ItemIconProps> = ({
           // icons should be squared
           maxHeight: ITEM_ICON_MAX_SIZE,
           maxWidth: ITEM_ICON_MAX_SIZE,
+          ...sx,
         }}
-        alt={name ?? alt}
+        alt={alt}
         src={iconSrc}
       />
     );
