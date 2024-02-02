@@ -96,7 +96,7 @@ const Navigation = ({
             {truncate(item.name, { length: ITEM_NAME_MAX_LENGTH })}
           </Typography>
         </StyledLink>
-        {item.type === ItemType.FOLDER && (
+        {(item.type === ItemType.FOLDER || extraItems?.length) && (
           <ItemMenu
             useChildren={useChildren}
             itemId={item.id}
@@ -104,6 +104,7 @@ const Navigation = ({
             buildIconId={buildIconId}
             buildMenuItemId={buildMenuItemId}
             buildMenuId={buildMenuId}
+            renderArrow={Boolean(extraItems?.length)}
           />
         )}
       </CenterAlignWrapper>
