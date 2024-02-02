@@ -16,6 +16,7 @@ export type ItemMenuProps = {
   icon?: JSX.Element;
   itemId: string;
   useChildren: (...args: unknown[]) => UseQueryResult<DiscriminatedItem[]>;
+  renderArrow?: boolean;
 };
 
 const ItemMenu = ({
@@ -26,6 +27,7 @@ const ItemMenu = ({
   icon = Separator,
   itemId,
   useChildren,
+  renderArrow,
 }: ItemMenuProps): JSX.Element | null => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -40,10 +42,13 @@ const ItemMenu = ({
     setAnchorEl(null);
   };
 
+  if (!items?.length && renderArrow) {
+    // to display icon as a separator specially if there's an extra items after items menu
+    return icon;
+  }
   if (!items?.length) {
     return null;
   }
-
   return (
     <>
       <StyledIconButton
