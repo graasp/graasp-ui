@@ -117,25 +117,22 @@ const Navigation = ({
 
     return extraItems.map(({ Icon, name, path, menuItems }) => (
       <CenterAlignWrapper>
-        {path ? (
-          // margin set to -2 as menu list has a default style for text indent with the same value, So to align menu items with this box menu item
-          <Box display='flex' gap={2} ml={-2}>
-            {Icon && <Icon />}
+        {/* margin set to -2 as menu list has a default style for text indent
+        with the same value, So to align menu items with this box menu item */}
+        <Box display='flex' gap={2} ml={-2}>
+          {Icon && <Icon />}
+          {path ? (
             <StyledLink to={path}>
               <Typography>
                 {truncate(name, { length: ITEM_NAME_MAX_LENGTH })}
               </Typography>
             </StyledLink>
-          </Box>
-        ) : (
-          <Box display='flex' gap={2} ml={-2}>
-            {Icon && <Icon />}
+          ) : (
             <Typography>
               {truncate(name, { length: ITEM_NAME_MAX_LENGTH })}
             </Typography>
-          </Box>
-        )}
-
+          )}
+        </Box>
         {menuItems && menuItems.length > 0 && (
           <ItemActionsMenu menuItems={menuItems} name={name} />
         )}
