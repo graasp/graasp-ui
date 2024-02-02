@@ -28,7 +28,7 @@ import {
 import { StyledImage } from '../StyledComponents/StyledBaseComponents';
 import EtherpadIcon from './EtherpadIcon';
 
-const ITEM_ICON_MAX_SIZE = 25;
+const MAX_ICON_SIZE = '25px';
 
 export interface ItemIconProps {
   alt: string;
@@ -42,13 +42,14 @@ export interface ItemIconProps {
   color?: string;
   /**
    * @deprecated Use the `mimetype` prop.
-   * To extract the mimetype from the item extra use the `getMimeType` function exported from @graasp/sdk
+   * To extract the mimetype from the item extra use the `getMimetype` function exported from @graasp/sdk
    * Item extra used to define the mimetype
    */
   extra?: LocalFileItemExtra | S3FileItemExtra;
   mimetype?: string;
   iconSrc?: string;
   sx?: SxProps;
+  size?: string;
 }
 
 const ItemIcon: FC<ItemIconProps> = ({
@@ -58,6 +59,7 @@ const ItemIcon: FC<ItemIconProps> = ({
   iconSrc,
   alt = '',
   sx,
+  size = MAX_ICON_SIZE,
   type,
 }) => {
   const mimetype = extra ? getMimetype(extra) : defaultMimetype;
@@ -67,8 +69,11 @@ const ItemIcon: FC<ItemIconProps> = ({
       <StyledImage
         sx={{
           // icons should be squared
-          maxHeight: ITEM_ICON_MAX_SIZE,
-          maxWidth: ITEM_ICON_MAX_SIZE,
+          maxHeight: size,
+          maxWidth: size,
+          height: size,
+          width: size,
+          objectFit: 'cover',
           ...sx,
         }}
         alt={alt}
