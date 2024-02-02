@@ -2,6 +2,8 @@ import { expect } from '@storybook/jest';
 import type { Meta, StoryObj } from '@storybook/react';
 import { within } from '@storybook/testing-library';
 
+import SettingsIcon from '@mui/icons-material/Settings';
+
 import { BrowserRouter } from 'react-router-dom';
 
 import { ItemType, LocalFileItemType, MimeTypes } from '@graasp/sdk';
@@ -194,5 +196,61 @@ export const FileWithParents: Story = {
 
     // 4 = 2 parents + 2 x Home
     expect(canvas.getAllByTestId(dataTestId)).toHaveLength(4);
+  },
+};
+
+const extraItems = [
+  {
+    name: 'Settings',
+    path: '/settings',
+    Icon: SettingsIcon,
+    menuItems: [
+      { name: 'Information', path: '/info' },
+      { name: 'Settings', path: '/settings' },
+      { name: 'Publish', path: '/publish' },
+    ],
+  },
+];
+
+export const FolderWithParentsWithExtraItems: Story = {
+  args: {
+    buildToItemPath,
+    useChildren,
+    item: folder,
+    maxItems: 10,
+    renderRoot: () => {
+      return (
+        <>
+          <HomeMenu selected={menu[0]} elements={menu} />
+          <ItemMenu
+            itemId={item.id}
+            useChildren={() => {
+              return {
+                data: [buildItem('Home item 1'), buildItem('Home item 2')],
+              } as UseChildrenHookType;
+            }}
+            buildToItemPath={buildToItemPath}
+          />
+        </>
+      );
+    },
+    parents,
+    extraItems,
+  },
+
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+
+    // current item
+    expect(canvas.getByText(folder.name)).toBeInTheDocument();
+
+    // check parents
+    for (const p of parents) {
+      const b = canvas.getByText(p!.name);
+      expect(b).toBeInTheDocument();
+    }
+
+    // 4 = 2 parents + 2 x Home + current item is a folder + 1 extra item
+    expect(canvas.getAllByTestId(dataTestId)).toHaveLength(6);
   },
 };

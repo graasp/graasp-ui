@@ -3,18 +3,24 @@ import { IconButtonProps, Menu, MenuItem, Typography } from '@mui/material';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { ItemAction } from './Navigation';
+import { MenuItemType } from './Navigation';
 import { Separator, StyledIconButton } from './utils';
 
-export type ItemActionsMenuProps = {
+export type ExtraItemsMenuProps = {
   icon?: JSX.Element;
-  itemActions: ItemAction[];
+  menuItems: MenuItemType[];
+  buildIconId?: (id: string) => string;
+  buildMenuId?: (itemId: string) => string;
+  name: string;
 };
 
-const ItemActionsMenu = ({
+const ExtraItemsMenu = ({
   icon = Separator,
-  itemActions,
-}: ItemActionsMenuProps): JSX.Element => {
+  menuItems,
+  buildIconId,
+  buildMenuId,
+  name,
+}: ExtraItemsMenuProps): JSX.Element => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const handleClick: IconButtonProps['onClick'] = (event) => {
@@ -30,6 +36,7 @@ const ItemActionsMenu = ({
       <StyledIconButton
         onClick={handleClick}
         aria-haspopup='true'
+        id={buildIconId?.(name)}
         aria-expanded={open ? true : undefined}
       >
         {icon}
@@ -37,6 +44,7 @@ const ItemActionsMenu = ({
       <Menu
         anchorEl={anchorEl}
         open={open}
+        id={buildMenuId?.(name)}
         onClose={handleClose}
         onClick={handleClose}
         anchorOrigin={{
@@ -48,7 +56,7 @@ const ItemActionsMenu = ({
           horizontal: 'left',
         }}
       >
-        {itemActions?.map(({ name, path }) => (
+        {menuItems?.map(({ name, path }) => (
           <MenuItem key={name} component={Link} to={path}>
             <Typography>{name}</Typography>
           </MenuItem>
@@ -58,4 +66,4 @@ const ItemActionsMenu = ({
   );
 };
 
-export default ItemActionsMenu;
+export default ExtraItemsMenu;

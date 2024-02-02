@@ -1,6 +1,6 @@
 import truncate from 'lodash.truncate';
 
-import { SvgIconTypeMap, SxProps } from '@mui/material';
+import { Box, SvgIconTypeMap, SxProps } from '@mui/material';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material/styles';
@@ -8,7 +8,7 @@ import { OverridableComponent } from '@mui/types';
 
 import { DiscriminatedItem, ItemType } from '@graasp/sdk';
 
-import ItemActionsMenu from './ItemActionsMenu';
+import ItemActionsMenu from './ExtraItemsMenu';
 import ItemMenu, { ItemMenuProps } from './ItemMenu';
 import { CenterAlignWrapper, ITEM_NAME_MAX_LENGTH, StyledLink } from './utils';
 
@@ -17,10 +17,7 @@ const StyledBreadcrumbs = styled(Breadcrumbs)(({ theme }) => ({
     textIndent: -theme.typography.fontSize,
   },
 }));
-export interface ItemAction {
-  name: string;
-  path: string;
-}
+
 export type NavigationProps = {
   backgroundColor?: string;
   buildBreadcrumbsItemLinkId?: (id: string) => string;
@@ -35,11 +32,18 @@ export type NavigationProps = {
   sx?: SxProps;
   useChildren: ItemMenuProps['useChildren'];
   maxItems?: number;
-  itemActionTitle?: string;
-  ItemActionIcon?: OverridableComponent<SvgIconTypeMap>;
-  itemActions?: ItemAction[];
+  extraItems?: ExtraItem[];
 };
-
+export interface MenuItemType {
+  name: string;
+  path: string;
+}
+export interface ExtraItem {
+  name: string;
+  path?: string;
+  Icon?: OverridableComponent<SvgIconTypeMap>;
+  menuItems?: MenuItemType[];
+}
 const Navigation = ({
   backgroundColor,
   buildBreadcrumbsItemLinkId,
@@ -54,9 +58,7 @@ const Navigation = ({
   useChildren,
   buildMenuId,
   maxItems = 4,
-  itemActionTitle = '',
-  ItemActionIcon,
-  itemActions = [],
+  extraItems,
 }: NavigationProps): JSX.Element | null => {
   const renderParents = (): JSX.Element[] | undefined =>
     // need to convert otherwise it returns List<Element>
@@ -107,19 +109,38 @@ const Navigation = ({
       </CenterAlignWrapper>
     );
   };
-  const renderItemActions = (): JSX.Element | null => {
-    if (!item) {
+
+  const renderExtraItems = (): JSX.Element[] | null => {
+    if (!extraItems) {
       return null;
     }
 
-    return (
+    return extraItems.map(({ Icon, name, path, menuItems }) => (
       <CenterAlignWrapper>
-        {ItemActionIcon && <ItemActionIcon />}
-        <Typography>{itemActionTitle}</Typography>
+        {path ? (
+          // margin set to -2 as menu list has a default style for text indent with the same value, So to align menu items with this box menu item
+          <Box display='flex' gap={2} ml={-2}>
+            {Icon && <Icon />}
+            <StyledLink to={path}>
+              <Typography>
+                {truncate(name, { length: ITEM_NAME_MAX_LENGTH })}
+              </Typography>
+            </StyledLink>
+          </Box>
+        ) : (
+          <Box display='flex' gap={2} ml={-2}>
+            {Icon && <Icon />}
+            <Typography>
+              {truncate(name, { length: ITEM_NAME_MAX_LENGTH })}
+            </Typography>
+          </Box>
+        )}
 
-        <ItemActionsMenu itemActions={itemActions} />
+        {menuItems && menuItems.length > 0 && (
+          <ItemActionsMenu menuItems={menuItems} name={name} />
+        )}
       </CenterAlignWrapper>
-    );
+    ));
   };
 
   return (
@@ -134,7 +155,7 @@ const Navigation = ({
       <CenterAlignWrapper>{renderRoot?.(item)}</CenterAlignWrapper>
       {item?.id && renderParents()}
       {item?.id && renderCurrentItem()}
-      {itemActions.length > 0 && renderItemActions()}
+      {renderExtraItems()}
     </StyledBreadcrumbs>
   );
 };
