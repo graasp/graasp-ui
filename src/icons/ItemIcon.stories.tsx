@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { ItemType, MimeTypes, S3FileItemExtra } from '@graasp/sdk';
+import { ItemType, MimeTypes } from '@graasp/sdk';
 
 import { TABLE_CATEGORIES } from '../utils/storybook';
 import ItemIcon from './ItemIcon';
@@ -128,11 +128,6 @@ export const FancyImage: Story = {
     type: ItemType.S3_FILE,
     color: 'red',
     sx: { fontSize: '3rem' },
-    extra: {
-      [ItemType.S3_FILE]: {
-        name: '',
-        mimetype: MimeTypes.Image.JPEG,
-      },
-    } as S3FileItemExtra,
+    mimetype: MimeTypes.Image.JPEG,
   },
 };
