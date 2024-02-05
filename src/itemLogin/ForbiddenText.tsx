@@ -1,5 +1,5 @@
 import BlockIcon from '@mui/icons-material/Block';
-import { Typography } from '@mui/material';
+import { Stack, Typography } from '@mui/material';
 
 import { FC } from 'react';
 
@@ -9,23 +9,31 @@ import { FORBIDDEN_TEXT } from './constants';
 
 export interface ForbiddenTextProps {
   id?: UUID;
-  text?: string;
+  title?: string;
+  helperText?: string;
 }
 
 const ForbiddenText: FC<ForbiddenTextProps> = ({
   id,
-  text = FORBIDDEN_TEXT,
+  title = FORBIDDEN_TEXT,
+  helperText,
 }) => {
   return (
-    <Typography
+    <Stack
       id={id}
-      variant='h4'
-      align='center'
-      sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+      direction='row'
+      alignItems='flex-start'
+      justifyContent='center'
+      spacing={1}
     >
-      <BlockIcon fontSize='large' sx={{ mr: 1 }} />
-      {text}
-    </Typography>
+      <BlockIcon
+        sx={{ alignSelf: 'stretch', height: '100%', aspectRatio: 1 }}
+      />
+      <Stack direction='column'>
+        <Typography variant='h4'>{title}</Typography>
+        <Typography color='text.secondary'>{helperText}</Typography>
+      </Stack>
+    </Stack>
   );
 };
 
