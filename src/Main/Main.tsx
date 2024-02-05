@@ -212,7 +212,7 @@ const MainWithDrawerContent = ({
 // this wrapper is necessary because we use the `useMainMenuOpenContext` in the
 // Content and we need to define the provider before using the hook.
 const MainWithDrawerWrapper = (props: Props): JSX.Element => (
-  <Box height='100vh' overflow='scroll' display='flex' flexDirection='column'>
+  <Box height='100vh' overflow='auto' display='flex' flexDirection='column'>
     <MainMenuOpenContextProvider>
       <MainWithDrawerContent {...props} />
     </MainMenuOpenContextProvider>
