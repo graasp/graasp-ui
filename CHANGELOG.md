@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.6.1](https://github.com/graasp/graasp-ui/compare/v4.6.0...v4.6.1) (2024-02-06)
+
+
+### Bug Fixes
+
+* use given icon component ([#695](https://github.com/graasp/graasp-ui/issues/695)) ([fe18e69](https://github.com/graasp/graasp-ui/commit/fe18e693bb6bab6d9b3c8e1a3e56fdcfef333b80))
+
 ## [4.6.0](https://github.com/graasp/graasp-ui/compare/v4.5.1...v4.6.0) (2024-02-06)
 
 
