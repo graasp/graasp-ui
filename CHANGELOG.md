@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.6.0](https://github.com/graasp/graasp-ui/compare/v4.5.1...v4.6.0) (2024-02-06)
+
+
+### Features
+
+* navigator render extra item ([#688](https://github.com/graasp/graasp-ui/issues/688)) ([2458c90](https://github.com/graasp/graasp-ui/commit/2458c90c9490b7a3a8f052f05e6edac1c6836356))
+
+
+### Bug Fixes
+
+* update forbiddenContent ([#684](https://github.com/graasp/graasp-ui/issues/684)) ([16d19e3](https://github.com/graasp/graasp-ui/commit/16d19e3d8f7401fa1a1d29fd4c583e1f8cd36b6a))
+* use `overflow: auto` instead of `overflow: scroll` ([#691](https://github.com/graasp/graasp-ui/issues/691)) ([7c9cad1](https://github.com/graasp/graasp-ui/commit/7c9cad1c0072924d234b15622451bfd218fe96e4))
+
 ## [4.5.1](https://github.com/graasp/graasp-ui/compare/v4.5.0...v4.5.1) (2024-02-01)
 
 
