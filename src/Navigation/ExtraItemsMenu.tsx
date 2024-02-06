@@ -1,39 +1,28 @@
 import { IconButtonProps, Menu, MenuItem, Typography } from '@mui/material';
 
 import React from 'react';
-import type { UseQueryResult } from 'react-query';
 import { Link } from 'react-router-dom';
 
-import { DiscriminatedItem } from '@graasp/sdk';
-
+import { MenuItemType } from './Navigation';
 import { Separator, StyledIconButton } from './utils';
 
-export type ItemMenuProps = {
+export type ExtraItemsMenuProps = {
+  icon?: JSX.Element;
+  menuItems: MenuItemType[];
   buildIconId?: (id: string) => string;
   buildMenuId?: (itemId: string) => string;
-  buildMenuItemId?: (itemId: string) => string;
-  buildToItemPath: (itemId: string) => string;
-  icon?: JSX.Element;
-  itemId: string;
-  useChildren: (...args: unknown[]) => UseQueryResult<DiscriminatedItem[]>;
-  renderArrow?: boolean;
+  name: string;
 };
 
-const ItemMenu = ({
+const ExtraItemsMenu = ({
+  icon = Separator,
+  menuItems,
   buildIconId,
   buildMenuId,
-  buildMenuItemId,
-  buildToItemPath,
-  icon = Separator,
-  itemId,
-  useChildren,
-  renderArrow,
-}: ItemMenuProps): JSX.Element | null => {
+  name,
+}: ExtraItemsMenuProps): JSX.Element => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
-
-  const { data: items } = useChildren(itemId);
-
   const handleClick: IconButtonProps['onClick'] = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -42,28 +31,20 @@ const ItemMenu = ({
     setAnchorEl(null);
   };
 
-  if (!items?.length && renderArrow) {
-    // to display icon as a separator specially if there's an extra items after items menu
-    return icon;
-  }
-  if (!items?.length) {
-    return null;
-  }
   return (
     <>
       <StyledIconButton
         onClick={handleClick}
-        id={buildIconId?.(itemId)}
-        aria-controls={open ? buildMenuId?.(itemId) : undefined}
         aria-haspopup='true'
+        id={buildIconId?.(name)}
         aria-expanded={open ? true : undefined}
       >
         {icon}
       </StyledIconButton>
       <Menu
         anchorEl={anchorEl}
-        id={buildMenuId?.(itemId)}
         open={open}
+        id={buildMenuId?.(name)}
         onClose={handleClose}
         onClick={handleClose}
         anchorOrigin={{
@@ -75,13 +56,8 @@ const ItemMenu = ({
           horizontal: 'left',
         }}
       >
-        {items?.map(({ name, id }) => (
-          <MenuItem
-            id={buildMenuItemId?.(id)}
-            key={id}
-            component={Link}
-            to={buildToItemPath(id)}
-          >
+        {menuItems?.map(({ name, path }) => (
+          <MenuItem key={name} component={Link} to={path}>
             <Typography>{name}</Typography>
           </MenuItem>
         ))}
@@ -90,4 +66,4 @@ const ItemMenu = ({
   );
 };
 
-export default ItemMenu;
+export default ExtraItemsMenu;
