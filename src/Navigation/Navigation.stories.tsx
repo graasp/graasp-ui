@@ -203,7 +203,7 @@ const extraItems = [
   {
     name: 'Settings',
     path: '/settings',
-    Icon: SettingsIcon,
+    icon: <SettingsIcon />,
     menuItems: [
       { name: 'Information', path: '/info' },
       { name: 'Settings', path: '/settings' },
