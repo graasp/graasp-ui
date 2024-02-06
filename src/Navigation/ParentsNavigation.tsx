@@ -5,7 +5,8 @@ import { Stack, Typography } from '@mui/material';
 import { DiscriminatedItem } from '@graasp/sdk';
 
 import ItemMenu, { ItemMenuProps } from './ItemMenu';
-import { ITEM_NAME_MAX_LENGTH, StyledLink } from './utils';
+import NavigationLink from './common/NavigationLink';
+import { ITEM_NAME_MAX_LENGTH } from './common/constants';
 
 export interface ParentsProps {
   parents: DiscriminatedItem[];
@@ -24,14 +25,14 @@ const ParentsNavigation = ({
       <Stack key={id}>
         <Stack direction='row' alignItems='center' justifyContent='center'>
           <Stack>
-            <StyledLink
+            <NavigationLink
               id={buildBreadcrumbsItemLinkId?.(id)}
               to={buildToItemPath(id)}
             >
               <Typography>
                 {truncate(name, { length: ITEM_NAME_MAX_LENGTH })}
               </Typography>
-            </StyledLink>
+            </NavigationLink>
           </Stack>
           <Stack>
             <ItemMenu

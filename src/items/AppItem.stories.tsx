@@ -5,20 +5,11 @@ import { within } from '@storybook/testing-library';
 import { ItemType } from '@graasp/sdk';
 
 import { MOCK_MEMBER } from '../utils/fixtures';
-import { TABLE_CATEGORIES } from '../utils/storybook';
 import AppItem from './AppItem';
 
 const meta: Meta<typeof AppItem> = {
   title: 'Items/AppItem',
   component: AppItem,
-
-  argTypes: {
-    saveButtonId: {
-      table: {
-        category: TABLE_CATEGORIES.SELECTORS,
-      },
-    },
-  },
 };
 
 export default meta;

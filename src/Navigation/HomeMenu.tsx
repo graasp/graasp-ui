@@ -7,18 +7,14 @@ import {
   MenuItem,
   MenuProps,
   Typography,
-  styled,
 } from '@mui/material';
 
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Separator = <NavigateNextIcon />;
+import NavigationLink from './common/NavigationLink';
 
-const StyledLink = styled(Link)({
-  textDecoration: 'none',
-  color: 'text.primary',
-});
+const Separator = <NavigateNextIcon />;
 
 type Props = {
   selected: { name: string; id: string; to: string };
@@ -92,9 +88,9 @@ const HomeMenu = ({
           </MenuItem>
         ))}
       </Menu>
-      <StyledLink to={selected.to} key={selected.id}>
+      <NavigationLink to={selected.to} key={selected.id}>
         <Typography>{selected.name}</Typography>
-      </StyledLink>
+      </NavigationLink>
     </>
   );
 };

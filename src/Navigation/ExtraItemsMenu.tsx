@@ -1,10 +1,16 @@
-import { IconButtonProps, Menu, MenuItem, Typography } from '@mui/material';
+import { NavigateNext } from '@mui/icons-material';
+import {
+  IconButton,
+  IconButtonProps,
+  Menu,
+  MenuItem,
+  Typography,
+} from '@mui/material';
 
 import React from 'react';
 import { Link } from 'react-router-dom';
 
 import { MenuItemType } from './Navigation';
-import { Separator, StyledIconButton } from './utils';
 
 export type ExtraItemsMenuProps = {
   icon?: JSX.Element;
@@ -13,6 +19,8 @@ export type ExtraItemsMenuProps = {
   buildMenuId?: (itemId: string) => string;
   name: string;
 };
+
+const Separator = <NavigateNext />;
 
 const ExtraItemsMenu = ({
   icon = Separator,
@@ -33,14 +41,14 @@ const ExtraItemsMenu = ({
 
   return (
     <>
-      <StyledIconButton
+      <IconButton
         onClick={handleClick}
         aria-haspopup='true'
         id={buildIconId?.(name)}
         aria-expanded={open ? true : undefined}
       >
         {icon}
-      </StyledIconButton>
+      </IconButton>
       <Menu
         anchorEl={anchorEl}
         open={open}
