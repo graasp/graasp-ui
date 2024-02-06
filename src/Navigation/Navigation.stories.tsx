@@ -54,7 +54,11 @@ type Story = StoryObj<typeof Navigation>;
 type UseChildrenHookType = ReturnType<ItemMenuProps['useChildren']>;
 
 const item = buildItem('my item');
-const parents = [buildItem('parent 1'), buildItem('parent 2')];
+const parents = [
+  buildItem('parent 1'),
+  buildItem('parent 2'),
+  buildItem('parent 3'),
+];
 const children = [buildItem('child 1'), buildItem('child 2')];
 const useChildren: ItemMenuProps['useChildren'] = (id) => {
   console.debug('show children of ' + id);
