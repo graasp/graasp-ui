@@ -1,5 +1,5 @@
 import { SxProps } from '@mui/material';
-import { default as AvatarComponent } from '@mui/material/Avatar';
+import { Avatar as AvatarComponent } from '@mui/material';
 import { SkeletonProps } from '@mui/material/Skeleton';
 
 import React, { FC } from 'react';
