@@ -30,6 +30,11 @@
       "import": "./dist/table.js",
       "require": "./dist/table.cjs",
       "types": "./dist/table.d.ts"
+    },
+    "./text-editor": {
+      "import": "./dist/text-editor.js",
+      "require": "./dist/text-editor.cjs",
+      "types": "./dist/text-editor.d.ts"
     }
   },
   "engines": {

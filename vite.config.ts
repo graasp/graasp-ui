@@ -13,6 +13,7 @@ export default (): UserConfigExport => {
         entry: [
           resolve(__dirname, 'src/index.ts'),
           resolve(__dirname, 'src/table.ts'),
+          resolve(__dirname, 'src/text-editor.ts'),
         ],
         name: 'graasp-ui',
         formats: ['cjs', 'es'],
