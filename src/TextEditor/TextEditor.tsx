@@ -1,6 +1,3 @@
-// formula dependencies
-import katex from 'katex';
-
 // import 'katex/dist/katex.min.css';
 import { styled } from '@mui/material';
 
@@ -11,13 +8,6 @@ import ReactQuill from 'react-quill';
 import Button from '../buttons/Button';
 import SaveButton from '../buttons/SaveButton';
 
-declare const window: Window &
-  typeof globalThis & {
-    katex: typeof katex;
-  };
-
-window.katex = katex;
-
 const TEXT_EDITOR_TOOLBAR = [
   [{ header: [1, 2, 3, 4, 5, 6, false] }],
   [{ font: [] }],
@@ -25,7 +15,7 @@ const TEXT_EDITOR_TOOLBAR = [
   [{ color: [] }], // default colors depending on theme
   [{ background: [] }], // default colors depending on theme
   [{ align: [] }],
-  [{ list: 'ordered' }, { list: 'bullet' }, 'code-block', 'link', 'formula'],
+  [{ list: 'ordered' }, { list: 'bullet' }, 'code-block', 'link'],
 ];
 
 const TEXT_EDITOR_MIN_HEIGHT = 200;
