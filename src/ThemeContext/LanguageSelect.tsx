@@ -32,7 +32,10 @@ const LanguageSelect = ({
 
   const handleLangSelect = (event: SelectChangeEvent<string>): void => {
     const d = i18n.dir(event.target.value);
-    document.dir = d;
+    // this should be guarded for ssr rendering
+    if (document) {
+      document.dir = d;
+    }
     setDirection?.(d);
     i18n.changeLanguage(event.target.value);
     setLang(event.target.value);

@@ -101,10 +101,6 @@ const LinkItem = ({
 
   const handleLoad = (): void => {
     setIsLoading(false);
-    // TODO: set dynamic height
-    // if (iframeRef?.current?.contentWindow) {
-    //   setHeight(iframeRef.current.contentWindow.document.body.scrollHeight);
-    // }
   };
 
   const renderIframe = (): JSX.Element | null => {
