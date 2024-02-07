@@ -6,7 +6,13 @@ import SettingsIcon from '@mui/icons-material/Settings';
 
 import { BrowserRouter } from 'react-router-dom';
 
-import { ItemType, LocalFileItemType, MimeTypes } from '@graasp/sdk';
+import {
+  DEFAULT_LANG,
+  FolderItemType,
+  ItemType,
+  LocalFileItemType,
+  MimeTypes,
+} from '@graasp/sdk';
 
 import { MOCK_MEMBER } from '../utils/fixtures';
 import HomeMenu from './HomeMenu';
@@ -29,6 +35,7 @@ const buildItem = (name: string): LocalFileItemType => ({
   description: 'my image description',
   path: 'item-path',
   settings: {},
+  lang: DEFAULT_LANG,
   creator: MOCK_MEMBER,
   createdAt: '2023-09-06T11:50:32.894Z',
   updatedAt: '2023-09-06T11:50:32.894Z',
@@ -62,7 +69,7 @@ const useChildren: ItemMenuProps['useChildren'] = (id) => {
 };
 const buildToItemPath = (id: string): string => id;
 const dataTestId = 'NavigateNextIcon';
-const folder = {
+const folder: FolderItemType = {
   id: 'folder-id',
   name: 'folder',
   extra: {
@@ -74,6 +81,7 @@ const folder = {
   description: 'my image description',
   path: 'item-path',
   settings: {},
+  lang: DEFAULT_LANG,
   creator: MOCK_MEMBER,
   createdAt: '2023-09-06T11:50:32.894Z',
   updatedAt: '2023-09-06T11:50:32.894Z',

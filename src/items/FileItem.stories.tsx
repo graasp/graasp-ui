@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { ItemType, MaxWidth, MimeTypes } from '@graasp/sdk';
+import { DEFAULT_LANG, ItemType, MaxWidth, MimeTypes } from '@graasp/sdk';
 
 import { MOCK_MEMBER } from '../utils/fixtures';
 import { TABLE_CATEGORIES } from '../utils/storybook';
@@ -50,6 +50,7 @@ export const Image: Story = {
       description: 'my image description',
       path: 'item-path',
       settings: {},
+      lang: DEFAULT_LANG,
       creator: MOCK_MEMBER,
       createdAt: '2023-09-06T11:50:32.894Z',
       updatedAt: '2023-09-06T11:50:32.894Z',
@@ -84,6 +85,7 @@ export const BigContainedImage: Story = {
       settings: {
         maxWidth: MaxWidth.Small,
       },
+      lang: DEFAULT_LANG,
       creator: MOCK_MEMBER,
       createdAt: '2023-09-06T11:50:32.894Z',
       updatedAt: '2023-09-06T11:50:32.894Z',
@@ -118,6 +120,7 @@ export const SmallContainedImage: Story = {
       settings: {
         maxWidth: MaxWidth.Large,
       },
+      lang: DEFAULT_LANG,
       creator: MOCK_MEMBER,
       createdAt: '2023-09-06T11:50:32.894Z',
       updatedAt: '2023-09-06T11:50:32.894Z',
@@ -151,6 +154,7 @@ export const ImageSVG: Story = {
       description: 'my svg description',
       path: 'item-path',
       settings: {},
+      lang: DEFAULT_LANG,
       creator: MOCK_MEMBER,
       createdAt: '2023-09-06T11:50:32.894Z',
       updatedAt: '2023-09-06T11:50:32.894Z',
@@ -184,6 +188,7 @@ export const ImageWebP: Story = {
       description: 'my webp description',
       path: 'item-path',
       settings: {},
+      lang: DEFAULT_LANG,
       creator: MOCK_MEMBER,
       createdAt: '2023-09-06T11:50:32.894Z',
       updatedAt: '2023-09-06T11:50:32.894Z',
@@ -216,6 +221,7 @@ export const WAVAudio: Story = {
       description: 'my audio description',
       path: 'item-path',
       settings: {},
+      lang: DEFAULT_LANG,
       creator: MOCK_MEMBER,
       createdAt: '2023-09-06T11:50:32.894Z',
       updatedAt: '2023-09-06T11:50:32.894Z',

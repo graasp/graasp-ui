@@ -1,8 +1,9 @@
+import { MOCK_MEMBER } from '@/utils/fixtures';
 import { expect } from '@storybook/jest';
 import type { Meta, StoryObj } from '@storybook/react';
 import { userEvent, within } from '@storybook/testing-library';
 
-import { EmbeddedLinkItemType, ItemType, Member } from '@graasp/sdk';
+import { DEFAULT_LANG, EmbeddedLinkItemType, ItemType } from '@graasp/sdk';
 
 import { TABLE_CATEGORIES } from '../utils/storybook';
 import LinkItem from './LinkItem';
@@ -21,7 +22,8 @@ const item: EmbeddedLinkItemType = {
     },
   },
   settings: {},
-  creator: { id: 'creator-id' } as Member,
+  lang: DEFAULT_LANG,
+  creator: MOCK_MEMBER,
   createdAt: '2023-09-06T11:50:32.894Z',
   updatedAt: '2023-09-06T11:50:32.894Z',
   description: 'my link description',

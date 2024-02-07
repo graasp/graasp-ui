@@ -29,7 +29,7 @@ export * from './Main';
 export { default as DynamicTreeView } from './DynamicTreeView';
 export * from './DynamicTreeView';
 
-export { default as withCollapse } from './Collapse';
+export { default as withCollapse } from './Collapse/withCollapse';
 
 export { default as PermissionedComponent } from './PermissionedComponent';
 
