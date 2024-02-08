@@ -1,4 +1,4 @@
-import { Interweave } from 'interweave';
+import TextDisplay from '@/TextDisplay/TextDisplay';
 
 import { Stack } from '@mui/material';
 
@@ -16,7 +16,7 @@ function withCaption<T extends { description: string | null }>({
       return (
         <Stack>
           {component}
-          <Interweave content={item.description || DEFAULT_ITEM_DESCRIPTION} />
+          <TextDisplay content={item.description || DEFAULT_ITEM_DESCRIPTION} />
         </Stack>
       );
     };

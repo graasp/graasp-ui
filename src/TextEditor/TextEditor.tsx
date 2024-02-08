@@ -6,7 +6,7 @@ import ReactQuill from 'react-quill';
 
 // import 'react-quill/dist/quill.snow.css';
 import Button from '../buttons/Button';
-import SaveButton from '../buttons/SaveButton';
+import SaveButton from '../buttons/SaveButton/SaveButton';
 
 const TEXT_EDITOR_TOOLBAR = [
   [{ header: [1, 2, 3, 4, 5, 6, false] }],
@@ -132,16 +132,10 @@ const TextEditor = ({
       </Div>
       {showActions && edit && (
         <>
-          <Button
-            variant='text'
-            sx={{ m: 1 }}
-            id={cancelButtonId}
-            onClick={onCancelClick}
-          >
+          <Button variant='text' id={cancelButtonId} onClick={onCancelClick}>
             {cancelButtonText}
           </Button>
           <SaveButton
-            sx={{ m: 1 }}
             id={saveButtonId}
             onClick={() => {
               // eslint-disable-next-line no-unused-expressions

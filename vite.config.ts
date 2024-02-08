@@ -1,11 +1,21 @@
 import react from '@vitejs/plugin-react';
 import { resolve } from 'path';
+import { fileURLToPath } from 'url';
 import { UserConfigExport, defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
 
 export default (): UserConfigExport => {
   return defineConfig({
+    server: { open: false },
     plugins: [react(), dts({ tsconfigPath: './tsconfig.build.json' })],
+    resolve: {
+      alias: [
+        {
+          find: '@',
+          replacement: fileURLToPath(new URL('./src', import.meta.url)),
+        },
+      ],
+    },
     build: {
       emptyOutDir: true,
       lib: {

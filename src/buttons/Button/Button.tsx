@@ -1,7 +1,6 @@
-import { SxProps, Theme, styled } from '@mui/material';
-import Button, { ButtonProps } from '@mui/material/Button';
+import { Button, ButtonProps } from '@mui/material';
 
-import React, { AnchorHTMLAttributes, ElementType, FC, ReactNode } from 'react';
+import { AnchorHTMLAttributes, ElementType, ReactNode } from 'react';
 
 export type GraaspButtonProps = {
   autoFocus?: boolean;
@@ -10,7 +9,7 @@ export type GraaspButtonProps = {
    */
   children?: ReactNode;
   /**
-   * classname string
+   * className string
    */
   className?: string;
   color?: ButtonProps['color'];
@@ -29,29 +28,18 @@ export type GraaspButtonProps = {
   /**
    * on click handler
    */
-  onClick?: React.MouseEventHandler<HTMLButtonElement>;
+  onClick?: () => void;
   size?: ButtonProps['size'];
   startIcon?: ReactNode;
-  /**
-   * styles
-   */
-  sx?: SxProps;
   type?: ButtonProps['type'];
   variant?: ButtonProps['variant'];
 } & Pick<AnchorHTMLAttributes<HTMLAnchorElement>, 'href' | 'target'>;
 
-const StyledButton = styled(Button)<ButtonProps | { component?: ElementType }>(
-  ({ theme }: { theme: Theme }) => ({
-    margin: theme.spacing(0),
-  }),
-);
-
-export const GraaspButton: FC<GraaspButtonProps> = ({
+export const GraaspButton = ({
   autoFocus,
   children,
   className,
   color = 'primary',
-  component,
   dataCy,
   disabled = false,
   endIcon,
@@ -60,36 +48,31 @@ export const GraaspButton: FC<GraaspButtonProps> = ({
   onClick,
   size = 'medium',
   startIcon,
-  sx,
   type,
   variant = 'contained',
   href,
   ...other
-}) => {
-  return (
-    <StyledButton
-      autoFocus={autoFocus}
-      className={className}
-      color={color}
-      component={component}
-      data-cy={dataCy}
-      disabled={disabled}
-      endIcon={endIcon}
-      fullWidth={fullWidth}
-      id={id}
-      onClick={onClick}
-      size={size}
-      startIcon={startIcon}
-      sx={sx}
-      type={type}
-      variant={variant}
-      href={href}
-      title={href}
-      {...other}
-    >
-      {children}
-    </StyledButton>
-  );
-};
+}: GraaspButtonProps): JSX.Element => (
+  <Button
+    autoFocus={autoFocus}
+    className={className}
+    color={color}
+    data-cy={dataCy}
+    disabled={disabled}
+    endIcon={endIcon}
+    fullWidth={fullWidth}
+    id={id}
+    onClick={onClick}
+    size={size}
+    startIcon={startIcon}
+    type={type}
+    variant={variant}
+    href={href}
+    title={href}
+    {...other}
+  >
+    {children}
+  </Button>
+);
 
 export default GraaspButton;

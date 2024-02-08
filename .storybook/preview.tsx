@@ -1,6 +1,8 @@
+import { CssBaseline } from '@mui/material';
 import { ThemeProvider } from '@mui/system';
 
 import * as React from 'react';
+import 'react-quill/dist/quill.snow.css';
 
 import { theme } from '../src/theme';
 import './global.css';
@@ -60,6 +62,7 @@ export const decorators = [
           },
         }}
       >
+        <CssBaseline />
         <Story />
       </ThemeProvider>
     );
