@@ -1,24 +1,21 @@
 import ReportIcon from '@mui/icons-material/Report';
-import { Tooltip } from '@mui/material';
-import IconButton, { IconButtonProps } from '@mui/material/IconButton';
+import { IconButton, Tooltip } from '@mui/material';
 
-import { FC } from 'react';
-
-import { IconSizeVariant } from '../types';
+import { ColorVariants, IconSizeVariant } from '../types';
 
 export interface ItemFlagButtonProps {
-  buttonColor?: IconButtonProps['color'];
+  buttonColor?: ColorVariants;
   iconSize?: IconSizeVariant;
   setOpen: (arg: boolean) => void;
   tooltip?: string;
 }
 
-export const ItemFlagButton: FC<ItemFlagButtonProps> = ({
+export const ItemFlagButton = ({
   buttonColor = 'error',
   iconSize = 'large',
   setOpen,
   tooltip = 'Report',
-}) => {
+}: ItemFlagButtonProps): JSX.Element => {
   const openItemFlagDialog = (): void => {
     setOpen(true);
   };

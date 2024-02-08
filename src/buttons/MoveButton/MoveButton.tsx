@@ -1,26 +1,26 @@
 import OpenWith from '@mui/icons-material/OpenWith';
-import IconButton, { IconButtonProps } from '@mui/material/IconButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import MenuItem from '@mui/material/MenuItem';
-import Tooltip from '@mui/material/Tooltip';
+import { IconButton, ListItemIcon, MenuItem, Tooltip } from '@mui/material';
 
-import { FC } from 'react';
-
-import { ActionButton, ActionButtonVariant } from '../../types';
+import {
+  ActionButton,
+  ActionButtonVariant,
+  ColorVariants,
+  IconSizeVariant,
+} from '../../types';
 
 type MoveButtonProps = {
-  color?: IconButtonProps['color'];
+  color?: ColorVariants;
   iconClassName?: string;
   id?: string;
   menuItemClassName?: string;
   onClick?: () => void;
-  size?: IconButtonProps['size'];
+  size?: IconSizeVariant;
   text?: string;
   type?: ActionButtonVariant;
 };
 
-const MoveButton: FC<MoveButtonProps> = ({
-  color = 'default',
+const MoveButton = ({
+  color = 'primary',
   iconClassName,
   id,
   menuItemClassName,
@@ -28,7 +28,7 @@ const MoveButton: FC<MoveButtonProps> = ({
   size,
   text = 'Move',
   type = ActionButton.ICON_BUTTON,
-}) => {
+}: MoveButtonProps): JSX.Element => {
   switch (type) {
     case ActionButton.MENU_ITEM:
       return (

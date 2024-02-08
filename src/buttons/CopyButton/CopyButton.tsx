@@ -1,15 +1,12 @@
 import FilterNone from '@mui/icons-material/FilterNone';
-import IconButton, { IconButtonProps } from '@mui/material/IconButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import MenuItem from '@mui/material/MenuItem';
-import Tooltip from '@mui/material/Tooltip';
+import { IconButton, ListItemIcon, MenuItem, Tooltip } from '@mui/material';
 
 import { MouseEventHandler } from 'react';
 
-import { ActionButton, ActionButtonVariant } from '../../types';
+import { ActionButton, ActionButtonVariant, ColorVariants } from '../../types';
 
 export type Props = {
-  color?: IconButtonProps['color'];
+  color?: ColorVariants;
   iconClassName?: string;
   id?: string;
   menuItemClassName?: string;
@@ -19,7 +16,7 @@ export type Props = {
 };
 
 const CopyButton = ({
-  color = 'default',
+  color = 'primary',
   iconClassName,
   id = '',
   menuItemClassName,

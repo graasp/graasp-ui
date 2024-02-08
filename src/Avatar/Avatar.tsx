@@ -1,8 +1,5 @@
 import { SxProps } from '@mui/material';
-import { Avatar as AvatarComponent } from '@mui/material';
-import { SkeletonProps } from '@mui/material/Skeleton';
-
-import React, { FC } from 'react';
+import { Avatar as AvatarComponent, SkeletonProps } from '@mui/material';
 
 import Thumbnail from '../Thumbnail';
 
@@ -33,7 +30,7 @@ type AvatarProps = {
   variant?: SkeletonProps['variant'];
 };
 
-const Avatar: FC<AvatarProps> = ({
+const Avatar = ({
   sx,
   id,
   alt = 'avatar',
@@ -45,7 +42,7 @@ const Avatar: FC<AvatarProps> = ({
   className,
   // use a random string to trigger default avatar
   url = 'broken-image',
-}) => {
+}: AvatarProps): JSX.Element | null => {
   // no default value wanted and no url and is not loading
   if (!url && component !== 'avatar' && !isLoading) {
     return null;
@@ -77,4 +74,4 @@ const Avatar: FC<AvatarProps> = ({
   );
 };
 
-export default React.memo(Avatar);
+export default Avatar;

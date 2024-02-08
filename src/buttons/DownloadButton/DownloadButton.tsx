@@ -1,14 +1,21 @@
 import GetAppIcon from '@mui/icons-material/GetApp';
-import { CircularProgressProps, IconButton } from '@mui/material';
-import CircularProgress from '@mui/material/CircularProgress';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import MenuItem from '@mui/material/MenuItem';
-import Tooltip, { TooltipProps } from '@mui/material/Tooltip';
+import {
+  CircularProgress,
+  IconButton,
+  ListItemIcon,
+  MenuItem,
+  Tooltip,
+} from '@mui/material';
 
 import { FC, MouseEventHandler } from 'react';
 
 import { DEFAULT_LOADER_SIZE } from '../../constants';
-import { ActionButton, ActionButtonVariant } from '../../types';
+import {
+  ActionButton,
+  ActionButtonVariant,
+  ColorVariants,
+  TooltipPlacement,
+} from '../../types';
 
 export interface DownloadButtonProps {
   ariaLabel: string;
@@ -20,7 +27,7 @@ export interface DownloadButtonProps {
   /**
    * CircularProgress's color
    */
-  loaderColor: CircularProgressProps['color'];
+  loaderColor: ColorVariants;
   /**
    * CircularProgress's size
    */
@@ -32,7 +39,7 @@ export interface DownloadButtonProps {
   /**
    * Tooltip's placement
    */
-  placement?: TooltipProps['placement'];
+  placement?: TooltipPlacement;
   type?: ActionButtonVariant;
 }
 

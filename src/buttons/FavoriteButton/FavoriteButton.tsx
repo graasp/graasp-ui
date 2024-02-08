@@ -2,17 +2,16 @@ import StarIcon from '@mui/icons-material/Star';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import {
   IconButton,
-  IconButtonProps,
+  ListItemIcon,
+  MenuItem,
   SvgIconProps,
   Tooltip,
 } from '@mui/material';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import MenuItem from '@mui/material/MenuItem';
 import { SxProps } from '@mui/material/styles';
 
 import { FC, MouseEventHandler } from 'react';
 
-import { ActionButton, ActionButtonVariant } from '../../types';
+import { ActionButton, ActionButtonVariant, ColorVariants } from '../../types';
 
 const FAVORITE_COLOR = '#ffc107';
 
@@ -21,7 +20,7 @@ export interface FavoriteButtonProps {
   /**
    * IconButton's color
    */
-  color?: IconButtonProps['color'];
+  color?: ColorVariants;
   handleFavorite: MouseEventHandler;
   handleUnfavorite: MouseEventHandler;
   isFavorite?: boolean;

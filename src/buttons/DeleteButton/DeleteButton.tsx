@@ -1,16 +1,13 @@
 import DeleteIcon from '@mui/icons-material/Delete';
-import IconButton, { IconButtonProps } from '@mui/material/IconButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import MenuItem from '@mui/material/MenuItem';
-import Tooltip from '@mui/material/Tooltip';
+import { IconButton, ListItemIcon, MenuItem, Tooltip } from '@mui/material';
 
 import { FC, MouseEventHandler } from 'react';
 
-import { ActionButton, ActionButtonVariant } from '../../types';
+import { ActionButton, ActionButtonVariant, ColorVariants } from '../../types';
 
 export type Props = {
   className?: string;
-  color?: IconButtonProps['color'];
+  color?: ColorVariants;
   id?: string;
   onClick?: MouseEventHandler<HTMLButtonElement | HTMLLIElement>;
   text?: string;
