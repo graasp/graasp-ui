@@ -22,7 +22,6 @@ export type DocumentItemProps = {
   saveButtonText?: string;
   showActions?: boolean;
   showEmpty?: boolean;
-  styles?: React.CSSProperties;
 } & (
   | { showCollapse: true; item: DocumentItemType }
   | { showCollapse?: false; item: Pick<DocumentItemType, 'extra'> }
@@ -31,7 +30,6 @@ export type DocumentItemProps = {
 const DocumentItem: FC<DocumentItemProps> = ({
   cancelButtonId,
   cancelButtonText,
-  edit,
   emptyMessage = 'This document is empty…',
   id,
   item,
@@ -45,7 +43,6 @@ const DocumentItem: FC<DocumentItemProps> = ({
   showActions,
   showEmpty,
   showCollapse,
-  styles,
 }) => {
   let component: JSX.Element;
   const extra = getDocumentExtra(item.extra);
@@ -76,7 +73,6 @@ const DocumentItem: FC<DocumentItemProps> = ({
       <TextEditor
         cancelButtonId={cancelButtonId}
         cancelButtonText={cancelButtonText}
-        edit={edit}
         id={id}
         maxHeight={maxHeight}
         onCancel={onCancel}
@@ -87,15 +83,6 @@ const DocumentItem: FC<DocumentItemProps> = ({
         saveButtonText={saveButtonText}
         showActions={showActions}
         value={extra?.content}
-        styles={
-          // hack: if document is in read mode and has flavor, remove padding
-          edit !== true && extra?.flavor
-            ? {
-                padding: 0,
-                ...styles,
-              }
-            : undefined
-        }
       />,
     );
   }

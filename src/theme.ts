@@ -36,4 +36,9 @@ export const theme = createTheme({
       },
     },
   },
+  typography: {
+    h1: {
+      fontSize: '4rem',
+    },
+  },
 });

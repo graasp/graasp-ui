@@ -1,12 +1,20 @@
-// import 'katex/dist/katex.min.css';
-import { styled } from '@mui/material';
+// formula dependencies
+import katex from 'katex';
 
-import React, { useEffect, useState } from 'react';
+import { Stack, styled } from '@mui/material';
+
+import { useEffect, useState } from 'react';
 import ReactQuill from 'react-quill';
 
-// import 'react-quill/dist/quill.snow.css';
 import Button from '../buttons/Button';
 import SaveButton from '../buttons/SaveButton/SaveButton';
+
+declare const window: Window &
+  typeof globalThis & {
+    katex: typeof katex;
+  };
+
+window.katex = katex;
 
 const TEXT_EDITOR_TOOLBAR = [
   [{ header: [1, 2, 3, 4, 5, 6, false] }],
@@ -15,7 +23,7 @@ const TEXT_EDITOR_TOOLBAR = [
   [{ color: [] }], // default colors depending on theme
   [{ background: [] }], // default colors depending on theme
   [{ align: [] }],
-  [{ list: 'ordered' }, { list: 'bullet' }, 'code-block', 'link'],
+  [{ list: 'ordered' }, { list: 'bullet' }, 'code-block', 'link', 'formula'],
 ];
 
 const TEXT_EDITOR_MIN_HEIGHT = 200;
@@ -24,7 +32,6 @@ const TEXT_EDITOR_MAX_HEIGHT = 400;
 export type TextEditorProps = {
   cancelButtonId?: string;
   cancelButtonText?: string;
-  edit?: boolean;
   id?: string;
   maxHeight?: string | number;
   onCancel?: (text: string) => void;
@@ -35,35 +42,27 @@ export type TextEditorProps = {
   saveButtonText?: string;
   savedButtonText?: string;
   showActions?: boolean;
-  styles?: React.CSSProperties;
   value?: string;
 };
 
-const Div = styled('div')<{
-  edit?: boolean;
-  maxHeight?: number | string;
-  styles?: React.CSSProperties;
-}>(({ theme, edit, maxHeight, styles }) => ({
+const Div = styled('div')(({ theme }) => ({
   '.ql-tooltip': {
     zIndex: theme.zIndex.tooltip,
   },
   '& .ql-editor': {
     // adapt height if read only
-    minHeight: !edit ? 0 : TEXT_EDITOR_MIN_HEIGHT,
+    minHeight: TEXT_EDITOR_MIN_HEIGHT,
     // necessary styles to avoid window scrolling top on paste
     // set a max height only on edition
-    maxHeight: edit ? maxHeight ?? TEXT_EDITOR_MAX_HEIGHT : '100%',
+    maxHeight: TEXT_EDITOR_MAX_HEIGHT,
     overflow: 'auto',
 
     '& p': {
       paddingBottom: 3,
       paddingTop: 3,
     },
-
-    ...styles,
   },
   '& .ql-container': {
-    border: !edit ? 'none !important' : undefined,
     // use font size from mui theme
     fontSize: 'unset',
   },
@@ -72,9 +71,7 @@ const Div = styled('div')<{
 const TextEditor = ({
   cancelButtonId,
   cancelButtonText = 'Cancel',
-  edit = false,
   id,
-  maxHeight,
   onCancel,
   onChange,
   onSave,
@@ -83,7 +80,6 @@ const TextEditor = ({
   saveButtonText,
   savedButtonText,
   showActions = true,
-  styles,
   value: initialValue = '',
 }: TextEditorProps): JSX.Element | null => {
   // keep current content
@@ -107,31 +103,25 @@ const TextEditor = ({
     setContent(initialValue);
   }, [initialValue]);
 
-  // empty text
-  if (!content && !edit) {
-    return null;
-  }
-
   return (
-    <React.Fragment>
-      <Div edit={edit} maxHeight={maxHeight} styles={styles}>
+    <Stack direction='column' spacing={1} alignItems='flex-end'>
+      <Div>
         <ReactQuill
           id={id}
-          placeholder={edit ? placeholderText : ''}
-          readOnly={!edit}
+          placeholder={placeholderText}
           theme='snow'
           value={content}
           onChange={onTextChange}
           modules={{
-            toolbar: edit ? TEXT_EDITOR_TOOLBAR : null,
+            toolbar: TEXT_EDITOR_TOOLBAR,
             clipboard: {
               matchVisual: false,
             },
           }}
         />
       </Div>
-      {showActions && edit && (
-        <>
+      {showActions && (
+        <Stack spacing={1} direction='row'>
           <Button variant='text' id={cancelButtonId} onClick={onCancelClick}>
             {cancelButtonText}
           </Button>
@@ -145,9 +135,9 @@ const TextEditor = ({
             savedText={savedButtonText}
             hasChanges={content !== initialValue}
           />
-        </>
+        </Stack>
       )}
-    </React.Fragment>
+    </Stack>
   );
 };
 
