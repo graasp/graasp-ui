@@ -9,6 +9,8 @@ export * from './buttons';
 export { default as Loader } from './Loader';
 export * from './Loader';
 
+export { default as TextDisplay } from './TextDisplay/TextDisplay';
+
 export { default as Header } from './Header/Header';
 
 export { default as Sidebar } from './Sidebar';
