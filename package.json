@@ -80,7 +80,7 @@
     "katex": "0.16.9",
     "lodash.truncate": "4.4.2",
     "react-cookie-consent": "9.0.0",
-    "react-quill": "2.0.0-beta.4",
+    "react-quill": "2.0.0",
     "react-rnd": "10.4.1",
     "react-text-mask": "5.5.0",
     "uuid": "9.0.1",

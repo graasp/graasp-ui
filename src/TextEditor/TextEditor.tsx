@@ -46,6 +46,7 @@ export type TextEditorProps = {
 };
 
 const Div = styled('div')(({ theme }) => ({
+  width: '100%',
   '.ql-tooltip': {
     zIndex: theme.zIndex.tooltip,
   },
