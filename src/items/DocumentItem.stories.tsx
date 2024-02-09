@@ -3,7 +3,6 @@ import { StoryObj } from '@storybook/react';
 import { ItemType } from '@graasp/sdk';
 
 import TextEditor from '../TextEditor';
-import { TABLE_CATEGORIES } from '../utils/storybook';
 import DocumentItem from './DocumentItem';
 
 const item = {
@@ -26,31 +25,6 @@ export default {
   title: 'Items/DocumentItem',
   component: DocumentItem,
   subcomponents: { TextEditor },
-
-  argTypes: {
-    onSave: {
-      action: 'onSave',
-      table: {
-        category: TABLE_CATEGORIES.EVENTS,
-      },
-    },
-    onCancel: {
-      action: 'onCancel',
-      table: {
-        category: TABLE_CATEGORIES.EVENTS,
-      },
-    },
-    saveButtonId: {
-      table: {
-        category: TABLE_CATEGORIES.SELECTORS,
-      },
-    },
-    cancelButtonId: {
-      table: {
-        category: TABLE_CATEGORIES.SELECTORS,
-      },
-    },
-  },
 };
 
 type Story = StoryObj<typeof DocumentItem>;
@@ -58,7 +32,6 @@ type Story = StoryObj<typeof DocumentItem>;
 export const Editing: Story = {
   args: {
     item,
-    edit: true,
   },
 };
 

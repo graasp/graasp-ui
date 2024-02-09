@@ -4,23 +4,12 @@ import React, { FC } from 'react';
 
 import { DocumentItemType, getDocumentExtra } from '@graasp/sdk';
 
+import { TextDisplay } from '..';
 import withCollapse from '../Collapse/withCollapse';
-import TextEditor from '../TextEditor';
 
 export type DocumentItemProps = {
-  cancelButtonId?: string;
-  cancelButtonText?: string;
-  edit?: boolean;
-  emptyMessage?: string;
   id?: string;
-  maxHeight?: string | number;
-  onCancel?: (text: string) => void;
-  onChange?: (text: string) => void;
-  onSave?: (text: string) => void;
-  placeholderText?: string;
-  saveButtonId?: string;
-  saveButtonText?: string;
-  showActions?: boolean;
+  emptyMessage?: string;
   showEmpty?: boolean;
 } & (
   | { showCollapse: true; item: DocumentItemType }
@@ -28,19 +17,9 @@ export type DocumentItemProps = {
 );
 
 const DocumentItem: FC<DocumentItemProps> = ({
-  cancelButtonId,
-  cancelButtonText,
-  emptyMessage = 'This document is empty…',
   id,
   item,
-  maxHeight,
-  onCancel,
-  onChange,
-  onSave,
-  placeholderText,
-  saveButtonId,
-  saveButtonText,
-  showActions,
+  emptyMessage = 'This document is empty…',
   showEmpty,
   showCollapse,
 }) => {
@@ -69,22 +48,7 @@ const DocumentItem: FC<DocumentItemProps> = ({
       </Typography>
     );
   } else {
-    component = withFlavor(
-      <TextEditor
-        cancelButtonId={cancelButtonId}
-        cancelButtonText={cancelButtonText}
-        id={id}
-        maxHeight={maxHeight}
-        onCancel={onCancel}
-        onChange={onChange}
-        onSave={onSave}
-        placeholderText={placeholderText}
-        saveButtonId={saveButtonId}
-        saveButtonText={saveButtonText}
-        showActions={showActions}
-        value={extra?.content}
-      />,
-    );
+    component = withFlavor(<TextDisplay id={id} content={extra?.content} />);
   }
 
   if (showCollapse) {
