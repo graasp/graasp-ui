@@ -9,11 +9,6 @@ const meta: Meta<typeof PinButton> = {
   component: PinButton,
 
   argTypes: {
-    color: {
-      table: {
-        category: TABLE_CATEGORIES.MUI,
-      },
-    },
     onClick: {
       action: 'pin',
       table: {

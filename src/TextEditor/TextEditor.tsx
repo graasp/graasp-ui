@@ -33,7 +33,6 @@ export type TextEditorProps = {
   cancelButtonId?: string;
   cancelButtonText?: string;
   id?: string;
-  maxHeight?: string | number;
   onCancel?: (text: string) => void;
   onChange?: (text: string) => void;
   onSave?: (text: string) => void;

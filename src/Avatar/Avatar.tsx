@@ -1,5 +1,8 @@
-import { SxProps } from '@mui/material';
-import { Avatar as AvatarComponent, SkeletonProps } from '@mui/material';
+import {
+  Avatar as AvatarComponent,
+  SkeletonProps,
+  SxProps,
+} from '@mui/material';
 
 import Thumbnail from '../Thumbnail';
 

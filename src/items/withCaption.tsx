@@ -16,7 +16,7 @@ function withCaption<T extends { description: string | null }>({
       return (
         <Stack>
           {component}
-          <TextDisplay content={item.description || DEFAULT_ITEM_DESCRIPTION} />
+          <TextDisplay content={item.description ?? DEFAULT_ITEM_DESCRIPTION} />
         </Stack>
       );
     };
