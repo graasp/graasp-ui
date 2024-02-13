@@ -1,6 +1,6 @@
 {
   "name": "@graasp/ui",
-  "version": "4.6.1",
+  "version": "4.7.0",
   "description": "React components for the Graasp ecosystem.",
   "author": "Graasp",
   "contributors": [
@@ -13,7 +13,9 @@
   "license": "AGPL-3.0-only",
   "repository": "graasp/graasp-ui",
   "type": "module",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "sideEffects": false,
   "module": "./dist/index.js",
   "main": "./dist/index.cjs",
