@@ -14,13 +14,18 @@ const MainMenuOpenContext = createContext<MainMenuOpenContextType>({
 });
 
 export const MainMenuOpenContextProvider = ({
+  open: initialOpen = true,
   children,
 }: {
+  open?: boolean;
   children: JSX.Element | JSX.Element[];
 }): JSX.Element => {
   const { isMobile } = useMobileView();
 
-  const [open, setOpen] = useState(!isMobile);
+  // the initial open state is:
+  // on mobile: always closed by default
+  // on desktop: initialized by the state passed by the parent, or open if not specified
+  const [open, setOpen] = useState(isMobile ? false : initialOpen);
   return (
     <MainMenuOpenContext.Provider
       value={{
