@@ -1,6 +1,5 @@
 import { SxProps } from '@mui/material';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
-import { styled } from '@mui/material/styles';
 
 import { DiscriminatedItem } from '@graasp/sdk';
 
@@ -9,12 +8,6 @@ import ExtraItemsNavigation, { ExtraItem } from './ExtraItemsNavigation';
 import { ItemMenuProps } from './ItemMenu';
 import ParentsNavigation from './ParentsNavigation';
 import CenterAlignWrapper from './common/CenterAlignWrapper';
-
-const StyledBreadcrumbs = styled(Breadcrumbs)(({ theme }) => ({
-  '& ol': {
-    textIndent: -theme.typography.fontSize,
-  },
-}));
 
 export type NavigationProps = {
   backgroundColor?: string;
@@ -54,7 +47,7 @@ const Navigation = ({
   extraItems,
 }: NavigationProps): JSX.Element | null => {
   return (
-    <StyledBreadcrumbs
+    <Breadcrumbs
       sx={sx}
       id={id}
       maxItems={maxItems}
@@ -84,7 +77,7 @@ const Navigation = ({
         />
       )}
       {extraItems && <ExtraItemsNavigation extraItems={extraItems} />}
-    </StyledBreadcrumbs>
+    </Breadcrumbs>
   );
 };
 

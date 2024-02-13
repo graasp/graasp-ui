@@ -2,8 +2,8 @@ import { styled } from '@mui/material';
 
 import { Link } from 'react-router-dom';
 
-const NavigationLink = styled(Link)({
+const NavigationLink = styled(Link)(({ theme }) => ({
   textDecoration: 'none',
-  color: 'text.primary',
-});
+  color: theme.palette.text.primary,
+}));
 export default NavigationLink;
