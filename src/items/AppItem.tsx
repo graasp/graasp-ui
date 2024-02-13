@@ -36,10 +36,6 @@ type AppItemProps = {
    */
   contextPayload: ContextPayload;
   /**
-   * whether the caption is being edited
-   */
-  editCaption?: boolean;
-  /**
    * app height
    */
   height?: number | string;
@@ -63,27 +59,18 @@ type AppItemProps = {
    * Whether the item should be shown in a collapsible element
    */
   showCollapse?: boolean;
-  onSaveCaption?: (text: string) => void;
-  saveButtonId?: string;
-  onCancelCaption?: (text: string) => void;
-  cancelButtonId?: string;
 };
 
 const AppItem = ({
-  frameId,
   item,
-  memberId,
   contextPayload,
   requestApiAccessToken,
   height = DEFAULT_APP_HEIGHT,
-  editCaption = false,
-  showCaption = true,
+  frameId,
+  memberId,
   isResizable = false,
-  showCollapse,
-  onSaveCaption,
-  onCancelCaption,
-  saveButtonId,
-  cancelButtonId,
+  showCaption = true,
+  showCollapse = false,
 }: AppItemProps): JSX.Element => {
   // state
   const [isIFrameLoading, setIsIFrameLoading] = useState(true);
@@ -149,11 +136,6 @@ const AppItem = ({
   if (showCaption) {
     component = withCaption({
       item,
-      onSave: onSaveCaption,
-      onCancel: onCancelCaption,
-      edit: editCaption,
-      saveButtonId,
-      cancelButtonId,
     })(component);
   }
 

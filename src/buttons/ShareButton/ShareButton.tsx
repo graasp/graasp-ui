@@ -1,8 +1,13 @@
 import CloseIcon from '@mui/icons-material/Close';
 import Groups from '@mui/icons-material/Groups';
-import { ListItemIcon, ListItemText, MenuItem } from '@mui/material';
-import IconButton, { IconButtonProps } from '@mui/material/IconButton';
-import Tooltip from '@mui/material/Tooltip';
+import {
+  IconButton,
+  IconButtonProps,
+  ListItemIcon,
+  ListItemText,
+  MenuItem,
+  Tooltip,
+} from '@mui/material';
 
 import { FC, MouseEventHandler } from 'react';
 

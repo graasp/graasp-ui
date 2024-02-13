@@ -4,48 +4,24 @@ import React, { FC } from 'react';
 
 import { DocumentItemType, getDocumentExtra } from '@graasp/sdk';
 
+import { TextDisplay } from '..';
 import withCollapse from '../Collapse/withCollapse';
-import TextEditor from '../TextEditor';
 
 export type DocumentItemProps = {
-  cancelButtonId?: string;
-  cancelButtonText?: string;
-  edit?: boolean;
-  emptyMessage?: string;
   id?: string;
-  maxHeight?: string | number;
-  onCancel?: (text: string) => void;
-  onChange?: (text: string) => void;
-  onSave?: (text: string) => void;
-  placeholderText?: string;
-  saveButtonId?: string;
-  saveButtonText?: string;
-  showActions?: boolean;
+  emptyMessage?: string;
   showEmpty?: boolean;
-  styles?: React.CSSProperties;
 } & (
   | { showCollapse: true; item: DocumentItemType }
   | { showCollapse?: false; item: Pick<DocumentItemType, 'extra'> }
 );
 
 const DocumentItem: FC<DocumentItemProps> = ({
-  cancelButtonId,
-  cancelButtonText,
-  edit,
-  emptyMessage = 'This document is empty…',
   id,
   item,
-  maxHeight,
-  onCancel,
-  onChange,
-  onSave,
-  placeholderText,
-  saveButtonId,
-  saveButtonText,
-  showActions,
+  emptyMessage = 'This document is empty…',
   showEmpty,
   showCollapse,
-  styles,
 }) => {
   let component: JSX.Element;
   const extra = getDocumentExtra(item.extra);
@@ -72,32 +48,7 @@ const DocumentItem: FC<DocumentItemProps> = ({
       </Typography>
     );
   } else {
-    component = withFlavor(
-      <TextEditor
-        cancelButtonId={cancelButtonId}
-        cancelButtonText={cancelButtonText}
-        edit={edit}
-        id={id}
-        maxHeight={maxHeight}
-        onCancel={onCancel}
-        onChange={onChange}
-        onSave={onSave}
-        placeholderText={placeholderText}
-        saveButtonId={saveButtonId}
-        saveButtonText={saveButtonText}
-        showActions={showActions}
-        value={extra?.content}
-        styles={
-          // hack: if document is in read mode and has flavor, remove padding
-          edit !== true && extra?.flavor
-            ? {
-                padding: 0,
-                ...styles,
-              }
-            : undefined
-        }
-      />,
-    );
+    component = withFlavor(<TextDisplay id={id} content={extra?.content} />);
   }
 
   if (showCollapse) {

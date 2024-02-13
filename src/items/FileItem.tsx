@@ -35,19 +35,14 @@ export interface FileItemProps {
   fileUrl?: string;
   defaultItem?: JSX.Element;
   downloadText?: string;
-  editCaption?: boolean;
   errorMessage?: string;
   id?: string;
   item: LocalFileItemType | S3FileItemType;
   maxHeight?: number | string;
-  onSaveCaption?: (text: string) => void;
-  onCancelCaption?: (text: string) => void;
   /**
    * use a custom pdf reader from the link if defined
    * */
   pdfViewerLink?: string;
-  saveButtonId?: string;
-  cancelButtonId?: string;
   showCaption?: boolean;
   showCollapse?: boolean;
   sx?: SxProps;
@@ -59,15 +54,10 @@ const FileItem = ({
   fileUrl,
   defaultItem,
   downloadText,
-  editCaption = false,
   errorMessage = UNEXPECTED_ERROR_MESSAGE,
   id,
   item,
   maxHeight = '100%',
-  onSaveCaption,
-  onCancelCaption,
-  saveButtonId,
-  cancelButtonId,
   showCaption = true,
   showCollapse,
   sx,
@@ -168,11 +158,6 @@ const FileItem = ({
   if (showCaption) {
     fileItem = withCaption({
       item,
-      onSave: onSaveCaption,
-      onCancel: onCancelCaption,
-      edit: editCaption,
-      saveButtonId,
-      cancelButtonId,
     })(fileItem);
   }
 

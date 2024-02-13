@@ -1,10 +1,10 @@
+import { ColDef } from '@ag-grid-community/core';
+import '@ag-grid-community/styles/ag-grid.min.css';
+import '@ag-grid-community/styles/ag-theme-material.min.css';
 import { action } from '@storybook/addon-actions';
 import { expect } from '@storybook/jest';
 import type { Meta, StoryObj } from '@storybook/react';
 import { userEvent, waitFor, within } from '@storybook/testing-library';
-import { ColDef } from 'ag-grid-community';
-import 'ag-grid-community/dist/styles/ag-grid.min.css';
-import 'ag-grid-community/dist/styles/ag-theme-material.min.css';
 
 import { DeleteButton, EditButton } from '../buttons';
 import { TABLE_CATEGORIES } from '../utils/storybook';

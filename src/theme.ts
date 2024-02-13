@@ -1,5 +1,5 @@
+import { createTheme } from '@mui/material';
 import { grey } from '@mui/material/colors';
-import { createTheme } from '@mui/material/styles';
 
 import { Context } from '@graasp/sdk';
 
@@ -34,6 +34,11 @@ export const theme = createTheme({
           backgroundColor: grey[400],
         },
       },
+    },
+  },
+  typography: {
+    h1: {
+      fontSize: '4rem',
     },
   },
 });

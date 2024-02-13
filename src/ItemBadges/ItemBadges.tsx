@@ -21,7 +21,9 @@ const ItemBadge = ({
   backgroundColor,
 }: ItemBadgeProps): JSX.Element => (
   <Tooltip title={tooltip}>
-    <Avatar sx={{ width: 24, height: 24, backgroundColor }}>{children}</Avatar>
+    <Avatar sx={{ width: 24, height: 24, bgcolor: backgroundColor }}>
+      {children}
+    </Avatar>
   </Tooltip>
 );
 
@@ -54,7 +56,7 @@ const ItemBadges = ({
   isCollapsibleTooltip = 'Collapsible',
   showChatbox = false,
   showChatboxTooltip = 'Chat',
-  backgroundColor = 'grey.600',
+  backgroundColor = '#757575',
 }: Props): JSX.Element => {
   return (
     <AvatarGroup max={10}>

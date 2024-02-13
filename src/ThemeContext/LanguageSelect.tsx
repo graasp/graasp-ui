@@ -1,9 +1,13 @@
-import { Direction, SelectChangeEvent, SxProps } from '@mui/material';
-import { SelectProps as MuiSelectProps } from '@mui/material/Select';
+import {
+  Direction,
+  SelectProps as MuiSelectProps,
+  SelectChangeEvent,
+  SxProps,
+} from '@mui/material';
 
 import { Dispatch, useState } from 'react';
 
-import Select from '../Select';
+import Select from '../Select/Select';
 import { I18nInstance } from '../types';
 
 const LanguageSelect = ({
@@ -28,7 +32,10 @@ const LanguageSelect = ({
 
   const handleLangSelect = (event: SelectChangeEvent<string>): void => {
     const d = i18n.dir(event.target.value);
-    document.dir = d;
+    // this should be guarded for ssr rendering
+    if (document) {
+      document.dir = d;
+    }
     setDirection?.(d);
     i18n.changeLanguage(event.target.value);
     setLang(event.target.value);

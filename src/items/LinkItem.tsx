@@ -2,13 +2,9 @@ import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import { styled } from '@mui/material';
 import Alert from '@mui/material/Alert';
 
-import React, { FC, Fragment, useRef, useState } from 'react';
+import React, { Fragment, useRef, useState } from 'react';
 
-import {
-  EmbeddedLinkItemType,
-  Member,
-  getEmbeddedLinkExtra,
-} from '@graasp/sdk';
+import { EmbeddedLinkItemType, getEmbeddedLinkExtra } from '@graasp/sdk';
 
 import withCollapse from '../Collapse/withCollapse';
 import { Button } from '../buttons';
@@ -17,16 +13,11 @@ import { ITEM_MAX_HEIGHT } from './constants';
 import withCaption from './withCaption';
 import withResizing, { StyledIFrame } from './withResizing';
 
-export interface LinkItemProps {
+export type LinkItemProps = {
   /**
    * Id of the current member used for saving the resizing preferences
    */
   memberId?: string;
-  /**
-   * @deprecated Use the `memberId` prop to only pass the id
-   */
-  member?: Member;
-  editCaption?: boolean;
   errorMessage?: string;
   height?: number | string;
   /**
@@ -64,7 +55,7 @@ export interface LinkItemProps {
   showCollapse?: boolean;
 
   onClick?: () => void;
-}
+};
 
 const IFrameContainer = styled('div')({
   position: 'relative',
@@ -78,15 +69,9 @@ const StyledLinkButton = styled(Button)(({ theme }) => ({
   marginTop: theme.spacing(1),
 }));
 
-const LinkItem: FC<LinkItemProps> = ({
+const LinkItem = ({
   item,
-  member,
   memberId,
-  onSaveCaption,
-  onCancelCaption,
-  saveButtonId,
-  cancelButtonId,
-  editCaption = false,
   showCaption = true,
   showIframe = false,
   showButton = DEFAULT_LINK_SHOW_BUTTON,
@@ -97,7 +82,7 @@ const LinkItem: FC<LinkItemProps> = ({
   isResizable = false,
   showCollapse = false,
   onClick,
-}) => {
+}: LinkItemProps): JSX.Element => {
   const [isLoading, setIsLoading] = useState(true);
   const [height] = useState<string | number>(defaultHeight);
   const iframeRef = useRef<HTMLIFrameElement>(null);
@@ -112,19 +97,10 @@ const LinkItem: FC<LinkItemProps> = ({
 
   const CaptionWrapper = withCaption({
     item,
-    onSave: onSaveCaption,
-    onCancel: onCancelCaption,
-    saveButtonId,
-    cancelButtonId,
-    edit: editCaption,
   });
 
   const handleLoad = (): void => {
     setIsLoading(false);
-    // TODO: set dynamic height
-    // if (iframeRef?.current?.contentWindow) {
-    //   setHeight(iframeRef.current.contentWindow.document.body.scrollHeight);
-    // }
   };
 
   const renderIframe = (): JSX.Element | null => {
@@ -147,7 +123,7 @@ const LinkItem: FC<LinkItemProps> = ({
     const ResizableLink = withResizing({
       height,
       component: iframe,
-      memberId: memberId || member?.id,
+      memberId,
       itemId: item.id,
     });
 

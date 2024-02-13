@@ -2,23 +2,14 @@ import { expect } from '@storybook/jest';
 import type { Meta, StoryObj } from '@storybook/react';
 import { within } from '@storybook/testing-library';
 
-import { ItemType } from '@graasp/sdk';
+import { DEFAULT_LANG, ItemType } from '@graasp/sdk';
 
 import { MOCK_MEMBER } from '../utils/fixtures';
-import { TABLE_CATEGORIES } from '../utils/storybook';
 import AppItem from './AppItem';
 
 const meta: Meta<typeof AppItem> = {
   title: 'Items/AppItem',
   component: AppItem,
-
-  argTypes: {
-    saveButtonId: {
-      table: {
-        category: TABLE_CATEGORIES.SELECTORS,
-      },
-    },
-  },
 };
 
 export default meta;
@@ -39,6 +30,7 @@ export const Example: Story = {
       type: 'app',
       path: 'item-path',
       settings: {},
+      lang: DEFAULT_LANG,
       creator: MOCK_MEMBER,
       createdAt: '2023-09-06T11:50:32.894Z',
       updatedAt: '2023-09-06T11:50:32.894Z',

@@ -1,28 +1,24 @@
+import { ColorVariants, IconSizeVariant } from '@/types';
+
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import {
-  IconButton,
-  IconButtonProps,
-  SvgIconProps,
-  SxProps,
-  Tooltip,
-} from '@mui/material';
+import { IconButton, SxProps, Tooltip } from '@mui/material';
 
-import { FC, MouseEventHandler } from 'react';
+import { MouseEventHandler } from 'react';
 
 export interface LikeButtonProps {
   ariaLabel: string;
   /**
    * IconButton's color
    */
-  color?: IconButtonProps['color'];
+  color?: ColorVariants;
   handleLike: MouseEventHandler;
   handleUnlike: MouseEventHandler;
   isLiked?: boolean;
   /**
    * IconButton's size
    */
-  size?: SvgIconProps['fontSize'];
+  size?: IconSizeVariant;
   sx?: SxProps;
   /**
    * Tooltip's title when item is not liked
@@ -34,9 +30,9 @@ export interface LikeButtonProps {
   tooltipUnlike?: string;
 }
 
-const LikeButton: FC<LikeButtonProps> = ({
+const LikeButton = ({
   ariaLabel = 'like item',
-  color = 'default',
+  color = 'primary',
   handleLike,
   handleUnlike,
   isLiked = false,
@@ -44,7 +40,7 @@ const LikeButton: FC<LikeButtonProps> = ({
   sx,
   tooltipLike = 'Like',
   tooltipUnlike = 'Unlike',
-}) => {
+}: LikeButtonProps): JSX.Element => {
   return (
     <Tooltip title={isLiked ? tooltipUnlike : tooltipLike}>
       <span>

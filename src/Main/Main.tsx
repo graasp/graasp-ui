@@ -213,7 +213,7 @@ const MainWithDrawerContent = ({
 // Content and we need to define the provider before using the hook.
 const MainWithDrawerWrapper = (props: Props): JSX.Element => (
   <Box height='100vh' overflow='auto' display='flex' flexDirection='column'>
-    <MainMenuOpenContextProvider>
+    <MainMenuOpenContextProvider open={props.open}>
       <MainWithDrawerContent {...props} />
     </MainMenuOpenContextProvider>
   </Box>

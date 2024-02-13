@@ -1,3 +1,4 @@
+import { ClientSideRowModelModule } from '@ag-grid-community/client-side-row-model';
 import {
   CellClickedEvent,
   CellKeyDownEvent,
@@ -8,8 +9,8 @@ import {
   RowNode,
   SelectionChangedEvent,
   SortChangedEvent,
-} from 'ag-grid-community';
-import { AgGridReact } from 'ag-grid-react';
+} from '@ag-grid-community/core';
+import { AgGridReact } from '@ag-grid-community/react';
 
 import { SxProps, styled } from '@mui/material';
 import Box from '@mui/material/Box';
@@ -256,6 +257,7 @@ function GraaspTable<T>({
         <AgGridReact
           onGridReady={onGridReady}
           ref={gridRef}
+          modules={[ClientSideRowModelModule]}
           columnDefs={buildColumnDefs()}
           rowData={rowData}
           rowDragManaged={rowDragManaged}
@@ -267,7 +269,7 @@ function GraaspTable<T>({
           onRowDragEnd={handleDragEnd}
           onSelectionChanged={handleSelectionChanged}
           onSortChanged={onSortChanged}
-          onCellKeyPress={isClickable ? onKeyPress : undefined}
+          onCellKeyDown={isClickable ? onKeyPress : undefined}
           onCellClicked={isClickable ? onCellClicked : undefined}
           rowClass={`${
             isClickable ? ROW_CLICKABLE_CLASS_NAME : ROW_CLASS_NAME

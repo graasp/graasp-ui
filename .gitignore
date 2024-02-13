@@ -39,3 +39,6 @@ example/src/react-app-env.d.ts
 storybook-static
 .nyc_output
 coverage
+
+# packs
+package.tgz

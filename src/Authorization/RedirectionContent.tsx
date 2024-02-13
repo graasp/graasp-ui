@@ -1,8 +1,5 @@
-import { Theme, styled, useTheme } from '@mui/material';
-import Container, { ContainerProps } from '@mui/material/Container';
-import Typography, { TypographyProps } from '@mui/material/Typography';
+import { Container, Typography, styled, useTheme } from '@mui/material';
 
-import React from 'react';
 import { Link, LinkProps } from 'react-router-dom';
 
 import GraaspLogo from '../GraaspLogo';
@@ -14,19 +11,17 @@ interface Props {
   redirectionText?: string;
 }
 
-const StyledContainer = styled(Container)<ContainerProps>(() => ({
+const StyledContainer = styled(Container)(() => ({
   height: '100vh',
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
 }));
 
-const StyledTypography = styled(Typography)<TypographyProps>(
-  ({ theme }: { theme: Theme }) => ({
-    marginLeft: theme.spacing(2),
-    color: theme.palette.primary.main,
-  }),
-);
+const StyledTypography = styled(Typography)(({ theme }) => ({
+  marginLeft: theme.spacing(2),
+  color: theme.palette.primary.main,
+}));
 
 const StyledLink = styled(Link)<LinkProps>(() => ({
   textDecoration: 'none',
@@ -34,12 +29,12 @@ const StyledLink = styled(Link)<LinkProps>(() => ({
   color: 'black',
 }));
 
-const RedirectionContent: React.FC<Props> = ({
+const RedirectionContent = ({
   link,
   redirectionText,
   redirectionLinkText,
   id,
-}) => {
+}: Props): JSX.Element => {
   const theme = useTheme();
 
   return (

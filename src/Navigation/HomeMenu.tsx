@@ -1,5 +1,7 @@
 import HomeIcon from '@mui/icons-material/Home';
+import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import {
+  IconButton,
   IconButtonProps,
   Menu,
   MenuItem,
@@ -10,7 +12,9 @@ import {
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { Separator, StyledIconButton, StyledLink } from './utils';
+import NavigationLink from './common/NavigationLink';
+
+const Separator = <NavigateNextIcon />;
 
 type Props = {
   selected: { name: string; id: string; to: string };
@@ -49,8 +53,7 @@ const HomeMenu = ({
   return (
     <>
       <HomeIcon />
-      <StyledIconButton
-        sx={{ marginRight: 2 }}
+      <IconButton
         onClick={handleClick}
         id={homeDropdownId}
         aria-controls={open ? 'root' : undefined}
@@ -58,7 +61,7 @@ const HomeMenu = ({
         aria-expanded={open ? true : undefined}
       >
         {Separator}
-      </StyledIconButton>
+      </IconButton>
       <Menu
         anchorEl={anchorEl}
         open={open}
@@ -85,9 +88,9 @@ const HomeMenu = ({
           </MenuItem>
         ))}
       </Menu>
-      <StyledLink to={selected.to} key={selected.id}>
+      <NavigationLink to={selected.to} key={selected.id}>
         <Typography>{selected.name}</Typography>
-      </StyledLink>
+      </NavigationLink>
     </>
   );
 };

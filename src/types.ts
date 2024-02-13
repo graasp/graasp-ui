@@ -20,7 +20,16 @@ export type TooltipPlacement =
   | 'top-start'
   | 'top';
 
-export type IconSizeVariant = 'small' | 'medium' | 'large' | 'inherit';
+export type ColorVariants =
+  | 'inherit'
+  | 'primary'
+  | 'secondary'
+  | 'error'
+  | 'info'
+  | 'success'
+  | 'warning';
+
+export type IconSizeVariant = 'small' | 'medium' | 'large';
 
 export enum ActionButton {
   ICON_BUTTON = 'icon',

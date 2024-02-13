@@ -1,4 +1,4 @@
-import { SuppressKeyboardEventParams } from 'ag-grid-community';
+import { SuppressKeyboardEventParams } from '@ag-grid-community/core';
 
 // ref: https://www.ag-grid.com/javascript-data-grid/component-cell-renderer/
 function getAllFocusableElementsOf(el: Element): Element[] {

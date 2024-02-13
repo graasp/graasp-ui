@@ -1,28 +1,26 @@
 import PushPinIcon from '@mui/icons-material/PushPin';
 import PushPinOutlinedIcon from '@mui/icons-material/PushPinOutlined';
-import IconButton, { IconButtonProps } from '@mui/material/IconButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import MenuItem from '@mui/material/MenuItem';
-import Tooltip from '@mui/material/Tooltip';
+import { IconButton, ListItemIcon, MenuItem, Tooltip } from '@mui/material';
 
-import { FC } from 'react';
-
-import { ActionButton, ActionButtonVariant } from '../../types';
+import {
+  ActionButton,
+  ActionButtonVariant,
+  IconSizeVariant,
+} from '../../types';
 
 export type PinButtonProps = {
-  color?: IconButtonProps['color'];
   iconClassName?: string;
   id?: string;
   isPinned?: boolean;
   menuItemClassName?: string;
   onClick?: () => void;
-  size?: IconButtonProps['size'];
+  size?: IconSizeVariant;
   pinText?: string;
   unPinText?: string;
   type?: ActionButtonVariant;
 };
 
-const PinButton: FC<PinButtonProps> = ({
+const PinButton = ({
   type,
   onClick,
   menuItemClassName,
@@ -31,7 +29,7 @@ const PinButton: FC<PinButtonProps> = ({
   pinText = 'Pin',
   unPinText = 'Unpin',
   size,
-}) => {
+}: PinButtonProps): JSX.Element => {
   const icon = isPinned ? <PushPinIcon /> : <PushPinOutlinedIcon />;
   const text = isPinned ? unPinText : pinText;
 

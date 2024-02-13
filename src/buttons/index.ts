@@ -8,5 +8,5 @@ export { default as FavoriteButton } from './FavoriteButton';
 export { default as LikeButton } from './LikeButton';
 export { default as MoveButton } from './MoveButton';
 export { default as PinButton } from './PinButton';
-export { default as SaveButton } from './SaveButton';
+export { default as SaveButton } from './SaveButton/SaveButton';
 export { default as ShareButton } from './ShareButton';

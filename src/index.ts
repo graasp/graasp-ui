@@ -1,5 +1,3 @@
-export * from './assets/styles.module.css';
-
 export * from './theme';
 export * from './constants';
 
@@ -11,8 +9,9 @@ export * from './buttons';
 export { default as Loader } from './Loader';
 export * from './Loader';
 
+export { default as TextDisplay } from './TextDisplay/TextDisplay';
+
 export { default as Header } from './Header/Header';
-export * from './Header/Header';
 
 export { default as Sidebar } from './Sidebar';
 export * from './Sidebar';
@@ -32,9 +31,7 @@ export * from './Main';
 export { default as DynamicTreeView } from './DynamicTreeView';
 export * from './DynamicTreeView';
 
-export { default as TextEditor } from './TextEditor';
-
-export { default as withCollapse } from './Collapse';
+export { default as withCollapse } from './Collapse/withCollapse';
 
 export { default as PermissionedComponent } from './PermissionedComponent';
 
@@ -60,13 +57,12 @@ export { UserSwitch, UserSwitchWrapper } from './UserSwitch';
 
 export { default as CustomInitialLoader } from './CustomInitialLoader';
 
+export { default as Select } from './Select/Select';
+
 export { default as ItemSkeleton } from './items/ItemSkeleton';
 
 export { default as SearchInput } from './SearchInput';
 export * from './SearchInput';
-
-export { default as Select } from './Select';
-export * from './Select';
 
 export { default as PlatformSwitch } from './PlatformSwitch';
 export * from './PlatformSwitch';

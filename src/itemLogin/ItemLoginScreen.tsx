@@ -1,14 +1,14 @@
 import InfoIcon from '@mui/icons-material/Info';
 import {
   Container,
+  FormControlLabel,
+  MenuItem,
+  Select,
   SelectChangeEvent,
   TextField,
   Tooltip,
   styled,
 } from '@mui/material';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import MenuItem from '@mui/material/MenuItem';
-import Select from '@mui/material/Select';
 
 import React, { FC, ReactElement, ReactNode, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';

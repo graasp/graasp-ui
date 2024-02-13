@@ -4,7 +4,9 @@ import { Box, Typography } from '@mui/material';
 
 import ExtraItemsMenu from './ExtraItemsMenu';
 import { MenuItemType } from './Navigation';
-import { CenterAlignWrapper, ITEM_NAME_MAX_LENGTH, StyledLink } from './utils';
+import CenterAlignWrapper from './common/CenterAlignWrapper';
+import NavigationLink from './common/NavigationLink';
+import { ITEM_NAME_MAX_LENGTH } from './common/constants';
 
 export interface ExtraItem {
   name: string;
@@ -24,11 +26,11 @@ const ExtraItemsNavigation = ({
         with the same value, So to align menu items with this box menu item */}
       <Box display='flex' gap={2} ml={-2}>
         {icon}
-        <StyledLink to={path}>
+        <NavigationLink to={path}>
           <Typography>
             {truncate(name, { length: ITEM_NAME_MAX_LENGTH })}
           </Typography>
-        </StyledLink>
+        </NavigationLink>
       </Box>
       {menuItems && menuItems.length > 0 && (
         <ExtraItemsMenu menuItems={menuItems} name={name} />
