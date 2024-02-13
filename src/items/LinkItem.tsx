@@ -123,7 +123,7 @@ const LinkItem = ({
     const ResizableLink = withResizing({
       height,
       component: iframe,
-      memberId: memberId,
+      memberId,
       itemId: item.id,
     });
 
