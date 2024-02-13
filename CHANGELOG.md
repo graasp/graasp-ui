@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.7.0](https://github.com/graasp/graasp-ui/compare/v4.6.1...v4.7.0) (2024-02-13)
+
+
+### Features
+
+* use vite to bundle and optimize package ([#567](https://github.com/graasp/graasp-ui/issues/567)) ([6760041](https://github.com/graasp/graasp-ui/commit/6760041316f9e1209f46fc84372155ffe37ebfa5))
+
+
+### Bug Fixes
+
+* use sx prop passed when there is an src ([#689](https://github.com/graasp/graasp-ui/issues/689)) ([84290cb](https://github.com/graasp/graasp-ui/commit/84290cb138b3f56e532c158b853bc83319194bcc))
+
 ## [4.6.1](https://github.com/graasp/graasp-ui/compare/v4.6.0...v4.6.1) (2024-02-06)
 
 
