@@ -32,7 +32,8 @@ export type ColorVariants =
 export type IconSizeVariant = 'small' | 'medium' | 'large';
 
 export enum ActionButton {
-  ICON_BUTTON = 'icon',
+  ICON = 'icon',
+  ICON_BUTTON = 'iconButton',
   MENU_ITEM = 'menuItem',
 }
 

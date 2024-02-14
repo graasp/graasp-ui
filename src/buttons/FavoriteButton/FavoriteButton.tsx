@@ -1,17 +1,12 @@
 import StarIcon from '@mui/icons-material/Star';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
-import {
-  IconButton,
-  ListItemIcon,
-  MenuItem,
-  SvgIconProps,
-  Tooltip,
-} from '@mui/material';
+import { IconButton, SvgIconProps, Tooltip } from '@mui/material';
 import { SxProps } from '@mui/material/styles';
 
-import { FC, MouseEventHandler } from 'react';
+import { MouseEventHandler } from 'react';
 
 import { ActionButton, ActionButtonVariant, ColorVariants } from '../../types';
+import MenuItemButton from '../MenuItemButton';
 
 const FAVORITE_COLOR = '#ffc107';
 
@@ -35,10 +30,10 @@ export interface FavoriteButtonProps {
   text?: string;
 }
 
-const FavoriteButton: FC<FavoriteButtonProps> = ({
+const FavoriteButton = ({
   ariaLabel = 'favorite',
   className,
-  color = 'default',
+  color = 'inherit',
   handleFavorite,
   handleUnfavorite,
   isFavorite = false,
@@ -47,7 +42,7 @@ const FavoriteButton: FC<FavoriteButtonProps> = ({
   text,
   tooltip,
   type,
-}) => {
+}: FavoriteButtonProps): JSX.Element => {
   const icon = isFavorite ? (
     <StarIcon fontSize={size} />
   ) : (
@@ -62,12 +57,17 @@ const FavoriteButton: FC<FavoriteButtonProps> = ({
   const onClick = isFavorite ? handleUnfavorite : handleFavorite;
 
   switch (type) {
+    case ActionButton.ICON:
+      return icon;
     case ActionButton.MENU_ITEM:
       return (
-        <MenuItem key={text} onClick={onClick} className={className}>
-          <ListItemIcon color={iconColor}>{icon}</ListItemIcon>
-          {text}
-        </MenuItem>
+        <MenuItemButton
+          iconColor={iconColor}
+          text={text ?? tooltipText}
+          onClick={onClick}
+          icon={icon}
+          className={className}
+        />
       );
     case ActionButton.ICON_BUTTON:
     default:

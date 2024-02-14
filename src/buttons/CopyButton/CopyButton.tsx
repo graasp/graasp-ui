@@ -22,7 +22,7 @@ const CopyButton = ({
   menuItemClassName,
   onClick,
   text = 'Copy',
-  type = 'icon',
+  type = ActionButton.ICON_BUTTON,
 }: Props): JSX.Element => {
   switch (type) {
     case ActionButton.MENU_ITEM:

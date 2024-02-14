@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
+import { ActionButton } from '../../types';
 import { TABLE_CATEGORIES } from '../../utils/storybook';
 import CopyButton from './CopyButton';
 
@@ -45,7 +46,7 @@ type Story = StoryObj<typeof CopyButton>;
 export const Icon: Story = {
   args: {
     color: 'primary',
-    type: 'icon',
+    type: ActionButton.ICON_BUTTON,
     text: 'Copier',
   },
 };

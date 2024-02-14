@@ -2,8 +2,7 @@ import { expect } from '@storybook/jest';
 import type { Meta, StoryObj } from '@storybook/react';
 import { within } from '@storybook/testing-library';
 
-import { ItemType } from '@graasp/sdk';
-import { DEFAULT_LANG } from '@graasp/translations';
+import { AppItemFactory, ItemType } from '@graasp/sdk';
 
 import { MOCK_MEMBER } from '../utils/fixtures';
 import AppItem from './AppItem';
@@ -19,7 +18,7 @@ type Story = StoryObj<typeof AppItem>;
 
 export const Example: Story = {
   args: {
-    item: {
+    item: AppItemFactory({
       name: 'my app',
       id: 'item-id',
       description: 'item-description',
@@ -31,11 +30,8 @@ export const Example: Story = {
       type: 'app',
       path: 'item-path',
       settings: {},
-      lang: DEFAULT_LANG,
       creator: MOCK_MEMBER,
-      createdAt: '2023-09-06T11:50:32.894Z',
-      updatedAt: '2023-09-06T11:50:32.894Z',
-    },
+    }),
   },
 };
 

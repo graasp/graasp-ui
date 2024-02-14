@@ -34,13 +34,14 @@ const EditButton = ({
   size = 'small',
   type = ActionButton.ICON_BUTTON,
 }: Props): JSX.Element => {
+  const icon = <EditIcon />;
   switch (type) {
+    case ActionButton.ICON:
+      return icon;
     case ActionButton.MENU_ITEM:
       return (
         <MenuItem key={title} onClick={onClick} id={id} className={className}>
-          <ListItemIcon>
-            <EditIcon />
-          </ListItemIcon>
+          <ListItemIcon>{icon}</ListItemIcon>
           <ListItemText>{title}</ListItemText>
         </MenuItem>
       );
@@ -56,7 +57,7 @@ const EditButton = ({
               onClick={onClick}
               size={size}
             >
-              <EditIcon />
+              {icon}
             </IconButton>
           </span>
         </Tooltip>

@@ -7,39 +7,32 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import { BrowserRouter } from 'react-router-dom';
 
 import {
-  FolderItemType,
+  FolderItemFactory,
   ItemType,
+  LocalFileItemFactory,
   LocalFileItemType,
   MimeTypes,
 } from '@graasp/sdk';
-import { DEFAULT_LANG } from '@graasp/translations';
 
 import { MOCK_MEMBER } from '../utils/fixtures';
 import HomeMenu from './HomeMenu';
 import ItemMenu, { ItemMenuProps } from './ItemMenu';
 import Navigation from './Navigation';
 
-const buildItem = (name: string): LocalFileItemType => ({
-  id: name,
-  name,
-  extra: {
-    [ItemType.LOCAL_FILE]: {
-      path: 'https://picsum.photos/100',
-      mimetype: MimeTypes.Image.PNG,
-      name: 'original file name',
-      size: 2600,
-      content: '',
+const buildItem = (name: string): LocalFileItemType =>
+  LocalFileItemFactory({
+    id: name,
+    name,
+    extra: {
+      [ItemType.LOCAL_FILE]: {
+        path: 'https://picsum.photos/100',
+        mimetype: MimeTypes.Image.PNG,
+        name: 'original file name',
+        size: 2600,
+        content: '',
+      },
     },
-  },
-  type: 'file',
-  description: 'my image description',
-  path: 'item-path',
-  settings: {},
-  lang: DEFAULT_LANG,
-  creator: MOCK_MEMBER,
-  createdAt: '2023-09-06T11:50:32.894Z',
-  updatedAt: '2023-09-06T11:50:32.894Z',
-});
+  });
 
 const meta: Meta<typeof Navigation> = {
   title: 'Common/Navigation',
@@ -69,7 +62,7 @@ const useChildren: ItemMenuProps['useChildren'] = (id) => {
 };
 const buildToItemPath = (id: string): string => id;
 const dataTestId = 'NavigateNextIcon';
-const folder: FolderItemType = {
+const folder = FolderItemFactory({
   id: 'folder-id',
   name: 'folder',
   extra: {
@@ -81,11 +74,8 @@ const folder: FolderItemType = {
   description: 'my image description',
   path: 'item-path',
   settings: {},
-  lang: DEFAULT_LANG,
   creator: MOCK_MEMBER,
-  createdAt: '2023-09-06T11:50:32.894Z',
-  updatedAt: '2023-09-06T11:50:32.894Z',
-};
+});
 
 const menu = [
   { name: 'Home', id: 'home', to: 'home' },

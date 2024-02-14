@@ -4,31 +4,30 @@ import { userEvent, within } from '@storybook/testing-library';
 
 import { ActionButton } from '../../types';
 import { TABLE_CATEGORIES } from '../../utils/storybook';
-import PinButton from './PinButton';
+import ChatboxButton from './ChatboxButton';
 
-const meta: Meta<typeof PinButton> = {
-  title: 'Buttons/PinButton',
-  component: PinButton,
+const meta: Meta<typeof ChatboxButton> = {
+  title: 'Buttons/ChatboxButton',
+  component: ChatboxButton,
 
   argTypes: {
     onClick: {
-      action: 'pin',
+      action: 'show chat',
       table: {
         category: TABLE_CATEGORIES.EVENTS,
       },
     },
-    pinText: {},
   },
 };
 
 export default meta;
 
-type Story = StoryObj<typeof PinButton>;
+type Story = StoryObj<typeof ChatboxButton>;
 
-export const IsPinned: Story = {
+export const ShowChat: Story = {
   args: {
-    isPinned: true,
-    color: 'primary',
+    showChat: true,
+    color: 'error',
   },
 };
 
@@ -41,12 +40,12 @@ export const Icon: Story = {
 export const MenuItem: Story = {
   args: {
     type: ActionButton.MENU_ITEM,
-    pinText: 'pin item',
+    showChatText: 'Show Chat',
   },
   play: async ({ args, canvasElement }) => {
     const canvas = within(canvasElement);
 
-    await userEvent.click(canvas.getByText(args.pinText!));
+    await userEvent.click(canvas.getByText(args.showChatText!));
 
     expect(args.onClick).toHaveBeenCalled();
   },

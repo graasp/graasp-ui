@@ -9,7 +9,7 @@ import {
   Tooltip,
 } from '@mui/material';
 
-import { FC, MouseEventHandler } from 'react';
+import { MouseEventHandler } from 'react';
 
 import { ActionButton, ActionButtonVariant } from '../../types';
 
@@ -24,7 +24,7 @@ export type Props = {
   type?: ActionButtonVariant;
 };
 
-const ShareButton: FC<Props> = ({
+const ShareButton = ({
   open,
   className,
   tooltip = 'Share',
@@ -33,14 +33,15 @@ const ShareButton: FC<Props> = ({
   onClick,
   size,
   type = ActionButton.ICON_BUTTON,
-}) => {
+}: Props): JSX.Element => {
+  const icon = open ? <CloseIcon /> : <Groups />;
   switch (type) {
+    case ActionButton.ICON:
+      return icon;
     case ActionButton.MENU_ITEM:
       return (
         <MenuItem key={tooltip} className={className} onClick={onClick}>
-          <ListItemIcon>
-            <Groups />
-          </ListItemIcon>
+          <ListItemIcon>{icon}</ListItemIcon>
           <ListItemText>{tooltip}</ListItemText>
         </MenuItem>
       );
@@ -56,7 +57,7 @@ const ShareButton: FC<Props> = ({
               id={id}
               size={size}
             >
-              {open ? <CloseIcon /> : <Groups />}
+              {icon}
             </IconButton>
           </span>
         </Tooltip>

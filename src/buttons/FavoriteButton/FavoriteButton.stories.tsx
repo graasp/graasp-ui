@@ -1,4 +1,6 @@
+import { expect } from '@storybook/jest';
 import type { StoryObj } from '@storybook/react';
+import { userEvent, within } from '@storybook/testing-library';
 
 import { ActionButton } from '../../types';
 import { TABLE_CATEGORIES } from '../../utils/storybook';
@@ -48,5 +50,12 @@ export const MenuItem: Story = {
   args: {
     text: 'Add to Favorites',
     type: ActionButton.MENU_ITEM,
+  },
+  play: async ({ args, canvasElement }) => {
+    const canvas = within(canvasElement);
+
+    await userEvent.click(canvas.getByText(args.text!));
+
+    expect(args.handleFavorite).toHaveBeenCalled();
   },
 };
