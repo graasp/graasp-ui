@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { DEFAULT_LANG, ItemType, MaxWidth, MimeTypes } from '@graasp/sdk';
+import { ItemType, MaxWidth, MimeTypes } from '@graasp/sdk';
+import { DEFAULT_LANG } from '@graasp/translations';
 
 import { MOCK_MEMBER } from '../utils/fixtures';
 import { TABLE_CATEGORIES } from '../utils/storybook';
