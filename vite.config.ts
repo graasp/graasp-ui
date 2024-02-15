@@ -35,6 +35,7 @@ export default (): UserConfigExport => {
           '@emotion/cache',
           '@emotion/react',
           '@emotion/styled',
+          '@graasp/sdk',
           '@graasp/translations',
           '@graasp/ui',
           '@mui/icons-material',
