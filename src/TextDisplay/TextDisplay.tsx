@@ -2,19 +2,20 @@ import { Interweave } from 'interweave';
 
 import { styled } from '@mui/material';
 
-const StyledDiv = styled('div')({
+const StyledDiv = styled('div')(({ theme }) => ({
   '& .ql-editor': {
-    '& p': {
-      paddingBottom: 3,
-      paddingTop: 3,
+    padding: '0px',
+    // apply paragraph margin bottom only to elements that are not last children
+    '& p:not(:last-child)': {
+      marginBlockEnd: theme.spacing(2),
     },
     '& td, th': {
-      border: '1px solid #dddddd',
+      border: '1px solid #ddd',
       textAlign: 'left',
       padding: '8px',
     },
   },
-});
+}));
 
 const TextDisplay = ({
   id,

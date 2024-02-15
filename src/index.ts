@@ -10,6 +10,7 @@ export { default as Loader } from './Loader';
 export * from './Loader';
 
 export { default as TextDisplay } from './TextDisplay/TextDisplay';
+export { withFlavor } from './TextDisplay/withFlavor';
 
 export { default as Header } from './Header/Header';
 
