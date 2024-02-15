@@ -3357,9 +3357,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@graasp/sdk@npm:3.7.0":
-  version: 3.7.0
-  resolution: "@graasp/sdk@npm:3.7.0"
+"@graasp/sdk@npm:3.8.3":
+  version: 3.8.3
+  resolution: "@graasp/sdk@npm:3.8.3"
   dependencies:
     "@faker-js/faker": "npm:8.4.0"
     js-cookie: "npm:3.0.5"
@@ -3367,7 +3367,16 @@ __metadata:
   peerDependencies:
     date-fns: ^3
     uuid: ^9
-  checksum: 686ecf2f252ccaf17a63730e3a9f486bbf5d4744a62c66fc338ec7bc4e1c9161387ce1c72bd560946a57aaa6798ef5e50fe97ccd8178c52ff5c497c8d11ee131
+  checksum: 3968defd8bc2eb9c4165ae8a89ae43c0cbe22bef9934f0eb4a2645188b793639c193a79016cb961052068601754f0cc1ef8b2abf23b691231aa9ad0594ad56f2
+  languageName: node
+  linkType: hard
+
+"@graasp/translations@npm:1.23.0":
+  version: 1.23.0
+  resolution: "@graasp/translations@npm:1.23.0"
+  dependencies:
+    i18next: "npm:23.7.16"
+  checksum: dc0d605b520a28deb1ad3054323dc4b71f709b79adf5924552c602f3c3ed2fa7c3c8538a3015c86c8db05867159df4b2f6ad18583766b2b97c8dd850952d29e2
   languageName: node
   linkType: hard
 
@@ -3383,7 +3392,8 @@ __metadata:
     "@emotion/cache": "npm:~11.11.0"
     "@emotion/react": "npm:11.11.3"
     "@emotion/styled": "npm:11.11.0"
-    "@graasp/sdk": "npm:3.7.0"
+    "@graasp/sdk": "npm:3.8.3"
+    "@graasp/translations": "npm:1.23.0"
     "@mui/icons-material": "npm:5.15.8"
     "@mui/lab": "npm:5.0.0-alpha.157"
     "@mui/material": "npm:5.15.8"
@@ -12482,6 +12492,15 @@ __metadata:
   bin:
     husky: bin.mjs
   checksum: c303f1862e2b63873605df55a2b08303155e35c799585d7dd677628f62d716e7304bd984fc7d00ec44e740caac07d51720d1a0abb0a23a70a38859d89eb8e72d
+  languageName: node
+  linkType: hard
+
+"i18next@npm:23.7.16":
+  version: 23.7.16
+  resolution: "i18next@npm:23.7.16"
+  dependencies:
+    "@babel/runtime": "npm:^7.23.2"
+  checksum: 77e74c07a73316f6fb6678a5a3e8ce58a6e66be457dd1ccd23941e9fc57ad8e1da55193fa6328c70b86073337b776cd267f3c13c6309f548b3116f27a1e41787
   languageName: node
   linkType: hard
 

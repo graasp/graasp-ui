@@ -2,7 +2,8 @@ import { expect } from '@storybook/jest';
 import type { Meta, StoryObj } from '@storybook/react';
 import { userEvent, within } from '@storybook/testing-library';
 
-import { DEFAULT_LANG, EmbeddedLinkItemType, ItemType } from '@graasp/sdk';
+import { EmbeddedLinkItemType, ItemType } from '@graasp/sdk';
+import { DEFAULT_LANG } from '@graasp/translations';
 
 import { MOCK_MEMBER } from '../utils/fixtures';
 import { TABLE_CATEGORIES } from '../utils/storybook';

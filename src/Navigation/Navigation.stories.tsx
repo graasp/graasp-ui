@@ -7,12 +7,12 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import { BrowserRouter } from 'react-router-dom';
 
 import {
-  DEFAULT_LANG,
   FolderItemType,
   ItemType,
   LocalFileItemType,
   MimeTypes,
 } from '@graasp/sdk';
+import { DEFAULT_LANG } from '@graasp/translations';
 
 import { MOCK_MEMBER } from '../utils/fixtures';
 import HomeMenu from './HomeMenu';

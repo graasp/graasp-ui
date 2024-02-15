@@ -30,7 +30,14 @@ const DocumentItem: FC<DocumentItemProps> = ({
     return (
       <>
         {extra?.flavor ? (
-          <Alert severity={extra.flavor}>{textView}</Alert>
+          <Alert
+            // TODO: fix this with the flavor PR
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-expect-error
+            severity={extra.flavor}
+          >
+            {textView}
+          </Alert>
         ) : (
           textView
         )}

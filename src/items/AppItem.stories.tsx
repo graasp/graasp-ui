@@ -2,7 +2,8 @@ import { expect } from '@storybook/jest';
 import type { Meta, StoryObj } from '@storybook/react';
 import { within } from '@storybook/testing-library';
 
-import { DEFAULT_LANG, ItemType } from '@graasp/sdk';
+import { ItemType } from '@graasp/sdk';
+import { DEFAULT_LANG } from '@graasp/translations';
 
 import { MOCK_MEMBER } from '../utils/fixtures';
 import AppItem from './AppItem';
