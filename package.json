@@ -73,7 +73,7 @@
     "@ag-grid-community/client-side-row-model": "31.0.3",
     "@ag-grid-community/react": "^31.0.3",
     "@ag-grid-community/styles": "^31.0.3",
-    "@graasp/sdk": "3.7.0",
+    "@graasp/sdk": "3.8.3",
     "@storybook/react-vite": "7.6.13",
     "http-status-codes": "2.3.0",
     "interweave": "13.1.0",
