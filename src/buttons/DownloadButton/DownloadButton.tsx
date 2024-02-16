@@ -7,7 +7,7 @@ import {
   Tooltip,
 } from '@mui/material';
 
-import { FC, MouseEventHandler } from 'react';
+import { MouseEventHandler } from 'react';
 
 import { DEFAULT_LOADER_SIZE } from '../../constants';
 import {
@@ -43,7 +43,7 @@ export interface DownloadButtonProps {
   type?: ActionButtonVariant;
 }
 
-const DownloadButton: FC<DownloadButtonProps> = ({
+const DownloadButton = ({
   ariaLabel = 'download',
   handleDownload,
   isLoading = false,
@@ -51,15 +51,16 @@ const DownloadButton: FC<DownloadButtonProps> = ({
   loaderSize = DEFAULT_LOADER_SIZE,
   title = 'Download',
   placement = 'bottom',
-  type = 'icon',
-}) => {
+  type = ActionButton.ICON_BUTTON,
+}: DownloadButtonProps): JSX.Element => {
+  const icon = <GetAppIcon />;
   switch (type) {
+    case ActionButton.ICON:
+      return icon;
     case ActionButton.MENU_ITEM:
       return (
         <MenuItem key={title} onClick={handleDownload}>
-          <ListItemIcon>
-            <GetAppIcon />
-          </ListItemIcon>
+          <ListItemIcon>{icon}</ListItemIcon>
           {title}
         </MenuItem>
       );
@@ -72,7 +73,7 @@ const DownloadButton: FC<DownloadButtonProps> = ({
         <Tooltip title={title} placement={placement}>
           <span>
             <IconButton onClick={handleDownload} aria-label={ariaLabel}>
-              <GetAppIcon />
+              {icon}
             </IconButton>
           </span>
         </Tooltip>

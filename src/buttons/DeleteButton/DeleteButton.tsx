@@ -1,7 +1,7 @@
 import DeleteIcon from '@mui/icons-material/Delete';
 import { IconButton, ListItemIcon, MenuItem, Tooltip } from '@mui/material';
 
-import { FC, MouseEventHandler } from 'react';
+import { MouseEventHandler } from 'react';
 
 import { ActionButton, ActionButtonVariant, ColorVariants } from '../../types';
 
@@ -14,21 +14,22 @@ export type Props = {
   type?: ActionButtonVariant;
 };
 
-const DeleteButton: FC<Props> = ({
+const DeleteButton = ({
   className,
   color,
   id,
   onClick,
   text = 'Delete',
   type,
-}) => {
+}: Props): JSX.Element => {
+  const icon = <DeleteIcon />;
   switch (type) {
+    case ActionButton.ICON:
+      return icon;
     case ActionButton.MENU_ITEM:
       return (
         <MenuItem key={text} onClick={onClick}>
-          <ListItemIcon>
-            <DeleteIcon />
-          </ListItemIcon>
+          <ListItemIcon>{icon}</ListItemIcon>
           {text}
         </MenuItem>
       );
@@ -44,7 +45,7 @@ const DeleteButton: FC<Props> = ({
               aria-label={text}
               onClick={onClick}
             >
-              <DeleteIcon />
+              {icon}
             </IconButton>
           </span>
         </Tooltip>

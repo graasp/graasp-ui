@@ -2,24 +2,28 @@ import { expect } from '@storybook/jest';
 import type { Meta, StoryObj } from '@storybook/react';
 import { within } from '@storybook/testing-library';
 
-import { ItemType } from '@graasp/sdk';
-import { DEFAULT_LANG } from '@graasp/translations';
+import {
+  AppItemFactory,
+  Context,
+  ItemType,
+  PermissionLevel,
+} from '@graasp/sdk';
 
 import { MOCK_MEMBER } from '../utils/fixtures';
 import AppItem from './AppItem';
 
-const meta: Meta<typeof AppItem> = {
+const meta = {
   title: 'Items/AppItem',
   component: AppItem,
-};
+} satisfies Meta<typeof AppItem>;
 
 export default meta;
 
-type Story = StoryObj<typeof AppItem>;
+type Story = StoryObj<typeof meta>;
 
-export const Example: Story = {
+export const Example = {
   args: {
-    item: {
+    item: AppItemFactory({
       name: 'my app',
       id: 'item-id',
       description: 'item-description',
@@ -31,18 +35,23 @@ export const Example: Story = {
       type: 'app',
       path: 'item-path',
       settings: {},
-      lang: DEFAULT_LANG,
       creator: MOCK_MEMBER,
-      createdAt: '2023-09-06T11:50:32.894Z',
-      updatedAt: '2023-09-06T11:50:32.894Z',
+    }),
+    requestApiAccessToken: async () => ({ token: 'token' }),
+    contextPayload: {
+      apiHost: 'apiHost',
+      itemId: 'itemId',
+      settings: {},
+      permission: PermissionLevel.Read,
+      lang: 'en',
+      context: Context.Library,
     },
   },
-};
-
-Example.play = async ({ canvasElement, args }) => {
-  const canvas = within(canvasElement);
-  if (args.item.description) {
-    await expect(canvas.getByText(args.item.description)).toBeInTheDocument();
-  }
-  await expect(canvas.getByTitle(args.item.name)).toBeInTheDocument();
-};
+  play: async ({ canvasElement, args }) => {
+    const canvas = within(canvasElement);
+    if (args.item.description) {
+      await expect(canvas.getByText(args.item.description)).toBeInTheDocument();
+    }
+    await expect(canvas.getByTitle(args.item.name)).toBeInTheDocument();
+  },
+} satisfies Story;

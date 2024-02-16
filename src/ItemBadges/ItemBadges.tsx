@@ -1,4 +1,3 @@
-import Chat from '@mui/icons-material/Chat';
 import Public from '@mui/icons-material/Public';
 import PushPin from '@mui/icons-material/PushPin';
 import UnfoldLess from '@mui/icons-material/UnfoldLess';
@@ -7,6 +6,7 @@ import { Avatar, AvatarGroup, Tooltip } from '@mui/material';
 
 import { ThumbnailSize } from '@graasp/sdk';
 
+import { ChatboxButton } from '../buttons';
 import { LibraryIcon } from '../icons';
 
 type ItemBadgeProps = {
@@ -100,9 +100,16 @@ const ItemBadges = ({
           backgroundColor={backgroundColor}
           tooltip={showChatboxTooltip}
         >
-          <Chat
-            fontSize={ThumbnailSize.Small}
-            sx={{ width: 15, height: 15, marginLeft: '1px', marginTop: '2px' }}
+          <ChatboxButton
+            size='small'
+            showChat
+            sx={{
+              width: 15,
+              height: 15,
+              marginLeft: '1px',
+              marginTop: '2px',
+              color: 'white',
+            }}
           />
         </ItemBadge>
       )}

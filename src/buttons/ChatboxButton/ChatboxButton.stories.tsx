@@ -4,49 +4,57 @@ import { userEvent, within } from '@storybook/testing-library';
 
 import { ActionButton } from '../../types';
 import { TABLE_CATEGORIES } from '../../utils/storybook';
-import PinButton from './PinButton';
+import ChatboxButton from './ChatboxButton';
 
 const meta = {
-  title: 'Buttons/PinButton',
-  component: PinButton,
+  title: 'Buttons/ChatboxButton',
+  component: ChatboxButton,
 
   argTypes: {
     onClick: {
-      action: 'pin',
+      action: 'show chat',
       table: {
         category: TABLE_CATEGORIES.EVENTS,
       },
     },
-    pinText: {},
   },
-} satisfies Meta<typeof PinButton>;
+} satisfies Meta<typeof ChatboxButton>;
 
 export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const IsPinned = {
+export const ShowChat: Story = {
   args: {
-    isPinned: true,
-    color: 'primary',
+    showChat: true,
+    color: 'error',
   },
-} satisfies Story;
+};
 
-export const Icon = {
+export const Icon: Story = {
   args: {
+    showChat: true,
     type: ActionButton.ICON_BUTTON,
   },
-} satisfies Story;
+};
+
+export const IconFalse: Story = {
+  args: {
+    showChat: false,
+    type: ActionButton.ICON_BUTTON,
+  },
+};
 
 export const MenuItem = {
   args: {
+    showChat: false,
     type: ActionButton.MENU_ITEM,
-    pinText: 'pin item',
+    showChatText: 'Show Chat',
   },
   play: async ({ args, canvasElement }) => {
     const canvas = within(canvasElement);
 
-    await userEvent.click(canvas.getByText(args.pinText!));
+    await userEvent.click(canvas.getByText(args.showChatText!));
 
     expect(args.onClick).toHaveBeenCalled();
   },

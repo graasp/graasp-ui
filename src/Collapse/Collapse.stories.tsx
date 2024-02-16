@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { TABLE_CATEGORIES } from '../utils/storybook';
 import Collapse from './Collapse';
 
-const meta: Meta<typeof Collapse> = {
+const meta = {
   title: 'Common/Collapse',
   component: Collapse,
 
@@ -19,14 +19,14 @@ const meta: Meta<typeof Collapse> = {
       <img src='https://picsum.photos/100' />
     </Collapse>
   ),
-};
+} satisfies Meta<typeof Collapse>;
 
 export default meta;
 
-type Story = StoryObj<typeof Collapse>;
+type Story = StoryObj<typeof meta>;
 
-export const CollapsedImage: Story = {
+export const CollapsedImage = {
   args: {
     title: 'My collapsed element',
   },
-};
+} satisfies Story;

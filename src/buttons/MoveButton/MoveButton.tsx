@@ -29,13 +29,14 @@ const MoveButton = ({
   text = 'Move',
   type = ActionButton.ICON_BUTTON,
 }: MoveButtonProps): JSX.Element => {
+  const icon = <OpenWith />;
   switch (type) {
+    case ActionButton.ICON:
+      return icon;
     case ActionButton.MENU_ITEM:
       return (
         <MenuItem key={text} onClick={onClick} className={menuItemClassName}>
-          <ListItemIcon>
-            <OpenWith />
-          </ListItemIcon>
+          <ListItemIcon>{icon}</ListItemIcon>
           {text}
         </MenuItem>
       );
@@ -52,7 +53,7 @@ const MoveButton = ({
               aria-label={text}
               onClick={onClick}
             >
-              <OpenWith />
+              {icon}
             </IconButton>
           </span>
         </Tooltip>

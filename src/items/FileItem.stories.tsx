@@ -1,13 +1,17 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { ItemType, MaxWidth, MimeTypes } from '@graasp/sdk';
-import { DEFAULT_LANG } from '@graasp/translations';
+import {
+  ItemType,
+  LocalFileItemFactory,
+  MaxWidth,
+  MimeTypes,
+} from '@graasp/sdk';
 
 import { MOCK_MEMBER } from '../utils/fixtures';
 import { TABLE_CATEGORIES } from '../utils/storybook';
 import FileItem from './FileItem';
 
-const meta: Meta<typeof FileItem> = {
+const meta = {
   title: 'Items/FileItem',
   component: FileItem,
 
@@ -21,20 +25,20 @@ const meta: Meta<typeof FileItem> = {
   render: (args, { loaded: { content } }) => {
     return <FileItem {...args} content={content} />;
   },
-};
+} satisfies Meta<typeof FileItem>;
 
 export default meta;
 
-type Story = StoryObj<typeof FileItem>;
+type Story = StoryObj<typeof meta>;
 
-export const Image: Story = {
+export const Image = {
   loaders: [
     async () => ({
       content: await fetch('https://picsum.photos/100').then((r) => r.blob()),
     }),
   ],
   args: {
-    item: {
+    item: LocalFileItemFactory({
       id: 'my-id',
       name: 'my item name',
       extra: {
@@ -51,22 +55,19 @@ export const Image: Story = {
       description: 'my image description',
       path: 'item-path',
       settings: {},
-      lang: DEFAULT_LANG,
       creator: MOCK_MEMBER,
-      createdAt: '2023-09-06T11:50:32.894Z',
-      updatedAt: '2023-09-06T11:50:32.894Z',
-    },
+    }),
   },
-};
+} satisfies Story;
 
-export const BigContainedImage: Story = {
+export const BigContainedImage = {
   loaders: [
     async () => ({
       content: await fetch('https://picsum.photos/1000').then((r) => r.blob()),
     }),
   ],
   args: {
-    item: {
+    item: LocalFileItemFactory({
       id: 'my-id',
       name: 'my item name',
       extra: {
@@ -86,22 +87,19 @@ export const BigContainedImage: Story = {
       settings: {
         maxWidth: MaxWidth.Small,
       },
-      lang: DEFAULT_LANG,
       creator: MOCK_MEMBER,
-      createdAt: '2023-09-06T11:50:32.894Z',
-      updatedAt: '2023-09-06T11:50:32.894Z',
-    },
+    }),
   },
-};
+} satisfies Story;
 
-export const SmallContainedImage: Story = {
+export const SmallContainedImage = {
   loaders: [
     async () => ({
       content: await fetch('https://picsum.photos/100').then((r) => r.blob()),
     }),
   ],
   args: {
-    item: {
+    item: LocalFileItemFactory({
       id: 'my-id',
       name: 'my item name',
       extra: {
@@ -121,15 +119,12 @@ export const SmallContainedImage: Story = {
       settings: {
         maxWidth: MaxWidth.Large,
       },
-      lang: DEFAULT_LANG,
       creator: MOCK_MEMBER,
-      createdAt: '2023-09-06T11:50:32.894Z',
-      updatedAt: '2023-09-06T11:50:32.894Z',
-    },
+    }),
   },
-};
+} satisfies Story;
 
-export const ImageSVG: Story = {
+export const ImageSVG = {
   loaders: [
     async () => ({
       content: await fetch(
@@ -138,7 +133,7 @@ export const ImageSVG: Story = {
     }),
   ],
   args: {
-    item: {
+    item: LocalFileItemFactory({
       id: 'my-id',
       name: 'my item name',
       extra: {
@@ -155,15 +150,12 @@ export const ImageSVG: Story = {
       description: 'my svg description',
       path: 'item-path',
       settings: {},
-      lang: DEFAULT_LANG,
       creator: MOCK_MEMBER,
-      createdAt: '2023-09-06T11:50:32.894Z',
-      updatedAt: '2023-09-06T11:50:32.894Z',
-    },
+    }),
   },
-};
+} satisfies Story;
 
-export const ImageWebP: Story = {
+export const ImageWebP = {
   loaders: [
     async () => ({
       content: await fetch(
@@ -172,7 +164,7 @@ export const ImageWebP: Story = {
     }),
   ],
   args: {
-    item: {
+    item: LocalFileItemFactory({
       id: 'my-id',
       name: 'my item name',
       extra: {
@@ -189,15 +181,12 @@ export const ImageWebP: Story = {
       description: 'my webp description',
       path: 'item-path',
       settings: {},
-      lang: DEFAULT_LANG,
       creator: MOCK_MEMBER,
-      createdAt: '2023-09-06T11:50:32.894Z',
-      updatedAt: '2023-09-06T11:50:32.894Z',
-    },
+    }),
   },
-};
+} satisfies Story;
 
-export const WAVAudio: Story = {
+export const WAVAudio = {
   loaders: [
     async () => ({
       content: await fetch(
@@ -206,7 +195,7 @@ export const WAVAudio: Story = {
     }),
   ],
   args: {
-    item: {
+    item: LocalFileItemFactory({
       id: 'my-id',
       name: 'my item name',
       extra: {
@@ -222,10 +211,7 @@ export const WAVAudio: Story = {
       description: 'my audio description',
       path: 'item-path',
       settings: {},
-      lang: DEFAULT_LANG,
       creator: MOCK_MEMBER,
-      createdAt: '2023-09-06T11:50:32.894Z',
-      updatedAt: '2023-09-06T11:50:32.894Z',
-    },
+    }),
   },
-};
+} satisfies Story;
