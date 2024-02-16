@@ -15,6 +15,7 @@ export const withFlavor = ({
   flavor = DocumentItemExtraFlavor.None,
 }: WithFlavorProps): JSX.Element => {
   if (flavor === DocumentItemExtraFlavor.None) {
+    // need to wrap in a fragment because content can be a string which is not a JSX.Element
     return <>{content}</>;
   }
   return (

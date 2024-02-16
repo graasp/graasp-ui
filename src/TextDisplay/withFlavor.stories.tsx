@@ -38,7 +38,7 @@ export const WithTitle = {
   args: {
     content,
     title: 'Info message',
-    flavor: 'info',
+    flavor: DocumentItemExtraFlavor.Info,
   },
 } satisfies Story;
 
@@ -47,34 +47,34 @@ export const SimpleHtml = {
     content: (
       <TextDisplay content='<p>Hello<br/>Next line</p><p>Nice to meet you !</p>' />
     ),
-    flavor: 'info',
+    flavor: DocumentItemExtraFlavor.Info,
   },
 } satisfies Story;
 
 export const InformationFlavor = {
   args: {
     content,
-    flavor: 'info',
+    flavor: DocumentItemExtraFlavor.Info,
   },
 } satisfies Story;
 
 export const WarningFlavor = {
   args: {
     content,
-    flavor: 'warning',
+    flavor: DocumentItemExtraFlavor.Warning,
   },
 } satisfies Story;
 
 export const ErrorFlavor = {
   args: {
     content,
-    flavor: 'error',
+    flavor: DocumentItemExtraFlavor.Error,
   },
 } satisfies Story;
 
 export const SuccessFlavor = {
   args: {
     content,
-    flavor: 'success',
+    flavor: DocumentItemExtraFlavor.Success,
   },
 } satisfies Story;
