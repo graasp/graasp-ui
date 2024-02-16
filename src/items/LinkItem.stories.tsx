@@ -2,17 +2,13 @@ import { expect } from '@storybook/jest';
 import type { Meta, StoryObj } from '@storybook/react';
 import { userEvent, within } from '@storybook/testing-library';
 
-import {
-  EmbeddedLinkItemFactory,
-  EmbeddedLinkItemType,
-  ItemType,
-} from '@graasp/sdk';
+import { EmbeddedLinkItemFactory, ItemType } from '@graasp/sdk';
 
 import { MOCK_MEMBER } from '../utils/fixtures';
 import { TABLE_CATEGORIES } from '../utils/storybook';
 import LinkItem from './LinkItem';
 
-const item: EmbeddedLinkItemType = EmbeddedLinkItemFactory({
+const item = EmbeddedLinkItemFactory({
   id: 'item-id',
   name: 'item-name',
   type: ItemType.LINK,
@@ -50,7 +46,7 @@ const itemWithHTMLDescription = EmbeddedLinkItemFactory({
     '<p class="ql-align-center">I am centered</p><p>I am left aligned</p><p class="ql-align-right">I am right aligned</p><p class="ql-align-right"><span class="ql-emojiblot" data-name="smiling_imp">﻿<span contenteditable="false"><span class="ap ap-smiling_imp">😈</span></span>﻿</span></p><p class="ql-align-right">I <span style="background-color: rgb(204, 224, 245);">have</span> a <span style="background-color: rgb(194, 133, 255);">background</span></p><p class="ql-align-center"><a href="https://www.google.com" rel="noopener noreferrer" target="_blank">Test link</a></p><p><s>Hey !</s></p><p><strong class="ql-font-serif"><s>Wow</s></strong></p><p><br></p><pre class="ql-syntax" spellcheck="false">Some code too !\n</pre>',
 });
 
-const meta: Meta<typeof LinkItem> = {
+const meta = {
   title: 'Items/LinkItem',
   component: LinkItem,
 
@@ -61,12 +57,12 @@ const meta: Meta<typeof LinkItem> = {
       },
     },
   },
-};
+} satisfies Meta<typeof LinkItem>;
 export default meta;
 
-type Story = StoryObj<typeof LinkItem>;
+type Story = StoryObj<typeof meta>;
 
-export const Iframe: Story = {
+export const Iframe = {
   args: {
     item,
     isResizable: true,
@@ -82,7 +78,7 @@ export const Iframe: Story = {
     }
     expect(canvas.getByTitle(args.item.name)).toBeInTheDocument();
   },
-};
+} satisfies Story;
 
 export const LinkButton: Story = {
   args: {

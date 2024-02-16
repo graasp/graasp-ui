@@ -11,7 +11,7 @@ import { MOCK_MEMBER } from '../utils/fixtures';
 import { TABLE_CATEGORIES } from '../utils/storybook';
 import FileItem from './FileItem';
 
-const meta: Meta<typeof FileItem> = {
+const meta = {
   title: 'Items/FileItem',
   component: FileItem,
 
@@ -25,13 +25,13 @@ const meta: Meta<typeof FileItem> = {
   render: (args, { loaded: { content } }) => {
     return <FileItem {...args} content={content} />;
   },
-};
+} satisfies Meta<typeof FileItem>;
 
 export default meta;
 
-type Story = StoryObj<typeof FileItem>;
+type Story = StoryObj<typeof meta>;
 
-export const Image: Story = {
+export const Image = {
   loaders: [
     async () => ({
       content: await fetch('https://picsum.photos/100').then((r) => r.blob()),
@@ -58,9 +58,9 @@ export const Image: Story = {
       creator: MOCK_MEMBER,
     }),
   },
-};
+} satisfies Story;
 
-export const BigContainedImage: Story = {
+export const BigContainedImage = {
   loaders: [
     async () => ({
       content: await fetch('https://picsum.photos/1000').then((r) => r.blob()),
@@ -90,9 +90,9 @@ export const BigContainedImage: Story = {
       creator: MOCK_MEMBER,
     }),
   },
-};
+} satisfies Story;
 
-export const SmallContainedImage: Story = {
+export const SmallContainedImage = {
   loaders: [
     async () => ({
       content: await fetch('https://picsum.photos/100').then((r) => r.blob()),
@@ -122,9 +122,9 @@ export const SmallContainedImage: Story = {
       creator: MOCK_MEMBER,
     }),
   },
-};
+} satisfies Story;
 
-export const ImageSVG: Story = {
+export const ImageSVG = {
   loaders: [
     async () => ({
       content: await fetch(
@@ -153,9 +153,9 @@ export const ImageSVG: Story = {
       creator: MOCK_MEMBER,
     }),
   },
-};
+} satisfies Story;
 
-export const ImageWebP: Story = {
+export const ImageWebP = {
   loaders: [
     async () => ({
       content: await fetch(
@@ -184,9 +184,9 @@ export const ImageWebP: Story = {
       creator: MOCK_MEMBER,
     }),
   },
-};
+} satisfies Story;
 
-export const WAVAudio: Story = {
+export const WAVAudio = {
   loaders: [
     async () => ({
       content: await fetch(
@@ -214,4 +214,4 @@ export const WAVAudio: Story = {
       creator: MOCK_MEMBER,
     }),
   },
-};
+} satisfies Story;

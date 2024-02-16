@@ -6,7 +6,7 @@ import { ActionButton } from '../../types';
 import { TABLE_CATEGORIES } from '../../utils/storybook';
 import ChatboxButton from './ChatboxButton';
 
-const meta: Meta<typeof ChatboxButton> = {
+const meta = {
   title: 'Buttons/ChatboxButton',
   component: ChatboxButton,
 
@@ -18,11 +18,11 @@ const meta: Meta<typeof ChatboxButton> = {
       },
     },
   },
-};
+} satisfies Meta<typeof ChatboxButton>;
 
 export default meta;
 
-type Story = StoryObj<typeof ChatboxButton>;
+type Story = StoryObj<typeof meta>;
 
 export const ShowChat: Story = {
   args: {
@@ -33,12 +33,21 @@ export const ShowChat: Story = {
 
 export const Icon: Story = {
   args: {
+    showChat: true,
     type: ActionButton.ICON_BUTTON,
   },
 };
 
-export const MenuItem: Story = {
+export const IconFalse: Story = {
   args: {
+    showChat: false,
+    type: ActionButton.ICON_BUTTON,
+  },
+};
+
+export const MenuItem = {
+  args: {
+    showChat: true,
     type: ActionButton.MENU_ITEM,
     showChatText: 'Show Chat',
   },
@@ -49,4 +58,4 @@ export const MenuItem: Story = {
 
     expect(args.onClick).toHaveBeenCalled();
   },
-};
+} satisfies Story;

@@ -6,7 +6,7 @@ import { ActionButton } from '../../types';
 import { TABLE_CATEGORIES } from '../../utils/storybook';
 import PinButton from './PinButton';
 
-const meta: Meta<typeof PinButton> = {
+const meta = {
   title: 'Buttons/PinButton',
   component: PinButton,
 
@@ -19,26 +19,26 @@ const meta: Meta<typeof PinButton> = {
     },
     pinText: {},
   },
-};
+} satisfies Meta<typeof PinButton>;
 
 export default meta;
 
-type Story = StoryObj<typeof PinButton>;
+type Story = StoryObj<typeof meta>;
 
-export const IsPinned: Story = {
+export const IsPinned = {
   args: {
     isPinned: true,
     color: 'primary',
   },
-};
+} satisfies Story;
 
-export const Icon: Story = {
+export const Icon = {
   args: {
     type: ActionButton.ICON_BUTTON,
   },
-};
+} satisfies Story;
 
-export const MenuItem: Story = {
+export const MenuItem = {
   args: {
     type: ActionButton.MENU_ITEM,
     pinText: 'pin item',
@@ -50,4 +50,4 @@ export const MenuItem: Story = {
 
     expect(args.onClick).toHaveBeenCalled();
   },
-};
+} satisfies Story;

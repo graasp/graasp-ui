@@ -1,12 +1,12 @@
 import { expect } from '@storybook/jest';
-import type { StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 import { userEvent, within } from '@storybook/testing-library';
 
 import { ActionButton } from '../../types';
 import { TABLE_CATEGORIES } from '../../utils/storybook';
 import FavoriteButton from './FavoriteButton';
 
-export default {
+const meta = {
   title: 'Buttons/FavoriteButton',
   component: FavoriteButton,
 
@@ -34,19 +34,21 @@ export default {
       },
     },
   },
-};
+} satisfies Meta<typeof FavoriteButton>;
 
-type Story = StoryObj<typeof FavoriteButton>;
+export default meta;
 
-export const Default: Story = {
+type Story = StoryObj<typeof meta>;
+
+export const Default = {
   args: {},
-};
+} satisfies Story;
 
-export const IsFavorite: Story = {
+export const IsFavorite = {
   args: { isFavorite: true },
-};
+} satisfies Story;
 
-export const MenuItem: Story = {
+export const MenuItem = {
   args: {
     text: 'Add to Favorites',
     type: ActionButton.MENU_ITEM,
@@ -58,4 +60,4 @@ export const MenuItem: Story = {
 
     expect(args.handleFavorite).toHaveBeenCalled();
   },
-};
+} satisfies Story;

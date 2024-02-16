@@ -4,7 +4,7 @@ import { ActionButton } from '../../types';
 import { TABLE_CATEGORIES } from '../../utils/storybook';
 import CopyButton from './CopyButton';
 
-const meta: Meta<typeof CopyButton> = {
+const meta = {
   title: 'Buttons/CopyButton',
   component: CopyButton,
 
@@ -38,21 +38,21 @@ const meta: Meta<typeof CopyButton> = {
     },
   },
   render: (args) => <CopyButton {...args} />,
-};
+} satisfies Meta<typeof CopyButton>;
 
 export default meta;
-type Story = StoryObj<typeof CopyButton>;
+type Story = StoryObj<typeof meta>;
 
-export const Icon: Story = {
+export const Icon = {
   args: {
     color: 'primary',
     type: ActionButton.ICON_BUTTON,
     text: 'Copier',
   },
-};
+} satisfies Story;
 
-export const MenuItem: Story = {
+export const MenuItem = {
   args: {
     type: 'menuItem',
   },
-};
+} satisfies Story;
