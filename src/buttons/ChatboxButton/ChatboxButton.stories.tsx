@@ -47,7 +47,7 @@ export const IconFalse: Story = {
 
 export const MenuItem = {
   args: {
-    showChat: true,
+    showChat: false,
     type: ActionButton.MENU_ITEM,
     showChatText: 'Show Chat',
   },
