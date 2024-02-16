@@ -1,49 +1,33 @@
-import { Alert, Typography } from '@mui/material';
-
-import React, { FC } from 'react';
+import { Typography } from '@mui/material';
 
 import { DocumentItemType, getDocumentExtra } from '@graasp/sdk';
 
-import { TextDisplay } from '..';
+import { TextDisplay, withFlavor } from '..';
 import withCollapse from '../Collapse/withCollapse';
 
 export type DocumentItemProps = {
   id?: string;
   emptyMessage?: string;
   showEmpty?: boolean;
+  /**
+   * Show the item name as the Alert title
+   */
+  showTitle?: boolean;
 } & (
   | { showCollapse: true; item: DocumentItemType }
-  | { showCollapse?: false; item: Pick<DocumentItemType, 'extra'> }
+  | { showCollapse?: false; item: Pick<DocumentItemType, 'extra' | 'name'> }
 );
 
-const DocumentItem: FC<DocumentItemProps> = ({
+const DocumentItem = ({
   id,
   item,
   emptyMessage = 'This document is empty…',
   showEmpty,
   showCollapse,
-}) => {
+  showTitle,
+}: DocumentItemProps): JSX.Element => {
   let component: JSX.Element;
   const extra = getDocumentExtra(item.extra);
-
-  const withFlavor = (textView: React.ReactElement): React.ReactElement => {
-    return (
-      <>
-        {extra?.flavor ? (
-          <Alert
-            // TODO: fix this with the flavor PR
-            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-            // @ts-expect-error
-            severity={extra.flavor}
-          >
-            {textView}
-          </Alert>
-        ) : (
-          textView
-        )}
-      </>
-    );
-  };
 
   if (!extra?.content && showEmpty) {
     component = (
@@ -55,7 +39,11 @@ const DocumentItem: FC<DocumentItemProps> = ({
       </Typography>
     );
   } else {
-    component = withFlavor(<TextDisplay id={id} content={extra?.content} />);
+    component = withFlavor({
+      content: <TextDisplay id={id} content={extra?.content} />,
+      flavor: extra?.flavor,
+      title: showTitle ? item?.name : undefined,
+    });
   }
 
   if (showCollapse) {
