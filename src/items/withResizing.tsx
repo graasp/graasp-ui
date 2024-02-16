@@ -1,9 +1,6 @@
-import { StyledComponent } from '@emotion/styled';
+import { styled } from '@mui/material';
 
-import { Theme, styled } from '@mui/material';
-import { MUIStyledCommonProps } from '@mui/system';
-
-import React, { FC, useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { Rnd } from 'react-rnd';
 
 import {
@@ -16,16 +13,7 @@ import { IFRAME_MIN_HEIGHT } from '../constants';
 import ResizingIcon from '../icons/ResizingIcon';
 import { ITEM_MAX_HEIGHT } from './constants';
 
-export const StyledIFrame: StyledComponent<
-  MUIStyledCommonProps<Theme> & {
-    isResizable?: boolean | undefined;
-    height?: string | number | undefined;
-  },
-  React.DetailedHTMLProps<
-    React.IframeHTMLAttributes<HTMLIFrameElement>,
-    HTMLIFrameElement
-  >
-> = styled('iframe')<{
+export const StyledIFrame = styled('iframe')<{
   isResizable?: boolean;
   height?: string | number;
 }>(({ isResizable, height }) => ({
