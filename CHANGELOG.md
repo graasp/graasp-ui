@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.8.0](https://github.com/graasp/graasp-ui/compare/v4.7.0...v4.8.0) (2024-02-16)
+
+
+### Features
+
+* update buttons ([#698](https://github.com/graasp/graasp-ui/issues/698)) ([2d4e10f](https://github.com/graasp/graasp-ui/commit/2d4e10fa08fbeb18c73717fcaa18692d54e06289))
+
+
+### Bug Fixes
+
+* **deps:** update dependency @graasp/sdk to v3.8.3 ([#704](https://github.com/graasp/graasp-ui/issues/704)) ([8662ca4](https://github.com/graasp/graasp-ui/commit/8662ca4fda8eec1839f064a40039e17509edd854))
+* exclude sdk from bundle ([b319aea](https://github.com/graasp/graasp-ui/commit/b319aea7739db48829ccdd9f3ff24163d46219c8))
+
 ## [4.7.0](https://github.com/graasp/graasp-ui/compare/v4.6.1...v4.7.0) (2024-02-13)
 
 ### Features
