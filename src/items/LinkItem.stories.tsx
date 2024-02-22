@@ -2,13 +2,13 @@ import { expect } from '@storybook/jest';
 import type { Meta, StoryObj } from '@storybook/react';
 import { userEvent, within } from '@storybook/testing-library';
 
-import { EmbeddedLinkItemFactory, ItemType } from '@graasp/sdk';
+import { ItemType, LinkItemFactory } from '@graasp/sdk';
 
 import { MOCK_MEMBER } from '../utils/fixtures';
 import { TABLE_CATEGORIES } from '../utils/storybook';
 import LinkItem from './LinkItem';
 
-const item = EmbeddedLinkItemFactory({
+const item = LinkItemFactory({
   id: 'item-id',
   name: 'item-name',
   type: ItemType.LINK,
@@ -25,7 +25,7 @@ const item = EmbeddedLinkItemFactory({
   description: 'my link description',
 });
 
-const itemWithHTMLDescription = EmbeddedLinkItemFactory({
+const itemWithHTMLDescription = LinkItemFactory({
   id: 'item-id',
   name: 'item-name',
   type: ItemType.LINK,
