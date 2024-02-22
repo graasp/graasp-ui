@@ -18,22 +18,21 @@
   ],
   "sideEffects": false,
   "module": "./dist/index.js",
-  "main": "./dist/index.cjs",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "import": "./dist/index.js",
-      "require": "./dist/index.cjs",
+      "require": null,
       "types": "./dist/index.d.ts"
     },
     "./table": {
       "import": "./dist/table.js",
-      "require": "./dist/table.cjs",
+      "require": null,
       "types": "./dist/table.d.ts"
     },
     "./text-editor": {
       "import": "./dist/text-editor.js",
-      "require": "./dist/text-editor.cjs",
+      "require": null,
       "types": "./dist/text-editor.d.ts"
     }
   },

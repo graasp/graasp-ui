@@ -26,7 +26,7 @@ export default (): UserConfigExport => {
           resolve(__dirname, 'src/text-editor.ts'),
         ],
         name: 'graasp-ui',
-        formats: ['cjs', 'es'],
+        formats: ['es'],
       },
       rollupOptions: {
         // make sure to externalize deps that shouldn't be bundled

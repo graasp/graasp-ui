@@ -3190,7 +3190,7 @@ __metadata:
 
 "@graasp/sdk@github:graasp/graasp-sdk#esm-package":
   version: 3.10.0
-  resolution: "@graasp/sdk@https://github.com/graasp/graasp-sdk.git#commit=c5354f9ad2fa4651327c56f2844801edd161d96b"
+  resolution: "@graasp/sdk@https://github.com/graasp/graasp-sdk.git#commit=cfb6a20c464fc3b48d9bb4463cca088cef10936c"
   dependencies:
     "@faker-js/faker": "npm:8.4.1"
     js-cookie: "npm:3.0.5"
@@ -3198,7 +3198,7 @@ __metadata:
   peerDependencies:
     date-fns: ^3
     uuid: ^9
-  checksum: 10/f59b7d6aa6449d4628632a7bf63ea40d7d171e76479b84309db269b40f936306e20452aca57e924f139fd47eefb97819ceef933939d3bd5f6e2d6ffd51ee02e2
+  checksum: 10/d725269daf07adfcd1df8b38b8b4a5104076a1ecb9ed4ade675f58cd6f7d3f7c405e855584ee7aee83ba1ba9cb0e1a2171d0324f80ac734dd8f336a35b9dc816
   languageName: node
   linkType: hard
 
