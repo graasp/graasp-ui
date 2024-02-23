@@ -3188,9 +3188,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@graasp/sdk@github:graasp/graasp-sdk#esm-package":
-  version: 3.10.0
-  resolution: "@graasp/sdk@https://github.com/graasp/graasp-sdk.git#commit=cfb6a20c464fc3b48d9bb4463cca088cef10936c"
+"@graasp/sdk@github:graasp/graasp-sdk#main":
+  version: 4.0.0
+  resolution: "@graasp/sdk@https://github.com/graasp/graasp-sdk.git#commit=0bd20807bdd74f23d0310f6737d560fa2f81a9e1"
   dependencies:
     "@faker-js/faker": "npm:8.4.1"
     js-cookie: "npm:3.0.5"
@@ -3198,7 +3198,7 @@ __metadata:
   peerDependencies:
     date-fns: ^3
     uuid: ^9
-  checksum: 10/d725269daf07adfcd1df8b38b8b4a5104076a1ecb9ed4ade675f58cd6f7d3f7c405e855584ee7aee83ba1ba9cb0e1a2171d0324f80ac734dd8f336a35b9dc816
+  checksum: 10/2166896d1ea287a0c7c4c9cf5d9f489418724756ec2bc3c270183b1203dc37fb5eb35acd2e88ab6a1d2fb6942506c6331264900662ed31fa12fce97604f47a92
   languageName: node
   linkType: hard
 
@@ -3214,7 +3214,7 @@ __metadata:
     "@emotion/cache": "npm:~11.11.0"
     "@emotion/react": "npm:11.11.3"
     "@emotion/styled": "npm:11.11.0"
-    "@graasp/sdk": "github:graasp/graasp-sdk#esm-package"
+    "@graasp/sdk": "github:graasp/graasp-sdk#main"
     "@mui/icons-material": "npm:5.15.10"
     "@mui/lab": "npm:5.0.0-alpha.157"
     "@mui/material": "npm:5.15.10"

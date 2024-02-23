@@ -107,7 +107,7 @@
     "@emotion/cache": "~11.11.0",
     "@emotion/react": "11.11.3",
     "@emotion/styled": "11.11.0",
-    "@graasp/sdk": "github:graasp/graasp-sdk#esm-package",
+    "@graasp/sdk": "github:graasp/graasp-sdk#main",
     "@mui/icons-material": "5.15.10",
     "@mui/lab": "5.0.0-alpha.157",
     "@mui/material": "5.15.10",
