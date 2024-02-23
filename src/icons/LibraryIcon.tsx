@@ -1,33 +1,42 @@
 import { SxProps } from '@mui/material';
 
-import React from 'react';
-
 import { PRIMARY_COLOR, SECONDARY_COLOR } from '../theme';
-import { SVGCircle, SVGWrapper } from './StyledSVGComponents';
+import { SVGCircle, SVGWrapper, StyledG } from './StyledSVGComponents';
 
 export interface LibraryIconProps {
-  size?: number;
-  sx?: SxProps;
   disabled?: boolean;
+  disabledColor?: string;
   primaryColor?: string;
   primaryOpacity?: number;
   secondaryColor?: string;
   secondaryOpacity?: number;
+  selected?: boolean;
   showSetting?: boolean;
+  size?: number;
+  sx?: SxProps;
 }
 
-const LibraryIcon: React.FC<LibraryIconProps> = ({
+const LibraryIcon = ({
   size = 50,
   primaryColor = PRIMARY_COLOR,
   primaryOpacity = 1,
   secondaryColor = SECONDARY_COLOR,
+  disabledColor = '#CCC',
   secondaryOpacity = 1,
   sx,
   showSetting = false,
-}) => {
+  selected,
+}: LibraryIconProps): JSX.Element => {
   return (
     <SVGWrapper sx={sx} size={size} viewBox='0 0 1080 1080'>
-      <g>
+      <StyledG
+        primaryColor={primaryColor}
+        primaryOpacity={primaryOpacity}
+        secondaryColor={secondaryColor}
+        secondaryOpacity={secondaryOpacity}
+        selected={selected}
+        disabledColor={disabledColor}
+      >
         <SVGCircle
           sx={{ fill: primaryColor, fillOpacity: primaryOpacity }}
           cx='540'
@@ -35,22 +44,10 @@ const LibraryIcon: React.FC<LibraryIconProps> = ({
           r='540'
         />
 
-        <path
-          fill={secondaryColor}
-          fillOpacity={secondaryOpacity}
-          d='M368.54,261.87h-106.6c-12.21,0-22.15,9.94-22.15,22.15v503.58c0,12.22,9.94,22.15,22.15,22.15h106.6c12.21,0,22.15-9.94,22.15-22.15V284.02c0-12.21-9.94-22.15-22.15-22.15Zm-22.15,44.3v459.28h-62.3V306.17h62.3Z'
-        />
-        <path
-          fill={secondaryColor}
-          fillOpacity={secondaryOpacity}
-          d='M548.76,261.87h-106.6c-12.22,0-22.15,9.94-22.15,22.15v503.58c0,12.22,9.94,22.15,22.15,22.15h106.6c12.21,0,22.15-9.94,22.15-22.15V284.02c0-12.21-9.94-22.15-22.15-22.15Zm-84.45,503.58V306.17h62.3v459.28h-62.3Z'
-        />
-        <path
-          fill={secondaryColor}
-          fillOpacity={secondaryOpacity}
-          d='M919.72,741.33l-187.72-467.29c-2.21-5.49-6.42-9.8-11.86-12.12-5.44-2.32-11.46-2.39-16.95-.18l-98.92,39.74c-5.49,2.21-9.79,6.42-12.12,11.86s-2.39,11.46-.18,16.95l187.72,467.29c2.21,5.49,6.42,9.79,11.86,12.11,2.76,1.18,5.69,1.78,8.7,1.78,2.84,0,5.62-.54,8.26-1.6l98.92-39.74c5.49-2.21,9.79-6.42,12.12-11.86,2.32-5.44,2.39-11.46,.18-16.95Zm-49.36-4.04l-57.81,23.22-171.21-426.18,57.81-23.22,171.21,426.18Z'
-        />
-      </g>
+        <path d='M368.54,261.87h-106.6c-12.21,0-22.15,9.94-22.15,22.15v503.58c0,12.22,9.94,22.15,22.15,22.15h106.6c12.21,0,22.15-9.94,22.15-22.15V284.02c0-12.21-9.94-22.15-22.15-22.15Zm-22.15,44.3v459.28h-62.3V306.17h62.3Z' />
+        <path d='M548.76,261.87h-106.6c-12.22,0-22.15,9.94-22.15,22.15v503.58c0,12.22,9.94,22.15,22.15,22.15h106.6c12.21,0,22.15-9.94,22.15-22.15V284.02c0-12.21-9.94-22.15-22.15-22.15Zm-84.45,503.58V306.17h62.3v459.28h-62.3Z' />
+        <path d='M919.72,741.33l-187.72-467.29c-2.21-5.49-6.42-9.8-11.86-12.12-5.44-2.32-11.46-2.39-16.95-.18l-98.92,39.74c-5.49,2.21-9.79,6.42-12.12,11.86s-2.39,11.46-.18,16.95l187.72,467.29c2.21,5.49,6.42,9.79,11.86,12.11,2.76,1.18,5.69,1.78,8.7,1.78,2.84,0,5.62-.54,8.26-1.6l98.92-39.74c5.49-2.21,9.79-6.42,12.12-11.86,2.32-5.44,2.39-11.46,.18-16.95Zm-49.36-4.04l-57.81,23.22-171.21-426.18,57.81-23.22,171.21,426.18Z' />
+      </StyledG>
 
       {showSetting && (
         <g id='SVGRepo_iconCarrier' transform='translate(-14.742 50.121)'>

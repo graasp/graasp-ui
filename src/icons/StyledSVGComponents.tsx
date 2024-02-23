@@ -45,4 +45,57 @@ const SVGCircle: FC<SVGCircleProps> = (props) => {
   return <StyledCircle sx={props.sx} {...props} />;
 };
 
-export { SVGWrapper, SVGPath, SVGCircle };
+const StyledG = styled('g')<{
+  primaryColor?: string;
+  primaryOpacity?: number;
+  secondaryColor?: string;
+  disabledColor?: string;
+  secondaryOpacity?: number;
+  selected?: boolean;
+  disabled?: boolean;
+}>(({
+  selected,
+  primaryColor,
+  primaryOpacity,
+  secondaryColor,
+  secondaryOpacity,
+  disabled,
+  disabledColor = '#CCC',
+}) => {
+  if (disabled) {
+    return {
+      path: {
+        fill: disabledColor,
+        fillOpacity: 0.6,
+      },
+      circle: {
+        fill: 'transparent',
+        fillOpacity: 1,
+      },
+    };
+  }
+
+  return {
+    path: {
+      fill: selected ? secondaryColor : primaryColor,
+      fillOpacity: selected ? secondaryOpacity : primaryOpacity,
+    },
+    circle: {
+      fill: selected ? primaryColor : 'transparent',
+      fillOpacity: selected ? primaryOpacity : secondaryOpacity,
+    },
+
+    '&:hover': {
+      circle: {
+        fill: primaryColor,
+        fillOpacity: primaryOpacity,
+      },
+      path: {
+        fill: secondaryColor,
+        fillOpacity: secondaryOpacity,
+      },
+    },
+  };
+});
+
+export { SVGWrapper, SVGPath, SVGCircle, StyledG };
