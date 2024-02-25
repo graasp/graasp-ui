@@ -43,22 +43,22 @@ __metadata:
   linkType: hard
 
 "@ag-grid-community/react@npm:^31.0.3":
-  version: 31.0.3
-  resolution: "@ag-grid-community/react@npm:31.0.3"
+  version: 31.1.1
+  resolution: "@ag-grid-community/react@npm:31.1.1"
   dependencies:
     prop-types: "npm:^15.8.1"
   peerDependencies:
-    "@ag-grid-community/core": ~31.0.3
+    "@ag-grid-community/core": 31.1.1
     react: ^16.3.0 || ^17.0.0 || ^18.0.0
     react-dom: ^16.3.0 || ^17.0.0 || ^18.0.0
-  checksum: 10/85f1f160905e283a8cef9014a2d36f6ba62fd153109a4be98a221eea2a41000c5fda60863c9733f119c1953c54b2fe840d76689780cbce0951161932c6a6b318
+  checksum: 10/92b1bbc745d3e63a8b019f1050f044174d3134ad2fe542eaf13c19c56c342d7bc2782e510ac7b4cd5639818edbdecf8ec0d9e2e6f7c71e27ad6f381a34f361dc
   languageName: node
   linkType: hard
 
 "@ag-grid-community/styles@npm:^31.0.3":
-  version: 31.0.3
-  resolution: "@ag-grid-community/styles@npm:31.0.3"
-  checksum: 10/9caa12c9231a9df0d5cfd787a668da01e628b2c55e5c7c2c558473880bdc6e07c15790f5404e1fc566288e62b3ca16f2da1591ee78d2575c0ca01474af70f764
+  version: 31.1.1
+  resolution: "@ag-grid-community/styles@npm:31.1.1"
+  checksum: 10/11b592be2e6552125c2fb58fec86b9a556fe600da63bb9aaa3d735e46b388ab301fba91ea944f4e576a7072b52fb15d435d7e5bb21e8af0e6e3ad3604630f1ab
   languageName: node
   linkType: hard
 
