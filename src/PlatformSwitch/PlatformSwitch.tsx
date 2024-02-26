@@ -59,6 +59,9 @@ type IconProps = {
   secondaryColor?: string;
   secondaryOpacity?: number;
   sx?: SxProps;
+  disabledColor?: string;
+  disabled?: boolean;
+  selected?: boolean;
 };
 
 /** Mapping from platform to their icons */
@@ -104,7 +107,7 @@ export const PlatformSwitch = ({
     const Icon = PlatformIcons[platform];
 
     const tooltip = platformProps?.tooltip ?? Platform[platform];
-
+    const sxProps = { ...sx, ...(platformProps?.sx ?? {}) };
     return (
       <Tooltip
         title={platformProps?.disabled ? undefined : tooltip}
@@ -128,7 +131,7 @@ export const PlatformSwitch = ({
             primaryColor={color}
             primaryOpacity={1}
             size={size}
-            sx={{ ...sx, ...platformProps?.sx }}
+            sx={sxProps}
           />
         </a>
       </Tooltip>
@@ -148,6 +151,7 @@ export const PlatformSwitch = ({
     const selectedPlatform = selected || Platform.Builder;
     const SelectedIcon = PlatformIcons[selectedPlatform];
     const platformProps = platformsProps?.[selectedPlatform];
+    const sxProps = { ...sx, ...(platformProps?.sx ?? {}) };
     return (
       <Box sx={{ position: 'relative', height: '40px' }}>
         <SpeedDial
@@ -165,7 +169,7 @@ export const PlatformSwitch = ({
                 primaryColor={color}
                 primaryOpacity={1}
                 size={size}
-                sx={{ ...(sx ?? {}), ...(platformProps?.sx ?? {}) }}
+                sx={sxProps}
               />
             )
           }
@@ -176,7 +180,7 @@ export const PlatformSwitch = ({
             const Icon = PlatformIcons[platform];
             const isSelectedPlatform = platform === selected;
             const platformProps = platformsProps?.[platform];
-
+            const sxProps = { ...sx, ...(platformProps?.sx ?? {}) };
             return (
               <SpeedDialAction
                 key={index}
@@ -189,7 +193,7 @@ export const PlatformSwitch = ({
                     primaryColor={color}
                     primaryOpacity={1}
                     size={size}
-                    sx={{ ...sx, ...platformProps?.sx }}
+                    sx={sxProps}
                   />
                 }
                 tooltipTitle={Platform[platform]}

@@ -29,7 +29,8 @@ const MOCK_PLATFORM_PROPS = {
 type Story = StoryObj<typeof PlatformSwitch>;
 
 const checkHref = async (
-  canvas,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  canvas: any,
   platform: Platform,
   platformsProps: PlatformSwitchProps['platformsProps'],
 ): Promise<void> => {
