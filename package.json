@@ -21,19 +21,19 @@
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/index.js",
-      "require": null,
-      "types": "./dist/index.d.ts"
+      "default": "./dist/index.js"
     },
     "./table": {
+      "types": "./dist/table.d.ts",
       "import": "./dist/table.js",
-      "require": null,
-      "types": "./dist/table.d.ts"
+      "default": "./dist/table.js"
     },
     "./text-editor": {
+      "types": "./dist/text-editor.d.ts",
       "import": "./dist/text-editor.js",
-      "require": null,
-      "types": "./dist/text-editor.d.ts"
+      "default": "./dist/text-editor.js"
     }
   },
   "engines": {
@@ -69,9 +69,9 @@
     "storybook:test-ci": "wait-on http://127.0.0.1:6006 && yarn storybook:test"
   },
   "dependencies": {
-    "@ag-grid-community/client-side-row-model": "31.1.0",
-    "@ag-grid-community/react": "^31.1.0",
-    "@ag-grid-community/styles": "^31.1.0",
+    "@ag-grid-community/client-side-row-model": "31.1.1",
+    "@ag-grid-community/react": "^31.1.1",
+    "@ag-grid-community/styles": "^31.1.1",
     "@storybook/react-vite": "7.6.17",
     "http-status-codes": "2.3.0",
     "interweave": "13.1.0",
@@ -108,9 +108,9 @@
     "@emotion/react": "11.11.3",
     "@emotion/styled": "11.11.0",
     "@graasp/sdk": "4.0.1",
-    "@mui/icons-material": "5.15.10",
+    "@mui/icons-material": "5.15.11",
     "@mui/lab": "5.0.0-alpha.157",
-    "@mui/material": "5.15.10",
+    "@mui/material": "5.15.11",
     "@storybook/addon-a11y": "7.6.17",
     "@storybook/addon-actions": "7.6.17",
     "@storybook/addon-coverage": "1.0.0",
@@ -129,8 +129,8 @@
     "@types/jest": "29.5.12",
     "@types/katex": "^0.16.7",
     "@types/lodash.truncate": "4.4.9",
-    "@types/node": "20.11.19",
-    "@types/react": "18.2.57",
+    "@types/node": "20.11.20",
+    "@types/react": "18.2.58",
     "@types/react-dom": "18.2.19",
     "@types/react-router-dom": "5.3.3",
     "@types/react-text-mask": "5.4.14",
@@ -141,7 +141,7 @@
     "@vitejs/plugin-react": "4.2.1",
     "concurrently": "8.2.2",
     "cross-env": "7.0.3",
-    "eslint": "^8.56.0",
+    "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-jsx-a11y": "6.8.0",
