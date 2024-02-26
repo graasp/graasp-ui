@@ -9,7 +9,7 @@ import Typography from '@mui/material/Typography';
 
 import { MouseEventHandler, ReactElement, useState } from 'react';
 
-import { CompleteMember, Member, isPseudonymizedMember } from '@graasp/sdk';
+import { CompleteMember, Member, isPseudoMember } from '@graasp/sdk';
 
 import { SHORT_TEXT_WIDTH, SMALL_AVATAR_SIZE } from '../constants';
 import { Variant } from '../types';
@@ -126,7 +126,7 @@ const UserSwitch = ({
 
           {/* show info only for normal member */}
           {/* todo: show which item a pseudonymized member as access to */}
-          {!isPseudonymizedMember(currentMember.email) && (
+          {!isPseudoMember(currentMember) && (
             <>
               <Typography variant='subtitle2' noWrap>
                 {currentMember.email}

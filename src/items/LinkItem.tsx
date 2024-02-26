@@ -4,7 +4,7 @@ import Alert from '@mui/material/Alert';
 
 import React, { Fragment, useRef, useState } from 'react';
 
-import { EmbeddedLinkItemType, getEmbeddedLinkExtra } from '@graasp/sdk';
+import { LinkItemType, getLinkExtra } from '@graasp/sdk';
 
 import withCollapse from '../Collapse/withCollapse';
 import { Button } from '../buttons';
@@ -24,7 +24,7 @@ export type LinkItemProps = {
    * whether the link can be resized
    */
   isResizable?: boolean;
-  item: EmbeddedLinkItemType;
+  item: LinkItemType;
   loadingMessage?: string;
   onSaveCaption?: (text: string) => void;
   onCancelCaption?: (text: string) => void;
@@ -88,7 +88,7 @@ const LinkItem = ({
   const iframeRef = useRef<HTMLIFrameElement>(null);
 
   const id = item.id;
-  const extra = getEmbeddedLinkExtra(item.extra);
+  const extra = getLinkExtra(item.extra);
   const html = extra?.html;
 
   // default case is an iframe with given link
