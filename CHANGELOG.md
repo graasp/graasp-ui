@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.8.2](https://github.com/graasp/graasp-ui/compare/v4.8.1...v4.8.2) (2024-02-26)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @storybook/react-vite to v7.6.16 ([#701](https://github.com/graasp/graasp-ui/issues/701)) ([9d53d64](https://github.com/graasp/graasp-ui/commit/9d53d64351066cd526959b9afb4bc30ce2bf4862))
+* use esm sdk ([#717](https://github.com/graasp/graasp-ui/issues/717)) ([a158fd7](https://github.com/graasp/graasp-ui/commit/a158fd7695fa599d0469db8776b1ee978d42e332))
+
 ## [4.8.1](https://github.com/graasp/graasp-ui/compare/v4.8.0...v4.8.1) (2024-02-16)
 
 
