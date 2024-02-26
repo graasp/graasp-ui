@@ -142,8 +142,8 @@ export const Mobile: Story = {
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    const button = await canvas.findByLabelText('platform switch dial');
-    await userEvent.hover(button);
+    const button = (await canvas.findByRole('navigation')).firstChild;
+    await userEvent.hover(button as Element);
     await canvas.findByLabelText(Platform.Player);
     await canvas.findByLabelText(Platform.Builder);
     await canvas.findByLabelText(Platform.Library);

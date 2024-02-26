@@ -173,6 +173,7 @@ export const PlatformSwitch = ({
               />
             )
           }
+          role='navigation'
           direction={'down'}
           ariaLabel='platform switch dial'
         >
