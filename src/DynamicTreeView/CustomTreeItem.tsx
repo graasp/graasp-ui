@@ -1,9 +1,10 @@
+import type { UseQueryResult } from '@tanstack/react-query';
+
 import TreeItem from '@mui/lab/TreeItem';
 import { styled } from '@mui/material';
 import Skeleton from '@mui/material/Skeleton';
 
 import React, { FC } from 'react';
-import type { UseQueryResult } from 'react-query';
 
 import { DiscriminatedItem } from '@graasp/sdk';
 
