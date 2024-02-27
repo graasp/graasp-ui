@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.8.3](https://github.com/graasp/graasp-ui/compare/v4.8.2...v4.8.3) (2024-02-27)
+
+
+### Bug Fixes
+
+* use query-v4 ([#719](https://github.com/graasp/graasp-ui/issues/719)) ([86c7571](https://github.com/graasp/graasp-ui/commit/86c7571d354a8f8e3634b5f30ba066c31421f91e))
+
 ## [4.8.2](https://github.com/graasp/graasp-ui/compare/v4.8.1...v4.8.2) (2024-02-26)
 
 
