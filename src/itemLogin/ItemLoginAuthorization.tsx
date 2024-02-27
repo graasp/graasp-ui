@@ -1,4 +1,4 @@
-import { UseQueryResult } from '@tanstack/react-query';
+import type { UseQueryResult } from '@tanstack/react-query';
 import { StatusCodes, getReasonPhrase } from 'http-status-codes';
 
 import Alert from '@mui/material/Alert';
