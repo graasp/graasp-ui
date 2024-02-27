@@ -1,3 +1,5 @@
+import type { UseQueryResult } from '@tanstack/react-query';
+
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import {
   IconButton,
@@ -8,7 +10,6 @@ import {
 } from '@mui/material';
 
 import React from 'react';
-import type { UseQueryResult } from 'react-query';
 import { Link } from 'react-router-dom';
 
 import { DiscriminatedItem } from '@graasp/sdk';
