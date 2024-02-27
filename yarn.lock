@@ -3237,6 +3237,7 @@ __metadata:
     "@trivago/prettier-plugin-sort-imports": "npm:4.3.0"
     "@types/jest": "npm:29.5.12"
     "@types/katex": "npm:^0.16.7"
+    "@types/lodash.debounce": "npm:^4"
     "@types/lodash.truncate": "npm:4.4.9"
     "@types/node": "npm:20.11.20"
     "@types/react": "npm:18.2.59"
@@ -3266,6 +3267,7 @@ __metadata:
     jest-environment-jsdom: "npm:29.7.0"
     jsdom: "npm:24.0.0"
     katex: "npm:0.16.9"
+    lodash.debounce: "npm:4.0.8"
     lodash.truncate: "npm:4.4.2"
     prettier: "npm:3.2.5"
     react: "npm:18.2.0"
@@ -6706,6 +6708,15 @@ __metadata:
   version: 0.16.7
   resolution: "@types/katex@npm:0.16.7"
   checksum: 10/4fd15d93553be97c02c064e16be18d7ccbabf66ec72a9dc7fd5bfa47f0c7581da2f942f693c7cb59499de4c843c2189796e49c9647d336cbd52b777b6722a95a
+  languageName: node
+  linkType: hard
+
+"@types/lodash.debounce@npm:^4":
+  version: 4.0.9
+  resolution: "@types/lodash.debounce@npm:4.0.9"
+  dependencies:
+    "@types/lodash": "npm:*"
+  checksum: 10/8183a152e01928e3b97ca773f6ae6038b8695e76493ba8bf6b743ec143948a62294fbc9d49fa4a78b52265b3ba4892ef57534e0c13d04aa0f111671b5a944feb
   languageName: node
   linkType: hard
 
@@ -14060,7 +14071,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lodash.debounce@npm:^4.0.8":
+"lodash.debounce@npm:4.0.8, lodash.debounce@npm:^4.0.8":
   version: 4.0.8
   resolution: "lodash.debounce@npm:4.0.8"
   checksum: 10/cd0b2819786e6e80cb9f5cda26b1a8fc073daaf04e48d4cb462fa4663ec9adb3a5387aa22d7129e48eed1afa05b482e2a6b79bfc99b86886364449500cbb00fd
