@@ -1,3 +1,5 @@
+import 'katex/dist/katex.min.css';
+
 import { CssBaseline } from '@mui/material';
 import { ThemeProvider } from '@mui/system';
 
