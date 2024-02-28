@@ -1,7 +1,7 @@
 import { SxProps } from '@mui/material';
 
 import { PRIMARY_COLOR, SECONDARY_COLOR } from '../theme';
-import { SVGCircle, SVGWrapper, StyledG } from './StyledSVGComponents';
+import { SVGWrapper, StyledG } from './StyledSVGComponents';
 
 export interface LibraryIconProps {
   disabled?: boolean;
@@ -14,6 +14,7 @@ export interface LibraryIconProps {
   showSetting?: boolean;
   size?: number;
   sx?: SxProps;
+  disableHover?: boolean;
 }
 
 const LibraryIcon = ({
@@ -26,6 +27,7 @@ const LibraryIcon = ({
   sx,
   showSetting = false,
   selected,
+  disableHover = false,
 }: LibraryIconProps): JSX.Element => {
   return (
     <SVGWrapper sx={sx} size={size} viewBox='0 0 1080 1080'>
@@ -36,13 +38,9 @@ const LibraryIcon = ({
         secondaryOpacity={secondaryOpacity}
         selected={selected}
         disabledColor={disabledColor}
+        disableHover={disableHover}
       >
-        <SVGCircle
-          sx={{ fill: primaryColor, fillOpacity: primaryOpacity }}
-          cx='540'
-          cy='540'
-          r='540'
-        />
+        <circle fill={primaryColor} cx='540' cy='540' r='540' />
 
         <path d='M368.54,261.87h-106.6c-12.21,0-22.15,9.94-22.15,22.15v503.58c0,12.22,9.94,22.15,22.15,22.15h106.6c12.21,0,22.15-9.94,22.15-22.15V284.02c0-12.21-9.94-22.15-22.15-22.15Zm-22.15,44.3v459.28h-62.3V306.17h62.3Z' />
         <path d='M548.76,261.87h-106.6c-12.22,0-22.15,9.94-22.15,22.15v503.58c0,12.22,9.94,22.15,22.15,22.15h106.6c12.21,0,22.15-9.94,22.15-22.15V284.02c0-12.21-9.94-22.15-22.15-22.15Zm-84.45,503.58V306.17h62.3v459.28h-62.3Z' />
