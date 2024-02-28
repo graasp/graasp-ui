@@ -75,11 +75,7 @@ const ItemBadges = ({
           backgroundColor={backgroundColor}
           tooltip={isPublishedTooltip}
         >
-          <LibraryIcon
-            secondaryColor='white'
-            primaryColor='rgb(189, 189, 189)'
-            primaryOpacity={0}
-          />
+          <LibraryIcon primaryOpacity={1} primaryColor='white' disableHover />
         </ItemBadge>
       )}
       {isPublic && (

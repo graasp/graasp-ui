@@ -8,8 +8,6 @@ import {
 } from '@mui/material';
 import Tooltip, { TooltipProps } from '@mui/material/Tooltip';
 
-import { FC, useState } from 'react';
-
 import { AnalyticsIcon, BuildIcon, LibraryIcon, PlayIcon } from '../icons';
 import { PRIMARY_COLOR, SECONDARY_COLOR } from '../theme';
 import { Platform } from './hooks';
@@ -61,10 +59,13 @@ type IconProps = {
   secondaryColor?: string;
   secondaryOpacity?: number;
   sx?: SxProps;
+  disabledColor?: string;
+  disabled?: boolean;
+  selected?: boolean;
 };
 
 /** Mapping from platform to their icons */
-const PlatformIcons: Record<Platform, FC<IconProps>> = {
+const PlatformIcons: Record<Platform, (props: IconProps) => JSX.Element> = {
   [Platform.Builder]: BuildIcon,
   [Platform.Player]: PlayIcon,
   [Platform.Library]: LibraryIcon,
@@ -74,7 +75,7 @@ const PlatformIcons: Record<Platform, FC<IconProps>> = {
 /**
  * PlatformSwitch allows the user to change between the platforms
  */
-export const PlatformSwitch: FC<PlatformSwitchProps> = ({
+export const PlatformSwitch = ({
   id,
   spacing = 0.5,
   size = 32,
@@ -84,24 +85,21 @@ export const PlatformSwitch: FC<PlatformSwitchProps> = ({
   sx,
   selected,
   platformsProps,
-}) => {
+}: PlatformSwitchProps): JSX.Element => {
   const theme = useTheme();
 
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
   /** Helper inner component: generates buttons from icons while capturing parent props */
-  const PlatformButton: FC<{
+  const PlatformButton = ({
+    platform,
+    sx = {},
+  }: {
     /** Platform which button should be rendered */
     platform: Platform;
     /** Styles applied to the underlying icon */
     sx?: SxProps;
-  }> = ({ platform, sx }) => {
-    // Emulate mouseover: we want to change the color of the icons that are props
-    const [isHover, setHover] = useState(false);
-    const mouseHoverEvents = {
-      onMouseEnter: () => setHover(true),
-      onMouseLeave: () => setHover(false),
-    };
+  }): JSX.Element => {
     const isSelectedPlatform = platform === selected;
 
     const platformProps = platformsProps?.[platform];
@@ -109,34 +107,7 @@ export const PlatformSwitch: FC<PlatformSwitchProps> = ({
     const Icon = PlatformIcons[platform];
 
     const tooltip = platformProps?.tooltip ?? Platform[platform];
-
-    const iconProps = {
-      size,
-      secondaryColor: isSelectedPlatform ? accentColor : color,
-      primaryColor: isSelectedPlatform ? color : undefined,
-      primaryOpacity: isSelectedPlatform ? 1 : 0,
-      // platform-specific styles should override existing ones
-      sx: { ...sx, ...platformProps?.sx },
-    };
-
-    // Generate hover styles but not if this platform is disabled
-    const hoverStyles =
-      isHover && !platformProps?.disabled
-        ? {
-            secondaryColor: accentColor,
-            primaryColor: color,
-            primaryOpacity: 1,
-          }
-        : {};
-
-    const disabledStyles = platformProps?.disabled
-      ? {
-          secondaryColor: disabledColor,
-        }
-      : {};
-
-    // Ordering of the spread props is important: later styles override former ones
-
+    const sxProps = { ...sx, ...(platformProps?.sx ?? {}) };
     return (
       <Tooltip
         title={platformProps?.disabled ? undefined : tooltip}
@@ -148,11 +119,20 @@ export const PlatformSwitch: FC<PlatformSwitchProps> = ({
             display: 'flex',
             cursor: platformProps?.disabled ? 'default' : 'pointer',
           }}
-          {...mouseHoverEvents}
+          data-testid={platform}
           href={(!platformProps?.disabled && platformProps?.href) || '#'}
           aria-disabled={platformProps?.disabled}
         >
-          <Icon {...iconProps} {...hoverStyles} {...disabledStyles} />
+          <Icon
+            disabledColor={disabledColor}
+            disabled={platformProps?.disabled}
+            selected={isSelectedPlatform}
+            secondaryColor={accentColor}
+            primaryColor={color}
+            primaryOpacity={1}
+            size={size}
+            sx={sxProps}
+          />
         </a>
       </Tooltip>
     );
@@ -168,7 +148,10 @@ export const PlatformSwitch: FC<PlatformSwitchProps> = ({
   ));
 
   if (isMobile) {
-    const SelectedIcon = PlatformIcons[selected || Platform.Builder];
+    const selectedPlatform = selected || Platform.Builder;
+    const SelectedIcon = PlatformIcons[selectedPlatform];
+    const platformProps = platformsProps?.[selectedPlatform];
+    const sxProps = { ...sx, ...(platformProps?.sx ?? {}) };
     return (
       <Box sx={{ position: 'relative', height: '40px' }}>
         <SpeedDial
@@ -178,7 +161,19 @@ export const PlatformSwitch: FC<PlatformSwitchProps> = ({
               border: '2px solid white',
             },
           }}
-          icon={selected && <SelectedIcon />}
+          icon={
+            selected && (
+              <SelectedIcon
+                selected
+                secondaryColor={accentColor}
+                primaryColor={color}
+                primaryOpacity={1}
+                size={size}
+                sx={sxProps}
+              />
+            )
+          }
+          role='navigation'
           direction={'down'}
           ariaLabel='platform switch dial'
         >
@@ -186,25 +181,22 @@ export const PlatformSwitch: FC<PlatformSwitchProps> = ({
             const Icon = PlatformIcons[platform];
             const isSelectedPlatform = platform === selected;
             const platformProps = platformsProps?.[platform];
-            const iconProps = {
-              size,
-              secondaryColor: isSelectedPlatform ? color : accentColor,
-              primaryColor: isSelectedPlatform ? accentColor : color,
-              fill: isSelectedPlatform ? color : accentColor,
-              // platform-specific styles should override existing ones
-              sx: { ...sx, ...platformProps?.sx },
-            };
-
-            const disabledStyles = platformProps?.disabled
-              ? {
-                  secondaryColor: disabledColor,
-                }
-              : {};
-
+            const sxProps = { ...sx, ...(platformProps?.sx ?? {}) };
             return (
               <SpeedDialAction
                 key={index}
-                icon={<Icon {...iconProps} {...disabledStyles} />}
+                icon={
+                  <Icon
+                    disabledColor={disabledColor}
+                    disabled={platformProps?.disabled}
+                    selected={isSelectedPlatform}
+                    secondaryColor={accentColor}
+                    primaryColor={color}
+                    primaryOpacity={1}
+                    size={size}
+                    sx={sxProps}
+                  />
+                }
                 tooltipTitle={Platform[platform]}
                 onClick={() => {
                   if (!platformProps?.disabled && platformProps?.href) {
