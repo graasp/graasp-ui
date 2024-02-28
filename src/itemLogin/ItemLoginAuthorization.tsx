@@ -1,9 +1,9 @@
+import type { UseQueryResult } from '@tanstack/react-query';
 import { StatusCodes, getReasonPhrase } from 'http-status-codes';
 
 import Alert from '@mui/material/Alert';
 
 import React, { ReactElement } from 'react';
-import { UseQueryResult } from 'react-query';
 
 import {
   CompleteMember,
