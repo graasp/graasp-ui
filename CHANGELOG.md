@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.8.4](https://github.com/graasp/graasp-ui/compare/v4.8.3...v4.8.4) (2024-02-28)
+
+
+### Bug Fixes
+
+* add playwright cache in ci ([#724](https://github.com/graasp/graasp-ui/issues/724)) ([c28d5e2](https://github.com/graasp/graasp-ui/commit/c28d5e20e94a54d070d027a2979ca9e395b1953e))
+* export main menu context hook ([#726](https://github.com/graasp/graasp-ui/issues/726)) ([43644bf](https://github.com/graasp/graasp-ui/commit/43644bfaf06a726bdff7991127265a1b5cb07bea))
+
 ## [4.8.3](https://github.com/graasp/graasp-ui/compare/v4.8.2...v4.8.3) (2024-02-27)
 
 
