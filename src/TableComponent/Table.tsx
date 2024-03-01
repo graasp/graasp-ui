@@ -90,6 +90,19 @@ const StyledDiv = styled('div')(({ theme }) => ({
   '.ag-cell-wrapper': {
     minWidth: '0px',
   },
+  // style comes from https://github.com/ag-grid/ag-grid/blob/2765a7ee68f78ce09a68549890015990cf68016b/community-modules/styles/src/internal/base/parts/_common-structural.scss#L16
+  // needed in order to not show the aria-description above the table
+  '.ag-aria-description-container': {
+    zIndex: 9999,
+    border: '0px',
+    clip: 'rect(1px, 1px, 1px, 1px)',
+    height: '1px',
+    width: '1px',
+    position: 'absolute',
+    overflow: 'hidden',
+    padding: '0px',
+    whiteSpace: 'nowrap',
+  },
 }));
 
 const ROW_CLASS_NAME = 'row-class-name';
