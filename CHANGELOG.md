@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.9.0](https://github.com/graasp/graasp-ui/compare/v4.8.5...v4.9.0) (2024-03-04)
+
+
+### Features
+
+* update the withCaption stack depending on the description placement ([#733](https://github.com/graasp/graasp-ui/issues/733)) ([e56acca](https://github.com/graasp/graasp-ui/commit/e56acca0126abaea916e015cbf3bc29ab0a5f3bc))
+
 ## [4.8.5](https://github.com/graasp/graasp-ui/compare/v4.8.4...v4.8.5) (2024-03-04)
 
 
