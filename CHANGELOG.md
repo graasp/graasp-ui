@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.8.5](https://github.com/graasp/graasp-ui/compare/v4.8.4...v4.8.5) (2024-03-04)
+
+
+### Bug Fixes
+
+* add styles on table to hide aria-description ([#734](https://github.com/graasp/graasp-ui/issues/734)) ([2645d5c](https://github.com/graasp/graasp-ui/commit/2645d5cbec44b0fdda68b09a4c2c55a1a70e59ce))
+
 ## [4.8.4](https://github.com/graasp/graasp-ui/compare/v4.8.3...v4.8.4) (2024-02-28)
 
 
