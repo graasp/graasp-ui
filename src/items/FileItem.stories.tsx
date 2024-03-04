@@ -6,6 +6,7 @@ import {
   LocalFileItemFactory,
   MaxWidth,
   MimeTypes,
+  UnionOfConst,
 } from '@graasp/sdk';
 
 import { MOCK_MEMBER } from '../utils/fixtures';
@@ -32,65 +33,43 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const Image = {
-  loaders: [
-    async () => ({
-      content: await fetch('https://picsum.photos/100').then((r) => r.blob()),
-    }),
-  ],
-  args: {
-    item: LocalFileItemFactory({
-      id: 'my-id',
-      name: 'my item name',
-      extra: {
-        [ItemType.LOCAL_FILE]: {
-          path: 'https://picsum.photos/100',
-          mimetype: MimeTypes.Image.PNG,
-          name: 'original file name',
-          size: 2600,
-          altText: 'my image alt text',
-          content: '',
+const buildImageStory = (
+  descriptionPlacement?: UnionOfConst<typeof DescriptionPlacement>,
+): Story =>
+  ({
+    loaders: [
+      async () => ({
+        content: await fetch('https://picsum.photos/100').then((r) => r.blob()),
+      }),
+    ],
+    args: {
+      item: LocalFileItemFactory({
+        id: 'my-id',
+        name: 'my item name',
+        extra: {
+          [ItemType.LOCAL_FILE]: {
+            path: 'https://picsum.photos/100',
+            mimetype: MimeTypes.Image.PNG,
+            name: 'original file name',
+            size: 2600,
+            altText: 'my image alt text',
+            content: '',
+          },
         },
-      },
-      type: ItemType.LOCAL_FILE,
-      description: 'my image description',
-      path: 'item-path',
-      settings: {},
-      creator: MOCK_MEMBER,
-    }),
-  },
-} satisfies Story;
+        type: ItemType.LOCAL_FILE,
+        description: 'my image description',
+        path: 'item-path',
+        settings: descriptionPlacement ? { descriptionPlacement } : {},
+        creator: MOCK_MEMBER,
+      }),
+    },
+  }) satisfies Story;
 
-export const ImageDescriptionAbove = {
-  loaders: [
-    async () => ({
-      content: await fetch('https://picsum.photos/100').then((r) => r.blob()),
-    }),
-  ],
-  args: {
-    item: LocalFileItemFactory({
-      id: 'my-id',
-      name: 'my item name',
-      extra: {
-        [ItemType.LOCAL_FILE]: {
-          path: 'https://picsum.photos/100',
-          mimetype: MimeTypes.Image.PNG,
-          name: 'original file name',
-          size: 2600,
-          altText: 'my image alt text',
-          content: '',
-        },
-      },
-      type: ItemType.LOCAL_FILE,
-      description: 'my image description',
-      path: 'item-path',
-      settings: {
-        descriptionPlacement: DescriptionPlacement.ABOVE,
-      },
-      creator: MOCK_MEMBER,
-    }),
-  },
-} satisfies Story;
+export const Image = buildImageStory();
+
+export const ImageDescriptionAbove = buildImageStory(
+  DescriptionPlacement.ABOVE,
+);
 
 export const BigContainedImage = {
   loaders: [
