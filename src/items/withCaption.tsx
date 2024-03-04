@@ -1,6 +1,6 @@
 import TextDisplay from '@/TextDisplay/TextDisplay';
 
-import { Stack } from '@mui/material';
+import { Box, Stack } from '@mui/material';
 
 import { DescriptionPlacement, DescriptionPlacementType } from '@graasp/sdk';
 
@@ -28,7 +28,8 @@ function withCaption<T extends WithCaptionItem>({ item }: WithCaptionProps<T>) {
           : 'column';
       return (
         <Stack direction={direction}>
-          {component}
+          {/* The box prevent the image to take full available space due to the stack */}
+          <Box>{component}</Box>
           <TextDisplay content={item.description ?? DEFAULT_ITEM_DESCRIPTION} />
         </Stack>
       );
