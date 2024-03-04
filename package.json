@@ -107,7 +107,7 @@
     "@emotion/cache": "~11.11.0",
     "@emotion/react": "11.11.4",
     "@emotion/styled": "11.11.0",
-    "@graasp/sdk": "github:graasp/graasp-sdk#694-display-description-above-or-below-item",
+    "@graasp/sdk": "4.1.0",
     "@mui/icons-material": "5.15.11",
     "@mui/lab": "5.0.0-alpha.166",
     "@mui/material": "5.15.11",

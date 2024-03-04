@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import {
+  DescriptionPlacement,
   ItemType,
   LocalFileItemFactory,
   MaxWidth,
@@ -55,6 +56,37 @@ export const Image = {
       description: 'my image description',
       path: 'item-path',
       settings: {},
+      creator: MOCK_MEMBER,
+    }),
+  },
+} satisfies Story;
+
+export const ImageDescriptionAbove = {
+  loaders: [
+    async () => ({
+      content: await fetch('https://picsum.photos/100').then((r) => r.blob()),
+    }),
+  ],
+  args: {
+    item: LocalFileItemFactory({
+      id: 'my-id',
+      name: 'my item name',
+      extra: {
+        [ItemType.LOCAL_FILE]: {
+          path: 'https://picsum.photos/100',
+          mimetype: MimeTypes.Image.PNG,
+          name: 'original file name',
+          size: 2600,
+          altText: 'my image alt text',
+          content: '',
+        },
+      },
+      type: ItemType.LOCAL_FILE,
+      description: 'my image description',
+      path: 'item-path',
+      settings: {
+        descriptionPlacement: DescriptionPlacement.ABOVE,
+      },
       creator: MOCK_MEMBER,
     }),
   },

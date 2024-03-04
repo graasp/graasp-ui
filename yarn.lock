@@ -3138,9 +3138,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@graasp/sdk@github:graasp/graasp-sdk#694-display-description-above-or-below-item":
-  version: 4.0.1
-  resolution: "@graasp/sdk@https://github.com/graasp/graasp-sdk.git#commit=a76a6f238f38c9326c25efb23056c4b844759780"
+"@graasp/sdk@npm:4.1.0":
+  version: 4.1.0
+  resolution: "@graasp/sdk@npm:4.1.0"
   dependencies:
     "@faker-js/faker": "npm:8.4.1"
     js-cookie: "npm:3.0.5"
@@ -3148,7 +3148,7 @@ __metadata:
   peerDependencies:
     date-fns: ^3
     uuid: ^9
-  checksum: 10/757d3844a44d94cde579af6c6d2ef62918b9e564ca8f8831b84e130f9fcc92416d274ec04cb44210304300323eff7c4878ed990e8b978b5233454f11813c5d48
+  checksum: 10/80c8b07bd04f90b0ad399a673626a9299faefac381f78fff158110968191453e3cce7b8a77be0ffa19d98f6711b9be43269b993099367c98dc3ae196b28a5d1c
   languageName: node
   linkType: hard
 
@@ -3164,7 +3164,7 @@ __metadata:
     "@emotion/cache": "npm:~11.11.0"
     "@emotion/react": "npm:11.11.4"
     "@emotion/styled": "npm:11.11.0"
-    "@graasp/sdk": "github:graasp/graasp-sdk#694-display-description-above-or-below-item"
+    "@graasp/sdk": "npm:4.1.0"
     "@mui/icons-material": "npm:5.15.11"
     "@mui/lab": "npm:5.0.0-alpha.166"
     "@mui/material": "npm:5.15.11"
