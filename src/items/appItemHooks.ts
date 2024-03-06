@@ -71,16 +71,34 @@ const useAppCommunication = ({
 
         switch (type) {
           case POST_MESSAGE_KEYS.GET_AUTH_TOKEN: {
-            // eslint-disable-next-line no-unused-expressions
-            port.postMessage(
-              JSON.stringify({
-                type: POST_MESSAGE_KEYS.GET_AUTH_TOKEN_SUCCESS,
-                payload: await requestApiAccessToken({
+            const { key, origin } = payload;
+            if (key && origin) {
+              try {
+                const payload = await requestApiAccessToken({
                   id: item.id,
-                  ...payload,
-                }),
-              }),
-            );
+                  key,
+                  origin,
+                });
+                port.postMessage(
+                  JSON.stringify({
+                    type: POST_MESSAGE_KEYS.GET_AUTH_TOKEN_SUCCESS,
+                    payload,
+                  }),
+                );
+              } catch {
+                console.error('error getting api access token');
+                port.postMessage(
+                  JSON.stringify({
+                    type: POST_MESSAGE_KEYS.GET_AUTH_TOKEN_FAILURE,
+                  }),
+                );
+              }
+            } else {
+              console.error(
+                '`key` or `origin` were not specified in the request to get the auth token',
+                payload,
+              );
+            }
             break;
           }
 
