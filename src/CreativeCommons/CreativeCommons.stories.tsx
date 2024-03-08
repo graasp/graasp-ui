@@ -1,7 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { Box } from '@mui/material';
-
 import CreativeCommons from '.';
 import { PRIMARY_COLOR } from '../theme';
 import { CCSharing } from '../types';
@@ -62,20 +60,6 @@ const meta: Meta<typeof CreativeCommons> = {
         category: TABLE_CATEGORIES.MUI,
       },
     },
-  },
-  render: (args) => {
-    // Computes the width required to display nicely the icons in the box
-    // based on their size.
-    const boxWidth =
-      args.iconSize && Number.isSafeInteger(args.iconSize)
-        ? Number(args.iconSize) * 4 + Number(args.iconSize) * 0.4 + 120
-        : undefined;
-
-    return (
-      <Box width={boxWidth} margin={5}>
-        <CreativeCommons {...args} />
-      </Box>
-    );
   },
 };
 

@@ -1,6 +1,6 @@
-import { Box, SxProps, Tooltip, Typography } from '@mui/material';
+import { Box, Stack, SxProps, Tooltip, Typography } from '@mui/material';
 
-import React, { FC } from 'react';
+import { FC } from 'react';
 
 import { PRIMARY_COLOR } from '../theme';
 import { CCSharingVariant } from '../types';
@@ -124,7 +124,7 @@ const CreativeCommons: FC<CreativeCommonsProps> = (props) => {
     textSize = Math.max(iconSize / 4, 10),
   } = props;
 
-  const iconData = React.useMemo(() => ccData(iconSize), [iconSize]);
+  const iconData = ccData(iconSize);
 
   const license = getLicenseName(
     requireAccreditation,
@@ -144,25 +144,24 @@ const CreativeCommons: FC<CreativeCommonsProps> = (props) => {
   );
 
   return (
-    <Box paddingX={2} paddingY={3} sx={sx}>
-      <Box justifyContent='space-around' display='flex' flexDirection='row'>
+    <Stack paddingX={2} paddingY={3} sx={sx} width='min-content' spacing={2}>
+      <Stack direction='row' spacing={2}>
         <CCIcon {...iconData.cc} />
         {additionalIcons}
-      </Box>
+      </Stack>
       {withLicenseName && (
-        <Box justifyContent='center' display='flex' marginTop={2}>
-          <Typography
-            variant='caption'
-            color={textColor}
-            fontSize={textSize}
-            fontWeight='bold'
-            textAlign='center'
-          >
-            {license}
-          </Typography>
-        </Box>
+        <Typography
+          alignSelf='center'
+          variant='caption'
+          color={textColor}
+          fontSize={textSize}
+          fontWeight='bold'
+          textAlign='center'
+        >
+          {license}
+        </Typography>
       )}
-    </Box>
+    </Stack>
   );
 };
 
