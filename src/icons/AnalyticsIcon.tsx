@@ -13,6 +13,7 @@ export interface AnalyticsIconProps {
   selected?: boolean;
   disabled?: boolean;
   disabledColor?: string;
+  disableHover?: boolean;
 }
 
 const AnalyticsIcon = ({
@@ -25,6 +26,7 @@ const AnalyticsIcon = ({
   disabledColor,
   disabled = false,
   selected,
+  disableHover = true,
 }: AnalyticsIconProps): JSX.Element => {
   return (
     <SVGWrapper sx={sx} size={size} viewBox='0 0 1080 1080'>
@@ -36,6 +38,7 @@ const AnalyticsIcon = ({
         selected={selected}
         disabledColor={disabledColor}
         disabled={disabled}
+        disableHover={disableHover}
       >
         <circle cx='540' cy='540' r='540' />
 

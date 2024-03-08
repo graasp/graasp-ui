@@ -27,7 +27,7 @@ const LibraryIcon = ({
   sx,
   showSetting = false,
   selected,
-  disableHover = false,
+  disableHover = true,
 }: LibraryIconProps): JSX.Element => {
   return (
     <SVGWrapper sx={sx} size={size} viewBox='0 0 1080 1080'>

@@ -62,6 +62,7 @@ type IconProps = {
   disabledColor?: string;
   disabled?: boolean;
   selected?: boolean;
+  disableHover?: boolean;
 };
 
 /** Mapping from platform to their icons */
@@ -132,6 +133,7 @@ export const PlatformSwitch = ({
             primaryOpacity={1}
             size={size}
             sx={sxProps}
+            disableHover={false}
           />
         </a>
       </Tooltip>

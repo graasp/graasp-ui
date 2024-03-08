@@ -59,7 +59,7 @@ const StyledG = styled('g')<StyledGProps>(({
   secondaryOpacity,
   disabled = false,
   disabledColor = '#CCC',
-  disableHover = false,
+  disableHover = true,
 }) => {
   if (disabled) {
     return {
