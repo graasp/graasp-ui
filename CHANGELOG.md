@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.9.1](https://github.com/graasp/graasp-ui/compare/v4.9.0...v4.9.1) (2024-03-11)
+
+
+### Bug Fixes
+
+* default to hover false for platform icons ([#746](https://github.com/graasp/graasp-ui/issues/746)) ([29b5921](https://github.com/graasp/graasp-ui/commit/29b5921d944d1f7716b8eef8082e9d7ed10f7ce9))
+* update container and remove old license display ([#747](https://github.com/graasp/graasp-ui/issues/747)) ([98d7f01](https://github.com/graasp/graasp-ui/commit/98d7f01ccdfd27fc10882302703b164ba00a9c34))
+* wrap component inside Box in withCaption to solve image height ([#739](https://github.com/graasp/graasp-ui/issues/739)) ([cdc02b3](https://github.com/graasp/graasp-ui/commit/cdc02b34491e28095d46cfb1fe9343fa1cc520b7))
+
 ## [4.9.0](https://github.com/graasp/graasp-ui/compare/v4.8.5...v4.9.0) (2024-03-04)
 
 
