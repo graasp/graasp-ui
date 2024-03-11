@@ -6,7 +6,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
 import Toolbar from '@mui/material/Toolbar';
-import { styled } from '@mui/material/styles';
+import { Theme, styled } from '@mui/material/styles';
 
 import { useEffect } from 'react';
 
@@ -23,7 +23,20 @@ const DRAWER_WIDTH = 240;
 
 const buildHeaderGradient = (color: string): string =>
   `linear-gradient(90deg, ${PRIMARY_COLOR} 35%, ${color} 100%);`;
-
+// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+const openDrawerStyles = (theme: Theme) => ({
+  width: '100%',
+  // conditional styles applied when screen is larger than mobile
+  [theme.breakpoints.up('sm')]: {
+    marginLeft: `${DRAWER_WIDTH}px`,
+    width: `calc(100% - ${DRAWER_WIDTH}px)`,
+  },
+  // create transition for width and margin property
+  transition: theme.transitions.create(['width', 'margin'], {
+    easing: theme.transitions.easing.easeOut,
+    duration: theme.transitions.duration.enteringScreen,
+  }),
+});
 const StyledMain = styled('main', {
   shouldForwardProp: (prop) => prop !== 'open',
 })<{ open: boolean }>(({ theme, open }) => ({
@@ -35,19 +48,12 @@ const StyledMain = styled('main', {
     duration: theme.transitions.duration.leavingScreen,
   }),
   // conditional styled applied only when drawer is opened
-  ...(open && {
-    width: '100%',
-    // conditional styles applied when screen is larger than mobile
-    [theme.breakpoints.up('sm')]: {
-      marginLeft: `${DRAWER_WIDTH}px`,
-      width: `calc(100% - ${DRAWER_WIDTH}px)`,
-    },
-    // create transition for width and margin property
-    transition: theme.transitions.create(['width', 'margin'], {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  }),
+  ...(open && openDrawerStyles(theme)),
+}));
+const StyledFooter = styled('main', {
+  shouldForwardProp: (prop) => prop !== 'open',
+})<{ open: boolean }>(({ theme, open }) => ({
+  ...(open && openDrawerStyles(theme)),
 }));
 
 type Props = {
@@ -59,6 +65,10 @@ type Props = {
    * Content to display inside the drawer / sidebar
    */
   drawerContent: JSX.Element;
+  /**
+   * Content to display inside the footer
+   */
+  footerContent?: JSX.Element;
   /**
    * Content to display inside the main area.
    * This is usually the page content
@@ -99,6 +109,7 @@ type Props = {
 const MainWithDrawerContent = ({
   context,
   drawerContent,
+  footerContent,
   children,
   headerLeftContent,
   headerRightContent,
@@ -205,6 +216,7 @@ const MainWithDrawerContent = ({
       </Box>
       <Toolbar />
       <StyledMain open={open}>{children}</StyledMain>
+      <StyledFooter open={open}>{footerContent}</StyledFooter>
     </>
   );
 };

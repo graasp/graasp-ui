@@ -120,6 +120,20 @@ export const Default = {
   parameters: { layout: 'fullscreen' },
 } satisfies Story;
 
+export const WithFooter = {
+  args: {
+    ...defaultArgs,
+    headerRightContent: <Avatar>H</Avatar>,
+    open: false,
+    footerContent: (
+      <Box p={2} bgcolor='red' boxShadow='0px -2px 4px -1px rgba(0,0,0,0.2)'>
+        Footer
+      </Box>
+    ),
+  },
+  parameters: { layout: 'fullscreen' },
+} satisfies Story;
+
 export const Mobile = {
   args: {
     ...defaultArgs,
