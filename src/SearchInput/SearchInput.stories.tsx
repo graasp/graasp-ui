@@ -24,3 +24,10 @@ export const MaxWidth: Story = {
     width: 300,
   },
 };
+
+export const Mobile: Story = {
+  args: {
+    margin: 'none',
+    size: 'small',
+  },
+};
