@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.9.3](https://github.com/graasp/graasp-ui/compare/v4.9.2...v4.9.3) (2024-03-12)
+
+
+### Bug Fixes
+
+* prevent enter in search ([#753](https://github.com/graasp/graasp-ui/issues/753)) ([08538ee](https://github.com/graasp/graasp-ui/commit/08538eecd264039845d076c696eab7de176ddca5))
+
 ## [4.9.2](https://github.com/graasp/graasp-ui/compare/v4.9.1...v4.9.2) (2024-03-12)
 
 
