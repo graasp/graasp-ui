@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.9.2](https://github.com/graasp/graasp-ui/compare/v4.9.1...v4.9.2) (2024-03-12)
+
+
+### Bug Fixes
+
+* add space for footer under main ([#748](https://github.com/graasp/graasp-ui/issues/748)) ([0e489ad](https://github.com/graasp/graasp-ui/commit/0e489ade71cfa0843486eeaa505f52350287af13))
+
 ## [4.9.1](https://github.com/graasp/graasp-ui/compare/v4.9.0...v4.9.1) (2024-03-11)
 
 
