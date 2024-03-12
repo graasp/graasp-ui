@@ -1,8 +1,7 @@
 import SearchIcon from '@mui/icons-material/Search';
-import InputBase from '@mui/material/InputBase';
-import Paper from '@mui/material/Paper';
+import { InputAdornment, TextField, type TextFieldProps } from '@mui/material';
 
-import { ChangeEvent, FC } from 'react';
+import { ChangeEvent } from 'react';
 
 export type Props = {
   ariaLabel?: string;
@@ -11,38 +10,39 @@ export type Props = {
   placeholder?: string;
   value?: string;
   width?: string | number;
+  margin?: TextFieldProps['margin'];
+  size?: TextFieldProps['size'];
 };
 
 // todo: create minified version for small screens
-export const SearchInput: FC<Props> = ({
+export const SearchInput = ({
   ariaLabel = 'search',
   inputBaseId,
   onChange,
   placeholder = 'Search…',
   value = '',
   width,
-}) => {
+  margin,
+  size,
+}: Props): JSX.Element => {
   return (
-    <Paper
-      variant='outlined'
-      component='form'
-      sx={{
-        display: 'flex',
-        alignItems: 'center',
-        maxWidth: width,
-        minWidth: 0,
+    <TextField
+      InputProps={{
+        endAdornment: (
+          <InputAdornment position='end'>
+            <SearchIcon aria-label='search' />
+          </InputAdornment>
+        ),
       }}
-    >
-      <InputBase
-        id={inputBaseId}
-        onChange={onChange}
-        value={value}
-        sx={{ ml: 1, flex: 1 }}
-        placeholder={placeholder}
-        inputProps={{ 'aria-label': ariaLabel }}
-      />
-      <SearchIcon sx={{ m: 1 }} aria-label='search' />
-    </Paper>
+      margin={margin}
+      id={inputBaseId}
+      onChange={onChange}
+      value={value}
+      sx={{ ml: 1, flex: 1, width: width ?? '100%' }}
+      placeholder={placeholder}
+      size={size}
+      inputProps={{ 'aria-label': ariaLabel }}
+    />
   );
 };
 
