@@ -102,8 +102,8 @@
     "stylis-plugin-rtl": "^2.1.1"
   },
   "devDependencies": {
-    "@commitlint/cli": "19.0.3",
-    "@commitlint/config-conventional": "19.0.3",
+    "@commitlint/cli": "19.1.0",
+    "@commitlint/config-conventional": "19.1.0",
     "@emotion/cache": "~11.11.0",
     "@emotion/react": "11.11.4",
     "@emotion/styled": "11.11.0",
