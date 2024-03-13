@@ -4,7 +4,7 @@ export { default as LinkItem } from './LinkItem';
 
 export { default as AppItem } from './AppItem';
 
-export { default as FavoriteButton } from '../buttons/FavoriteButton/FavoriteButton';
+export { default as BookmarkButton } from '../buttons/BookmarkButton/BookmarkButton';
 
 export { default as LikeButton } from '../buttons/LikeButton/LikeButton';
 
