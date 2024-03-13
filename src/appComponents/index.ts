@@ -1,2 +1,2 @@
 export { default as ErrorFallback } from './ErrorFallback';
-export * from './types';
+export type { UserFeedback } from './types';

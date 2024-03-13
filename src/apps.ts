@@ -1,1 +1,3 @@
-export * as default from './appComponents';
+export { ErrorFallback } from './appComponents';
+
+export type { UserFeedback } from './appComponents';
