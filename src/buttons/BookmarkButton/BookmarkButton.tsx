@@ -10,7 +10,7 @@ import MenuItemButton from '../MenuItemButton';
 
 const BOOKMARK_COLOR = '#ffc107';
 
-export interface FavoriteButtonProps {
+export interface BookmarkButtonProps {
   sx?: SxProps;
   /**
    * IconButton's color
@@ -42,7 +42,7 @@ const BookmarkButton = ({
   text,
   tooltip,
   type,
-}: FavoriteButtonProps): JSX.Element => {
+}: BookmarkButtonProps): JSX.Element => {
   const icon = isFavorite ? (
     <BookmarkIcon fontSize={size} />
   ) : (
