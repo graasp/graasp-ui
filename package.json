@@ -34,6 +34,11 @@
       "types": "./dist/text-editor.d.ts",
       "import": "./dist/text-editor.js",
       "default": "./dist/text-editor.js"
+    },
+    "./apps": {
+      "types": "./dist/apps.d.ts",
+      "import": "./dist/apps.js",
+      "default": "./dist/apps.js"
     }
   },
   "engines": {
