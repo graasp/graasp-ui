@@ -14,7 +14,7 @@ type Story = StoryObj<typeof ErrorFallback>;
 
 export const DefaultErrorFallback: Story = {
   args: {
-    error: 'Something wrong happened.',
+    error: new Error('Something wrong happened.'),
     componentStack: 'none',
     eventId: '1',
     captureUserFeedback: (userFeedback: UserFeedback) =>
@@ -24,7 +24,7 @@ export const DefaultErrorFallback: Story = {
 
 export const MobileErrorFallback: Story = {
   args: {
-    error: 'Something wrong happened on mobile',
+    error: new Error('Something wrong happened on mobile'),
     componentStack: 'mobile-view',
     eventId: '1',
     captureUserFeedback: (userFeedback: UserFeedback) =>

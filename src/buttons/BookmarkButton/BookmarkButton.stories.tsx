@@ -4,11 +4,11 @@ import { userEvent, within } from '@storybook/testing-library';
 
 import { ActionButton } from '../../types';
 import { TABLE_CATEGORIES } from '../../utils/storybook';
-import FavoriteButton from './FavoriteButton';
+import BookmarkButton from './BookmarkButton';
 
 const meta = {
-  title: 'Buttons/FavoriteButton',
-  component: FavoriteButton,
+  title: 'Buttons/BookmarkButton',
+  component: BookmarkButton,
 
   argTypes: {
     size: {
@@ -21,20 +21,20 @@ const meta = {
         category: TABLE_CATEGORIES.MUI,
       },
     },
-    handleFavorite: {
-      action: 'add to favorites',
+    handleBookmark: {
+      action: 'add to bookmarks',
       table: {
         category: TABLE_CATEGORIES.EVENTS,
       },
     },
-    handleUnfavorite: {
-      action: 'remove from favorites',
+    handleUnbookmark: {
+      action: 'remove from bookmarks',
       table: {
         category: TABLE_CATEGORIES.EVENTS,
       },
     },
   },
-} satisfies Meta<typeof FavoriteButton>;
+} satisfies Meta<typeof BookmarkButton>;
 
 export default meta;
 
@@ -58,6 +58,6 @@ export const MenuItem = {
 
     await userEvent.click(canvas.getByText(args.text!));
 
-    expect(args.handleFavorite).toHaveBeenCalled();
+    expect(args.handleBookmark).toHaveBeenCalled();
   },
 } satisfies Story;

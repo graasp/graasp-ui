@@ -1,5 +1,5 @@
-import StarIcon from '@mui/icons-material/Star';
-import StarBorderIcon from '@mui/icons-material/StarBorder';
+import BookmarkIcon from '@mui/icons-material/Bookmark';
+import BookmarkBorderOutlinedIcon from '@mui/icons-material/BookmarkBorderOutlined';
 import { IconButton, SvgIconProps, Tooltip } from '@mui/material';
 import { SxProps } from '@mui/material/styles';
 
@@ -8,7 +8,7 @@ import { MouseEventHandler } from 'react';
 import { ActionButton, ActionButtonVariant, ColorVariants } from '../../types';
 import MenuItemButton from '../MenuItemButton';
 
-const FAVORITE_COLOR = '#ffc107';
+const BOOKMARK_COLOR = '#ffc107';
 
 export interface FavoriteButtonProps {
   sx?: SxProps;
@@ -16,8 +16,8 @@ export interface FavoriteButtonProps {
    * IconButton's color
    */
   color?: ColorVariants;
-  handleFavorite: MouseEventHandler;
-  handleUnfavorite: MouseEventHandler;
+  handleBookmark: MouseEventHandler;
+  handleUnbookmark: MouseEventHandler;
   isFavorite?: boolean;
   className?: string;
   /**
@@ -30,12 +30,12 @@ export interface FavoriteButtonProps {
   text?: string;
 }
 
-const FavoriteButton = ({
+const BookmarkButton = ({
   ariaLabel = 'favorite',
   className,
   color = 'inherit',
-  handleFavorite,
-  handleUnfavorite,
+  handleBookmark,
+  handleUnbookmark,
   isFavorite = false,
   size = 'medium',
   sx,
@@ -44,17 +44,17 @@ const FavoriteButton = ({
   type,
 }: FavoriteButtonProps): JSX.Element => {
   const icon = isFavorite ? (
-    <StarIcon fontSize={size} />
+    <BookmarkIcon fontSize={size} />
   ) : (
-    <StarBorderIcon fontSize={size} />
+    <BookmarkBorderOutlinedIcon fontSize={size} />
   );
 
   const tooltipText =
     tooltip ?? (isFavorite ? 'Remove from Favorites' : 'Add to Favorites');
 
-  const iconColor = isFavorite ? FAVORITE_COLOR : color;
+  const iconColor = isFavorite ? BOOKMARK_COLOR : color;
 
-  const onClick = isFavorite ? handleUnfavorite : handleFavorite;
+  const onClick = isFavorite ? handleUnbookmark : handleBookmark;
 
   switch (type) {
     case ActionButton.ICON:
@@ -87,4 +87,4 @@ const FavoriteButton = ({
   }
 };
 
-export default FavoriteButton;
+export default BookmarkButton;
