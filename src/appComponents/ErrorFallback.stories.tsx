@@ -21,6 +21,7 @@ export const DefaultErrorFallback: Story = {
       console.log('You sent user feedback: ', userFeedback.toString()),
   },
 };
+
 export const MobileErrorFallback: Story = {
   args: {
     error: 'Something wrong happened on mobile',

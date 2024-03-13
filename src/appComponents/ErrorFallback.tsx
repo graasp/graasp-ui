@@ -124,7 +124,7 @@ const ErrorFallback = ({
     setFeedbackGiven(true);
   };
   return (
-    <Container>
+    <Container maxWidth='lg'>
       <Paper variant='outlined' sx={{ p: 4 }}>
         <Stack direction='column' spacing={1}>
           <Stack direction='row' spacing={2} alignItems='center'>
@@ -141,7 +141,7 @@ const ErrorFallback = ({
             <Alert severity='success'>{thanksMessage}</Alert>
           ) : (
             <Box id='user-feedback'>
-              <Stack direction='column' spacing={1} maxWidth='82rem'>
+              <Stack direction='column' spacing={1}>
                 <Typography variant='body1'>{formTitle}</Typography>
                 <TextField
                   value={name}
