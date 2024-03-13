@@ -1,1 +1,1 @@
-export * as default from './apps';
+export * as default from './appComponents';
