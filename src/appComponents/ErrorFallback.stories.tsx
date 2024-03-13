@@ -21,3 +21,20 @@ export const DefaultErrorFallback: Story = {
       console.log('You sent user feedback: ', userFeedback.toString()),
   },
 };
+export const MobileErrorFallback: Story = {
+  args: {
+    error: 'Something wrong happened on mobile',
+    componentStack: 'mobile-view',
+    eventId: '1',
+    captureUserFeedback: (userFeedback: UserFeedback) =>
+      console.log(
+        'You sent user feedback from the mobile view: ',
+        userFeedback.toString(),
+      ),
+  },
+  parameters: {
+    viewport: {
+      defaultViewport: 'mobile2',
+    },
+  },
+};

@@ -16,7 +16,7 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import Alert from '@mui/material/Alert';
 import Container from '@mui/material/Container';
 
-import { FC, useState } from 'react';
+import { useState } from 'react';
 
 import { UserFeedback } from './types';
 
