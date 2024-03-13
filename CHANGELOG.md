@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.11.0](https://github.com/graasp/graasp-ui/compare/v4.10.0...v4.11.0) (2024-03-13)
+
+
+### Features
+
+* rename favorite to bookmark ([#760](https://github.com/graasp/graasp-ui/issues/760)) ([d5eeda6](https://github.com/graasp/graasp-ui/commit/d5eeda6fbe721ccf59f2af494857c498caac6c25))
+
 ## [4.10.0](https://github.com/graasp/graasp-ui/compare/v4.9.3...v4.10.0) (2024-03-13)
 
 
