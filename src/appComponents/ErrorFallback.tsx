@@ -89,7 +89,7 @@ const ErrorBoundary: FC<{ children?: ReactNode }> = ({ children }) => {
   );
 };
  */
-const ErrorFallback: FC<ErrorFallbackProps> = ({
+const ErrorFallback = ({
   error,
   componentStack,
   eventId,
@@ -105,7 +105,7 @@ const ErrorFallback: FC<ErrorFallbackProps> = ({
   thanksMessage = THANKS_FOR_FEEDBACK,
   sendButtonLabel = SEND,
   errorDetailsLabel = ERROR_DETAILS,
-}) => {
+}: ErrorFallbackProps): JSX.Element => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [comment, setComment] = useState('');
