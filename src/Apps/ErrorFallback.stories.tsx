@@ -1,12 +1,14 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { TABLE_CATEGORIES } from '../utils/storybook';
-import ErrorFallback, { UserFeedback } from './ErrorFallback';
+import ErrorFallback from './ErrorFallback';
+import { UserFeedback } from './types';
 
 const meta: Meta<typeof ErrorFallback> = {
   title: 'Apps/ErrorFallback',
   component: ErrorFallback,
 
+  tags: ['autodocs'],
   argTypes: {
     variant: {
       table: {

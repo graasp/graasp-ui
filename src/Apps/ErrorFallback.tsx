@@ -17,20 +17,39 @@ import Alert from '@mui/material/Alert';
 import Container from '@mui/material/Container';
 
 import { FC, useState } from 'react';
-import { useTranslation } from 'react-i18next';
 
-export interface UserFeedback {
-  event_id: string;
-  name: string;
-  email: string;
-  comments: string;
-}
+import { UserFeedback } from './types';
+
+// DEFAULTS
+const TITLE = 'Sorry, something went wrong with this application';
+const FORM_TITLE =
+  'Our team has been notified. If you would like to help, please, tell us what happened below.';
+const ERROR_DETAILS = 'Details of the error';
+const NAME_LABEL = 'Name';
+const NAME_HELPER = 'Provide your name (optional)';
+const EMAIL_LABEL = 'Email';
+const EMAIL_HELPER = 'Provide your email (optional)';
+const COMMENT_LABEL = 'Comment';
+const COMMENT_HELPER = 'Tell us what happened (optional)';
+const THANKS_FOR_FEEDBACK = 'Thank you for your feedback!';
+const SEND = 'Send your feedback';
 
 interface ErrorFallbackProps {
   error: Error;
   componentStack: string;
   eventId: string;
   captureUserFeedback: (userFeedback: UserFeedback) => void;
+  title?: string;
+  formTitle?: string;
+  nameLabel?: string;
+  nameHelper?: string;
+  emailLabel?: string;
+  emailHelper?: string;
+  commentLabel?: string;
+  commentHelper?: string;
+  thanksMessage?: string;
+  sendButtonLabel?: string;
+  errorDetailsLabel?: string;
 }
 
 /**
@@ -38,7 +57,8 @@ interface ErrorFallbackProps {
  * @returns A form to submit user feedback.
  * 
  * @example
- * ```const ErrorBoundary: FC<{ children?: ReactNode }> = ({ children }) => (
+ * <pre><code>
+const ErrorBoundary: FC<{ children?: ReactNode }> = ({ children }) => (
   <Sentry.ErrorBoundary
     // eslint-disable-next-line react/no-unstable-nested-components
     fallback={({ error, componentStack, eventId }) => (
@@ -51,17 +71,26 @@ interface ErrorFallbackProps {
   >
     {children}
   </Sentry.ErrorBoundary>
-);```
+);
+</code></pre>
  */
 const ErrorFallback: FC<ErrorFallbackProps> = ({
   error,
   componentStack,
   eventId,
   captureUserFeedback,
+  title = TITLE,
+  formTitle = FORM_TITLE,
+  nameLabel = NAME_LABEL,
+  nameHelper = NAME_HELPER,
+  emailLabel = EMAIL_LABEL,
+  emailHelper = EMAIL_HELPER,
+  commentLabel = COMMENT_LABEL,
+  commentHelper = COMMENT_HELPER,
+  thanksMessage = THANKS_FOR_FEEDBACK,
+  sendButtonLabel = SEND,
+  errorDetailsLabel = ERROR_DETAILS,
 }) => {
-  const { t } = useTranslation('translations', {
-    keyPrefix: 'ERROR_BOUNDARY.FALLBACK',
-  });
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [comment, setComment] = useState('');
@@ -83,41 +112,45 @@ const ErrorFallback: FC<ErrorFallbackProps> = ({
     <Container>
       <Paper variant='outlined' sx={{ p: 4 }}>
         <Stack direction='column' spacing={1}>
-          <Stack direction='row' spacing={2}>
+          <Stack direction='row' spacing={2} alignItems='center'>
             <WarningIcon sx={{ color: theme.palette.error.main }} />
-            <Typography variant='h2' color={theme.palette.error.dark}>
-              {t('MESSAGE_TITLE')}
+            <Typography
+              variant='h2'
+              color={theme.palette.error.dark}
+              fontSize='1.8rem'
+            >
+              {title}
             </Typography>
           </Stack>
           {feedbackGiven ? (
-            <Alert severity='success'>{t('THANKS_FOR_FEEDBACK')}</Alert>
+            <Alert severity='success'>{thanksMessage}</Alert>
           ) : (
             <Box id='user-feedback'>
               <Stack direction='column' spacing={1} maxWidth='82rem'>
-                <Typography variant='body1'>{t('MESSAGE_FEEDBACK')}</Typography>
+                <Typography variant='body1'>{formTitle}</Typography>
                 <TextField
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  label={t('NAME_LABEL')}
-                  helperText={t('NAME_HELPER')}
+                  label={nameLabel}
+                  helperText={nameHelper}
                 />
                 <TextField
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  label={t('EMAIL_LABEL')}
-                  helperText={t('EMAIL_HELPER')}
+                  label={emailLabel}
+                  helperText={emailHelper}
                 />
                 <TextField
                   multiline
                   rows={5}
                   value={comment}
                   onChange={(e) => setComment(e.target.value)}
-                  label={t('COMMENT_LABEL')}
-                  helperText={t('COMMENT_HELPER')}
+                  label={commentLabel}
+                  helperText={commentHelper}
                 />
                 <Box>
                   <Button startIcon={<SendIcon />} onClick={sendUserFeedback}>
-                    {t('SEND')}
+                    {sendButtonLabel}
                   </Button>
                 </Box>
               </Stack>
@@ -129,7 +162,7 @@ const ErrorFallback: FC<ErrorFallbackProps> = ({
               aria-controls='error-details'
               id='error-details'
             >
-              {t('ERROR_DETAILS')}
+              {errorDetailsLabel}
             </AccordionSummary>
             <AccordionDetails>
               <Typography variant='caption'>{error.toString()}</Typography>
