@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.10.0](https://github.com/graasp/graasp-ui/compare/v4.9.3...v4.10.0) (2024-03-13)
+
+
+### Features
+
+* **apps:** error fallback form ([#756](https://github.com/graasp/graasp-ui/issues/756)) ([25b9b56](https://github.com/graasp/graasp-ui/commit/25b9b560bc28222045e2186cdd236a9903c9d9ab))
+
 ## [4.9.3](https://github.com/graasp/graasp-ui/compare/v4.9.2...v4.9.3) (2024-03-12)
 
 
