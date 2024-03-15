@@ -50,8 +50,6 @@ export const ItemThumbnail: Story = {
 
 export const ItemThumbnailAvatar: Story = {
   args: {
-    maxHeight: 100,
-    maxWidth: 100,
     component: 'avatar',
     url: 'https://picsum.photos/100',
   },

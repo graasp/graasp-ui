@@ -6,75 +6,66 @@ import {
 
 import Thumbnail from '../Thumbnail';
 
-type AvatarProps = {
+type BaseAvatarProps = {
+  /**
+   * Unique Id of the HTML element. Can be used for testing
+   */
+  id?: string;
+  /**
+   * Alternative text for the image
+   */
   alt: string;
   /**
-   * classname selector
-   * use maxWidth and maxHeight or sx
+   * Whether the resource is loading
    */
-  className?: string;
-  /**
-   * component used to display the avatar (img or avatar)
-   */
-  component?: string;
-  id?: string;
   isLoading?: boolean;
-  maxHeight?: string | number;
-  maxWidth?: string | number;
   /**
-   * thumbnail size to fetch
+   * Adapt styling with sx prop
    */
-  size?: string;
   sx?: SxProps;
-  url?: string;
-  /**
-   * skeleton variant
-   */
-  variant?: SkeletonProps['variant'];
 };
+type AvatarProps =
+  | (BaseAvatarProps & {
+      /**
+       * component used to display the avatar (img or avatar)
+       */
+      component?: 'avatar';
+      url?: string;
+    })
+  | (BaseAvatarProps & {
+      component: 'img';
+      /**
+       * skeleton variant
+       */
+      variant?: SkeletonProps['variant'];
+      maxHeight?: string | number;
+      maxWidth?: string | number;
+    });
 
-const Avatar = ({
-  sx,
-  id,
-  alt = 'avatar',
-  maxWidth = '100%',
-  maxHeight = '100%',
-  variant = 'circular',
-  component = 'img',
-  isLoading,
-  className,
-  // use a random string to trigger default avatar
-  url = 'broken-image',
-}: AvatarProps): JSX.Element | null => {
-  // no default value wanted and no url and is not loading
-  if (!url && component !== 'avatar' && !isLoading) {
-    return null;
+const Avatar = (props: AvatarProps): JSX.Element | null => {
+  const { id, sx, alt = 'avatar', isLoading } = props;
+  switch (props.component) {
+    case 'avatar': {
+      const { url } = props;
+      return <AvatarComponent id={id} alt={alt} src={url} sx={sx} />;
+    }
+    case 'img': {
+      const { maxWidth, maxHeight, variant } = props;
+      return (
+        <Thumbnail
+          sx={sx}
+          alt={alt}
+          id={id}
+          maxWidth={maxWidth}
+          maxHeight={maxHeight}
+          variant={variant}
+          isLoading={isLoading}
+        />
+      );
+    }
+    default:
+      return null;
   }
-
-  if (component === 'avatar') {
-    return (
-      <AvatarComponent
-        id={id}
-        className={className}
-        alt={alt}
-        src={url}
-        sx={sx}
-      />
-    );
-  }
-
-  return (
-    <Thumbnail
-      sx={sx}
-      alt={alt}
-      id={id}
-      url={url}
-      maxWidth={maxWidth}
-      maxHeight={maxHeight}
-      variant={variant}
-      isLoading={isLoading}
-    />
-  );
 };
 
 export default Avatar;
