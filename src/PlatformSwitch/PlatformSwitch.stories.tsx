@@ -4,6 +4,8 @@ import { userEvent, within } from '@storybook/testing-library';
 import type { BoundFunctions } from '@testing-library/dom';
 import { queries } from '@testing-library/dom';
 
+import AcUnitIcon from '@mui/icons-material/AcUnit';
+
 import { PRIMARY_COLOR, SECONDARY_COLOR } from '../theme';
 import PlatformSwitch, { PlatformSwitchProps } from './PlatformSwitch';
 import { Platform } from './hooks';
@@ -146,6 +148,28 @@ export const Mobile: Story = {
     color: PRIMARY_COLOR,
     accentColor: SECONDARY_COLOR,
     selected: Platform.Builder,
+  },
+  parameters: {
+    viewport: {
+      defaultViewport: 'mobile2',
+    },
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const button = (await canvas.findByRole('navigation')).firstChild;
+    await userEvent.hover(button as Element);
+    await canvas.findByLabelText(Platform.Player);
+    await canvas.findByLabelText(Platform.Builder);
+    await canvas.findByLabelText(Platform.Library);
+    await canvas.findByLabelText(Platform.Analytics);
+  },
+};
+
+export const CustomIconForMobile: Story = {
+  args: {
+    color: PRIMARY_COLOR,
+    accentColor: SECONDARY_COLOR,
+    CustomMobileIcon: (props) => <AcUnitIcon {...props} />,
   },
   parameters: {
     viewport: {
