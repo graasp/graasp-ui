@@ -3305,7 +3305,7 @@ __metadata:
     "@types/katex": "npm:^0.16.7"
     "@types/lodash.truncate": "npm:4.4.9"
     "@types/node": "npm:20.11.30"
-    "@types/react": "npm:18.2.67"
+    "@types/react": "npm:18.2.69"
     "@types/react-dom": "npm:18.2.22"
     "@types/react-router-dom": "npm:5.3.3"
     "@types/react-text-mask": "npm:5.4.14"
@@ -3351,7 +3351,7 @@ __metadata:
     ts-node: "npm:10.9.2"
     typescript: "npm:5.4.3"
     uuid: "npm:9.0.1"
-    vite: "npm:5.2.3"
+    vite: "npm:5.2.6"
     vite-plugin-dts: "npm:3.7.3"
     vitest: "npm:1.4.0"
     wait-on: "npm:7.2.0"
@@ -6942,14 +6942,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:18.2.67":
-  version: 18.2.67
-  resolution: "@types/react@npm:18.2.67"
+"@types/react@npm:18.2.69":
+  version: 18.2.69
+  resolution: "@types/react@npm:18.2.69"
   dependencies:
     "@types/prop-types": "npm:*"
     "@types/scheduler": "npm:*"
     csstype: "npm:^3.0.2"
-  checksum: 10/d7e248dbe8d9d3b05f0d8e128d615fc9c85aa2c5d15634271d20cb9b343dbeffb0875f31a44e7ac63b42afc25949bd4c3633b7ebee45ee4666591ca934a8dffb
+  checksum: 10/5cc185f00ad5a4c2261e127ad25241448492f391e2206738b0477cbdba6aa75692e18ece5e75854ed513342d95c9ee83315744cb6b1470d488772cef1f8b40c8
   languageName: node
   linkType: hard
 
@@ -18558,9 +18558,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite@npm:5.2.3":
-  version: 5.2.3
-  resolution: "vite@npm:5.2.3"
+"vite@npm:5.2.6":
+  version: 5.2.6
+  resolution: "vite@npm:5.2.6"
   dependencies:
     esbuild: "npm:^0.20.1"
     fsevents: "npm:~2.3.3"
@@ -18594,7 +18594,7 @@ __metadata:
       optional: true
   bin:
     vite: bin/vite.js
-  checksum: 10/5033a989462bc3127cb937ae5138024af68ec1b67accad07e07e116254b84fc6888a18d7a0358e3d3ce19fe160d72b6622259edc93e7fba47b84d042dcbe1e4e
+  checksum: 10/0409acd4bbad1bca42b2015ac5d0f710bbc84b86f6b518add9a9c13adf1aab02fd40fcca854dc08ff2a2226c1df77d5d5b4a958c6c4c04ca27a6bfb0b4f60615
   languageName: node
   linkType: hard
 
