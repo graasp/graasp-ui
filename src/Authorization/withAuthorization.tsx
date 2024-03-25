@@ -5,7 +5,7 @@ import { CompleteMember, redirect } from '@graasp/sdk';
 import RedirectContent from './RedirectionContent';
 
 export interface WithAuthorizationProps {
-  redirectionLink?: string;
+  redirectionLink: string;
   currentMember?: CompleteMember | null;
   onRedirect?: () => void;
 }

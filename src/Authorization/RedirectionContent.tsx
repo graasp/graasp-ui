@@ -5,7 +5,7 @@ import { Link, LinkProps } from 'react-router-dom';
 import GraaspLogo from '../GraaspLogo';
 
 interface Props {
-  link?: string;
+  link: string;
   id?: string;
   redirectionLinkText?: string;
   redirectionText?: string;
@@ -44,7 +44,7 @@ const RedirectionContent = ({
         <StyledTypography variant='h4' align='center'>
           {redirectionText ?? 'You are being redirected…'}
         </StyledTypography>
-        <StyledLink to={{ pathname: link }}>
+        <StyledLink to={link}>
           <Typography align='center'>
             {redirectionLinkText ??
               'Click here if you are not automatically redirected'}

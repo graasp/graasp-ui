@@ -7,12 +7,14 @@ import { BrowserRouter } from 'react-router-dom';
 import { BuildIcon } from '../icons';
 import withAuthorization from './withAuthorization';
 
-const ComponentWithAuthorization = withAuthorization(BuildIcon, {});
+const ComponentWithAuthorization = withAuthorization(BuildIcon, {
+  redirectionLink: 'https://graasp.org',
+});
 
 // this story is separated from the others
 // because the redirection breaks a bit the navigation in storybook
 const meta: Meta<typeof ComponentWithAuthorization> = {
-  title: 'Actions/Autorization/Redirect',
+  title: 'Actions/Authorization/Redirect',
   component: ComponentWithAuthorization,
   parameters: {
     docs: {
