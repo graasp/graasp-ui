@@ -4,7 +4,7 @@ import { CompleteMember, redirect } from '@graasp/sdk';
 
 import RedirectContent from './RedirectionContent';
 
-export interface withAutorizationProps {
+export interface WithAuthorizationProps {
   redirectionLink?: string;
   currentMember?: CompleteMember | null;
   onRedirect?: () => void;
@@ -13,7 +13,7 @@ export interface withAutorizationProps {
 const withAuthorization =
   <P extends object>(
     ChildComponent: ComponentType<P>,
-    { currentMember, redirectionLink, onRedirect }: withAutorizationProps,
+    { currentMember, redirectionLink, onRedirect }: WithAuthorizationProps,
   ): FC<P> =>
   (childProps: P) => {
     const redirectToSignIn = (): void => {
