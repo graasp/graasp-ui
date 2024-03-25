@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.12.1](https://github.com/graasp/graasp-ui/compare/v4.12.0...v4.12.1) (2024-03-25)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @ag-grid-community/client-side-row-model to v31.2.0 ([#779](https://github.com/graasp/graasp-ui/issues/779)) ([89c7dd0](https://github.com/graasp/graasp-ui/commit/89c7dd06504edde4406d07d7cc40e2d6ced8e5d5))
+
 ## [4.12.0](https://github.com/graasp/graasp-ui/compare/v4.11.0...v4.12.0) (2024-03-25)
 
 
