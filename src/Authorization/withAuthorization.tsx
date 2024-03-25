@@ -28,7 +28,6 @@ const withAuthorization =
       return <ChildComponent {...(childProps as P)} />;
     }
 
-    // eslint-disable-next-line no-unused-expressions
     onRedirect?.();
 
     redirectToSignIn();
