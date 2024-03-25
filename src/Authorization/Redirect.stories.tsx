@@ -7,12 +7,15 @@ import { BrowserRouter } from 'react-router-dom';
 import { BuildIcon } from '../icons';
 import withAuthorization from './withAuthorization';
 
-const ComponentWithAuthorization = withAuthorization(BuildIcon, {});
+const ComponentWithAuthorization = withAuthorization(BuildIcon, {
+  // use an empty string because we do not want to be redirected but the prop is mandatory
+  redirectionLink: '',
+});
 
 // this story is separated from the others
 // because the redirection breaks a bit the navigation in storybook
 const meta: Meta<typeof ComponentWithAuthorization> = {
-  title: 'Actions/Autorization/Redirect',
+  title: 'Actions/Authorization/Redirect',
   component: ComponentWithAuthorization,
   parameters: {
     docs: {
