@@ -49,6 +49,10 @@ export type PlatformSwitchProps = {
       }
     >
   >;
+  /**
+   * Custom icon to show as selected in mobile
+   */
+  CustomMobileIcon?: (props: IconProps) => JSX.Element;
 };
 
 /** Common props for all platform icons */
@@ -86,6 +90,7 @@ export const PlatformSwitch = ({
   sx,
   selected,
   platformsProps,
+  CustomMobileIcon,
 }: PlatformSwitchProps): JSX.Element => {
   const theme = useTheme();
 
@@ -151,7 +156,7 @@ export const PlatformSwitch = ({
 
   if (isMobile) {
     const selectedPlatform = selected || Platform.Builder;
-    const SelectedIcon = PlatformIcons[selectedPlatform];
+    const SelectedIcon = CustomMobileIcon ?? PlatformIcons[selectedPlatform];
     const platformProps = platformsProps?.[selectedPlatform];
     const sxProps = { ...sx, ...(platformProps?.sx ?? {}) };
     return (
@@ -164,16 +169,14 @@ export const PlatformSwitch = ({
             },
           }}
           icon={
-            selected && (
-              <SelectedIcon
-                selected
-                secondaryColor={accentColor}
-                primaryColor={color}
-                primaryOpacity={1}
-                size={size}
-                sx={sxProps}
-              />
-            )
+            <SelectedIcon
+              selected
+              secondaryColor={accentColor}
+              primaryColor={color}
+              primaryOpacity={1}
+              size={size}
+              sx={sxProps}
+            />
           }
           role='navigation'
           direction={'down'}
