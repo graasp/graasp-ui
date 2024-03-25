@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.12.0](https://github.com/graasp/graasp-ui/compare/v4.11.0...v4.12.0) (2024-03-25)
+
+
+### Features
+
+* allow custom icon for mobile platform switch ([#775](https://github.com/graasp/graasp-ui/issues/775)) ([57cc81c](https://github.com/graasp/graasp-ui/commit/57cc81cc19abeecb1437fd32b1463ee231651566))
+
+
+### Bug Fixes
+
+* **deps:** update ag-grid monorepo to v31.2.0 ([#771](https://github.com/graasp/graasp-ui/issues/771)) ([15f645d](https://github.com/graasp/graasp-ui/commit/15f645d3c835c1a09492def5a95fc4a596f2dcc6))
+* **deps:** update dependency katex to v0.16.10 ([#777](https://github.com/graasp/graasp-ui/issues/777)) ([7d2bee0](https://github.com/graasp/graasp-ui/commit/7d2bee0dfbed9cedd15c1578feacd501f93167d2))
+* **deps:** update dependency vitest to v1.4.0 ([#767](https://github.com/graasp/graasp-ui/issues/767)) ([ed01bb0](https://github.com/graasp/graasp-ui/commit/ed01bb0b39d63b3795e5fe2f3eb0dc46ba926e67))
+
 ## [4.11.0](https://github.com/graasp/graasp-ui/compare/v4.10.0...v4.11.0) (2024-03-13)
 
 
