@@ -8,7 +8,8 @@ import { BuildIcon } from '../icons';
 import withAuthorization from './withAuthorization';
 
 const ComponentWithAuthorization = withAuthorization(BuildIcon, {
-  redirectionLink: 'https://graasp.org',
+  // use an empty string because we do not want to be redirected but the prop is mandatory
+  redirectionLink: '',
 });
 
 // this story is separated from the others
