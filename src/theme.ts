@@ -62,8 +62,7 @@ export const theme = createTheme({
     },
   },
   typography: {
-    // change base font size to 20px, according to design guideline
-    fontSize: 20,
+    fontSize: 17.5,
     display: {
       fontSize: '3.5rem',
       fontWeight: 800
@@ -89,6 +88,9 @@ export const theme = createTheme({
     },
     h6: {
       fontSize: '1.1rem'
+    },
+    body1: {
+      fontSize: '1.25rem'
     },
     label: {
       fontSize: '0.9rem',
