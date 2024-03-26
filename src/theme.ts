@@ -64,42 +64,41 @@ export const theme = createTheme({
   typography: {
     fontFamily: ['Nunito', 'Roboto', 'sans-serif'].join(','),
     // change base font size to 20px, according to design guideline
-    fontSize: 17.5,
     display: {
-      fontSize: '3.5rem',
+      fontSize: '4.375rem',
       fontWeight: 800,
     },
     h1: {
-      fontSize: '3.2rem',
+      fontSize: '4rem',
       fontWeight: 700,
     },
     h2: {
-      fontSize: '2rem',
+      fontSize: '2.5rem',
       fontWeight: 700,
     },
     h3: {
-      fontSize: '1.75rem',
+      fontSize: '2.1875rem',
       fontWeight: 700,
     },
     h4: {
-      fontSize: '1.6rem',
+      fontSize: '2rem',
     },
     h5: {
-      fontSize: '1.1rem',
+      fontSize: '1.375rem',
       fontWeight: 700,
     },
     h6: {
-      fontSize: '1.1rem',
+      fontSize: '1.375rem',
     },
     body1: {
       fontSize: '1.25rem',
     },
     label: {
-      fontSize: '0.9rem',
+      fontSize: '1.125rem',
       fontWeight: 700,
     },
     note: {
-      fontSize: '0.9rem',
+      fontSize: '1.125rem',
     },
   },
 });
