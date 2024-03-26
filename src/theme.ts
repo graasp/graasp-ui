@@ -15,6 +15,31 @@ export const AccentColors: { [K in Context]: string } = {
   [Context.Unknown]: PRIMARY_COLOR,
 } as const;
 
+// add custom typography variants, based on the design guideline
+declare module '@mui/material/styles' {
+  interface TypographyVariants {
+    display: React.CSSProperties;
+    label: React.CSSProperties;
+    note: React.CSSProperties;
+  }
+
+  // allow configuration using `createTheme`
+  interface TypographyVariantsOptions {
+    display?: React.CSSProperties;
+    label?: React.CSSProperties;
+    note?: React.CSSProperties;
+  }
+}
+
+// Update the Typography's variant prop options
+declare module '@mui/material/Typography' {
+  interface TypographyPropsVariantOverrides {
+    display: true;
+    label: true;
+    note: true;
+  }
+}
+
 export const theme = createTheme({
   palette: {
     primary: {
@@ -38,8 +63,40 @@ export const theme = createTheme({
   },
   typography: {
     fontFamily: ['Nunito', 'Roboto', 'sans-serif'].join(','),
+    // change base font size to 20px, according to design guideline
+    fontSize: 20,
+    display: {
+      fontSize: '3.5rem',
+      fontWeight: 800,
+    },
     h1: {
-      fontSize: '4rem',
+      fontSize: '3.2rem',
+      fontWeight: 700,
+    },
+    h2: {
+      fontSize: '2rem',
+      fontWeight: 700,
+    },
+    h3: {
+      fontSize: '1.75rem',
+      fontWeight: 700,
+    },
+    h4: {
+      fontSize: '1.6rem',
+    },
+    h5: {
+      fontSize: '1.1rem',
+      fontWeight: 700,
+    },
+    h6: {
+      fontSize: '1.1rem',
+    },
+    label: {
+      fontSize: '0.9rem',
+      fontWeight: 700,
+    },
+    note: {
+      fontSize: '0.9rem',
     },
   },
 });
