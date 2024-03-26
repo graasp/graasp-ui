@@ -48,7 +48,7 @@
     "build": "tsc --noEmit -p tsconfig.build.json && vite build",
     "build:ts": "tsc && tsc-alias",
     "build:tsup": "yarn tsup --entry src/index.ts --entry src/table.ts --dts --format esm,cjs --clean",
-    "prepack": "yarn build",
+    "prepack": "NODE_OPTIONS=--max-old-space-size=32768 yarn build",
     "prepare": "yarn prepack && yarn hooks:install",
     "lint": "eslint src",
     "type-check": "tsc --noEmit",
