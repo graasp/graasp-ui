@@ -37,6 +37,7 @@ export const theme = createTheme({
     },
   },
   typography: {
+    fontFamily: ['Nunito', 'Roboto', 'sans-serif'].join(','),
     h1: {
       fontSize: '4rem',
     },
