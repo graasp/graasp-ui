@@ -60,6 +60,15 @@ export const theme = createTheme({
         },
       },
     },
+    MuiTypography: {
+      defaultProps: {
+        variantMapping: {
+          // Map the new variants to render a <p> by default
+          label: 'p',
+          note: 'p',
+        },
+      },
+    },
   },
   typography: {
     display: {
@@ -89,6 +98,9 @@ export const theme = createTheme({
       fontSize: '1.375rem',
     },
     body1: {
+      fontSize: '1.25rem',
+    },
+    button: {
       fontSize: '1.25rem',
     },
     label: {
