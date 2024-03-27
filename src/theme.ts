@@ -1,10 +1,7 @@
 import { createTheme } from '@mui/material';
 import { grey } from '@mui/material/colors';
 
-
-
 import { Context } from '@graasp/sdk';
-
 
 export const PRIMARY_COLOR = '#5050d2';
 export const SECONDARY_COLOR = '#FFFFFF';
@@ -37,9 +34,9 @@ declare module '@mui/material/styles' {
 // Update the Typography's variant prop options
 declare module '@mui/material/Typography' {
   interface TypographyPropsVariantOverrides {
-    display: true,
-    label: true,
-    note: true,
+    display: true;
+    label: true;
+    note: true;
   }
 }
 
