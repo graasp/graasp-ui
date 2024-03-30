@@ -3,7 +3,7 @@ import Typography, { TypographyProps } from '@mui/material/Typography';
 interface QuestionLabelProps {
   typographyProps?: TypographyProps;
   children: JSX.Element | JSX.Element[];
-  width?: number;
+  width?: string;
   dataCy?: string;
 }
 
