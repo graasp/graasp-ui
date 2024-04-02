@@ -27,7 +27,7 @@ type CardProps = {
    * creator name
    */
   creator?: string;
-  description?: string;
+  description?: string | JSX.Element;
   height?: string | number;
   /**
    * image link to display as thumbnail
