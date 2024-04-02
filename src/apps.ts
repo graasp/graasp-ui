@@ -1,3 +1,3 @@
-export { ErrorFallback } from './appComponents';
+export { ErrorFallback, QuestionLabel } from './appComponents';
 
 export type { UserFeedback } from './appComponents';
