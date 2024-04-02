@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.13.0](https://github.com/graasp/graasp-ui/compare/v4.12.1...v4.13.0) (2024-04-02)
+
+
+### Features
+
+* **apps:** add question label for unifying style in all survey apps ([#788](https://github.com/graasp/graasp-ui/issues/788)) ([c172444](https://github.com/graasp/graasp-ui/commit/c1724447b29349c6a11f753313afab1718b36f1d))
+
+
+### Bug Fixes
+
+* allow component as card description ([#787](https://github.com/graasp/graasp-ui/issues/787)) ([8f66563](https://github.com/graasp/graasp-ui/commit/8f66563f3dddb82f6bd547067d46dbee058ab534))
+
 ## [4.12.1](https://github.com/graasp/graasp-ui/compare/v4.12.0...v4.12.1) (2024-03-25)
 
 
