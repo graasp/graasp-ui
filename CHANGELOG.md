@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.14.0](https://github.com/graasp/graasp-ui/compare/v4.13.0...v4.14.0) (2024-04-04)
+
+
+### Features
+
+* add typography variants ([#786](https://github.com/graasp/graasp-ui/issues/786)) ([3428d04](https://github.com/graasp/graasp-ui/commit/3428d04ed8c56a640434464237da4a51b527bbe4))
+* change font to Nunito ([#785](https://github.com/graasp/graasp-ui/issues/785)) ([858adcf](https://github.com/graasp/graasp-ui/commit/858adcf176923fb67aa005178f92d8a6b9dd7ea8))
+
 ## [4.13.0](https://github.com/graasp/graasp-ui/compare/v4.12.1...v4.13.0) (2024-04-02)
 
 
