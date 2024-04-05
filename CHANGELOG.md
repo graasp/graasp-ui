@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.14.1](https://github.com/graasp/graasp-ui/compare/v4.14.0...v4.14.1) (2024-04-05)
+
+
+### Bug Fixes
+
+* reduce font size in theme ([#795](https://github.com/graasp/graasp-ui/issues/795)) ([cfda53a](https://github.com/graasp/graasp-ui/commit/cfda53aa22ad3ca50b2763e545eb603c7ad3ed6d))
+
 ## [4.14.0](https://github.com/graasp/graasp-ui/compare/v4.13.0...v4.14.0) (2024-04-04)
 
 
