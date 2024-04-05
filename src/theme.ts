@@ -99,12 +99,12 @@ export const theme = createTheme({
     h6: {
       fontSize: '1.375rem',
     },
-    body1: {
-      fontSize: '1.25rem',
-    },
-    button: {
-      fontSize: '1.25rem',
-    },
+    // body1: {
+    //   fontSize: '1.10rem',
+    // },
+    // button: {
+    //   fontSize: '1.25rem',
+    // },
     label: {
       fontSize: '1.125rem',
       fontWeight: 700,
