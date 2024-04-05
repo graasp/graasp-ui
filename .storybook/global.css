@@ -1,8 +1,11 @@
 .blackColor {
-  color:black !important
+  color: black !important;
 }
 
 .blackBorderTop {
-  border-top: 5px solid #5050d2 !important
+  border-top: 5px solid #5050d2 !important;
 }
-  
+
+.ag-theme-material {
+  --ag-font-family: Nunito, Roboto, sans-serif !important;
+}
