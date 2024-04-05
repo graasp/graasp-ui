@@ -118,7 +118,7 @@ const DEFAULT_COL_DEF = {
 const StyledBox = styled(Box, {
   shouldForwardProp: (prop: string) => prop !== 'tableHeight',
 })<{ tableHeight: string | number }>(({ theme, tableHeight }) => ({
-  fontSize: theme.typography.fontSize,
+  fontSize: `${theme.typography.fontSize} !important`,
   width: '100%',
   height: tableHeight,
   [`.${ROW_CLASS_NAME}`]: {
