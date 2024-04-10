@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.14.2](https://github.com/graasp/graasp-ui/compare/v4.14.1...v4.14.2) (2024-04-10)
+
+
+### Bug Fixes
+
+* update font scale ([#802](https://github.com/graasp/graasp-ui/issues/802)) ([3f52111](https://github.com/graasp/graasp-ui/commit/3f52111967d69ebbf4c2c7c131183f6943db412e))
+* update type of function used for signout ([#800](https://github.com/graasp/graasp-ui/issues/800)) ([2d63f17](https://github.com/graasp/graasp-ui/commit/2d63f1753c4490331216d93aef0fa86bdb8c44af))
+
 ## [4.14.1](https://github.com/graasp/graasp-ui/compare/v4.14.0...v4.14.1) (2024-04-05)
 
 
