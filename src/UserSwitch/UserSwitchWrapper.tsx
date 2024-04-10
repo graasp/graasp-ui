@@ -32,7 +32,12 @@ interface Props {
   seeProfileText?: string;
   signedOutTooltipText?: string;
   signInMenuItemId?: string;
-  signOut: (memberId: string) => void;
+  /**
+   * Async function used to perform the sign out
+   * @param memberId Id of the user to sign out (current user)
+   * @returns Promise of void
+   */
+  signOut: (memberId: string) => Promise<void>;
   signOutMenuItemId?: string;
   signOutText?: string;
   // switchMember: (args: { memberId: string; domain: string }) => Promise<void>;
