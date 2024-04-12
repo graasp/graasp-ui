@@ -41,7 +41,12 @@ declare module '@mui/material/Typography' {
   }
 }
 
-const createGraaspTheme = (): Theme => {
+type GraaspThemeOptions = {
+  fontFamily?: string;
+};
+export const createGraaspTheme = ({
+  fontFamily,
+}: GraaspThemeOptions): Theme => {
   const baseTheme = createTheme({
     palette: {
       primary: {
@@ -73,7 +78,7 @@ const createGraaspTheme = (): Theme => {
       },
     },
     typography: {
-      fontFamily: ['Nunito', 'Roboto', 'sans-serif'].join(','),
+      fontFamily: fontFamily ?? ['Nunito', 'Roboto', 'sans-serif'].join(','),
       display: {
         fontSize: '4.5rem',
         fontWeight: 800,
@@ -122,4 +127,4 @@ const createGraaspTheme = (): Theme => {
     variants: Object.keys(baseTheme.typography) as (keyof Typography)[],
   });
 };
-export const theme = createGraaspTheme();
+export const theme = createGraaspTheme({});
