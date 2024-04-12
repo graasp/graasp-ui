@@ -1,5 +1,6 @@
-import { ThemeOptions, createTheme } from '@mui/material';
+import { Theme, createTheme, responsiveFontSizes } from '@mui/material';
 import { grey } from '@mui/material/colors';
+import { Typography } from '@mui/material/styles/createTypography';
 
 import { Context } from '@graasp/sdk';
 
@@ -40,78 +41,85 @@ declare module '@mui/material/Typography' {
   }
 }
 
-export const themeOptions = {
-  palette: {
-    primary: {
-      main: PRIMARY_COLOR,
+const createGraaspTheme = (): Theme => {
+  const baseTheme = createTheme({
+    palette: {
+      primary: {
+        main: PRIMARY_COLOR,
+      },
+      secondary: {
+        main: SECONDARY_COLOR,
+      },
     },
-    secondary: {
-      main: SECONDARY_COLOR,
+    zIndex: {
+      drawer: 100,
     },
-  },
-  zIndex: {
-    drawer: 100,
-  },
-  components: {
-    MuiAvatar: {
-      styleOverrides: {
-        root: {
-          backgroundColor: grey[400],
+    components: {
+      MuiAvatar: {
+        styleOverrides: {
+          root: {
+            backgroundColor: grey[400],
+          },
+        },
+      },
+      MuiTypography: {
+        defaultProps: {
+          variantMapping: {
+            // Map the new variants to render a <p> by default
+            label: 'p',
+            note: 'p',
+          },
         },
       },
     },
-    MuiTypography: {
-      defaultProps: {
-        variantMapping: {
-          // Map the new variants to render a <p> by default
-          label: 'p',
-          note: 'p',
-        },
+    typography: {
+      fontFamily: ['Nunito', 'Roboto', 'sans-serif'].join(','),
+      display: {
+        fontSize: '4.5rem',
+        fontWeight: 800,
+      },
+      h1: {
+        fontSize: '3.2rem',
+        fontWeight: 700,
+      },
+      h2: {
+        fontSize: '2rem',
+        fontWeight: 700,
+      },
+      h3: {
+        fontSize: '1.75rem',
+        fontWeight: 700,
+      },
+      h4: {
+        fontSize: '1.6rem',
+      },
+      h5: {
+        fontSize: '1.1rem',
+        fontWeight: 700,
+      },
+      h6: {
+        fontSize: '1.1rem',
+      },
+      body1: {
+        fontSize: '1rem',
+      },
+      button: {
+        fontSize: '1rem',
+      },
+      label: {
+        fontSize: '0.9rem',
+        fontWeight: 700,
+      },
+      note: {
+        fontSize: '0.9rem',
       },
     },
-  },
-  typography: {
-    fontFamily: ['Nunito', 'Roboto', 'sans-serif'].join(','),
-    display: {
-      fontSize: '3.5rem',
-      fontWeight: 800,
-    },
-    h1: {
-      fontSize: '3.2rem',
-      fontWeight: 700,
-    },
-    h2: {
-      fontSize: '2rem',
-      fontWeight: 700,
-    },
-    h3: {
-      fontSize: '1.75rem',
-      fontWeight: 700,
-    },
-    h4: {
-      fontSize: '1.6rem',
-    },
-    h5: {
-      fontSize: '1.1rem',
-      fontWeight: 700,
-    },
-    h6: {
-      fontSize: '1.1rem',
-    },
-    body1: {
-      fontSize: '1rem',
-    },
-    button: {
-      fontSize: '1rem',
-    },
-    label: {
-      fontSize: '0.9rem',
-      fontWeight: 700,
-    },
-    note: {
-      fontSize: '0.9rem',
-    },
-  },
-} satisfies ThemeOptions;
-
-export const theme = createTheme(themeOptions);
+  });
+  return responsiveFontSizes(baseTheme, {
+    disableAlign: true,
+    factor: 2,
+    // allows to also convert non-standard typography styles like "display" that we added
+    variants: Object.keys(baseTheme.typography) as (keyof Typography)[],
+  });
+};
+export const theme = createGraaspTheme();
