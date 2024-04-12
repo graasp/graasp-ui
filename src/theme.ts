@@ -1,6 +1,5 @@
 import { Theme, createTheme, responsiveFontSizes } from '@mui/material';
 import { grey } from '@mui/material/colors';
-import { Typography } from '@mui/material/styles/createTypography';
 
 import { Context } from '@graasp/sdk';
 
@@ -124,7 +123,21 @@ export const createGraaspTheme = ({
     disableAlign: true,
     factor: 2,
     // allows to also convert non-standard typography styles like "display" that we added
-    variants: Object.keys(baseTheme.typography) as (keyof Typography)[],
+    variants: [
+      'display',
+      'h1',
+      'h2',
+      'h3',
+      'h4',
+      'h5',
+      'h6',
+      'body1',
+      'body2',
+      'caption',
+      'button',
+      'label',
+      'note',
+    ],
   });
 };
 export const theme = createGraaspTheme({});
