@@ -1,20 +1,66 @@
-import { styled, useMediaQuery, useTheme } from '@mui/material';
+import {
+  MenuItem,
+  Stack,
+  styled,
+  useMediaQuery,
+  useTheme,
+} from '@mui/material';
 import Box from '@mui/material/Box';
-import Divider from '@mui/material/Divider';
 import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
 import Skeleton from '@mui/material/Skeleton';
 import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
 
 import { MouseEventHandler, ReactElement, useState } from 'react';
 
-import { CompleteMember, Member, isPseudoMember } from '@graasp/sdk';
+import { CompleteMember, isPseudoMember } from '@graasp/sdk';
 
 import { SHORT_TEXT_WIDTH, SMALL_AVATAR_SIZE } from '../constants';
 import { Variant } from '../types';
 
 const HEADER_USERNAME_MAX_WIDTH = 120;
+
+type CurrentMemberInfoProps = {
+  /**
+   * Wrapper component that supplies a link facility wrapping the member info
+   */
+  LinkComponent: (props: {
+    children: JSX.Element;
+    href?: string;
+  }) => JSX.Element;
+  currentMember: CompleteMember;
+  renderAvatar: (member: CompleteMember) => JSX.Element;
+  accountPath: string;
+};
+
+const CurrentMemberInfo = ({
+  LinkComponent,
+  currentMember,
+  renderAvatar,
+  accountPath,
+}: CurrentMemberInfoProps): ReactElement | null => {
+  return (
+    <LinkComponent href={accountPath}>
+      <MenuItem data-testid='account-button'>
+        {renderAvatar(currentMember)}
+
+        <Stack direction='column'>
+          <Typography variant='h6' noWrap>
+            {currentMember.name}
+          </Typography>
+
+          {/* show info only for normal member */}
+          {/* todo: show which item a pseudonymized member has access to */}
+          {!isPseudoMember(currentMember) && (
+            <Typography variant='subtitle2' noWrap>
+              {currentMember.email}
+            </Typography>
+          )}
+        </Stack>
+      </MenuItem>
+    </LinkComponent>
+  );
+};
 
 const StyledWrapper = styled(Box)(() => ({
   display: 'flex',
@@ -24,30 +70,42 @@ const StyledWrapper = styled(Box)(() => ({
   },
 }));
 
-type Props = {
+export type UserSwitchProps = {
+  LinkComponent: (props: {
+    children: JSX.Element;
+    href?: string;
+  }) => JSX.Element;
   Actions?: JSX.Element | JSX.Element[];
   buildMemberMenuItemId?: (id: string) => string;
-  ButtonContent?: JSX.Element;
+  ButtonContent: JSX.Element;
   buttonId?: string;
   isMemberLoading?: boolean;
+  /**
+   * Current member
+   *
+   * Can be null when the user is not logged in,
+   * undefined when the member is fetching,
+   * and CompleteMember when logged in
+   */
   currentMember?: CompleteMember | null;
-  members?: Member[];
   menuId?: string;
   onMemberClick?: (_id: string) => MouseEventHandler;
   renderAvatar?: (member?: CompleteMember | null) => JSX.Element;
   signedOutTooltipText?: string;
+  accountPath: string;
 };
 
 const UserSwitch = ({
+  LinkComponent,
   Actions,
   ButtonContent,
   buttonId,
-  isMemberLoading = false,
   currentMember,
   menuId,
   renderAvatar = () => <></>,
   signedOutTooltipText = 'You are not signed in.',
-}: Props): JSX.Element => {
+  accountPath,
+}: UserSwitchProps): JSX.Element | false => {
   const [anchorEl, setAnchorEl] = useState<(EventTarget & Element) | null>(
     null,
   );
@@ -56,96 +114,18 @@ const UserSwitch = ({
 
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
-  const memberName = currentMember?.name;
+  if (currentMember !== null) {
+    const memberName = currentMember?.name;
 
-  const handleClick: MouseEventHandler = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
+    const handleClick: MouseEventHandler = (event) => {
+      setAnchorEl(event.currentTarget);
+    };
 
-  const handleClose = (): void => {
-    setAnchorEl(null);
-  };
+    const handleClose = (): void => {
+      setAnchorEl(null);
+    };
 
-  // disable feature: sessions shouldn't be saved in the cookies
-  // const renderStoredSessions = (): (JSX.Element | null)[] | null => {
-  //   const menuItems = members.map((m) => {
-  //     // an error happened and the member is null or is an error
-  //     if (!m || isError(m)) {
-  //       return null;
-  //     }
-
-  //     const { id, name, email } = m;
-
-  //     // do not show current member
-  //     if (id === member?.id) {
-  //       return null;
-  //     }
-
-  //     const hasExpired = isSessionExpired(id);
-
-  //     return (
-  //       <MenuItem
-  //         id={buildMemberMenuItemId?.(id)}
-  //         key={id}
-  //         onClick={onMemberClick(id)}
-  //         disabled={hasExpired}
-  //       >
-  //         <ListItemIcon>{renderAvatar(m)}</ListItemIcon>
-  //         <div>
-  //           <Typography variant='body1' noWrap>
-  //             {name}
-  //           </Typography>
-  //           {/* show info only for normal member */}
-  //           {/* todo: show which item a pseudonymized member as access to */}
-  //           {!isPseudonymizedMember(email) && (
-  //             <Typography variant='subtitle2' noWrap>
-  //               {email}
-  //             </Typography>
-  //           )}
-  //         </div>
-  //       </MenuItem>
-  //     );
-  //   });
-
-  //   return menuItems?.toJS() as (JSX.Element | null)[];
-  // };
-
-  const renderCurrentMemberInfo = (): ReactElement | null => {
-    if (!currentMember || !currentMember.id) {
-      return null;
-    }
-
-    return (
-      <MenuItem>
-        {renderAvatar(currentMember)}
-
-        <div>
-          <Typography variant='h6' noWrap>
-            {memberName}
-          </Typography>
-
-          {/* show info only for normal member */}
-          {/* todo: show which item a pseudonymized member as access to */}
-          {!isPseudoMember(currentMember) && (
-            <>
-              <Typography variant='subtitle2' noWrap>
-                {currentMember.email}
-              </Typography>
-            </>
-          )}
-        </div>
-      </MenuItem>
-    );
-  };
-
-  // renders default button
-  // shows given content or current member information
-  const renderButtonContent = (): ReactElement => {
-    if (ButtonContent) {
-      return ButtonContent;
-    }
-
-    if (isMemberLoading) {
+    if (!currentMember) {
       return (
         <StyledWrapper>
           <Skeleton
@@ -160,54 +140,55 @@ const UserSwitch = ({
 
     return (
       <>
-        <Tooltip title={memberName ?? signedOutTooltipText}>
-          <span>{renderAvatar(currentMember)}</span>
-        </Tooltip>
-        {memberName && !isMobile && (
-          <Typography
-            variant='subtitle1'
-            sx={{ mx: 2, maxWidth: HEADER_USERNAME_MAX_WIDTH }}
-            noWrap
-          >
-            {memberName}
-          </Typography>
-        )}
+        <StyledWrapper
+          onClick={handleClick}
+          id={buttonId}
+          role='button'
+          aria-haspopup={'menu'}
+          aria-controls={menuId}
+          aria-expanded={Boolean(anchorEl)}
+          tabIndex={0}
+        >
+          <Stack direction='row' spacing={1} alignItems='center'>
+            <Tooltip title={memberName ?? signedOutTooltipText}>
+              <span>{renderAvatar(currentMember)}</span>
+            </Tooltip>
+            {memberName && !isMobile && (
+              <Typography
+                variant='subtitle1'
+                maxWidth={HEADER_USERNAME_MAX_WIDTH}
+                noWrap
+              >
+                {memberName}
+              </Typography>
+            )}
+          </Stack>
+        </StyledWrapper>
+
+        <Menu
+          id={menuId}
+          anchorEl={anchorEl}
+          keepMounted
+          open={Boolean(anchorEl)}
+          onClose={handleClose}
+        >
+          <CurrentMemberInfo
+            accountPath={accountPath}
+            LinkComponent={LinkComponent}
+            currentMember={currentMember}
+            renderAvatar={renderAvatar}
+          />
+          {Actions}
+        </Menu>
       </>
     );
-  };
-
-  const currentMemberInfo = renderCurrentMemberInfo();
-  // disable feature: sessions shouldn't be saved in the cookies
-  // const storedSessions = renderStoredSessions();
-
-  return (
-    <>
-      <StyledWrapper
-        onClick={handleClick}
-        id={buttonId}
-        role='button'
-        aria-haspopup={'menu'}
-        aria-controls={menuId}
-        aria-expanded={Boolean(anchorEl)}
-        tabIndex={0}
-      >
-        {renderButtonContent()}
-      </StyledWrapper>
-      <Menu
-        id={menuId}
-        anchorEl={anchorEl}
-        keepMounted
-        open={Boolean(anchorEl)}
-        onClose={handleClose}
-      >
-        {currentMemberInfo}
-        {/* {Boolean(currentMemberInfo && storedSessions) && <Divider />}
-        {storedSessions} */}
-        {Boolean(currentMemberInfo && Actions) && <Divider />}
-        {Actions}
-      </Menu>
-    </>
-  );
+  }
+  // renders default button
+  // shows given content or current member information
+  if (ButtonContent) {
+    return ButtonContent;
+  }
+  return false;
 };
 
 export default UserSwitch;

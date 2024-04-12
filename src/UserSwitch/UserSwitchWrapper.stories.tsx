@@ -2,23 +2,41 @@ import { expect } from '@storybook/jest';
 import type { Meta, StoryObj } from '@storybook/react';
 import { screen, userEvent, within } from '@storybook/testing-library';
 
+import { Link } from '@mui/material';
+
 import Avatar from '../Avatar/Avatar';
 import { MOCK_CURRENT_MEMBER } from '../utils/fixtures';
-import UserSwitchWrapper from './UserSwitchWrapper';
+import UserSwitchWrapper, { UserSwitchWrapperProps } from './UserSwitchWrapper';
 
-const meta: Meta<typeof UserSwitchWrapper> = {
+const meta = {
   title: 'Common/UserSwitch/UserSwitchWrapper',
   component: UserSwitchWrapper,
-};
+} satisfies Meta<typeof UserSwitchWrapper>;
 
 export default meta;
 
-type Story = StoryObj<typeof UserSwitchWrapper>;
+type Story = StoryObj<typeof meta>;
+
+const LinkComponent: UserSwitchWrapperProps['LinkComponent'] = ({
+  children,
+  href,
+}) => (
+  <Link
+    sx={{ textDecoration: 'none', color: 'currentcolor' }}
+    href={href ?? ''}
+  >
+    {children}
+  </Link>
+);
 
 export const SignedIn: Story = {
   args: {
+    signOut: () => new Promise((resolve) => resolve()),
+    LinkComponent,
+    ButtonContent: <>Hello</>,
+    redirectPath: 'redirect',
+    profilePath: 'profile',
     currentMember: MOCK_CURRENT_MEMBER,
-    seeProfileText: 'See Profile',
     signOutText: 'Sign Out',
     renderAvatar: () => (
       <Avatar
@@ -40,7 +58,7 @@ SignedIn.play = async ({ canvasElement }) => {
   const menuCanvas = within(await screen.getByRole('menu'));
 
   // profile button
-  const profileButton = menuCanvas.getByText(SignedIn.args!.seeProfileText!);
+  const profileButton = menuCanvas.getByTestId('account-button');
   expect(profileButton).toBeInTheDocument();
 
   // email
@@ -54,6 +72,11 @@ SignedIn.play = async ({ canvasElement }) => {
 
 export const SignedOut: Story = {
   args: {
+    signOut: () => new Promise((resolve) => resolve()),
+    LinkComponent,
+    ButtonContent: <>Hello</>,
+    redirectPath: 'redirect',
+    profilePath: 'profile',
     switchMemberText: 'Sign In',
     renderAvatar: () => (
       <Avatar

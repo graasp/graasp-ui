@@ -4,11 +4,8 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import MenuItem from '@mui/material/MenuItem';
 import Typography from '@mui/material/Typography';
 
-import { FC } from 'react';
-
 import { CompleteMember, redirect } from '@graasp/sdk';
 
-import Loader from '../Loader';
 import UserSwitch from './UserSwitch';
 
 type UserMenuItem = {
@@ -17,19 +14,22 @@ type UserMenuItem = {
   redirect_path: string;
   id?: string;
 };
-interface Props {
+
+export type UserSwitchWrapperProps = {
+  LinkComponent: (props: {
+    children: JSX.Element;
+    href?: string;
+  }) => JSX.Element;
   buildMemberMenuItemId?: (id: string) => string;
-  ButtonContent?: JSX.Element;
+  ButtonContent: JSX.Element;
   buttonId?: string;
   currentMember?: CompleteMember | null;
   // domain: string;
-  isCurrentMemberLoading: boolean;
+  isCurrentMemberLoading?: boolean;
   // isCurrentMemberSuccess: boolean;
   profilePath: string;
   redirectPath: string;
   renderAvatar: (member?: CompleteMember | null) => JSX.Element;
-  seeProfileButtonId?: string;
-  seeProfileText?: string;
   signedOutTooltipText?: string;
   signInMenuItemId?: string;
   /**
@@ -43,35 +43,30 @@ interface Props {
   // switchMember: (args: { memberId: string; domain: string }) => Promise<void>;
   switchMemberText?: string;
 
-  userMenuItems: UserMenuItem[];
+  userMenuItems?: UserMenuItem[];
 
   // useMembers: (ids: string[]) => UseQueryResult<ResultOfRecord<Member>>;
-}
+};
 
-const UserSwitchWrapper: FC<Props> = ({
+const UserSwitchWrapper = ({
   buildMemberMenuItemId,
   ButtonContent,
   buttonId,
   currentMember,
-  // domain,
-  isCurrentMemberLoading,
-  // isCurrentMemberSuccess,
+  LinkComponent,
   profilePath,
   redirectPath,
   renderAvatar,
-  seeProfileButtonId,
-  seeProfileText = 'See Profile',
   signedOutTooltipText = 'You are not signed in.',
   signInMenuItemId,
   signOut,
   signOutMenuItemId,
   signOutText = 'Sign Out',
-  // switchMember,
   switchMemberText = 'Sign in',
-  userMenuItems = [],
+  userMenuItems,
 
   // useMembers,
-}) => {
+}: UserSwitchWrapperProps): JSX.Element => {
   // get stored sessions
   // const sessions = getStoredSessions();
   // const { data } = useMembers(sessions.map(({ id }) => id));
@@ -91,10 +86,6 @@ const UserSwitchWrapper: FC<Props> = ({
   //   }
   // }, [currentMember, isCurrentMemberSuccess]);
 
-  if (isCurrentMemberLoading) {
-    return <Loader />;
-  }
-
   const handleSignOut = async (): Promise<void> => {
     if (currentMember) {
       await signOut(currentMember.id);
@@ -109,16 +100,12 @@ const UserSwitchWrapper: FC<Props> = ({
     return redirect(window, redirectPath);
   };
 
-  const goToSettings = (): void => {
-    redirect(window, profilePath);
-  };
-
   // const onMemberClick = (memberId: string) => () =>
   //   switchMember({ memberId, domain });
 
-  let Actions: JSX.Element[];
+  let Actions;
 
-  const MenuItems = userMenuItems.map((item: UserMenuItem) => (
+  const MenuItems = userMenuItems?.map((item: UserMenuItem) => (
     <MenuItem
       key={item.text}
       onClick={() => redirect(window, item.redirect_path)}
@@ -130,17 +117,7 @@ const UserSwitchWrapper: FC<Props> = ({
   ));
   if (currentMember && currentMember.id) {
     Actions = [
-      <MenuItem
-        key='seeSettings'
-        onClick={goToSettings}
-        id={seeProfileButtonId}
-      >
-        <ListItemIcon>
-          <AccountCircleIcon fontSize='large' />
-        </ListItemIcon>
-        <Typography variant='subtitle2'>{seeProfileText}</Typography>
-      </MenuItem>,
-      ...MenuItems,
+      ...(MenuItems ?? []),
       <MenuItem key='signout' onClick={handleSignOut} id={signOutMenuItemId}>
         <ListItemIcon>
           <MeetingRoomIcon fontSize='large' />
@@ -161,6 +138,8 @@ const UserSwitchWrapper: FC<Props> = ({
 
   return (
     <UserSwitch
+      LinkComponent={LinkComponent}
+      accountPath={profilePath}
       ButtonContent={ButtonContent}
       Actions={Actions}
       // onMemberClick={onMemberClick}

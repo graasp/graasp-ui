@@ -2,9 +2,11 @@ import { expect } from '@storybook/jest';
 import type { Meta, StoryObj } from '@storybook/react';
 import { screen, userEvent, within } from '@storybook/testing-library';
 
+import { Button, Link } from '@mui/material';
+
 import Avatar from '../Avatar/Avatar';
 import { MOCK_CURRENT_MEMBER } from '../utils/fixtures';
-import UserSwitch from './UserSwitch';
+import UserSwitch, { UserSwitchProps } from './UserSwitch';
 
 const meta = {
   title: 'Common/UserSwitch/UserSwitch',
@@ -15,8 +17,23 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
+const LinkComponent: UserSwitchProps['LinkComponent'] = ({
+  children,
+  href,
+}) => (
+  <Link
+    sx={{ textDecoration: 'none', color: 'currentcolor' }}
+    href={href ?? ''}
+  >
+    {children}
+  </Link>
+);
+
 export const SignedIn = {
   args: {
+    accountPath: 'hello',
+    LinkComponent,
+    ButtonContent: <>Hello</>,
     currentMember: MOCK_CURRENT_MEMBER,
     renderAvatar: () => (
       <Avatar
@@ -42,8 +59,21 @@ export const SignedIn = {
   },
 } satisfies Story;
 
+export const Loading = {
+  args: {
+    currentMember: undefined,
+    accountPath: 'hello',
+    LinkComponent,
+    ButtonContent: <></>,
+  },
+} satisfies Story;
+
 export const SignedOut = {
   args: {
+    ButtonContent: <Button sx={{ textTransform: 'none' }}>Sign In</Button>,
+    currentMember: null,
+    accountPath: 'hello',
+    LinkComponent,
     renderAvatar: () => (
       <Avatar
         url={'https://picsum.photos/100'}
