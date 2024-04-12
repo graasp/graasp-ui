@@ -86,10 +86,12 @@ const getLicenseName = (
 
 const CCIcon: FC<CCIconProps> = ({ icon, title, description }) => {
   const tooltip = (
-    <Box>
-      <Typography fontWeight='bold'>{title}</Typography>
-      {description && <Typography variant='body2'>{description}</Typography>}
-    </Box>
+    <Stack direction='column' spacing={1}>
+      <Typography fontWeight='bold' variant='note'>
+        {title}
+      </Typography>
+      {description && <Typography variant='caption'>{description}</Typography>}
+    </Stack>
   );
 
   return (
