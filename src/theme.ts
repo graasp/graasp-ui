@@ -1,4 +1,4 @@
-import { createTheme } from '@mui/material';
+import { ThemeOptions, createTheme } from '@mui/material';
 import { grey } from '@mui/material/colors';
 
 import { Context } from '@graasp/sdk';
@@ -40,7 +40,7 @@ declare module '@mui/material/Typography' {
   }
 }
 
-export const theme = createTheme({
+export const themeOptions = {
   palette: {
     primary: {
       main: PRIMARY_COLOR,
@@ -112,4 +112,6 @@ export const theme = createTheme({
       fontSize: '0.9rem',
     },
   },
-});
+} satisfies ThemeOptions;
+
+export const theme = createTheme(themeOptions);
