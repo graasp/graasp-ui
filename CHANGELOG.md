@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.15.0](https://github.com/graasp/graasp-ui/compare/v4.14.2...v4.15.0) (2024-04-15)
+
+
+### Features
+
+* expose theme options for next ([#805](https://github.com/graasp/graasp-ui/issues/805)) ([a0d5686](https://github.com/graasp/graasp-ui/commit/a0d568681bbcca0cd1d79d3afc78be77c3b19158))
+
 ## [4.14.2](https://github.com/graasp/graasp-ui/compare/v4.14.1...v4.14.2) (2024-04-10)
 
 
