@@ -26,19 +26,22 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@ag-grid-community/client-side-row-model@npm:31.1.1":
-  version: 31.1.1
-  resolution: "@ag-grid-community/client-side-row-model@npm:31.1.1"
+"@ag-grid-community/client-side-row-model@npm:31.2.1":
+  version: 31.2.1
+  resolution: "@ag-grid-community/client-side-row-model@npm:31.2.1"
   dependencies:
-    "@ag-grid-community/core": "npm:31.1.1"
-  checksum: 10/871116d80ee740f417d533abb59bf57831aaba81625fef4fa75b6f538b8a9a29c909a50e8e45231b3f476735e4deaff69e6a1a18efa18f2141f6904497b37f2e
+    "@ag-grid-community/core": "npm:31.2.1"
+    tslib: "npm:^2.3.0"
+  checksum: 10/e1efa79831b644d4aff5ccae32a2b8ff0c9383060f64befeff6aaf0c21c6a081c44f970ee1ea32737c7bbd977f69afdf4b3d2b269c1fdfc24306cf75e6b618ce
   languageName: node
   linkType: hard
 
-"@ag-grid-community/core@npm:31.1.1":
-  version: 31.1.1
-  resolution: "@ag-grid-community/core@npm:31.1.1"
-  checksum: 10/6c830b9b3a29b2ec05e84137d9f739ef9727bbf9c505c6fe5bec39146ad2ad5e606866932cf606e91b7c5a236adc093cf3779533122f33c5102ad3ec1b368c09
+"@ag-grid-community/core@npm:31.2.1":
+  version: 31.2.1
+  resolution: "@ag-grid-community/core@npm:31.2.1"
+  dependencies:
+    tslib: "npm:^2.3.0"
+  checksum: 10/2bf06604fd620b543a3422fb2039f32ee28a405a7eea1c374e13e317c3a7d2fa146d4af73edbf131732bab5ab0d75ee9ba199ed0c9bad5f60afbfc8759e98aad
   languageName: node
   linkType: hard
 
@@ -3285,7 +3288,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@graasp/ui@workspace:."
   dependencies:
-    "@ag-grid-community/client-side-row-model": "npm:31.1.1"
+    "@ag-grid-community/client-side-row-model": "npm:31.2.1"
     "@ag-grid-community/react": "npm:^31.1.1"
     "@ag-grid-community/styles": "npm:^31.1.1"
     "@commitlint/cli": "npm:19.2.1"
@@ -17994,7 +17997,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tslib@npm:^2.6.2":
+"tslib@npm:^2.3.0, tslib@npm:^2.6.2":
   version: 2.6.2
   resolution: "tslib@npm:2.6.2"
   checksum: 10/bd26c22d36736513980091a1e356378e8b662ded04204453d353a7f34a4c21ed0afc59b5f90719d4ba756e581a162ecbf93118dc9c6be5acf70aa309188166ca
