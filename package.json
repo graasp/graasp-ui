@@ -108,7 +108,7 @@
   },
   "devDependencies": {
     "@commitlint/cli": "19.2.1",
-    "@commitlint/config-conventional": "19.1.0",
+    "@commitlint/config-conventional": "19.2.2",
     "@emotion/cache": "~11.11.0",
     "@emotion/react": "11.11.4",
     "@emotion/styled": "11.11.5",
