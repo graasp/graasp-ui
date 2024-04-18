@@ -76,6 +76,13 @@ export const createGraaspTheme = ({
           },
         },
       },
+      MuiButton: {
+        styleOverrides: {
+          root: {
+            textTransform: 'capitalize',
+          },
+        },
+      },
     },
     typography: {
       fontFamily: fontFamily ?? ['Nunito', 'Roboto', 'sans-serif'].join(','),
