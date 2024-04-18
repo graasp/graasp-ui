@@ -16,7 +16,11 @@ import {
   MainMenuOpenContextProvider,
   useMainMenuOpenContext,
 } from '../MainMenu/hooks';
-import { AccentColors, PRIMARY_COLOR } from '../theme';
+import {
+  AccentColors,
+  DEFAULT_BACKGROUND_COLOR,
+  PRIMARY_COLOR,
+} from '../theme';
 import LogoHeader from './LogoHeader';
 
 const DRAWER_WIDTH = 240;
@@ -38,18 +42,22 @@ const openDrawerStyles = (theme: Theme) => ({
   }),
 });
 const StyledMain = styled('main', {
-  shouldForwardProp: (prop) => prop !== 'open',
-})<{ open: boolean }>(({ theme, open }) => ({
-  position: 'relative',
-  flexGrow: 1,
-  // create transition for width and margin property
-  transition: theme.transitions.create(['width', 'margin'], {
-    easing: theme.transitions.easing.easeIn,
-    duration: theme.transitions.duration.leavingScreen,
+  shouldForwardProp: (prop) =>
+    !(['open', 'backgroundColor'] as PropertyKey[]).includes(prop),
+})<{ open: boolean; backgroundColor?: string }>(
+  ({ theme, open, backgroundColor }) => ({
+    position: 'relative',
+    flexGrow: 1,
+    backgroundColor,
+    // create transition for width and margin property
+    transition: theme.transitions.create(['width', 'margin'], {
+      easing: theme.transitions.easing.easeIn,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+    // conditional styled applied only when drawer is opened
+    ...(open && openDrawerStyles(theme)),
   }),
-  // conditional styled applied only when drawer is opened
-  ...(open && openDrawerStyles(theme)),
-}));
+);
 const StyledFooter = styled('main', {
   shouldForwardProp: (prop) => prop !== 'open',
 })<{ open: boolean }>(({ theme, open }) => ({
@@ -104,6 +112,10 @@ type Props = {
    * This should be a translated string reading i.e: `open drawer`
    */
   drawerOpenAriaLabel: string;
+  /**
+   * Color of the background
+   */
+  backgroundColor?: string;
 };
 
 const MainWithDrawerContent = ({
@@ -118,6 +130,7 @@ const MainWithDrawerContent = ({
   drawerOpenAriaLabel,
   LinkComponent,
   PlatformComponent,
+  backgroundColor = DEFAULT_BACKGROUND_COLOR,
 }: Props): JSX.Element => {
   const { open, setOpen } = useMainMenuOpenContext();
 
@@ -193,6 +206,7 @@ const MainWithDrawerContent = ({
             '& .MuiDrawer-paper': {
               boxSizing: 'border-box',
               width: DRAWER_WIDTH,
+              backgroundColor,
             },
           }}
         >
@@ -206,6 +220,7 @@ const MainWithDrawerContent = ({
             '& .MuiDrawer-paper': {
               boxSizing: 'border-box',
               width: DRAWER_WIDTH,
+              backgroundColor,
             },
           }}
           open={open}
@@ -215,7 +230,9 @@ const MainWithDrawerContent = ({
         </Drawer>
       </Box>
       <Toolbar />
-      <StyledMain open={open}>{children}</StyledMain>
+      <StyledMain open={open} backgroundColor={backgroundColor}>
+        {children}
+      </StyledMain>
       <StyledFooter open={open}>{footerContent}</StyledFooter>
     </>
   );
