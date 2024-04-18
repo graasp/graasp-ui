@@ -1,8 +1,14 @@
 import Collapse from './Collapse';
 
-const withCollapse = <T extends { name: string }>({ item }: { item: T }) => {
+const withCollapse = <T extends { name: string; displayName?: string }>({
+  item,
+}: {
+  item: T;
+}) => {
   return (component: JSX.Element): JSX.Element => {
-    return <Collapse title={item.name}>{component}</Collapse>;
+    return (
+      <Collapse title={item.displayName ?? item.name}>{component}</Collapse>
+    );
   };
 };
 
