@@ -224,3 +224,17 @@ export const AnalyticsMain = {
     layout: 'fullscreen',
   },
 } satisfies Story;
+
+export const ColoredBackground = {
+  args: {
+    ...defaultArgs,
+    context: 'builder',
+    headerRightContent: <SignedIn />,
+    open: true,
+    LinkComponent,
+    PlatformComponent: <Dark />,
+  },
+  parameters: {
+    layout: 'fullscreen',
+  },
+} satisfies Story;

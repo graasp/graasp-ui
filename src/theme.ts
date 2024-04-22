@@ -5,6 +5,7 @@ import { Context } from '@graasp/sdk';
 
 export const PRIMARY_COLOR = '#5050d2';
 export const SECONDARY_COLOR = '#FFFFFF';
+export const DEFAULT_BACKGROUND_COLOR = '#F8F8FF';
 
 export const AccentColors: { [K in Context]: string } = {
   [Context.Builder]: '#00C38B',
@@ -72,6 +73,13 @@ export const createGraaspTheme = ({
             // Map the new variants to render a <p> by default
             label: 'p',
             note: 'p',
+          },
+        },
+      },
+      MuiButton: {
+        styleOverrides: {
+          root: {
+            textTransform: 'capitalize',
           },
         },
       },
