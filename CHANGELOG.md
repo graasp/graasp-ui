@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.15.1](https://github.com/graasp/graasp-ui/compare/v4.15.0...v4.15.1) (2024-04-22)
+
+
+### Bug Fixes
+
+* decrease cclicence tooltip size ([#811](https://github.com/graasp/graasp-ui/issues/811)) ([9abd6e5](https://github.com/graasp/graasp-ui/commit/9abd6e50b3a8316baaf6d07774dd340fe86b8657))
+* **deps:** update ag-grid monorepo to v31.2.1 ([#799](https://github.com/graasp/graasp-ui/issues/799)) ([20dc63d](https://github.com/graasp/graasp-ui/commit/20dc63d337dd27b00a7b66b839c3e5cab14936e0))
+* **deps:** update dependency @ag-grid-community/client-side-row-model to v31.2.1 ([#783](https://github.com/graasp/graasp-ui/issues/783)) ([cd70692](https://github.com/graasp/graasp-ui/commit/cd70692bc70b93d3d9f88a5ab0ad586fd28b2280))
+* **deps:** update dependency vitest to v1.5.0 ([#804](https://github.com/graasp/graasp-ui/issues/804)) ([ac04329](https://github.com/graasp/graasp-ui/commit/ac04329635005ef965d254d4107eda77b69f9ea8))
+* font import ([37ce15c](https://github.com/graasp/graasp-ui/commit/37ce15c308a3e87360b78934902383d6ca278689))
+* propose general improvements related to player ([#814](https://github.com/graasp/graasp-ui/issues/814)) ([0b76386](https://github.com/graasp/graasp-ui/commit/0b7638663f4e46f73e8a117dca6c055bb2e457d0))
+* update font path for deployment ([65bf12a](https://github.com/graasp/graasp-ui/commit/65bf12a9bf967639d978ba7c7bd0d8c7a4655181))
+
 ## [4.15.0](https://github.com/graasp/graasp-ui/compare/v4.14.2...v4.15.0) (2024-04-15)
 
 
