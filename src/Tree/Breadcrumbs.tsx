@@ -4,7 +4,7 @@ import type { NavigationElement } from './types';
 
 const ROW_MAX_NAME_LENGTH = 15;
 
-type Props = {
+export type BreadcrumbsProps = {
   onSelect: (el: NavigationElement) => void;
   elements: NavigationElement[];
 };
@@ -15,7 +15,10 @@ const applyEllipsisOnLength = (longString: string, maxLength: number): string =>
     (longString.length || 0) > maxLength ? '…' : ''
   }`;
 
-const Breadcrumbs = ({ onSelect, elements }: Props): JSX.Element | null => {
+const Breadcrumbs = ({
+  onSelect,
+  elements,
+}: BreadcrumbsProps): JSX.Element | null => {
   if (!elements) {
     return null;
   }

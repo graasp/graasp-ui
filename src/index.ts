@@ -68,8 +68,11 @@ export * from './SearchInput';
 export { default as PlatformSwitch } from './PlatformSwitch';
 export * from './PlatformSwitch';
 
-export { default as RowMenu } from './Tree/RowMenu';
-export { default as Breadcrumbs } from './Tree/Breadcrumbs';
+export { default as RowMenu, type RowMenuProps } from './Tree/RowMenu';
+export {
+  default as Breadcrumbs,
+  type BreadcrumbsProps,
+} from './Tree/Breadcrumbs';
 export * from './Tree/types';
 
 export * from './ThemeContext';
