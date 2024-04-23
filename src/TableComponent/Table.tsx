@@ -78,6 +78,10 @@ const StyledDiv = styled('div')(({ theme }) => ({
   '.ag-theme-material .ag-checkbox-input-wrapper.ag-checked:after': {
     color: theme.palette.primary.main,
   },
+  // override table background color for the overflow
+  '& .ag-root-wrapper': {
+    backgroundColor: 'unset',
+  },
   height: '100%',
   '.ag-selection-checkbox, .ag-header-select-all': {
     // reduce margin after checkbox in cells and header

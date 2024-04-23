@@ -45,7 +45,7 @@ const Select = <T extends string | number | readonly string[] | undefined>({
   const showLabel = Boolean(labelId ?? label);
   return (
     <FormControl
-      sx={{ mt: 1 }}
+      sx={{ mt: 1, backgroundColor: 'white' }}
       size={size}
       data-testid='select-test-id'
       disabled={disabled || values.every(({ disabled }) => disabled)}

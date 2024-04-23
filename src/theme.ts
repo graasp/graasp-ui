@@ -49,6 +49,7 @@ export const createGraaspTheme = ({
 }: GraaspThemeOptions): Theme => {
   const baseTheme = createTheme({
     palette: {
+      background: { default: DEFAULT_BACKGROUND_COLOR },
       primary: {
         main: PRIMARY_COLOR,
       },
