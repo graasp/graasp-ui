@@ -8,6 +8,10 @@ export type BreadcrumbsProps = {
   onSelect: (el: NavigationElement) => void;
   elements: NavigationElement[];
   rootElements?: NavigationElement[];
+  /**
+   * defines whether a root item should be displayed
+   * does not filter over elements
+   */
   selectedId?: string;
 };
 
@@ -31,7 +35,12 @@ const Breadcrumbs = ({
   const idx = rootElements.findIndex(({ id }) => id == selectedId);
   const showRootIdx = idx < 0 ? rootElements.length : idx + 1;
 
-  const allElements = [...rootElements.slice(0, showRootIdx), ...elements];
+  const allElements = [
+    // show rootElements until selectedId
+    ...rootElements.slice(0, showRootIdx),
+    // does not show elements if selected id is rootElements
+    ...(idx >= 0 ? elements : []),
+  ];
 
   return (
     <MuiBreadcrumbs separator='›' aria-label='breadcrumb'>

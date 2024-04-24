@@ -49,6 +49,7 @@ export const WithRootElements = {
       { id: 'root-1', name: 'root-1', path: 'root_1' },
       { id: 'root-2', name: 'root-2', path: 'root_2' },
     ],
+    selectedId: elements[0].id,
   },
   play: async ({ canvasElement, args }) => {
     const canvas = within(canvasElement);
@@ -68,7 +69,7 @@ export const WithRootElements = {
 export const ShowFirstRoot = {
   args: {
     elements: [],
-    selectedId: 'root-1',
+    selectedId: 'root-2',
     rootElements: [
       { id: 'root-1', name: 'root-1', path: 'root_1' },
       { id: 'root-2', name: 'root-2', path: 'root_2' },
