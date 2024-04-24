@@ -3,10 +3,17 @@ import { expect } from '@storybook/jest';
 import { Meta, type StoryObj } from '@storybook/react';
 import { userEvent, within } from '@storybook/testing-library';
 
+import { Home } from '@mui/icons-material';
+
 import Breadcrumbs from './Breadcrumbs';
 
 const elements = [
-  { id: 'element-1', name: 'element-1', path: 'element_1' },
+  {
+    icon: <Home sx={{ mr: 1 }} />,
+    id: 'element-1',
+    name: 'element-1',
+    path: 'element_1',
+  },
   { id: 'element-2', name: 'element-2', path: 'element_2' },
   { id: 'element-3', name: 'element-3', path: 'element_3' },
 ];
