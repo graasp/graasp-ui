@@ -5,7 +5,7 @@ import { Context } from '@graasp/sdk';
 
 export const PRIMARY_COLOR = '#5050d2';
 export const SECONDARY_COLOR = '#FFFFFF';
-export const DEFAULT_BACKGROUND_COLOR = '#F8F8FF';
+export const DEFAULT_BACKGROUND_COLOR = '#fcfaff';
 
 export const AccentColors: { [K in Context]: string } = {
   [Context.Builder]: '#00C38B',
@@ -64,6 +64,7 @@ export const createGraaspTheme = ({
       MuiAvatar: {
         styleOverrides: {
           root: {
+            color: 'white',
             backgroundColor: grey[400],
           },
         },
