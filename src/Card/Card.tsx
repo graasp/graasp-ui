@@ -18,7 +18,7 @@ const StyledImage = styled('img')({
 const StyledCard = styled(Card, {
   shouldForwardProp: (prop) => prop !== 'fullWidth',
 })<{ fullWidth: boolean }>(({ theme, fullWidth }) => ({
-  borderRadius: theme.spacing(2),
+  borderRadius: theme.spacing(1),
   boxShadow: theme.shadows[2],
   width: fullWidth ? '100%' : 'max-content',
 }));
