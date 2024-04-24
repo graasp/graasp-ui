@@ -84,6 +84,20 @@ export const createGraaspTheme = ({
           },
         },
       },
+      MuiTextField: {
+        styleOverrides: {
+          root: {
+            backgroundColor: 'white',
+          },
+        },
+      },
+      MuiSelect: {
+        styleOverrides: {
+          root: {
+            backgroundColor: 'white',
+          },
+        },
+      },
     },
     typography: {
       fontFamily: fontFamily ?? ['Nunito', 'Roboto', 'sans-serif'].join(','),

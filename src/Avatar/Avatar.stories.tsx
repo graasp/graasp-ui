@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { TABLE_CATEGORIES } from '../utils/storybook';
 import Avatar from './Avatar';
 
-const meta: Meta<typeof Avatar> = {
+const meta = {
   title: 'Images/Avatar',
   component: Avatar,
 
@@ -19,40 +19,44 @@ const meta: Meta<typeof Avatar> = {
       },
     },
   },
-};
+} satisfies Meta<typeof Avatar>;
 
 export default meta;
 
-type Story = StoryObj<typeof Avatar>;
+type Story = StoryObj<typeof meta>;
 
-export const DefaultAvatar: Story = {
+export const DefaultAvatar = {
   args: {
     alt: 'myname',
     component: 'avatar',
   },
-};
+} satisfies Story;
 
-export const Loading: Story = {
+export const AvatarImage = {
   args: {
-    isLoading: true,
-    maxHeight: 100,
-    maxWidth: 100,
-  },
-};
-
-export const ItemThumbnail: Story = {
-  args: {
-    maxHeight: 100,
-    maxWidth: 100,
-    url: 'https://picsum.photos/100',
-  },
-};
-
-export const ItemThumbnailAvatar: Story = {
-  args: {
+    alt: 'Avatar',
     maxHeight: 100,
     maxWidth: 100,
     component: 'avatar',
     url: 'https://picsum.photos/100',
   },
-};
+} satisfies Story;
+
+export const Loading = {
+  args: {
+    alt: 'Loading Avatar',
+    isLoading: true,
+    maxHeight: 100,
+    maxWidth: 100,
+  },
+} satisfies Story;
+
+export const ItemThumbnail = {
+  args: {
+    alt: 'Item thumbnail',
+    component: 'img',
+    maxHeight: 100,
+    maxWidth: 100,
+    url: 'https://picsum.photos/100',
+  },
+} satisfies Story;
