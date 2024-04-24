@@ -99,6 +99,13 @@ export const createGraaspTheme = ({
           },
         },
       },
+      MuiTab: {
+        styleOverrides: {
+          root: {
+            textTransform: 'capitalize',
+          },
+        },
+      },
     },
     typography: {
       fontFamily: fontFamily ?? ['Nunito', 'Roboto', 'sans-serif'].join(','),
