@@ -8,7 +8,7 @@ import ItemBadges from '../ItemBadges/ItemBadges';
 import { TABLE_CATEGORIES } from '../utils/storybook';
 import Card from './Card';
 
-const meta: Meta<typeof Card> = {
+const meta = {
   title: 'Common/Card',
   component: Card,
 
@@ -19,10 +19,10 @@ const meta: Meta<typeof Card> = {
       },
     },
   },
-};
+} satisfies Meta<typeof Card>;
 
 export default meta;
-type Story = StoryObj<typeof Card>;
+type Story = StoryObj<typeof meta>;
 
 export const Example: Story = {
   args: {
@@ -50,7 +50,36 @@ export const Example: Story = {
       </IconButton>
     ),
   },
-};
+} satisfies Story;
+
+export const FullWidth = {
+  args: {
+    fullWidth: true,
+    name: 'my card title',
+    description:
+      'my card description might be really long that is why we cut it after some lines of text to allow some space for more data',
+    image: 'https://picsum.photos/200/100',
+    creator: 'graasp',
+    Actions: (
+      <>
+        <IconButton>
+          <AcUnitIcon />
+        </IconButton>
+        <IconButton>
+          <AcUnitIcon />
+        </IconButton>
+        <IconButton>
+          <AcUnitIcon />
+        </IconButton>
+      </>
+    ),
+    ItemMenu: (
+      <IconButton>
+        <MoreVertIcon />
+      </IconButton>
+    ),
+  },
+} satisfies Story;
 
 export const Badges: Story = {
   args: {

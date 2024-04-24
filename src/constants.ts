@@ -11,7 +11,6 @@ export const DEFAULT_LOADER_SIZE = 20;
 export const UNEXPECTED_ERROR_MESSAGE = 'An unexpected error occurred';
 export const SMALL_AVATAR_SIZE = 40;
 export const SHORT_TEXT_WIDTH = 60;
-export const COLLAPSE_MIN_HEIGHT = 56;
 export const IFRAME_MIN_HEIGHT = 200;
 
 // todo: factor out in graasp constants

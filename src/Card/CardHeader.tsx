@@ -26,12 +26,12 @@ const CustomCardHeader: FC<CardHeaderProps> = ({
     >
       <Stack minWidth={0} direction='column'>
         <NameWrapper>
-          <Typography noWrap variant='subtitle1' sx={{ fontWeight: 'bold' }}>
+          <Typography noWrap variant='h3'>
             {name}
           </Typography>
         </NameWrapper>
         {creator && (
-          <Typography noWrap variant='caption'>
+          <Typography noWrap variant='body1' color='text.secondary'>
             {creator}
           </Typography>
         )}

@@ -15,6 +15,14 @@ const StyledImage = styled('img')({
   objectFit: 'cover',
 });
 
+const StyledCard = styled(Card, {
+  shouldForwardProp: (prop) => prop !== 'fullWidth',
+})<{ fullWidth: boolean }>(({ theme, fullWidth }) => ({
+  borderRadius: theme.spacing(1),
+  boxShadow: theme.shadows[2],
+  width: fullWidth ? '100%' : 'max-content',
+}));
+
 type CardProps = {
   name: string;
   /**
@@ -37,6 +45,10 @@ type CardProps = {
   NameWrapper?: ({ children }: { children: JSX.Element }) => JSX.Element;
   sx?: SxProps;
   /**
+   * Whether the card should expand to take all available space
+   */
+  fullWidth?: boolean;
+  /**
    * thumbnail component, override image
    */
   Thumbnail?: ReactElement;
@@ -55,6 +67,7 @@ const Item: FC<CardProps> = ({
   NameWrapper,
   sx,
   Thumbnail,
+  fullWidth = false,
 }) => {
   const ThumbnailWrapper = styled(Box)({
     // use a square box to display the image
@@ -70,12 +83,8 @@ const Item: FC<CardProps> = ({
   };
 
   return (
-    <Card id={cardId} sx={sx}>
-      <Stack
-        sx={{ height, boxSizing: 'border-box' }}
-        direction='row'
-        spacing={1}
-      >
+    <StyledCard id={cardId} sx={sx} fullWidth={fullWidth}>
+      <Stack sx={{ height, boxSizing: 'border-box' }} direction='row' gap={2}>
         <ThumbnailWrapper>{renderImage()}</ThumbnailWrapper>
 
         <Stack
@@ -85,6 +94,7 @@ const Item: FC<CardProps> = ({
           // ensure that if there is no description the element still goes edge to edge
           width='100%'
           boxSizing='border-box'
+          marginTop={1}
         >
           <CardHeader
             name={name}
@@ -140,7 +150,7 @@ const Item: FC<CardProps> = ({
           )}
         </Stack>
       </Stack>
-    </Card>
+    </StyledCard>
   );
 };
 

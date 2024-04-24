@@ -22,9 +22,7 @@ const ExtraItemsNavigation = ({
 }): JSX.Element[] | null => {
   return extraItems.map(({ icon, name, path, menuItems }) => (
     <CenterAlignWrapper>
-      {/* margin set to -2 as menu list has a default style for text indent
-        with the same value, So to align menu items with this box menu item */}
-      <Box display='flex' gap={2} ml={-2}>
+      <Box display='flex' gap={1}>
         {icon}
         <NavigationLink to={path}>
           <Typography>
