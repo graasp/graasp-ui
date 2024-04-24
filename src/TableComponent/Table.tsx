@@ -78,9 +78,9 @@ const StyledDiv = styled('div')(({ theme }) => ({
   '.ag-theme-material .ag-checkbox-input-wrapper.ag-checked:after': {
     color: theme.palette.primary.main,
   },
-  // override table background color for the overflow
-  '& .ag-root-wrapper': {
-    backgroundColor: 'unset',
+  // override table background color
+  '& .ag-root-wrapper, & .ag-row, & .ag-row-odd, & .ag-header': {
+    backgroundColor: 'transparent',
   },
   height: '100%',
   '.ag-selection-checkbox, .ag-header-select-all': {
