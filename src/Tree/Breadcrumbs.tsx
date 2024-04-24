@@ -38,8 +38,8 @@ const Breadcrumbs = ({
   const allElements = [
     // show rootElements until selectedId
     ...rootElements.slice(0, showRootIdx),
-    // does not show elements if selected id is rootElements
-    ...(idx >= 0 ? elements : []),
+    // show elements if selected id not in rootElements
+    ...(idx < 0 ? elements : []),
   ];
 
   return (
