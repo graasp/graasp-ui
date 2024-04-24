@@ -41,3 +41,45 @@ export const Default = {
     expect(args.onSelect).toHaveBeenCalled();
   },
 } satisfies Story;
+
+export const WithRootElements = {
+  args: {
+    elements,
+    rootElements: [
+      { id: 'root-1', name: 'root-1', path: 'root_1' },
+      { id: 'root-2', name: 'root-2', path: 'root_2' },
+    ],
+  },
+  play: async ({ canvasElement, args }) => {
+    const canvas = within(canvasElement);
+
+    const el = canvas.getByText(args.elements[0].name);
+    expect(el).toBeVisible();
+    await userEvent.click(el);
+    expect(args.onSelect).toHaveBeenCalled();
+
+    const rootEl = canvas.getByText(args.rootElements![0].name);
+    expect(rootEl).toBeVisible();
+    await userEvent.click(rootEl);
+    expect(args.onSelect).toHaveBeenCalled();
+  },
+} satisfies Story;
+
+export const ShowFirstRoot = {
+  args: {
+    elements: [],
+    selectedId: 'root-1',
+    rootElements: [
+      { id: 'root-1', name: 'root-1', path: 'root_1' },
+      { id: 'root-2', name: 'root-2', path: 'root_2' },
+    ],
+  },
+  play: async ({ canvasElement, args }) => {
+    const canvas = within(canvasElement);
+
+    const el = canvas.getByText(args.rootElements![0].name);
+    expect(el).toBeVisible();
+    await userEvent.click(el);
+    expect(args.onSelect).toHaveBeenCalled();
+  },
+} satisfies Story;
