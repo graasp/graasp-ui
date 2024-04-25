@@ -52,6 +52,7 @@ const CardThumbnail = ({ thumbnail, alt }: CardThumbnailProps): JSX.Element => {
 };
 
 type Props = {
+  // https://mui.com/material-ui/guides/composition/#inlining-amp-caveat
   LinkComponent?: ForwardRefExoticComponent<{ href: string }>; // React.ElementType<{ href: string }, 'a'>; //(props: { children: JSX.Element; to: string }) => JSX.Element;
   name: string;
   description: string;
