@@ -1,5 +1,7 @@
 import { Pagination, Stack } from '@mui/material';
 
+import { DiscriminatedItem } from '@graasp/sdk';
+
 import RowMenu, { RowMenuProps } from './RowMenu';
 import { NavigationElement } from './types';
 
@@ -13,6 +15,7 @@ export type RowMenusProps = {
   nbPages?: number;
   page?: number;
   emptyContent?: JSX.Element;
+  buildRowMenuId?: (id: DiscriminatedItem['id']) => string;
 };
 
 const RowMenus = ({
@@ -25,6 +28,7 @@ const RowMenus = ({
   nbPages,
   page,
   emptyContent = <></>,
+  buildRowMenuId = (id) => id,
 }: RowMenusProps): JSX.Element => {
   return (
     <Stack
@@ -42,6 +46,7 @@ const RowMenus = ({
             selectedId={selectedId}
             onClick={onClick}
             isDisabled={isDisabled}
+            id={buildRowMenuId(ele.id)}
           />
         ))}
         {!elements?.length && emptyContent}
