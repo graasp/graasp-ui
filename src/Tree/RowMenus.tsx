@@ -16,6 +16,7 @@ export type RowMenusProps = {
   page?: number;
   emptyContent?: JSX.Element;
   buildRowMenuId?: (id: DiscriminatedItem['id']) => string;
+  buildRowMenuArrowId?: (id: DiscriminatedItem['id']) => string;
 };
 
 const RowMenus = ({
@@ -29,6 +30,7 @@ const RowMenus = ({
   page,
   emptyContent = <></>,
   buildRowMenuId = (id) => id,
+  buildRowMenuArrowId = (id) => id,
 }: RowMenusProps): JSX.Element => {
   return (
     <Stack
@@ -47,6 +49,7 @@ const RowMenus = ({
             onClick={onClick}
             isDisabled={isDisabled}
             id={buildRowMenuId(ele.id)}
+            arrowId={buildRowMenuArrowId(ele.id)}
           />
         ))}
         {!elements?.length && emptyContent}
