@@ -3343,6 +3343,7 @@ __metadata:
     jsdom: "npm:24.0.0"
     katex: "npm:0.16.10"
     lodash.truncate: "npm:4.4.2"
+    lucide-react: "npm:0.373.0"
     prettier: "npm:3.2.5"
     react: "npm:18.2.0"
     react-cookie-consent: "npm:9.0.0"
@@ -14459,6 +14460,15 @@ __metadata:
   version: 10.0.0
   resolution: "lru-cache@npm:10.0.0"
   checksum: 10/590e00d6ccd76a1ada056585be3fd6dbddda395fc9359390cff38669c69c3fa1792dd6c4c46a9b1b411f032cd2e979d9e664f1628163292ecdfeada98c3da1f3
+  languageName: node
+  linkType: hard
+
+"lucide-react@npm:0.373.0":
+  version: 0.373.0
+  resolution: "lucide-react@npm:0.373.0"
+  peerDependencies:
+    react: ^16.5.1 || ^17.0.0 || ^18.0.0
+  checksum: 10/e474e456fadee6595a25738507102985bc50a754164d7daba4252e8301cdbacf5499ba206529058ac3dadcf7d57937c565ac8bc0ee2a90d0dcd0204e3a8e5b39
   languageName: node
   linkType: hard
 
