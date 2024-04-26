@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.15.3](https://github.com/graasp/graasp-ui/compare/v4.15.2...v4.15.3) (2024-04-26)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @storybook/react-vite to v7.6.18 ([#820](https://github.com/graasp/graasp-ui/issues/820)) ([814b979](https://github.com/graasp/graasp-ui/commit/814b979df72a1b09e138102804c3b722b3dbc3b9))
+* **deps:** update dependency vitest to v1.5.2 ([#822](https://github.com/graasp/graasp-ui/issues/822)) ([2280038](https://github.com/graasp/graasp-ui/commit/2280038ffa104fb78ed78e72a958dddacbee184e))
+* remove margin when there is no label ([#825](https://github.com/graasp/graasp-ui/issues/825)) ([6ebe4a8](https://github.com/graasp/graasp-ui/commit/6ebe4a8b991453646328c2395b249a58bd5f1e13))
+
 ## [4.15.2](https://github.com/graasp/graasp-ui/compare/v4.15.1...v4.15.2) (2024-04-24)
 
 
