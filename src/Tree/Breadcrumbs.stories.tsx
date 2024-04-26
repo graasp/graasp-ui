@@ -105,7 +105,7 @@ export const ShortLength = {
   play: async ({ canvasElement, args }) => {
     const canvas = within(canvasElement);
 
-    const el = canvas.getByText(args.rootElements![0].name);
+    const el = canvas.getByText('long na...');
     expect(el).toBeVisible();
     await userEvent.click(el);
     expect(args.onSelect).toHaveBeenCalled();
