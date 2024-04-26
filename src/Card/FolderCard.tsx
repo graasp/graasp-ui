@@ -11,7 +11,7 @@ import {
   useTheme,
 } from '@mui/material';
 
-import { ForwardRefExoticComponent } from 'react';
+import { Link } from 'react-router-dom';
 
 const CARD_HEIGHT = '76px';
 
@@ -26,54 +26,39 @@ const CardThumbnail = ({ thumbnail, alt }: CardThumbnailProps): JSX.Element => {
   return (
     <Box
       display='flex'
-      minHeight={0}
-      minWidth={0}
+      alignItems='center'
+      justifyContent='center'
+      bgcolor='#E4DFFF'
       width={CARD_HEIGHT}
       height={CARD_HEIGHT}
+      minHeight={0}
+      minWidth={0}
     >
-      <Box
-        m={1}
-        display='flex'
-        flexGrow={1}
-        alignItems='center'
-        justifyContent='center'
-        bgcolor='#E4DFFF'
-        borderRadius={2}
-        overflow='hidden'
-      >
-        {thumbnail ? (
-          <Thumbnail url={thumbnail} alt={alt} />
-        ) : (
-          <ItemIcon type='folder' alt={alt} />
-        )}
-      </Box>
+      <ItemIcon type='folder' alt={alt} />
     </Box>
   );
 };
 
 type Props = {
-  // https://mui.com/material-ui/guides/composition/#inlining-amp-caveat
-  LinkComponent?: ForwardRefExoticComponent<{ href: string }>; // React.ElementType<{ href: string }, 'a'>; //(props: { children: JSX.Element; to: string }) => JSX.Element;
   name: string;
   description: string;
   thumbnail?: string;
-  href: string;
+  /**
+   * React Router Link target
+   */
+  to: string;
 };
 const FolderCard = ({
   name,
   description,
   thumbnail,
-  LinkComponent,
-  href,
+  to,
 }: Props): JSX.Element => {
   const theme = useTheme();
+
   return (
     <Card sx={{ width: 'max-content', height: CARD_HEIGHT }}>
-      <CardActionArea
-        component={LinkComponent}
-        href={href}
-        sx={{ height: '100%' }}
-      >
+      <CardActionArea component={Link} to={to} sx={{ height: '100%' }}>
         <Stack direction='row' alignItems='center' height='100%' mr={2}>
           <CardThumbnail thumbnail={thumbnail} alt={name} />
           <CardHeader

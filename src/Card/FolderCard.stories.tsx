@@ -8,6 +8,7 @@ const meta = {
   args: {
     name: 'Example folder',
     description: 'Optional description',
+    to: 'https://graasp.org',
   },
 } satisfies Meta<typeof FolderCard>;
 
