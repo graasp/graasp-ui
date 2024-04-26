@@ -19,7 +19,7 @@ type Props = {
   i18n: I18nInstance;
   langs: { [key: string]: string };
   languageSelectSx: SxProps;
-  languageSelectLabel?: string | null;
+  languageSelectLabel?: string;
   languageSelectVariant?: MuiSelectProps['variant'];
   languageSelectSize?: MuiSelectProps['size'];
 };

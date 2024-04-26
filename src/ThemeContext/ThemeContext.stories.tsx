@@ -44,7 +44,6 @@ export const Default: Story = {
 
 export const WithoutLabel: Story = {
   args: {
-    languageSelectLabel: null,
     children: <Child />,
     i18n,
     langs: {

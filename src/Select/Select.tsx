@@ -16,7 +16,7 @@ type Props<T> = {
   value?: T;
   displayEmpty?: MuiSelectProps['displayEmpty'];
   id?: string;
-  label?: MuiSelectProps['label'];
+  label?: string;
   labelId?: MuiSelectProps['labelId'];
   onChange?: MuiSelectProps<T>['onChange'];
   sx?: SxProps;
@@ -45,7 +45,7 @@ const Select = <T extends string | number | readonly string[] | undefined>({
   const showLabel = Boolean(labelId ?? label);
   return (
     <FormControl
-      sx={{ mt: 1, backgroundColor: 'white' }}
+      sx={{ mt: label ? 1 : 0, backgroundColor: 'white' }}
       size={size}
       data-testid='select-test-id'
       disabled={disabled || values.every(({ disabled }) => disabled)}

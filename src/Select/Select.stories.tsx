@@ -63,6 +63,14 @@ export const Primary: Story = {
   },
 };
 
+export const Simple: Story = {
+  args: {
+    color: 'primary',
+    defaultValue: values[0].value,
+    values,
+  },
+};
+
 export const Secondary: Story = {
   args: {
     color: 'secondary',
