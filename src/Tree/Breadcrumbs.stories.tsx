@@ -91,3 +91,23 @@ export const ShowFirstRoot = {
     expect(args.onSelect).toHaveBeenCalled();
   },
 } satisfies Story;
+
+export const ShortLength = {
+  args: {
+    elements: [],
+    selectedId: 'root-2',
+    maxLength: 10,
+    rootElements: [
+      { id: 'root-1', name: 'long name for root-1', path: 'root_1' },
+      { id: 'root-2', name: 'root-2', path: 'root_2' },
+    ],
+  },
+  play: async ({ canvasElement, args }) => {
+    const canvas = within(canvasElement);
+
+    const el = canvas.getByText(args.rootElements![0].name);
+    expect(el).toBeVisible();
+    await userEvent.click(el);
+    expect(args.onSelect).toHaveBeenCalled();
+  },
+} satisfies Story;

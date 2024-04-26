@@ -45,23 +45,21 @@ const RowMenu = ({
   id,
   arrowId,
 }: RowMenuProps): JSX.Element | null => {
-  const [isHoverActive, setIsHoverActive] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-
-  const handleHover = (): void => {
-    setIsHoverActive(true);
-  };
-  const handleUnhover = (): void => {
-    setIsHoverActive(false);
-  };
 
   return (
     <Stack
       direction='row'
       justifyContent='space-between'
-      onMouseEnter={handleHover}
-      onMouseLeave={handleUnhover}
       id={id}
+      sx={{
+        '& .arrow': {
+          visibility: 'hidden',
+        },
+        '&:hover .arrow': {
+          visibility: 'unset',
+        },
+      }}
     >
       <Stack direction='row' alignItems='center' width='100%'>
         <StyledButton
@@ -90,8 +88,9 @@ const RowMenu = ({
           </Typography>
         </StyledButton>
         {isLoading && <CircularProgress size={20} />}
-        {!isLoading && (isHoverActive || selectedId === item.id) && (
+        {!isLoading && selectedId === item.id && (
           <IconButton
+            className='arrow'
             onClick={() => {
               setIsLoading(true);
               onNavigate(item);

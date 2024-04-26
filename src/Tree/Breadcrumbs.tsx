@@ -1,8 +1,10 @@
-import { Button, Breadcrumbs as MuiBreadcrumbs } from '@mui/material';
+import truncate from 'lodash.truncate';
+
+import { Button, Breadcrumbs as MuiBreadcrumbs, Tooltip } from '@mui/material';
 
 import type { NavigationElement } from './types';
 
-const ROW_MAX_NAME_LENGTH = 15;
+const DEFAULT_MAX_LENGTH = 15;
 
 export type BreadcrumbsProps = {
   onSelect: (el: NavigationElement) => void;
@@ -13,19 +15,15 @@ export type BreadcrumbsProps = {
    * does not filter over elements
    */
   selectedId?: string;
+  maxLength?: number;
 };
-
-// todo: add in sdk? it exists in builder as well
-const applyEllipsisOnLength = (longString: string, maxLength: number): string =>
-  `${longString.slice(0, maxLength)}${
-    (longString.length || 0) > maxLength ? '…' : ''
-  }`;
 
 const Breadcrumbs = ({
   onSelect,
   elements,
   rootElements = [],
   selectedId,
+  maxLength = DEFAULT_MAX_LENGTH,
 }: BreadcrumbsProps): JSX.Element | null => {
   if (!elements) {
     return null;
@@ -45,26 +43,28 @@ const Breadcrumbs = ({
   return (
     <MuiBreadcrumbs separator='›' aria-label='breadcrumb'>
       {allElements.map((ele) => (
-        <Button
-          variant='text'
-          color='inherit'
-          sx={{
-            textTransform: 'none',
-            p: 0,
-            minWidth: 0,
-            '&:hover': {
-              textDecoration: 'underline',
-              background: 'none',
-            },
-          }}
-          key={ele.id}
-          onClick={() => {
-            onSelect(ele);
-          }}
-        >
-          {ele.icon}
-          {applyEllipsisOnLength(ele.name, ROW_MAX_NAME_LENGTH)}
-        </Button>
+        <Tooltip title={ele.name}>
+          <Button
+            variant='text'
+            color='inherit'
+            sx={{
+              textTransform: 'none',
+              p: 0,
+              minWidth: 0,
+              '&:hover': {
+                textDecoration: 'underline',
+                background: 'none',
+              },
+            }}
+            key={ele.id}
+            onClick={() => {
+              onSelect(ele);
+            }}
+          >
+            {ele.icon}
+            {truncate(ele.name, { length: maxLength })}
+          </Button>
+        </Tooltip>
       ))}
     </MuiBreadcrumbs>
   );
