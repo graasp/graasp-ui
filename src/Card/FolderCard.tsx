@@ -23,6 +23,7 @@ const CardThumbnail = ({ thumbnail, alt }: CardThumbnailProps): JSX.Element => {
   if (thumbnail) {
     return <Thumbnail url={thumbnail} alt={alt} />;
   }
+
   return (
     <Box
       display='flex'
@@ -41,7 +42,7 @@ const CardThumbnail = ({ thumbnail, alt }: CardThumbnailProps): JSX.Element => {
 
 type Props = {
   name: string;
-  description: string;
+  description: string | JSX.Element;
   thumbnail?: string;
   /**
    * React Router Link target

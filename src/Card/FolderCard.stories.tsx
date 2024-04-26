@@ -1,10 +1,17 @@
 import { Meta, StoryObj } from '@storybook/react';
 
+import { BrowserRouter } from 'react-router-dom';
+
 import FolderCard from './FolderCard';
 
 const meta = {
   title: 'Card/Folder',
   component: FolderCard,
+  decorators: [
+    (story) => {
+      return <BrowserRouter>{story()}</BrowserRouter>;
+    },
+  ],
   args: {
     name: 'Example folder',
     description: 'Optional description',
