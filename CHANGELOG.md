@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.16.0](https://github.com/graasp/graasp-ui/compare/v4.15.3...v4.16.0) (2024-04-26)
+
+
+### Features
+
+* add row menu, row menus and breadcrumbs ([#824](https://github.com/graasp/graasp-ui/issues/824)) ([076c026](https://github.com/graasp/graasp-ui/commit/076c0261b33218a83ff06d6a628c660e8d6d9bf3))
+
 ## [4.15.3](https://github.com/graasp/graasp-ui/compare/v4.15.2...v4.15.3) (2024-04-26)
 
 
