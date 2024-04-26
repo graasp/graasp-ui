@@ -45,6 +45,7 @@ type Story = StoryObj<typeof meta>;
 export const Default = {
   args: {
     elements,
+    selectedId: elements[0].id,
   },
   play: async ({ canvasElement, args }) => {
     const canvas = within(canvasElement);
