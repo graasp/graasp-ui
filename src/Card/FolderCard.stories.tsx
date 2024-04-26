@@ -1,8 +1,12 @@
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj, composeStories } from '@storybook/react';
 
 import { BrowserRouter } from 'react-router-dom';
 
+import { TextDisplay } from '..';
+import * as TextDisplayStories from '../TextDisplay/TextDisplay.stories';
 import FolderCard from './FolderCard';
+
+const { SimpleText } = composeStories(TextDisplayStories);
 
 const meta = {
   title: 'Card/Folder',
@@ -30,4 +34,27 @@ export const Default = {
 
 export const NoThumbnail = {
   args: { thumbnail: undefined },
+} satisfies Story;
+
+export const OverflowDescription = {
+  args: {
+    thumbnail: undefined,
+    description: <SimpleText />,
+  },
+} satisfies Story;
+
+export const LongHtmlDescription = {
+  args: {
+    thumbnail: undefined,
+    description: (
+      <TextDisplay content='<p>Hello wefh uwhf uqhw hqwkjehr jkqwher jkqwhej khqwefhj hwkjefh jwhef jahwefj khawjkf hawjkf hajkwefh ajk hajkhf wkej </p><p>World</p>' />
+    ),
+  },
+} satisfies Story;
+
+export const LongTitle = {
+  args: {
+    thumbnail: undefined,
+    name: 'aewrfgaf jawef kjkew hqwjerh jweqh jhkjqwehjwkrmwfkmacqjfiqfm34ion q3fmqifjkamsdk we whj hjhkwjehf jhkjweh jkwhejk hwjkehr jwkeh jf jiajweifiaiowef uawefu iuaioweuiouoi auwer ',
+  },
 } satisfies Story;

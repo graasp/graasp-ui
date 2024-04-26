@@ -21,7 +21,7 @@ type CardThumbnailProps = {
 };
 const CardThumbnail = ({ thumbnail, alt }: CardThumbnailProps): JSX.Element => {
   if (thumbnail) {
-    return <Thumbnail url={thumbnail} alt={alt} />;
+    return <Thumbnail url={thumbnail} alt={alt} maxHeight='100%' />;
   }
 
   return (
@@ -31,8 +31,10 @@ const CardThumbnail = ({ thumbnail, alt }: CardThumbnailProps): JSX.Element => {
       justifyContent='center'
       bgcolor='#E4DFFF'
       width={CARD_HEIGHT}
-      height={CARD_HEIGHT}
-      minHeight={0}
+      height='100%'
+      flexShrink={0}
+      minHeight={CARD_HEIGHT}
+      // minHeight={0}
       minWidth={0}
     >
       <ItemIcon type='folder' alt={alt} />
@@ -41,6 +43,7 @@ const CardThumbnail = ({ thumbnail, alt }: CardThumbnailProps): JSX.Element => {
 };
 
 type Props = {
+  id?: string;
   name: string;
   description: string | JSX.Element;
   thumbnail?: string;
@@ -50,6 +53,7 @@ type Props = {
   to: string;
 };
 const FolderCard = ({
+  id,
   name,
   description,
   thumbnail,
@@ -58,16 +62,60 @@ const FolderCard = ({
   const theme = useTheme();
 
   return (
-    <Card sx={{ width: 'max-content', height: CARD_HEIGHT }}>
+    <Card
+      id={id}
+      sx={{
+        // card should not be longer than the content
+        width: 'max-content',
+        // but should not overflow the parent
+        maxWidth: '100%',
+        // set the height of the card to be fixed
+        height: CARD_HEIGHT,
+      }}
+    >
       <CardActionArea component={Link} to={to} sx={{ height: '100%' }}>
-        <Stack direction='row' alignItems='center' height='100%' mr={2}>
+        <Stack
+          direction='row'
+          alignItems='center'
+          height='100%'
+          // mr={2}
+          minWidth={0}
+        >
           <CardThumbnail thumbnail={thumbnail} alt={name} />
           <CardHeader
+            sx={{
+              // needed to make container not overflow parent
+              minWidth: '0px',
+              '& .MuiCardHeader-content': {
+                // needed to make container not overflow parent
+                minWidth: '0px',
+              },
+            }}
             title={name}
             subheader={description}
-            titleTypographyProps={{ color: 'primary' }}
+            titleTypographyProps={{
+              color: 'primary',
+              minWidth: '0px',
+              // needed to force long title into ellipsis
+              noWrap: true,
+              width: '100%',
+            }}
+            subheaderTypographyProps={{
+              overflow: 'hidden',
+              height: '1lh',
+              textOverflow: 'ellipsis',
+              minWidth: 0,
+              '& p': {
+                margin: 0,
+                marginBlocStart: 0,
+              },
+            }}
           />
-          <ChevronRight size={35} color={theme.palette.primary.main} />
+          <ChevronRight
+            size={35}
+            color={theme.palette.primary.main}
+            style={{ flexShrink: 0, margin: theme.spacing(2, 2, 2, 0) }}
+          />
         </Stack>
       </CardActionArea>
     </Card>
