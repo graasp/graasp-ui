@@ -20,7 +20,7 @@ const ParentsNavigation = ({
   buildBreadcrumbsItemLinkId,
   buildToItemPath,
 }: ParentsProps): JSX.Element => (
-  <Stack direction='row' gap={2}>
+  <Stack direction='row'>
     {parents.map(({ name, id }) => (
       <Stack key={id}>
         <Stack direction='row' alignItems='center' justifyContent='center'>

@@ -6,7 +6,7 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 
 import { FC, ReactElement, useState } from 'react';
 
-import { COLLAPSE_MIN_HEIGHT } from '../constants';
+const COLLAPSE_MIN_HEIGHT = 56;
 
 export type CollapseProps = {
   children?: ReactElement;
@@ -49,6 +49,7 @@ const Collapse: FC<CollapseProps> = ({ title, content, sx, children }) => {
         {
           border: '1px solid rgba(0, 0, 0, .125)',
           boxShadow: 'none',
+          borderRadius: 2,
         },
         {
           '&:not(:last-child)': {

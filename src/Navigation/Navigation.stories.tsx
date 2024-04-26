@@ -34,7 +34,7 @@ const buildItem = (name: string): LocalFileItemType =>
     },
   });
 
-const meta: Meta<typeof Navigation> = {
+const meta = {
   title: 'Common/Navigation',
   component: Navigation,
   decorators: [
@@ -46,11 +46,11 @@ const meta: Meta<typeof Navigation> = {
   render: (args) => {
     return <Navigation {...args} />;
   },
-};
+} satisfies Meta<typeof Navigation>;
 
 export default meta;
 
-type Story = StoryObj<typeof Navigation>;
+type Story = StoryObj<typeof meta>;
 type UseChildrenHookType = ReturnType<ItemMenuProps['useChildren']>;
 
 const item = buildItem('my item');
@@ -82,7 +82,7 @@ const menu = [
   { name: 'Shared Items', id: 'shared', to: 'shared' },
 ];
 
-export const HomeRoot: Story = {
+export const HomeRoot = {
   args: {
     buildToItemPath,
     useChildren,
@@ -111,9 +111,9 @@ export const HomeRoot: Story = {
     // 2 x Home
     expect(canvas.getAllByTestId(dataTestId)).toHaveLength(2);
   },
-};
+} satisfies Story;
 
-export const FolderWithParents: Story = {
+export const FolderWithParents = {
   args: {
     buildToItemPath,
     useChildren,
@@ -153,9 +153,9 @@ export const FolderWithParents: Story = {
     // 4 = 2 parents + 2 x Home + current item is a folder
     expect(canvas.getAllByTestId(dataTestId)).toHaveLength(5);
   },
-};
+} satisfies Story;
 
-export const FileWithParents: Story = {
+export const FileWithParents = {
   args: {
     buildToItemPath,
     useChildren,
@@ -195,7 +195,7 @@ export const FileWithParents: Story = {
     // 4 = 2 parents + 2 x Home
     expect(canvas.getAllByTestId(dataTestId)).toHaveLength(4);
   },
-};
+} satisfies Story;
 
 const extraItems = [
   {
@@ -210,7 +210,7 @@ const extraItems = [
   },
 ];
 
-export const FolderWithParentsWithExtraItems: Story = {
+export const FolderWithParentsWithExtraItems = {
   args: {
     buildToItemPath,
     useChildren,
@@ -251,4 +251,4 @@ export const FolderWithParentsWithExtraItems: Story = {
     // 4 = 2 parents + 2 x Home + current item is a folder + 1 extra item
     expect(canvas.getAllByTestId(dataTestId)).toHaveLength(6);
   },
-};
+} satisfies Story;

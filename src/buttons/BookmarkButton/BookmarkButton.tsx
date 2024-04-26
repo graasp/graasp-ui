@@ -15,7 +15,7 @@ export interface BookmarkButtonProps {
   /**
    * IconButton's color
    */
-  color?: ColorVariants;
+  color?: ColorVariants | 'default';
   handleBookmark: MouseEventHandler;
   handleUnbookmark: MouseEventHandler;
   isFavorite?: boolean;
@@ -33,7 +33,7 @@ export interface BookmarkButtonProps {
 const BookmarkButton = ({
   ariaLabel = 'favorite',
   className,
-  color = 'inherit',
+  color = 'default',
   handleBookmark,
   handleUnbookmark,
   isFavorite = false,
@@ -50,7 +50,7 @@ const BookmarkButton = ({
   );
 
   const tooltipText =
-    tooltip ?? (isFavorite ? 'Remove from Favorites' : 'Add to Favorites');
+    tooltip ?? (isFavorite ? 'Remove from Bookmarks' : 'Add to Bookmarks');
 
   const iconColor = isFavorite ? BOOKMARK_COLOR : color;
 

@@ -5,7 +5,7 @@ import { Context } from '@graasp/sdk';
 
 export const PRIMARY_COLOR = '#5050d2';
 export const SECONDARY_COLOR = '#FFFFFF';
-export const DEFAULT_BACKGROUND_COLOR = '#F8F8FF';
+export const DEFAULT_BACKGROUND_COLOR = '#fafaff';
 
 export const AccentColors: { [K in Context]: string } = {
   [Context.Builder]: '#00C38B',
@@ -49,6 +49,7 @@ export const createGraaspTheme = ({
 }: GraaspThemeOptions): Theme => {
   const baseTheme = createTheme({
     palette: {
+      background: { default: DEFAULT_BACKGROUND_COLOR },
       primary: {
         main: PRIMARY_COLOR,
       },
@@ -63,6 +64,7 @@ export const createGraaspTheme = ({
       MuiAvatar: {
         styleOverrides: {
           root: {
+            color: 'white',
             backgroundColor: grey[400],
           },
         },
@@ -77,6 +79,27 @@ export const createGraaspTheme = ({
         },
       },
       MuiButton: {
+        styleOverrides: {
+          root: {
+            textTransform: 'capitalize',
+          },
+        },
+      },
+      MuiTextField: {
+        styleOverrides: {
+          root: {
+            backgroundColor: 'white',
+          },
+        },
+      },
+      MuiSelect: {
+        styleOverrides: {
+          root: {
+            backgroundColor: 'white',
+          },
+        },
+      },
+      MuiTab: {
         styleOverrides: {
           root: {
             textTransform: 'capitalize',

@@ -146,7 +146,7 @@ const CreativeCommons: FC<CreativeCommonsProps> = (props) => {
   );
 
   return (
-    <Stack paddingX={2} paddingY={3} sx={sx} width='min-content' spacing={2}>
+    <Stack paddingX={3} paddingY={2} sx={sx} width='min-content' spacing={2}>
       <Stack direction='row' spacing={2}>
         <CCIcon {...iconData.cc} />
         {additionalIcons}

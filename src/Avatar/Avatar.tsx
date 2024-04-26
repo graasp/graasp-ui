@@ -1,5 +1,6 @@
 import {
   Avatar as AvatarComponent,
+  Skeleton,
   SkeletonProps,
   SxProps,
 } from '@mui/material';
@@ -9,14 +10,9 @@ import Thumbnail from '../Thumbnail';
 type AvatarProps = {
   alt: string;
   /**
-   * classname selector
-   * use maxWidth and maxHeight or sx
-   */
-  className?: string;
-  /**
    * component used to display the avatar (img or avatar)
    */
-  component?: string;
+  component?: 'img' | 'avatar';
   id?: string;
   isLoading?: boolean;
   maxHeight?: string | number;
@@ -40,27 +36,26 @@ const Avatar = ({
   maxWidth = '100%',
   maxHeight = '100%',
   variant = 'circular',
-  component = 'img',
+  component = 'avatar',
   isLoading,
-  className,
-  // use a random string to trigger default avatar
-  url = 'broken-image',
+  url,
 }: AvatarProps): JSX.Element | null => {
-  // no default value wanted and no url and is not loading
-  if (!url && component !== 'avatar' && !isLoading) {
-    return null;
-  }
-
   if (component === 'avatar') {
-    return (
-      <AvatarComponent
-        id={id}
-        className={className}
-        alt={alt}
-        src={url}
-        sx={sx}
-      />
-    );
+    if (url) {
+      return <AvatarComponent id={id} alt={alt} src={url} />;
+    } else {
+      if (isLoading) {
+        return (
+          <Skeleton
+            variant={variant}
+            sx={sx}
+            width={maxWidth}
+            height={maxHeight}
+          />
+        );
+      }
+      return <AvatarComponent />;
+    }
   }
 
   return (

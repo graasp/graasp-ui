@@ -23,7 +23,7 @@ const LanguageSelect = ({
   setDirection?: Dispatch<Direction>;
   languageSelectSx?: SxProps;
   langs: { [key: string]: string };
-  label?: string | null;
+  label?: string;
   variant?: MuiSelectProps['variant'];
   size?: MuiSelectProps['size'];
 }): JSX.Element => {
