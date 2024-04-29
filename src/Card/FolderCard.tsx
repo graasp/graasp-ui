@@ -45,7 +45,7 @@ const CardThumbnail = ({ thumbnail, alt }: CardThumbnailProps): JSX.Element => {
 type Props = {
   id?: string;
   name: string;
-  description: string | JSX.Element;
+  description?: string | null | JSX.Element;
   thumbnail?: string;
   /**
    * React Router Link target
@@ -96,7 +96,7 @@ const FolderCard = ({
             }}
             subheaderTypographyProps={{
               overflow: 'hidden',
-              height: '1lh',
+              height: description ? '1lh' : 'unset',
               textOverflow: 'ellipsis',
               minWidth: 0,
               '& p': {

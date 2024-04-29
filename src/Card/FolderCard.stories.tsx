@@ -58,3 +58,10 @@ export const LongTitle = {
     name: 'aewrfgaf jawef kjkew hqwjerh jweqh jhkjqwehjwkrmwfkmacqjfiqfm34ion q3fmqifjkamsdk we whj hjhkwjehf jhkjweh jkwhejk hwjkehr jwkeh jf jiajweifiaiowef uawefu iuaioweuiouoi auwer ',
   },
 } satisfies Story;
+
+export const NoDescription = {
+  args: {
+    thumbnail: undefined,
+    description: null,
+  },
+} satisfies Story;
