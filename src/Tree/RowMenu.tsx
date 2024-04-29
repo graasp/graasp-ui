@@ -88,7 +88,7 @@ const RowMenu = ({
           </Typography>
         </StyledButton>
         {isLoading && <CircularProgress size={20} />}
-        {!isLoading && selectedId === item.id && (
+        {!isLoading && (
           <IconButton
             className='arrow'
             onClick={() => {
