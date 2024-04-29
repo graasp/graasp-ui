@@ -15,6 +15,10 @@ import withResizing, { StyledIFrame } from './withResizing';
 
 export type LinkItemProps = {
   /**
+   * Id of the component used for testing
+   */
+  id?: string;
+  /**
    * Id of the current member used for saving the resizing preferences
    */
   memberId?: string;
@@ -63,13 +67,8 @@ const IFrameContainer = styled('div')({
   overflow: 'auto',
 });
 
-const StyledLinkButton = styled(Button)(({ theme }) => ({
-  marginLeft: 'auto',
-  marginRight: 'auto',
-  marginTop: theme.spacing(1),
-}));
-
 const LinkItem = ({
+  id,
   item,
   memberId,
   showCaption = true,
@@ -87,13 +86,12 @@ const LinkItem = ({
   const [height] = useState<string | number>(defaultHeight);
   const iframeRef = useRef<HTMLIFrameElement>(null);
 
-  const id = item.id;
+  const { id: itemId, name } = item;
   const extra = getLinkExtra(item.extra);
   const html = extra?.html;
 
   // default case is an iframe with given link
   const url = extra?.url;
-  const name = item.name;
 
   const CaptionWrapper = withCaption({
     item,
@@ -124,7 +122,7 @@ const LinkItem = ({
       height,
       component: iframe,
       memberId,
-      itemId: item.id,
+      itemId,
     });
 
     return (
@@ -162,14 +160,15 @@ const LinkItem = ({
     }
 
     const button = (
-      <StyledLinkButton
+      <Button
+        id={id}
         startIcon={<OpenInNewIcon />}
         href={url}
         target='_blank'
         onClick={onClick}
       >
-        {item.name ?? openLinkMessage}
-      </StyledLinkButton>
+        {name ?? openLinkMessage}
+      </Button>
     );
 
     return (
