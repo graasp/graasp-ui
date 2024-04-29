@@ -21,6 +21,7 @@ const StyledCard = styled(Card, {
   borderRadius: theme.spacing(1),
   boxShadow: theme.shadows[2],
   width: fullWidth ? '100%' : 'max-content',
+  maxWidth: '100%',
 }));
 
 type CardProps = {

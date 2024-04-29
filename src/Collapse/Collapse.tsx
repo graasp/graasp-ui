@@ -45,9 +45,10 @@ const Collapse: FC<CollapseProps> = ({ title, content, sx, children }) => {
     <Accordion
       square
       elevation={0}
+      disableGutters
       sx={[
         {
-          border: '1px solid rgba(0, 0, 0, .125)',
+          outline: '1px solid rgba(0, 0, 0, .125)',
           boxShadow: 'none',
           borderRadius: 2,
         },
@@ -59,11 +60,6 @@ const Collapse: FC<CollapseProps> = ({ title, content, sx, children }) => {
         {
           '&:before': {
             display: 'none',
-          },
-        },
-        {
-          $expanded: {
-            margin: 'auto',
           },
         },
         // You cannot spread `sx` directly because `SxProps` (typeof sx) might not be an array.
