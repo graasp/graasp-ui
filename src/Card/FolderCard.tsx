@@ -74,13 +74,7 @@ const FolderCard = ({
       }}
     >
       <CardActionArea component={Link} to={to} sx={{ height: '100%' }}>
-        <Stack
-          direction='row'
-          alignItems='center'
-          height='100%'
-          // mr={2}
-          minWidth={0}
-        >
+        <Stack direction='row' alignItems='center' height='100%' minWidth={0}>
           <CardThumbnail thumbnail={thumbnail} alt={name} />
           <CardHeader
             sx={{
