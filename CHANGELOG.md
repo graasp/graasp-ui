@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.17.0](https://github.com/graasp/graasp-ui/compare/v4.16.0...v4.17.0) (2024-04-29)
+
+
+### Features
+
+* create new folder card ([#827](https://github.com/graasp/graasp-ui/issues/827)) ([593735b](https://github.com/graasp/graasp-ui/commit/593735b2e61e49723b1a4140cafb7d8978667f88))
+
+
+### Bug Fixes
+
+* show arrow on hover for all row menus ([#829](https://github.com/graasp/graasp-ui/issues/829)) ([6661e59](https://github.com/graasp/graasp-ui/commit/6661e59451192f3e78b4b0d512d6a1b4a7fd68ba))
+* update alert title ([#830](https://github.com/graasp/graasp-ui/issues/830)) ([f75b4ce](https://github.com/graasp/graasp-ui/commit/f75b4ce8765c5fd8a1b7a75db43ae1f5702b0b63))
+
 ## [4.16.0](https://github.com/graasp/graasp-ui/compare/v4.15.3...v4.16.0) (2024-04-26)
 
 
