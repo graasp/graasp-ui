@@ -42,7 +42,6 @@ jobs:
           key: ${{ runner.os }}-playwright-${{ env.PLAYWRIGHT_VERSION }}
       - name: Install playwright
         run: npx playwright install --with-deps
-        if: steps.playwright-cache.outputs.cache-hit != 'true'
 
       - name: Build storybook
         run: yarn storybook:build --quiet
