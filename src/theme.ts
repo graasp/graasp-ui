@@ -95,6 +95,7 @@ export const createGraaspTheme = ({
       MuiSelect: {
         styleOverrides: {
           root: {
+            overflow: 'hidden',
             backgroundColor: 'white',
           },
         },
