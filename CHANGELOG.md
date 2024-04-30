@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.17.1](https://github.com/graasp/graasp-ui/compare/v4.17.0...v4.17.1) (2024-04-30)
+
+
+### Bug Fixes
+
+* add an id prop to linkitem ([#832](https://github.com/graasp/graasp-ui/issues/832)) ([06e953c](https://github.com/graasp/graasp-ui/commit/06e953cc2b69ed77478fc5f87afcd514b71b59f1))
+* **deps:** update dependency lucide-react to v0.376.0 ([#833](https://github.com/graasp/graasp-ui/issues/833)) ([f6d7baa](https://github.com/graasp/graasp-ui/commit/f6d7baa3bcc4863823f756905539a0dde7bacd2f))
+* playwright install issue ([#834](https://github.com/graasp/graasp-ui/issues/834)) ([500059c](https://github.com/graasp/graasp-ui/commit/500059ccb1d59399d3c740d9b4a72fbb088ec74f))
+* select overflow ([#835](https://github.com/graasp/graasp-ui/issues/835)) ([98bbe34](https://github.com/graasp/graasp-ui/commit/98bbe341edc0a9e78c7aa01091ec4ba0adaadf9e))
+
 ## [4.17.0](https://github.com/graasp/graasp-ui/compare/v4.16.0...v4.17.0) (2024-04-29)
 
 
