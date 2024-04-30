@@ -2434,7 +2434,7 @@ __metadata:
     jsdom: "npm:24.0.0"
     katex: "npm:0.16.10"
     lodash.truncate: "npm:4.4.2"
-    lucide-react: "npm:0.373.0"
+    lucide-react: "npm:0.376.0"
     prettier: "npm:3.2.5"
     react: "npm:18.2.0"
     react-cookie-consent: "npm:9.0.0"
@@ -12685,12 +12685,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lucide-react@npm:0.373.0":
-  version: 0.373.0
-  resolution: "lucide-react@npm:0.373.0"
+"lucide-react@npm:0.376.0":
+  version: 0.376.0
+  resolution: "lucide-react@npm:0.376.0"
   peerDependencies:
     react: ^16.5.1 || ^17.0.0 || ^18.0.0
-  checksum: 10/e474e456fadee6595a25738507102985bc50a754164d7daba4252e8301cdbacf5499ba206529058ac3dadcf7d57937c565ac8bc0ee2a90d0dcd0204e3a8e5b39
+  checksum: 10/5ffb6c352dfc7b51b64ae0ea63b3edd2d57c52db366814332a799da9a812c9c9f5d3f6cd76957d5ad481f22ba888f9ad0cda22ecbf2ae8d76adfa2532baa5989
   languageName: node
   linkType: hard
 
