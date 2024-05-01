@@ -3,8 +3,7 @@ import {
   Row,
   SortingState,
   flexRender,
-  getCoreRowModel,
-  getSortedRowModel,
+  getCoreRowModel, // getSortedRowModel,
   useReactTable,
 } from '@tanstack/react-table';
 
@@ -252,7 +251,7 @@ const NewTable = <T extends object>({
     debugTable: true,
     debugHeaders: true,
     debugColumns: true,
-    getSortedRowModel: getSortedRowModel(), //client-side sorting
+    // getSortedRowModel: getSortedRowModel(), //client-side sorting
     state: {
       sorting,
     },
