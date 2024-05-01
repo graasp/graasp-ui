@@ -17,7 +17,7 @@ import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 
-import React from 'react';
+import React, { useState } from 'react';
 // we could replace dnd with this https://docs.dndkit.com
 import { DndProvider, useDrag, useDrop } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
@@ -156,6 +156,28 @@ const InBetween = <T extends object>({
   );
 };
 
+// todo: handle multi sorting
+export const useSorting = (
+  defaultSorting: SortingState,
+): [SortingState, (id: string) => void] => {
+  const [sorting, setSorting] = useState<SortingState>(defaultSorting);
+
+  // todo: set desc first on numeral columns
+  const smartSetSorting = (id: string): void => {
+    if (!sorting.length) {
+      setSorting([{ id, desc: true }]);
+    } else {
+      if (sorting[0].desc) {
+        setSorting([{ id, desc: false }]);
+      } else {
+        setSorting([]);
+      }
+    }
+  };
+
+  return [sorting, smartSetSorting];
+};
+
 type Props<T> = {
   data: T[];
   columns: ColumnDef<T>[];
@@ -175,6 +197,9 @@ type Props<T> = {
   onCheckboxClick?: DraggableRowProps<T>['onCheckboxClick'];
   enableMoveInBetween?: boolean;
   selected?: string[];
+  sorting?: SortingState;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  onSortingChange?: any;
 };
 
 const NewTable = <T extends object>({
@@ -195,10 +220,10 @@ const NewTable = <T extends object>({
   disableClicking = [],
   enableMoveInBetween = true,
   onCheckboxClick,
+  onSortingChange,
   selected = [],
+  sorting = [],
 }: Props<T>): JSX.Element => {
-  const [sorting, setSorting] = React.useState<SortingState>([]);
-
   // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
   const handleChangePage = (_event: unknown, newPage: number) => {
     onPageChange?.(newPage);
@@ -228,7 +253,6 @@ const NewTable = <T extends object>({
     debugHeaders: true,
     debugColumns: true,
     getSortedRowModel: getSortedRowModel(), //client-side sorting
-    onSortingChange: setSorting, //optionally control sorting state in your own scope for easy access
     state: {
       sorting,
     },
@@ -265,7 +289,10 @@ const NewTable = <T extends object>({
                               : 'default',
                           },
                         }}
-                        onClick={header.column.getToggleSortingHandler()}
+                        onClick={() => {
+                          onSortingChange?.(header.id);
+                          header.column.getToggleSortingHandler();
+                        }}
                       >
                         {header.isPlaceholder
                           ? null
