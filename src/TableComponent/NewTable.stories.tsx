@@ -30,22 +30,30 @@ const columns: ColumnDef<Person>[] = [
     accessorFn: (row) => row.firstName,
     accessorKey: 'firstName',
     cell: (info) => info.getValue(),
+    sortingFn: 'alphanumericCaseSensitive',
   },
   {
     accessorFn: (row) => row.lastName,
     id: 'lastName',
     cell: (info) => info.getValue(),
     header: () => <span>Last Name</span>,
+    sortingFn: 'alphanumericCaseSensitive',
   },
   {
     accessorFn: (row) => row.age,
     accessorKey: 'age',
     header: 'Age',
+    sortingFn: 'alphanumeric',
   },
   {
     accessorFn: (row) => row.visits,
     accessorKey: 'visits',
     header: () => <span>Visits</span>,
+    sortingFn: 'alphanumeric',
+  },
+  {
+    id: 'blank',
+    header: () => <span>Blank Column</span>,
   },
 ];
 const newPerson = (): Person => {
@@ -153,6 +161,9 @@ export const Simple: Story = {
     page: 0,
     data: makeData(6),
     isMovable: true,
+    onClick: (e) => {
+      console.log('click', e);
+    },
     // tableHeight: 300,
     // columnDefs: [
     //   {
