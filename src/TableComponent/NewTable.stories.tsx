@@ -164,6 +164,101 @@ export const Simple: Story = {
     onClick: (e) => {
       console.log('click', e);
     },
+    disableClicking: ['blank'],
+    // tableHeight: 300,
+    // columnDefs: [
+    //   {
+    //     field: 'name',
+    //     headerName: 'Name',
+    //     headerCheckboxSelection: true,
+    //     checkboxSelection: true,
+    //     // rowDrag: true,
+    //   },
+    //   {
+    //     field: 'type',
+    //     headerName: 'Type',
+    //     type: 'rightAligned',
+    //     suppressSizeToFit: true,
+    //     maxWidth: 80,
+    //   },
+    //   {
+    //     field: 'updatedAt',
+    //     headerName: 'Updated At',
+    //     type: 'rightAligned',
+    //     suppressSizeToFit: true,
+    //     maxWidth: 160,
+    //     valueFormatter: dateFormatter,
+    //   },
+    //   {
+    //     field: 'actions',
+    //     headerName: 'Actions',
+    //     suppressSizeToFit: true,
+    //     maxWidth: 100, // approx 50 per iconButton (40px + 8px margin on each side)
+    //     cellRenderer: ({ data }: { data: { id: string } }) => {
+    //       return (
+    //         <>
+    //           <DeleteButton id={'delete' + data.id} />
+    //           <EditButton />
+    //         </>
+    //       );
+    //     },
+    //   },
+    // ],
+    // rowData,
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+
+    // we need to wait a lot because it is ag grid that triggers
+    await waitFor(async () => {
+      await expect(canvas.getAllByRole('row')).toBeTruthy();
+    });
+
+    await waitFor(async () => {
+      await expect(canvas.getByText('name 1')).toBeTruthy();
+    });
+    // check mouse onclick trigger event
+    //   await userEvent.click(canvas.getByText('name 1'));
+    //   await waitFor(async () => {
+    //     await expect(args.onCellClicked).toHaveBeenCalledTimes(1);
+    //   });
+
+    //   // check keyboard navigation
+    //   await userEvent.keyboard('{Tab}{Enter}');
+    //   await waitFor(async () => {
+    //     await expect(args.onCellClicked).toHaveBeenCalledTimes(2);
+    //   });
+
+    //   await userEvent.keyboard('{Tab}{Enter}');
+    //   await waitFor(async () => {
+    //     await expect(args.onCellClicked).toHaveBeenCalledTimes(3);
+    //   });
+
+    //   await userEvent.keyboard('{Tab}{Enter}');
+    //   await waitFor(async () => {
+    //     await expect(args.onCellClicked).toHaveBeenCalledTimes(4);
+    //   });
+
+    // ag grid does not simulate the tab navigation correctly
+    // so we cannot test inner navigation
+  },
+};
+
+export const DisableBetweenDrag: Story = {
+  args: {
+    // ts issue
+    // https://github.com/TanStack/table/issues/4382
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    columns: columns as any,
+    pageSize: 6,
+    page: 0,
+    data: makeData(6),
+    isMovable: true,
+    onClick: (e) => {
+      console.log('click', e);
+    },
+    disableClicking: ['blank'],
+    enableMoveInBetween: false,
     // tableHeight: 300,
     // columnDefs: [
     //   {
