@@ -1,4 +1,4 @@
-import { TableCell, TableRow, styled } from '@mui/material';
+import { TableCell, TableRow, useTheme } from '@mui/material';
 import Typography from '@mui/material/Typography';
 
 interface Props {
@@ -9,14 +9,6 @@ interface Props {
   colSpan?: number;
 }
 
-// casting is needed to support the `component` prop
-// see: https://mui.com/material-ui/guides/typescript/#complications-with-the-component-prop
-const StyledTitle = styled(Typography)({
-  display: 'flex',
-  alignItems: 'center',
-  width: '100%',
-}) as typeof Typography;
-
 const TableToolbar = ({
   selected,
   Actions,
@@ -24,27 +16,33 @@ const TableToolbar = ({
   countTextFunction,
   colSpan = 1,
 }: Props): JSX.Element | null => {
+  const theme = useTheme();
   const numSelected = selected.length;
-  const StyledToolbar = styled(TableRow)(({ theme }) => ({
-    paddingLeft: theme.spacing(2),
-    paddingRight: theme.spacing(1),
-    width: '100%',
-    ...(numSelected > 0 && {
-      background: theme.palette.primary.main,
-      color: 'white',
-    }),
-  }));
 
   if (numSelected > 0) {
     return (
-      <StyledToolbar>
+      <TableRow
+        sx={{
+          pl: 2,
+          pr: 1,
+          background: theme.palette.primary.main,
+        }}
+      >
         <TableCell colSpan={colSpan}>
-          <StyledTitle color='inherit' variant='subtitle1'>
+          <Typography
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              width: '100%',
+            }}
+            color='secondary'
+            variant='subtitle1'
+          >
             {countTextFunction?.(selected) ?? `${numSelected} selected`}
-          </StyledTitle>
+          </Typography>
           {Actions?.({ selectedIds: selected })}
         </TableCell>
-      </StyledToolbar>
+      </TableRow>
     );
   }
 

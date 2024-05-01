@@ -4,7 +4,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { waitFor, within } from '@storybook/testing-library';
 import { ColumnDef } from '@tanstack/react-table';
 
-import NewTable from './NewTable';
+import NewTable, { useSorting } from './NewTable';
 
 // TODO: REMOVE FAKER
 
@@ -29,6 +29,7 @@ const columns: ColumnDef<Person>[] = [
   {
     accessorFn: (row) => row.firstName,
     accessorKey: 'firstName',
+    id: 'firstName',
     cell: (info) => info.getValue(),
     sortingFn: 'alphanumericCaseSensitive',
   },
@@ -415,6 +416,37 @@ export const ShowToolbar: Story = {
     disableClicking: ['blank'],
     showCheckbox: true,
     selected: ['myid'],
+  },
+};
+export const DefaultSorting: Story = {
+  args: {
+    // ts issue
+    // https://github.com/TanStack/table/issues/4382
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    columns: columns as any,
+    pageSize: 6,
+    page: 0,
+    data: makeData(6),
+    isMovable: true,
+    onClick: (e) => {
+      console.log('click', e);
+    },
+    disableClicking: ['blank'],
+    showCheckbox: true,
+  },
+  render: (args) => {
+    const [sorting, setSorting] = useSorting([{ desc: true, id: 'firstName' }]);
+
+    return (
+      <NewTable
+        {...args}
+        sorting={sorting}
+        onSortingChange={(id: string) => {
+          console.log(id);
+          setSorting(id);
+        }}
+      />
+    );
   },
 };
 
