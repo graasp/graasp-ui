@@ -1,8 +1,10 @@
 import {
   ColumnDef,
   Row,
+  SortingState,
   flexRender,
   getCoreRowModel,
+  getSortedRowModel,
   useReactTable,
 } from '@tanstack/react-table';
 
@@ -21,10 +23,14 @@ import React from 'react';
 import { DndProvider, useDrag, useDrop } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 
+import './styles.css';
+
 type DraggableRowProps<T> = {
   row: Row<T>;
   onDrop: (draggedRow: T, targetRow: T) => void;
   isMovable?: boolean;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  onClick?: (el: T) => void;
   showCheckbox?: boolean;
 };
 
@@ -33,6 +39,7 @@ const DraggableRow = <T extends object>({
   onDrop,
   isMovable = false,
   showCheckbox = false,
+  onClick,
 }: DraggableRowProps<T>): JSX.Element => {
   const [{ isOver }, dropRef] = useDrop({
     accept: 'row',
@@ -44,7 +51,7 @@ const DraggableRow = <T extends object>({
     }),
   });
 
-  const [{ isDragging }, dragRef, previewRef] = useDrag({
+  const [{ isDragging }, dragRef] = useDrag({
     collect: (monitor) => ({
       isDragging: monitor.isDragging(),
     }),
@@ -54,14 +61,17 @@ const DraggableRow = <T extends object>({
 
   return (
     <TableRow
-      ref={previewRef} //previewRef could go here
+      className={onClick ? 'table-row' : ''}
+      // ref={previewRef} //previewRef could go here
       style={{
         opacity: isDragging ? 0.5 : 1,
-        background: isOver ? 'lightgrey' : 'transparent',
+        background: isOver ? 'lightgrey' : undefined,
       }}
+      onClick={() => onClick?.(row.original)}
+      ref={dropRef}
     >
       {isMovable && (
-        <TableCell sx={{ p: 1 }} ref={dropRef}>
+        <TableCell sx={{ p: 1 }}>
           <span style={{ cursor: 'move' }} ref={dragRef}>
             <DragIndicatorIcon fontSize='small' />
           </span>
@@ -138,6 +148,7 @@ type Props<T> = {
   isMovable?: boolean;
   showCheckbox?: boolean;
   id?: string;
+  onClick?: DraggableRowProps<T>['onClick'];
 };
 
 const NewTable = <T extends object>({
@@ -154,8 +165,9 @@ const NewTable = <T extends object>({
   onPageChange,
   isMovable = false,
   showCheckbox = false,
+  onClick,
 }: Props<T>): JSX.Element => {
-  console.log(data);
+  const [sorting, setSorting] = React.useState<SortingState>([]);
 
   // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
   const handleChangePage = (_event: unknown, newPage: number) => {
@@ -185,6 +197,15 @@ const NewTable = <T extends object>({
     debugTable: true,
     debugHeaders: true,
     debugColumns: true,
+    getSortedRowModel: getSortedRowModel(), //client-side sorting
+    onSortingChange: setSorting, //optionally control sorting state in your own scope for easy access
+    // sortingFns: {
+    //   sortStatusFn, //or provide our custom sorting function globally for all columns to be able to use
+    // },
+    //no need to pass pageCount or rowCount with client-side pagination as it is calculated automatically
+    state: {
+      sorting,
+    },
   });
 
   const indentIdx = isMovable || showCheckbox ? 1 : 0;
@@ -200,9 +221,11 @@ const NewTable = <T extends object>({
                 {(isMovable || showCheckbox) && <TableCell width={1} />}
                 {headerGroup.headers.map((header) => (
                   <TableCell
+                    className='table-head'
                     key={header.id}
                     colSpan={header.colSpan}
                     sx={{ fontWeight: 'bold' }}
+                    onClick={header.column.getToggleSortingHandler()}
                   >
                     {header.isPlaceholder
                       ? null
@@ -210,6 +233,10 @@ const NewTable = <T extends object>({
                           header.column.columnDef.header,
                           header.getContext(),
                         )}
+                    {{
+                      asc: ' 🔼',
+                      desc: ' 🔽',
+                    }[header.column.getIsSorted() as string] ?? null}
                   </TableCell>
                 ))}
               </TableRow>
@@ -228,6 +255,7 @@ const NewTable = <T extends object>({
                   key={row.id}
                   row={row}
                   onDrop={onDropInRow}
+                  onClick={onClick}
                 />
                 <InBetween<T>
                   colSpan={columns.length + indentIdx}
