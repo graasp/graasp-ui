@@ -8,9 +8,8 @@ import {
   useReactTable,
 } from '@tanstack/react-table';
 
-import { CheckBox } from '@mui/icons-material';
 import DragIndicatorIcon from '@mui/icons-material/DragIndicator';
-import { TableBody } from '@mui/material';
+import { Checkbox, TableBody } from '@mui/material';
 import Table from '@mui/material/Table';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
@@ -23,6 +22,8 @@ import React from 'react';
 import { DndProvider, useDrag, useDrop } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 
+import TableToolbar from './TableToolbar';
+
 type DraggableRowProps<T> = {
   row: Row<T>;
   onDrop: (draggedRow: T, targetRow: T) => void;
@@ -31,6 +32,8 @@ type DraggableRowProps<T> = {
   onClick?: (el: T) => void;
   showCheckbox?: boolean;
   disableClicking: string[];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  onCheckboxClick?: any;
 };
 
 const DraggableRow = <T extends object>({
@@ -40,6 +43,7 @@ const DraggableRow = <T extends object>({
   showCheckbox = false,
   onClick,
   disableClicking,
+  onCheckboxClick,
 }: DraggableRowProps<T>): JSX.Element => {
   const [{ isOver }, dropRef] = useDrop({
     accept: 'row',
@@ -78,15 +82,15 @@ const DraggableRow = <T extends object>({
       }
     >
       {isMovable && (
-        <TableCell sx={{ p: 1 }}>
+        <TableCell sx={{ p: 0 }}>
           <span style={{ cursor: 'move' }} ref={dragRef}>
             <DragIndicatorIcon fontSize='small' />
           </span>
         </TableCell>
       )}
       {showCheckbox && (
-        <TableCell>
-          <CheckBox />
+        <TableCell sx={{ p: 0 }}>
+          <Checkbox onChange={(e) => onCheckboxClick?.(e, row)} />
         </TableCell>
       )}
       {row.getVisibleCells().map((cell) => (
@@ -168,7 +172,9 @@ type Props<T> = {
   id?: string;
   onClick?: DraggableRowProps<T>['onClick'];
   disableClicking?: DraggableRowProps<T>['disableClicking'];
+  onCheckboxClick?: DraggableRowProps<T>['onCheckboxClick'];
   enableMoveInBetween?: boolean;
+  selected?: string[];
 };
 
 const NewTable = <T extends object>({
@@ -188,6 +194,8 @@ const NewTable = <T extends object>({
   onClick,
   disableClicking = [],
   enableMoveInBetween = true,
+  onCheckboxClick,
+  selected = [],
 }: Props<T>): JSX.Element => {
   const [sorting, setSorting] = React.useState<SortingState>([]);
 
@@ -226,45 +234,55 @@ const NewTable = <T extends object>({
     },
   });
 
-  const indentIdx = isMovable || showCheckbox ? 1 : 0;
+  const indentIdx = (isMovable ? 1 : 0) + (showCheckbox ? 1 : 0);
+  const totalColSpan =
+    table.getHeaderGroups().reduce((acc, h) => acc + h.headers.length, 0) +
+    indentIdx;
 
   return (
     <DndProvider backend={HTML5Backend}>
       <TableContainer id={id}>
         <Table style={{ width: '100%', ...sx }}>
           <TableHead>
-            {table.getHeaderGroups().map((headerGroup) => (
-              <TableRow key={headerGroup.id}>
-                {/* one row for moving or checkbox*/}
-                {(isMovable || showCheckbox) && <TableCell width={1} />}
-                {headerGroup.headers.map((header) => (
-                  <TableCell
-                    key={header.id}
-                    colSpan={header.colSpan}
-                    sx={{
-                      fontWeight: 'bold',
-                      '&:hover': {
-                        cursor: header.column.getCanSort()
-                          ? 'pointer'
-                          : 'default',
-                      },
-                    }}
-                    onClick={header.column.getToggleSortingHandler()}
-                  >
-                    {header.isPlaceholder
-                      ? null
-                      : flexRender(
-                          header.column.columnDef.header,
-                          header.getContext(),
-                        )}
-                    {{
-                      asc: ' 🔼',
-                      desc: ' 🔽',
-                    }[header.column.getIsSorted() as string] ?? null}
-                  </TableCell>
+            {selected.length ? (
+              <TableToolbar selected={selected} colSpan={totalColSpan} />
+            ) : (
+              <>
+                {table.getHeaderGroups().map((headerGroup) => (
+                  <TableRow key={headerGroup.id}>
+                    {/* one row for moving or checkbox*/}
+                    {isMovable && <TableCell width={1} />}
+                    {showCheckbox && <TableCell width={1} />}
+                    {headerGroup.headers.map((header) => (
+                      <TableCell
+                        key={header.id}
+                        colSpan={header.colSpan}
+                        sx={{
+                          fontWeight: 'bold',
+                          '&:hover': {
+                            cursor: header.column.getCanSort()
+                              ? 'pointer'
+                              : 'default',
+                          },
+                        }}
+                        onClick={header.column.getToggleSortingHandler()}
+                      >
+                        {header.isPlaceholder
+                          ? null
+                          : flexRender(
+                              header.column.columnDef.header,
+                              header.getContext(),
+                            )}
+                        {{
+                          asc: ' 🔼',
+                          desc: ' 🔽',
+                        }[header.column.getIsSorted() as string] ?? null}
+                      </TableCell>
+                    ))}
+                  </TableRow>
                 ))}
-              </TableRow>
-            ))}
+              </>
+            )}
           </TableHead>
           <TableBody>
             <InBetween<T>
@@ -282,6 +300,8 @@ const NewTable = <T extends object>({
                   onDrop={onDropInRow}
                   onClick={onClick}
                   disableClicking={disableClicking}
+                  showCheckbox={showCheckbox}
+                  onCheckboxClick={onCheckboxClick}
                 />
                 <InBetween<T>
                   enableMoveInBetween={enableMoveInBetween}

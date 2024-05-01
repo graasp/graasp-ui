@@ -338,6 +338,86 @@ export const DisableBetweenDrag: Story = {
   },
 };
 
+export const ShowCheckbox: Story = {
+  args: {
+    // ts issue
+    // https://github.com/TanStack/table/issues/4382
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    columns: columns as any,
+    pageSize: 6,
+    page: 0,
+    data: makeData(6),
+    isMovable: true,
+    onClick: (e) => {
+      console.log('click', e);
+    },
+    disableClicking: ['blank'],
+    showCheckbox: true,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    onCheckboxClick: (e: any, row: any) => {
+      console.log(e.target.checked, row);
+    },
+    // tableHeight: 300,
+    // columnDefs: [
+    //   {
+    //     field: 'name',
+    //     headerName: 'Name',
+    //     headerCheckboxSelection: true,
+    //     checkboxSelection: true,
+    //     // rowDrag: true,
+    //   },
+    //   {
+    //     field: 'type',
+    //     headerName: 'Type',
+    //     type: 'rightAligned',
+    //     suppressSizeToFit: true,
+    //     maxWidth: 80,
+    //   },
+    //   {
+    //     field: 'updatedAt',
+    //     headerName: 'Updated At',
+    //     type: 'rightAligned',
+    //     suppressSizeToFit: true,
+    //     maxWidth: 160,
+    //     valueFormatter: dateFormatter,
+    //   },
+    //   {
+    //     field: 'actions',
+    //     headerName: 'Actions',
+    //     suppressSizeToFit: true,
+    //     maxWidth: 100, // approx 50 per iconButton (40px + 8px margin on each side)
+    //     cellRenderer: ({ data }: { data: { id: string } }) => {
+    //       return (
+    //         <>
+    //           <DeleteButton id={'delete' + data.id} />
+    //           <EditButton />
+    //         </>
+    //       );
+    //     },
+    //   },
+    // ],
+    // rowData,
+  },
+};
+export const ShowToolbar: Story = {
+  args: {
+    // ts issue
+    // https://github.com/TanStack/table/issues/4382
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    columns: columns as any,
+    pageSize: 6,
+    page: 0,
+    data: makeData(6),
+    isMovable: true,
+    onClick: (e) => {
+      console.log('click', e);
+    },
+    disableClicking: ['blank'],
+    showCheckbox: true,
+    selected: ['myid'],
+  },
+};
+
 // export const SimpleWithDrag: Story = {
 //   args: {
 //     tableHeight: 300,
