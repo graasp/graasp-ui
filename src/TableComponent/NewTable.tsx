@@ -23,7 +23,7 @@ import { HTML5Backend } from 'react-dnd-html5-backend';
 
 type DraggableRowProps<T> = {
   row: Row<T>;
-  onDrop: (draggedRowIndex: number, targetRowIndex: number) => void;
+  onDrop: (draggedRow: T, targetRow: T) => void;
   isMovable?: boolean;
   showCheckbox?: boolean;
 };
@@ -36,7 +36,9 @@ const DraggableRow = <T extends object>({
 }: DraggableRowProps<T>): JSX.Element => {
   const [{ isOver }, dropRef] = useDrop({
     accept: 'row',
-    drop: (draggedRow: Row<T>) => onDrop(draggedRow.index, row.index),
+    drop: (draggedRow: Row<T>) => {
+      onDrop(draggedRow.original, row.original);
+    },
     collect: (monitor) => ({
       isOver: !!monitor.isOver(),
     }),
@@ -81,19 +83,22 @@ const DraggableRow = <T extends object>({
 
 type InBetweenProps<T> = {
   colSpan: number;
-  idx: number;
-  onDrop: DraggableRowProps<T>['onDrop'];
+  previousRowIdx: number;
+  onDrop: (draggedRow: T, idx: number) => void;
 };
 
-const InBetween = <T,>({
+const InBetween = <T extends object>({
   colSpan,
-  idx,
+  previousRowIdx,
   onDrop,
 }: InBetweenProps<T>): JSX.Element => {
   const [{ isOver }, drop] = useDrop(
     () => ({
       accept: 'row',
-      drop: (draggedRow: Row<T>) => onDrop(draggedRow.index, idx),
+      drop: (draggedRow: Row<T>) => {
+        console.log('wefwef', draggedRow);
+        return onDrop(draggedRow.original, previousRowIdx);
+      },
       canDrop: () => true,
       collect: (monitor) => ({
         isOver: !!monitor.isOver(),
@@ -124,17 +129,19 @@ type Props<T> = {
   columns: ColumnDef<T>[];
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   getRowId?: (row: any) => string;
-  sx: React.CSSProperties;
-  onDropBetweenRow?: DraggableRowProps<T>['onDrop'];
+  sx?: React.CSSProperties;
+  onDropBetweenRow?: InBetweenProps<T>['onDrop'];
   onDropInRow?: DraggableRowProps<T>['onDrop'];
   page: number;
   pageSize: number;
   onPageChange?: (newPage: number) => void;
   isMovable?: boolean;
   showCheckbox?: boolean;
+  id?: string;
 };
 
 const NewTable = <T extends object>({
+  id,
   data,
   columns,
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -156,18 +163,18 @@ const NewTable = <T extends object>({
   };
 
   // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-  const onDropInRow = (draggedRowIndex: number, targetRowIndex: number) => {
+  const onDropInRow = (draggedRow: T, targetRow: T) => {
     console.log('move into');
-    onDropInRowFn?.(draggedRowIndex, targetRowIndex);
+    onDropInRowFn?.(draggedRow, targetRow);
   };
 
   const onDropBetweenRow = (
-    draggedRowIndex: number,
-    targetRowIndex: number,
+    draggedRow: T,
+    previousRowIdx: number,
     // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
   ) => {
     console.log('move into');
-    onDropBetweenRowFn?.(draggedRowIndex, targetRowIndex);
+    onDropBetweenRowFn?.(draggedRow, previousRowIdx);
   };
 
   const table = useReactTable({
@@ -184,7 +191,7 @@ const NewTable = <T extends object>({
 
   return (
     <DndProvider backend={HTML5Backend}>
-      <TableContainer>
+      <TableContainer id={id}>
         <Table style={{ width: '100%', ...sx }}>
           <TableHead>
             {table.getHeaderGroups().map((headerGroup) => (
@@ -209,22 +216,22 @@ const NewTable = <T extends object>({
             ))}
           </TableHead>
           <TableBody>
-            <InBetween
+            <InBetween<T>
               colSpan={columns.length + indentIdx}
-              idx={0}
+              previousRowIdx={0}
               onDrop={onDropBetweenRow}
             />
             {table.getRowModel().rows.map((row, idx) => (
               <>
-                <DraggableRow
+                <DraggableRow<T>
                   isMovable={isMovable}
                   key={row.id}
                   row={row}
                   onDrop={onDropInRow}
                 />
-                <InBetween
+                <InBetween<T>
                   colSpan={columns.length + indentIdx}
-                  idx={idx + indentIdx}
+                  previousRowIdx={idx + 1}
                   onDrop={onDropBetweenRow}
                 />
               </>

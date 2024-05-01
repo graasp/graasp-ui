@@ -3,12 +3,10 @@ import { expect } from '@storybook/jest';
 import type { Meta, StoryObj } from '@storybook/react';
 import { waitFor, within } from '@storybook/testing-library';
 import { ColumnDef } from '@tanstack/react-table';
-import 'ag-grid-community/dist/styles/ag-grid.min.css';
-import 'ag-grid-community/dist/styles/ag-theme-material.min.css';
-
-import React from 'react';
 
 import NewTable from './NewTable';
+
+// TODO: REMOVE FAKER
 
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 const range = (len: number) => {
