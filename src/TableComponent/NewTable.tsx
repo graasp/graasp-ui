@@ -23,8 +23,6 @@ import React from 'react';
 import { DndProvider, useDrag, useDrop } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 
-import './styles.css';
-
 type DraggableRowProps<T> = {
   row: Row<T>;
   onDrop: (draggedRow: T, targetRow: T) => void;
@@ -32,6 +30,7 @@ type DraggableRowProps<T> = {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onClick?: (el: T) => void;
   showCheckbox?: boolean;
+  disableClicking: string[];
 };
 
 const DraggableRow = <T extends object>({
@@ -40,6 +39,7 @@ const DraggableRow = <T extends object>({
   isMovable = false,
   showCheckbox = false,
   onClick,
+  disableClicking,
 }: DraggableRowProps<T>): JSX.Element => {
   const [{ isOver }, dropRef] = useDrop({
     accept: 'row',
@@ -61,14 +61,21 @@ const DraggableRow = <T extends object>({
 
   return (
     <TableRow
-      className={onClick ? 'table-row' : ''}
-      // ref={previewRef} //previewRef could go here
       style={{
         opacity: isDragging ? 0.5 : 1,
         background: isOver ? 'lightgrey' : undefined,
       }}
-      onClick={() => onClick?.(row.original)}
       ref={dropRef}
+      sx={
+        onClick
+          ? {
+              '&:hover': {
+                cursor: 'pointer',
+                backgroundColor: 'rgba(0, 0, 0, 0.1)',
+              },
+            }
+          : {}
+      }
     >
       {isMovable && (
         <TableCell sx={{ p: 1 }}>
@@ -83,7 +90,16 @@ const DraggableRow = <T extends object>({
         </TableCell>
       )}
       {row.getVisibleCells().map((cell) => (
-        <TableCell sx={{ p: 1 }} key={cell.id}>
+        <TableCell
+          sx={{ p: 1 }}
+          key={cell.id}
+          onClick={() => {
+            // necessary to check false because it should be true by default
+            if (!disableClicking.includes(cell.column.id)) {
+              onClick?.(row.original);
+            }
+          }}
+        >
           {flexRender(cell.column.columnDef.cell, cell.getContext())}
         </TableCell>
       ))}
@@ -94,6 +110,7 @@ const DraggableRow = <T extends object>({
 type InBetweenProps<T> = {
   colSpan: number;
   previousRowIdx: number;
+  enableMoveInBetween: boolean;
   onDrop: (draggedRow: T, idx: number) => void;
 };
 
@@ -101,6 +118,7 @@ const InBetween = <T extends object>({
   colSpan,
   previousRowIdx,
   onDrop,
+  enableMoveInBetween,
 }: InBetweenProps<T>): JSX.Element => {
   const [{ isOver }, drop] = useDrop(
     () => ({
@@ -109,7 +127,7 @@ const InBetween = <T extends object>({
         console.log('wefwef', draggedRow);
         return onDrop(draggedRow.original, previousRowIdx);
       },
-      canDrop: () => true,
+      canDrop: () => enableMoveInBetween,
       collect: (monitor) => ({
         isOver: !!monitor.isOver(),
         canDrop: !!monitor.canDrop(),
@@ -120,14 +138,14 @@ const InBetween = <T extends object>({
 
   return (
     <TableRow ref={drop}>
-      {!isOver && (
+      {(!isOver || !enableMoveInBetween) && (
         <TableCell colSpan={colSpan} style={{ padding: 0, height: 5 }} />
       )}
-      {isOver && (
+      {isOver && enableMoveInBetween && (
         <TableCell
           colSpan={colSpan}
           sx={{ background: 'green', height: 5, padding: 0 }}
-          padding='none'
+          // padding='none'
         />
       )}
     </TableRow>
@@ -149,6 +167,8 @@ type Props<T> = {
   showCheckbox?: boolean;
   id?: string;
   onClick?: DraggableRowProps<T>['onClick'];
+  disableClicking?: DraggableRowProps<T>['disableClicking'];
+  enableMoveInBetween?: boolean;
 };
 
 const NewTable = <T extends object>({
@@ -166,6 +186,8 @@ const NewTable = <T extends object>({
   isMovable = false,
   showCheckbox = false,
   onClick,
+  disableClicking = [],
+  enableMoveInBetween = true,
 }: Props<T>): JSX.Element => {
   const [sorting, setSorting] = React.useState<SortingState>([]);
 
@@ -199,10 +221,6 @@ const NewTable = <T extends object>({
     debugColumns: true,
     getSortedRowModel: getSortedRowModel(), //client-side sorting
     onSortingChange: setSorting, //optionally control sorting state in your own scope for easy access
-    // sortingFns: {
-    //   sortStatusFn, //or provide our custom sorting function globally for all columns to be able to use
-    // },
-    //no need to pass pageCount or rowCount with client-side pagination as it is calculated automatically
     state: {
       sorting,
     },
@@ -221,10 +239,16 @@ const NewTable = <T extends object>({
                 {(isMovable || showCheckbox) && <TableCell width={1} />}
                 {headerGroup.headers.map((header) => (
                   <TableCell
-                    className='table-head'
                     key={header.id}
                     colSpan={header.colSpan}
-                    sx={{ fontWeight: 'bold' }}
+                    sx={{
+                      fontWeight: 'bold',
+                      '&:hover': {
+                        cursor: header.column.getCanSort()
+                          ? 'pointer'
+                          : 'default',
+                      },
+                    }}
                     onClick={header.column.getToggleSortingHandler()}
                   >
                     {header.isPlaceholder
@@ -247,6 +271,7 @@ const NewTable = <T extends object>({
               colSpan={columns.length + indentIdx}
               previousRowIdx={0}
               onDrop={onDropBetweenRow}
+              enableMoveInBetween={enableMoveInBetween}
             />
             {table.getRowModel().rows.map((row, idx) => (
               <>
@@ -256,8 +281,10 @@ const NewTable = <T extends object>({
                   row={row}
                   onDrop={onDropInRow}
                   onClick={onClick}
+                  disableClicking={disableClicking}
                 />
                 <InBetween<T>
+                  enableMoveInBetween={enableMoveInBetween}
                   colSpan={columns.length + indentIdx}
                   previousRowIdx={idx + 1}
                   onDrop={onDropBetweenRow}
