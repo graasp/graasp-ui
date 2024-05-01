@@ -81,4 +81,4 @@ export * from './ThemeContext';
 
 export * from './types';
 
-export { default as NewTable } from './TableComponent/NewTable';
+export { default as NewTable, useSorting } from './TableComponent/NewTable';
