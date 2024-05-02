@@ -31,15 +31,18 @@ const DraggableRow = <T extends object>({
   onCheckboxClick,
   checked,
 }: DraggableRowProps<T>): JSX.Element => {
-  const [{ isOver }, dropRef] = useDrop({
-    accept: 'row',
-    drop: (draggedRow: Row<T>) => {
-      onDrop(draggedRow.original, row.original);
+  const [{ isOver }, dropRef] = useDrop(
+    {
+      accept: 'row',
+      drop: (draggedRow: Row<T>) => {
+        onDrop(draggedRow.original, row.original);
+      },
+      collect: (monitor) => ({
+        isOver: !!monitor.isOver(),
+      }),
     },
-    collect: (monitor) => ({
-      isOver: !!monitor.isOver(),
-    }),
-  });
+    [onDrop],
+  );
 
   const [{ isDragging }, dragRef] = useDrag({
     collect: (monitor) => ({

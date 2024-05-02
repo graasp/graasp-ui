@@ -49,7 +49,7 @@ const InBetween = <T extends object>({
         canDrop: !!monitor.canDrop(),
       }),
     }),
-    [],
+    [onDrop],
   );
 
   return (
