@@ -28,7 +28,7 @@ const meta = {
 } satisfies Meta<typeof RowMenu>;
 export default meta;
 
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<typeof RowMenu>;
 
 export const Default = {
   args: {
