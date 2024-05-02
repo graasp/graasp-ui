@@ -49,7 +49,7 @@ const InBetween = <T extends object>({
         canDrop: !!monitor.canDrop(),
       }),
     }),
-    [],
+    [onDrop],
   );
 
   return (
@@ -200,8 +200,8 @@ const NewTable = <T extends object>({
     columns,
     getCoreRowModel: getCoreRowModel(),
     // getRowId,
-    debugTable: true,
-    debugHeaders: true,
+    debugTable: false,
+    debugHeaders: false,
     debugColumns: true,
     ...sortingProps,
   });
