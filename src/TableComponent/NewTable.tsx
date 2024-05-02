@@ -21,8 +21,6 @@ import React, { useState } from 'react';
 import { DndProvider, useDrag, useDrop } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 
-import TableToolbar from './TableToolbar';
-
 type DraggableRowProps<T> = {
   row: Row<T>;
   onDrop: (draggedRow: T, targetRow: T) => void;
@@ -89,7 +87,7 @@ const DraggableRow = <T extends object>({
       )}
       {showCheckbox && (
         <TableCell sx={{ p: 0 }}>
-          <Checkbox onChange={(e) => onCheckboxClick?.(e, row)} />
+          <Checkbox onChange={(e) => onCheckboxClick?.(e, row.original)} />
         </TableCell>
       )}
       {row.getVisibleCells().map((cell) => (
@@ -195,10 +193,11 @@ type Props<T> = {
   disableClicking?: DraggableRowProps<T>['disableClicking'];
   onCheckboxClick?: DraggableRowProps<T>['onCheckboxClick'];
   enableMoveInBetween?: boolean;
-  selected?: string[];
   sorting?: SortingState;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onSortingChange?: any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  header?: any;
 };
 
 const NewTable = <T extends object>({
@@ -220,8 +219,8 @@ const NewTable = <T extends object>({
   enableMoveInBetween = true,
   onCheckboxClick,
   onSortingChange,
-  selected = [],
   sorting = [],
+  header,
 }: Props<T>): JSX.Element => {
   // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
   const handleChangePage = (_event: unknown, newPage: number) => {
@@ -258,18 +257,13 @@ const NewTable = <T extends object>({
   });
 
   const indentIdx = (isMovable ? 1 : 0) + (showCheckbox ? 1 : 0);
-  const totalColSpan =
-    table.getHeaderGroups().reduce((acc, h) => acc + h.headers.length, 0) +
-    indentIdx;
 
   return (
     <DndProvider backend={HTML5Backend}>
       <TableContainer id={id}>
         <Table style={{ width: '100%', ...sx }}>
           <TableHead>
-            {selected.length ? (
-              <TableToolbar selected={selected} colSpan={totalColSpan} />
-            ) : (
+            {header || (
               <>
                 {table.getHeaderGroups().map((headerGroup) => (
                   <TableRow key={headerGroup.id}>
