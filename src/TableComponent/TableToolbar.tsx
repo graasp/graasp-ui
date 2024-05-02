@@ -1,9 +1,9 @@
-import { TableCell, TableRow, useTheme } from '@mui/material';
+import { Stack, TableCell, TableRow, useTheme } from '@mui/material';
 import Typography from '@mui/material/Typography';
 
 interface Props {
   selected: string[];
-  Actions?: ({ selectedIds }: { selectedIds: string[] }) => JSX.Element;
+  actions?: JSX.Element;
   NoSelectionToolbar?: () => JSX.Element;
   countTextFunction?: (selection: string[]) => string;
   colSpan?: number;
@@ -11,7 +11,7 @@ interface Props {
 
 const TableToolbar = ({
   selected,
-  Actions,
+  actions,
   NoSelectionToolbar,
   countTextFunction,
   colSpan = 1,
@@ -29,18 +29,20 @@ const TableToolbar = ({
         }}
       >
         <TableCell colSpan={colSpan}>
-          <Typography
-            sx={{
-              display: 'flex',
-              alignItems: 'center',
-              width: '100%',
-            }}
-            color='secondary'
-            variant='subtitle1'
-          >
-            {countTextFunction?.(selected) ?? `${numSelected} selected`}
-          </Typography>
-          {Actions?.({ selectedIds: selected })}
+          <Stack direction='row'>
+            <Typography
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+                width: '100%',
+              }}
+              color='secondary'
+              variant='subtitle1'
+            >
+              {countTextFunction?.(selected) ?? `${numSelected} selected`}
+            </Typography>
+            {actions}
+          </Stack>
         </TableCell>
       </TableRow>
     );

@@ -22,7 +22,6 @@ import { ReactElement, useCallback, useEffect, useRef, useState } from 'react';
 
 import DragCellRenderer from './DragCellRenderer';
 import TableNoRowsContent from './TableNoRowsContent';
-import TableToolbar from './TableToolbar';
 import { suppressKeyboardEventForParentCell } from './utils';
 
 const DRAG_COLUMN_WIDTH = 22;
@@ -144,7 +143,6 @@ const StyledBox = styled(Box, {
 function GraaspTable<T>({
   className = 'ag-theme-material',
   columnDefs,
-  countTextFunction,
   emptyMessage,
   enableBrowserTooltips = true,
   enableDrag = false,
@@ -152,7 +150,6 @@ function GraaspTable<T>({
   id,
   isClickable = true,
   NoRowsComponent,
-  NoSelectionToolbar,
   onCellClicked,
   onDragEnd,
   onRowDataChanged,
@@ -167,7 +164,6 @@ function GraaspTable<T>({
   pagination = true,
   sx,
   tableHeight = 500,
-  ToolbarActions,
   page = 1,
   onPageChange,
   totalCount,
@@ -176,7 +172,6 @@ function GraaspTable<T>({
   pageSize = ITEMS_DEFAULT_PAGE_SIZE,
 }: TableProps<T>): JSX.Element {
   const gridRef = useRef<AgGridReact>(null);
-  const [selected, setSelected] = useState<string[]>([]);
   const [gridApi, setGridApi] = useState<GridApi>();
   const [rowData, setRowData] = useState<T[]>(initialData);
 
@@ -194,9 +189,7 @@ function GraaspTable<T>({
     gridApi?.sizeColumnsToFit();
   };
 
-  const changeSelection = (): void => {
-    setSelected(gridApi?.getSelectedRows().map((r) => r.id) ?? []);
-  };
+  const changeSelection = (): void => {};
 
   const onKeyPress = (event: CellKeyDownEvent): void => {
     if ((event.event as KeyboardEvent)?.key === 'Enter') {
@@ -259,12 +252,12 @@ function GraaspTable<T>({
 
   return (
     <StyledDiv>
-      <TableToolbar
+      {/* <TableToolbar
         selected={selected}
         Actions={ToolbarActions}
         NoSelectionToolbar={NoSelectionToolbar}
         countTextFunction={countTextFunction}
-      />
+      /> */}
       <StyledBox
         className={className}
         id={id}

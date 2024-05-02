@@ -3,8 +3,12 @@ import { expect } from '@storybook/jest';
 import type { Meta, StoryObj } from '@storybook/react';
 import { waitFor, within } from '@storybook/testing-library';
 import { ColumnDef } from '@tanstack/react-table';
+import { Home } from 'lucide-react';
+
+import { IconButton } from '@mui/material';
 
 import NewTable, { useSorting } from './NewTable';
+import TableToolbar from './TableToolbar';
 
 // TODO: REMOVE FAKER
 
@@ -409,15 +413,25 @@ export const ShowToolbar: Story = {
     pageSize: 6,
     page: 0,
     data: makeData(6),
-    isMovable: true,
     onClick: (e) => {
       console.log('click', e);
     },
     disableClicking: ['blank'],
     showCheckbox: true,
-    selected: ['myid'],
+    header: (
+      <TableToolbar
+        actions={
+          <IconButton color='secondary'>
+            <Home />
+          </IconButton>
+        }
+        colSpan={columns.length + 1}
+        selected={['2']}
+      />
+    ),
   },
 };
+
 export const DefaultSorting: Story = {
   args: {
     // ts issue

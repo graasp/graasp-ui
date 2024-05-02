@@ -82,3 +82,4 @@ export * from './ThemeContext';
 export * from './types';
 
 export { default as NewTable, useSorting } from './TableComponent/NewTable';
+export { default as TableToolbar } from './TableComponent/TableToolbar';
