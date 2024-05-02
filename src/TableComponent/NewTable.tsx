@@ -3,7 +3,8 @@ import {
   Row,
   SortingState,
   flexRender,
-  getCoreRowModel, // getSortedRowModel,
+  getCoreRowModel,
+  getSortedRowModel, // getSortedRowModel,
   useReactTable,
 } from '@tanstack/react-table';
 
@@ -193,9 +194,13 @@ type Props<T> = {
   disableClicking?: DraggableRowProps<T>['disableClicking'];
   onCheckboxClick?: DraggableRowProps<T>['onCheckboxClick'];
   enableMoveInBetween?: boolean;
+
+  /** controller sorting, not defining them will allow automatic client side sorting based on sortingFn */
   sorting?: SortingState;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onSortingChange?: any;
+
+  /** toolbar */
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   header?: any;
 };
@@ -242,6 +247,17 @@ const NewTable = <T extends object>({
     onDropBetweenRowFn?.(draggedRow, previousRowIdx);
   };
 
+  const sortingProps = onSortingChange
+    ? {
+        onSortingChange,
+        state: {
+          sorting,
+        },
+      }
+    : {
+        getSortedRowModel: getSortedRowModel(), //client-side sorting
+      };
+
   const table = useReactTable({
     data,
     columns,
@@ -250,10 +266,7 @@ const NewTable = <T extends object>({
     debugTable: true,
     debugHeaders: true,
     debugColumns: true,
-    // getSortedRowModel: getSortedRowModel(), //client-side sorting
-    state: {
-      sorting,
-    },
+    ...sortingProps,
   });
 
   const indentIdx = (isMovable ? 1 : 0) + (showCheckbox ? 1 : 0);
@@ -282,10 +295,13 @@ const NewTable = <T extends object>({
                               : 'default',
                           },
                         }}
-                        onClick={() => {
-                          onSortingChange?.(header.id);
-                          header.column.getToggleSortingHandler();
-                        }}
+                        onClick={
+                          onSortingChange
+                            ? () => {
+                                onSortingChange?.(header.id);
+                              }
+                            : header.column.getToggleSortingHandler()
+                        }
                       >
                         {header.isPlaceholder
                           ? null

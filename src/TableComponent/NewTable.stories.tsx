@@ -1,3 +1,4 @@
+import { TABLE_CATEGORIES } from '@/utils/storybook';
 import { faker } from '@faker-js/faker';
 import { expect } from '@storybook/jest';
 import type { Meta, StoryObj } from '@storybook/react';
@@ -144,19 +145,25 @@ const meta: Meta<typeof NewTable> = {
     //     category: agGridCategory,
     //   },
     // },
-    // onCellClicked: {
-    //   table: {
-    //     category: TABLE_CATEGORIES.EVENTS,
-    //   },
-    //   action: 'cell clicked',
-    // },
+    onClick: {
+      table: {
+        category: TABLE_CATEGORIES.EVENTS,
+      },
+      action: 'cell clicked',
+    },
+    onCheckboxClick: {
+      table: {
+        category: TABLE_CATEGORIES.EVENTS,
+      },
+      action: 'cell clicked',
+    },
   },
 };
 export default meta;
 
 type Story = StoryObj<typeof NewTable>;
 
-export const Simple: Story = {
+export const SimpleWithClientSideSorting: Story = {
   args: {
     // ts issue
     // https://github.com/TanStack/table/issues/4382
