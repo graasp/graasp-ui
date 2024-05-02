@@ -10,11 +10,10 @@ import {
 
 import { useState } from 'react';
 // we could replace dnd with this https://docs.dndkit.com
-import { DndProvider, useDrag, useDrop } from 'react-dnd';
+import { DndProvider, useDrop } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 
-import DragIndicatorIcon from '@mui/icons-material/DragIndicator';
-import { Checkbox, TableBody } from '@mui/material';
+import { TableBody } from '@mui/material';
 import Table from '@mui/material/Table';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
@@ -22,92 +21,7 @@ import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 
-type DraggableRowProps<T> = {
-  row: Row<T>;
-  onDrop: (draggedRow: T, targetRow: T) => void;
-  isMovable?: boolean;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  onClick?: (el: T) => void;
-  showCheckbox?: boolean;
-  disableClicking: string[];
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  onCheckboxClick?: any;
-};
-
-const DraggableRow = <T extends object>({
-  row,
-  onDrop,
-  isMovable = false,
-  showCheckbox = false,
-  onClick,
-  disableClicking,
-  onCheckboxClick,
-}: DraggableRowProps<T>): JSX.Element => {
-  const [{ isOver }, dropRef] = useDrop({
-    accept: 'row',
-    drop: (draggedRow: Row<T>) => {
-      onDrop(draggedRow.original, row.original);
-    },
-    collect: (monitor) => ({
-      isOver: !!monitor.isOver(),
-    }),
-  });
-
-  const [{ isDragging }, dragRef] = useDrag({
-    collect: (monitor) => ({
-      isDragging: monitor.isDragging(),
-    }),
-    item: () => row,
-    type: 'row',
-  });
-
-  return (
-    <TableRow
-      style={{
-        opacity: isDragging ? 0.5 : 1,
-        background: isOver ? 'lightgrey' : undefined,
-      }}
-      ref={dropRef}
-      sx={
-        onClick
-          ? {
-              '&:hover': {
-                cursor: 'pointer',
-                backgroundColor: 'rgba(0, 0, 0, 0.1)',
-              },
-            }
-          : {}
-      }
-    >
-      {isMovable && (
-        <TableCell sx={{ p: 0 }}>
-          <span style={{ cursor: 'move' }} ref={dragRef}>
-            <DragIndicatorIcon fontSize='small' />
-          </span>
-        </TableCell>
-      )}
-      {showCheckbox && (
-        <TableCell sx={{ p: 0 }}>
-          <Checkbox onChange={(e) => onCheckboxClick?.(e, row.original)} />
-        </TableCell>
-      )}
-      {row.getVisibleCells().map((cell) => (
-        <TableCell
-          sx={{ p: 1 }}
-          key={cell.id}
-          onClick={() => {
-            // necessary to check false because it should be true by default
-            if (!disableClicking.includes(cell.column.id)) {
-              onClick?.(row.original);
-            }
-          }}
-        >
-          {flexRender(cell.column.columnDef.cell, cell.getContext())}
-        </TableCell>
-      ))}
-    </TableRow>
-  );
-};
+import DraggableRow, { DraggableRowProps, TableMetaType } from './DraggableRow';
 
 type InBetweenProps<T> = {
   colSpan: number;
@@ -179,7 +93,12 @@ export type TableProps<T> = {
   /** data to show, pagination happens outside of the table */
   data: T[];
 
-  /** definition of the columns */
+  /** definition of the columns
+   * meta: {
+   *  disableClicking: boolean;
+   *  align: left | right | center
+   * }
+   */
   columns: ColumnDef<T>[];
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -198,14 +117,9 @@ export type TableProps<T> = {
   /** handler for row click */
   onClick?: DraggableRowProps<T>['onClick'];
 
-  /**
-   * column id that should not be clickable
-   * no property exist in the col def
-   */
-  disableClicking?: DraggableRowProps<T>['disableClicking'];
-
   /** show checkbox */
   showCheckbox?: boolean;
+  isChecked?: (row: T) => boolean;
   /** handler on checkbox click */
   onCheckboxClick?: DraggableRowProps<T>['onCheckboxClick'];
 
@@ -243,12 +157,12 @@ const NewTable = <T extends object>({
   isMovable = false,
   showCheckbox = false,
   onClick,
-  disableClicking = [],
   enableMoveInBetween = true,
   onCheckboxClick,
   onSortingChange,
   sorting = [],
   header,
+  isChecked,
 }: TableProps<T>): JSX.Element => {
   // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
   const handleChangePage = (_event: unknown, newPage: number) => {
@@ -310,6 +224,9 @@ const NewTable = <T extends object>({
                       <TableCell
                         key={header.id}
                         colSpan={header.colSpan}
+                        align={
+                          (header.column.columnDef.meta as TableMetaType)?.align
+                        }
                         sx={{
                           fontWeight: 'bold',
                           '&:hover': {
@@ -360,9 +277,9 @@ const NewTable = <T extends object>({
                   row={row}
                   onDrop={onDropInRow}
                   onClick={onClick}
-                  disableClicking={disableClicking}
                   showCheckbox={showCheckbox}
                   onCheckboxClick={onCheckboxClick}
+                  checked={isChecked?.(row.original)}
                 />
                 <InBetween<T>
                   enableMoveInBetween={enableMoveInBetween}

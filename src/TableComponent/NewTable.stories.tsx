@@ -56,11 +56,18 @@ const columns: ColumnDef<Person>[] = [
     accessorKey: 'visits',
     header: () => <span>Visits</span>,
     sortingFn: 'alphanumeric',
+    // sortDescFirst
+    meta: {
+      align: 'right',
+    },
   },
   {
     id: 'blank',
     header: () => <span>Blank Column</span>,
     enableSorting: false,
+    meta: {
+      disableClicking: true,
+    },
   },
 ];
 const newPerson = (): Person => {
@@ -370,7 +377,7 @@ export const ShowCheckbox: Story = {
     onClick: (e) => {
       console.log('click', e);
     },
-    disableClicking: ['blank'],
+    isChecked: (el) => el.age < 20,
     showCheckbox: true,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     onCheckboxClick: (e: any, row: any) => {
@@ -454,6 +461,7 @@ export const DefaultSorting: Story = {
     columns: columns as any,
     pageSize: 6,
     page: 0,
+
     data: makeData(6),
     isMovable: true,
     onClick: (e) => {

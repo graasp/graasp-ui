@@ -1,4 +1,6 @@
-import { Stack, TableCell, TableRow, useTheme } from '@mui/material';
+import { MouseEventHandler } from 'react';
+
+import { Checkbox, Stack, TableCell, TableRow, useTheme } from '@mui/material';
 import Typography from '@mui/material/Typography';
 
 interface Props {
@@ -7,6 +9,7 @@ interface Props {
   NoSelectionToolbar?: () => JSX.Element;
   countTextFunction?: (selection: string[]) => string;
   colSpan?: number;
+  onCheckboxClick?: MouseEventHandler<HTMLButtonElement>;
 }
 
 const TableToolbar = ({
@@ -15,6 +18,7 @@ const TableToolbar = ({
   NoSelectionToolbar,
   countTextFunction,
   colSpan = 1,
+  onCheckboxClick,
 }: Props): JSX.Element | null => {
   const theme = useTheme();
   const numSelected = selected.length;
@@ -30,6 +34,7 @@ const TableToolbar = ({
       >
         <TableCell colSpan={colSpan}>
           <Stack direction='row'>
+            <Checkbox checked color='secondary' onClick={onCheckboxClick} />
             <Typography
               sx={{
                 display: 'flex',
