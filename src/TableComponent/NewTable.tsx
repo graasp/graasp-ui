@@ -4,9 +4,14 @@ import {
   SortingState,
   flexRender,
   getCoreRowModel,
-  getSortedRowModel, // getSortedRowModel,
+  getSortedRowModel,
   useReactTable,
 } from '@tanstack/react-table';
+
+import { useState } from 'react';
+// we could replace dnd with this https://docs.dndkit.com
+import { DndProvider, useDrag, useDrop } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
 
 import DragIndicatorIcon from '@mui/icons-material/DragIndicator';
 import { Checkbox, TableBody } from '@mui/material';
@@ -16,11 +21,6 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
-
-import React, { useState } from 'react';
-// we could replace dnd with this https://docs.dndkit.com
-import { DndProvider, useDrag, useDrop } from 'react-dnd';
-import { HTML5Backend } from 'react-dnd-html5-backend';
 
 type DraggableRowProps<T> = {
   row: Row<T>;
@@ -147,7 +147,6 @@ const InBetween = <T extends object>({
         <TableCell
           colSpan={colSpan}
           sx={{ background: 'green', height: 5, padding: 0 }}
-          // padding='none'
         />
       )}
     </TableRow>
@@ -176,24 +175,48 @@ export const useSorting = (
   return [sorting, smartSetSorting];
 };
 
-type Props<T> = {
+export type TableProps<T> = {
+  /** data to show, pagination happens outside of the table */
   data: T[];
+
+  /** definition of the columns */
   columns: ColumnDef<T>[];
+
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  getRowId?: (row: any) => string;
-  sx?: React.CSSProperties;
-  onDropBetweenRow?: InBetweenProps<T>['onDrop'];
-  onDropInRow?: DraggableRowProps<T>['onDrop'];
+  // getRowId?: (row: any) => string;
+
+  /** pagination, starts at 0 */
   page: number;
   pageSize: number;
+  totalCount: number;
+  /** handler for page change */
   onPageChange?: (newPage: number) => void;
-  isMovable?: boolean;
-  showCheckbox?: boolean;
+
+  /** table id */
   id?: string;
+
+  /** handler for row click */
   onClick?: DraggableRowProps<T>['onClick'];
+
+  /**
+   * column id that should not be clickable
+   * no property exist in the col def
+   */
   disableClicking?: DraggableRowProps<T>['disableClicking'];
+
+  /** show checkbox */
+  showCheckbox?: boolean;
+  /** handler on checkbox click */
   onCheckboxClick?: DraggableRowProps<T>['onCheckboxClick'];
+
+  /** show drag anchor */
+  isMovable?: boolean;
+  /** handler on drop in a row */
+  onDropInRow?: DraggableRowProps<T>['onDrop'];
+  /** enable to drag in between rows */
   enableMoveInBetween?: boolean;
+  /** handler on drop in between rows */
+  onDropBetweenRow?: InBetweenProps<T>['onDrop'];
 
   /** controller sorting, not defining them will allow automatic client side sorting based on sortingFn */
   sorting?: SortingState;
@@ -201,8 +224,7 @@ type Props<T> = {
   onSortingChange?: any;
 
   /** toolbar */
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  header?: any;
+  header?: JSX.Element;
 };
 
 const NewTable = <T extends object>({
@@ -210,12 +232,13 @@ const NewTable = <T extends object>({
   data,
   columns,
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  getRowId = (row: any) => row.userId,
-  sx = {},
+  // getRowId = (row: any) => row.userId,
+  // sx = {},
   onDropInRow: onDropInRowFn,
   onDropBetweenRow: onDropBetweenRowFn,
   page,
   pageSize,
+  totalCount,
   onPageChange,
   isMovable = false,
   showCheckbox = false,
@@ -226,7 +249,7 @@ const NewTable = <T extends object>({
   onSortingChange,
   sorting = [],
   header,
-}: Props<T>): JSX.Element => {
+}: TableProps<T>): JSX.Element => {
   // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
   const handleChangePage = (_event: unknown, newPage: number) => {
     onPageChange?.(newPage);
@@ -262,7 +285,7 @@ const NewTable = <T extends object>({
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
-    getRowId,
+    // getRowId,
     debugTable: true,
     debugHeaders: true,
     debugColumns: true,
@@ -274,7 +297,7 @@ const NewTable = <T extends object>({
   return (
     <DndProvider backend={HTML5Backend}>
       <TableContainer id={id}>
-        <Table style={{ width: '100%', ...sx }}>
+        <Table style={{ width: '100%' }}>
           <TableHead>
             {header || (
               <>
@@ -298,7 +321,9 @@ const NewTable = <T extends object>({
                         onClick={
                           onSortingChange
                             ? () => {
-                                onSortingChange?.(header.id);
+                                if (header.column.getCanSort()) {
+                                  onSortingChange?.(header.id);
+                                }
                               }
                             : header.column.getToggleSortingHandler()
                         }
@@ -352,7 +377,7 @@ const NewTable = <T extends object>({
       </TableContainer>
       <TablePagination
         component='div'
-        count={data.length}
+        count={totalCount}
         rowsPerPage={pageSize}
         rowsPerPageOptions={[]}
         page={page}

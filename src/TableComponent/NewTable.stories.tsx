@@ -60,6 +60,7 @@ const columns: ColumnDef<Person>[] = [
   {
     id: 'blank',
     header: () => <span>Blank Column</span>,
+    enableSorting: false,
   },
 ];
 const newPerson = (): Person => {
@@ -155,7 +156,13 @@ const meta: Meta<typeof NewTable> = {
       table: {
         category: TABLE_CATEGORIES.EVENTS,
       },
-      action: 'cell clicked',
+      action: 'checkbox clicked',
+    },
+    onPageChange: {
+      table: {
+        category: TABLE_CATEGORIES.EVENTS,
+      },
+      action: 'page change',
     },
   },
 };
@@ -471,6 +478,39 @@ export const DefaultSorting: Story = {
   },
 };
 
+export const Pagination: Story = {
+  args: {
+    // ts issue
+    // https://github.com/TanStack/table/issues/4382
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    columns: columns as any,
+    data: makeData(2),
+    isMovable: true,
+    onClick: (e) => {
+      console.log('click', e);
+    },
+    disableClicking: ['blank'],
+    showCheckbox: true,
+    page: 0,
+    pageSize: 2,
+    totalCount: 6,
+  },
+  render: (args) => {
+    const [sorting, setSorting] = useSorting([{ desc: true, id: 'firstName' }]);
+
+    return (
+      <NewTable
+        {...args}
+        sorting={sorting}
+        onSortingChange={(id: string) => {
+          console.log(id);
+          setSorting(id);
+        }}
+      />
+    );
+  },
+};
+
 // export const SimpleWithDrag: Story = {
 //   args: {
 //     tableHeight: 300,
@@ -524,35 +564,5 @@ export const DefaultSorting: Story = {
 //       },
 //     ],
 //     rowData: [],
-//   },
-// };
-
-// export const WithPagination: Story = {
-//   args: {
-//     page: 2,
-//     pageSize: 2,
-//     totalCount: rowData.length,
-//     columnDefs: [
-//       {
-//         headerCheckboxSelection: true,
-//         checkboxSelection: true,
-//         field: 'name',
-//         headerName: 'Name',
-//       },
-//       {
-//         field: 'type',
-//         headerName: 'Type',
-//         type: 'rightAligned',
-//         flex: 2,
-//       },
-//       {
-//         field: 'updatedAt',
-//         headerName: 'Updated At',
-//         flex: 3,
-//         type: 'rightAligned',
-//         valueFormatter: dateFormatter,
-//       },
-//     ],
-//     rowData: rowData.slice(4, 6),
 //   },
 // };
