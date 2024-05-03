@@ -107,11 +107,12 @@ export const FullWidth = {
     name: 'my card title',
     thumbnail: 'https://picsum.photos/200/100',
     creator: 'graasp',
-    footer: (
+    menuItems: [
       <IconButton>
         <MoreVertIcon />
-      </IconButton>
-    ),
+      </IconButton>,
+    ],
+    footer: <>my footer</>,
   },
 } satisfies Story;
 

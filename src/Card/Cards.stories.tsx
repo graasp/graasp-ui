@@ -51,9 +51,9 @@ export const GridOfDenseCards = {
             <Dense
               creator={faker.person.fullName()}
               name={faker.commerce.productName()}
-              description={faker.commerce.productDescription()}
+              content={<>{faker.word.noun()}</>}
               fullWidth
-              Badges={<ItemBadges isCollapsible isHidden />}
+              footer={<ItemBadges isCollapsible isHidden />}
             />
           </Grid2>
         ))}

@@ -1,6 +1,6 @@
 import MenuButton from '@/buttons/MenuButton/MenuButton';
 
-import { Stack, SxProps, styled } from '@mui/material';
+import { Grid, Stack, SxProps, styled } from '@mui/material';
 import MuiCard from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import Typography from '@mui/material/Typography';
@@ -91,24 +91,25 @@ const Card = ({
             alt={name}
           />
 
-          <Stack
-            direction='row'
+          <Grid
+            container
             // necessary to respect flex layout, otherwise it does not compress
             minWidth={0}
-            // ensure that if there is no description the element still goes edge to edge
             width='100%'
+            // ensure that if there is no description the element still goes edge to edge
             boxSizing='border-box'
             marginTop={1}
-            justifyContent={'space-between'}
+            justifyContent='space-between'
           >
-            <Stack
-              direction='row'
+            <Grid
+              item
+              xs={5}
               justifyContent='space-between'
               // align to the top so the button does not move when there is no creator
               alignItems='start'
               boxSizing='border-box'
             >
-              <Stack minWidth={0} direction='column'>
+              <Stack minWidth={0}>
                 <Typography noWrap variant={dense ? 'h5' : 'h3'}>
                   {name}
                 </Typography>
@@ -122,20 +123,24 @@ const Card = ({
                   </Typography>
                 )}
               </Stack>
-            </Stack>
-            <Stack>{content}</Stack>
-            <CardActions sx={{ pt: 0, pl: 0 }}>
-              <Stack
-                width='100%'
-                alignItems='end'
-                direction='row'
-                justifyContent='flex-end'
-              >
-                {footer}
-              </Stack>
-              {menuItems && <MenuButton menuItems={menuItems} />}
-            </CardActions>
-          </Stack>
+            </Grid>
+            <Grid item xs={3}>
+              {content}
+            </Grid>
+            <Grid item xs={3}>
+              <CardActions sx={{ pt: 0, pl: 0 }}>
+                <Stack
+                  width='100%'
+                  alignItems='end'
+                  direction='row'
+                  justifyContent='flex-end'
+                >
+                  {footer}
+                </Stack>
+                {menuItems && <MenuButton menuItems={menuItems} />}
+              </CardActions>
+            </Grid>
+          </Grid>
         </Stack>
       </StyledCard>
     );
