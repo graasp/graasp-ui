@@ -26,6 +26,37 @@ type Story = StoryObj<typeof meta>;
 
 export const Example: Story = {
   args: {
+    dense: true,
+    name: 'my card title',
+    description:
+      'my card description might be really long that is why we cut it after some lines of text to allow some space for more data',
+    image: 'https://picsum.photos/200/100',
+    creator: 'graasp',
+    Actions: (
+      <>
+        <IconButton>
+          <AcUnitIcon />
+        </IconButton>
+        <IconButton>
+          <AcUnitIcon />
+        </IconButton>
+        <IconButton>
+          <AcUnitIcon />
+        </IconButton>
+      </>
+    ),
+    ItemMenu: (
+      <IconButton>
+        <MoreVertIcon />
+      </IconButton>
+    ),
+  },
+} satisfies Story;
+
+export const Dense: Story = {
+  args: {
+    dense: true,
+
     name: 'my card title',
     description:
       'my card description might be really long that is why we cut it after some lines of text to allow some space for more data',

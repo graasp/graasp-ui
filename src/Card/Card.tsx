@@ -1,9 +1,9 @@
+import { ReactElement } from 'react';
+
 import { Box, Stack, SxProps, styled } from '@mui/material';
-import Card from '@mui/material/Card';
+import MuiCard from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import Typography from '@mui/material/Typography';
-
-import { FC, ReactElement } from 'react';
 
 import CardHeader from './CardHeader';
 
@@ -15,11 +15,12 @@ const StyledImage = styled('img')({
   objectFit: 'cover',
 });
 
-const StyledCard = styled(Card, {
+const StyledCard = styled(MuiCard, {
   shouldForwardProp: (prop) => prop !== 'fullWidth',
-})<{ fullWidth: boolean }>(({ theme, fullWidth }) => ({
+})<{ fullWidth: boolean; dense?: boolean }>(({ theme, dense, fullWidth }) => ({
   borderRadius: theme.spacing(1),
-  boxShadow: theme.shadows[2],
+  // work??
+  boxShadow: dense ? undefined : theme.shadows[2],
   width: fullWidth ? '100%' : 'max-content',
   maxWidth: '100%',
 }));
@@ -53,23 +54,31 @@ type CardProps = {
    * thumbnail component, override image
    */
   Thumbnail?: ReactElement;
+
+  dense?: boolean;
 };
 
-const Item: FC<CardProps> = ({
+const Card = ({
   Actions,
   Badges,
   cardId,
   creator,
   description,
-  height = DEFAULT_CARD_HEIGHT,
+  height: heightProp,
   image,
   ItemMenu,
   name,
   NameWrapper,
   sx,
+  dense,
   Thumbnail,
   fullWidth = false,
-}) => {
+}: CardProps): JSX.Element => {
+  let height = heightProp;
+  if (!height) {
+    height = dense ? 55 : DEFAULT_CARD_HEIGHT;
+  }
+
   const ThumbnailWrapper = styled(Box)({
     // use a square box to display the image
     width: height,
@@ -82,6 +91,52 @@ const Item: FC<CardProps> = ({
   const renderImage = (): ReactElement => {
     return Thumbnail || <StyledImage src={image} alt={name} />;
   };
+
+  // TODO: export in new component
+  if (dense) {
+    return (
+      <StyledCard dense={dense} id={cardId} sx={sx} fullWidth={fullWidth}>
+        <Stack sx={{ height, boxSizing: 'border-box' }} direction='row' gap={1}>
+          <ThumbnailWrapper>{renderImage()}</ThumbnailWrapper>
+
+          <Stack
+            direction='row'
+            // necessary to respect flex layout, otherwise it does not compress
+            minWidth={0}
+            // ensure that if there is no description the element still goes edge to edge
+            width='100%'
+            boxSizing='border-box'
+            marginTop={1}
+            justifyContent={'space-between'}
+          >
+            <CardHeader
+              name={name}
+              dense
+              creator={creator}
+              NameWrapper={NameWrapper}
+            />
+            {(Actions || Badges) && (
+              <CardActions sx={{ pt: 0, pl: 0 }}>
+                <Stack
+                  width='100%'
+                  alignItems='end'
+                  direction='row'
+                  justifyContent='space-between'
+                  gap={2}
+                >
+                  {Badges || <span />}
+                  <Box margin={(theme) => `-${theme.spacing(1)}`}>
+                    {Actions || <span />}
+                  </Box>
+                </Stack>
+              </CardActions>
+            )}
+          </Stack>
+          {ItemMenu}
+        </Stack>
+      </StyledCard>
+    );
+  }
 
   return (
     <StyledCard id={cardId} sx={sx} fullWidth={fullWidth}>
@@ -155,4 +210,4 @@ const Item: FC<CardProps> = ({
   );
 };
 
-export default Item;
+export default Card;
