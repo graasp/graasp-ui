@@ -228,7 +228,7 @@ function GraaspTable<T>({
 
   const buildColumnDefs = useCallback((): ColDef[] => {
     if (!enableDrag) {
-      return columnDefs;
+      return [...columnDefs];
     }
 
     // adds the column drag on the left of the table
