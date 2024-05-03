@@ -29,8 +29,12 @@ type Story = StoryObj<typeof meta>;
 export const Example: Story = {
   args: {
     name: 'my card title',
-    description:
-      'my card description might be really long that is why we cut it after some lines of text to allow some space for more data',
+    content: (
+      <span>
+        'my card description might be really long that is why we cut it after
+        some lines of text to allow some space for more data'
+      </span>
+    ),
     thumbnail: 'https://picsum.photos/200/100',
     creator: 'graasp',
     menuItems: [<ListItem>hello</ListItem>],
@@ -66,8 +70,7 @@ export const Dense: Story = {
   args: {
     dense: true,
     name: 'my card title',
-    description:
-      'my card description might be really long that is why we cut it after some lines of text to allow some space for more data',
+    content: <span>folder</span>,
     fullWidth: true,
     elevation: false,
     creator: 'graasp',
@@ -95,9 +98,13 @@ export const Dense: Story = {
 export const FullWidth = {
   args: {
     fullWidth: true,
+    content: (
+      <span>
+        'my card description might be really long that is why we cut it after
+        some lines of text to allow some space for more data'
+      </span>
+    ),
     name: 'my card title',
-    description:
-      'my card description might be really long that is why we cut it after some lines of text to allow some space for more data',
     thumbnail: 'https://picsum.photos/200/100',
     creator: 'graasp',
     footer: (
@@ -110,9 +117,13 @@ export const FullWidth = {
 
 export const Badges: Story = {
   args: {
+    content: (
+      <span>
+        'my card description might be really long that is why we cut it after
+        some lines of text to allow some space for more data'
+      </span>
+    ),
     name: 'my card title',
-    description:
-      'my card description might be really long that is why we cut it after some lines of text to allow some space for more data',
     thumbnail: 'https://picsum.photos/200/100',
     creator: 'graasp',
     footer: (
@@ -129,18 +140,26 @@ export const Badges: Story = {
 export const NoActions: Story = {
   args: {
     name: 'my card title',
-    description:
-      'my card description might be really long that is why we cut it after some lines of text to allow some space for more data and we can see the overflow also here it i going to be visible ?',
     thumbnail: 'https://picsum.photos/100/100',
     creator: 'graasp',
+    content: (
+      <span>
+        'my card description might be really long that is why we cut it after
+        some lines of text to allow some space for more data'
+      </span>
+    ),
   },
 };
 
 export const TallCard: Story = {
   args: {
+    content: (
+      <span>
+        'my card description might be really long that is why we cut it after
+        some lines of text to allow some space for more data'
+      </span>
+    ),
     name: 'my card title',
-    description:
-      'my card description might be really long that is why we cut it after some lines of text to allow some space for more data',
     thumbnail: 'https://picsum.photos/200/500',
     creator: 'graasp',
     height: 300,

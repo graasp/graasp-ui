@@ -34,7 +34,6 @@ type CardProps = {
    * creator name
    */
   creator?: string;
-  description?: string | JSX.Element;
   height?: number;
   /**
    * image link to display as thumbnail
@@ -50,13 +49,13 @@ type CardProps = {
   dense?: boolean;
   elevation?: boolean;
   menuItems?: JSX.Element[];
+  content?: JSX.Element;
 };
 
 const Card = ({
   footer,
   cardId,
   creator,
-  description,
   height: heightProp,
   name,
   sx,
@@ -65,6 +64,7 @@ const Card = ({
   menuItems,
   fullWidth = false,
   elevation = true,
+  content,
 }: CardProps): JSX.Element => {
   let height = heightProp;
   if (!height) {
@@ -123,6 +123,7 @@ const Card = ({
                 )}
               </Stack>
             </Stack>
+            <Stack>{content}</Stack>
             <CardActions sx={{ pt: 0, pl: 0 }}>
               <Stack
                 width='100%'
@@ -211,7 +212,7 @@ const Card = ({
               },
             }}
           >
-            {description}
+            {content}
           </Typography>
           {footer}
         </Stack>
