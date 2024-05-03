@@ -1,9 +1,6 @@
-import Thumbnail from '@/Thumbnail/Thumbnail';
-import ItemIcon from '@/icons/ItemIcon';
 import { ChevronRight } from 'lucide-react';
 
 import {
-  Box,
   Card,
   CardActionArea,
   CardHeader,
@@ -13,34 +10,11 @@ import {
 
 import { Link } from 'react-router-dom';
 
-const CARD_HEIGHT = '76px';
+import { ItemType } from '@graasp/sdk';
 
-type CardThumbnailProps = {
-  thumbnail?: string;
-  alt: string;
-};
-const CardThumbnail = ({ thumbnail, alt }: CardThumbnailProps): JSX.Element => {
-  if (thumbnail) {
-    return <Thumbnail url={thumbnail} alt={alt} maxHeight='100%' />;
-  }
+import CardThumbnail from './CardThumbnail';
 
-  return (
-    <Box
-      display='flex'
-      alignItems='center'
-      justifyContent='center'
-      bgcolor='#E4DFFF'
-      width={CARD_HEIGHT}
-      height='100%'
-      flexShrink={0}
-      minHeight={CARD_HEIGHT}
-      // minHeight={0}
-      minWidth={0}
-    >
-      <ItemIcon type='folder' alt={alt} />
-    </Box>
-  );
-};
+export const CARD_HEIGHT = 76;
 
 type Props = {
   id?: string;
@@ -75,7 +49,13 @@ const FolderCard = ({
     >
       <CardActionArea component={Link} to={to} sx={{ height: '100%' }}>
         <Stack direction='row' alignItems='center' height='100%' minWidth={0}>
-          <CardThumbnail thumbnail={thumbnail} alt={name} />
+          <CardThumbnail
+            width={CARD_HEIGHT}
+            minHeight={CARD_HEIGHT}
+            thumbnail={thumbnail}
+            alt={name}
+            type={ItemType.FOLDER}
+          />
           <CardHeader
             sx={{
               // needed to make container not overflow parent

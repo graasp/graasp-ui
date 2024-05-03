@@ -1,29 +1,26 @@
-import { ReactElement } from 'react';
+import MenuButton from '@/buttons/MenuButton/MenuButton';
 
-import { Box, Stack, SxProps, styled } from '@mui/material';
+import { Stack, SxProps, styled } from '@mui/material';
 import MuiCard from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import Typography from '@mui/material/Typography';
 
-import CardHeader from './CardHeader';
+import { ReactElement } from 'react';
+
+import CardThumbnail from './CardThumbnail';
 
 const DEFAULT_CARD_HEIGHT = 130;
 
-const StyledImage = styled('img')({
-  width: '100%',
-  height: '100%',
-  objectFit: 'cover',
-});
-
 const StyledCard = styled(MuiCard, {
-  shouldForwardProp: (prop) => prop !== 'fullWidth',
-})<{ fullWidth: boolean; dense?: boolean }>(({ theme, dense, fullWidth }) => ({
-  borderRadius: theme.spacing(1),
-  // work??
-  boxShadow: dense ? undefined : theme.shadows[2],
-  width: fullWidth ? '100%' : 'max-content',
-  maxWidth: '100%',
-}));
+  shouldForwardProp: (prop) => prop !== 'elevation' && prop !== 'fullWidth',
+})<{ fullWidth?: boolean; elevation?: boolean }>(
+  ({ theme, elevation, fullWidth }) => ({
+    borderRadius: theme.spacing(1),
+    boxShadow: elevation ? theme.shadows[2] : 'none',
+    width: fullWidth ? '100%' : 'max-content',
+    maxWidth: '100%',
+  }),
+);
 
 type CardProps = {
   name: string;
@@ -38,66 +35,61 @@ type CardProps = {
    */
   creator?: string;
   description?: string | JSX.Element;
-  height?: string | number;
+  height?: number;
   /**
    * image link to display as thumbnail
    */
-  image?: string;
-  ItemMenu?: ReactElement;
-  NameWrapper?: ({ children }: { children: JSX.Element }) => JSX.Element;
+  thumbnail?: string;
+  footer?: ReactElement;
   sx?: SxProps;
   /**
    * Whether the card should expand to take all available space
    */
   fullWidth?: boolean;
-  /**
-   * thumbnail component, override image
-   */
-  Thumbnail?: ReactElement;
 
   dense?: boolean;
+  elevation?: boolean;
+  menuItems?: JSX.Element[];
 };
 
 const Card = ({
-  Actions,
-  Badges,
+  footer,
   cardId,
   creator,
   description,
   height: heightProp,
-  image,
-  ItemMenu,
   name,
-  NameWrapper,
   sx,
   dense,
-  Thumbnail,
+  thumbnail,
+  menuItems,
   fullWidth = false,
+  elevation = true,
 }: CardProps): JSX.Element => {
   let height = heightProp;
   if (!height) {
     height = dense ? 55 : DEFAULT_CARD_HEIGHT;
   }
 
-  const ThumbnailWrapper = styled(Box)({
-    // use a square box to display the image
-    width: height,
-    height,
-    maxWidth: '50%',
-    // don't shrink the image on flex
-    flexShrink: 0,
-  });
-
-  const renderImage = (): ReactElement => {
-    return Thumbnail || <StyledImage src={image} alt={name} />;
-  };
-
   // TODO: export in new component
   if (dense) {
     return (
-      <StyledCard dense={dense} id={cardId} sx={sx} fullWidth={fullWidth}>
+      <StyledCard
+        // TODO: cannot make it work
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        elevation={elevation}
+        id={cardId}
+        sx={sx}
+        fullWidth={fullWidth}
+      >
         <Stack sx={{ height, boxSizing: 'border-box' }} direction='row' gap={1}>
-          <ThumbnailWrapper>{renderImage()}</ThumbnailWrapper>
+          <CardThumbnail
+            width={height}
+            minHeight={height}
+            thumbnail={thumbnail}
+            alt={name}
+          />
 
           <Stack
             direction='row'
@@ -109,30 +101,40 @@ const Card = ({
             marginTop={1}
             justifyContent={'space-between'}
           >
-            <CardHeader
-              name={name}
-              dense
-              creator={creator}
-              NameWrapper={NameWrapper}
-            />
-            {(Actions || Badges) && (
-              <CardActions sx={{ pt: 0, pl: 0 }}>
-                <Stack
-                  width='100%'
-                  alignItems='end'
-                  direction='row'
-                  justifyContent='space-between'
-                  gap={2}
-                >
-                  {Badges || <span />}
-                  <Box margin={(theme) => `-${theme.spacing(1)}`}>
-                    {Actions || <span />}
-                  </Box>
-                </Stack>
-              </CardActions>
-            )}
+            <Stack
+              direction='row'
+              justifyContent='space-between'
+              // align to the top so the button does not move when there is no creator
+              alignItems='start'
+              boxSizing='border-box'
+            >
+              <Stack minWidth={0} direction='column'>
+                <Typography noWrap variant={dense ? 'h5' : 'h3'}>
+                  {name}
+                </Typography>
+                {creator && (
+                  <Typography
+                    noWrap
+                    variant={dense ? 'caption' : 'body1'}
+                    color='text.secondary'
+                  >
+                    {creator}
+                  </Typography>
+                )}
+              </Stack>
+            </Stack>
+            <CardActions sx={{ pt: 0, pl: 0 }}>
+              <Stack
+                width='100%'
+                alignItems='end'
+                direction='row'
+                justifyContent='flex-end'
+              >
+                {footer}
+              </Stack>
+              {menuItems && <MenuButton menuItems={menuItems} />}
+            </CardActions>
           </Stack>
-          {ItemMenu}
         </Stack>
       </StyledCard>
     );
@@ -141,7 +143,12 @@ const Card = ({
   return (
     <StyledCard id={cardId} sx={sx} fullWidth={fullWidth}>
       <Stack sx={{ height, boxSizing: 'border-box' }} direction='row' gap={2}>
-        <ThumbnailWrapper>{renderImage()}</ThumbnailWrapper>
+        <CardThumbnail
+          width={height}
+          minHeight={height}
+          thumbnail={thumbnail}
+          alt={name}
+        />
 
         <Stack
           direction='column'
@@ -152,12 +159,29 @@ const Card = ({
           boxSizing='border-box'
           marginTop={1}
         >
-          <CardHeader
-            name={name}
-            creator={creator}
-            ItemMenu={ItemMenu}
-            NameWrapper={NameWrapper}
-          />
+          <Stack
+            direction='row'
+            justifyContent='space-between'
+            // align to the top so the button does not move when there is no creator
+            alignItems='start'
+            boxSizing='border-box'
+          >
+            <Stack minWidth={0} direction='column'>
+              <Typography noWrap variant={dense ? 'h5' : 'h3'}>
+                {name}
+              </Typography>
+              {creator && (
+                <Typography
+                  noWrap
+                  variant={dense ? 'caption' : 'body1'}
+                  color='text.secondary'
+                >
+                  {creator}
+                </Typography>
+              )}
+            </Stack>
+            <MenuButton menuItems={menuItems} />
+          </Stack>
           <Typography
             justifySelf='start'
             // necessary for the `position: absolute` on the :before to work
@@ -189,21 +213,7 @@ const Card = ({
           >
             {description}
           </Typography>
-          {(Actions || Badges) && (
-            <CardActions sx={{ pt: 0, pl: 0 }}>
-              <Stack
-                width='100%'
-                alignItems='end'
-                direction='row'
-                justifyContent='space-between'
-              >
-                {Badges || <span />}
-                <Box margin={(theme) => `-${theme.spacing(1)}`}>
-                  {Actions || <span />}
-                </Box>
-              </Stack>
-            </CardActions>
-          )}
+          {footer}
         </Stack>
       </Stack>
     </StyledCard>

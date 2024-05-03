@@ -1,8 +1,8 @@
 // we could replace dnd with this https://docs.dndkit.com
+import { Box } from '@mui/material';
+
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
-
-import { Box } from '@mui/material';
 
 import DraggableRow, { DraggableRowProps } from './DraggableRow';
 import InBetween, { InBetweenProps } from './InBetween';

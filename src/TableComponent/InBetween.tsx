@@ -1,7 +1,7 @@
 // we could replace dnd with this https://docs.dndkit.com
-import { useDrop } from 'react-dnd';
-
 import { Box } from '@mui/material';
+
+import { useDrop } from 'react-dnd';
 
 export type InBetweenProps<T> = {
   previousRowIdx: number;

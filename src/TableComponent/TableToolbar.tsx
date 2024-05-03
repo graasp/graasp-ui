@@ -1,7 +1,7 @@
-import { MouseEventHandler } from 'react';
-
 import { Checkbox, Stack, TableCell, TableRow, useTheme } from '@mui/material';
 import Typography from '@mui/material/Typography';
+
+import { MouseEventHandler } from 'react';
 
 interface Props {
   selected: string[];

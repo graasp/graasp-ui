@@ -1,7 +1,7 @@
-import { FC, ReactElement } from 'react';
-
 import { Stack } from '@mui/material';
 import Typography from '@mui/material/Typography';
+
+import { FC, ReactElement } from 'react';
 
 type CardHeaderProps = {
   name: string;

@@ -1,6 +1,6 @@
-import { ConnectableElement, useDrag, useDrop } from 'react-dnd';
-
 import { Box, BoxProps } from '@mui/material';
+
+import { ConnectableElement, useDrag, useDrop } from 'react-dnd';
 
 export type TableMetaType = {
   align?: 'right' | 'left' | 'center';

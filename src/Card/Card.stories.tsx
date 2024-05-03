@@ -1,7 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import AcUnitIcon from '@mui/icons-material/AcUnit';
+import GrainIcon from '@mui/icons-material/Grain';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
+import { Box, CardActions, ListItem, Stack } from '@mui/material';
 import IconButton from '@mui/material/IconButton';
 
 import ItemBadges from '../ItemBadges/ItemBadges';
@@ -26,29 +28,36 @@ type Story = StoryObj<typeof meta>;
 
 export const Example: Story = {
   args: {
-    dense: true,
     name: 'my card title',
     description:
       'my card description might be really long that is why we cut it after some lines of text to allow some space for more data',
-    image: 'https://picsum.photos/200/100',
+    thumbnail: 'https://picsum.photos/200/100',
     creator: 'graasp',
-    Actions: (
-      <>
-        <IconButton>
-          <AcUnitIcon />
-        </IconButton>
-        <IconButton>
-          <AcUnitIcon />
-        </IconButton>
-        <IconButton>
-          <AcUnitIcon />
-        </IconButton>
-      </>
-    ),
-    ItemMenu: (
-      <IconButton>
-        <MoreVertIcon />
-      </IconButton>
+    menuItems: [<ListItem>hello</ListItem>],
+    footer: (
+      <CardActions sx={{ pt: 0, pl: 0 }}>
+        <Stack
+          width='100%'
+          alignItems='end'
+          direction='row'
+          justifyContent='space-between'
+        >
+          <Box>
+            <IconButton>
+              <AcUnitIcon />
+            </IconButton>
+            <IconButton>
+              <AcUnitIcon />
+            </IconButton>
+            <IconButton>
+              <AcUnitIcon />
+            </IconButton>
+          </Box>
+          <IconButton>
+            <GrainIcon />
+          </IconButton>
+        </Stack>
+      </CardActions>
     ),
   },
 } satisfies Story;
@@ -56,13 +65,13 @@ export const Example: Story = {
 export const Dense: Story = {
   args: {
     dense: true,
-
     name: 'my card title',
     description:
       'my card description might be really long that is why we cut it after some lines of text to allow some space for more data',
-    image: 'https://picsum.photos/200/100',
+    fullWidth: true,
+    elevation: false,
     creator: 'graasp',
-    Actions: (
+    footer: (
       <>
         <IconButton>
           <AcUnitIcon />
@@ -75,11 +84,11 @@ export const Dense: Story = {
         </IconButton>
       </>
     ),
-    ItemMenu: (
+    menuItems: [
       <IconButton>
-        <MoreVertIcon />
-      </IconButton>
-    ),
+        <AcUnitIcon />
+      </IconButton>,
+    ],
   },
 } satisfies Story;
 
@@ -89,22 +98,9 @@ export const FullWidth = {
     name: 'my card title',
     description:
       'my card description might be really long that is why we cut it after some lines of text to allow some space for more data',
-    image: 'https://picsum.photos/200/100',
+    thumbnail: 'https://picsum.photos/200/100',
     creator: 'graasp',
-    Actions: (
-      <>
-        <IconButton>
-          <AcUnitIcon />
-        </IconButton>
-        <IconButton>
-          <AcUnitIcon />
-        </IconButton>
-        <IconButton>
-          <AcUnitIcon />
-        </IconButton>
-      </>
-    ),
-    ItemMenu: (
+    footer: (
       <IconButton>
         <MoreVertIcon />
       </IconButton>
@@ -117,26 +113,15 @@ export const Badges: Story = {
     name: 'my card title',
     description:
       'my card description might be really long that is why we cut it after some lines of text to allow some space for more data',
-    image: 'https://picsum.photos/200/100',
+    thumbnail: 'https://picsum.photos/200/100',
     creator: 'graasp',
-    Actions: (
+    footer: (
       <>
+        <ItemBadges isHidden isPublic isPublished isPinned />
         <IconButton>
-          <AcUnitIcon />
-        </IconButton>
-        <IconButton>
-          <AcUnitIcon />
-        </IconButton>
-        <IconButton>
-          <AcUnitIcon />
+          <MoreVertIcon />
         </IconButton>
       </>
-    ),
-    Badges: <ItemBadges isHidden isPublic isPublished isPinned />,
-    ItemMenu: (
-      <IconButton>
-        <MoreVertIcon />
-      </IconButton>
     ),
   },
 };
@@ -146,13 +131,8 @@ export const NoActions: Story = {
     name: 'my card title',
     description:
       'my card description might be really long that is why we cut it after some lines of text to allow some space for more data and we can see the overflow also here it i going to be visible ?',
-    image: 'https://picsum.photos/100/100',
+    thumbnail: 'https://picsum.photos/100/100',
     creator: 'graasp',
-    ItemMenu: (
-      <IconButton>
-        <MoreVertIcon />
-      </IconButton>
-    ),
   },
 };
 
@@ -161,10 +141,10 @@ export const TallCard: Story = {
     name: 'my card title',
     description:
       'my card description might be really long that is why we cut it after some lines of text to allow some space for more data',
-    image: 'https://picsum.photos/200/500',
+    thumbnail: 'https://picsum.photos/200/500',
     creator: 'graasp',
     height: 300,
-    Actions: (
+    footer: (
       <>
         <IconButton>
           <AcUnitIcon />
@@ -176,11 +156,6 @@ export const TallCard: Story = {
           <AcUnitIcon />
         </IconButton>
       </>
-    ),
-    ItemMenu: (
-      <IconButton>
-        <MoreVertIcon />
-      </IconButton>
     ),
   },
 };

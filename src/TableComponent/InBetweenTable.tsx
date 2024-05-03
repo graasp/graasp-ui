@@ -1,8 +1,8 @@
 // we could replace dnd with this https://docs.dndkit.com
-import { useDrop } from 'react-dnd';
-
 import TableCell from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
+
+import { useDrop } from 'react-dnd';
 
 export type InBetweenProps<T> = {
   colSpan: number;

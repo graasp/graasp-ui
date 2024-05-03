@@ -1,9 +1,9 @@
 import { Row, flexRender } from '@tanstack/react-table';
 
-import { useDrag, useDrop } from 'react-dnd';
-
 import DragIndicatorIcon from '@mui/icons-material/DragIndicator';
 import { Checkbox, TableCell, TableRow } from '@mui/material';
+
+import { useDrag, useDrop } from 'react-dnd';
 
 export type TableMetaType = {
   align?: 'right' | 'left' | 'center';
