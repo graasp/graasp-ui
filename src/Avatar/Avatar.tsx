@@ -42,7 +42,14 @@ const Avatar = ({
 }: AvatarProps): JSX.Element | null => {
   if (component === 'avatar') {
     if (url) {
-      return <AvatarComponent id={id} alt={alt} src={url} />;
+      return (
+        <AvatarComponent
+          id={id}
+          alt={alt}
+          src={url}
+          sx={{ width: maxWidth, height: maxHeight }}
+        />
+      );
     } else {
       if (isLoading) {
         return (
