@@ -6,6 +6,8 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { Box, CardActions, ListItem, Stack } from '@mui/material';
 import IconButton from '@mui/material/IconButton';
 
+import { BrowserRouter } from 'react-router-dom';
+
 import ItemBadges from '../ItemBadges/ItemBadges';
 import { TABLE_CATEGORIES } from '../utils/storybook';
 import Card from './Card';
@@ -29,6 +31,7 @@ type Story = StoryObj<typeof meta>;
 export const Example: Story = {
   args: {
     name: 'my card title',
+    alt: 'my card title',
     content: (
       <span>
         'my card description might be really long that is why we cut it after
@@ -74,6 +77,7 @@ export const Dense: Story = {
     fullWidth: true,
     elevation: false,
     creator: 'graasp',
+    alt: 'graasp',
     footer: (
       <>
         <IconButton>
@@ -93,6 +97,11 @@ export const Dense: Story = {
       </IconButton>,
     ],
   },
+  decorators: [
+    (story) => {
+      return <BrowserRouter>{story()}</BrowserRouter>;
+    },
+  ],
 } satisfies Story;
 
 export const FullWidth = {
@@ -105,6 +114,7 @@ export const FullWidth = {
       </span>
     ),
     name: 'my card title',
+    alt: 'my card title',
     thumbnail: 'https://picsum.photos/200/100',
     creator: 'graasp',
     menuItems: [
@@ -124,6 +134,7 @@ export const Badges: Story = {
         some lines of text to allow some space for more data'
       </span>
     ),
+    alt: 'my card title',
     name: 'my card title',
     thumbnail: 'https://picsum.photos/200/100',
     creator: 'graasp',
@@ -143,6 +154,7 @@ export const NoActions: Story = {
     name: 'my card title',
     thumbnail: 'https://picsum.photos/100/100',
     creator: 'graasp',
+    alt: 'graasp',
     content: (
       <span>
         'my card description might be really long that is why we cut it after
@@ -161,6 +173,7 @@ export const TallCard: Story = {
       </span>
     ),
     name: 'my card title',
+    alt: 'my card title',
     thumbnail: 'https://picsum.photos/200/500',
     creator: 'graasp',
     height: 300,

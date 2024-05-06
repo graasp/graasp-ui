@@ -124,9 +124,9 @@ export const SimpleWithClientSideSorting: Story = {
         <Dense
           creator={el.creator?.name}
           name={el.name}
-          description={el.description ?? ''}
+          content={el.description ?? ''}
           fullWidth
-          Badges={<ItemBadges isCollapsible isHidden />}
+          footer={<ItemBadges isCollapsible isHidden />}
         />
       );
     },
