@@ -4,6 +4,7 @@ import '@ag-grid-community/styles/ag-theme-material.min.css';
 import { action } from '@storybook/addon-actions';
 import { expect } from '@storybook/jest';
 import type { Meta, StoryObj } from '@storybook/react';
+import { fn } from '@storybook/test';
 import { userEvent, waitFor, within } from '@storybook/testing-library';
 
 import { DeleteButton, EditButton } from '../buttons';
@@ -131,6 +132,9 @@ const meta: Meta<typeof Table> = {
       },
       action: 'cell clicked',
     },
+  },
+  args: {
+    onRowDataChanged: fn(),
   },
 };
 export default meta;

@@ -1,5 +1,6 @@
 import { expect } from '@storybook/jest';
 import type { Meta, StoryObj } from '@storybook/react';
+import { fn } from '@storybook/test';
 import { userEvent, within } from '@storybook/testing-library';
 
 import { ItemType, LinkItemFactory } from '@graasp/sdk';
@@ -56,6 +57,9 @@ const meta = {
         category: TABLE_CATEGORIES.EVENTS,
       },
     },
+  },
+  args: {
+    onClick: fn(),
   },
 } satisfies Meta<typeof LinkItem>;
 export default meta;

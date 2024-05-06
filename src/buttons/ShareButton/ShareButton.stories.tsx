@@ -1,5 +1,6 @@
 import { expect } from '@storybook/jest';
 import type { Meta, StoryObj } from '@storybook/react';
+import { fn } from '@storybook/test';
 import { userEvent, within } from '@storybook/testing-library';
 
 import { ActionButton } from '../../types';
@@ -16,6 +17,9 @@ const meta: Meta<typeof ShareButton> = {
         category: TABLE_CATEGORIES.MUI,
       },
     },
+  },
+  args: {
+    onClick: fn(),
   },
 };
 

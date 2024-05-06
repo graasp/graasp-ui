@@ -22,7 +22,7 @@ const meta: Meta<typeof ItemIcon> = {
     },
     type: {
       control: 'radio',
-      options: ItemType,
+      options: Object.values(ItemType),
     },
   },
 };
