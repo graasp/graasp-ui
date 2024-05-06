@@ -57,11 +57,11 @@ const Wrapper = ({
   children,
   to,
 }: {
-  children: JSX.Element;
+  children: JSX.Element | JSX.Element[];
   to?: string;
 }): JSX.Element => {
   if (!to) {
-    return children;
+    return <>{children}</>;
   }
 
   return (
@@ -105,7 +105,12 @@ const Card = ({
         sx={sx}
         fullWidth={fullWidth}
       >
-        <Stack sx={{ height, boxSizing: 'border-box' }} direction='row' gap={1}>
+        <Stack
+          sx={{ height, boxSizing: 'border-box' }}
+          direction='row'
+          gap={1}
+          alignItems='center'
+        >
           <CardThumbnail
             width={height}
             minHeight={height}
@@ -113,59 +118,62 @@ const Card = ({
             alt={alt}
             type={type}
           />
-          <Stack flex={1}>
+          <Grid2
+            container
+            // necessary to respect flex layout, otherwise it does not compress
+            minWidth={0}
+            width='100%'
+            sx={{ mt: 0 }}
+            // ensure that if there is no description the element still goes edge to edge
+            boxSizing='border-box'
+            marginTop={1}
+            justifyContent='space-between'
+            alignItems='center'
+          >
             <Wrapper to={to}>
               <Grid2
-                container
-                // necessary to respect flex layout, otherwise it does not compress
-                minWidth={0}
-                width='100%'
-                // ensure that if there is no description the element still goes edge to edge
-                boxSizing='border-box'
-                marginTop={1}
+                xs={9}
+                sm={6}
+                md={5}
                 justifyContent='space-between'
+                // align to the top so the button does not move when there is no creator
+                alignItems='start'
+                boxSizing='border-box'
               >
-                <Grid2
-                  xs={9}
-                  sm={6}
-                  justifyContent='space-between'
-                  // align to the top so the button does not move when there is no creator
-                  alignItems='start'
-                  boxSizing='border-box'
-                >
-                  <Stack minWidth={0}>
-                    <Typography noWrap variant={dense ? 'h5' : 'h3'}>
-                      {name}
+                <Stack minWidth={0}>
+                  <Typography noWrap variant={dense ? 'h5' : 'h3'}>
+                    {name}
+                  </Typography>
+                  {creator && (
+                    <Typography
+                      noWrap
+                      variant={dense ? 'caption' : 'body1'}
+                      color='text.secondary'
+                    >
+                      {creator}
                     </Typography>
-                    {creator && (
-                      <Typography
-                        noWrap
-                        variant={dense ? 'caption' : 'body1'}
-                        color='text.secondary'
-                      >
-                        {creator}
-                      </Typography>
-                    )}
-                  </Stack>
-                </Grid2>
-                <Grid2 sm={6} xs={0} display={{ xs: 'none', sm: 'block' }}>
-                  {content}
-                </Grid2>
+                  )}
+                </Stack>
+              </Grid2>
+              <Grid2 sm={4} xs={0} md={5} display={{ xs: 'none', sm: 'block' }}>
+                {content}
               </Grid2>
             </Wrapper>
-          </Stack>
-          <CardActions sx={{ p: 0 }}>
-            <Stack
-              width='100%'
-              alignItems='end'
-              direction='row'
-              justifyContent='flex-end'
-              alignContent='center'
-            >
-              {footer}
-            </Stack>
-            {menuItems && <MenuButton menuItems={menuItems} />}
-          </CardActions>
+            <Grid2 xs={3} sm={2}>
+              <CardActions sx={{ p: 0 }}>
+                <Stack
+                  width='100%'
+                  alignItems='end'
+                  direction='row'
+                  justifyContent='flex-end'
+                  alignContent='center'
+                >
+                  {footer}
+                </Stack>
+                {menuItems && <MenuButton menuItems={menuItems} />}
+              </CardActions>
+            </Grid2>
+          </Grid2>
         </Stack>
       </StyledCard>
     );
@@ -197,20 +205,22 @@ const Card = ({
             alignItems='start'
             boxSizing='border-box'
           >
-            <Stack minWidth={0} direction='column'>
-              <Typography noWrap variant={dense ? 'h5' : 'h3'}>
-                {name}
-              </Typography>
-              {creator && (
-                <Typography
-                  noWrap
-                  variant={dense ? 'caption' : 'body1'}
-                  color='text.secondary'
-                >
-                  {creator}
+            <Wrapper to={to}>
+              <Stack minWidth={0} direction='column'>
+                <Typography noWrap variant={dense ? 'h5' : 'h3'}>
+                  {name}
                 </Typography>
-              )}
-            </Stack>
+                {creator && (
+                  <Typography
+                    noWrap
+                    variant={dense ? 'caption' : 'body1'}
+                    color='text.secondary'
+                  >
+                    {creator}
+                  </Typography>
+                )}
+              </Stack>
+            </Wrapper>
             <MenuButton menuItems={menuItems} />
           </Stack>
           <Typography

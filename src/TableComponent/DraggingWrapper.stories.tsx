@@ -8,24 +8,8 @@ import { Card, ItemBadges } from '..';
 import DraggingWrapper from './DraggingWrapper';
 
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-const range = (len: number) => {
-  const arr: number[] = [];
-  for (let i = 0; i < len; i++) {
-    arr.push(i);
-  }
-  return arr;
-};
-
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-export const makeData = (...lens: number[]) => {
-  const makeDataLevel = (depth = 0): FolderItemType[] => {
-    const len = lens[depth]!;
-    return range(len).map((): FolderItemType => {
-      return FolderItemFactory();
-    });
-  };
-
-  return makeDataLevel();
+export const makeData = (len: number) => {
+  return Array.from({ length: len }, () => FolderItemFactory());
 };
 
 const meta: Meta<typeof DraggingWrapper> = {

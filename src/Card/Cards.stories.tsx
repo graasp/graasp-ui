@@ -62,7 +62,12 @@ export const GridOfDenseCards = {
                 </Grid2>
               }
               fullWidth
-              footer={<ItemBadges isCollapsible isHidden />}
+              footer={
+                <ItemBadges
+                  isCollapsible={Math.random() > 0.5}
+                  isHidden={Math.random() > 0.5}
+                />
+              }
             />
           </Grid2>
         ))}
