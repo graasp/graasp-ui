@@ -132,7 +132,7 @@ const Card = ({
           >
             <Grid2
               xs={9}
-              sm={6}
+              sm={5}
               md={5}
               justifyContent='space-between'
               // align to the top so the button does not move when there is no creator
@@ -159,14 +159,15 @@ const Card = ({
             <Grid2 sm={4} xs={0} md={5} display={{ xs: 'none', sm: 'block' }}>
               <Wrapper to={to}>{content}</Wrapper>
             </Grid2>
-            <Grid2 xs={3} sm={2}>
-              <CardActions sx={{ p: 0 }}>
+            <Grid2 xs={3} sm={3} md={2} justifyContent='flex-end'>
+              <CardActions sx={{ p: 0, justifyContent: 'flex-end' }}>
                 <Stack
                   width='100%'
                   alignItems='end'
                   direction='row'
                   justifyContent='flex-end'
                   alignContent='center'
+                  display={{ xs: 'none', sm: 'block' }}
                 >
                   {footer}
                 </Stack>

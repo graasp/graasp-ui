@@ -192,3 +192,43 @@ export const TallCard: Story = {
     ),
   },
 };
+
+export const DenseMobile: Story = {
+  args: {
+    dense: true,
+    name: 'my card title',
+    content: <span>folder</span>,
+    fullWidth: true,
+    elevation: false,
+    creator: 'graasp',
+    alt: 'graasp',
+    footer: (
+      <>
+        <IconButton>
+          <AcUnitIcon />
+        </IconButton>
+        <IconButton>
+          <AcUnitIcon />
+        </IconButton>
+        <IconButton>
+          <AcUnitIcon />
+        </IconButton>
+      </>
+    ),
+    menuItems: [
+      <IconButton>
+        <AcUnitIcon />
+      </IconButton>,
+    ],
+  },
+  decorators: [
+    (story) => {
+      return <BrowserRouter>{story()}</BrowserRouter>;
+    },
+  ],
+  parameters: {
+    viewport: {
+      defaultViewport: 'mobile2',
+    },
+  },
+} satisfies Story;

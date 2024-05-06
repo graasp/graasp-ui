@@ -24,7 +24,7 @@ const MenuButton = ({ id, menuItems }: Props): JSX.Element | null => {
   }
 
   return (
-    <div>
+    <>
       <IconButton
         id={id}
         aria-controls={open ? 'basic-menu' : undefined}
@@ -45,7 +45,7 @@ const MenuButton = ({ id, menuItems }: Props): JSX.Element | null => {
       >
         {menuItems}
       </Menu>
-    </div>
+    </>
   );
 };
 
