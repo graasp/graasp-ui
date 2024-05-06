@@ -160,6 +160,7 @@
     "jest-dom": "4.0.0",
     "jest-environment-jsdom": "29.7.0",
     "jsdom": "24.0.0",
+    "playwright": "1.43.1",
     "prettier": "3.2.5",
     "react": "18.3.1",
     "react-dom": "18.3.1",

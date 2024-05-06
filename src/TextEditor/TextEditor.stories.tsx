@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { fn } from '@storybook/test';
 
 import TextEditor from './TextEditor';
 
@@ -14,6 +15,9 @@ const FORMULA =
 const meta = {
   title: 'Text/TextEditor',
   component: TextEditor,
+  args: {
+    onChange: fn(),
+  },
   render: (args) => <TextEditor {...args} />,
 } satisfies Meta<typeof TextEditor>;
 export default meta;

@@ -2281,6 +2281,7 @@ __metadata:
     katex: "npm:0.16.10"
     lodash.truncate: "npm:4.4.2"
     lucide-react: "npm:0.378.0"
+    playwright: "npm:1.43.1"
     prettier: "npm:3.2.5"
     react: "npm:18.3.1"
     react-cookie-consent: "npm:9.0.0"
@@ -12888,7 +12889,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"playwright@npm:^1.14.0":
+"playwright@npm:1.43.1, playwright@npm:^1.14.0":
   version: 1.43.1
   resolution: "playwright@npm:1.43.1"
   dependencies:
