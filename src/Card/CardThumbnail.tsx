@@ -4,7 +4,7 @@ import { DiscriminatedItem, ItemType } from '@graasp/sdk';
 
 import { ItemIcon, Thumbnail } from '..';
 
-type CardThumbnailProps = {
+export type CardThumbnailProps = {
   thumbnail?: string;
   alt: string;
   width?: number;

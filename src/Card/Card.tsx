@@ -9,7 +9,7 @@ import Grid2 from '@mui/material/Unstable_Grid2';
 import { ReactElement } from 'react';
 import { Link } from 'react-router-dom';
 
-import CardThumbnail from './CardThumbnail';
+import CardThumbnail, { CardThumbnailProps } from './CardThumbnail';
 
 const DEFAULT_CARD_HEIGHT = 130;
 
@@ -50,6 +50,7 @@ type CardProps = {
   content?: string | JSX.Element;
 
   to?: string;
+  type?: CardThumbnailProps['type'];
 };
 
 const Wrapper = ({
@@ -85,10 +86,11 @@ const Card = ({
   content,
   alt,
   to,
+  type,
 }: CardProps): JSX.Element => {
   let height = heightProp;
   if (!height) {
-    height = dense ? 55 : DEFAULT_CARD_HEIGHT;
+    height = dense ? 60 : DEFAULT_CARD_HEIGHT;
   }
 
   // TODO: export in new component
@@ -109,6 +111,7 @@ const Card = ({
             minHeight={height}
             thumbnail={thumbnail}
             alt={alt}
+            type={type}
           />
           <Stack flex={1}>
             <Wrapper to={to}>
@@ -151,12 +154,13 @@ const Card = ({
               </Grid2>
             </Wrapper>
           </Stack>
-          <CardActions sx={{ pt: 0, pl: 0 }}>
+          <CardActions sx={{ p: 0 }}>
             <Stack
               width='100%'
               alignItems='end'
               direction='row'
               justifyContent='flex-end'
+              alignContent='center'
             >
               {footer}
             </Stack>

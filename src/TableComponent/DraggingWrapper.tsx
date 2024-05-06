@@ -18,10 +18,6 @@ export type DraggingWrapperProps<T> = {
 
   /** show checkbox */
   showCheckbox?: boolean;
-  isChecked?: (row: T) => boolean;
-  /** handler on checkbox click */
-  onCheckboxClick?: DraggableRowProps<T>['onCheckboxClick'];
-
   /** show drag anchor */
   isMovable?: boolean;
   /** handler on drop in a row */
@@ -42,10 +38,7 @@ const DraggingWrapper = <T extends object>({
   onDropBetweenRow: onDropBetweenRowFn,
   renderComponent,
   isMovable = false,
-  showCheckbox = false,
   enableMoveInBetween = true,
-  onCheckboxClick,
-  isChecked,
 }: DraggingWrapperProps<T>): JSX.Element => {
   // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
   const onDropInRow = (draggedRow: T, targetRow: T) => {
@@ -79,9 +72,6 @@ const DraggingWrapper = <T extends object>({
               row={row}
               renderComponent={renderComponent}
               onDrop={onDropInRow}
-              showCheckbox={showCheckbox}
-              onCheckboxClick={onCheckboxClick}
-              checked={isChecked?.(row)}
             />
             <InBetween<T>
               renderComponent={renderComponent}

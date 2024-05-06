@@ -1,15 +1,12 @@
-import { TABLE_CATEGORIES } from '@/utils/storybook';
-import { type Meta, type StoryObj, composeStories } from '@storybook/react';
+import { type Meta, type StoryObj } from '@storybook/react';
 
 import { BrowserRouter } from 'react-router-dom';
 
 import { FolderItemFactory, FolderItemType } from '@graasp/sdk';
 
-import { ItemBadges } from '..';
-import * as CardStories from '../Card/Card.stories';
+import { Card, ItemBadges } from '..';
 import DraggingWrapper from './DraggingWrapper';
 
-const { Dense } = composeStories(CardStories);
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 const range = (len: number) => {
   const arr: number[] = [];
@@ -40,70 +37,7 @@ const meta: Meta<typeof DraggingWrapper> = {
     },
   ],
 
-  argTypes: {
-    // enableDrag: {},
-    // sx: {
-    //   table: {
-    //     category: TABLE_CATEGORIES.MUI,
-    //   },
-    // },
-    // className: {
-    //   table: {
-    //     category: TABLE_CATEGORIES.SELECTORS,
-    //   },
-    // },
-    // id: {
-    //   table: {
-    //     category: TABLE_CATEGORIES.SELECTORS,
-    //   },
-    // },
-    // columnDefs: {
-    //   table: {
-    //     category: agGridCategory,
-    //   },
-    // },
-    // getRowId: {
-    //   table: {
-    //     category: agGridCategory,
-    //   },
-    // },
-    // onRowDataChanged: {
-    //   table: {
-    //     category: agGridCategory,
-    //   },
-    // },
-    // enableBrowserTooltips: {
-    //   table: {
-    //     category: agGridCategory,
-    //   },
-    // },
-    // rowDragManaged: {
-    //   table: {
-    //     category: agGridCategory,
-    //   },
-    // },
-    // suppressCellFocus: {
-    //   table: {
-    //     category: agGridCategory,
-    //   },
-    // },
-    // suppressRowClickSelection: {
-    //   table: {
-    //     category: agGridCategory,
-    //   },
-    // },
-    // rowSelection: {
-    //   table: {
-    //     category: agGridCategory,
-    //   },
-    // },
-    onCheckboxClick: {
-      table: {
-        category: TABLE_CATEGORIES.EVENTS,
-      },
-      action: 'checkbox clicked',
-    },
-  },
+  argTypes: {},
 };
 export default meta;
 
@@ -119,9 +53,10 @@ export const SimpleWithClientSideSorting: Story = {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-expect-error
     renderComponent: (el: FolderItemType) => {
-      console.log(el);
       return (
-        <Dense
+        <Card
+          dense
+          alt={el.name}
           creator={el.creator?.name}
           name={el.name}
           content={el.description ?? ''}
@@ -130,46 +65,31 @@ export const SimpleWithClientSideSorting: Story = {
         />
       );
     },
-    // tableHeight: 300,
-    // columnDefs: [
-    //   {
-    //     field: 'name',
-    //     headerName: 'Name',
-    //     headerCheckboxSelection: true,
-    //     checkboxSelection: true,
-    //     // rowDrag: true,
-    //   },
-    //   {
-    //     field: 'type',
-    //     headerName: 'Type',
-    //     type: 'rightAligned',
-    //     suppressSizeToFit: true,
-    //     maxWidth: 80,
-    //   },
-    //   {
-    //     field: 'updatedAt',
-    //     headerName: 'Updated At',
-    //     type: 'rightAligned',
-    //     suppressSizeToFit: true,
-    //     maxWidth: 160,
-    //     valueFormatter: dateFormatter,
-    //   },
-    //   {
-    //     field: 'actions',
-    //     headerName: 'Actions',
-    //     suppressSizeToFit: true,
-    //     maxWidth: 100, // approx 50 per iconButton (40px + 8px margin on each side)
-    //     cellRenderer: ({ data }: { data: { id: string } }) => {
-    //       return (
-    //         <>
-    //           <DeleteButton id={'delete' + data.id} />
-    //           <EditButton />
-    //         </>
-    //       );
-    //     },
-    //   },
-    // ],
-    // rowData,
+  },
+};
+
+export const DisableDragging: Story = {
+  args: {
+    // ts issue
+    // https://github.com/TanStack/table/issues/4382
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    rows: makeData(6),
+    isMovable: false,
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-expect-error
+    renderComponent: (el: FolderItemType) => {
+      return (
+        <Card
+          dense
+          alt={el.name}
+          creator={el.creator?.name}
+          name={el.name}
+          content={el.description ?? ''}
+          fullWidth
+          footer={<ItemBadges isCollapsible isHidden />}
+        />
+      );
+    },
   },
 };
 

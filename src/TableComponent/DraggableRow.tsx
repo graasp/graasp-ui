@@ -13,10 +13,6 @@ export type DraggableRowProps<T> = {
   isMovable?: boolean;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onClick?: (el: T) => void;
-  showCheckbox?: boolean;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  onCheckboxClick?: any;
-  checked?: boolean;
   renderComponent: (el: T) => JSX.Element;
 };
 
@@ -71,14 +67,6 @@ const DraggableRow = <T extends object>({
           : {}
       }
     >
-      {/* {showCheckbox && (
-        <TableCell sx={{ p: 0 }}>
-          <Checkbox
-            checked={checked}
-            onChange={(e) => onCheckboxClick?.(e, row.original)}
-          />
-        </TableCell>
-      )} */}
       {renderComponent(row)}
     </Box>
   );
