@@ -27,7 +27,7 @@ const StyledCard = styled(MuiCard, {
 type CardProps = {
   name: string | JSX.Element;
   alt: string;
-  cardId?: string;
+  id?: string;
   /**
    * creator name
    */
@@ -47,7 +47,7 @@ type CardProps = {
   dense?: boolean;
   elevation?: boolean;
   menuItems?: JSX.Element[];
-  content?: string | JSX.Element;
+  content?: string | JSX.Element | JSX.Element[];
 
   to?: string;
   type?: CardThumbnailProps['type'];
@@ -57,7 +57,7 @@ const Wrapper = ({
   children,
   to,
 }: {
-  children: JSX.Element | JSX.Element[];
+  children?: string | JSX.Element | JSX.Element[];
   to?: string;
 }): JSX.Element => {
   if (!to) {
@@ -73,7 +73,7 @@ const Wrapper = ({
 
 const Card = ({
   footer,
-  cardId,
+  id,
   creator,
   height: heightProp,
   name,
@@ -101,7 +101,7 @@ const Card = ({
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         elevation={elevation}
-        id={cardId}
+        id={id}
         sx={sx}
         fullWidth={fullWidth}
       >
@@ -130,16 +130,16 @@ const Card = ({
             justifyContent='space-between'
             alignItems='center'
           >
-            <Wrapper to={to}>
-              <Grid2
-                xs={9}
-                sm={6}
-                md={5}
-                justifyContent='space-between'
-                // align to the top so the button does not move when there is no creator
-                alignItems='start'
-                boxSizing='border-box'
-              >
+            <Grid2
+              xs={9}
+              sm={6}
+              md={5}
+              justifyContent='space-between'
+              // align to the top so the button does not move when there is no creator
+              alignItems='start'
+              boxSizing='border-box'
+            >
+              <Wrapper to={to}>
                 <Stack minWidth={0}>
                   <Typography noWrap variant={dense ? 'h5' : 'h3'}>
                     {name}
@@ -154,11 +154,11 @@ const Card = ({
                     </Typography>
                   )}
                 </Stack>
-              </Grid2>
-              <Grid2 sm={4} xs={0} md={5} display={{ xs: 'none', sm: 'block' }}>
-                {content}
-              </Grid2>
-            </Wrapper>
+              </Wrapper>
+            </Grid2>
+            <Grid2 sm={4} xs={0} md={5} display={{ xs: 'none', sm: 'block' }}>
+              <Wrapper to={to}>{content}</Wrapper>
+            </Grid2>
             <Grid2 xs={3} sm={2}>
               <CardActions sx={{ p: 0 }}>
                 <Stack
@@ -180,7 +180,7 @@ const Card = ({
   }
 
   return (
-    <StyledCard id={cardId} sx={sx} fullWidth={fullWidth}>
+    <StyledCard id={id} sx={sx} fullWidth={fullWidth}>
       <Stack sx={{ height, boxSizing: 'border-box' }} direction='row' gap={2}>
         <CardThumbnail
           width={height}

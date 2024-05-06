@@ -75,3 +75,41 @@ export const GridOfDenseCards = {
     );
   },
 } satisfies Story;
+
+export const GridOfDenseWithClickCards = {
+  args: {
+    xs: 12,
+  },
+  render: ({ xs }) => {
+    return (
+      <Grid2 container spacing={2}>
+        {Array.from(Array(12)).map((_, i) => (
+          <Grid2 key={`cardno${i}`} xs={xs}>
+            <Dense
+              creator={faker.person.fullName()}
+              name={faker.commerce.productName()}
+              to={'to'}
+              content={
+                <Grid2 container columns={{ xs: 12 }}>
+                  <Grid2 xs={12} md={6}>
+                    {faker.word.noun()}
+                  </Grid2>
+                  <Grid2 xs={12} md={6}>
+                    {faker.word.noun()}
+                  </Grid2>
+                </Grid2>
+              }
+              fullWidth
+              footer={
+                <ItemBadges
+                  isCollapsible={Math.random() > 0.5}
+                  isHidden={Math.random() > 0.5}
+                />
+              }
+            />
+          </Grid2>
+        ))}
+      </Grid2>
+    );
+  },
+} satisfies Story;
