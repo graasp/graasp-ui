@@ -1,4 +1,4 @@
-import MenuButton from '@/buttons/MenuButton/MenuButton';
+import MenuButton, { MenuButtonProps } from '@/buttons/MenuButton/MenuButton';
 
 import { Stack, SxProps, styled } from '@mui/material';
 import MuiCard from '@mui/material/Card';
@@ -46,7 +46,7 @@ type CardProps = {
 
   dense?: boolean;
   elevation?: boolean;
-  menuItems?: JSX.Element[];
+  renderMenuItems?: MenuButtonProps['renderMenuItems'];
   content?: string | JSX.Element | JSX.Element[];
 
   to?: string;
@@ -80,7 +80,7 @@ const Card = ({
   sx,
   dense,
   thumbnail,
-  menuItems,
+  renderMenuItems,
   fullWidth = false,
   elevation = true,
   content,
@@ -171,7 +171,9 @@ const Card = ({
                 >
                   {footer}
                 </Stack>
-                {menuItems && <MenuButton menuItems={menuItems} />}
+                {renderMenuItems && (
+                  <MenuButton renderMenuItems={renderMenuItems} />
+                )}
               </CardActions>
             </Grid2>
           </Grid2>
@@ -222,7 +224,7 @@ const Card = ({
                 )}
               </Stack>
             </Wrapper>
-            <MenuButton menuItems={menuItems} />
+            <MenuButton renderMenuItems={renderMenuItems} />
           </Stack>
           <Typography
             justifySelf='start'

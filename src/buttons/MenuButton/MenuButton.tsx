@@ -4,12 +4,15 @@ import Menu from '@mui/material/Menu';
 
 import * as React from 'react';
 
-type Props = {
-  menuItems?: JSX.Element[];
+export type MenuButtonProps = {
+  renderMenuItems?: (closeMenu: () => void) => JSX.Element[];
   id?: string;
 };
 
-const MenuButton = ({ id, menuItems }: Props): JSX.Element | null => {
+const MenuButton = ({
+  id,
+  renderMenuItems,
+}: MenuButtonProps): JSX.Element | null => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>): void => {
@@ -19,7 +22,7 @@ const MenuButton = ({ id, menuItems }: Props): JSX.Element | null => {
     setAnchorEl(null);
   };
 
-  if (!menuItems) {
+  if (!renderMenuItems) {
     return null;
   }
 
@@ -29,7 +32,7 @@ const MenuButton = ({ id, menuItems }: Props): JSX.Element | null => {
         id={id}
         aria-controls={open ? 'basic-menu' : undefined}
         aria-haspopup='true'
-        aria-expanded={open ? 'true' : undefined}
+        aria-expanded={open}
         onClick={handleClick}
       >
         <MoreVert />
@@ -43,7 +46,7 @@ const MenuButton = ({ id, menuItems }: Props): JSX.Element | null => {
           'aria-labelledby': id,
         }}
       >
-        {menuItems}
+        {renderMenuItems(handleClose)}
       </Menu>
     </>
   );

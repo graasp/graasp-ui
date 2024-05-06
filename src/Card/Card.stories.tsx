@@ -3,11 +3,12 @@ import type { Meta, StoryObj } from '@storybook/react';
 import AcUnitIcon from '@mui/icons-material/AcUnit';
 import GrainIcon from '@mui/icons-material/Grain';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import { Box, CardActions, ListItem, Stack } from '@mui/material';
+import { Box, CardActions, ListItemText, Stack } from '@mui/material';
 import IconButton from '@mui/material/IconButton';
 
 import { BrowserRouter } from 'react-router-dom';
 
+import { CopyButton } from '..';
 import ItemBadges from '../ItemBadges/ItemBadges';
 import { TABLE_CATEGORIES } from '../utils/storybook';
 import Card from './Card';
@@ -40,7 +41,10 @@ export const Example: Story = {
     ),
     thumbnail: 'https://picsum.photos/200/100',
     creator: 'graasp',
-    menuItems: [<ListItem>hello</ListItem>],
+    renderMenuItems: () => [
+      <ListItemText primary='Hello' />,
+      <CopyButton type='menuItem' />,
+    ],
     footer: (
       <CardActions sx={{ pt: 0, pl: 0 }}>
         <Stack
@@ -91,8 +95,8 @@ export const Dense: Story = {
         </IconButton>
       </>
     ),
-    menuItems: [
-      <IconButton>
+    renderMenuItems: (fn) => [
+      <IconButton onClick={fn}>
         <AcUnitIcon />
       </IconButton>,
     ],
@@ -117,7 +121,7 @@ export const FullWidth = {
     alt: 'my card title',
     thumbnail: 'https://picsum.photos/200/100',
     creator: 'graasp',
-    menuItems: [
+    renderMenuItems: () => [
       <IconButton>
         <MoreVertIcon />
       </IconButton>,
@@ -215,7 +219,7 @@ export const DenseMobile: Story = {
         </IconButton>
       </>
     ),
-    menuItems: [
+    renderMenuItems: () => [
       <IconButton>
         <AcUnitIcon />
       </IconButton>,
