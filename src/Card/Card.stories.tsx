@@ -1,9 +1,11 @@
+import { expect } from '@storybook/jest';
 import type { Meta, StoryObj } from '@storybook/react';
+import { within } from '@storybook/testing-library';
 
 import AcUnitIcon from '@mui/icons-material/AcUnit';
 import GrainIcon from '@mui/icons-material/Grain';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import { Box, CardActions, ListItemText, Stack } from '@mui/material';
+import { Box, ListItemText, Stack } from '@mui/material';
 import IconButton from '@mui/material/IconButton';
 
 import { BrowserRouter } from 'react-router-dom';
@@ -46,29 +48,27 @@ export const Example: Story = {
       <CopyButton type='menuItem' />,
     ],
     footer: (
-      <CardActions sx={{ pt: 0, pl: 0 }}>
-        <Stack
-          width='100%'
-          alignItems='end'
-          direction='row'
-          justifyContent='space-between'
-        >
-          <Box>
-            <IconButton>
-              <AcUnitIcon />
-            </IconButton>
-            <IconButton>
-              <AcUnitIcon />
-            </IconButton>
-            <IconButton>
-              <AcUnitIcon />
-            </IconButton>
-          </Box>
+      <Stack
+        width='100%'
+        alignItems='end'
+        direction='row'
+        justifyContent='space-between'
+      >
+        <Box>
           <IconButton>
-            <GrainIcon />
+            <AcUnitIcon />
           </IconButton>
-        </Stack>
-      </CardActions>
+          <IconButton>
+            <AcUnitIcon />
+          </IconButton>
+          <IconButton>
+            <AcUnitIcon />
+          </IconButton>
+        </Box>
+        <IconButton>
+          <GrainIcon />
+        </IconButton>
+      </Stack>
     ),
   },
 } satisfies Story;
@@ -126,32 +126,29 @@ export const FullWidth = {
         <MoreVertIcon />
       </IconButton>,
     ],
-    footer: <>my footer</>,
+    footer: (
+      <Stack
+        width='100%'
+        alignItems='center'
+        direction='row'
+        justifyContent='space-between'
+      >
+        <ItemBadges isHidden isPublic isPublished isPinned />
+        <Box>
+          <IconButton>
+            <AcUnitIcon />
+          </IconButton>
+          <IconButton>
+            <AcUnitIcon />
+          </IconButton>
+          <IconButton>
+            <AcUnitIcon />
+          </IconButton>
+        </Box>
+      </Stack>
+    ),
   },
 } satisfies Story;
-
-export const Badges: Story = {
-  args: {
-    content: (
-      <span>
-        'my card description might be really long that is why we cut it after
-        some lines of text to allow some space for more data'
-      </span>
-    ),
-    alt: 'my card title',
-    name: 'my card title',
-    thumbnail: 'https://picsum.photos/200/100',
-    creator: 'graasp',
-    footer: (
-      <>
-        <ItemBadges isHidden isPublic isPublished isPinned />
-        <IconButton>
-          <MoreVertIcon />
-        </IconButton>
-      </>
-    ),
-  },
-};
 
 export const NoActions: Story = {
   args: {
@@ -182,26 +179,39 @@ export const TallCard: Story = {
     creator: 'graasp',
     height: 300,
     footer: (
-      <>
-        <IconButton>
-          <AcUnitIcon />
-        </IconButton>
-        <IconButton>
-          <AcUnitIcon />
-        </IconButton>
-        <IconButton>
-          <AcUnitIcon />
-        </IconButton>
-      </>
+      <Stack
+        width='100%'
+        alignItems='center'
+        direction='row'
+        justifyContent='space-between'
+      >
+        <ItemBadges isHidden isPublic isPublished isPinned />
+        <Box>
+          <IconButton>
+            <AcUnitIcon />
+          </IconButton>
+          <IconButton>
+            <AcUnitIcon />
+          </IconButton>
+          <IconButton>
+            <AcUnitIcon />
+          </IconButton>
+        </Box>
+      </Stack>
     ),
   },
 };
 
 export const DenseMobile: Story = {
+  parameters: {
+    viewport: {
+      defaultViewport: 'mobile2',
+    },
+  },
   args: {
     dense: true,
     name: 'my card title',
-    content: <span>folder</span>,
+    content: 'my content',
     fullWidth: true,
     elevation: false,
     creator: 'graasp',
@@ -230,9 +240,9 @@ export const DenseMobile: Story = {
       return <BrowserRouter>{story()}</BrowserRouter>;
     },
   ],
-  parameters: {
-    viewport: {
-      defaultViewport: 'mobile2',
-    },
+  play: async ({ args, canvasElement }) => {
+    const canvas = within(canvasElement);
+    const el = canvas.findByText(args.content);
+    expect(el).toBeUndefined();
   },
 } satisfies Story;
