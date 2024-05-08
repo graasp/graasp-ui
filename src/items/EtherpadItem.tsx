@@ -1,7 +1,5 @@
 import React, { FC } from 'react';
 
-import { SCREEN_MAX_HEIGHT } from '../constants';
-
 /**
  * @see https://etherpad.org/doc/v1.8.18/#index_embed-parameters
  */
@@ -49,7 +47,7 @@ const EtherpadItem: FC<EtherpadItemProps> = ({
       sandbox='allow-forms allow-modals allow-orientation-lock allow-pointer-lock allow-popups allow-presentation allow-scripts allow-same-origin'
       style={{
         width: '100%',
-        height: SCREEN_MAX_HEIGHT,
+        height: '100%',
         border: 'none',
         display: 'block',
         ...style,
