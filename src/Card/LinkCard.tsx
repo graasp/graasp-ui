@@ -22,6 +22,7 @@ type FancyLinkProps = {
   url: string;
   thumbnail?: string;
   description: string;
+  isExternal?: boolean;
 };
 
 const FancyLink = ({
@@ -30,6 +31,7 @@ const FancyLink = ({
   thumbnail,
   description,
   url,
+  isExternal = true,
 }: FancyLinkProps): JSX.Element => {
   const theme = useTheme();
   return (
@@ -71,16 +73,20 @@ const FancyLink = ({
                   >
                     {title}
                   </Typography>
-                  <ExternalLink
-                    // the icon should not get smaller
-                    style={{ flexShrink: 0 }}
-                    size='1rem'
-                    color={theme.palette.primary.main}
-                  />
+                  {isExternal && (
+                    <ExternalLink
+                      // the icon should not get smaller
+                      style={{ flexShrink: 0 }}
+                      size='1rem'
+                      color={theme.palette.primary.main}
+                    />
+                  )}
                 </Stack>
-                <Typography color='text.secondary' noWrap variant='caption'>
-                  ({url})
-                </Typography>
+                {isExternal && (
+                  <Typography color='text.secondary' noWrap variant='caption'>
+                    ({url})
+                  </Typography>
+                )}
               </Stack>
             }
             subheader={description}

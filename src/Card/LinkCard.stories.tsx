@@ -54,3 +54,13 @@ export const NoThumbnail = {
       'Graasp is a Learning experience platform, that provides rich learning experiences',
   },
 } satisfies Story;
+
+export const InternalLink = {
+  args: {
+    title: 'Check out the Graasp player !',
+    url: 'https://player.graasp.org/',
+    description: 'Graasp Player',
+    thumbnail: 'https://player.graasp.org/player.svg',
+    isExternal: false,
+  },
+} satisfies Story;
