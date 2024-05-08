@@ -3,11 +3,13 @@ import { Box } from '@mui/material';
 
 import { useDrop } from 'react-dnd';
 
+import { DraggableAndDroppableProps } from './DraggableRow';
+
 export type InBetweenProps<T> = {
   previousRowIdx: number;
   enableMoveInBetween: boolean;
   onDrop: (draggedRow: T, idx: number) => void;
-  renderComponent: (el: T) => JSX.Element;
+  renderComponent: (el: T, args: DraggableAndDroppableProps) => JSX.Element;
 };
 
 const InBetween = <T extends object>({
@@ -48,7 +50,7 @@ const InBetween = <T extends object>({
               paddingBottom: spacing / 8,
             }}
           >
-            {renderComponent(data)}
+            {renderComponent(data, { isOver: false, isDragging: false })}
           </Box>
         )
         // <Box

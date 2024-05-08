@@ -77,11 +77,12 @@ export const Dense: Story = {
   args: {
     dense: true,
     name: 'my card title',
-    content: <span>folder</span>,
+    content: 'folder',
     fullWidth: true,
     elevation: false,
     creator: 'graasp',
     alt: 'graasp',
+    to: 'graasp',
     footer: (
       <>
         <IconButton>
@@ -216,19 +217,7 @@ export const DenseMobile: Story = {
     elevation: false,
     creator: 'graasp',
     alt: 'graasp',
-    footer: (
-      <>
-        <IconButton>
-          <AcUnitIcon />
-        </IconButton>
-        <IconButton>
-          <AcUnitIcon />
-        </IconButton>
-        <IconButton>
-          <AcUnitIcon />
-        </IconButton>
-      </>
-    ),
+    footer: 'myfooter',
     renderMenuItems: () => [
       <IconButton>
         <AcUnitIcon />
@@ -242,7 +231,13 @@ export const DenseMobile: Story = {
   ],
   play: async ({ args, canvasElement }) => {
     const canvas = within(canvasElement);
-    const el = canvas.findByText(args.content);
-    expect(el).toBeUndefined();
+
+    // does not show content
+    const el = await canvas.findByText(args.content as string);
+    expect(el).not.toBeVisible();
+
+    // does not show footer
+    const footerEl = await canvas.queryByText(args.footer as string);
+    expect(footerEl).not.toBeVisible();
   },
 } satisfies Story;

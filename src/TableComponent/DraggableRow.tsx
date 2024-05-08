@@ -7,20 +7,23 @@ export type TableMetaType = {
   disableClicking?: boolean;
 };
 
+export type DraggableAndDroppableProps = {
+  isDragging: boolean;
+  isOver: boolean;
+};
+
 export type DraggableRowProps<T> = {
   row: T;
   onDrop: (draggedRow: T, targetRow: T) => void;
   isMovable?: boolean;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  onClick?: (el: T) => void;
-  renderComponent: (el: T) => JSX.Element;
+  renderComponent: (el: T, args: DraggableAndDroppableProps) => JSX.Element;
 };
 
 const DraggableRow = <T extends object>({
   row,
   onDrop,
   isMovable = false,
-  onClick,
   renderComponent,
 }: DraggableRowProps<T>): JSX.Element => {
   const [{ isOver }, dropRef] = useDrop(
@@ -56,18 +59,13 @@ const DraggableRow = <T extends object>({
         background: isOver ? 'lightgrey' : undefined,
       }}
       ref={isMovable ? attachRef : undefined}
-      sx={
-        onClick
-          ? {
-              '&:hover': {
-                cursor: 'pointer',
-                backgroundColor: 'rgba(0, 0, 0, 0.1)',
-              },
-            }
-          : {}
-      }
+      sx={{
+        '&:hover': {
+          cursor: 'grab',
+        },
+      }}
     >
-      {renderComponent(row)}
+      {renderComponent(row, { isDragging, isOver })}
     </Box>
   );
 };

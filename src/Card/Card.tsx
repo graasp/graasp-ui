@@ -1,3 +1,4 @@
+import { DraggableAndDroppableProps } from '@/TableComponent/DraggableRow';
 import MenuButton, { MenuButtonProps } from '@/buttons/MenuButton/MenuButton';
 
 import { Stack, SxProps, styled } from '@mui/material';
@@ -15,12 +16,13 @@ const DEFAULT_CARD_HEIGHT = 130;
 
 const StyledCard = styled(MuiCard, {
   shouldForwardProp: (prop) => prop !== 'elevation' && prop !== 'fullWidth',
-})<{ fullWidth?: boolean; elevation?: boolean }>(
-  ({ theme, elevation, fullWidth }) => ({
+})<{ isOver: boolean; fullWidth?: boolean; elevation?: boolean }>(
+  ({ theme, elevation, fullWidth, isOver }) => ({
     borderRadius: theme.spacing(1),
     boxShadow: elevation ? theme.shadows[2] : '0px 2px 2px #eeeeee',
     width: fullWidth ? '100%' : 'max-content',
     maxWidth: '100%',
+    border: isOver ? '2px solid black' : 'none',
   }),
 );
 
@@ -37,7 +39,7 @@ type CardProps = {
    * image link to display as thumbnail
    */
   thumbnail?: string;
-  footer?: ReactElement;
+  footer?: string | ReactElement;
   sx?: SxProps;
   /**
    * Whether the card should expand to take all available space
@@ -51,7 +53,7 @@ type CardProps = {
 
   to?: string;
   type?: CardThumbnailProps['type'];
-};
+} & Partial<DraggableAndDroppableProps>;
 
 const Wrapper = ({
   children,
@@ -87,6 +89,8 @@ const Card = ({
   alt,
   to,
   type,
+  isOver = false,
+  isDragging = false,
 }: CardProps): JSX.Element => {
   let height = heightProp;
   if (!height) {
@@ -100,16 +104,18 @@ const Card = ({
         // TODO: cannot make it work
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
-        elevation={elevation}
+        elevation={elevation && !isDragging}
         id={id}
         sx={sx}
         fullWidth={fullWidth}
+        isOver={isOver}
       >
         <Stack
           sx={{ height, boxSizing: 'border-box' }}
           direction='row'
           gap={1}
           alignItems='center'
+          mr={1}
         >
           <CardThumbnail
             width={height}
@@ -183,7 +189,7 @@ const Card = ({
   }
 
   return (
-    <StyledCard id={id} sx={sx} fullWidth={fullWidth}>
+    <StyledCard isOver={isOver} id={id} sx={sx} fullWidth={fullWidth}>
       <Stack sx={{ height, boxSizing: 'border-box' }} direction='row' gap={2}>
         <CardThumbnail
           width={height}
