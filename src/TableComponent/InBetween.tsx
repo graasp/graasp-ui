@@ -41,22 +41,17 @@ const InBetween = <T extends object>({
       {(!isOver || !enableMoveInBetween) && (
         <Box style={{ padding: 0, height: spacing, width: '100%' }} />
       )}
-      {
-        isOver && enableMoveInBetween && (
-          <Box
-            sx={{
-              opacity: 0.5,
-              paddingTop: spacing / 8,
-              paddingBottom: spacing / 8,
-            }}
-          >
-            {renderComponent(data, { isOver: false, isDragging: false })}
-          </Box>
-        )
-        // <Box
-        //   sx={{ background: 'green', height: 5, padding: 0, width: '100%' }}
-        // />
-      }
+      {isOver && enableMoveInBetween && (
+        <Box
+          sx={{
+            opacity: 0.5,
+            paddingTop: spacing / 8,
+            paddingBottom: spacing / 8,
+          }}
+        >
+          {renderComponent(data, { isOver: false, isDragging: false })}
+        </Box>
+      )}
     </Box>
   );
 };

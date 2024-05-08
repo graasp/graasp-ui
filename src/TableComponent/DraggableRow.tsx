@@ -16,7 +16,6 @@ export type DraggableRowProps<T> = {
   row: T;
   onDrop: (draggedRow: T, targetRow: T) => void;
   isMovable?: boolean;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   renderComponent: (el: T, args: DraggableAndDroppableProps) => JSX.Element;
 };
 

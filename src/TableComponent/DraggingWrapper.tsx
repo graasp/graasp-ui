@@ -8,7 +8,7 @@ import DraggableRow, { DraggableRowProps } from './DraggableRow';
 import InBetween, { InBetweenProps } from './InBetween';
 
 export type DraggingWrapperProps<T> = {
-  renderComponent: (el: T) => JSX.Element;
+  renderComponent: DraggableRowProps<T>['renderComponent'];
 
   rows?: T[];
 
@@ -31,26 +31,19 @@ export type DraggingWrapperProps<T> = {
 const DraggingWrapper = <T extends object>({
   id,
   rows = [],
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  getRowId = (row: any) => row.id,
-  // sx = {},
+  getRowId,
   onDropInRow: onDropInRowFn,
   onDropBetweenRow: onDropBetweenRowFn,
   renderComponent,
   isMovable = false,
   enableMoveInBetween = true,
 }: DraggingWrapperProps<T>): JSX.Element => {
-  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-  const onDropInRow = (draggedRow: T, targetRow: T) => {
+  const onDropInRow = (draggedRow: T, targetRow: T): void => {
     console.log('move into');
     onDropInRowFn?.(draggedRow, targetRow);
   };
 
-  const onDropBetweenRow = (
-    draggedRow: T,
-    previousRowIdx: number,
-    // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-  ) => {
+  const onDropBetweenRow = (draggedRow: T, previousRowIdx: number): void => {
     console.log('move into');
     onDropBetweenRowFn?.(draggedRow, previousRowIdx);
   };
@@ -68,7 +61,7 @@ const DraggingWrapper = <T extends object>({
           <>
             <DraggableRow<T>
               isMovable={isMovable}
-              key={getRowId(row)}
+              key={getRowId?.(row)}
               row={row}
               renderComponent={renderComponent}
               onDrop={onDropInRow}
