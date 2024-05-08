@@ -6,7 +6,6 @@ import { userEvent, within } from '@storybook/testing-library';
 import { ItemType, LinkItemFactory } from '@graasp/sdk';
 
 import { MOCK_MEMBER } from '../utils/fixtures';
-import { TABLE_CATEGORIES } from '../utils/storybook';
 import LinkItem from './LinkItem';
 
 const item = LinkItemFactory({
@@ -51,13 +50,6 @@ const meta = {
   title: 'Items/LinkItem',
   component: LinkItem,
 
-  argTypes: {
-    onSaveCaption: {
-      table: {
-        category: TABLE_CATEGORIES.EVENTS,
-      },
-    },
-  },
   args: {
     onClick: fn(),
   },

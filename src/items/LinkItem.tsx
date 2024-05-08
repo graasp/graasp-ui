@@ -13,7 +13,7 @@ import { ITEM_MAX_HEIGHT } from './constants';
 import withCaption from './withCaption';
 import withResizing, { StyledIFrame } from './withResizing';
 
-export type LinkItemProps = {
+type LinkItemProps = {
   /**
    * Id of the component used for testing
    */
@@ -30,17 +30,8 @@ export type LinkItemProps = {
   isResizable?: boolean;
   item: LinkItemType;
   loadingMessage?: string;
-  onSaveCaption?: (text: string) => void;
-  onCancelCaption?: (text: string) => void;
   openLinkMessage?: string;
-  /**
-   * id of the save button
-   */
-  saveButtonId?: string;
-  /**
-   * id of the cancel button
-   */
-  cancelButtonId?: string;
+
   /**
    * whether the caption should be displayed
    */

@@ -1,3 +1,4 @@
+import { DEFAULT_GRAY_ICONS_COLOR } from '@/theme';
 import {
   AppWindowIcon,
   CableIcon,
@@ -52,7 +53,7 @@ export type ItemIconProps = {
 };
 
 const ItemIcon = ({
-  color,
+  color = DEFAULT_GRAY_ICONS_COLOR,
   extra,
   mimetype: defaultMimetype,
   iconSrc,
