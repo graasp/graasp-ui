@@ -4,7 +4,7 @@ import { TABLE_CATEGORIES } from '../utils/storybook';
 import BuildIcon from './BuildIcon';
 
 export default {
-  title: 'Icons/BuildIcon',
+  title: 'Icons/Builder',
   component: BuildIcon,
 
   argTypes: {

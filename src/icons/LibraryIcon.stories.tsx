@@ -4,7 +4,7 @@ import { TABLE_CATEGORIES } from '../utils/storybook';
 import LibraryIcon from './LibraryIcon';
 
 export default {
-  title: 'Icons/LibraryIcon',
+  title: 'Icons/Library',
   component: LibraryIcon,
 
   argTypes: {

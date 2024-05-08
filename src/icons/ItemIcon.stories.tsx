@@ -10,11 +10,6 @@ const meta: Meta<typeof ItemIcon> = {
   component: ItemIcon,
 
   argTypes: {
-    sx: {
-      table: {
-        category: TABLE_CATEGORIES.MUI,
-      },
-    },
     color: {
       table: {
         category: TABLE_CATEGORIES.MUI,
@@ -22,7 +17,7 @@ const meta: Meta<typeof ItemIcon> = {
     },
     type: {
       control: 'radio',
-      options: Object.values(ItemType),
+      options: [...Object.values(ItemType), 'upload'],
     },
   },
 };
@@ -49,9 +44,6 @@ export const ImageWithStyle: Story = {
     type: ItemType.FOLDER,
     iconSrc: 'https://picsum.photos/200/100',
     size: '100px',
-    sx: {
-      borderRadius: 2,
-    },
   },
 };
 
@@ -102,6 +94,14 @@ export const App: Story = {
   },
 };
 
+export const H5P: Story = {
+  name: 'H5P',
+  args: {
+    type: ItemType.H5P,
+    color: 'black',
+  },
+};
+
 export const Link: Story = {
   args: {
     type: ItemType.LINK,
@@ -127,7 +127,7 @@ export const FancyImage: Story = {
   args: {
     type: ItemType.S3_FILE,
     color: 'red',
-    sx: { fontSize: '3rem' },
+    size: '3rem',
     mimetype: MimeTypes.Image.JPEG,
   },
 };

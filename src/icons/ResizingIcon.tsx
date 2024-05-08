@@ -2,8 +2,6 @@ import UnfoldMoreIcon from '@mui/icons-material/UnfoldMore';
 import { Theme, styled } from '@mui/material';
 import Box from '@mui/material/Box';
 
-import { FC } from 'react';
-
 const RESIZING_ICON_LEVEL_BACKGROUND_COLOR = 300;
 const RESIZING_ICON_LEVEL_BACKGROUND_COLOR_FOCUS = 500;
 
@@ -21,12 +19,10 @@ const StyledIcon = styled(UnfoldMoreIcon)(({ theme }: { theme: Theme }) => ({
   },
 }));
 
-const ResizingIcon: FC = () => {
-  return (
-    <Box display='flex' justifyContent='center' alignItems='center'>
-      <StyledIcon color='primary' />
-    </Box>
-  );
-};
+const ResizingIcon = (): JSX.Element => (
+  <Box display='flex' justifyContent='center' alignItems='center'>
+    <StyledIcon color='primary' />
+  </Box>
+);
 
 export default ResizingIcon;

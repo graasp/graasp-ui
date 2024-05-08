@@ -10,10 +10,6 @@ type ThumbnailProps = {
   alt: string;
   id?: string;
   /**
-   * @deprecated use sx
-   */
-  className?: string;
-  /**
    * default thumbnail component
    */
   defaultComponent?: JSX.Element;
@@ -54,6 +50,9 @@ const Thumbnail = ({
         alt={alt}
         sx={[
           {
+            objectFit: 'cover',
+            width: maxWidth,
+            height: maxHeight,
             maxWidth,
             maxHeight,
           },

@@ -70,7 +70,7 @@ const RowMenu = ({
           disabled={isDisabled?.(item)}
           startIcon={
             <ItemIcon
-              sx={{ width: 20 }}
+              size='20px'
               alt={`${item.name} icon`}
               type={ItemType.FOLDER}
             />

@@ -9,7 +9,7 @@ import MainMenu from './MainMenu';
 import MenuItem from './MenuItem';
 
 const meta: Meta<typeof MainMenu> = {
-  title: 'Common/MainMenu',
+  title: 'Main/Menu',
   component: MainMenu,
 
   argTypes: {

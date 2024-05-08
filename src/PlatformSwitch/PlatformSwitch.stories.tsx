@@ -11,7 +11,7 @@ import PlatformSwitch, { PlatformSwitchProps } from './PlatformSwitch';
 import { Platform } from './hooks';
 
 export default {
-  title: 'Common/PlatformSwitch',
+  title: 'Main/PlatformSwitch',
   component: PlatformSwitch,
 };
 

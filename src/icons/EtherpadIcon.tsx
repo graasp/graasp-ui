@@ -1,12 +1,12 @@
 import { SvgIcon, SxProps, Theme } from '@mui/material';
 
 type Props = {
-  style?: { color?: string };
+  color?: string;
   sx?: SxProps<Theme>;
 };
 
-const EtherpadIcon = ({ style, sx }: Props): JSX.Element => {
-  const color = style?.color ?? 'currentcolor';
+const EtherpadIcon = ({ color: initialColor, sx }: Props): JSX.Element => {
+  const color = initialColor ?? 'currentcolor';
 
   return (
     <SvgIcon
