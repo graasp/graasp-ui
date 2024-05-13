@@ -9,9 +9,9 @@ import { DraggableAndDroppableProps, DroppedFile } from './DraggableRow';
 export type InBetweenProps<T> = {
   previousRowIdx: number;
   enableMoveInBetween: boolean;
-  onDrop: (draggedRow: T | DroppedFile[], idx: number) => void;
+  onDrop: (draggedRow: T | DroppedFile, idx: number) => void;
   renderComponent: (
-    el: T | DroppedFile[],
+    el: T | DroppedFile,
     args: DraggableAndDroppableProps,
   ) => JSX.Element;
   allowFiles?: boolean;
@@ -31,7 +31,7 @@ const InBetween = <T extends object>({
   const [{ isOver, data }, drop] = useDrop(
     () => ({
       accept,
-      drop: (draggedRow: T | DroppedFile[]) => {
+      drop: (draggedRow: T | DroppedFile) => {
         return onDrop(draggedRow, previousRowIdx);
       },
       canDrop: () => enableMoveInBetween,

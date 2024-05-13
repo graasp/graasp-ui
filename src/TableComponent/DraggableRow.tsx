@@ -21,10 +21,10 @@ export type DroppedFile = {
 
 export type DraggableRowProps<T> = {
   row: T;
-  onDrop: (draggedRow: T | DroppedFile[], targetRow: T) => void;
+  onDrop: (draggedRow: T | DroppedFile, targetRow: T) => void;
   isMovable?: boolean;
   renderComponent: (
-    el: T | DroppedFile[],
+    el: T | DroppedFile,
     args: DraggableAndDroppableProps,
   ) => JSX.Element;
   allowFiles?: boolean;
@@ -44,7 +44,7 @@ const DraggableRow = <T extends object>({
   const [{ isOver }, dropRef] = useDrop(
     {
       accept,
-      drop: (draggedRow: T | DroppedFile[]) => {
+      drop: (draggedRow: T | DroppedFile) => {
         onDrop(draggedRow, row);
       },
       collect: (monitor) => ({

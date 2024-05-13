@@ -41,12 +41,12 @@ const DraggingWrapper = <T extends object>({
   enableMoveInBetween = true,
   allowFiles = true,
 }: DraggingWrapperProps<T>): JSX.Element => {
-  const onDropInRow = (draggedRow: T | DroppedFile[], targetRow: T): void => {
+  const onDropInRow = (draggedRow: T | DroppedFile, targetRow: T): void => {
     onDropInRowFn?.(draggedRow, targetRow);
   };
 
   const onDropBetweenRow = (
-    draggedRow: T | DroppedFile[],
+    draggedRow: T | DroppedFile,
     previousRowIdx: number,
   ): void => {
     onDropBetweenRowFn?.(draggedRow, previousRowIdx);
