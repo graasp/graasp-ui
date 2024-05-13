@@ -1,3 +1,4 @@
+import { TABLE_CATEGORIES } from '@/utils/storybook';
 import { type Meta, type StoryObj } from '@storybook/react';
 
 import { BrowserRouter } from 'react-router-dom';
@@ -20,7 +21,20 @@ const meta: Meta<typeof DraggingWrapper> = {
     },
   ],
 
-  argTypes: {},
+  argTypes: {
+    onDropInRow: {
+      action: 'on drop in row',
+      table: {
+        category: TABLE_CATEGORIES.EVENTS,
+      },
+    },
+    onDropBetweenRow: {
+      action: 'on drop between rows',
+      table: {
+        category: TABLE_CATEGORIES.EVENTS,
+      },
+    },
+  },
 };
 export default meta;
 
@@ -28,9 +42,6 @@ type Story = StoryObj<typeof DraggingWrapper>;
 
 export const Default: Story = {
   args: {
-    // ts issue
-    // https://github.com/TanStack/table/issues/4382
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     rows: makeData(6),
     isMovable: true,
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -56,9 +67,6 @@ export const Default: Story = {
 
 export const DisableDragging: Story = {
   args: {
-    // ts issue
-    // https://github.com/TanStack/table/issues/4382
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     rows: makeData(6),
     isMovable: false,
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment

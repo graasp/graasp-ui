@@ -4,7 +4,7 @@ import { Box } from '@mui/material';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 
-import DraggableRow, { DraggableRowProps } from './DraggableRow';
+import DraggableRow, { DraggableRowProps, DroppedFile } from './DraggableRow';
 import InBetween, { InBetweenProps } from './InBetween';
 
 export type DraggingWrapperProps<T> = {
@@ -26,6 +26,8 @@ export type DraggingWrapperProps<T> = {
   enableMoveInBetween?: boolean;
   /** handler on drop in between rows */
   onDropBetweenRow?: InBetweenProps<T>['onDrop'];
+
+  allowFiles?: DraggableRowProps<T>['allowFiles'];
 };
 
 const DraggingWrapper = <T extends object>({
@@ -37,14 +39,16 @@ const DraggingWrapper = <T extends object>({
   renderComponent,
   isMovable = false,
   enableMoveInBetween = true,
+  allowFiles = true,
 }: DraggingWrapperProps<T>): JSX.Element => {
-  const onDropInRow = (draggedRow: T, targetRow: T): void => {
-    console.log('move into');
+  const onDropInRow = (draggedRow: T | DroppedFile[], targetRow: T): void => {
     onDropInRowFn?.(draggedRow, targetRow);
   };
 
-  const onDropBetweenRow = (draggedRow: T, previousRowIdx: number): void => {
-    console.log('move into');
+  const onDropBetweenRow = (
+    draggedRow: T | DroppedFile[],
+    previousRowIdx: number,
+  ): void => {
     onDropBetweenRowFn?.(draggedRow, previousRowIdx);
   };
 
@@ -60,6 +64,7 @@ const DraggingWrapper = <T extends object>({
         {rows.map((row, idx) => (
           <>
             <DraggableRow<T>
+              allowFiles={allowFiles}
               isMovable={isMovable}
               key={getRowId?.(row)}
               row={row}
@@ -67,6 +72,7 @@ const DraggingWrapper = <T extends object>({
               onDrop={onDropInRow}
             />
             <InBetween<T>
+              allowFiles={allowFiles}
               renderComponent={renderComponent}
               enableMoveInBetween={enableMoveInBetween}
               previousRowIdx={idx + 1}

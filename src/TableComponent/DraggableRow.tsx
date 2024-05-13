@@ -1,6 +1,7 @@
 import { Box, BoxProps } from '@mui/material';
 
 import { ConnectableElement, useDrag, useDrop } from 'react-dnd';
+import { NativeTypes } from 'react-dnd-html5-backend';
 
 export type TableMetaType = {
   align?: 'right' | 'left' | 'center';
@@ -12,11 +13,21 @@ export type DraggableAndDroppableProps = {
   isOver: boolean;
 };
 
+export type DroppedFile = {
+  dataTransfer: DataTransfer;
+  files: File[];
+  items: DataTransferItemList;
+};
+
 export type DraggableRowProps<T> = {
   row: T;
-  onDrop: (draggedRow: T, targetRow: T) => void;
+  onDrop: (draggedRow: T | DroppedFile[], targetRow: T) => void;
   isMovable?: boolean;
-  renderComponent: (el: T, args: DraggableAndDroppableProps) => JSX.Element;
+  renderComponent: (
+    el: T | DroppedFile[],
+    args: DraggableAndDroppableProps,
+  ) => JSX.Element;
+  allowFiles?: boolean;
 };
 
 const DraggableRow = <T extends object>({
@@ -24,11 +35,16 @@ const DraggableRow = <T extends object>({
   onDrop,
   isMovable = false,
   renderComponent,
+  allowFiles = true,
 }: DraggableRowProps<T>): JSX.Element => {
+  const accept = ['row'];
+  if (allowFiles) {
+    accept.push(NativeTypes.FILE);
+  }
   const [{ isOver }, dropRef] = useDrop(
     {
-      accept: 'row',
-      drop: (draggedRow: T) => {
+      accept,
+      drop: (draggedRow: T | DroppedFile[]) => {
         onDrop(draggedRow, row);
       },
       collect: (monitor) => ({

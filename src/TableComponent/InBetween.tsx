@@ -2,14 +2,19 @@
 import { Box } from '@mui/material';
 
 import { useDrop } from 'react-dnd';
+import { NativeTypes } from 'react-dnd-html5-backend';
 
-import { DraggableAndDroppableProps } from './DraggableRow';
+import { DraggableAndDroppableProps, DroppedFile } from './DraggableRow';
 
 export type InBetweenProps<T> = {
   previousRowIdx: number;
   enableMoveInBetween: boolean;
-  onDrop: (draggedRow: T, idx: number) => void;
-  renderComponent: (el: T, args: DraggableAndDroppableProps) => JSX.Element;
+  onDrop: (draggedRow: T | DroppedFile[], idx: number) => void;
+  renderComponent: (
+    el: T | DroppedFile[],
+    args: DraggableAndDroppableProps,
+  ) => JSX.Element;
+  allowFiles?: boolean;
 };
 
 const InBetween = <T extends object>({
@@ -17,11 +22,16 @@ const InBetween = <T extends object>({
   onDrop,
   enableMoveInBetween,
   renderComponent,
+  allowFiles = true,
 }: InBetweenProps<T>): JSX.Element => {
+  const accept = ['row'];
+  if (allowFiles) {
+    accept.push(NativeTypes.FILE);
+  }
   const [{ isOver, data }, drop] = useDrop(
     () => ({
-      accept: 'row',
-      drop: (draggedRow: T) => {
+      accept,
+      drop: (draggedRow: T | DroppedFile[]) => {
         return onDrop(draggedRow, previousRowIdx);
       },
       canDrop: () => enableMoveInBetween,
