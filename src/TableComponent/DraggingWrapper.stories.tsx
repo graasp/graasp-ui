@@ -86,3 +86,35 @@ export const DisableDragging: Story = {
     },
   },
 };
+
+export const DynamicCanDrop: Story = {
+  args: {
+    rows: makeData(6),
+    isMovable: true,
+    canDrop: (el) => {
+      if (el && 'name' in el) {
+        return (el.name as string).length > 10;
+      }
+      return false;
+    },
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-expect-error
+    renderComponent: (el: FolderItemType, { isDragging, isOver }) => {
+      return (
+        <Card
+          sx={{
+            background: isOver ? 'red' : 'none',
+            opacity: isDragging ? 0.5 : 1,
+          }}
+          dense
+          alt={el.name}
+          creator={el.creator?.name}
+          name={el.name}
+          content={el.description ?? ''}
+          fullWidth
+          footer={<ItemBadges isCollapsible isHidden />}
+        />
+      );
+    },
+  },
+};

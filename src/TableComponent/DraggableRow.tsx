@@ -28,11 +28,13 @@ export type DraggableRowProps<T> = {
     args: DraggableAndDroppableProps,
   ) => JSX.Element;
   allowFiles?: boolean;
+  canDrop?: (el: T | DroppedFile) => boolean;
 };
 
 const DraggableRow = <T extends object>({
   row,
   onDrop,
+  canDrop = () => true,
   isMovable = false,
   renderComponent,
   allowFiles = true,
@@ -44,11 +46,15 @@ const DraggableRow = <T extends object>({
   const [{ isOver }, dropRef] = useDrop(
     {
       accept,
+      canDrop,
       drop: (draggedRow: T | DroppedFile) => {
         onDrop(draggedRow, row);
       },
       collect: (monitor) => ({
-        isOver: !!monitor.isOver(),
+        isOver:
+          monitor.getItem() !== row &&
+          canDrop(monitor.getItem()) &&
+          !!monitor.isOver(),
       }),
     },
     [onDrop],
@@ -69,10 +75,6 @@ const DraggableRow = <T extends object>({
 
   return (
     <Box
-      style={{
-        opacity: isDragging ? 0.5 : 1,
-        background: isOver ? 'lightgrey' : undefined,
-      }}
       ref={isMovable ? attachRef : undefined}
       sx={{
         '&:hover': {

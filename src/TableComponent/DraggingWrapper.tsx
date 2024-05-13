@@ -28,6 +28,8 @@ export type DraggingWrapperProps<T> = {
   onDropBetweenRow?: InBetweenProps<T>['onDrop'];
 
   allowFiles?: DraggableRowProps<T>['allowFiles'];
+
+  canDrop?: DraggableRowProps<T>['canDrop'];
 };
 
 const DraggingWrapper = <T extends object>({
@@ -40,6 +42,7 @@ const DraggingWrapper = <T extends object>({
   isMovable = false,
   enableMoveInBetween = true,
   allowFiles = true,
+  canDrop,
 }: DraggingWrapperProps<T>): JSX.Element => {
   const onDropInRow = (draggedRow: T | DroppedFile, targetRow: T): void => {
     onDropInRowFn?.(draggedRow, targetRow);
@@ -64,6 +67,7 @@ const DraggingWrapper = <T extends object>({
         {rows.map((row, idx) => (
           <>
             <DraggableRow<T>
+              canDrop={canDrop}
               allowFiles={allowFiles}
               isMovable={isMovable}
               key={getRowId?.(row)}
