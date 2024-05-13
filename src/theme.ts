@@ -5,6 +5,9 @@ import { Context } from '@graasp/sdk';
 
 export const PRIMARY_COLOR = '#5050d2';
 export const SECONDARY_COLOR = '#FFFFFF';
+export const DEFAULT_TEXT_PRIMARY_COLOR = '#313131';
+export const DEFAULT_TEXT_SECONDARY_COLOR = '#71717A';
+// export const DEFAULT_TEXT_COLOR = '#000042'; // slightly more purplish
 export const DEFAULT_BACKGROUND_COLOR = '#fafaff';
 export const DEFAULT_GRAY_ICONS_COLOR = '#646464';
 
@@ -51,6 +54,10 @@ export const createGraaspTheme = ({
 }: GraaspThemeOptions): Theme => {
   const baseTheme = createTheme({
     palette: {
+      text: {
+        primary: DEFAULT_TEXT_PRIMARY_COLOR,
+        secondary: DEFAULT_TEXT_SECONDARY_COLOR,
+      },
       background: { default: DEFAULT_BACKGROUND_COLOR },
       primary: {
         main: PRIMARY_COLOR,
