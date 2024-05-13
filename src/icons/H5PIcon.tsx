@@ -4,7 +4,7 @@ type H5PProps = {
 };
 
 const H5PIcon = ({ size, color }: H5PProps): JSX.Element => {
-  const fillColor = color ?? '#000';
+  const fillColor = color ?? 'currentColor';
   return (
     <svg
       width={size}
