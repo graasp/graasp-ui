@@ -12,6 +12,7 @@ import { LinkCard } from '..';
 import withCollapse from '../Collapse/withCollapse';
 import { DEFAULT_LINK_SHOW_BUTTON } from '../constants';
 import { ITEM_MAX_HEIGHT } from './constants';
+import withCaption from './withCaption';
 import withResizing, { StyledIFrame } from './withResizing';
 
 type LinkItemProps = {
@@ -68,6 +69,7 @@ const LinkItem = ({
   item,
   thumbnail,
   memberId,
+  showCaption = true,
   showIframe = false,
   showButton = DEFAULT_LINK_SHOW_BUTTON,
   loadingMessage = 'Link is Loading...',
@@ -89,9 +91,9 @@ const LinkItem = ({
   // default case is an iframe with given link
   const url = extra?.url;
 
-  // const CaptionWrapper = withCaption({
-  //   item,
-  // });
+  const CaptionWrapper = withCaption({
+    item,
+  });
 
   const handleLoad = (): void => {
     setIsLoading(false);
@@ -177,25 +179,13 @@ const LinkItem = ({
         {url}
       </MUILink>
     );
-
-    // const button = (
-    //   <Button
-    //     id={id}
-    //     startIcon={<OpenInNewIcon />}
-    //     href={url}
-    //     target='_blank'
-    //     onClick={onClick}
-    //   >
-    //     {name ?? openLinkMessage}
-    //   </Button>
-    // );
   };
 
   let linkItem = getComponent();
 
-  // if (showCaption) {
-  //   linkItem = CaptionWrapper(linkItem);
-  // }
+  if (showCaption) {
+    linkItem = CaptionWrapper(linkItem);
+  }
 
   if (showCollapse) {
     linkItem = withCollapse({ item: { name } })(linkItem);

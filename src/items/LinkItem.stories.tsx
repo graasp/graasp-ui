@@ -108,7 +108,7 @@ export const SimpleLink: Story = {
     if (args.item.description) {
       expect(canvas.getByText(args.item.description)).toBeInTheDocument();
     }
-    await userEvent.click(canvas.getByText(args.item.name));
+    await userEvent.click(canvas.getByText(args.item.extra.embeddedLink.url));
   },
 };
 
