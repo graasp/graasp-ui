@@ -98,9 +98,11 @@ const FancyLink = ({
               height: description ? '1lh' : 'unset',
               textOverflow: 'ellipsis',
               minWidth: 0,
-              '& p': {
-                margin: 0,
-                marginBlocStart: 0,
+              sx: {
+                '& p': {
+                  margin: 0,
+                  marginBlocStart: 0,
+                },
               },
             }}
           />

@@ -30,6 +30,10 @@ type LinkItemProps = {
    */
   isResizable?: boolean;
   item: LinkItemType;
+  /**
+   * Thumbnail url of the item
+   */
+  thumbnail?: string;
   loadingMessage?: string;
   // openLinkMessage?: string;
 
@@ -62,6 +66,7 @@ const IFrameContainer = styled('div')({
 const LinkItem = ({
   id,
   item,
+  thumbnail,
   memberId,
   showIframe = false,
   showButton = DEFAULT_LINK_SHOW_BUTTON,
@@ -145,8 +150,9 @@ const LinkItem = ({
       return <Alert severity='error'>{errorMessage}</Alert>;
     }
 
-    const button = (
+    const linkCard = (
       <LinkCard
+        thumbnail={thumbnail ?? item.extra.embeddedLink.icons?.[0]}
         title={item.name}
         url={url}
         description={item.description ?? ''}
@@ -157,13 +163,13 @@ const LinkItem = ({
       return (
         <Fragment>
           {renderIframe()}
-          {(isLoading || showButton) && button}
+          {(isLoading || showButton) && linkCard}
         </Fragment>
       );
     }
 
     if (showButton) {
-      return button;
+      return linkCard;
     }
 
     return (
