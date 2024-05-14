@@ -2233,7 +2233,7 @@ __metadata:
     "@mui/material": "npm:5.15.16"
     "@storybook/addon-a11y": "npm:8.0.10"
     "@storybook/addon-actions": "npm:8.0.10"
-    "@storybook/addon-coverage": "npm:1.0.1"
+    "@storybook/addon-coverage": "npm:1.0.3"
     "@storybook/addon-docs": "npm:8.0.10"
     "@storybook/addon-essentials": "npm:8.0.10"
     "@storybook/addon-interactions": "npm:8.0.10"
@@ -2245,14 +2245,14 @@ __metadata:
     "@storybook/testing-library": "npm:0.2.2"
     "@tanstack/react-query": "npm:4.36.1"
     "@testing-library/jest-dom": "npm:6.4.5"
-    "@testing-library/react": "npm:15.0.6"
+    "@testing-library/react": "npm:15.0.7"
     "@testing-library/user-event": "npm:14.5.2"
     "@trivago/prettier-plugin-sort-imports": "npm:4.3.0"
     "@types/jest": "npm:29.5.12"
     "@types/katex": "npm:^0.16.7"
     "@types/lodash.truncate": "npm:4.4.9"
-    "@types/node": "npm:20.12.8"
-    "@types/react": "npm:18.3.1"
+    "@types/node": "npm:20.12.12"
+    "@types/react": "npm:18.3.2"
     "@types/react-dom": "npm:18.3.0"
     "@types/react-router-dom": "npm:5.3.3"
     "@types/react-text-mask": "npm:5.4.14"
@@ -2289,7 +2289,7 @@ __metadata:
     react-i18next: "npm:14.1.1"
     react-quill: "npm:2.0.0"
     react-rnd: "npm:10.4.10"
-    react-router-dom: "npm:6.23.0"
+    react-router-dom: "npm:6.23.1"
     react-test-renderer: "npm:18.3.1"
     react-text-mask: "npm:5.5.0"
     sass: "npm:1.76.0"
@@ -3122,10 +3122,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@remix-run/router@npm:1.16.0":
-  version: 1.16.0
-  resolution: "@remix-run/router@npm:1.16.0"
-  checksum: 10/51f5805ec172d8ec038f8eebb5af51cac11e8dc419116c23c3765eaf1d4381390da4ab1cd04874e9126c1ec8ec7283c97efdcaf338095130439111d5218aeed0
+"@remix-run/router@npm:1.16.1":
+  version: 1.16.1
+  resolution: "@remix-run/router@npm:1.16.1"
+  checksum: 10/0bfbf2a04707e7f7fde5c76614e7990945a6d854d50c1f9f63cea50208ff864a8920420534ff7ddff6a0bcb584c84456d2f7613d6d6e896db46cafcc70d8fb65
   languageName: node
   linkType: hard
 
@@ -3414,9 +3414,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/addon-coverage@npm:1.0.1":
-  version: 1.0.1
-  resolution: "@storybook/addon-coverage@npm:1.0.1"
+"@storybook/addon-coverage@npm:1.0.3":
+  version: 1.0.3
+  resolution: "@storybook/addon-coverage@npm:1.0.3"
   dependencies:
     "@istanbuljs/load-nyc-config": "npm:^1.1.0"
     "@jsdevtools/coverage-istanbul-loader": "npm:^3.0.5"
@@ -3427,7 +3427,7 @@ __metadata:
     source-map: "npm:^0.7.4"
     test-exclude: "npm:^6.0.0"
     vite-plugin-istanbul: "npm:^3.0.1"
-  checksum: 10/59bb1664054d4d576ed96f946480a2c0756488e6811f9113eed3070042f0d809df911c9feb99e400995640fcc48ac613194eb1fb22142e0eb5e5a4e0a2895d2b
+  checksum: 10/c6ab42f1564c6408d226bac032642dcadf44341e35835443a2c572ac3159469f9b106dfd5d73143da9e909003f05a5a55d2cae0473f7f37cc1509274cbdf4bf6
   languageName: node
   linkType: hard
 
@@ -4620,9 +4620,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@testing-library/react@npm:15.0.6":
-  version: 15.0.6
-  resolution: "@testing-library/react@npm:15.0.6"
+"@testing-library/react@npm:15.0.7":
+  version: 15.0.7
+  resolution: "@testing-library/react@npm:15.0.7"
   dependencies:
     "@babel/runtime": "npm:^7.12.5"
     "@testing-library/dom": "npm:^10.0.0"
@@ -4634,7 +4634,7 @@ __metadata:
   peerDependenciesMeta:
     "@types/react":
       optional: true
-  checksum: 10/04f63fc8e1d32ca9ce387df87abbdbe1d1e8bd7343d305a3d4662e60133453a4a39f5b0e1653efbfe9516750ca559c27a9ace4740f4c3e24a49270acaf93084d
+  checksum: 10/a9342ad09b019b0f99688fb50265899bc93adfe23c22aa6743fd920635b43fdc66877e66d95f240923aa6f7d3aa360837f5b053fb363a31975788974dff7bc93
   languageName: node
   linkType: hard
 
@@ -5046,12 +5046,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:20.12.8":
-  version: 20.12.8
-  resolution: "@types/node@npm:20.12.8"
+"@types/node@npm:20.12.12":
+  version: 20.12.12
+  resolution: "@types/node@npm:20.12.12"
   dependencies:
     undici-types: "npm:~5.26.4"
-  checksum: 10/1feab4c8cb08588eea10811ed4d02485a5cde47fdf92e7b3193fc9f8ee39ea556f6e3124dc6d5378354466ed5f7e5fbe5e20f625908de40ea37560368a50f72c
+  checksum: 10/e3945da0a3017bdc1f88f15bdfb823f526b2a717bd58d4640082d6eb0bd2794b5c99bfb914b9e9324ec116dce36066990353ed1c777e8a7b0641f772575793c4
   languageName: node
   linkType: hard
 
@@ -5173,7 +5173,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:18.3.1, @types/react@npm:^16.8.0 || ^17.0.0 || ^18.0.0":
+"@types/react@npm:18.3.2":
+  version: 18.3.2
+  resolution: "@types/react@npm:18.3.2"
+  dependencies:
+    "@types/prop-types": "npm:*"
+    csstype: "npm:^3.0.2"
+  checksum: 10/a85eed82c1009dc9d979281d9ea1f5322255003de3378390f35d897b4bdaf1d34ea748636c03e9e9b4b7cc97c2f4582993d2d60e40846226ad497d97c7d8565a
+  languageName: node
+  linkType: hard
+
+"@types/react@npm:^16.8.0 || ^17.0.0 || ^18.0.0":
   version: 18.3.1
   resolution: "@types/react@npm:18.3.1"
   dependencies:
@@ -13406,27 +13416,27 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-router-dom@npm:6.23.0":
-  version: 6.23.0
-  resolution: "react-router-dom@npm:6.23.0"
+"react-router-dom@npm:6.23.1":
+  version: 6.23.1
+  resolution: "react-router-dom@npm:6.23.1"
   dependencies:
-    "@remix-run/router": "npm:1.16.0"
-    react-router: "npm:6.23.0"
+    "@remix-run/router": "npm:1.16.1"
+    react-router: "npm:6.23.1"
   peerDependencies:
     react: ">=16.8"
     react-dom: ">=16.8"
-  checksum: 10/8825c9b5d5731cb8ecf39e927949cb24474d0f3aff4ffc75b2c236c5678c4970eada98160c6fef3a99c0bdb59ce25d8951da9fdc4ac103135e450f200426c778
+  checksum: 10/29004176608e879c57830ed02ecd70bf2b54c07acfb050fbbd61c7d28a0c2c8abf1287c2c69222c588afd028763ffe2c61015f03a3360359b250cc019234d76b
   languageName: node
   linkType: hard
 
-"react-router@npm:6.23.0":
-  version: 6.23.0
-  resolution: "react-router@npm:6.23.0"
+"react-router@npm:6.23.1":
+  version: 6.23.1
+  resolution: "react-router@npm:6.23.1"
   dependencies:
-    "@remix-run/router": "npm:1.16.0"
+    "@remix-run/router": "npm:1.16.1"
   peerDependencies:
     react: ">=16.8"
-  checksum: 10/1b5228bec63147b3cf5c645ed7eac5eeca5561c70f348b61ed3af9acf86b1a181ec4af28320419eadad626c6e725defd7eb8d7418cc6080384fc7956e0325947
+  checksum: 10/72747878fd851b8fc9a6c2f1ee7a3f3a69f18df0c45d7857851b57930d4f55686190f5df0b8d9064ce9e8594bd9ac6a6f479bd8c91552f0b825beb012fa5a770
   languageName: node
   linkType: hard
 
