@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.18.0](https://github.com/graasp/graasp-ui/compare/v4.17.1...v4.18.0) (2024-05-14)
+
+
+### Features
+
+* update deps ([#843](https://github.com/graasp/graasp-ui/issues/843)) ([085b934](https://github.com/graasp/graasp-ui/commit/085b934770da007db3a33ce7872b7331637d6e0e))
+
+
+### Bug Fixes
+
+* apply avatar sizing to the avatar component ([#856](https://github.com/graasp/graasp-ui/issues/856)) ([000c882](https://github.com/graasp/graasp-ui/commit/000c882feeffb5875fa2ccc944f3f7a3728358ab))
+* **deps:** update ag-grid monorepo to v31.3.1 ([#837](https://github.com/graasp/graasp-ui/issues/837)) ([3e7a7f6](https://github.com/graasp/graasp-ui/commit/3e7a7f603120ce2000ffe5ce4dd545f68fb58c4a))
+* **deps:** update dependency @storybook/react-vite to v7.6.19 ([#841](https://github.com/graasp/graasp-ui/issues/841)) ([e6fd0e8](https://github.com/graasp/graasp-ui/commit/e6fd0e89c046809711d6f464542317a51a1a5f57))
+* **deps:** update dependency vitest to v1.5.3 ([#839](https://github.com/graasp/graasp-ui/issues/839)) ([9268905](https://github.com/graasp/graasp-ui/commit/9268905d1f4173f4543f7c0504e02e0c59d46ffa))
+* overflow on item login screen ([#845](https://github.com/graasp/graasp-ui/issues/845)) ([f82e5b2](https://github.com/graasp/graasp-ui/commit/f82e5b2ba894e9dad31f698cf10f5b6e8e48c6f7))
+* quick fix rerender of column defs ([#846](https://github.com/graasp/graasp-ui/issues/846)) ([a7ab58f](https://github.com/graasp/graasp-ui/commit/a7ab58f39eb63b0534b0afca67ceb28dd04250ea))
+
 ## [4.17.1](https://github.com/graasp/graasp-ui/compare/v4.17.0...v4.17.1) (2024-04-30)
 
 
