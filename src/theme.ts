@@ -8,8 +8,8 @@ export const SECONDARY_COLOR = '#FFFFFF';
 export const DEFAULT_TEXT_PRIMARY_COLOR = '#313131';
 export const DEFAULT_TEXT_SECONDARY_COLOR = '#71717A';
 export const DEFAULT_ACTIVE_ACTION_COLOR = '#777578';
+export const DEFAULT_LIGHT_PRIMARY_COLOR = '#E4DFFF';
 
-// export const DEFAULT_TEXT_COLOR = '#000042'; // slightly more purplish
 export const DEFAULT_BACKGROUND_COLOR = '#fafaff';
 export const DEFAULT_GRAY_ICONS_COLOR = '#646464';
 
@@ -118,6 +118,13 @@ export const createGraaspTheme = ({
         styleOverrides: {
           root: {
             textTransform: 'capitalize',
+          },
+        },
+      },
+      MuiCard: {
+        styleOverrides: {
+          root: {
+            borderRadius: '8px',
           },
         },
       },

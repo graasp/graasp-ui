@@ -1,5 +1,6 @@
 import Thumbnail from '@/Thumbnail';
 import ItemIcon, { ItemIconProps } from '@/icons/ItemIcon';
+import { DEFAULT_LIGHT_PRIMARY_COLOR } from '@/theme';
 
 import { Box, useTheme } from '@mui/material';
 
@@ -35,7 +36,7 @@ const CardThumbnail = ({
       display='flex'
       alignItems='center'
       justifyContent='center'
-      bgcolor='#E4DFFF'
+      bgcolor={DEFAULT_LIGHT_PRIMARY_COLOR}
       width={CARD_HEIGHT}
       height='100%'
       flexShrink={0}
