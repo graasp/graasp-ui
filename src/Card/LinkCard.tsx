@@ -23,6 +23,7 @@ type FancyLinkProps = {
   thumbnail?: string;
   description: string;
   isExternal?: boolean;
+  onClick?: () => void;
 };
 
 const FancyLink = ({
@@ -31,6 +32,7 @@ const FancyLink = ({
   thumbnail,
   description,
   url,
+  onClick,
   isExternal = true,
 }: FancyLinkProps): JSX.Element => {
   const theme = useTheme();
@@ -45,6 +47,7 @@ const FancyLink = ({
         // set the height of the card to be fixed
         height: CARD_HEIGHT,
       }}
+      onClick={onClick}
     >
       <CardActionArea component={Link} to={url} sx={{ height: '100%' }}>
         <Stack direction='row' alignItems='center' height='100%' minWidth={0}>

@@ -3,6 +3,8 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { fn } from '@storybook/test';
 import { userEvent, within } from '@storybook/testing-library';
 
+import { BrowserRouter } from 'react-router-dom';
+
 import { ItemType, LinkItemFactory } from '@graasp/sdk';
 
 import { MOCK_MEMBER } from '../utils/fixtures';
@@ -49,7 +51,11 @@ const itemWithHTMLDescription = LinkItemFactory({
 const meta = {
   title: 'Items/LinkItem',
   component: LinkItem,
-
+  decorators: [
+    (story) => {
+      return <BrowserRouter>{story()}</BrowserRouter>;
+    },
+  ],
   args: {
     onClick: fn(),
   },
@@ -80,6 +86,21 @@ export const LinkButton: Story = {
   args: {
     item,
     showButton: true,
+    showIframe: false,
+  },
+  play: async ({ canvasElement, args }) => {
+    const canvas = within(canvasElement);
+    if (args.item.description) {
+      expect(canvas.getByText(args.item.description)).toBeInTheDocument();
+    }
+    await userEvent.click(canvas.getByText(args.item.name));
+  },
+};
+
+export const SimpleLink: Story = {
+  args: {
+    item,
+    showButton: false,
     showIframe: false,
   },
   play: async ({ canvasElement, args }) => {

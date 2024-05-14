@@ -1,16 +1,17 @@
-import OpenInNewIcon from '@mui/icons-material/OpenInNew';
-import { styled } from '@mui/material';
+import { Interweave } from 'interweave';
+
+import { Link as MUILink, styled } from '@mui/material';
 import Alert from '@mui/material/Alert';
 
 import React, { Fragment, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import { LinkItemType, getLinkExtra } from '@graasp/sdk';
 
+import { LinkCard } from '..';
 import withCollapse from '../Collapse/withCollapse';
-import { Button } from '../buttons';
 import { DEFAULT_LINK_SHOW_BUTTON } from '../constants';
 import { ITEM_MAX_HEIGHT } from './constants';
-import withCaption from './withCaption';
 import withResizing, { StyledIFrame } from './withResizing';
 
 type LinkItemProps = {
@@ -30,7 +31,7 @@ type LinkItemProps = {
   isResizable?: boolean;
   item: LinkItemType;
   loadingMessage?: string;
-  openLinkMessage?: string;
+  // openLinkMessage?: string;
 
   /**
    * whether the caption should be displayed
@@ -62,11 +63,10 @@ const LinkItem = ({
   id,
   item,
   memberId,
-  showCaption = true,
   showIframe = false,
   showButton = DEFAULT_LINK_SHOW_BUTTON,
   loadingMessage = 'Link is Loading...',
-  openLinkMessage = 'Click here to open the link manually',
+  // openLinkMessage = 'Click here to open the link manually',
   height: defaultHeight = 400,
   errorMessage = 'The link is malformed.',
   isResizable = false,
@@ -84,9 +84,9 @@ const LinkItem = ({
   // default case is an iframe with given link
   const url = extra?.url;
 
-  const CaptionWrapper = withCaption({
-    item,
-  });
+  // const CaptionWrapper = withCaption({
+  //   item,
+  // });
 
   const handleLoad = (): void => {
     setIsLoading(false);
@@ -100,6 +100,7 @@ const LinkItem = ({
     const iframe = (
       <StyledIFrame
         height={height}
+        width='100%'
         id={id}
         isResizable={isResizable}
         onLoad={handleLoad}
@@ -137,13 +138,7 @@ const LinkItem = ({
   const getComponent = (): JSX.Element => {
     // if available, display specific player
     if (html) {
-      return (
-        <div
-          id={id}
-          onClick={onClick}
-          dangerouslySetInnerHTML={{ __html: html }}
-        />
-      );
+      return <Interweave content={html} id={id} onClick={onClick} />;
     }
 
     if (!url) {
@@ -151,30 +146,50 @@ const LinkItem = ({
     }
 
     const button = (
-      <Button
-        id={id}
-        startIcon={<OpenInNewIcon />}
-        href={url}
-        target='_blank'
-        onClick={onClick}
-      >
-        {name ?? openLinkMessage}
-      </Button>
+      <LinkCard
+        title={item.name}
+        url={url}
+        description={item.description ?? ''}
+      />
     );
 
+    if (showIframe) {
+      return (
+        <Fragment>
+          {renderIframe()}
+          {(isLoading || showButton) && button}
+        </Fragment>
+      );
+    }
+
+    if (showButton) {
+      return button;
+    }
+
     return (
-      <Fragment>
-        {renderIframe()}
-        {(isLoading || showButton) && button}
-      </Fragment>
+      <MUILink component={Link} to={url}>
+        {url}
+      </MUILink>
     );
+
+    // const button = (
+    //   <Button
+    //     id={id}
+    //     startIcon={<OpenInNewIcon />}
+    //     href={url}
+    //     target='_blank'
+    //     onClick={onClick}
+    //   >
+    //     {name ?? openLinkMessage}
+    //   </Button>
+    // );
   };
 
   let linkItem = getComponent();
 
-  if (showCaption) {
-    linkItem = CaptionWrapper(linkItem);
-  }
+  // if (showCaption) {
+  //   linkItem = CaptionWrapper(linkItem);
+  // }
 
   if (showCollapse) {
     linkItem = withCollapse({ item: { name } })(linkItem);
