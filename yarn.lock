@@ -2393,6 +2393,7 @@ __metadata:
     uuid: "npm:9.0.1"
     vite: "npm:5.2.11"
     vite-plugin-dts: "npm:3.9.1"
+    vite-plugin-istanbul: "npm:6.0.2"
     vitest: "npm:1.6.0"
     wait-on: "npm:7.2.0"
   peerDependencies:
@@ -8843,6 +8844,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"eslint-visitor-keys@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "eslint-visitor-keys@npm:4.0.0"
+  checksum: 10/c7617166e6291a15ce2982b5c4b9cdfb6409f5c14562712d12e2584480cdf18609694b21d7dad35b02df0fa2cd037505048ded54d2f405c64f600949564eb334
+  languageName: node
+  linkType: hard
+
 "eslint@npm:^8.57.0":
   version: 8.57.0
   resolution: "eslint@npm:8.57.0"
@@ -8888,6 +8896,17 @@ __metadata:
   bin:
     eslint: bin/eslint.js
   checksum: 10/00496e218b23747a7a9817bf58b522276d0dc1f2e546dceb4eea49f9871574088f72f1f069a6b560ef537efa3a75261b8ef70e51ef19033da1cc4c86a755ef15
+  languageName: node
+  linkType: hard
+
+"espree@npm:^10.0.1":
+  version: 10.0.1
+  resolution: "espree@npm:10.0.1"
+  dependencies:
+    acorn: "npm:^8.11.3"
+    acorn-jsx: "npm:^5.3.2"
+    eslint-visitor-keys: "npm:^4.0.0"
+  checksum: 10/557d6cfb4894b1489effcaed8702682086033f8a2449568933bc59493734733d750f2a87907ba575844d3933340aea2d84288f5e67020c6152f6fd18a86497b2
   languageName: node
   linkType: hard
 
@@ -10886,7 +10905,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"istanbul-lib-instrument@npm:^6.0.0, istanbul-lib-instrument@npm:^6.0.1":
+"istanbul-lib-instrument@npm:^6.0.0, istanbul-lib-instrument@npm:^6.0.1, istanbul-lib-instrument@npm:^6.0.2":
   version: 6.0.2
   resolution: "istanbul-lib-instrument@npm:6.0.2"
   dependencies:
@@ -16244,6 +16263,22 @@ __metadata:
     vite:
       optional: true
   checksum: 10/3a0c65fb45dd5ce6e83e7525df2de3d7c27d92f39e7d363d27b6c2daf66feaf820c4bc014f326cb903dc816db8027845df7add47a8f33e80aa3927443299e812
+  languageName: node
+  linkType: hard
+
+"vite-plugin-istanbul@npm:6.0.2":
+  version: 6.0.2
+  resolution: "vite-plugin-istanbul@npm:6.0.2"
+  dependencies:
+    "@istanbuljs/load-nyc-config": "npm:^1.1.0"
+    espree: "npm:^10.0.1"
+    istanbul-lib-instrument: "npm:^6.0.2"
+    picocolors: "npm:^1.0.0"
+    source-map: "npm:^0.7.4"
+    test-exclude: "npm:^6.0.0"
+  peerDependencies:
+    vite: ">=4 <=6"
+  checksum: 10/fddd8367fa02159a047179c9c576c309f9a14bb970116e35fe543d40e3acc615c1671387b9de2394a5bc75d2ab0cfb7b7ebb9e29ec4ddff5411fa7bfee663e42
   languageName: node
   linkType: hard
 

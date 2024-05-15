@@ -158,6 +158,7 @@ const LinkItem = ({
         title={item.name}
         url={url}
         description={item.description ?? ''}
+        onClick={onClick}
       />
     );
 
@@ -175,7 +176,7 @@ const LinkItem = ({
     }
 
     return (
-      <MUILink component={Link} to={url}>
+      <MUILink component={Link} to={url} onClick={onClick}>
         {url}
       </MUILink>
     );

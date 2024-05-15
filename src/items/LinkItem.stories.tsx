@@ -1,7 +1,5 @@
-import { expect } from '@storybook/jest';
 import type { Meta, StoryObj } from '@storybook/react';
-import { fn } from '@storybook/test';
-import { userEvent, within } from '@storybook/testing-library';
+import { expect, fn, userEvent, within } from '@storybook/test';
 
 import { BrowserRouter } from 'react-router-dom';
 
@@ -72,7 +70,6 @@ export const Iframe = {
     showIframe: true,
     memberId: 'link-iframe-id',
   },
-
   play: async ({ canvasElement, args }) => {
     const canvas = within(canvasElement);
     if (args.item.description) {
@@ -94,8 +91,9 @@ export const LinkButton: Story = {
       expect(canvas.getByText(args.item.description)).toBeInTheDocument();
     }
     await userEvent.click(canvas.getByText(args.item.name));
+    expect(args.onClick).toHaveBeenCalled();
   },
-};
+} satisfies Story;
 
 export const SimpleLink: Story = {
   args: {
@@ -109,8 +107,9 @@ export const SimpleLink: Story = {
       expect(canvas.getByText(args.item.description)).toBeInTheDocument();
     }
     await userEvent.click(canvas.getByText(args.item.extra.embeddedLink.url));
+    expect(args.onClick).toHaveBeenCalled();
   },
-};
+} satisfies Story;
 
 export const LinkWithDescription = {
   args: {
@@ -132,5 +131,6 @@ export const IframeAndLinkButton: Story = {
 
     expect(canvas.getByTitle(args.item.name)).toBeInTheDocument();
     await userEvent.click(canvas.getByText(args.item.name));
+    expect(args.onClick).toHaveBeenCalled();
   },
-};
+} satisfies Story;

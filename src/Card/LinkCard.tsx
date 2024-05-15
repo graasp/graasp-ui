@@ -47,9 +47,13 @@ const FancyLink = ({
         // set the height of the card to be fixed
         height: CARD_HEIGHT,
       }}
-      onClick={onClick}
     >
-      <CardActionArea component={Link} to={url} sx={{ height: '100%' }}>
+      <CardActionArea
+        component={Link}
+        to={url}
+        sx={{ height: '100%' }}
+        onClick={onClick}
+      >
         <Stack direction='row' alignItems='center' height='100%' minWidth={0}>
           <CardThumbnail
             thumbnail={thumbnail}
