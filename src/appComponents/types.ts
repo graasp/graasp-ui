@@ -1,6 +1,8 @@
 export type UserFeedback = {
-  event_id: string;
-  name: string;
-  email: string;
-  comments: string;
+  message: string;
+  name?: string;
+  email?: string;
+  url?: string;
+  source?: string;
+  associatedEventId?: string;
 };
