@@ -17,7 +17,7 @@ const item = LinkItemFactory({
     [ItemType.LINK]: {
       thumbnails: [],
       html: '',
-      url: 'https://graasp.org',
+      url: '#',
       icons: [],
     },
   },
@@ -34,7 +34,7 @@ const itemWithHTMLDescription = LinkItemFactory({
     [ItemType.LINK]: {
       thumbnails: [],
       html: '',
-      url: 'https://graasp.org',
+      url: '#',
       icons: [],
     },
   },
@@ -49,6 +49,14 @@ const itemWithHTMLDescription = LinkItemFactory({
 const meta = {
   title: 'Items/LinkItem',
   component: LinkItem,
+  parameters: {
+    docs: {
+      source: {
+        type: 'dynamic',
+        excludeDecorators: true,
+      },
+    },
+  },
   decorators: [
     (story) => {
       return <BrowserRouter>{story()}</BrowserRouter>;

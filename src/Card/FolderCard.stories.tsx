@@ -11,6 +11,14 @@ const { SimpleText } = composeStories(TextDisplayStories);
 const meta = {
   title: 'Card/Folder',
   component: FolderCard,
+  parameters: {
+    docs: {
+      source: {
+        type: 'dynamic',
+        excludeDecorators: true,
+      },
+    },
+  },
   decorators: [
     (story) => {
       return <BrowserRouter>{story()}</BrowserRouter>;
