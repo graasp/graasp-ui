@@ -183,7 +183,7 @@ const LinkItem = ({
 
   let linkItem = getComponent();
 
-  if (showCaption) {
+  if (showCaption && !showButton) {
     linkItem = CaptionWrapper(linkItem);
   }
 
