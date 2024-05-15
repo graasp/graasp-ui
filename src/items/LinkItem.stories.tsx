@@ -76,7 +76,7 @@ export const Iframe = {
   play: async ({ canvasElement, args }) => {
     const canvas = within(canvasElement);
     if (args.item.description) {
-      expect(canvas.getByText(args.item.description)).toBeInTheDocument();
+      expect(canvas.getAllByText(args.item.description)[1]).toBeInTheDocument();
     }
     expect(canvas.getByTitle(args.item.name)).toBeInTheDocument();
   },
