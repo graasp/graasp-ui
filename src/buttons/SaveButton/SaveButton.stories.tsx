@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { fn } from '@storybook/test';
 
 import { TABLE_CATEGORIES } from '../../utils/storybook';
 import SaveButton from './SaveButton';
@@ -7,6 +8,9 @@ const meta: Meta<typeof SaveButton> = {
   title: 'Buttons/SaveButton',
   component: SaveButton,
 
+  args: {
+    onClick: fn(),
+  },
   argTypes: {
     color: {
       table: {
