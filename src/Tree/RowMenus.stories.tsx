@@ -1,6 +1,7 @@
 import { TABLE_CATEGORIES } from '@/utils/storybook';
 import { expect } from '@storybook/jest';
 import { Meta, type StoryObj } from '@storybook/react';
+import { fn } from '@storybook/test';
 import { userEvent, within } from '@storybook/testing-library';
 
 import { Box } from '@mui/material';
@@ -17,6 +18,10 @@ const meta = {
   title: 'Common/Tree/RowMenus',
   component: RowMenus,
 
+  args: {
+    onClick: fn(),
+    setPage: fn(),
+  },
   argTypes: {
     onNavigate: {
       table: {

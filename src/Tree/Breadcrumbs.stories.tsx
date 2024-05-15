@@ -1,6 +1,7 @@
 import { TABLE_CATEGORIES } from '@/utils/storybook';
 import { expect } from '@storybook/jest';
 import { Meta, type StoryObj } from '@storybook/react';
+import { fn } from '@storybook/test';
 import { userEvent, within } from '@storybook/testing-library';
 
 import { Home } from '@mui/icons-material';
@@ -21,7 +22,9 @@ const elements = [
 const meta = {
   title: 'Common/Tree/Breadcrumbs',
   component: Breadcrumbs,
-
+  args: {
+    onSelect: fn(),
+  },
   argTypes: {
     onSelect: {
       table: {

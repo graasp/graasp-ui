@@ -1,5 +1,6 @@
 import { expect } from '@storybook/jest';
 import type { Meta, StoryObj } from '@storybook/react';
+import { fn } from '@storybook/test';
 import { userEvent, within } from '@storybook/testing-library';
 
 import { ActionButton } from '../../types';
@@ -10,6 +11,10 @@ const meta = {
   title: 'Buttons/BookmarkButton',
   component: BookmarkButton,
 
+  args: {
+    handleBookmark: fn(),
+    handleUnbookmark: fn(),
+  },
   argTypes: {
     size: {
       table: {

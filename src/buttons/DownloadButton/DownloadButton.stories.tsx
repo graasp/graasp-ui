@@ -1,5 +1,6 @@
 import { expect } from '@storybook/jest';
 import type { StoryObj } from '@storybook/react';
+import { fn } from '@storybook/test';
 import { userEvent, within } from '@storybook/testing-library';
 
 import { ActionButton } from '../../types';
@@ -10,6 +11,9 @@ export default {
   title: 'Buttons/DownloadButton',
   component: DownloadButton,
 
+  args: {
+    handleDownload: fn(),
+  },
   argTypes: {
     loaderColor: {
       table: {
