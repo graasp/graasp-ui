@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.18.1](https://github.com/graasp/graasp-ui/compare/v4.18.0...v4.18.1) (2024-05-15)
+
+
+### Bug Fixes
+
+* **apps:** adapt types in ErrorFallback to work with Sentry v8 ([#859](https://github.com/graasp/graasp-ui/issues/859)) ([f25cb16](https://github.com/graasp/graasp-ui/commit/f25cb164f92a77f866632cef964414487885b7c0))
+* **deps:** update dependency @storybook/react-vite to v8.1.0 ([#857](https://github.com/graasp/graasp-ui/issues/857)) ([bcb831e](https://github.com/graasp/graasp-ui/commit/bcb831ef3c161e983e76108a23908492cd86c422))
+* **deps:** update dependency @storybook/react-vite to v8.1.1 ([#861](https://github.com/graasp/graasp-ui/issues/861)) ([5474ce4](https://github.com/graasp/graasp-ui/commit/5474ce4907fe000a8699a1e3b5d185b53446bd77))
+
 ## [4.18.0](https://github.com/graasp/graasp-ui/compare/v4.17.1...v4.18.0) (2024-05-14)
 
 
