@@ -26,7 +26,6 @@ const CardThumbnail = ({
         maxHeight={CARD_HEIGHT}
         url={thumbnail}
         alt={alt}
-        // maxHeight='100%'
       />
     );
   }
