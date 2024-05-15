@@ -17,7 +17,7 @@ export const DefaultErrorFallback: Story = {
     error: new Error('Something wrong happened.'),
     componentStack: 'none',
     eventId: '1',
-    captureUserFeedback: (userFeedback: UserFeedback) =>
+    captureFeedback: (userFeedback: UserFeedback) =>
       console.log('You sent user feedback: ', userFeedback.toString()),
   },
 };
@@ -27,7 +27,7 @@ export const MobileErrorFallback: Story = {
     error: new Error('Something wrong happened on mobile'),
     componentStack: 'mobile-view',
     eventId: '1',
-    captureUserFeedback: (userFeedback: UserFeedback) =>
+    captureFeedback: (userFeedback: UserFeedback) =>
       console.log(
         'You sent user feedback from the mobile view: ',
         userFeedback.toString(),

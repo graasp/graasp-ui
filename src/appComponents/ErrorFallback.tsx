@@ -35,10 +35,10 @@ const THANKS_FOR_FEEDBACK = 'Thank you for your feedback!';
 const SEND = 'Send your feedback';
 
 interface ErrorFallbackProps {
-  error: Error;
+  error: unknown;
   componentStack: string;
   eventId: string;
-  captureUserFeedback: (userFeedback: UserFeedback) => void;
+  captureFeedback: (userFeedback: UserFeedback) => void;
   title?: string;
   formTitle?: string;
   nameLabel?: string;
@@ -93,7 +93,7 @@ const ErrorFallback = ({
   error,
   componentStack,
   eventId,
-  captureUserFeedback,
+  captureFeedback,
   title = TITLE,
   formTitle = FORM_TITLE,
   nameLabel = NAME_LABEL,
@@ -114,13 +114,13 @@ const ErrorFallback = ({
   const theme = useTheme();
 
   const sendUserFeedback = (): void => {
-    const userFeedback = {
-      event_id: eventId,
+    const userFeedback: UserFeedback = {
+      associatedEventId: eventId,
       name,
       email,
-      comments: comment,
+      message: comment,
     };
-    captureUserFeedback(userFeedback);
+    captureFeedback(userFeedback);
     setFeedbackGiven(true);
   };
   return (
@@ -180,7 +180,7 @@ const ErrorFallback = ({
               {errorDetailsLabel}
             </AccordionSummary>
             <AccordionDetails>
-              <Typography variant='caption'>{error.toString()}</Typography>
+              <Typography variant='caption'>{JSON.stringify(error)}</Typography>
               <Typography variant='caption'>{componentStack}</Typography>
             </AccordionDetails>
           </Accordion>
