@@ -1,5 +1,3 @@
-import { Interweave } from 'interweave';
-
 import { Link as MUILink, styled } from '@mui/material';
 import Alert from '@mui/material/Alert';
 
@@ -143,9 +141,16 @@ const LinkItem = ({
   };
 
   const getComponent = (): JSX.Element => {
-    // if available, display specific player
+    // for rich media we use the provided html
+    // this is highly unsafe, and could allow XSS vulnerability if the backend does not protect this property
     if (html) {
-      return <Interweave content={html} id={id} onClick={onClick} />;
+      return (
+        <div
+          id={id}
+          onClick={onClick}
+          dangerouslySetInnerHTML={{ __html: html }}
+        />
+      );
     }
 
     if (!url) {
