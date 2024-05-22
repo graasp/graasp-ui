@@ -1,7 +1,7 @@
 import { Link as MUILink, styled } from '@mui/material';
 import Alert from '@mui/material/Alert';
 
-import React, { Fragment, useRef, useState } from 'react';
+import React, { Fragment, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { LinkItemType, getLinkExtra } from '@graasp/sdk';
@@ -62,6 +62,67 @@ const IFrameContainer = styled('div')({
   overflow: 'auto',
 });
 
+type LinkIframeProps = {
+  id?: string;
+  title?: string;
+  url: string;
+  height: string | number;
+  isResizable: boolean;
+  isLoading: boolean;
+  onDoneLoading: () => void;
+  itemId: string;
+  memberId?: string;
+  loadingMessage: string;
+};
+const LinkIframe = ({
+  id,
+  url,
+  title,
+  height,
+  isResizable,
+  isLoading,
+  onDoneLoading,
+  itemId,
+  memberId,
+  loadingMessage,
+}: LinkIframeProps): JSX.Element | null => {
+  const iframe = (
+    <StyledIFrame
+      height={height}
+      width='100%'
+      id={id}
+      isResizable={isResizable}
+      onLoad={onDoneLoading}
+      src={url}
+      title={title}
+    />
+  );
+
+  const ResizableLink = withResizing({
+    height,
+    component: iframe,
+    memberId,
+    itemId,
+  });
+
+  return (
+    <>
+      <IFrameContainer hidden={!isLoading} style={{ height }}>
+        {loadingMessage}
+      </IFrameContainer>
+      <div hidden={isLoading}>
+        {isResizable ? (
+          <div>
+            <ResizableLink />
+          </div>
+        ) : (
+          iframe
+        )}
+      </div>
+    </>
+  );
+};
+
 const LinkItem = ({
   id,
   item,
@@ -80,7 +141,6 @@ const LinkItem = ({
 }: LinkItemProps): JSX.Element => {
   const [isLoading, setIsLoading] = useState(true);
   const [height] = useState<string | number>(defaultHeight);
-  const iframeRef = useRef<HTMLIFrameElement>(null);
 
   const { id: itemId, name } = item;
   const extra = getLinkExtra(item.extra);
@@ -93,66 +153,7 @@ const LinkItem = ({
     item,
   });
 
-  const handleLoad = (): void => {
-    setIsLoading(false);
-  };
-
-  const renderIframe = (): JSX.Element | null => {
-    if (!showIframe) {
-      return null;
-    }
-
-    const iframe = (
-      <StyledIFrame
-        height={height}
-        width='100%'
-        id={id}
-        isResizable={isResizable}
-        onLoad={handleLoad}
-        ref={iframeRef}
-        src={url}
-        title={name}
-      />
-    );
-
-    const ResizableLink = withResizing({
-      height,
-      component: iframe,
-      memberId,
-      itemId,
-    });
-
-    return (
-      <>
-        <IFrameContainer hidden={!isLoading} style={{ height }}>
-          {loadingMessage}
-        </IFrameContainer>
-        <div hidden={isLoading}>
-          {isResizable ? (
-            <div>
-              <ResizableLink />
-            </div>
-          ) : (
-            iframe
-          )}
-        </div>
-      </>
-    );
-  };
-
   const getComponent = (): JSX.Element => {
-    // for rich media we use the provided html
-    // this is highly unsafe, and could allow XSS vulnerability if the backend does not protect this property
-    if (html) {
-      return (
-        <div
-          id={id}
-          onClick={onClick}
-          dangerouslySetInnerHTML={{ __html: html }}
-        />
-      );
-    }
-
     if (!url) {
       return <Alert severity='error'>{errorMessage}</Alert>;
     }
@@ -168,9 +169,32 @@ const LinkItem = ({
     );
 
     if (showIframe) {
+      // for rich media we use the provided html
+      // this is highly unsafe, and could allow XSS vulnerability if the backend does not protect this property
+      if (html) {
+        return (
+          <div
+            id={id}
+            onClick={onClick}
+            dangerouslySetInnerHTML={{ __html: html }}
+          />
+        );
+      }
+
       return (
         <Fragment>
-          {renderIframe()}
+          <LinkIframe
+            id={id}
+            url={url}
+            isResizable={isResizable}
+            height={height}
+            title={name}
+            isLoading={isLoading}
+            onDoneLoading={() => setIsLoading(false)}
+            itemId={itemId}
+            memberId={memberId}
+            loadingMessage={loadingMessage}
+          />
           {(isLoading || showButton) && linkCard}
         </Fragment>
       );
@@ -189,7 +213,7 @@ const LinkItem = ({
 
   let linkItem = getComponent();
 
-  if (showCaption && !showButton) {
+  if (showCaption) {
     linkItem = CaptionWrapper(linkItem);
   }
 
