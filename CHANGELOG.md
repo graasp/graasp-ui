@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.18.2](https://github.com/graasp/graasp-ui/compare/v4.18.1...v4.18.2) (2024-05-22)
+
+
+### Bug Fixes
+
+* update link to types ([#868](https://github.com/graasp/graasp-ui/issues/868)) ([f96c252](https://github.com/graasp/graasp-ui/commit/f96c25276243aa2f0e1de67152ef7cfb0e5caccb))
+
 ## [4.18.1](https://github.com/graasp/graasp-ui/compare/v4.18.0...v4.18.1) (2024-05-15)
 
 
