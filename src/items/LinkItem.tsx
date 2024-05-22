@@ -163,7 +163,7 @@ const LinkItem = ({
         thumbnail={thumbnail ?? item.extra.embeddedLink.icons?.[0]}
         title={item.name}
         url={url}
-        description={item.description ?? ''}
+        description={item.extra.embeddedLink.description ?? ''}
         onClick={onClick}
       />
     );
