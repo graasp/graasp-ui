@@ -160,6 +160,7 @@ const LinkItem = ({
 
     const linkCard = (
       <LinkCard
+        id={id}
         thumbnail={thumbnail ?? item.extra.embeddedLink.icons?.[0]}
         title={item.name}
         url={url}

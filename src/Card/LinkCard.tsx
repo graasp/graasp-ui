@@ -16,6 +16,7 @@ import { ItemType } from '@graasp/sdk';
 import CardThumbnail from './components/CardThumbnail';
 import { CARD_HEIGHT } from './constants';
 
+const FANCY_LINK_CARD_TEST_ID = 'fancy-link-card';
 type FancyLinkProps = {
   id?: string;
   title: string;
@@ -47,6 +48,7 @@ const FancyLink = ({
         // set the height of the card to be fixed
         height: CARD_HEIGHT,
       }}
+      data-testid={FANCY_LINK_CARD_TEST_ID}
     >
       <CardActionArea
         component={Link}
