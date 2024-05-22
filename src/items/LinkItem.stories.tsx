@@ -25,6 +25,18 @@ const item = LinkItemFactory({
   description: 'my link description',
 });
 
+const itemWithRealUrl = LinkItemFactory({
+  ...item,
+  extra: {
+    [ItemType.LINK]: {
+      thumbnails: [],
+      html: '',
+      url: 'https://graasp.org',
+      icons: [],
+    },
+  },
+});
+
 const itemWithHTMLDescription = LinkItemFactory({
   id: 'item-id',
   name: 'item-name',
@@ -72,7 +84,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Iframe = {
   args: {
-    item,
+    item: itemWithRealUrl,
     isResizable: true,
     showButton: false,
     showIframe: true,
@@ -81,7 +93,7 @@ export const Iframe = {
   play: async ({ canvasElement, args }) => {
     const canvas = within(canvasElement);
     if (args.item.description) {
-      expect(canvas.getAllByText(args.item.description)[1]).toBeInTheDocument();
+      expect(canvas.getByText(args.item.description)).toBeInTheDocument();
     }
     expect(canvas.getByTitle(args.item.name)).toBeInTheDocument();
   },
