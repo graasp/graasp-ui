@@ -11,7 +11,7 @@ import {
   useTheme,
 } from '@mui/material';
 
-import { Link } from 'react-router-dom';
+import { Link, LinkProps } from 'react-router-dom';
 
 const CARD_HEIGHT = '76px';
 
@@ -50,7 +50,7 @@ type Props = {
   /**
    * React Router Link target
    */
-  to: string;
+  to: LinkProps['to'];
 };
 const FolderCard = ({
   id,

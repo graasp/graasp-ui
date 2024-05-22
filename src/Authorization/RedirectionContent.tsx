@@ -5,7 +5,7 @@ import { Link, LinkProps } from 'react-router-dom';
 import GraaspLogo from '../GraaspLogo';
 
 interface Props {
-  link: string;
+  link: LinkProps['to'];
   id?: string;
   redirectionLinkText?: string;
   redirectionText?: string;
