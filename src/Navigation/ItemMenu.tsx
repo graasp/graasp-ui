@@ -10,7 +10,7 @@ import {
 } from '@mui/material';
 
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, LinkProps } from 'react-router-dom';
 
 import { DiscriminatedItem } from '@graasp/sdk';
 
@@ -20,7 +20,7 @@ export type ItemMenuProps = {
   buildIconId?: (id: string) => string;
   buildMenuId?: (itemId: string) => string;
   buildMenuItemId?: (itemId: string) => string;
-  buildToItemPath: (itemId: string) => string;
+  buildToItemPath: (itemId: string) => LinkProps['to'];
   icon?: JSX.Element;
   itemId: string;
   useChildren: (...args: unknown[]) => UseQueryResult<DiscriminatedItem[]>;
