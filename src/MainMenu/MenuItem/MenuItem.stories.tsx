@@ -9,7 +9,7 @@ import { TABLE_CATEGORIES } from '../../utils/storybook';
 import MenuItem from './MenuItem';
 
 export default {
-  title: 'Common/MenuItem',
+  title: 'Main/MenuItem',
   component: MenuItem,
 
   args: {

@@ -1,19 +1,19 @@
-import OpenInNewIcon from '@mui/icons-material/OpenInNew';
-import { styled } from '@mui/material';
+import { Box, Link as MUILink, styled } from '@mui/material';
 import Alert from '@mui/material/Alert';
 
-import React, { Fragment, useRef, useState } from 'react';
+import React, { Fragment, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import { LinkItemType, getLinkExtra } from '@graasp/sdk';
 
+import { LinkCard } from '..';
 import withCollapse from '../Collapse/withCollapse';
-import { Button } from '../buttons';
 import { DEFAULT_LINK_SHOW_BUTTON } from '../constants';
 import { ITEM_MAX_HEIGHT } from './constants';
 import withCaption from './withCaption';
 import withResizing, { StyledIFrame } from './withResizing';
 
-export type LinkItemProps = {
+type LinkItemProps = {
   /**
    * Id of the component used for testing
    */
@@ -29,18 +29,12 @@ export type LinkItemProps = {
    */
   isResizable?: boolean;
   item: LinkItemType;
+  /**
+   * Thumbnail url of the item
+   */
+  thumbnail?: string;
   loadingMessage?: string;
-  onSaveCaption?: (text: string) => void;
-  onCancelCaption?: (text: string) => void;
-  openLinkMessage?: string;
-  /**
-   * id of the save button
-   */
-  saveButtonId?: string;
-  /**
-   * id of the cancel button
-   */
-  cancelButtonId?: string;
+
   /**
    * whether the caption should be displayed
    */
@@ -67,15 +61,76 @@ const IFrameContainer = styled('div')({
   overflow: 'auto',
 });
 
+type LinkIframeProps = {
+  id?: string;
+  title?: string;
+  url: string;
+  height: string | number;
+  isResizable: boolean;
+  isLoading: boolean;
+  onDoneLoading: () => void;
+  itemId: string;
+  memberId?: string;
+  loadingMessage: string;
+};
+const LinkIframe = ({
+  id,
+  url,
+  title,
+  height,
+  isResizable,
+  isLoading,
+  onDoneLoading,
+  itemId,
+  memberId,
+  loadingMessage,
+}: LinkIframeProps): JSX.Element | null => {
+  const iframe = (
+    <StyledIFrame
+      height={height}
+      width='100%'
+      id={id}
+      isResizable={isResizable}
+      onLoad={onDoneLoading}
+      src={url}
+      title={title}
+    />
+  );
+
+  const ResizableLink = withResizing({
+    height,
+    component: iframe,
+    memberId,
+    itemId,
+  });
+
+  return (
+    <>
+      <IFrameContainer hidden={!isLoading} style={{ height }}>
+        {loadingMessage}
+      </IFrameContainer>
+      <div hidden={isLoading}>
+        {isResizable ? (
+          <div>
+            <ResizableLink />
+          </div>
+        ) : (
+          iframe
+        )}
+      </div>
+    </>
+  );
+};
+
 const LinkItem = ({
   id,
   item,
+  thumbnail,
   memberId,
   showCaption = true,
   showIframe = false,
   showButton = DEFAULT_LINK_SHOW_BUTTON,
   loadingMessage = 'Link is Loading...',
-  openLinkMessage = 'Click here to open the link manually',
   height: defaultHeight = 400,
   errorMessage = 'The link is malformed.',
   isResizable = false,
@@ -84,7 +139,6 @@ const LinkItem = ({
 }: LinkItemProps): JSX.Element => {
   const [isLoading, setIsLoading] = useState(true);
   const [height] = useState<string | number>(defaultHeight);
-  const iframeRef = useRef<HTMLIFrameElement>(null);
 
   const { id: itemId, name } = item;
   const extra = getLinkExtra(item.extra);
@@ -97,85 +151,65 @@ const LinkItem = ({
     item,
   });
 
-  const handleLoad = (): void => {
-    setIsLoading(false);
-  };
-
-  const renderIframe = (): JSX.Element | null => {
-    if (!showIframe) {
-      return null;
-    }
-
-    const iframe = (
-      <StyledIFrame
-        height={height}
-        id={id}
-        isResizable={isResizable}
-        onLoad={handleLoad}
-        ref={iframeRef}
-        src={url}
-        title={name}
-      />
-    );
-
-    const ResizableLink = withResizing({
-      height,
-      component: iframe,
-      memberId,
-      itemId,
-    });
-
-    return (
-      <>
-        <IFrameContainer hidden={!isLoading} style={{ height }}>
-          {loadingMessage}
-        </IFrameContainer>
-        <div hidden={isLoading}>
-          {isResizable ? (
-            <div>
-              <ResizableLink />
-            </div>
-          ) : (
-            iframe
-          )}
-        </div>
-      </>
-    );
-  };
-
   const getComponent = (): JSX.Element => {
-    // if available, display specific player
-    if (html) {
-      return (
-        <div
-          id={id}
-          onClick={onClick}
-          dangerouslySetInnerHTML={{ __html: html }}
-        />
-      );
-    }
-
     if (!url) {
       return <Alert severity='error'>{errorMessage}</Alert>;
     }
 
-    const button = (
-      <Button
+    const linkCard = (
+      <LinkCard
         id={id}
-        startIcon={<OpenInNewIcon />}
-        href={url}
-        target='_blank'
+        thumbnail={thumbnail ?? item.extra.embeddedLink.icons?.[0]}
+        title={item.name}
+        url={url}
+        description={item.extra.embeddedLink.description ?? ''}
         onClick={onClick}
-      >
-        {name ?? openLinkMessage}
-      </Button>
+      />
     );
 
+    if (showIframe) {
+      // for rich media we use the provided html
+      // this is highly unsafe, and could allow XSS vulnerability if the backend does not protect this property
+      if (html) {
+        return (
+          <Box
+            // this is allows for the box to not really exist and instead display the children box
+            // we can not get rid of this div as we need a way to attach the onClick handler for registering actions
+            display='contents'
+            id={id}
+            onClick={onClick}
+            dangerouslySetInnerHTML={{ __html: html }}
+          />
+        );
+      }
+
+      return (
+        <Fragment>
+          <LinkIframe
+            id={id}
+            url={url}
+            isResizable={isResizable}
+            height={height}
+            title={name}
+            isLoading={isLoading}
+            onDoneLoading={() => setIsLoading(false)}
+            itemId={itemId}
+            memberId={memberId}
+            loadingMessage={loadingMessage}
+          />
+          {(isLoading || showButton) && linkCard}
+        </Fragment>
+      );
+    }
+
+    if (showButton) {
+      return linkCard;
+    }
+
     return (
-      <Fragment>
-        {renderIframe()}
-        {(isLoading || showButton) && button}
-      </Fragment>
+      <MUILink component={Link} to={url} onClick={onClick}>
+        {url}
+      </MUILink>
     );
   };
 

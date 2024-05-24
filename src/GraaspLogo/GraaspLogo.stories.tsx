@@ -4,7 +4,7 @@ import { PRIMARY_COLOR } from '../theme';
 import GraaspLogo from './GraaspLogo';
 
 const meta: Meta<typeof GraaspLogo> = {
-  title: 'Icons/GraaspLogo',
+  title: 'Icons/Graasp',
   component: GraaspLogo,
 
   argTypes: {},

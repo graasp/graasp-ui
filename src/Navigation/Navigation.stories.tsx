@@ -37,6 +37,14 @@ const buildItem = (name: string): LocalFileItemType =>
 const meta = {
   title: 'Common/Navigation',
   component: Navigation,
+  parameters: {
+    docs: {
+      source: {
+        type: 'dynamic',
+        excludeDecorators: true,
+      },
+    },
+  },
   decorators: [
     (story) => {
       return <BrowserRouter>{story()}</BrowserRouter>;

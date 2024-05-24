@@ -1,20 +1,19 @@
-import { UploadFile } from '@mui/icons-material';
-import AppsIcon from '@mui/icons-material/Apps';
-import DescriptionIcon from '@mui/icons-material/Description';
-import FolderIcon from '@mui/icons-material/Folder';
-import FolderZipIcon from '@mui/icons-material/FolderZip';
-import ImageIcon from '@mui/icons-material/Image';
-import ShortcutIcon from '@mui/icons-material/Input';
-import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
-import LinkIcon from '@mui/icons-material/Link';
-import Looks5Icon from '@mui/icons-material/Looks5';
-import MovieIcon from '@mui/icons-material/Movie';
-import MusicNoteIcon from '@mui/icons-material/MusicNote';
-import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
-import { SvgIconTypeMap, SxProps } from '@mui/material';
-import { OverridableComponent } from '@mui/material/OverridableComponent';
+import {
+  AppWindowIcon,
+  CableIcon,
+  ClapperboardIcon,
+  FileIcon,
+  FileTextIcon,
+  FileUpIcon,
+  FolderArchiveIcon,
+  FolderIcon,
+  ImageIcon,
+  LinkIcon,
+  Music2Icon,
+  TextIcon,
+} from 'lucide-react';
 
-import { FC } from 'react';
+import { ReactNode } from 'react';
 
 import {
   ItemType,
@@ -27,17 +26,18 @@ import {
 
 import { StyledImage } from '../StyledComponents/StyledBaseComponents';
 import EtherpadIcon from './EtherpadIcon';
+import H5PIcon from './H5PIcon';
 
 const MAX_ICON_SIZE = '25px';
 
-export interface ItemIconProps {
+export type ItemIconProps = {
   alt: string;
   /**
    * item type
    */
   type: UnionOfConst<typeof ItemType> | 'upload';
   /**
-   * An HTML Color to usa for the foreground of the icon
+   * An HTML Color to use for the foreground of the icon
    */
   color?: string;
   /**
@@ -48,20 +48,18 @@ export interface ItemIconProps {
   extra?: LocalFileItemExtra | S3FileItemExtra;
   mimetype?: string;
   iconSrc?: string;
-  sx?: SxProps;
   size?: string;
-}
+};
 
-const ItemIcon: FC<ItemIconProps> = ({
+const ItemIcon = ({
   color,
   extra,
   mimetype: defaultMimetype,
   iconSrc,
   alt = '',
-  sx,
   size = MAX_ICON_SIZE,
   type,
-}) => {
+}: ItemIconProps): JSX.Element => {
   const mimetype = extra ? getMimetype(extra) : defaultMimetype;
 
   if (iconSrc) {
@@ -74,7 +72,7 @@ const ItemIcon: FC<ItemIconProps> = ({
           height: size,
           width: size,
           objectFit: 'cover',
-          ...sx,
+          borderRadius: 1,
         }}
         alt={alt}
         src={iconSrc}
@@ -82,16 +80,22 @@ const ItemIcon: FC<ItemIconProps> = ({
     );
   }
 
-  let Icon: OverridableComponent<SvgIconTypeMap> = InsertDriveFileIcon;
+  let Icon: ({
+    size,
+    color,
+  }: {
+    size: string | number;
+    color?: string;
+  }) => JSX.Element | ReactNode = FileIcon;
   switch (type) {
     case ItemType.FOLDER:
       Icon = FolderIcon;
       break;
     case ItemType.SHORTCUT:
-      Icon = ShortcutIcon;
+      Icon = CableIcon;
       break;
     case ItemType.DOCUMENT: {
-      Icon = DescriptionIcon;
+      Icon = TextIcon;
       break;
     }
     case ItemType.LOCAL_FILE:
@@ -102,24 +106,24 @@ const ItemIcon: FC<ItemIconProps> = ({
           break;
         }
         if (MimeTypes.isVideo(mimetype)) {
-          Icon = MovieIcon;
+          Icon = ClapperboardIcon;
           break;
         }
         if (MimeTypes.isAudio(mimetype)) {
-          Icon = MusicNoteIcon;
+          Icon = Music2Icon;
           break;
         }
         if (MimeTypes.isPdf(mimetype)) {
-          Icon = PictureAsPdfIcon;
+          Icon = FileTextIcon;
           break;
         }
         if (MimeTypes.isZip(mimetype)) {
-          Icon = FolderZipIcon;
+          Icon = FolderArchiveIcon;
           break;
         }
       }
 
-      Icon = InsertDriveFileIcon;
+      Icon = FileIcon;
       break;
     }
     case ItemType.LINK: {
@@ -127,11 +131,11 @@ const ItemIcon: FC<ItemIconProps> = ({
       break;
     }
     case ItemType.APP: {
-      Icon = AppsIcon;
+      Icon = AppWindowIcon;
       break;
     }
     case ItemType.H5P: {
-      Icon = Looks5Icon;
+      Icon = H5PIcon;
       break;
     }
     case ItemType.ETHERPAD: {
@@ -139,14 +143,14 @@ const ItemIcon: FC<ItemIconProps> = ({
       break;
     }
     case 'upload': {
-      Icon = UploadFile;
+      Icon = FileUpIcon;
       break;
     }
     default:
       break;
   }
 
-  return <Icon sx={sx} style={{ color }} />;
+  return <Icon color={color} size={size} />;
 };
 
 export default ItemIcon;

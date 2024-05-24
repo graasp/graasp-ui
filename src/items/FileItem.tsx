@@ -1,4 +1,4 @@
-import { Container, SxProps } from '@mui/material';
+import { Box, Container, SxProps } from '@mui/material';
 import Alert from '@mui/material/Alert';
 import Skeleton from '@mui/material/Skeleton';
 
@@ -117,7 +117,12 @@ const FileItem = ({
 
     if (mimetype) {
       if (MimeTypes.isImage(mimetype)) {
-        return <FileImage id={id} url={url} alt={altText || item.name} />;
+        return (
+          /* The box prevent the image to take full available space due to the stack */
+          <Box>
+            <FileImage id={id} url={url} alt={altText || item.name} />
+          </Box>
+        );
       } else if (MimeTypes.isAudio(mimetype)) {
         return <FileAudio id={id} url={url} type={mimetype} sx={sx} />;
       } else if (MimeTypes.isVideo(mimetype)) {

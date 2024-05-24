@@ -13,7 +13,7 @@ const ComponentWithAuthorization = withAuthorization(BuildIcon, {
 });
 
 const meta: Meta<typeof withAuthorization> = {
-  title: 'Actions/Autorization',
+  title: 'Actions/Authorization',
   component: ComponentWithAuthorization,
 
   argTypes: {

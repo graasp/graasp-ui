@@ -1,6 +1,5 @@
-import { expect } from '@storybook/jest';
 import type { Meta, StoryObj } from '@storybook/react';
-import { within } from '@storybook/testing-library';
+import { expect, within } from '@storybook/test';
 
 import { BrowserRouter } from 'react-router-dom';
 
@@ -35,13 +34,13 @@ export default meta;
 
 type Story = StoryObj<typeof ComponentWithAuthorization>;
 
-export const Redirect: Story = {};
+export const Redirect = {
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
 
-Redirect.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-
-  await expect(
-    canvas.getByText('You are being redirected…'),
-  ).toBeInTheDocument();
-  // cannot check onRedirect because of the HOC layer
-};
+    await expect(
+      canvas.getByText('You are being redirected…'),
+    ).toBeInTheDocument();
+    // cannot check onRedirect because of the HOC layer
+  },
+} satisfies Story;

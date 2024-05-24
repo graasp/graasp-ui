@@ -3,7 +3,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import LogoHeader from './LogoHeader';
 
 const meta = {
-  title: 'Common/LogoHeader',
+  title: 'Main/LogoHeader',
   component: LogoHeader,
 
   render: () => (

@@ -4,7 +4,7 @@ import { TABLE_CATEGORIES } from '../utils/storybook';
 import AnalyticsIcon from './AnalyticsIcon';
 
 const meta: Meta<typeof AnalyticsIcon> = {
-  title: 'Icons/AnalyticsIcon',
+  title: 'Icons/Analytics',
   component: AnalyticsIcon,
 
   argTypes: {

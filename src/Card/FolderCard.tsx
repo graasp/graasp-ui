@@ -1,9 +1,6 @@
-import Thumbnail from '@/Thumbnail/Thumbnail';
-import ItemIcon from '@/icons/ItemIcon';
 import { ChevronRight } from 'lucide-react';
 
 import {
-  Box,
   Card,
   CardActionArea,
   CardHeader,
@@ -13,34 +10,8 @@ import {
 
 import { Link, LinkProps } from 'react-router-dom';
 
-const CARD_HEIGHT = '76px';
-
-type CardThumbnailProps = {
-  thumbnail?: string;
-  alt: string;
-};
-const CardThumbnail = ({ thumbnail, alt }: CardThumbnailProps): JSX.Element => {
-  if (thumbnail) {
-    return <Thumbnail url={thumbnail} alt={alt} maxHeight='100%' />;
-  }
-
-  return (
-    <Box
-      display='flex'
-      alignItems='center'
-      justifyContent='center'
-      bgcolor='#E4DFFF'
-      width={CARD_HEIGHT}
-      height='100%'
-      flexShrink={0}
-      minHeight={CARD_HEIGHT}
-      // minHeight={0}
-      minWidth={0}
-    >
-      <ItemIcon type='folder' alt={alt} />
-    </Box>
-  );
-};
+import CardThumbnail from './components/CardThumbnail';
+import { CARD_HEIGHT } from './constants';
 
 type Props = {
   id?: string;
@@ -99,9 +70,11 @@ const FolderCard = ({
               height: description ? '1lh' : 'unset',
               textOverflow: 'ellipsis',
               minWidth: 0,
-              '& p': {
-                margin: 0,
-                marginBlocStart: 0,
+              sx: {
+                '& p': {
+                  margin: 0,
+                  marginBlocStart: 0,
+                },
               },
             }}
           />

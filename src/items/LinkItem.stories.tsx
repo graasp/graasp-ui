@@ -1,12 +1,11 @@
-import { expect } from '@storybook/jest';
 import type { Meta, StoryObj } from '@storybook/react';
-import { fn } from '@storybook/test';
-import { userEvent, within } from '@storybook/testing-library';
+import { expect, fn, userEvent, within } from '@storybook/test';
+
+import { BrowserRouter } from 'react-router-dom';
 
 import { ItemType, LinkItemFactory } from '@graasp/sdk';
 
 import { MOCK_MEMBER } from '../utils/fixtures';
-import { TABLE_CATEGORIES } from '../utils/storybook';
 import LinkItem from './LinkItem';
 
 const item = LinkItemFactory({
@@ -18,12 +17,24 @@ const item = LinkItemFactory({
     [ItemType.LINK]: {
       thumbnails: [],
       html: '',
-      url: 'https://graasp.org',
+      url: '#',
       icons: [],
     },
   },
   settings: {},
   description: 'my link description',
+});
+
+const itemWithRealUrl = LinkItemFactory({
+  ...item,
+  extra: {
+    [ItemType.LINK]: {
+      thumbnails: [],
+      html: '',
+      url: 'https://graasp.org',
+      icons: [],
+    },
+  },
 });
 
 const itemWithHTMLDescription = LinkItemFactory({
@@ -35,7 +46,7 @@ const itemWithHTMLDescription = LinkItemFactory({
     [ItemType.LINK]: {
       thumbnails: [],
       html: '',
-      url: 'https://graasp.org',
+      url: '#',
       icons: [],
     },
   },
@@ -50,14 +61,19 @@ const itemWithHTMLDescription = LinkItemFactory({
 const meta = {
   title: 'Items/LinkItem',
   component: LinkItem,
-
-  argTypes: {
-    onSaveCaption: {
-      table: {
-        category: TABLE_CATEGORIES.EVENTS,
+  parameters: {
+    docs: {
+      source: {
+        type: 'dynamic',
+        excludeDecorators: true,
       },
     },
   },
+  decorators: [
+    (story) => {
+      return <BrowserRouter>{story()}</BrowserRouter>;
+    },
+  ],
   args: {
     onClick: fn(),
   },
@@ -68,13 +84,12 @@ type Story = StoryObj<typeof meta>;
 
 export const Iframe = {
   args: {
-    item,
+    item: itemWithRealUrl,
     isResizable: true,
     showButton: false,
     showIframe: true,
     memberId: 'link-iframe-id',
   },
-
   play: async ({ canvasElement, args }) => {
     const canvas = within(canvasElement);
     if (args.item.description) {
@@ -96,8 +111,25 @@ export const LinkButton: Story = {
       expect(canvas.getByText(args.item.description)).toBeInTheDocument();
     }
     await userEvent.click(canvas.getByText(args.item.name));
+    expect(args.onClick).toHaveBeenCalled();
   },
-};
+} satisfies Story;
+
+export const SimpleLink: Story = {
+  args: {
+    item,
+    showButton: false,
+    showIframe: false,
+  },
+  play: async ({ canvasElement, args }) => {
+    const canvas = within(canvasElement);
+    if (args.item.description) {
+      expect(canvas.getByText(args.item.description)).toBeInTheDocument();
+    }
+    await userEvent.click(canvas.getByText(args.item.extra.embeddedLink.url));
+    expect(args.onClick).toHaveBeenCalled();
+  },
+} satisfies Story;
 
 export const LinkWithDescription = {
   args: {
@@ -119,5 +151,6 @@ export const IframeAndLinkButton: Story = {
 
     expect(canvas.getByTitle(args.item.name)).toBeInTheDocument();
     await userEvent.click(canvas.getByText(args.item.name));
+    expect(args.onClick).toHaveBeenCalled();
   },
-};
+} satisfies Story;

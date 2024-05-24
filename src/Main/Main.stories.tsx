@@ -18,7 +18,7 @@ const { SignedIn } = composeStories(UserSwitchStories);
 const { Dark } = composeStories(PlatformSwitchStories);
 
 const meta = {
-  title: 'Common/Main',
+  title: 'Main/Main',
   component: Main,
 
   argTypes: {

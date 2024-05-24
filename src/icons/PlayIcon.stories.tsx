@@ -4,7 +4,7 @@ import { TABLE_CATEGORIES } from '../utils/storybook';
 import PlayIcon from './PlayIcon';
 
 const meta: Meta<typeof PlayIcon> = {
-  title: 'Icons/PlayIcon',
+  title: 'Icons/Player',
   component: PlayIcon,
 
   argTypes: {
