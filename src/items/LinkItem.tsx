@@ -175,7 +175,9 @@ const LinkItem = ({
       if (html) {
         return (
           <Box
-            display='flex'
+            // this is allows for the box to not really exist and instead display the children box
+            // we can not get rid of this div as we need a way to attach the onClick handler for registering actions
+            display='contents'
             id={id}
             onClick={onClick}
             dangerouslySetInnerHTML={{ __html: html }}
