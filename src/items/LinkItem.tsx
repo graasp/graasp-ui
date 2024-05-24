@@ -34,7 +34,6 @@ type LinkItemProps = {
    */
   thumbnail?: string;
   loadingMessage?: string;
-  // openLinkMessage?: string;
 
   /**
    * whether the caption should be displayed

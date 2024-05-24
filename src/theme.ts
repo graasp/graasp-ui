@@ -5,13 +5,27 @@ import { Context } from '@graasp/sdk';
 
 export const PRIMARY_COLOR = '#5050d2';
 export const SECONDARY_COLOR = '#FFFFFF';
+
+/**
+ * Here we explicitly set primary and secondary text colors.
+ *
+ * These colors do not make use of transparency,
+ * as transparent colors do not work well with lucide icons because of overlapping paths.
+ */
 export const DEFAULT_TEXT_PRIMARY_COLOR = '#313131';
 export const DEFAULT_TEXT_SECONDARY_COLOR = '#71717A';
 export const DEFAULT_ACTIVE_ACTION_COLOR = '#777578';
+/**
+ * Color used as a light version of the primary color for button and icon backgrounds.
+ * For example in card thumbnails.
+ */
 export const DEFAULT_LIGHT_PRIMARY_COLOR = '#E4DFFF';
 
+/**
+ * Very light purple color used as the default background color.
+ * Alternative to the pure white default
+ */
 export const DEFAULT_BACKGROUND_COLOR = '#fafaff';
-export const DEFAULT_GRAY_ICONS_COLOR = '#646464';
 
 export const AccentColors: { [K in Context]: string } = {
   [Context.Builder]: '#00C38B',

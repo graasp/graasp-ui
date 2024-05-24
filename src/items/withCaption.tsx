@@ -10,6 +10,7 @@ import {
 
 const DEFAULT_ITEM_DESCRIPTION = '';
 
+// NOTE: This is experimental and most likely is going to be moved to sdk when implementing the feature
 export const Alignment = {
   Center: 'center',
   Left: 'left',
