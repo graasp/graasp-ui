@@ -132,7 +132,6 @@ const LinkItem = ({
   showIframe = false,
   showButton = DEFAULT_LINK_SHOW_BUTTON,
   loadingMessage = 'Link is Loading...',
-  // openLinkMessage = 'Click here to open the link manually',
   height: defaultHeight = 400,
   errorMessage = 'The link is malformed.',
   isResizable = false,

@@ -44,4 +44,4 @@ export default meta;
 
 type Story = StoryObj<typeof renderComponent>;
 
-export const Authorized = {} satisfies Story;
+export const CaptionOnImage = {} satisfies Story;
