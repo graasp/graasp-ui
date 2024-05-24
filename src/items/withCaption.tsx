@@ -1,6 +1,6 @@
 import TextDisplay from '@/TextDisplay/TextDisplay';
 
-import { Box, Stack } from '@mui/material';
+import { Stack } from '@mui/material';
 
 import {
   DescriptionPlacement,
@@ -56,8 +56,7 @@ function withCaption<T extends WithCaptionItem>({ item }: WithCaptionProps<T>) {
       const alignItems = getAlignItemsFromAlignmentSetting(alignmentSetting);
       return (
         <Stack direction={direction} gap={0.5} alignItems={alignItems}>
-          {/* The box prevent the image to take full available space due to the stack */}
-          <Box>{component}</Box>
+          {component}
           <TextDisplay content={item.description ?? DEFAULT_ITEM_DESCRIPTION} />
         </Stack>
       );

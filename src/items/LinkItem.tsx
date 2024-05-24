@@ -1,4 +1,4 @@
-import { Link as MUILink, styled } from '@mui/material';
+import { Box, Link as MUILink, styled } from '@mui/material';
 import Alert from '@mui/material/Alert';
 
 import React, { Fragment, useState } from 'react';
@@ -174,7 +174,8 @@ const LinkItem = ({
       // this is highly unsafe, and could allow XSS vulnerability if the backend does not protect this property
       if (html) {
         return (
-          <div
+          <Box
+            display='flex'
             id={id}
             onClick={onClick}
             dangerouslySetInnerHTML={{ __html: html }}
