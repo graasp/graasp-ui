@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.19.0](https://github.com/graasp/graasp-ui/compare/v4.18.2...v4.19.0) (2024-05-24)
+
+
+### Features
+
+* **apps:** add status chips ([#872](https://github.com/graasp/graasp-ui/issues/872)) ([b913d79](https://github.com/graasp/graasp-ui/commit/b913d79d34b0b3bdee3de216a11c8468a33f0872))
+
+
+### Bug Fixes
+
+* add link fancy ui ([#854](https://github.com/graasp/graasp-ui/issues/854)) ([ddd3fba](https://github.com/graasp/graasp-ui/commit/ddd3fba01c51004c47f3c8cb8618961cfe55296d))
+* **deps:** update dependency @storybook/react-vite to v8.1.3 ([#866](https://github.com/graasp/graasp-ui/issues/866)) ([459f96d](https://github.com/graasp/graasp-ui/commit/459f96df4c35d15baf052c7097d70f2c064e8f74))
+* **deps:** update dependency lucide-react to v0.379.0 ([#867](https://github.com/graasp/graasp-ui/issues/867)) ([03de0a9](https://github.com/graasp/graasp-ui/commit/03de0a946ea814068e716c79e70bcd7262189006))
+
 ## [4.18.2](https://github.com/graasp/graasp-ui/compare/v4.18.1...v4.18.2) (2024-05-22)
 
 
