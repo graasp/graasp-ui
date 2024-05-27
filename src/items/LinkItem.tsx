@@ -104,22 +104,17 @@ const LinkIframe = ({
     itemId,
   });
 
-  return (
-    <>
-      <IFrameContainer hidden={!isLoading} style={{ height }}>
-        {loadingMessage}
-      </IFrameContainer>
-      <div hidden={isLoading}>
-        {isResizable ? (
-          <div>
-            <ResizableLink />
-          </div>
-        ) : (
-          iframe
-        )}
-      </div>
-    </>
-  );
+  if (isLoading) {
+    return (
+      <IFrameContainer style={{ height }}>{loadingMessage}</IFrameContainer>
+    );
+  } else {
+    if (isResizable) {
+      return <ResizableLink />;
+    }
+
+    return iframe;
+  }
 };
 
 const LinkItem = ({
