@@ -15,7 +15,7 @@ const normalizeDescription = (value: string | null | undefined): string => {
   }
   // empty description from quill is a paragraph with an empty line inside,
   // we do not want to display this, so we return empty string
-  if (value === '<p><br/></p>') {
+  if (value === '<p><br></p>') {
     return '';
   }
   return value;
