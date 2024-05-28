@@ -8,7 +8,18 @@ import {
   UnionOfConst,
 } from '@graasp/sdk';
 
-const DEFAULT_ITEM_DESCRIPTION = '';
+const normalizeDescription = (value: string | null | undefined): string => {
+  // description may be null or undefined, we return empty string
+  if (!value) {
+    return '';
+  }
+  // empty description from quill is a paragraph with an empty line inside,
+  // we do not want to display this, so we return empty string
+  if (value === '<p><br/></p>') {
+    return '';
+  }
+  return value;
+};
 
 // NOTE: This is experimental and most likely is going to be moved to sdk when implementing the feature
 export const Alignment = {
@@ -55,10 +66,11 @@ function withCaption<T extends WithCaptionItem>({ item }: WithCaptionProps<T>) {
           ? 'column-reverse'
           : 'column';
       const alignItems = getAlignItemsFromAlignmentSetting(alignmentSetting);
+      const description = normalizeDescription(item.description);
       return (
         <Stack direction={direction} gap={0.5} alignItems={alignItems}>
           {component}
-          <TextDisplay content={item.description ?? DEFAULT_ITEM_DESCRIPTION} />
+          <TextDisplay content={description} />
         </Stack>
       );
     };

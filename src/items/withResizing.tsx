@@ -1,4 +1,4 @@
-import { styled } from '@mui/material';
+import { Box, styled } from '@mui/material';
 
 import { FC, useEffect, useState } from 'react';
 import { Rnd } from 'react-rnd';
@@ -19,13 +19,9 @@ export const StyledIFrame = styled('iframe')<{
 }>(({ isResizable, height }) => ({
   // remove ugly borders
   border: 'none',
-  ...(isResizable
-    ? {
-        width: '100%',
-        maxHeight: !isResizable ? ITEM_MAX_HEIGHT : undefined,
-        height: !isResizable ? height : '100%',
-      }
-    : {}),
+  width: '100%',
+  maxHeight: !isResizable ? ITEM_MAX_HEIGHT : undefined,
+  height: !isResizable ? height : '100%',
 }));
 
 export interface WithResizingProps {
@@ -44,15 +40,6 @@ const resizeHandleStyles = {
     marginLeft: 'auto',
     left: '0',
     right: '0',
-  },
-  resizableContainer: {
-    paddingBottom: '35px',
-    '-webkit-user-select': 'none',
-    '-webkit-touch-callout': 'none',
-    '-khtml-user-select': 'none',
-    '-moz-user-select': 'none',
-    '-ms-user-select': 'none',
-    'user-select': 'none',
   },
 };
 
@@ -73,7 +60,17 @@ const withResizing =
     }, [variableHeight]);
 
     return (
-      <div style={resizeHandleStyles.resizableContainer}>
+      <Box
+        width='100%'
+        sx={{
+          paddingBottom: '35px',
+          WebkitUserSelect: 'none',
+          WebkitTouchCallout: 'none',
+          MozUserSelect: 'none',
+          msUserSelect: 'none',
+          userSelect: 'none',
+        }}
+      >
         <Rnd
           style={{ position: 'relative' }}
           disableDragging
@@ -95,7 +92,7 @@ const withResizing =
         >
           {component}
         </Rnd>
-      </div>
+      </Box>
     );
   };
 
