@@ -18,11 +18,18 @@ const StyledCard = styled(MuiCard, {
   shouldForwardProp: (prop) => prop !== 'elevation' && prop !== 'fullWidth',
 })<{ isOver: boolean; fullWidth?: boolean; elevation?: boolean }>(
   ({ theme, elevation, fullWidth, isOver }) => ({
+    // border radius and overflow to hide sharp corners
     borderRadius: theme.spacing(1),
+    overflow: 'hidden',
+
+    // shadows depending on whether card is elevated
     boxShadow: elevation ? theme.shadows[2] : '0px 2px 2px #eeeeee',
     width: fullWidth ? '100%' : 'max-content',
     maxWidth: '100%',
-    border: isOver ? '2px solid black' : 'none',
+
+    // use outline when element is being selected as a target
+    // border is not suitable as it shifts the card, outline does not shift the card
+    outline: isOver ? `2px solid ${theme.palette.primary.light}` : 'none',
   }),
 );
 

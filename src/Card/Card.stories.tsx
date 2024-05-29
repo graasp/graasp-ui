@@ -19,6 +19,10 @@ const meta = {
   title: 'Common/Card',
   component: Card,
 
+  args: {
+    isDragging: false,
+    isOver: false,
+  },
   argTypes: {
     sx: {
       table: {
