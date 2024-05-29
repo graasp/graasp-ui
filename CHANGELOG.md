@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.19.1](https://github.com/graasp/graasp-ui/compare/v4.19.0...v4.19.1) (2024-05-29)
+
+
+### Bug Fixes
+
+* **deps:** update ag-grid monorepo to v31.3.2 ([#862](https://github.com/graasp/graasp-ui/issues/862)) ([d270622](https://github.com/graasp/graasp-ui/commit/d270622d8b06e4949d7868bfa5d125b545e1125f))
+* issue with Iframe sizing ([#879](https://github.com/graasp/graasp-ui/issues/879)) ([2b14bae](https://github.com/graasp/graasp-ui/commit/2b14bae1b5cad1e3b365431a5c7a2377310055d7))
+
 ## [4.19.0](https://github.com/graasp/graasp-ui/compare/v4.18.2...v4.19.0) (2024-05-24)
 
 
