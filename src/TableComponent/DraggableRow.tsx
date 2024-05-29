@@ -75,6 +75,8 @@ const DraggableRow = <T extends object>({
 
   return (
     <Box
+      borderRadius={2}
+      overflow='hidden'
       ref={isMovable ? attachRef : undefined}
       sx={{
         '&:hover': {
