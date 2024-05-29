@@ -148,7 +148,7 @@ const LinkItem = ({
   const url = extra?.url;
 
   useEffect(() => {
-    if (isLoading === false) {
+    if (!isLoading) {
       setIsLoading(true);
     }
   }, [url]);
