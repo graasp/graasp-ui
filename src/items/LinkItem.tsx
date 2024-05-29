@@ -1,7 +1,7 @@
 import { Box, Link as MUILink, styled } from '@mui/material';
 import Alert from '@mui/material/Alert';
 
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { LinkItemType, getLinkExtra } from '@graasp/sdk';
@@ -55,11 +55,18 @@ type LinkItemProps = {
   onClick?: () => void;
 };
 
-const IFrameContainer = styled('div')({
-  position: 'relative',
+const IFrameContainer = styled('div')(({ theme }) => ({
+  width: '100%',
+  backgroundColor: '#eee',
+  borderRadius: theme.spacing(2),
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  flexGrow: 1,
+  height: '100%',
   maxHeight: ITEM_MAX_HEIGHT,
   overflow: 'auto',
-});
+}));
 
 type LinkIframeProps = {
   id?: string;
@@ -87,6 +94,7 @@ const LinkIframe = ({
 }: LinkIframeProps): JSX.Element | null => {
   const iframe = (
     <StyledIFrame
+      sx={{ display: isLoading ? 'unset' : 'block' }}
       height={height}
       width='100%'
       id={id}
@@ -106,18 +114,10 @@ const LinkIframe = ({
 
   return (
     <>
-      <IFrameContainer hidden={!isLoading} style={{ height }}>
+      <IFrameContainer sx={{ display: isLoading ? 'flex' : 'none' }}>
         {loadingMessage}
       </IFrameContainer>
-      <div hidden={isLoading}>
-        {isResizable ? (
-          <div>
-            <ResizableLink />
-          </div>
-        ) : (
-          iframe
-        )}
-      </div>
+      {isResizable ? <ResizableLink /> : iframe}
     </>
   );
 };
@@ -147,6 +147,11 @@ const LinkItem = ({
   // default case is an iframe with given link
   const url = extra?.url;
 
+  useEffect(() => {
+    if (!isLoading) {
+      setIsLoading(true);
+    }
+  }, [url]);
   const CaptionWrapper = withCaption({
     item,
   });
@@ -197,7 +202,7 @@ const LinkItem = ({
             memberId={memberId}
             loadingMessage={loadingMessage}
           />
-          {(isLoading || showButton) && linkCard}
+          {showButton && linkCard}
         </Fragment>
       );
     }
