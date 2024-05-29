@@ -2434,9 +2434,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@graasp/sdk@npm:4.12.0":
+"@graasp/sdk@github:graasp/graasp-sdk#538-get-ids-from-path-improvements":
   version: 4.12.0
-  resolution: "@graasp/sdk@npm:4.12.0"
+  resolution: "@graasp/sdk@https://github.com/graasp/graasp-sdk.git#commit=3c96bd2f16a566a49abdbf63b8866f6a535e9ffe"
   dependencies:
     "@faker-js/faker": "npm:8.4.1"
     filesize: "npm:10.1.2"
@@ -2445,7 +2445,7 @@ __metadata:
   peerDependencies:
     date-fns: ^3
     uuid: ^9
-  checksum: 10/10f37882a6d926d0fd1e8e26edaa312a6ef12d69df98e909f4841d7873a4e15a0b45eb04f3cb6e79eb112b6e37bc1e5993591e81a13ddf8eef96c6db57f6b826
+  checksum: 10/e60fd407b2b8b75737398b30431d71dc7c30ea97a699b8030802a458333106c1f21346ae0c4565ba852fe2c2a450e8009cb5b24c95f247e3da5b6a360490ffb4
   languageName: node
   linkType: hard
 
@@ -2461,7 +2461,7 @@ __metadata:
     "@emotion/cache": "npm:~11.11.0"
     "@emotion/react": "npm:11.11.4"
     "@emotion/styled": "npm:11.11.5"
-    "@graasp/sdk": "npm:4.12.0"
+    "@graasp/sdk": "github:graasp/graasp-sdk#538-get-ids-from-path-improvements"
     "@mui/icons-material": "npm:5.15.18"
     "@mui/lab": "npm:5.0.0-alpha.170"
     "@mui/material": "npm:5.15.18"

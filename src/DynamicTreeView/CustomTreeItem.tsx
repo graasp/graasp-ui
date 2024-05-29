@@ -6,9 +6,8 @@ import Skeleton from '@mui/material/Skeleton';
 
 import React, { FC } from 'react';
 
-import { DiscriminatedItem } from '@graasp/sdk';
+import { DiscriminatedItem, getIdsFromPath } from '@graasp/sdk';
 
-import { getParentsIdsFromPath } from '../utils/utils';
 import TreeItemLabel from './TreeItemLabel';
 
 const LoadingTreeItem = <Skeleton variant='text' />;
@@ -57,7 +56,7 @@ const CustomTreeItem: FC<CustomItemTreeProps> = ({
 
   // load depth-2 level of children to allow collapse to correctly show
   // parent of parent should be expanded
-  const parentsIds = getParentsIdsFromPath(item?.path);
+  const parentsIds = getIdsFromPath(item?.path);
   const parentOfParentIdx = parentsIds.length - 2;
   const parentOfParentIsVisible =
     parentOfParentIdx < 0 ||
