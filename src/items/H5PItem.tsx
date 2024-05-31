@@ -89,32 +89,8 @@ const H5PItem: FC<H5PItemProps> = ({
 
     window.addEventListener('message', onResize);
 
-    // handle full screen requested by h5p
-    const setFullHeight = (): void => {
-      if (iframeRef.current === null) {
-        return;
-      }
-      iframeRef.current.height = '100%';
-    };
-
-    /* Standard syntax */
-    window.addEventListener('fullscreenchange', setFullHeight);
-
-    /* Firefox */
-    window.addEventListener('mozfullscreenchange', setFullHeight);
-
-    /* Chrome, Safari and Opera */
-    window.addEventListener('webkitfullscreenchange', setFullHeight);
-
-    /* IE / Edge */
-    window.addEventListener('msfullscreenchange', setFullHeight);
-
     // cleanup on unmount
     return () => {
-      window.removeEventListener('fullscreenchange', setFullHeight);
-      window.removeEventListener('mozfullscreenchange', setFullHeight);
-      window.removeEventListener('webkitfullscreenchange', setFullHeight);
-      window.removeEventListener('msfullscreenchange', setFullHeight);
       window.removeEventListener('message', onResize);
     };
   }, []);
@@ -125,11 +101,11 @@ const H5PItem: FC<H5PItemProps> = ({
       id={iframeId}
       src={integrationUrl.href}
       allowFullScreen
+      scrolling='no'
       style={{
         width: '100%',
         border: 'none',
         display: 'block',
-        overflow: 'hidden',
       }}
     ></iframe>
   );
