@@ -97,9 +97,13 @@ const H5PItem: FC<H5PItemProps> = ({
       ref={iframeRef}
       id={iframeId}
       src={integrationUrl.href}
-      scrolling={'no'}
-      frameBorder={0}
-      style={{ width: '100%', border: 'none', display: 'block' }}
+      allowFullScreen
+      style={{
+        width: '100%',
+        border: 'none',
+        display: 'block',
+        overflow: 'hidden',
+      }}
     ></iframe>
   );
 
