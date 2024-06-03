@@ -88,8 +88,11 @@ const H5PItem: FC<H5PItemProps> = ({
     };
 
     window.addEventListener('message', onResize);
+
     // cleanup on unmount
-    return () => window.removeEventListener('message', onResize);
+    return () => {
+      window.removeEventListener('message', onResize);
+    };
   }, []);
 
   let iframeH5Pitem = (
@@ -97,9 +100,13 @@ const H5PItem: FC<H5PItemProps> = ({
       ref={iframeRef}
       id={iframeId}
       src={integrationUrl.href}
-      scrolling={'no'}
-      frameBorder={0}
-      style={{ width: '100%', border: 'none', display: 'block' }}
+      allowFullScreen
+      scrolling='no'
+      style={{
+        width: '100%',
+        border: 'none',
+        display: 'block',
+      }}
     ></iframe>
   );
 
