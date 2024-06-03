@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.19.2](https://github.com/graasp/graasp-ui/compare/v4.19.1...v4.19.2) (2024-06-03)
+
+
+### Bug Fixes
+
+* allow fullscreen for h5p iframe ([#884](https://github.com/graasp/graasp-ui/issues/884)) ([f8169dd](https://github.com/graasp/graasp-ui/commit/f8169dd1ff26d33367e1005603a11fcf192d6360))
+* unset height when using dynamic resizing ([#886](https://github.com/graasp/graasp-ui/issues/886)) ([4cc726a](https://github.com/graasp/graasp-ui/commit/4cc726a64a3a3e86c6c125d213992d76691c569d))
+
 ## [4.19.1](https://github.com/graasp/graasp-ui/compare/v4.19.0...v4.19.1) (2024-05-29)
 
 
