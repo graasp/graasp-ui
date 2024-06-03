@@ -122,13 +122,7 @@ const AppItem = ({
           height={SCREEN_MAX_HEIGHT}
         />
       )}
-      {isResizable ? (
-        <div>
-          <ResizableIframe />
-        </div>
-      ) : (
-        iframe
-      )}
+      {isResizable ? <ResizableIframe /> : iframe}
     </>
   );
 
