@@ -36,7 +36,7 @@ export const AppIFrame = styled('iframe')<{
    * The present styles are applied with higher specificity, so the dynamic height
    * provided by the app using the resizing mechanism is ignored.
    */
-  height: !isResizable ? 'unset' : '100%',
+  height: !isResizable ? undefined : '100%',
 }));
 
 export interface WithResizingProps {
