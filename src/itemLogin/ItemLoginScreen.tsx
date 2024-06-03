@@ -17,9 +17,9 @@ import { ItemLoginSchemaType, UUID } from '@graasp/sdk';
 
 import Button from '../buttons/Button';
 import { SETTINGS } from '../constants';
-import { isMemberIdValid } from '../utils/utils';
 import ForbiddenText from './ForbiddenText';
 import MemberIdTextField from './MemberIdTextField';
+import { isMemberIdValid } from './utils';
 
 export type SignInPropertiesType = {
   memberId?: string;
