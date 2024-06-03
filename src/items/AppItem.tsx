@@ -13,7 +13,7 @@ import withCollapse from '../Collapse/withCollapse';
 import { SCREEN_MAX_HEIGHT } from '../constants';
 import { ContextPayload, Token, useAppCommunication } from './appItemHooks';
 import withCaption from './withCaption';
-import withResizing, { StyledIFrame } from './withResizing';
+import withResizing, { AppIFrame } from './withResizing';
 
 const DEFAULT_APP_HEIGHT = 400;
 const APP_ITEM_WIDTH = '100%';
@@ -93,10 +93,9 @@ const AppItem = ({
   );
 
   const iframe = (
-    <StyledIFrame
+    <AppIFrame
       id={frameId}
       ref={iFrameRef}
-      height={height}
       isResizable={isResizable}
       onLoad={onLoad}
       src={appUrlWithQuery}
@@ -123,13 +122,7 @@ const AppItem = ({
           height={SCREEN_MAX_HEIGHT}
         />
       )}
-      {isResizable ? (
-        <div>
-          <ResizableIframe />
-        </div>
-      ) : (
-        iframe
-      )}
+      {isResizable ? <ResizableIframe /> : iframe}
     </>
   );
 

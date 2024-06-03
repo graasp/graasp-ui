@@ -13,15 +13,30 @@ import { IFRAME_MIN_HEIGHT } from '../constants';
 import ResizingIcon from '../icons/ResizingIcon';
 import { ITEM_MAX_HEIGHT } from './constants';
 
+const iframeCommonStyles = {
+  // remove ugly borders
+  border: 'none',
+  width: '100%',
+};
 export const StyledIFrame = styled('iframe')<{
   isResizable?: boolean;
   height?: string | number;
 }>(({ isResizable, height }) => ({
-  // remove ugly borders
-  border: 'none',
-  width: '100%',
+  ...iframeCommonStyles,
   maxHeight: !isResizable ? ITEM_MAX_HEIGHT : undefined,
   height: !isResizable ? height : '100%',
+}));
+export const AppIFrame = styled('iframe')<{
+  isResizable?: boolean;
+}>(({ isResizable }) => ({
+  ...iframeCommonStyles,
+  maxHeight: !isResizable ? ITEM_MAX_HEIGHT : undefined,
+  /**
+   * IMPORTANT to not override the height when using dynamic sizing
+   * The present styles are applied with higher specificity, so the dynamic height
+   * provided by the app using the resizing mechanism is ignored.
+   */
+  height: !isResizable ? undefined : '100%',
 }));
 
 export interface WithResizingProps {
