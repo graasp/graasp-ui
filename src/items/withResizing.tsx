@@ -30,7 +30,7 @@ export const AppIFrame = styled('iframe')<{
   isResizable?: boolean;
 }>(({ isResizable }) => ({
   ...iframeCommonStyles,
-  maxHeight: !isResizable ? ITEM_MAX_HEIGHT : undefined,
+  // maxHeight: !isResizable ? ITEM_MAX_HEIGHT : undefined,
   /**
    * IMPORTANT to not override the height when using dynamic sizing
    * The present styles are applied with higher specificity, so the dynamic height
