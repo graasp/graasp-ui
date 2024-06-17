@@ -88,12 +88,18 @@ const AppItem = ({
   const onLoad = (): void => setIsIFrameLoading(false);
 
   const appUrlWithQuery = useMemo(
-    () => appendQueryParamToUrl(appUrl, { itemId: item.id }),
+    () =>
+      appendQueryParamToUrl(appUrl, {
+        itemId: item.id,
+        // this ensures that the index.html can not be aggressively cached by the browser
+        ts: Date.now().toString(),
+      }),
     [item],
   );
 
   const iframe = (
     <AppIFrame
+      data-testid={frameId}
       id={frameId}
       ref={iFrameRef}
       isResizable={isResizable}

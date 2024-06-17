@@ -37,6 +37,7 @@ export const Example = {
       settings: {},
       creator: MOCK_MEMBER,
     }),
+    frameId: 'app-iframe-test-id',
     requestApiAccessToken: async () => ({ token: 'token' }),
     contextPayload: {
       apiHost: 'apiHost',
@@ -53,5 +54,10 @@ export const Example = {
       await expect(canvas.getByText(args.item.description)).toBeInTheDocument();
     }
     await expect(canvas.getByTitle(args.item.name)).toBeInTheDocument();
+    // check that the timestamp is set on the iframe src
+    await expect(canvas.getByTestId(args.frameId!)).toHaveAttribute(
+      'src',
+      expect.stringContaining('ts'),
+    );
   },
 } satisfies Story;
