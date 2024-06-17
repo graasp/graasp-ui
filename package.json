@@ -85,7 +85,7 @@
     "lucide-react": "0.395.0",
     "react-cookie-consent": "9.0.0",
     "react-quill": "2.0.0",
-    "react-rnd": "10.4.10",
+    "react-rnd": "10.4.11",
     "react-text-mask": "5.5.0",
     "uuid": "10.0.0",
     "vitest": "1.6.0"
