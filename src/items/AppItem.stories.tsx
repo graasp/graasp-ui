@@ -10,7 +10,7 @@ import {
 } from '@graasp/sdk';
 
 import { MOCK_MEMBER } from '../utils/fixtures';
-import AppItem from './AppItem';
+import AppItem, { CURRENT_TIMESTAMP_QUERY_PARAM } from './AppItem';
 
 const meta = {
   title: 'Items/AppItem',
@@ -57,7 +57,7 @@ export const Example = {
     // check that the timestamp is set on the iframe src
     await expect(canvas.getByTestId(args.frameId!)).toHaveAttribute(
       'src',
-      expect.stringContaining('ts'),
+      expect.stringContaining(CURRENT_TIMESTAMP_QUERY_PARAM),
     );
   },
 } satisfies Story;
