@@ -17,6 +17,17 @@ import withResizing, { AppIFrame } from './withResizing';
 
 const DEFAULT_APP_HEIGHT = 400;
 const APP_ITEM_WIDTH = '100%';
+/**
+ * This query param is added to the fetched url to fix an issue where the browser
+ * is able to aggressively cache the `index.html` file for the app.
+ * This aggressive caching behavior is an issue as when apps get updated, the index.html file
+ * changes but the browser has an old version of it, and tries to fetch javascript and assets that are out of date
+ * resulting in the app not being able to load.
+ *
+ * This could be also fixed by not overriding the `index.html` file when releasing a new app version
+ * and simply pushing it to another subpath than `/latest/`. In this case the agressive caching behavior would not be a problem.
+ */
+export const CURRENT_TIMESTAMP_QUERY_PARAM = 'ts';
 
 type AppItemProps = {
   /**
@@ -88,12 +99,18 @@ const AppItem = ({
   const onLoad = (): void => setIsIFrameLoading(false);
 
   const appUrlWithQuery = useMemo(
-    () => appendQueryParamToUrl(appUrl, { itemId: item.id }),
+    () =>
+      appendQueryParamToUrl(appUrl, {
+        itemId: item.id,
+        // this ensures that the index.html can not be aggressively cached by the browser
+        [CURRENT_TIMESTAMP_QUERY_PARAM]: Date.now().toString(),
+      }),
     [item],
   );
 
   const iframe = (
     <AppIFrame
+      data-testid={frameId}
       id={frameId}
       ref={iFrameRef}
       isResizable={isResizable}
