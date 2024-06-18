@@ -2529,7 +2529,7 @@ __metadata:
     react-dom: "npm:18.3.1"
     react-i18next: "npm:14.1.2"
     react-quill: "npm:2.0.0"
-    react-rnd: "npm:10.4.10"
+    react-rnd: "npm:10.4.11"
     react-router-dom: "npm:6.23.1"
     react-test-renderer: "npm:18.3.1"
     react-text-mask: "npm:5.5.0"
@@ -14210,13 +14210,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"re-resizable@npm:6.9.14":
-  version: 6.9.14
-  resolution: "re-resizable@npm:6.9.14"
+"re-resizable@npm:6.9.17":
+  version: 6.9.17
+  resolution: "re-resizable@npm:6.9.17"
   peerDependencies:
     react: ^16.13.1 || ^17.0.0 || ^18.0.0
     react-dom: ^16.13.1 || ^17.0.0 || ^18.0.0
-  checksum: 10/eb3c40ead7f0db3bac6971cc15efd660ed403018db4a44e084392f248199244a6400ff3f741b2a1aa897bb5ede498d9e72c3d580a6f3acf06819639a0d943d26
+  checksum: 10/768c3a0fe39d6916caf4e003240d326d62c4d7512c7d3115cc2a98085416fdba80097afdbb93df57b69543c41ce56b33589f2fea6987cd5149faa83cf11c8ba1
   languageName: node
   linkType: hard
 
@@ -14409,17 +14409,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-rnd@npm:10.4.10":
-  version: 10.4.10
-  resolution: "react-rnd@npm:10.4.10"
+"react-rnd@npm:10.4.11":
+  version: 10.4.11
+  resolution: "react-rnd@npm:10.4.11"
   dependencies:
-    re-resizable: "npm:6.9.14"
+    re-resizable: "npm:6.9.17"
     react-draggable: "npm:4.4.6"
     tslib: "npm:2.6.2"
   peerDependencies:
     react: ">=16.3.0"
     react-dom: ">=16.3.0"
-  checksum: 10/042c5ede35a67b8ca05c5f2f714aee6b52f80cd73e3e6b4d8070a427bdba48e841727c33e99b9615ac1391cc68adf55c625154a8b7bc081fd949026aac211ca6
+  checksum: 10/b1362efc490e593c336ceb8c4b19ce266976f96c7a4fcef4e06703f12a16731fbc50143f5bf6532d9262603f6ef81d740747a62c06c2ec372089947d96cd98e4
   languageName: node
   linkType: hard
 
