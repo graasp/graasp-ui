@@ -83,3 +83,5 @@ export * from './types';
 
 export { default as DraggingWrapper } from './TableComponent/DraggingWrapper';
 export { default as TableToolbar } from './TableComponent/TableToolbar';
+
+export { default as FileDropper } from './FileDropper/FileDropper';
