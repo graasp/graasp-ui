@@ -53,7 +53,9 @@ const FileDropper = ({
 
 const FileDropperWrapper = (args: FileDropperProps): JSX.Element | null => {
   return (
-    <DndProvider backend={HTML5Backend}>
+    // we need context={window} to use multiple times in the document
+    // https://github.com/react-dnd/react-dnd/issues/3257#issuecomment-1239254032
+    <DndProvider backend={HTML5Backend} context={window}>
       <FileDropper
         id={args.id}
         onDrop={args.onDrop}

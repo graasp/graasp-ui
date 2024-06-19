@@ -56,7 +56,9 @@ const DraggingWrapper = <T extends object>({
   };
 
   return (
-    <DndProvider backend={HTML5Backend}>
+    // we need context={window} to use multiple times in the document
+    // https://github.com/react-dnd/react-dnd/issues/3257#issuecomment-1239254032
+    <DndProvider backend={HTML5Backend} context={window}>
       <Box id={id} width='100%'>
         <InBetween<T>
           onDrop={onDropBetweenRow}
