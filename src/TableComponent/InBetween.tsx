@@ -7,9 +7,9 @@ import { NativeTypes } from 'react-dnd-html5-backend';
 import { DraggableAndDroppableProps, DroppedFile } from './DraggableRow';
 
 export type InBetweenProps<T> = {
-  previousRowIdx: number;
+  previousRow?: T;
   enableMoveInBetween: boolean;
-  onDrop: (draggedRow: T | DroppedFile, idx: number) => void;
+  onDrop: (draggedRow: T | DroppedFile, previous?: T) => void;
   renderComponent: (
     el: T | DroppedFile,
     args: DraggableAndDroppableProps,
@@ -18,7 +18,7 @@ export type InBetweenProps<T> = {
 };
 
 const InBetween = <T extends object>({
-  previousRowIdx,
+  previousRow,
   onDrop,
   enableMoveInBetween,
   renderComponent,
@@ -32,7 +32,7 @@ const InBetween = <T extends object>({
     () => ({
       accept,
       drop: (draggedRow: T | DroppedFile) => {
-        return onDrop(draggedRow, previousRowIdx);
+        return onDrop(draggedRow, previousRow);
       },
       canDrop: () => enableMoveInBetween,
       collect: (monitor) => ({

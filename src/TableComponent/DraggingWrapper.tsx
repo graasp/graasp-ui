@@ -17,7 +17,7 @@ export type DraggingWrapperProps<T> = {
   getRowId?: (el: T) => string;
 
   /** show checkbox */
-  showCheckbox?: boolean;
+  // showCheckbox?: boolean;
   /** show drag anchor */
   isMovable?: boolean;
   /** handler on drop in a row */
@@ -50,21 +50,20 @@ const DraggingWrapper = <T extends object>({
 
   const onDropBetweenRow = (
     draggedRow: T | DroppedFile,
-    previousRowIdx: number,
+    previousRow?: T,
   ): void => {
-    onDropBetweenRowFn?.(draggedRow, previousRowIdx);
+    onDropBetweenRowFn?.(draggedRow, previousRow);
   };
 
   return (
     <DndProvider backend={HTML5Backend}>
       <Box id={id} width='100%'>
         <InBetween<T>
-          previousRowIdx={0}
           onDrop={onDropBetweenRow}
           enableMoveInBetween={enableMoveInBetween}
           renderComponent={renderComponent}
         />
-        {rows.map((row, idx) => (
+        {rows.map((row) => (
           <>
             <DraggableRow<T>
               canDrop={canDrop}
@@ -79,7 +78,7 @@ const DraggingWrapper = <T extends object>({
               allowFiles={allowFiles}
               renderComponent={renderComponent}
               enableMoveInBetween={enableMoveInBetween}
-              previousRowIdx={idx + 1}
+              previousRow={row}
               onDrop={onDropBetweenRow}
             />
           </>
