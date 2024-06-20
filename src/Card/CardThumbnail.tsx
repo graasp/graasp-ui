@@ -1,4 +1,4 @@
-import { Box, useTheme } from '@mui/material';
+import { Box } from '@mui/material';
 
 import { DiscriminatedItem, ItemType } from '@graasp/sdk';
 
@@ -18,8 +18,6 @@ const CardThumbnail = ({
   minHeight,
   type = ItemType.FOLDER,
 }: CardThumbnailProps): JSX.Element => {
-  const theme = useTheme();
-
   if (thumbnail) {
     return (
       <Thumbnail url={thumbnail} alt={alt} maxHeight='100%' maxWidth={width} />
@@ -31,7 +29,7 @@ const CardThumbnail = ({
       display='flex'
       alignItems='center'
       justifyContent='center'
-      bgcolor={theme.palette.background.default}
+      bgcolor='#E4DFFF'
       width={width}
       height='100%'
       flexShrink={0}

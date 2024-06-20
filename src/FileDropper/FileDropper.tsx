@@ -1,8 +1,9 @@
-import { UploadFileButton } from '@/buttons';
-import { UploadFileButtonProps } from '@/buttons/UploadFileButton/UploadFileButton';
+import UploadFileButton, {
+  UploadFileButtonProps,
+} from '@/buttons/UploadFileButton/UploadFileButton';
 import { CloudUploadIcon } from 'lucide-react';
 
-import { Stack, Typography, useTheme } from '@mui/material';
+import { Alert, Stack, Typography, useTheme } from '@mui/material';
 
 import { DndProvider, useDrop } from 'react-dnd';
 import { HTML5Backend, NativeTypes } from 'react-dnd-html5-backend';
@@ -11,12 +12,18 @@ type FileDropperProps = {
   id?: string;
   onDrop?: (files: File[]) => void;
   onChange: UploadFileButtonProps['onChange'];
+  error?: string;
+  hints?: string;
+  buttonText?: string;
 };
 
 const FileDropper = ({
   id,
   onDrop,
   onChange,
+  error,
+  hints,
+  buttonText = 'Browse files',
 }: FileDropperProps): JSX.Element | null => {
   const theme = useTheme();
 
@@ -51,14 +58,24 @@ const FileDropper = ({
       borderRadius={5}
       sx={{ border: '3px dashed lightgrey' }}
       ref={drop}
+      gap={2}
     >
       <Stack display='block'>
         <CloudUploadIcon size={80} color={theme.palette.primary.main} />
       </Stack>
       <Typography variant='label' color='primary'>
-        {isActive ? 'Release to drop' : 'Drag & drop\nor'}
+        {isActive ? 'Release to drop' : `Drag your files here to upload \nor`}
       </Typography>
-      <UploadFileButton onChange={onChange} size='small' />
+      {buttonText && (
+        <UploadFileButton
+          icon={null}
+          text={buttonText}
+          onChange={onChange}
+          size='small'
+        />
+      )}
+      {hints && <Typography variant='caption'>{hints}</Typography>}
+      {error && <Alert severity='error'>{error}</Alert>}
     </Stack>
   );
 };
@@ -68,7 +85,14 @@ const FileDropperWrapper = (args: FileDropperProps): JSX.Element | null => {
     // we need context={window} to use multiple times in the document
     // https://github.com/react-dnd/react-dnd/issues/3257#issuecomment-1239254032
     <DndProvider backend={HTML5Backend} context={window}>
-      <FileDropper onChange={args.onChange} id={args.id} onDrop={args.onDrop} />
+      <FileDropper
+        error={args.error}
+        hints={args.hints}
+        onChange={args.onChange}
+        id={args.id}
+        onDrop={args.onDrop}
+        buttonText={args.buttonText}
+      />
     </DndProvider>
   );
 };

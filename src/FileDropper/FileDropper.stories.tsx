@@ -35,3 +35,15 @@ export const Default: Story = {
     },
   ],
 } satisfies Story;
+
+export const Error: Story = {
+  args: {
+    error: 'You cannot upload more than 10 files at a time',
+    hints: 'Max 15GB',
+  },
+  decorators: [
+    (story) => {
+      return <Box height='400px'>{story()}</Box>;
+    },
+  ],
+} satisfies Story;

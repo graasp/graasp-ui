@@ -2,6 +2,8 @@ import { CloudUploadIcon } from 'lucide-react';
 
 import { styled } from '@mui/material';
 
+import { ChangeEventHandler } from 'react';
+
 import GraaspButton, { GraaspButtonProps } from '../Button/Button';
 
 export interface UploadFileButtonProps {
@@ -9,7 +11,7 @@ export interface UploadFileButtonProps {
    * whether is loading
    */
   isLoading?: boolean;
-  onChange: () => void;
+  onChange: ChangeEventHandler<HTMLInputElement>;
   color?: GraaspButtonProps['color'];
   id?: string;
   /**
@@ -28,6 +30,7 @@ export interface UploadFileButtonProps {
   accept?: string;
   multiple?: boolean;
   size?: GraaspButtonProps['size'];
+  icon?: JSX.Element | null;
 }
 
 const VisuallyHiddenInput = styled('input')({
@@ -51,13 +54,14 @@ const UploadFileButton = ({
   variant = 'contained',
   accept,
   multiple,
+  icon = <CloudUploadIcon />,
   size,
 }: UploadFileButtonProps): JSX.Element => (
   <GraaspButton
     id={id}
     component='label'
     variant={variant}
-    startIcon={<CloudUploadIcon />}
+    startIcon={icon}
     disabled={isLoading}
     size={size}
   >
