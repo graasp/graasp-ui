@@ -11,3 +11,4 @@ export { default as PinButton } from './PinButton';
 export { default as SaveButton } from './SaveButton/SaveButton';
 export { default as ShareButton } from './ShareButton';
 export { default as MenuButton } from './MenuButton/MenuButton';
+export { default as UploadFileButton } from './UploadFileButton/UploadFileButton';
