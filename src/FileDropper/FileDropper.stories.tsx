@@ -1,3 +1,4 @@
+import { TABLE_CATEGORIES } from '@/utils/storybook';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { Box } from '@mui/material';
@@ -8,19 +9,29 @@ const meta = {
   title: 'Common/FileDropper',
   component: FileDropperWrapper,
 
-  argTypes: {},
+  argTypes: {
+    onChange: {
+      table: {
+        category: TABLE_CATEGORIES.EVENTS,
+      },
+      action: 'on change',
+    },
+    onDrop: {
+      table: {
+        category: TABLE_CATEGORIES.EVENTS,
+      },
+      action: 'on drop',
+    },
+  },
 } satisfies Meta<typeof FileDropperWrapper>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  args: {
-    onDrop: () => {
-      console.log('drop');
+  decorators: [
+    (story) => {
+      return <Box height='400px'>{story()}</Box>;
     },
-  },
-  decorators: (story) => {
-    return <Box height='400px'>{story()}</Box>;
-  },
+  ],
 } satisfies Story;

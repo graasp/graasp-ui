@@ -18,3 +18,19 @@ export const Loading: Story = {
     isLoading: true,
   },
 };
+
+export const ImageOnly: Story = {
+  args: { accept: 'image/*', text: 'Upload one image' },
+};
+
+export const ImageMultipleOnly: Story = {
+  args: { accept: 'image/*', multiple: true, text: 'Upload many images' },
+};
+
+export const H5pOnly: Story = {
+  args: {
+    accept: '.h5p',
+    multiple: true,
+    text: 'Upload an H5P file',
+  },
+};

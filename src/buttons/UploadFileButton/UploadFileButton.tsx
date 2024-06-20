@@ -8,7 +8,7 @@ export interface UploadFileButtonProps {
   /**
    * whether is loading
    */
-  isLoading: boolean;
+  isLoading?: boolean;
   onChange: () => void;
   color?: GraaspButtonProps['color'];
   id?: string;
@@ -24,6 +24,10 @@ export interface UploadFileButtonProps {
    * button variant
    */
   variant?: GraaspButtonProps['variant'];
+
+  accept?: string;
+  multiple?: boolean;
+  size?: GraaspButtonProps['size'];
 }
 
 const VisuallyHiddenInput = styled('input')({
@@ -45,6 +49,9 @@ const UploadFileButton = ({
   loadingText = 'Uploading...',
   text = 'Upload a File',
   variant = 'contained',
+  accept,
+  multiple,
+  size,
 }: UploadFileButtonProps): JSX.Element => (
   <GraaspButton
     id={id}
@@ -52,9 +59,15 @@ const UploadFileButton = ({
     variant={variant}
     startIcon={<CloudUploadIcon />}
     disabled={isLoading}
+    size={size}
   >
     {isLoading ? loadingText : text}
-    <VisuallyHiddenInput onChange={onChange} type='file' />
+    <VisuallyHiddenInput
+      multiple={multiple}
+      onChange={onChange}
+      type='file'
+      accept={accept}
+    />
   </GraaspButton>
 );
 

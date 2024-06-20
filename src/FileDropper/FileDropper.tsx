@@ -1,4 +1,8 @@
-import { Box, Typography } from '@mui/material';
+import { UploadFileButton } from '@/buttons';
+import { UploadFileButtonProps } from '@/buttons/UploadFileButton/UploadFileButton';
+import { CloudUploadIcon } from 'lucide-react';
+
+import { Stack, Typography, useTheme } from '@mui/material';
 
 import { DndProvider, useDrop } from 'react-dnd';
 import { HTML5Backend, NativeTypes } from 'react-dnd-html5-backend';
@@ -6,14 +10,16 @@ import { HTML5Backend, NativeTypes } from 'react-dnd-html5-backend';
 type FileDropperProps = {
   id?: string;
   onDrop?: (files: File[]) => void;
-  maxFileUploadNumber?: number;
+  onChange: UploadFileButtonProps['onChange'];
 };
 
 const FileDropper = ({
   id,
   onDrop,
-  maxFileUploadNumber = 10,
+  onChange,
 }: FileDropperProps): JSX.Element | null => {
+  const theme = useTheme();
+
   const [{ canDrop, isOver }, drop] = useDrop({
     accept: [NativeTypes.FILE],
     drop: (e: { files: File[] }) => {
@@ -23,31 +29,37 @@ const FileDropper = ({
       isOver: monitor.isOver(),
       canDrop: monitor.canDrop(),
     }),
-    canDrop: ({ files }: { files: File[] }) => {
-      return files.length <= maxFileUploadNumber;
-    },
   });
 
   const isActive = canDrop && isOver;
+  let bgColor = theme.palette.background.default;
+  if (isActive) {
+    bgColor = '#dcdcf6';
+  } else if (!canDrop && isOver) {
+    bgColor = 'red';
+  }
 
   return (
-    <Box
+    <Stack
       id={id}
       height='100%'
       width='100%'
       display='flex'
       justifyContent='center'
       alignItems='center'
-      bgcolor='#ededed'
-      sx={{ border: '3px dashed grey' }}
+      bgcolor={bgColor}
+      borderRadius={5}
+      sx={{ border: '3px dashed lightgrey' }}
       ref={drop}
     >
-      <Typography>
-        {isActive
-          ? 'Release to drop'
-          : 'Please select files or drag & drop here'}
+      <Stack display='block'>
+        <CloudUploadIcon size={80} color={theme.palette.primary.main} />
+      </Stack>
+      <Typography variant='label' color='primary'>
+        {isActive ? 'Release to drop' : 'Drag & drop\nor'}
       </Typography>
-    </Box>
+      <UploadFileButton onChange={onChange} size='small' />
+    </Stack>
   );
 };
 
@@ -56,11 +68,7 @@ const FileDropperWrapper = (args: FileDropperProps): JSX.Element | null => {
     // we need context={window} to use multiple times in the document
     // https://github.com/react-dnd/react-dnd/issues/3257#issuecomment-1239254032
     <DndProvider backend={HTML5Backend} context={window}>
-      <FileDropper
-        id={args.id}
-        onDrop={args.onDrop}
-        maxFileUploadNumber={args.maxFileUploadNumber}
-      />
+      <FileDropper onChange={args.onChange} id={args.id} onDrop={args.onDrop} />
     </DndProvider>
   );
 };
