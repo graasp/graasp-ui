@@ -28,7 +28,9 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {
+export const Default: Story = {} satisfies Story;
+
+export const Container: Story = {
   decorators: [
     (story) => {
       return <Box height='400px'>{story()}</Box>;

@@ -3,7 +3,7 @@ import UploadFileButton, {
 } from '@/buttons/UploadFileButton/UploadFileButton';
 import { CloudUploadIcon } from 'lucide-react';
 
-import { Alert, Stack, Typography, useTheme } from '@mui/material';
+import { Alert, Stack, SxProps, Typography, useTheme } from '@mui/material';
 
 import { DndProvider, useDrop } from 'react-dnd';
 import { HTML5Backend, NativeTypes } from 'react-dnd-html5-backend';
@@ -15,6 +15,7 @@ type FileDropperProps = {
   error?: string;
   hints?: string;
   buttonText?: string;
+  sx?: SxProps;
 };
 
 const FileDropper = ({
@@ -23,6 +24,7 @@ const FileDropper = ({
   onChange,
   error,
   hints,
+  sx,
   buttonText = 'Browse files',
 }: FileDropperProps): JSX.Element | null => {
   const theme = useTheme();
@@ -56,9 +58,12 @@ const FileDropper = ({
       alignItems='center'
       bgcolor={bgColor}
       borderRadius={5}
-      sx={{ border: '3px dashed lightgrey' }}
+      border='3px dashed lightgrey'
       ref={drop}
       gap={2}
+      sx={sx}
+      py={4}
+      boxSizing='border-box'
     >
       <Stack display='block'>
         <CloudUploadIcon size={80} color={theme.palette.primary.main} />
@@ -86,6 +91,7 @@ const FileDropperWrapper = (args: FileDropperProps): JSX.Element | null => {
     // https://github.com/react-dnd/react-dnd/issues/3257#issuecomment-1239254032
     <DndProvider backend={HTML5Backend} context={window}>
       <FileDropper
+        sx={args.sx}
         error={args.error}
         hints={args.hints}
         onChange={args.onChange}
