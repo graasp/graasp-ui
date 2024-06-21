@@ -70,6 +70,15 @@ export * from './SearchInput';
 export { default as PlatformSwitch } from './PlatformSwitch';
 export * from './PlatformSwitch';
 
+export {
+  default as FileDropper,
+  type FileDropperProps,
+} from './upload/FileDropper/FileDropper';
+export {
+  default as UploadFileButton,
+  type UploadFileButtonProps,
+} from './upload/UploadFileButton/UploadFileButton';
+
 export { default as RowMenu, type RowMenuProps } from './Tree/RowMenu';
 export { default as RowMenus, type RowMenusProps } from './Tree/RowMenus';
 export {
