@@ -21,8 +21,8 @@ export const DEFAULT_ACTIVE_ACTION_COLOR = '#777578';
  */
 export const DEFAULT_LIGHT_PRIMARY_COLOR = {
   main: 'hsl(249, 100%, 94%)',
-  dark: 'hsl(249, 100%, 89%)',
-};
+  dark: 'hsl(249, 100%, 90%)',
+} as const;
 
 /**
  * Very light purple color used as the default background color.
