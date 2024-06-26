@@ -2,7 +2,7 @@ import { Box, SxProps } from '@mui/material';
 import Alert from '@mui/material/Alert';
 import Skeleton from '@mui/material/Skeleton';
 
-import React, { ReactNode, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import {
   ItemType,
@@ -22,34 +22,8 @@ import FileAudio from './FileAudio';
 import FileImage from './FileImage';
 import FilePdf from './FilePdf';
 import FileVideo from './FileVideo';
+import { SizingWrapper } from './SizingWrapper';
 import withCaption from './withCaption';
-
-const getWidthFromSizing = (size: MaxWidth): string => {
-  switch (size) {
-    case MaxWidth.ExtraSmall:
-      return '50px';
-    case MaxWidth.Small:
-      return '120px';
-    case MaxWidth.Medium:
-      return '300px';
-    case MaxWidth.Large:
-      return '500px';
-    case MaxWidth.ExtraLarge:
-    default:
-      return '100%';
-  }
-};
-
-const SizingWrapper = ({
-  size,
-  children,
-}: {
-  size: MaxWidth;
-  children: ReactNode;
-}): JSX.Element => {
-  const width = getWidthFromSizing(size);
-  return <Box width={width}>{children}</Box>;
-};
 
 export type FileItemProps = {
   /**
