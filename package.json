@@ -115,7 +115,7 @@
     "@emotion/cache": "~11.11.0",
     "@emotion/react": "11.11.4",
     "@emotion/styled": "11.11.5",
-    "@graasp/sdk": "github:graasp/graasp-sdk#add-alignment-enum",
+    "@graasp/sdk": "4.15.0",
     "@mui/icons-material": "5.15.20",
     "@mui/lab": "5.0.0-alpha.170",
     "@mui/material": "5.15.20",
