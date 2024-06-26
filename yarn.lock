@@ -2363,7 +2363,7 @@ __metadata:
 
 "@graasp/sdk@github:graasp/graasp-sdk#add-alignment-enum":
   version: 4.14.1
-  resolution: "@graasp/sdk@https://github.com/graasp/graasp-sdk.git#commit=a6906b44081e92bc1ef1aa5483b002a7b39f5496"
+  resolution: "@graasp/sdk@https://github.com/graasp/graasp-sdk.git#commit=ef98f512239f2fbcd41d90d9e19f9ced79d6bb13"
   dependencies:
     "@faker-js/faker": "npm:8.4.1"
     filesize: "npm:10.1.2"
@@ -2372,7 +2372,7 @@ __metadata:
   peerDependencies:
     date-fns: ^3
     uuid: ^9 || ^10.0.0
-  checksum: 10/e6ea0e375d7929f895b9aab29aff11d84efe719e37b3d5e4cea95e9e8369a394694c394d68481be7fb917baf74ff5e64d7f9b57e9bf549bf1a388c1cf16225c5
+  checksum: 10/f1970e890d23b29698236f1e2cc19ac058836803aea8fd2f824f0cd5cc09d9b140fc0cec2e33711dea49c5fc6eeefcd0c9654c2caef05665eb356d7922d156f7
   languageName: node
   linkType: hard
 

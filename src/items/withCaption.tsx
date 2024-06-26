@@ -3,7 +3,6 @@ import TextDisplay from '@/TextDisplay/TextDisplay';
 import { Stack } from '@mui/material';
 
 import {
-  Alignment,
   AlignmentType,
   DescriptionPlacement,
   DescriptionPlacementType,
@@ -40,7 +39,7 @@ function withCaption<T extends WithCaptionItem>({ item }: WithCaptionProps<T>) {
     const ChildComponent = (): JSX.Element => {
       const descriptionPlacement =
         item.settings?.descriptionPlacement ?? 'below';
-      const alignmentSetting = item.settings?.alignment ?? Alignment.Left;
+      const alignmentSetting = item.settings?.alignment;
       const direction =
         descriptionPlacement === DescriptionPlacement.ABOVE
           ? 'column-reverse'
