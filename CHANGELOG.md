@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.20.0](https://github.com/graasp/graasp-ui/compare/v4.19.3...v4.20.0) (2024-06-26)
+
+
+### Features
+
+* add file uploader ([#911](https://github.com/graasp/graasp-ui/issues/911)) ([4e1552c](https://github.com/graasp/graasp-ui/commit/4e1552cdd8cf301c244cc75c5f5bd9f0e0295a2d))
+
+
+### Bug Fixes
+
+* add timestamp to app url ([#904](https://github.com/graasp/graasp-ui/issues/904)) ([85a8974](https://github.com/graasp/graasp-ui/commit/85a897422860bc79d69970ff59cca5fb8334805f))
+* **deps:** update dependency @storybook/react-vite to v8.1.7 ([#878](https://github.com/graasp/graasp-ui/issues/878)) ([94d78f4](https://github.com/graasp/graasp-ui/commit/94d78f4fcdac9987d616a706d0981385e8dcc5c8))
+* **deps:** update dependency @storybook/react-vite to v8.1.8 ([#899](https://github.com/graasp/graasp-ui/issues/899)) ([8c256bc](https://github.com/graasp/graasp-ui/commit/8c256bc09d7acb2f6c81b28689654853ab5f5e61))
+* **deps:** update dependency @storybook/react-vite to v8.1.9 ([#901](https://github.com/graasp/graasp-ui/issues/901)) ([ef86389](https://github.com/graasp/graasp-ui/commit/ef863894c5776629ed9294849e86f9835820672a))
+* **deps:** update dependency lucide-react to v0.395.0 ([#883](https://github.com/graasp/graasp-ui/issues/883)) ([0a860de](https://github.com/graasp/graasp-ui/commit/0a860de16b84513fd23717d3a701afeecec18e9a))
+* **deps:** update dependency react-rnd to v10.4.11 ([#874](https://github.com/graasp/graasp-ui/issues/874)) ([2d96745](https://github.com/graasp/graasp-ui/commit/2d967450db1c21f0f449b19b96bafc436c803ac2))
+* **deps:** update dependency uuid to v10 ([#894](https://github.com/graasp/graasp-ui/issues/894)) ([362b8c5](https://github.com/graasp/graasp-ui/commit/362b8c5c887d988018af70cf0b6e1f6d63f84a36))
+
 ## [4.19.3](https://github.com/graasp/graasp-ui/compare/v4.19.2...v4.19.3) (2024-06-12)
 
 
