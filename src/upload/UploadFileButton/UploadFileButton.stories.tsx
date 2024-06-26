@@ -6,7 +6,7 @@ import { FileBox } from 'lucide-react';
 
 import UploadFileButton from './UploadFileButton';
 
-const meta: Meta<typeof UploadFileButton> = {
+const meta = {
   title: 'upload/UploadFileButton',
   component: UploadFileButton,
   argTypes: {
@@ -17,7 +17,7 @@ const meta: Meta<typeof UploadFileButton> = {
       action: 'on change',
     },
   },
-};
+} satisfies Meta<typeof UploadFileButton>;
 
 export default meta;
 

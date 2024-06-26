@@ -12,7 +12,9 @@ import FileDropper from './FileDropper';
 const meta = {
   title: 'upload/FileDropper',
   component: FileDropper,
-
+  args: {
+    onChange: fn(),
+  },
   argTypes: {
     onChange: {
       table: {
@@ -33,10 +35,6 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default = {
-  args: {
-    onChange: fn(),
-    onDrop: fn(),
-  },
   play: ({ canvasElement }) => {
     const canvas = within(canvasElement);
     expect(canvas.getByText('Browse files')).toHaveRole('button');
@@ -46,7 +44,6 @@ export const Default = {
 
 export const Container = {
   args: {
-    onChange: fn(),
     buttonText: 'my button text',
     message: 'my text',
     buttons: <Button data-testid='button-test'>my button</Button>,
@@ -68,7 +65,6 @@ export const WithError = {
   args: {
     error: 'You cannot upload more than 10 files at a time',
     hints: 'Max 15GB',
-    onChange: fn(),
   },
   decorators: [
     (story) => {
@@ -87,8 +83,8 @@ export const WithError = {
 export const Loading = {
   args: {
     hints: 'Max 15GB',
-    onChange: fn(),
-    loading: 40,
+    isLoading: true,
+    uploadProgress: 40,
   },
   decorators: [
     (story) => {
@@ -97,7 +93,7 @@ export const Loading = {
   ],
   play: ({ canvasElement, args }) => {
     const canvas = within(canvasElement);
-    expect(canvas.getByText(`${args.loading!}%`)).toBeVisible();
+    expect(canvas.getByText(`${args.uploadProgress!}%`)).toBeVisible();
     expect(canvas.getByRole('progressbar')).toBeVisible();
   },
 } satisfies Story;
@@ -105,8 +101,8 @@ export const Loading = {
 export const ZeroLoading = {
   args: {
     hints: 'Max 15GB',
-    onChange: fn(),
-    loading: 0,
+    isLoading: true,
+    uploadProgress: 0,
   },
   decorators: [
     (story) => {
@@ -115,24 +111,7 @@ export const ZeroLoading = {
   ],
   play: ({ canvasElement, args }) => {
     const canvas = within(canvasElement);
-    expect(canvas.getByText(`${args.loading!}%`)).toBeVisible();
+    expect(canvas.getByText(`${args.uploadProgress!}%`)).toBeVisible();
     expect(canvas.getByRole('progressbar')).toBeVisible();
-  },
-} satisfies Story;
-
-export const FalseLoading = {
-  args: {
-    onChange: fn(),
-    loading: false,
-  },
-  decorators: [
-    (story) => {
-      return <Box height='400px'>{story()}</Box>;
-    },
-  ],
-  play: ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-    expect(canvas.getByText('Browse files')).toHaveRole('button');
-    expect(canvas.getByText('Drag your files here to upload or')).toBeVisible();
   },
 } satisfies Story;

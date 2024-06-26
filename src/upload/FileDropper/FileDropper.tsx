@@ -56,9 +56,12 @@ export type FileDropperProps = {
   releaseText?: string;
   /**
    * Whether files are getting uploaded
-   * If a number is provided, it shows a determinate progress bar
    */
-  loading?: boolean | number;
+  isLoading?: boolean;
+  /**
+   * progress of the upload
+   */
+  uploadProgress?: number;
 };
 
 const FileDropperComponent = ({
@@ -72,7 +75,8 @@ const FileDropperComponent = ({
   multiple,
   message = `Drag your files here to upload or`,
   releaseText = 'Release to drop',
-  loading = false,
+  uploadProgress,
+  isLoading = false,
 }: FileDropperProps): JSX.Element => {
   const theme = useTheme();
 
@@ -82,7 +86,7 @@ const FileDropperComponent = ({
       onDrop?.(e.files);
     },
     canDrop: () => {
-      return !loading;
+      return !isLoading;
     },
     collect: (monitor: DropTargetMonitor) => ({
       isOver: monitor.isOver(),
@@ -122,17 +126,15 @@ const FileDropperComponent = ({
         size={80}
         color={error ? 'red' : theme.palette.primary.main}
       />
-      {Boolean(loading) || loading === 0 ? (
+      {isLoading ? (
         <Box width='100%' px={5}>
           <LinearProgress
-            variant={
-              typeof loading === 'number' ? 'determinate' : 'indeterminate'
-            }
+            variant={uploadProgress ? 'determinate' : 'indeterminate'}
             color='primary'
-            value={typeof loading === 'number' ? loading : undefined}
+            value={uploadProgress}
           />
-          {typeof loading === 'number' && (
-            <Typography textAlign='center'>{loading}%</Typography>
+          {uploadProgress && (
+            <Typography textAlign='center'>{uploadProgress}%</Typography>
           )}
         </Box>
       ) : (
@@ -174,7 +176,8 @@ const FileDropper = (args: FileDropperProps): JSX.Element | null => {
         buttonText={args.buttonText}
         buttons={args.buttons}
         multiple={args.multiple}
-        loading={args.loading}
+        isLoading={args.isLoading}
+        uploadProgress={args.uploadProgress}
         message={args.message}
       />
     </DndProvider>
