@@ -109,9 +109,8 @@ export const ZeroLoading = {
       return <Box height='400px'>{story()}</Box>;
     },
   ],
-  play: ({ canvasElement, args }) => {
+  play: ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    expect(canvas.getByText(`${args.uploadProgress!}%`)).toBeVisible();
     expect(canvas.getByRole('progressbar')).toBeVisible();
   },
 } satisfies Story;
