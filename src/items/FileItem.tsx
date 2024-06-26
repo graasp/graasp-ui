@@ -24,7 +24,7 @@ import FilePdf from './FilePdf';
 import FileVideo from './FileVideo';
 import withCaption from './withCaption';
 
-export interface FileItemProps {
+export type FileItemProps = {
   /**
    * blob content of the file, overridden by fileUrl
    * */
@@ -47,7 +47,7 @@ export interface FileItemProps {
   showCollapse?: boolean;
   sx?: SxProps;
   onClick?: () => void;
-}
+};
 
 const FileItem = ({
   content,
