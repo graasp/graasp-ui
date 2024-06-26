@@ -7,13 +7,13 @@ import { MaxWidth } from '@graasp/sdk';
 const getWidthFromSizing = (size: MaxWidth): string => {
   switch (size) {
     case MaxWidth.ExtraSmall:
-      return '50px';
+      return '100px';
     case MaxWidth.Small:
-      return '120px';
+      return '200px';
     case MaxWidth.Medium:
-      return '300px';
+      return '400px';
     case MaxWidth.Large:
-      return '500px';
+      return '800px';
     case MaxWidth.ExtraLarge:
     default:
       return '100%';
@@ -28,5 +28,9 @@ export const SizingWrapper = ({
   children: ReactNode;
 }): JSX.Element => {
   const width = getWidthFromSizing(size);
-  return <Box width={width}>{children}</Box>;
+  return (
+    <Box maxWidth='100%' width={width}>
+      {children}
+    </Box>
+  );
 };

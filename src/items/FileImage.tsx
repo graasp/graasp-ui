@@ -1,8 +1,8 @@
-export interface FileImageProps {
+export type FileImageProps = {
   alt: string;
   url?: string;
   id?: string;
-}
+};
 
 const FileImage = ({ id, url, alt }: FileImageProps): JSX.Element => {
   return (

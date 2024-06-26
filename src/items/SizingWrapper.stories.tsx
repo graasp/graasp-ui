@@ -1,14 +1,25 @@
 import { Meta, StoryObj } from '@storybook/react';
 
+import { Container } from '@mui/material';
+
 import { MaxWidth } from '@graasp/sdk';
 
 import { SizingWrapper } from './SizingWrapper';
 
+const children = <img width='100%' src='https://picsum.photos/1000' />;
+
 const meta = {
   title: 'Items/SizingWrapper',
   component: SizingWrapper,
+  decorators: [
+    (Story) => {
+      return <Container maxWidth='lg'>{Story()}</Container>;
+    },
+  ],
 
-  args: {},
+  args: {
+    children,
+  },
   argTypes: {
     size: {
       control: 'radio',
@@ -24,7 +35,6 @@ type Story = StoryObj<typeof meta>;
 export const Default = {
   args: {
     size: MaxWidth.Medium,
-    children: <img width='100%' src='https://picsum.photos/1000' />,
   },
 } satisfies Story;
 
@@ -39,7 +49,7 @@ export const AllSizes = {
   render: () =>
     Object.values(MaxWidth).map((size) => (
       <SizingWrapper size={size} key={size}>
-        <img width='100%' src='https://picsum.photos/1000' />
+        {children}
       </SizingWrapper>
     )),
 };

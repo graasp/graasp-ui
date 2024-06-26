@@ -2,11 +2,11 @@ import { SxProps, styled } from '@mui/material';
 
 import { FC } from 'react';
 
-interface FileVideoProps {
+type FileVideoProps = {
   id?: string;
   url?: string;
   sx?: SxProps;
-}
+};
 
 const StyledVideo = styled('video')({
   maxWidth: '100%',
