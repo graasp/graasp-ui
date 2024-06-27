@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.20.1](https://github.com/graasp/graasp-ui/compare/v4.20.0...v4.20.1) (2024-06-27)
+
+
+### Bug Fixes
+
+* add alignment setting ([#916](https://github.com/graasp/graasp-ui/issues/916)) ([bd82a99](https://github.com/graasp/graasp-ui/commit/bd82a99befb77e2c843121c5e318927d8257e554))
+
 ## [4.20.0](https://github.com/graasp/graasp-ui/compare/v4.19.3...v4.20.0) (2024-06-26)
 
 
