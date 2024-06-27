@@ -1,8 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { DescriptionPlacement, DescriptionPlacementType } from '@graasp/sdk';
+import {
+  Alignment,
+  AlignmentType,
+  DescriptionPlacement,
+  DescriptionPlacementType,
+} from '@graasp/sdk';
 
-import withCaption, { Alignment, AlignmentType } from './withCaption';
+import withCaption from './withCaption';
 
 const renderComponent = ({
   description,
@@ -45,3 +50,6 @@ export default meta;
 type Story = StoryObj<typeof renderComponent>;
 
 export const CaptionOnImage = {} satisfies Story;
+export const CanteredCaption = {
+  args: { alignment: Alignment.Center },
+} satisfies Story;

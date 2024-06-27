@@ -1,4 +1,4 @@
-import { Box, Container, SxProps } from '@mui/material';
+import { Box, SxProps } from '@mui/material';
 import Alert from '@mui/material/Alert';
 import Skeleton from '@mui/material/Skeleton';
 
@@ -22,9 +22,10 @@ import FileAudio from './FileAudio';
 import FileImage from './FileImage';
 import FilePdf from './FilePdf';
 import FileVideo from './FileVideo';
+import { SizingWrapper } from './SizingWrapper';
 import withCaption from './withCaption';
 
-export interface FileItemProps {
+export type FileItemProps = {
   /**
    * blob content of the file, overridden by fileUrl
    * */
@@ -47,7 +48,7 @@ export interface FileItemProps {
   showCollapse?: boolean;
   sx?: SxProps;
   onClick?: () => void;
-}
+};
 
 const FileItem = ({
   content,
@@ -159,6 +160,12 @@ const FileItem = ({
 
   let fileItem = getComponent();
 
+  fileItem = (
+    <SizingWrapper size={item.settings.maxWidth ?? MaxWidth.Medium}>
+      {fileItem}
+    </SizingWrapper>
+  );
+
   // display element with caption
   if (showCaption) {
     fileItem = withCaption({
@@ -170,20 +177,7 @@ const FileItem = ({
     fileItem = withCollapse({ item })(fileItem);
   }
 
-  // the container allows to resize the file to a given responsive standard
-  // There is a tradeoff because of the description:
-  // - description does not look good when align to the left while the file is centered
-  // - description does not look good when centered/cut alongside the centered file
-  return (
-    <Container
-      disableGutters
-      // m=0 align the file to the left.
-      sx={{ m: 0, ...sx }}
-      maxWidth={item.settings.maxWidth ?? MaxWidth.ExtraLarge}
-    >
-      {fileItem}
-    </Container>
-  );
+  return fileItem;
 };
 
 export default React.memo(FileItem);

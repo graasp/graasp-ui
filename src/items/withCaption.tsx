@@ -3,9 +3,10 @@ import TextDisplay from '@/TextDisplay/TextDisplay';
 import { Stack } from '@mui/material';
 
 import {
+  AlignmentType,
   DescriptionPlacement,
   DescriptionPlacementType,
-  UnionOfConst,
+  getAlignItemsFromAlignmentSetting,
 } from '@graasp/sdk';
 
 const normalizeDescription = (value: string | null | undefined): string => {
@@ -19,28 +20,6 @@ const normalizeDescription = (value: string | null | undefined): string => {
     return '';
   }
   return value;
-};
-
-// NOTE: This is experimental and most likely is going to be moved to sdk when implementing the feature
-export const Alignment = {
-  Center: 'center',
-  Left: 'left',
-  Right: 'right',
-} as const;
-export type AlignmentType = UnionOfConst<typeof Alignment>;
-
-const getAlignItemsFromAlignmentSetting = (
-  alignment: AlignmentType,
-): 'flex-start' | 'flex-end' | 'center' => {
-  switch (alignment) {
-    case Alignment.Right:
-      return 'flex-end';
-    case Alignment.Center:
-      return 'center';
-    case Alignment.Left:
-    default:
-      return 'flex-start';
-  }
 };
 
 type WithCaptionItem = {
@@ -60,7 +39,7 @@ function withCaption<T extends WithCaptionItem>({ item }: WithCaptionProps<T>) {
     const ChildComponent = (): JSX.Element => {
       const descriptionPlacement =
         item.settings?.descriptionPlacement ?? 'below';
-      const alignmentSetting = item.settings?.alignment ?? Alignment.Left;
+      const alignmentSetting = item.settings?.alignment;
       const direction =
         descriptionPlacement === DescriptionPlacement.ABOVE
           ? 'column-reverse'

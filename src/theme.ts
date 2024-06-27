@@ -19,7 +19,10 @@ export const DEFAULT_ACTIVE_ACTION_COLOR = '#777578';
  * Color used as a light version of the primary color for button and icon backgrounds.
  * For example in card thumbnails.
  */
-export const DEFAULT_LIGHT_PRIMARY_COLOR = '#E4DFFF';
+export const DEFAULT_LIGHT_PRIMARY_COLOR = {
+  main: 'hsl(249, 100%, 94%)',
+  dark: 'hsl(249, 100%, 90%)',
+} as const;
 
 /**
  * Very light purple color used as the default background color.
