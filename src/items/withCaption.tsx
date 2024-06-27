@@ -47,7 +47,12 @@ function withCaption<T extends WithCaptionItem>({ item }: WithCaptionProps<T>) {
       const alignItems = getAlignItemsFromAlignmentSetting(alignmentSetting);
       const description = normalizeDescription(item.description);
       return (
-        <Stack direction={direction} gap={0.5} alignItems={alignItems}>
+        <Stack
+          direction={direction}
+          gap={0.5}
+          alignItems={alignItems}
+          width='100%'
+        >
           {component}
           <TextDisplay content={description} />
         </Stack>
