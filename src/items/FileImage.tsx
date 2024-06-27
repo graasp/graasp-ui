@@ -14,7 +14,7 @@ const FileImage = ({ id, url, alt }: FileImageProps): JSX.Element => {
       style={{
         // do not overflow the parent
         maxWidth: '100%',
-        // display bigger than the original size of the parent want it
+        // display bigger than the original size if the parent wants it
         width: '100%',
       }}
     />
