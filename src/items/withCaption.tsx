@@ -28,7 +28,7 @@ export const getDefaultFileAlignmentSetting = (
     case MimeTypes.isPdf(mimetype):
       return Alignment.Center;
 
-    // unknown mimetype gets
+    // unknown mimetype is left aligned
     default:
       return Alignment.Left;
   }
