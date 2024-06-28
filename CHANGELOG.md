@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.20.2](https://github.com/graasp/graasp-ui/compare/v4.20.1...v4.20.2) (2024-06-28)
+
+
+### Bug Fixes
+
+* add external link computation ([#921](https://github.com/graasp/graasp-ui/issues/921)) ([420ab2d](https://github.com/graasp/graasp-ui/commit/420ab2ddedf394d1c3f288e05dec6b0345539772))
+* allow container to take full-width ([#919](https://github.com/graasp/graasp-ui/issues/919)) ([ca35529](https://github.com/graasp/graasp-ui/commit/ca355299d32e4b7e5e5043403550f66ebf58f837))
+* **deps:** update dependency lucide-react to v0.399.0 ([#913](https://github.com/graasp/graasp-ui/issues/913)) ([585d2fe](https://github.com/graasp/graasp-ui/commit/585d2fe67d91a9edfe8ece6106fa7c9bfb5ef04e))
+
 ## [4.20.1](https://github.com/graasp/graasp-ui/compare/v4.20.0...v4.20.1) (2024-06-27)
 
 
