@@ -4,7 +4,7 @@ import { ReactNode } from 'react';
 
 import { MaxWidth } from '@graasp/sdk';
 
-const getWidthFromSizing = (size: MaxWidth): string => {
+const getWidthFromSizing = (size?: MaxWidth): string => {
   switch (size) {
     case MaxWidth.ExtraSmall:
       return '100px';
@@ -14,6 +14,7 @@ const getWidthFromSizing = (size: MaxWidth): string => {
       return '400px';
     case MaxWidth.Large:
       return '800px';
+    // default is for the element to take all available horizontal space
     case MaxWidth.ExtraLarge:
     default:
       return '100%';
@@ -21,10 +22,10 @@ const getWidthFromSizing = (size: MaxWidth): string => {
 };
 
 export const SizingWrapper = ({
-  size,
+  size = MaxWidth.ExtraLarge,
   children,
 }: {
-  size: MaxWidth;
+  size?: MaxWidth;
   children: ReactNode;
 }): JSX.Element => {
   const width = getWidthFromSizing(size);

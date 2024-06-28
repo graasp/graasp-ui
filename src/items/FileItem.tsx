@@ -1,4 +1,4 @@
-import { Box, SxProps } from '@mui/material';
+import { Box } from '@mui/material';
 import Alert from '@mui/material/Alert';
 import Skeleton from '@mui/material/Skeleton';
 
@@ -7,7 +7,6 @@ import React, { useEffect, useState } from 'react';
 import {
   ItemType,
   LocalFileItemType,
-  MaxWidth,
   MimeTypes,
   S3FileItemType,
   getFileExtra,
@@ -23,7 +22,7 @@ import FileImage from './FileImage';
 import FilePdf from './FilePdf';
 import FileVideo from './FileVideo';
 import { SizingWrapper } from './SizingWrapper';
-import withCaption from './withCaption';
+import { CaptionWrapper } from './withCaption';
 
 export type FileItemProps = {
   /**
@@ -44,9 +43,7 @@ export type FileItemProps = {
    * use a custom pdf reader from the link if defined
    * */
   pdfViewerLink?: string;
-  showCaption?: boolean;
   showCollapse?: boolean;
-  sx?: SxProps;
   onClick?: () => void;
 };
 
@@ -59,9 +56,7 @@ const FileItem = ({
   id,
   item,
   maxHeight = '100%',
-  showCaption = true,
   showCollapse,
-  sx,
   pdfViewerLink,
   onClick,
 }: FileItemProps): JSX.Element => {
@@ -125,17 +120,16 @@ const FileItem = ({
           </Box>
         );
       } else if (MimeTypes.isAudio(mimetype)) {
-        return <FileAudio id={id} url={url} type={mimetype} sx={sx} />;
+        return <FileAudio id={id} url={url} type={mimetype} />;
       } else if (MimeTypes.isVideo(mimetype)) {
         // does not specify mimetype in video source, this way, it works with more container formats in more browsers (especially Chrome with video/quicktime)
-        return <FileVideo id={id} url={url} sx={sx} />;
+        return <FileVideo id={id} url={url} />;
       } else if (MimeTypes.isPdf(mimetype)) {
         return (
           <FilePdf
             id={id}
             url={url}
             height={maxHeight}
-            sx={sx}
             showCollapse={showCollapse}
             pdfViewerLink={pdfViewerLink}
           />
@@ -161,17 +155,11 @@ const FileItem = ({
   let fileItem = getComponent();
 
   fileItem = (
-    <SizingWrapper size={item.settings.maxWidth ?? MaxWidth.Medium}>
-      {fileItem}
-    </SizingWrapper>
+    <SizingWrapper size={item.settings.maxWidth}>{fileItem}</SizingWrapper>
   );
 
   // display element with caption
-  if (showCaption) {
-    fileItem = withCaption({
-      item,
-    })(fileItem);
-  }
+  fileItem = <CaptionWrapper item={item}>{fileItem}</CaptionWrapper>;
 
   if (showCollapse) {
     fileItem = withCollapse({ item })(fileItem);
