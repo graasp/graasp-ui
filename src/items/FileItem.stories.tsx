@@ -10,20 +10,12 @@ import {
 } from '@graasp/sdk';
 
 import { MOCK_MEMBER } from '../utils/fixtures';
-import { TABLE_CATEGORIES } from '../utils/storybook';
 import FileItem from './FileItem';
 
 const meta = {
   title: 'Items/FileItem',
   component: FileItem,
 
-  argTypes: {
-    sx: {
-      table: {
-        category: TABLE_CATEGORIES.MUI,
-      },
-    },
-  },
   render: (args, { loaded: { content } }) => {
     return <FileItem {...args} content={content} />;
   },
