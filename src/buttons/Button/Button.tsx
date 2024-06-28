@@ -33,6 +33,8 @@ export type GraaspButtonProps = {
   startIcon?: ReactNode;
   type?: ButtonProps['type'];
   variant?: ButtonProps['variant'];
+
+  role?: ButtonProps['role'];
 } & Pick<AnchorHTMLAttributes<HTMLAnchorElement>, 'href' | 'target'>;
 
 export const GraaspButton = ({
@@ -51,9 +53,11 @@ export const GraaspButton = ({
   type,
   variant = 'contained',
   href,
+  role,
   ...other
 }: GraaspButtonProps): JSX.Element => (
   <Button
+    role={role}
     autoFocus={autoFocus}
     className={className}
     color={color}
