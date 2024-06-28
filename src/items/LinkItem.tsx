@@ -161,6 +161,7 @@ const LinkItem = ({
       return <Alert severity='error'>{errorMessage}</Alert>;
     }
 
+    const isExternal = new URL(url).origin !== window.location.origin;
     const linkCard = (
       <LinkCard
         id={id}
@@ -169,6 +170,7 @@ const LinkItem = ({
         url={url}
         description={item.extra.embeddedLink.description ?? ''}
         onClick={onClick}
+        isExternal={isExternal}
       />
     );
 
