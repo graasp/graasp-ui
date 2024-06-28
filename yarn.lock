@@ -2361,9 +2361,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@graasp/sdk@github:graasp/graasp-sdk#remove-ui-functions":
-  version: 4.15.0
-  resolution: "@graasp/sdk@https://github.com/graasp/graasp-sdk.git#commit=53d328b647f58644e6d77bdc02c3ac0b7fe748c3"
+"@graasp/sdk@npm:4.15.1":
+  version: 4.15.1
+  resolution: "@graasp/sdk@npm:4.15.1"
   dependencies:
     "@faker-js/faker": "npm:8.4.1"
     filesize: "npm:10.1.2"
@@ -2372,7 +2372,7 @@ __metadata:
   peerDependencies:
     date-fns: ^3
     uuid: ^9 || ^10.0.0
-  checksum: 10/9f706a51514afb0b1bd9614707d04b20784feddc81c4309a689d1fc31bc3a58a08b1ebf6dab0aafae2fc5b61d055519e51142f7cb4183e6728193865eccfc9e7
+  checksum: 10/17722029c75b0d43d0cbcbef24f7947434980ad26792c2fbb14ac3dc5b1a4a7dfc791b3d273c7a03b0650dbad7074598ac2bc04d307ea43d5d66bacaf3bc6edd
   languageName: node
   linkType: hard
 
@@ -2388,7 +2388,7 @@ __metadata:
     "@emotion/cache": "npm:~11.11.0"
     "@emotion/react": "npm:11.11.4"
     "@emotion/styled": "npm:11.11.5"
-    "@graasp/sdk": "github:graasp/graasp-sdk#remove-ui-functions"
+    "@graasp/sdk": "npm:4.15.1"
     "@mui/icons-material": "npm:5.15.20"
     "@mui/lab": "npm:5.0.0-alpha.170"
     "@mui/material": "npm:5.15.20"
