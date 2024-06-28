@@ -17,7 +17,7 @@ const item = LinkItemFactory({
     [ItemType.LINK]: {
       thumbnails: [],
       html: '',
-      url: '#',
+      url: `${window.location.href}#`,
       icons: [],
     },
   },
@@ -46,7 +46,7 @@ const itemWithHTMLDescription = LinkItemFactory({
     [ItemType.LINK]: {
       thumbnails: [],
       html: '',
-      url: '#',
+      url: `${window.location.href}#`,
       icons: [],
     },
   },
