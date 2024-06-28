@@ -7,13 +7,35 @@ import { ReactNode } from 'react';
 import {
   Alignment,
   AlignmentType,
-  DEFAULT_FILE_ALIGNMENT_SETTING,
   DescriptionPlacement,
   DescriptionPlacementType,
+  DiscriminatedItem,
+  MimeTypes,
+  getMimetype,
 } from '@graasp/sdk';
 
+export const getDefaultFileAlignmentSetting = (
+  mimetype?: string,
+): AlignmentType => {
+  if (!mimetype) {
+    return Alignment.Left;
+  }
+
+  switch (true) {
+    case MimeTypes.isImage(mimetype):
+    case MimeTypes.isAudio(mimetype):
+    case MimeTypes.isVideo(mimetype):
+    case MimeTypes.isPdf(mimetype):
+      return Alignment.Center;
+
+    // unknown mimetype gets
+    default:
+      return Alignment.Left;
+  }
+};
+
 const getAlignItemsFromAlignmentSetting = (
-  alignment: AlignmentType = DEFAULT_FILE_ALIGNMENT_SETTING,
+  alignment: AlignmentType,
 ): 'flex-start' | 'flex-end' | 'center' => {
   switch (alignment) {
     case Alignment.Right:
@@ -44,6 +66,7 @@ type WithCaptionItem = {
     descriptionPlacement?: DescriptionPlacementType;
     alignment?: AlignmentType;
   };
+  extra?: DiscriminatedItem['extra'];
 };
 
 type WithCaptionProps<T extends WithCaptionItem> = {
@@ -60,9 +83,13 @@ export const CaptionWrapper = <T extends WithCaptionItem>({
       ? 'column-reverse'
       : 'column';
 
-  const alignItems = getAlignItemsFromAlignmentSetting(
-    item.settings?.alignment,
-  );
+  const alignment =
+    item.settings?.alignment ??
+    getDefaultFileAlignmentSetting(
+      item.extra ? getMimetype(item.extra) : undefined,
+    );
+
+  const alignItems = getAlignItemsFromAlignmentSetting(alignment);
   const description = normalizeDescription(item.description);
 
   return (
