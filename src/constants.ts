@@ -23,7 +23,6 @@ export const SETTINGS = {
     },
     SIGN_IN_MODE: {
       PSEUDONYM: 'pseudonym',
-      MEMBER_ID: 'memberId',
     },
   },
 };

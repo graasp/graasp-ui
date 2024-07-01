@@ -29,7 +29,6 @@ export type ItemLoginAuthorizationProps = {
   usernameInputId?: string;
   signInButtonId?: string;
   passwordInputId?: string;
-  modeSelectId?: string;
   ForbiddenContent?: ReactElement;
 };
 
@@ -41,11 +40,9 @@ const ItemLoginAuthorization =
     itemId,
     signIn,
     Error: ErrorComponent,
-    memberIdInputId,
     usernameInputId,
     signInButtonId,
     passwordInputId,
-    modeSelectId,
     ForbiddenContent = <ForbiddenText />,
   }: ItemLoginAuthorizationProps) =>
   (ChildComponent: typeof React.Component | (() => JSX.Element)) => {
@@ -102,11 +99,9 @@ const ItemLoginAuthorization =
             itemId={itemId}
             signIn={signIn}
             itemLoginSchemaType={itemLoginSchemaType}
-            memberIdInputId={memberIdInputId}
             usernameInputId={usernameInputId}
             signInButtonId={signInButtonId}
             passwordInputId={passwordInputId}
-            modeSelectId={modeSelectId}
           />
         );
       }
