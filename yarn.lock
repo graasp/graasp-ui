@@ -2430,7 +2430,7 @@ __metadata:
     eslint-plugin-jsx-a11y: "npm:6.9.0"
     eslint-plugin-n: "npm:17.9.0"
     eslint-plugin-prettier: "npm:^5.1.3"
-    eslint-plugin-promise: "npm:^6.2.0"
+    eslint-plugin-promise: "npm:^6.4.0"
     http-server: "npm:14.1.1"
     http-status-codes: "npm:2.3.0"
     husky: "npm:9.0.11"
@@ -8828,7 +8828,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-promise@npm:^6.2.0":
+"eslint-plugin-promise@npm:^6.4.0":
   version: 6.4.0
   resolution: "eslint-plugin-promise@npm:6.4.0"
   peerDependencies:
