@@ -119,7 +119,9 @@ export const createGraaspTheme = ({
       MuiTextField: {
         styleOverrides: {
           root: {
-            backgroundColor: 'white',
+            '& input': {
+              backgroundColor: 'white',
+            },
           },
         },
       },
