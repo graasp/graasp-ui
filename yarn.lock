@@ -2454,7 +2454,6 @@ __metadata:
     react-rnd: "npm:10.4.11"
     react-router-dom: "npm:6.24.0"
     react-test-renderer: "npm:18.3.1"
-    react-text-mask: "npm:5.5.0"
     sass: "npm:1.77.6"
     storybook: "npm:8.1.11"
     stylis: "npm:^4.3.2"
@@ -13586,7 +13585,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prop-types@npm:^15.5.6, prop-types@npm:^15.6.2, prop-types@npm:^15.7.2, prop-types@npm:^15.8.1":
+"prop-types@npm:^15.6.2, prop-types@npm:^15.7.2, prop-types@npm:^15.8.1":
   version: 15.8.1
   resolution: "prop-types@npm:15.8.1"
   dependencies:
@@ -14059,17 +14058,6 @@ __metadata:
   peerDependencies:
     react: ^18.3.1
   checksum: 10/d53137315c677bdfba702a7179a69828233fc7635ae1e0c03b203923d643400ace72b343cb3dd3dafba8911c20bef53f55bff7aa2e4ddff3ccc423fdd9deeee2
-  languageName: node
-  linkType: hard
-
-"react-text-mask@npm:5.5.0":
-  version: 5.5.0
-  resolution: "react-text-mask@npm:5.5.0"
-  dependencies:
-    prop-types: "npm:^15.5.6"
-  peerDependencies:
-    react: ^0.14.0 || ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0
-  checksum: 10/9d035a48eb82f00db59102849826d112280cde6e89654d58f4f01cca4d438bcff0443c360c21976bae5439694b50e583238a8f1bea2b6e6012b3d4d7853de80e
   languageName: node
   linkType: hard
 

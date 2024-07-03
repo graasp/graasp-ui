@@ -17,16 +17,6 @@ const meta: Meta<typeof ItemLoginScreen> = {
     signIn: fn(),
   },
   argTypes: {
-    memberIdInputId: {
-      table: {
-        category: TABLE_CATEGORIES.SELECTORS,
-      },
-    },
-    modeSelectId: {
-      table: {
-        category: TABLE_CATEGORIES.SELECTORS,
-      },
-    },
     passwordInputId: {
       table: {
         category: TABLE_CATEGORIES.SELECTORS,
@@ -54,45 +44,42 @@ export const ItemLoginUsernameAndPassword: Story = {
   args: {
     itemLoginSchemaType: ItemLoginSchemaType.UsernameAndPassword,
   },
-};
+  play: async ({ args, canvasElement }) => {
+    const canvas = within(canvasElement);
 
-ItemLoginUsernameAndPassword.play = async ({ args, canvasElement }) => {
-  const canvas = within(canvasElement);
+    await userEvent.type(
+      canvas.getByLabelText('Pseudonym'),
+      'email@provider.com',
+    );
+    await userEvent.type(canvas.getByLabelText('Password'), 'mypassword');
+    await userEvent.click(canvas.getByText('Sign In'));
 
-  await userEvent.type(
-    canvas.getByLabelText('Pseudonym'),
-    'email@provider.com',
-  );
-  await userEvent.type(canvas.getByLabelText('Password'), 'mypassword');
-  await userEvent.click(canvas.getByText('Sign In'));
-
-  expect(args.signIn).toHaveBeenCalled();
+    expect(args.signIn).toHaveBeenCalled();
+  },
 };
 
 export const ItemLoginUsername: Story = {
   args: {
     itemLoginSchemaType: ItemLoginSchemaType.Username,
   },
-};
+  play: async ({ args, canvasElement }) => {
+    const canvas = within(canvasElement);
 
-ItemLoginUsername.play = async ({ args, canvasElement }) => {
-  const canvas = within(canvasElement);
+    await userEvent.type(
+      canvas.getByLabelText('Pseudonym'),
+      'email@provider.com',
+    );
+    await userEvent.click(canvas.getByText('Sign In'));
 
-  await userEvent.type(
-    canvas.getByLabelText('Pseudonym'),
-    'email@provider.com',
-  );
-  await userEvent.click(canvas.getByText('Sign In'));
-
-  expect(args.signIn).toHaveBeenCalled();
+    expect(args.signIn).toHaveBeenCalled();
+  },
 };
 
 export const Forbidden: Story = {
   args: {},
-};
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
 
-Forbidden.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-
-  await expect(canvas.getByText(FORBIDDEN_TEXT)).toBeInTheDocument();
+    await expect(canvas.getByText(FORBIDDEN_TEXT)).toBeInTheDocument();
+  },
 };
