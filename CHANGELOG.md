@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.20.3](https://github.com/graasp/graasp-ui/compare/v4.20.2...v4.20.3) (2024-07-03)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @storybook/react-vite to v8.1.11 ([#906](https://github.com/graasp/graasp-ui/issues/906)) ([786a57c](https://github.com/graasp/graasp-ui/commit/786a57c6943183796fd7542626ce648c44c32a0e))
+* **deps:** update dependency lucide-react to v0.400.0 ([#929](https://github.com/graasp/graasp-ui/issues/929)) ([9eed6b0](https://github.com/graasp/graasp-ui/commit/9eed6b07b2232cb32f7e92acdeb99c7960b68236))
+* remove memberid login in itemLogin component ([#925](https://github.com/graasp/graasp-ui/issues/925)) ([3c5bf8e](https://github.com/graasp/graasp-ui/commit/3c5bf8e1da0247f6be4744bce52245158dd59950))
+* set background only on input ([#930](https://github.com/graasp/graasp-ui/issues/930)) ([cb03b7b](https://github.com/graasp/graasp-ui/commit/cb03b7b246e07ac6192469a68a36468b01027a5a))
+* update deps ([64c8bdf](https://github.com/graasp/graasp-ui/commit/64c8bdf6c432004240a8ef9c12165e87d408d30a))
+
 ## [4.20.2](https://github.com/graasp/graasp-ui/compare/v4.20.1...v4.20.2) (2024-06-28)
 
 
