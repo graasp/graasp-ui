@@ -12,7 +12,9 @@
     "Jérémy La Scala"
   ],
   "license": "AGPL-3.0-only",
-  "repository": "graasp/graasp-ui",
+  "repository": {
+    "url": "https://github.com/graasp/graasp-ui"
+  },
   "type": "module",
   "files": [
     "dist"
