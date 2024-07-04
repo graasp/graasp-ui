@@ -82,7 +82,7 @@
     "@storybook/react-vite": "8.1.11",
     "http-status-codes": "2.3.0",
     "interweave": "13.1.0",
-    "katex": "0.16.10",
+    "katex": "0.16.11",
     "lodash.truncate": "4.4.2",
     "lucide-react": "0.400.0",
     "react-cookie-consent": "9.0.0",
