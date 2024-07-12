@@ -2,9 +2,14 @@ import { Meta, StoryObj, composeStories } from '@storybook/react';
 
 import Grid2 from '@mui/material/Unstable_Grid2';
 
+import { PackedFolderItemFactory } from '@graasp/sdk';
+
+import { ItemBadges } from '..';
 import * as CardStories from './Card.stories';
 
-const { FullWidth } = composeStories(CardStories);
+const { FullWidth, Dense } = composeStories(CardStories);
+
+const data = Array.from({ length: 12 }, () => PackedFolderItemFactory());
 
 const meta = {
   title: 'Common/Cards',
@@ -30,6 +35,81 @@ export const GridOfCards = {
         {Array.from(Array(12)).map((_, i) => (
           <Grid2 key={`cardno${i}`} xs={xs}>
             <FullWidth />
+          </Grid2>
+        ))}
+      </Grid2>
+    );
+  },
+} satisfies Story;
+
+export const GridOfDenseCards = {
+  args: {
+    xs: 12,
+  },
+  render: ({ xs }) => {
+    return (
+      <Grid2 container spacing={2}>
+        {data.map((item) => (
+          <Grid2 key={item.id} xs={xs}>
+            <Dense
+              creator={item.creator?.name}
+              name={item.name}
+              content={
+                <Grid2 container columns={{ xs: 12 }}>
+                  <Grid2 xs={12} md={6}>
+                    {item.type}
+                  </Grid2>
+                  <Grid2 xs={12} md={6}>
+                    {item.createdAt}
+                  </Grid2>
+                </Grid2>
+              }
+              fullWidth
+              footer={
+                <ItemBadges
+                  isCollapsible={item.settings.isCollapsible}
+                  isHidden={Boolean(item.hidden)}
+                />
+              }
+            />
+          </Grid2>
+        ))}
+      </Grid2>
+    );
+  },
+} satisfies Story;
+
+export const GridOfDenseWithClickCards = {
+  args: {
+    xs: 12,
+  },
+  render: ({ xs }) => {
+    return (
+      <Grid2 container spacing={2}>
+        {data.map((i) => (
+          <Grid2 key={`cardno${i}`} xs={xs}>
+            <Dense
+              creator={i.creator?.name}
+              name={i.name}
+              to={'to'}
+              content={
+                <Grid2 container columns={{ xs: 12 }}>
+                  <Grid2 xs={12} md={6}>
+                    {i.type}
+                  </Grid2>
+                  <Grid2 xs={12} md={6}>
+                    {i.createdAt}
+                  </Grid2>
+                </Grid2>
+              }
+              fullWidth
+              footer={
+                <ItemBadges
+                  isCollapsible={i.settings.isCollapsible}
+                  isHidden={Boolean(i.hidden)}
+                />
+              }
+            />
           </Grid2>
         ))}
       </Grid2>

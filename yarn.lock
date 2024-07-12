@@ -4402,7 +4402,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/csf-tools@npm:8.1.10, @storybook/csf-tools@npm:^8.0.0":
+"@storybook/csf-tools@npm:8.1.10":
   version: 8.1.10
   resolution: "@storybook/csf-tools@npm:8.1.10"
   dependencies:
@@ -4419,7 +4419,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/csf-tools@npm:8.1.11":
+"@storybook/csf-tools@npm:8.1.11, @storybook/csf-tools@npm:^8.0.0":
   version: 8.1.11
   resolution: "@storybook/csf-tools@npm:8.1.11"
   dependencies:
@@ -6024,10 +6024,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vue/shared@npm:3.4.30, @vue/shared@npm:^3.3.0":
+"@vue/shared@npm:3.4.30":
   version: 3.4.30
   resolution: "@vue/shared@npm:3.4.30"
   checksum: 10/82c55bd70b1b42c796606a998f9f96356c4eff0ced24f0bc64a8ed67e9cead3fda1ff543f429442b04868186da258c2e8cdbaed49d51a254ab99765b88d63947
+  languageName: node
+  linkType: hard
+
+"@vue/shared@npm:^3.3.0":
+  version: 3.4.31
+  resolution: "@vue/shared@npm:3.4.31"
+  checksum: 10/ec11ba892b6f6f078fd620e5a2c16d57935f69e7a3dbae20c18e79c70e1bc89fa6d463d5fcbb220f54e9e4122dbc0bb04024059afecd6acf6b182d3c071e3c3a
   languageName: node
   linkType: hard
 

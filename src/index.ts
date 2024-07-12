@@ -90,3 +90,7 @@ export * from './Tree/types';
 export * from './ThemeContext';
 
 export * from './types';
+
+export { default as DraggingWrapper } from './draggable/DraggingWrapper';
+export * from './draggable/types';
+export { default as TableToolbar } from './TableComponent/TableToolbar';

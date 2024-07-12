@@ -8,12 +8,14 @@ type CardHeaderProps = {
   creator?: string;
   ItemMenu?: ReactElement;
   NameWrapper?: ({ children }: { children: JSX.Element }) => JSX.Element;
+  dense?: boolean;
 };
 
 const CustomCardHeader: FC<CardHeaderProps> = ({
   name,
   creator,
   ItemMenu,
+  dense,
   NameWrapper = ({ children }: { children: ReactElement }) => children,
 }) => {
   return (
@@ -26,12 +28,16 @@ const CustomCardHeader: FC<CardHeaderProps> = ({
     >
       <Stack minWidth={0} direction='column'>
         <NameWrapper>
-          <Typography noWrap variant='h3'>
+          <Typography noWrap variant={dense ? 'h5' : 'h3'}>
             {name}
           </Typography>
         </NameWrapper>
         {creator && (
-          <Typography noWrap variant='body1' color='text.secondary'>
+          <Typography
+            noWrap
+            variant={dense ? 'caption' : 'body1'}
+            color='text.secondary'
+          >
             {creator}
           </Typography>
         )}

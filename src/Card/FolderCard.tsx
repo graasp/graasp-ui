@@ -10,8 +10,11 @@ import {
 
 import { Link, LinkProps } from 'react-router-dom';
 
-import CardThumbnail from './components/CardThumbnail';
-import { CARD_HEIGHT } from './constants';
+import { ItemType } from '@graasp/sdk';
+
+import CardThumbnail from './CardThumbnail';
+
+export const CARD_HEIGHT = 76;
 
 type Props = {
   id?: string;
@@ -46,7 +49,13 @@ const FolderCard = ({
     >
       <CardActionArea component={Link} to={to} sx={{ height: '100%' }}>
         <Stack direction='row' alignItems='center' height='100%' minWidth={0}>
-          <CardThumbnail thumbnail={thumbnail} alt={name} />
+          <CardThumbnail
+            width={CARD_HEIGHT}
+            minHeight={CARD_HEIGHT}
+            thumbnail={thumbnail}
+            alt={name}
+            type={ItemType.FOLDER}
+          />
           <CardHeader
             sx={{
               // needed to make container not overflow parent
