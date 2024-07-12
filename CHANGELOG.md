@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.21.0](https://github.com/graasp/graasp-ui/compare/v4.20.3...v4.21.0) (2024-07-12)
+
+
+### Features
+
+* add dragging wrapper and update card ([#914](https://github.com/graasp/graasp-ui/issues/914)) ([8659b4a](https://github.com/graasp/graasp-ui/commit/8659b4a2cb74ca6ec8b4f756c74fd32e4ca451fe))
+
+
+### Bug Fixes
+
+* **deps:** update dependency katex to v0.16.11 ([#932](https://github.com/graasp/graasp-ui/issues/932)) ([41bd3da](https://github.com/graasp/graasp-ui/commit/41bd3daacb1611e278cbf5292cce8b4c6ac84fe4))
+* **deps:** update dependency lucide-react to v0.401.0 ([#938](https://github.com/graasp/graasp-ui/issues/938)) ([8a8418b](https://github.com/graasp/graasp-ui/commit/8a8418b7e896673c7dae0a71310179e131a603d5))
+* **deps:** update dependency lucide-react to v0.402.0 ([#939](https://github.com/graasp/graasp-ui/issues/939)) ([e099644](https://github.com/graasp/graasp-ui/commit/e0996449891d91744b5b721f6fe1b61442f754ec))
+
 ## [4.20.3](https://github.com/graasp/graasp-ui/compare/v4.20.2...v4.20.3) (2024-07-03)
 
 
