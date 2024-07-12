@@ -1,6 +1,8 @@
+import { Button } from '@/buttons';
 import type { UseQueryResult } from '@tanstack/react-query';
 import { StatusCodes, getReasonPhrase } from 'http-status-codes';
 
+import { Stack, Typography } from '@mui/material';
 import Alert from '@mui/material/Alert';
 
 import React, { ReactElement } from 'react';
@@ -25,7 +27,6 @@ export type ItemLoginAuthorizationProps = {
     itemId?: string;
   }) => UseQueryResult<ItemLoginSchemaType>;
   Error?: ReactElement;
-  memberIdInputId?: string;
   usernameInputId?: string;
   signInButtonId?: string;
   passwordInputId?: string;
@@ -92,8 +93,39 @@ const ItemLoginAuthorization =
         return <ChildComponent />;
       }
 
-      // signed out but can sign in with item login
-      if ((!user || !user.id) && itemLoginSchemaType) {
+      // item login exists
+      if (itemLoginSchemaType) {
+        // if the user is logged
+        if (user) {
+          if (itemLoginSchemaType == ItemLoginSchemaType.Username) {
+            // allow the user to create a membership in order to access the item
+            return (
+              <Button
+                onClick={() => {
+                  // todo use mutation
+                  console.log('enroll');
+                }}
+              >
+                Enroll
+              </Button>
+            );
+          }
+          return (
+            <Stack direction='column' gap={2}>
+              <Typography>
+                You need to logout to access this item with pre-defined username
+                and password combinations
+              </Typography>
+              <Button
+                onClick={() => {
+                  console.log('logout');
+                }}
+              >
+                Log out
+              </Button>
+            </Stack>
+          );
+        }
         return (
           <ItemLoginScreen
             itemId={itemId}
