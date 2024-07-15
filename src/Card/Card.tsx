@@ -1,3 +1,5 @@
+import { PRIMARY_COLOR } from '@/theme';
+
 import { Stack, SxProps, styled } from '@mui/material';
 import MuiCard from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -14,15 +16,22 @@ const DEFAULT_CARD_HEIGHT = 130;
 
 const StyledCard = styled(MuiCard, {
   shouldForwardProp: (prop) => prop !== 'elevation' && prop !== 'fullWidth',
-})<{ isOver: boolean; fullWidth?: boolean; elevation?: boolean }>(
-  ({ theme, elevation, fullWidth, isOver }) => ({
-    borderRadius: theme.spacing(1),
-    boxShadow: elevation ? theme.shadows[2] : '0px 2px 2px #eeeeee',
-    width: fullWidth ? '100%' : 'max-content',
-    maxWidth: '100%',
-    border: isOver ? '2px solid black' : 'none',
-  }),
-);
+})<{
+  isOver: boolean;
+  fullWidth?: boolean;
+  elevation?: boolean;
+  isSelected?: boolean;
+}>(({ theme, elevation, fullWidth, isOver, isSelected }) => ({
+  borderRadius: theme.spacing(1),
+  boxShadow: elevation ? theme.shadows[2] : '0px 2px 2px #eeeeee',
+  width: fullWidth ? '100%' : 'max-content',
+  maxWidth: '100%',
+  border: isOver
+    ? '2px solid black'
+    : isSelected
+      ? `2px solid ${PRIMARY_COLOR}`
+      : 'none',
+}));
 
 type CardProps = {
   name: string | JSX.Element;
@@ -43,6 +52,8 @@ type CardProps = {
    * Whether the card should expand to take all available space
    */
   fullWidth?: boolean;
+
+  isSelected?: boolean;
 
   dense?: boolean;
   elevation?: boolean;
@@ -89,6 +100,7 @@ const Card = ({
   type,
   isOver = false,
   isDragging = false,
+  isSelected = false,
 }: CardProps): JSX.Element => {
   let height = heightProp;
   if (!height) {
@@ -105,6 +117,7 @@ const Card = ({
         sx={sx}
         fullWidth={fullWidth}
         isOver={isOver}
+        isSelected={isSelected}
       >
         <Stack
           sx={{ height, boxSizing: 'border-box' }}

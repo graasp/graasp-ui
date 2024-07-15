@@ -213,3 +213,22 @@ export const DenseMobile: Story = {
     },
   ],
 } satisfies Story;
+
+export const Selected: Story = {
+  args: {
+    dense: true,
+    name: 'my card title',
+    content: 'my content',
+    fullWidth: true,
+    elevation: false,
+    creator: 'graasp',
+    alt: 'graasp',
+    footer: 'myfooter',
+    isSelected: true,
+  },
+  decorators: [
+    (story) => {
+      return <BrowserRouter>{story()}</BrowserRouter>;
+    },
+  ],
+} satisfies Story;
