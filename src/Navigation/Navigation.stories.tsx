@@ -74,9 +74,7 @@ const folder = FolderItemFactory({
   id: 'folder-id',
   name: 'folder',
   extra: {
-    [ItemType.FOLDER]: {
-      childrenOrder: [],
-    },
+    [ItemType.FOLDER]: {},
   },
   type: ItemType.FOLDER,
   description: 'my image description',
