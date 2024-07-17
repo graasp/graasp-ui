@@ -37,6 +37,7 @@ type CardProps = {
   name: string | JSX.Element;
   alt: string;
   id?: string;
+  className?: string;
   /**
    * creator name
    */
@@ -101,6 +102,7 @@ const Card = ({
   isOver = false,
   isDragging = false,
   isSelected = false,
+  className,
 }: CardProps): JSX.Element => {
   let height = heightProp;
   if (!height) {
@@ -114,6 +116,7 @@ const Card = ({
         // @ts-ignore
         elevation={elevation && !isDragging}
         id={id}
+        className={className}
         sx={sx}
         fullWidth={fullWidth}
         isOver={isOver}

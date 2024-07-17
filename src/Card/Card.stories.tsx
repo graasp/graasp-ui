@@ -225,6 +225,7 @@ export const Selected: Story = {
     alt: 'graasp',
     footer: 'myfooter',
     isSelected: true,
+    className: 'class-card',
   },
   decorators: [
     (story) => {
