@@ -1,6 +1,6 @@
 import { PRIMARY_COLOR } from '@/theme';
 
-import { Stack, SxProps, styled } from '@mui/material';
+import { Box, Stack, SxProps, styled } from '@mui/material';
 import MuiCard from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import Typography from '@mui/material/Typography';
@@ -63,6 +63,8 @@ type CardProps = {
 
   to?: string;
   type?: CardThumbnailProps['type'];
+
+  onThumbnailClick?: () => void;
 } & Partial<DraggableAndDroppableProps>;
 
 const Wrapper = ({
@@ -103,6 +105,7 @@ const Card = ({
   isDragging = false,
   isSelected = false,
   className,
+  onThumbnailClick,
 }: CardProps): JSX.Element => {
   let height = heightProp;
   if (!height) {
@@ -129,13 +132,15 @@ const Card = ({
           alignItems='center'
           mr={1}
         >
-          <CardThumbnail
-            width={height}
-            minHeight={height}
-            thumbnail={thumbnail}
-            alt={alt}
-            type={type}
-          />
+          <Box onClick={onThumbnailClick}>
+            <CardThumbnail
+              width={height}
+              minHeight={height}
+              thumbnail={thumbnail}
+              alt={alt}
+              type={type}
+            />
+          </Box>
           <Grid2
             container
             // necessary to respect flex layout, otherwise it does not compress

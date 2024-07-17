@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { fn } from '@storybook/test';
 
 import AcUnitIcon from '@mui/icons-material/AcUnit';
 import GrainIcon from '@mui/icons-material/Grain';
@@ -226,6 +227,7 @@ export const Selected: Story = {
     footer: 'myfooter',
     isSelected: true,
     className: 'class-card',
+    onThumbnailClick: fn(),
   },
   decorators: [
     (story) => {
