@@ -1,4 +1,9 @@
-import { Theme, createTheme, responsiveFontSizes } from '@mui/material';
+import {
+  Direction,
+  Theme,
+  createTheme,
+  responsiveFontSizes,
+} from '@mui/material';
 import { grey } from '@mui/material/colors';
 
 import { Context } from '@graasp/sdk';
@@ -67,11 +72,14 @@ declare module '@mui/material/Typography' {
 
 type GraaspThemeOptions = {
   fontFamily?: string;
+  direction?: Direction;
 };
 export const createGraaspTheme = ({
   fontFamily,
+  direction = 'ltr',
 }: GraaspThemeOptions): Theme => {
   const baseTheme = createTheme({
+    direction,
     palette: {
       action: {
         active: DEFAULT_ACTIVE_ACTION_COLOR,
@@ -212,4 +220,6 @@ export const createGraaspTheme = ({
     ],
   });
 };
-export const theme = createGraaspTheme({});
+
+export const buildTheme = (direction: Direction = 'ltr'): Theme =>
+  createGraaspTheme({ direction });
