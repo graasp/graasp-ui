@@ -6,7 +6,7 @@ import { ThemeProvider } from '@mui/system';
 import * as React from 'react';
 import 'react-quill/dist/quill.snow.css';
 
-import { theme } from '../src/theme';
+import { buildTheme } from '../src/theme';
 import './global.css';
 
 export const parameters = {
@@ -50,7 +50,7 @@ export const globalTypes = {
     },
   },
 };
-
+const theme = buildTheme()
 export const decorators = [
   (Story, { globals }) => {
     return (
