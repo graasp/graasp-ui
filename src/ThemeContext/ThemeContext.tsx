@@ -72,6 +72,10 @@ const ThemeProvider = ({
     document.documentElement.setAttribute('dir', direction);
   }, [direction]);
 
+  useEffect(() => {
+    setDirection(defaultDirection);
+  }, [defaultDirection]);
+
   return (
     <ThemeContext.Provider value={value}>
       <MuiThemeProvider theme={{ ...buildTheme(direction), direction }}>
