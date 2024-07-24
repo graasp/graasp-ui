@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.22.0](https://github.com/graasp/graasp-ui/compare/v4.21.0...v4.22.0) (2024-07-24)
+
+
+### Features
+
+* add card selection props ([#959](https://github.com/graasp/graasp-ui/issues/959)) ([ffab864](https://github.com/graasp/graasp-ui/commit/ffab8648a3f0af92a2541d39942cb3aad41a629a))
+
+
+### Bug Fixes
+
+* **deps:** update dependency lucide-react to v0.408.0 ([#942](https://github.com/graasp/graasp-ui/issues/942)) ([8234735](https://github.com/graasp/graasp-ui/commit/82347350cb65f53d23c886b662634c24319cdbf8))
+* **deps:** update dependency vitest to v2 ([#940](https://github.com/graasp/graasp-ui/issues/940)) ([e2bdbe6](https://github.com/graasp/graasp-ui/commit/e2bdbe6b56fef0acaafdafb0a49df9af3d6d6b14))
+
 ## [4.21.0](https://github.com/graasp/graasp-ui/compare/v4.20.3...v4.21.0) (2024-07-12)
 
 
