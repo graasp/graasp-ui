@@ -7,10 +7,10 @@ import { Direction, SxProps } from '@mui/material';
 import { ThemeProvider as MuiThemeProvider } from '@mui/material';
 import { SelectProps as MuiSelectProps } from '@mui/material/Select';
 
-import { useContext, useMemo } from 'react';
+import { useContext, useEffect, useMemo } from 'react';
 import { createContext, useState } from 'react';
 
-import { theme } from '../theme';
+import { buildTheme } from '../theme';
 import { I18nInstance } from '../types';
 import LanguageSelect from './LanguageSelect';
 
@@ -22,6 +22,7 @@ type Props = {
   languageSelectLabel?: string;
   languageSelectVariant?: MuiSelectProps['variant'];
   languageSelectSize?: MuiSelectProps['size'];
+  defaultDirection?: Direction;
 };
 
 type Context = {
@@ -48,8 +49,9 @@ const ThemeProvider = ({
   languageSelectLabel,
   languageSelectVariant = 'outlined',
   languageSelectSize = 'small',
+  defaultDirection = 'ltr',
 }: Props): JSX.Element => {
-  const [direction, setDirection] = useState<Direction>(theme.direction);
+  const [direction, setDirection] = useState<Direction>(defaultDirection);
   const languageSelect = (
     <LanguageSelect
       languageSelectSx={languageSelectSx}
@@ -66,9 +68,17 @@ const ThemeProvider = ({
     [direction, languageSelect],
   );
 
+  useEffect(() => {
+    document.documentElement.setAttribute('dir', direction);
+  }, [direction]);
+
+  useEffect(() => {
+    setDirection(defaultDirection);
+  }, [defaultDirection]);
+
   return (
     <ThemeContext.Provider value={value}>
-      <MuiThemeProvider theme={{ ...theme, direction }}>
+      <MuiThemeProvider theme={{ ...buildTheme(direction), direction }}>
         <CacheProvider value={getCacheForDirection(direction)}>
           {children}
         </CacheProvider>
