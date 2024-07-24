@@ -14,9 +14,9 @@ import CardThumbnail, { CardThumbnailProps } from './CardThumbnail';
 
 const DEFAULT_CARD_HEIGHT = 130;
 
+const PROPS_TO_FORWARD = ['elevation', 'fullWidth', 'isSelected', 'isOver'];
 const StyledCard = styled(MuiCard, {
-  shouldForwardProp: (prop: string) =>
-    !['elevation', 'fullWidth', 'isSelected', 'isOver'].includes(prop),
+  shouldForwardProp: (prop: string) => !PROPS_TO_FORWARD.includes(prop),
 })<{
   isOver: boolean;
   fullWidth?: boolean;
@@ -27,7 +27,7 @@ const StyledCard = styled(MuiCard, {
   boxShadow: elevation ? theme.shadows[2] : '0px 2px 2px #eeeeee',
   width: fullWidth ? '100%' : 'max-content',
   maxWidth: '100%',
-  border: isOver || isSelected ? `2px solid ${PRIMARY_COLOR}` : 'none',
+  outline: isOver || isSelected ? `2px solid ${PRIMARY_COLOR}` : 'none',
 }));
 
 type CardProps = {
