@@ -1,4 +1,6 @@
-import { Stack, SxProps, styled } from '@mui/material';
+import { PRIMARY_COLOR } from '@/theme';
+
+import { Box, Stack, SxProps, styled } from '@mui/material';
 import MuiCard from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import Typography from '@mui/material/Typography';
@@ -12,22 +14,27 @@ import CardThumbnail, { CardThumbnailProps } from './CardThumbnail';
 
 const DEFAULT_CARD_HEIGHT = 130;
 
+const PROPS_TO_FORWARD = ['elevation', 'fullWidth', 'isSelected', 'isOver'];
 const StyledCard = styled(MuiCard, {
-  shouldForwardProp: (prop) => prop !== 'elevation' && prop !== 'fullWidth',
-})<{ isOver: boolean; fullWidth?: boolean; elevation?: boolean }>(
-  ({ theme, elevation, fullWidth, isOver }) => ({
-    borderRadius: theme.spacing(1),
-    boxShadow: elevation ? theme.shadows[2] : '0px 2px 2px #eeeeee',
-    width: fullWidth ? '100%' : 'max-content',
-    maxWidth: '100%',
-    border: isOver ? '2px solid black' : 'none',
-  }),
-);
+  shouldForwardProp: (prop: string) => !PROPS_TO_FORWARD.includes(prop),
+})<{
+  isOver: boolean;
+  fullWidth?: boolean;
+  elevation?: boolean;
+  isSelected?: boolean;
+}>(({ theme, elevation, fullWidth, isOver, isSelected }) => ({
+  borderRadius: theme.spacing(1),
+  boxShadow: elevation ? theme.shadows[2] : '0px 2px 2px #eeeeee',
+  width: fullWidth ? '100%' : 'max-content',
+  maxWidth: '100%',
+  outline: isOver || isSelected ? `2px solid ${PRIMARY_COLOR}` : 'none',
+}));
 
 type CardProps = {
   name: string | JSX.Element;
   alt: string;
   id?: string;
+  className?: string;
   /**
    * creator name
    */
@@ -44,6 +51,8 @@ type CardProps = {
    */
   fullWidth?: boolean;
 
+  isSelected?: boolean;
+
   dense?: boolean;
   elevation?: boolean;
   menu?: JSX.Element;
@@ -51,6 +60,8 @@ type CardProps = {
 
   to?: string;
   type?: CardThumbnailProps['type'];
+
+  onThumbnailClick?: () => void;
 } & Partial<DraggableAndDroppableProps>;
 
 const Wrapper = ({
@@ -89,6 +100,9 @@ const Card = ({
   type,
   isOver = false,
   isDragging = false,
+  isSelected = false,
+  className,
+  onThumbnailClick,
 }: CardProps): JSX.Element => {
   let height = heightProp;
   if (!height) {
@@ -102,9 +116,11 @@ const Card = ({
         // @ts-ignore
         elevation={elevation && !isDragging}
         id={id}
+        className={className}
         sx={sx}
         fullWidth={fullWidth}
         isOver={isOver}
+        isSelected={isSelected}
       >
         <Stack
           sx={{ height, boxSizing: 'border-box' }}
@@ -113,13 +129,15 @@ const Card = ({
           alignItems='center'
           mr={1}
         >
-          <CardThumbnail
-            width={height}
-            minHeight={height}
-            thumbnail={thumbnail}
-            alt={alt}
-            type={type}
-          />
+          <Box onClick={onThumbnailClick}>
+            <CardThumbnail
+              width={height}
+              minHeight={height}
+              thumbnail={thumbnail}
+              alt={alt}
+              type={type}
+            />
+          </Box>
           <Grid2
             container
             // necessary to respect flex layout, otherwise it does not compress

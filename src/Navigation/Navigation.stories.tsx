@@ -73,11 +73,6 @@ const dataTestId = 'NavigateNextIcon';
 const folder = FolderItemFactory({
   id: 'folder-id',
   name: 'folder',
-  extra: {
-    [ItemType.FOLDER]: {
-      childrenOrder: [],
-    },
-  },
   type: ItemType.FOLDER,
   description: 'my image description',
   path: 'item-path',
