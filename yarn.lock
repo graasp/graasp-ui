@@ -2329,18 +2329,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@graasp/sdk@npm:4.17.0":
-  version: 4.17.0
-  resolution: "@graasp/sdk@npm:4.17.0"
+"@graasp/sdk@npm:4.22.0":
+  version: 4.22.0
+  resolution: "@graasp/sdk@npm:4.22.0"
   dependencies:
     "@faker-js/faker": "npm:8.4.1"
     filesize: "npm:10.1.4"
     js-cookie: "npm:3.0.5"
+    mime-types: "npm:2.1.35"
     validator: "npm:13.12.0"
   peerDependencies:
     date-fns: ^3
     uuid: ^9 || ^10.0.0
-  checksum: 10/5fa444fceb20494898956f921ee8a029b9cca2184c4ebf8a2a65fb581b0252ff76e59f0ee2d5646c53dab29240bc9862d2ed9ac7c3e7568fd2f44cda953f2a61
+  checksum: 10/c1e81d401f51a9c22eb4f5bc12057aa3ea249771701c390a11dc7c1609b814d9222926bbb7d9b19f70fda67bccb854f42045d890dd850f71bf4f9f8629fcb799
   languageName: node
   linkType: hard
 
@@ -2356,7 +2357,7 @@ __metadata:
     "@emotion/cache": "npm:~11.11.0"
     "@emotion/react": "npm:11.11.4"
     "@emotion/styled": "npm:11.11.5"
-    "@graasp/sdk": "npm:4.17.0"
+    "@graasp/sdk": "npm:4.22.0"
     "@mui/icons-material": "npm:5.16.0"
     "@mui/lab": "npm:5.0.0-alpha.171"
     "@mui/material": "npm:5.16.0"
@@ -11809,7 +11810,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mime-types@npm:^2.1.12, mime-types@npm:~2.1.24, mime-types@npm:~2.1.34":
+"mime-types@npm:2.1.35, mime-types@npm:^2.1.12, mime-types@npm:~2.1.24, mime-types@npm:~2.1.34":
   version: 2.1.35
   resolution: "mime-types@npm:2.1.35"
   dependencies:
