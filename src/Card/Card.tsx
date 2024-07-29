@@ -129,7 +129,7 @@ const Card = ({
           alignItems='center'
           mr={1}
         >
-          <Box onClick={onThumbnailClick}>
+          <Box onClick={onThumbnailClick} height='100%'>
             <CardThumbnail
               width={height}
               minHeight={height}
