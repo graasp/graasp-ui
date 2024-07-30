@@ -1,13 +1,12 @@
-import { SxProps, styled } from '@mui/material';
-import Breadcrumbs from '@mui/material/Breadcrumbs';
+import { Breadcrumbs, SxProps, styled } from '@mui/material';
 
 import { DiscriminatedItem } from '@graasp/sdk';
 
-import CurrentItemNavigation from './CurrentItemNavigation';
-import ExtraItemsNavigation, { ExtraItem } from './ExtraItemsNavigation';
-import { ItemMenuProps } from './ItemMenu';
-import ParentsNavigation from './ParentsNavigation';
-import CenterAlignWrapper from './common/CenterAlignWrapper';
+import CurrentItemNavigation from './CurrentItemNavigation.js';
+import ExtraItemsNavigation, { ExtraItem } from './ExtraItemsNavigation.js';
+import { ItemMenuProps } from './ItemMenu.js';
+import ParentsNavigation from './ParentsNavigation.js';
+import CenterAlignWrapper from './common/CenterAlignWrapper.js';
 
 const StyledBreadcrumbs = styled(Breadcrumbs)(() => ({
   '.MuiBreadcrumbs-separator': {

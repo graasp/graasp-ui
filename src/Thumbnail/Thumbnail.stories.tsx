@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { TABLE_CATEGORIES } from '../utils/storybook';
-import Thumbnail from './Thumbnail';
+import { TABLE_CATEGORIES } from '../utils/storybook.js';
+import Thumbnail from './Thumbnail.js';
 
 const meta: Meta<typeof Thumbnail> = {
   title: 'Images/Thumbnail',

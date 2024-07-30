@@ -7,7 +7,7 @@ import {
   DescriptionPlacementType,
 } from '@graasp/sdk';
 
-import withCaption from './withCaption';
+import withCaption from './withCaption.js';
 
 const renderComponent = ({
   description,

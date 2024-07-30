@@ -1,29 +1,28 @@
-import GetAppIcon from '@mui/icons-material/GetApp';
+import { DownloadIcon } from 'lucide-react';
+
 import { styled } from '@mui/material';
 
-import { FC } from 'react';
-
-import Button from '../buttons/Button';
+import Button from '../buttons/Button/Button.js';
 
 const StyledLink = styled('a')({
   textDecoration: 'none',
 });
 
-interface DownloadButtonFileItemProps {
+type DownloadButtonFileItemProps = {
   name?: string;
   url?: string;
   id?: string;
   text?: string;
   onClick?: () => void;
-}
+};
 
-const DownloadButtonFileItem: FC<DownloadButtonFileItemProps> = ({
+const DownloadButtonFileItem = ({
   id,
   name = 'File',
   url,
   text,
   onClick,
-}) => {
+}: DownloadButtonFileItemProps): JSX.Element => {
   const buttonText = text || `Download ${name}`;
 
   return (
@@ -34,7 +33,7 @@ const DownloadButtonFileItem: FC<DownloadButtonFileItemProps> = ({
       rel='noreferrer'
       download={name}
     >
-      <Button size='large' startIcon={<GetAppIcon />} onClick={onClick}>
+      <Button size='large' startIcon={<DownloadIcon />} onClick={onClick}>
         {buttonText}
       </Button>
     </StyledLink>

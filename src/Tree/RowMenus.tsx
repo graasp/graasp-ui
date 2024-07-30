@@ -2,8 +2,8 @@ import { Pagination, Stack } from '@mui/material';
 
 import { DiscriminatedItem } from '@graasp/sdk';
 
-import RowMenu, { RowMenuProps } from './RowMenu';
-import { NavigationElement } from './types';
+import RowMenu, { RowMenuProps } from './RowMenu.js';
+import { NavigationElement } from './types.js';
 
 export type RowMenusProps = {
   elements?: NavigationElement[];

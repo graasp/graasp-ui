@@ -1,4 +1,5 @@
-import GetAppIcon from '@mui/icons-material/GetApp';
+import { DownloadIcon } from 'lucide-react';
+
 import {
   CircularProgress,
   IconButton,
@@ -9,15 +10,15 @@ import {
 
 import { MouseEventHandler } from 'react';
 
-import { DEFAULT_LOADER_SIZE } from '../../constants';
+import { DEFAULT_LOADER_SIZE } from '@/constants.js';
 import {
   ActionButton,
   ActionButtonVariant,
   ColorVariants,
   TooltipPlacement,
-} from '../../types';
+} from '@/types.js';
 
-export interface DownloadButtonProps {
+export type DownloadButtonProps = {
   ariaLabel: string;
   /**
    * button onClick
@@ -41,7 +42,7 @@ export interface DownloadButtonProps {
    */
   placement?: TooltipPlacement;
   type?: ActionButtonVariant;
-}
+};
 
 const DownloadButton = ({
   ariaLabel = 'download',
@@ -53,7 +54,7 @@ const DownloadButton = ({
   placement = 'bottom',
   type = ActionButton.ICON_BUTTON,
 }: DownloadButtonProps): JSX.Element => {
-  const icon = <GetAppIcon />;
+  const icon = <DownloadIcon />;
   switch (type) {
     case ActionButton.ICON:
       return icon;

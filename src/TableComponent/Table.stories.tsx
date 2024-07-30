@@ -7,9 +7,11 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { fn } from '@storybook/test';
 import { userEvent, waitFor, within } from '@storybook/testing-library';
 
-import { DeleteButton, EditButton } from '../buttons';
-import { TABLE_CATEGORIES } from '../utils/storybook';
-import Table, { TableProps } from './Table';
+import DeleteButton from '@/buttons/DeleteButton/DeleteButton.js';
+import EditButton from '@/buttons/EditButton/EditButton.js';
+
+import { TABLE_CATEGORIES } from '../utils/storybook.js';
+import Table, { TableProps } from './Table.js';
 
 const agGridCategory = 'Ag Grid';
 const rowData = [

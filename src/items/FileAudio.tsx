@@ -1,7 +1,5 @@
 import { SxProps, styled } from '@mui/material';
 
-import { FC } from 'react';
-
 type FileAudioProps = {
   id?: string;
   url?: string;
@@ -9,7 +7,7 @@ type FileAudioProps = {
   sx?: SxProps;
 };
 
-const FileAudio: FC<FileAudioProps> = ({ id, url, type, sx }) => {
+const FileAudio = ({ id, url, type, sx }: FileAudioProps): JSX.Element => {
   const StyledAudio = styled('audio')({
     maxWidth: '100%',
     width: '100%',

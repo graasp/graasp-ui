@@ -2,8 +2,8 @@ import { StoryObj } from '@storybook/react';
 
 import { ItemType } from '@graasp/sdk';
 
-import TextEditor from '../TextEditor';
-import DocumentItem from './DocumentItem';
+import TextEditor from '../TextEditor/TextEditor.js';
+import DocumentItem from './DocumentItem.js';
 
 const item = {
   id: 'item-id',

@@ -5,8 +5,8 @@ import { BrowserRouter } from 'react-router-dom';
 
 import { ItemType, LinkItemFactory } from '@graasp/sdk';
 
-import { MOCK_MEMBER } from '../utils/fixtures';
-import LinkItem from './LinkItem';
+import { MOCK_MEMBER } from '../utils/fixtures.js';
+import LinkItem from './LinkItem.js';
 
 const item = LinkItemFactory({
   id: 'item-id',

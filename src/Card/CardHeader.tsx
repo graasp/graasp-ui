@@ -1,7 +1,6 @@
-import { Stack } from '@mui/material';
-import Typography from '@mui/material/Typography';
+import { Stack, Typography } from '@mui/material';
 
-import { FC, ReactElement } from 'react';
+import { ReactElement } from 'react';
 
 type CardHeaderProps = {
   name: string;
@@ -11,13 +10,13 @@ type CardHeaderProps = {
   dense?: boolean;
 };
 
-const CustomCardHeader: FC<CardHeaderProps> = ({
+const CustomCardHeader = ({
   name,
   creator,
   ItemMenu,
   dense,
   NameWrapper = ({ children }: { children: ReactElement }) => children,
-}) => {
+}: CardHeaderProps): JSX.Element => {
   return (
     <Stack
       direction='row'

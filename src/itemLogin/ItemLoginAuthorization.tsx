@@ -1,9 +1,9 @@
 import type { UseQueryResult } from '@tanstack/react-query';
 import { StatusCodes, getReasonPhrase } from 'http-status-codes';
 
-import Alert from '@mui/material/Alert';
+import { Alert } from '@mui/material';
 
-import React, { ReactElement } from 'react';
+import { ReactElement } from 'react';
 
 import {
   CompleteMember,
@@ -12,9 +12,9 @@ import {
   UUID,
 } from '@graasp/sdk';
 
-import CustomInitialLoader from '../CustomInitialLoader';
-import ForbiddenText from './ForbiddenText';
-import ItemLoginScreen, { SignInPropertiesType } from './ItemLoginScreen';
+import CustomInitialLoader from '../CustomInitialLoader/CustomInitialLoader.js';
+import ForbiddenText from './ForbiddenText.js';
+import ItemLoginScreen, { SignInPropertiesType } from './ItemLoginScreen.js';
 
 export type ItemLoginAuthorizationProps = {
   signIn: (args: { itemId: string } & SignInPropertiesType) => void;
@@ -45,7 +45,7 @@ const ItemLoginAuthorization =
     passwordInputId,
     ForbiddenContent = <ForbiddenText />,
   }: ItemLoginAuthorizationProps) =>
-  (ChildComponent: typeof React.Component | (() => JSX.Element)) => {
+  (ChildComponent: () => JSX.Element) => {
     const ComposedComponent = (): ReactElement => {
       const {
         data: user,

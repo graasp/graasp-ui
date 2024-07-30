@@ -1,16 +1,18 @@
-import BookmarkIcon from '@mui/icons-material/Bookmark';
-import BookmarkBorderOutlinedIcon from '@mui/icons-material/BookmarkBorderOutlined';
-import { IconButton, SvgIconProps, Tooltip } from '@mui/material';
-import { SxProps } from '@mui/material/styles';
+import {
+  BookmarkBorderOutlined as BookmarkBorderOutlinedIcon,
+  Bookmark as BookmarkIcon,
+} from '@mui/icons-material';
+import { IconButton, SvgIconProps, SxProps, Tooltip } from '@mui/material';
 
 import { MouseEventHandler } from 'react';
 
-import { ActionButton, ActionButtonVariant, ColorVariants } from '../../types';
-import MenuItemButton from '../MenuItemButton';
+import { ActionButton, ActionButtonVariant, ColorVariants } from '@/types.js';
+
+import MenuItemButton from '../MenuItemButton.js';
 
 const BOOKMARK_COLOR = '#ffc107';
 
-export interface BookmarkButtonProps {
+export type BookmarkButtonProps = {
   sx?: SxProps;
   /**
    * IconButton's color
@@ -28,7 +30,7 @@ export interface BookmarkButtonProps {
   ariaLabel?: string;
   tooltip?: string;
   text?: string;
-}
+};
 
 const BookmarkButton = ({
   ariaLabel = 'favorite',

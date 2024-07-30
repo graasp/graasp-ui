@@ -13,8 +13,8 @@ import { Link } from 'react-router-dom';
 
 import { ItemType } from '@graasp/sdk';
 
-import CardThumbnail from './components/CardThumbnail';
-import { CARD_HEIGHT } from './constants';
+import CardThumbnail from './components/CardThumbnail.js';
+import { CARD_HEIGHT } from './constants.js';
 
 const FANCY_LINK_CARD_TEST_ID = 'fancy-link-card';
 type FancyLinkProps = {

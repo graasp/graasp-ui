@@ -1,9 +1,10 @@
-import BlockIcon from '@mui/icons-material/Block';
+import { BanIcon } from 'lucide-react';
+
 import { Stack, Typography } from '@mui/material';
 
 import { UUID } from '@graasp/sdk';
 
-import { FORBIDDEN_TEXT } from './constants';
+import { FORBIDDEN_TEXT } from './constants.js';
 
 export type ForbiddenTextProps = {
   id?: UUID;
@@ -23,7 +24,7 @@ const ForbiddenText = ({
     justifyContent='center'
     spacing={2}
   >
-    <BlockIcon sx={{ fontSize: '4em' }} />
+    <BanIcon fontSize='4em' />
     <Stack direction='column'>
       <Typography variant='h4'>{title}</Typography>
       <Typography color='text.secondary' maxWidth='50ch'>

@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { TABLE_CATEGORIES } from '../utils/storybook';
-import FilePdf from './FilePdf';
+import { TABLE_CATEGORIES } from '../utils/storybook.js';
+import FilePdf from './FilePdf.js';
 
 const meta: Meta<typeof FilePdf> = {
   title: 'Items/FilePdf',

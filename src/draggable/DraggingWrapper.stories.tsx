@@ -1,4 +1,3 @@
-import { TABLE_CATEGORIES } from '@/utils/storybook';
 import { type Meta, type StoryObj } from '@storybook/react';
 
 import { Box } from '@mui/material';
@@ -7,8 +6,11 @@ import { BrowserRouter } from 'react-router-dom';
 
 import { FolderItemFactory, FolderItemType } from '@graasp/sdk';
 
-import { Card, ItemBadges } from '..';
-import DraggingWrapper from './DraggingWrapper';
+import Card from '@/Card/Card.js';
+import ItemBadges from '@/ItemBadges/ItemBadges.js';
+import { TABLE_CATEGORIES } from '@/utils/storybook.js';
+
+import DraggingWrapper from './DraggingWrapper.js';
 
 const makeData = (len: number): FolderItemType[] => {
   return Array.from({ length: len }, () => FolderItemFactory());

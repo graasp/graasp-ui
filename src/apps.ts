@@ -4,6 +4,5 @@ export {
   SavedChip,
   SubmittedChip,
   RequiredChip,
-} from './appComponents';
-
-export type { UserFeedback } from './appComponents';
+  type UserFeedback,
+} from './appComponents/index.js';

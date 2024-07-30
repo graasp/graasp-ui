@@ -1,14 +1,19 @@
-import MenuIcon from '@mui/icons-material/Menu';
-import MenuOpenIcon from '@mui/icons-material/MenuOpen';
-import { SxProps, Theme, styled } from '@mui/material';
-import AppBar from '@mui/material/AppBar';
-import Grid from '@mui/material/Grid';
-import IconButton from '@mui/material/IconButton';
-import Toolbar from '@mui/material/Toolbar';
+import { SidebarClose, SidebarOpen } from 'lucide-react';
+
+import '@mui/material';
+import {
+  AppBar,
+  IconButton,
+  Stack,
+  SxProps,
+  Theme,
+  Toolbar,
+  styled,
+} from '@mui/material';
 
 import { Context } from '@graasp/sdk';
 
-import { AccentColors, PRIMARY_COLOR } from '../theme';
+import { AccentColors, PRIMARY_COLOR } from '../theme.js';
 
 const OPEN_DRAWER_LABEL = 'Open Drawer';
 const CLOSE_DRAWER_LABEL = 'Close Drawer';
@@ -78,7 +83,7 @@ export const Header = ({
           aria-label={openDrawerAriaLabel}
           onClick={handleDrawerOpen}
         >
-          <MenuIcon />
+          <SidebarOpen />
         </StyledIconButton>
       );
     }
@@ -90,7 +95,7 @@ export const Header = ({
         aria-label={closeDrawerAriaLabel}
         onClick={handleDrawerClose}
       >
-        <MenuOpenIcon />
+        <SidebarClose />
       </StyledIconButton>
     );
   };
@@ -109,13 +114,15 @@ export const Header = ({
       >
         <StyledToolbar disableGutters>
           {renderMenuIcon()}
-          <Grid container>
-            <Grid container justifyContent='space-between' alignItems='center'>
-              <Grid item>{leftContent}</Grid>
-              <Grid item>{centerContent}</Grid>
-              <Grid item>{rightContent}</Grid>
-            </Grid>
-          </Grid>
+          <Stack
+            direction='row'
+            justifyContent='space-between'
+            alignItems='center'
+          >
+            {leftContent}
+            {centerContent}
+            {rightContent}
+          </Stack>
         </StyledToolbar>
       </AppBar>
       <Toolbar />

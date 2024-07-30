@@ -1,11 +1,12 @@
 import { Meta, StoryObj, composeStories } from '@storybook/react';
 
-import Grid2 from '@mui/material/Unstable_Grid2';
+import { Unstable_Grid2 as Grid2 } from '@mui/material';
 
 import { PackedFolderItemFactory } from '@graasp/sdk';
 
-import { ItemBadges } from '..';
-import * as CardStories from './Card.stories';
+import ItemBadges from '@/ItemBadges/ItemBadges.js';
+
+import * as CardStories from './Card.stories.js';
 
 const { FullWidth, Dense } = composeStories(CardStories);
 

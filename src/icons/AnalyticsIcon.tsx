@@ -1,9 +1,9 @@
 import { SxProps } from '@mui/material';
 
-import { PRIMARY_COLOR, SECONDARY_COLOR } from '../theme';
-import { SVGWrapper, StyledG } from './StyledSVGComponents';
+import { PRIMARY_COLOR, SECONDARY_COLOR } from '../theme.js';
+import { SVGWrapper, StyledG } from './StyledSVGComponents.js';
 
-export interface AnalyticsIconProps {
+export type AnalyticsIconProps = {
   sx?: SxProps;
   size?: number;
   primaryColor?: string;
@@ -14,7 +14,7 @@ export interface AnalyticsIconProps {
   disabled?: boolean;
   disabledColor?: string;
   disableHover?: boolean;
-}
+};
 
 const AnalyticsIcon = ({
   size = 50,

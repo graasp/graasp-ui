@@ -6,8 +6,8 @@ import { Stack, styled } from '@mui/material';
 import { useEffect, useState } from 'react';
 import ReactQuill from 'react-quill';
 
-import Button from '../buttons/Button';
-import SaveButton from '../buttons/SaveButton/SaveButton';
+import Button from '../buttons/Button/Button.js';
+import SaveButton from '../buttons/SaveButton/SaveButton.js';
 
 declare const window: Window &
   typeof globalThis & {

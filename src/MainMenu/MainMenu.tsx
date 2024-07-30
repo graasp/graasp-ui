@@ -1,14 +1,14 @@
-import List from '@mui/material/List';
+import { List } from '@mui/material';
 
-import React from 'react';
+import { ReactNode } from 'react';
 
-export interface MainMenuProps {
+export type MainMenuProps = {
   id?: string;
-  children?: React.ReactElement | React.ReactElement[];
+  children?: ReactNode;
   /** whether container is full height
    * this allows possible footer elements */
   fullHeight?: boolean;
-}
+};
 
 export const MainMenu = ({
   id,

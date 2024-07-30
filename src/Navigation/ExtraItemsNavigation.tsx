@@ -2,11 +2,11 @@ import truncate from 'lodash.truncate';
 
 import { Box, Typography } from '@mui/material';
 
-import ExtraItemsMenu from './ExtraItemsMenu';
-import { MenuItemType } from './Navigation';
-import CenterAlignWrapper from './common/CenterAlignWrapper';
-import NavigationLink from './common/NavigationLink';
-import { ITEM_NAME_MAX_LENGTH } from './common/constants';
+import ExtraItemsMenu from './ExtraItemsMenu.js';
+import { MenuItemType } from './Navigation.js';
+import CenterAlignWrapper from './common/CenterAlignWrapper.js';
+import NavigationLink from './common/NavigationLink.js';
+import { ITEM_NAME_MAX_LENGTH } from './common/constants.js';
 
 export interface ExtraItem {
   name: string;

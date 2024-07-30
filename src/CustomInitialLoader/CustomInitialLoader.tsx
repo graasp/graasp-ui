@@ -1,16 +1,16 @@
-import { useTheme } from '@mui/material';
 import {
   Container,
   LinearProgress,
   linearProgressClasses,
   styled,
+  useTheme,
 } from '@mui/material';
 
-import GraaspLogo from '../GraaspLogo';
+import GraaspLogo from '../GraaspLogo/GraaspLogo.js';
 
-export interface CustomInitialLoaderProps {
+export type CustomInitialLoaderProps = {
   id?: string;
-}
+};
 
 const StyledContainer = styled(Container)(() => ({
   height: '100vh',

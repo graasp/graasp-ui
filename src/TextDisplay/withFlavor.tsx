@@ -1,5 +1,4 @@
-import { AlertTitle, Typography } from '@mui/material';
-import Alert from '@mui/material/Alert';
+import { Alert, AlertTitle, Typography } from '@mui/material';
 
 import { DocumentItemExtraFlavor } from '@graasp/sdk';
 

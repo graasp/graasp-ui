@@ -1,20 +1,20 @@
-import { ComponentType, FC } from 'react';
+import { ComponentType } from 'react';
 
 import { CompleteMember, redirect } from '@graasp/sdk';
 
-import RedirectContent from './RedirectionContent';
+import RedirectionContent from './RedirectionContent.js';
 
-export interface WithAuthorizationProps {
+export type WithAuthorizationProps = {
   redirectionLink: string;
   currentMember?: CompleteMember | null;
   onRedirect?: () => void;
-}
+};
 
 const withAuthorization =
   <P extends object>(
     ChildComponent: ComponentType<P>,
     { currentMember, redirectionLink, onRedirect }: WithAuthorizationProps,
-  ): FC<P> =>
+  ): ((props: P) => JSX.Element) =>
   (childProps: P) => {
     const redirectToSignIn = (): void => {
       if (!redirectionLink) {
@@ -33,7 +33,7 @@ const withAuthorization =
     redirectToSignIn();
 
     // redirect page if redirection is not working
-    return <RedirectContent link={redirectionLink} />;
+    return <RedirectionContent link={redirectionLink} />;
   };
 
 export default withAuthorization;

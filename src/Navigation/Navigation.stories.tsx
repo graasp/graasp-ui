@@ -1,8 +1,7 @@
 import { expect } from '@storybook/jest';
 import type { Meta, StoryObj } from '@storybook/react';
 import { within } from '@storybook/testing-library';
-
-import SettingsIcon from '@mui/icons-material/Settings';
+import { CogIcon } from 'lucide-react';
 
 import { BrowserRouter } from 'react-router-dom';
 
@@ -14,10 +13,10 @@ import {
   MimeTypes,
 } from '@graasp/sdk';
 
-import { MOCK_MEMBER } from '../utils/fixtures';
-import HomeMenu from './HomeMenu';
-import ItemMenu, { ItemMenuProps } from './ItemMenu';
-import Navigation from './Navigation';
+import { MOCK_MEMBER } from '../utils/fixtures.js';
+import HomeMenu from './HomeMenu.js';
+import ItemMenu, { ItemMenuProps } from './ItemMenu.js';
+import Navigation from './Navigation.js';
 
 const buildItem = (name: string): LocalFileItemType =>
   LocalFileItemFactory({
@@ -204,7 +203,7 @@ const extraItems = [
   {
     name: 'Settings',
     path: '/settings',
-    icon: <SettingsIcon />,
+    icon: <CogIcon />,
     menuItems: [
       { name: 'Information', path: '/info' },
       { name: 'Settings', path: '/settings' },

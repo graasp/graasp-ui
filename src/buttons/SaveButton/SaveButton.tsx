@@ -1,6 +1,6 @@
-import GraaspButton, { GraaspButtonProps } from '../Button/Button';
+import GraaspButton, { GraaspButtonProps } from '../Button/Button.js';
 
-export interface SaveButtonProps {
+export type SaveButtonProps = {
   /**
    * whether changes have been detected
    */
@@ -20,7 +20,7 @@ export interface SaveButtonProps {
    * button variant
    */
   variant?: GraaspButtonProps['variant'];
-}
+};
 
 const SaveButton = ({
   color,

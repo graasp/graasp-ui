@@ -3,7 +3,7 @@ import { Box, BoxProps } from '@mui/material';
 import { ConnectableElement, useDrag, useDrop } from 'react-dnd';
 import { NativeTypes } from 'react-dnd-html5-backend';
 
-import { DraggableAndDroppableProps, DroppedFile } from './types';
+import { DraggableAndDroppableProps, DroppedFile } from './types.js';
 
 export type DraggableElementProps<T> = {
   row: T;

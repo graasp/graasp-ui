@@ -1,8 +1,7 @@
-import BackupIcon from '@mui/icons-material/Backup';
-import Chip from '@mui/material/Chip';
-import Tooltip from '@mui/material/Tooltip';
+import { Backup as BackupIcon } from '@mui/icons-material';
+import { Chip, Tooltip } from '@mui/material';
 
-import { StatusChipProps } from './types';
+import { StatusChipProps } from './types.js';
 
 const SavedChip = ({
   label,

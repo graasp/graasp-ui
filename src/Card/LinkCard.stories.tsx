@@ -2,7 +2,7 @@ import { Meta, StoryObj } from '@storybook/react';
 
 import { BrowserRouter } from 'react-router-dom';
 
-import FancyLink from './LinkCard';
+import FancyLink from './LinkCard.js';
 
 const meta = {
   title: 'Card/Link',

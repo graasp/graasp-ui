@@ -5,9 +5,9 @@ import { userEvent, within } from '@storybook/testing-library';
 
 import { ItemLoginSchemaType } from '@graasp/sdk';
 
-import { TABLE_CATEGORIES } from '../utils/storybook';
-import ItemLoginScreen from './ItemLoginScreen';
-import { FORBIDDEN_TEXT } from './constants';
+import { TABLE_CATEGORIES } from '../utils/storybook.js';
+import ItemLoginScreen from './ItemLoginScreen.js';
+import { FORBIDDEN_TEXT } from './constants.js';
 
 const meta: Meta<typeof ItemLoginScreen> = {
   title: 'Actions/ItemLogin/ItemLoginScreen',

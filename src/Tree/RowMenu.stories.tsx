@@ -1,10 +1,11 @@
-import { TABLE_CATEGORIES } from '@/utils/storybook';
 import { expect } from '@storybook/jest';
 import { Meta, type StoryObj } from '@storybook/react';
 import { fn } from '@storybook/test';
 import { userEvent, within } from '@storybook/testing-library';
 
-import RowMenu from './RowMenu';
+import { TABLE_CATEGORIES } from '@/utils/storybook.js';
+
+import RowMenu from './RowMenu.js';
 
 const item = { id: 'element-1', name: 'element-1', path: 'element_1' };
 

@@ -2,9 +2,9 @@ import { expect } from '@storybook/jest';
 import type { Meta, StoryObj } from '@storybook/react';
 import { screen, userEvent, within } from '@storybook/testing-library';
 
-import Avatar from '../Avatar/Avatar';
-import { MOCK_CURRENT_MEMBER } from '../utils/fixtures';
-import UserSwitch from './UserSwitch';
+import Avatar from '../Avatar/Avatar.js';
+import { MOCK_CURRENT_MEMBER } from '../utils/fixtures.js';
+import { UserSwitch } from './UserSwitch.js';
 
 const meta = {
   title: 'Common/UserSwitch/UserSwitch',

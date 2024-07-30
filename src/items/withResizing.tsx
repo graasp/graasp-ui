@@ -1,6 +1,6 @@
 import { Box, styled } from '@mui/material';
 
-import { FC, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Rnd } from 'react-rnd';
 
 import {
@@ -9,9 +9,9 @@ import {
   setIframeResizeHeightCookie,
 } from '@graasp/sdk';
 
-import { IFRAME_MIN_HEIGHT } from '../constants';
-import ResizingIcon from '../icons/ResizingIcon';
-import { ITEM_MAX_HEIGHT } from './constants';
+import { IFRAME_MIN_HEIGHT } from '../constants.js';
+import ResizingIcon from '../icons/ResizingIcon.js';
+import { ITEM_MAX_HEIGHT } from './constants.js';
 
 const iframeCommonStyles = {
   // remove ugly borders
@@ -38,12 +38,12 @@ export const AppIFrame = styled('iframe')<{
   height: !isResizable ? undefined : '100%',
 }));
 
-export interface WithResizingProps {
+export type WithResizingProps = {
   height: string | number;
   component: JSX.Element;
   memberId?: UUID;
   itemId: UUID;
-}
+};
 
 const resizeHandleStyles = {
   resizeHandleComponent: {
@@ -63,7 +63,7 @@ const withResizing =
     component,
     memberId,
     itemId,
-  }: WithResizingProps): FC<P> =>
+  }: WithResizingProps): ((props: P) => JSX.Element) =>
   () => {
     const [variableHeight, setVariableHeight] = useState<number | string>(
       getIframeResizeHeightCookie({ memberId, itemId }) ?? height,

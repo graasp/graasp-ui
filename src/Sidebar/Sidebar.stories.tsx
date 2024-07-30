@@ -1,13 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { CirclePlus, Snowflake, Sparkles } from 'lucide-react';
 
-import AcUnitIcon from '@mui/icons-material/AcUnit';
-import AddCircleIcon from '@mui/icons-material/AddCircle';
-import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
-import Typography from '@mui/material/Typography';
+import { Typography } from '@mui/material';
 
-import { MenuItem } from '../MainMenu';
-import { TABLE_CATEGORIES } from '../utils/storybook';
-import Sidebar from './Sidebar';
+import { MenuItem } from '@/MainMenu/MenuItem/MenuItem.js';
+
+import { TABLE_CATEGORIES } from '../utils/storybook.js';
+import Sidebar from './Sidebar.js';
 
 const meta: Meta<typeof Sidebar> = {
   title: 'Common/Sidebar',
@@ -49,9 +48,9 @@ export const Default: Story = {
     drawerHeaderContent: <Typography>My Title</Typography>,
     children: (
       <>
-        <MenuItem text='Item 1' icon={<AcUnitIcon />} />
-        <MenuItem text='Item 2' icon={<AddCircleIcon />} />
-        <MenuItem text='Item 3' icon={<AutoAwesomeIcon />} />
+        <MenuItem text='Item 1' icon={<Snowflake />} />
+        <MenuItem text='Item 2' icon={<CirclePlus />} />
+        <MenuItem text='Item 3' icon={<Sparkles />} />
       </>
     ),
   },

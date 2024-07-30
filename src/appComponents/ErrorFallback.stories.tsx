@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import ErrorFallback from './ErrorFallback';
-import { UserFeedback } from './types';
+import ErrorFallback from './ErrorFallback.js';
+import { UserFeedback } from './types.js';
 
 const meta: Meta<typeof ErrorFallback> = {
   title: 'Apps/ErrorFallback',

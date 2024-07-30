@@ -1,15 +1,13 @@
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import MeetingRoomIcon from '@mui/icons-material/MeetingRoom';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import MenuItem from '@mui/material/MenuItem';
-import Typography from '@mui/material/Typography';
-
-import { FC } from 'react';
+import {
+  AccountCircle as AccountCircleIcon,
+  MeetingRoom as MeetingRoomIcon,
+} from '@mui/icons-material';
+import { ListItemIcon, MenuItem, Typography } from '@mui/material';
 
 import { CompleteMember, redirect } from '@graasp/sdk';
 
-import Loader from '../Loader';
-import UserSwitch from './UserSwitch';
+import Loader from '../Loader/Loader.jsx';
+import { UserSwitch } from './UserSwitch.jsx';
 
 type UserMenuItem = {
   icon: JSX.Element;
@@ -48,7 +46,7 @@ interface Props {
   // useMembers: (ids: string[]) => UseQueryResult<ResultOfRecord<Member>>;
 }
 
-const UserSwitchWrapper: FC<Props> = ({
+export const UserSwitchWrapper = ({
   buildMemberMenuItemId,
   ButtonContent,
   buttonId,
@@ -71,7 +69,7 @@ const UserSwitchWrapper: FC<Props> = ({
   userMenuItems = [],
 
   // useMembers,
-}) => {
+}: Props): JSX.Element => {
   // get stored sessions
   // const sessions = getStoredSessions();
   // const { data } = useMembers(sessions.map(({ id }) => id));

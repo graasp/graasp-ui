@@ -2,8 +2,8 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import { ItemType, MimeTypes } from '@graasp/sdk';
 
-import { TABLE_CATEGORIES } from '../utils/storybook';
-import ItemIcon from './ItemIcon';
+import { TABLE_CATEGORIES } from '../utils/storybook.js';
+import ItemIcon from './ItemIcon.js';
 
 const meta: Meta<typeof ItemIcon> = {
   title: 'Icons/ItemIcon',

@@ -1,6 +1,6 @@
 import { Button, Typography, styled } from '@mui/material';
 
-import CookieConsent from 'react-cookie-consent';
+import { CookieConsent } from 'react-cookie-consent';
 
 // used to keep track of the decline button internally
 const DECLINE_BUTTON_ID = 'decline-button-id';
@@ -15,10 +15,10 @@ const StyledCookieConsent = styled(CookieConsent)(({ theme }) => ({
   },
 }));
 
-interface CookieButtonProps {
+type CookieButtonProps = {
   id: string;
   onClick: () => void;
-}
+};
 
 const CookieButton = (props: CookieButtonProps): JSX.Element => {
   const { id } = props;
@@ -33,14 +33,14 @@ const CookieButton = (props: CookieButtonProps): JSX.Element => {
   );
 };
 
-export interface CookiesBannerProps {
+export type CookiesBannerProps = {
   cookieName: string;
   acceptText?: string;
   declineButtonText?: string;
   domain?: string;
   expires?: number;
   text?: string;
-}
+};
 
 const CookiesBanner = ({
   cookieName,
