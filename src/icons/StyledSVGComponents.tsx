@@ -52,56 +52,57 @@ type StyledGProps = {
   /** color of path when disabled. */
   disabledColor?: string;
 };
-const StyledG = styled('g')<StyledGProps>(({
-  selected = false,
-  primaryColor,
-  primaryOpacity,
-  secondaryColor,
-  secondaryOpacity,
-  disabled = false,
-  disabledColor = '#CCC',
-  disableHover = true,
-}) => {
-  if (disabled) {
-    return {
-      path: {
-        fill: disabledColor,
-        fillOpacity: 0.6,
-      },
-      circle: {
-        fill: 'transparent',
-        fillOpacity: 1,
-      },
-    };
-  }
-
-  const hoverStyles = disableHover
-    ? {}
-    : {
-        '&:hover': {
-          circle: {
-            fill: primaryColor,
-            fillOpacity: primaryOpacity,
-          },
-          path: {
-            fill: secondaryColor,
-            fillOpacity: secondaryOpacity,
-          },
+const StyledG: (props: StyledGProps & { children: ReactNode }) => ReactNode =
+  styled('g')<StyledGProps>(({
+    selected = false,
+    primaryColor,
+    primaryOpacity,
+    secondaryColor,
+    secondaryOpacity,
+    disabled = false,
+    disabledColor = '#CCC',
+    disableHover = true,
+  }) => {
+    if (disabled) {
+      return {
+        path: {
+          fill: disabledColor,
+          fillOpacity: 0.6,
+        },
+        circle: {
+          fill: 'transparent',
+          fillOpacity: 1,
         },
       };
+    }
 
-  return {
-    path: {
-      fill: selected ? secondaryColor : primaryColor,
-      fillOpacity: selected ? secondaryOpacity : primaryOpacity,
-    },
-    circle: {
-      fill: selected ? primaryColor : 'transparent',
-      fillOpacity: selected ? primaryOpacity : secondaryOpacity,
-    },
+    const hoverStyles = disableHover
+      ? {}
+      : {
+          '&:hover': {
+            circle: {
+              fill: primaryColor,
+              fillOpacity: primaryOpacity,
+            },
+            path: {
+              fill: secondaryColor,
+              fillOpacity: secondaryOpacity,
+            },
+          },
+        };
 
-    ...hoverStyles,
-  };
-});
+    return {
+      path: {
+        fill: selected ? secondaryColor : primaryColor,
+        fillOpacity: selected ? secondaryOpacity : primaryOpacity,
+      },
+      circle: {
+        fill: selected ? primaryColor : 'transparent',
+        fillOpacity: selected ? primaryOpacity : secondaryOpacity,
+      },
+
+      ...hoverStyles,
+    };
+  });
 
 export { SVGWrapper, SVGPath, StyledG };

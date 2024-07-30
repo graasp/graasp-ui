@@ -10,8 +10,18 @@ import LinkCard from '@/Card/LinkCard.js';
 import withCollapse from '../Collapse/withCollapse.js';
 import { DEFAULT_LINK_SHOW_BUTTON } from '../constants.js';
 import { ITEM_MAX_HEIGHT } from './constants.js';
+import { iframeCommonStyles } from './iframeStyles.js';
 import withCaption from './withCaption.js';
-import withResizing, { StyledIFrame } from './withResizing.js';
+import withResizing from './withResizing.js';
+
+const StyledIFrame = styled('iframe')<{
+  isResizable?: boolean;
+  height?: string | number;
+}>(({ isResizable, height }) => ({
+  ...iframeCommonStyles,
+  maxHeight: !isResizable ? ITEM_MAX_HEIGHT : undefined,
+  height: !isResizable ? height : '100%',
+}));
 
 type LinkItemProps = {
   /**

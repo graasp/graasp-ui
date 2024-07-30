@@ -1,4 +1,4 @@
-import { Skeleton } from '@mui/material';
+import { Skeleton, styled } from '@mui/material';
 
 import { memo, useMemo, useRef, useState } from 'react';
 
@@ -12,8 +12,21 @@ import {
 import withCollapse from '../Collapse/withCollapse.js';
 import { SCREEN_MAX_HEIGHT } from '../constants.js';
 import { ContextPayload, Token, useAppCommunication } from './appItemHooks.js';
+import { iframeCommonStyles } from './iframeStyles.js';
 import withCaption from './withCaption.js';
-import withResizing, { AppIFrame } from './withResizing.js';
+import withResizing from './withResizing.js';
+
+const AppIFrame = styled('iframe')<{
+  isResizable?: boolean;
+}>(({ isResizable }) => ({
+  ...iframeCommonStyles,
+  /**
+   * IMPORTANT to not override the height when using dynamic sizing
+   * The present styles are applied with higher specificity, so the dynamic height
+   * provided by the app using the resizing mechanism is ignored.
+   */
+  height: !isResizable ? undefined : '100%',
+}));
 
 const DEFAULT_APP_HEIGHT = 400;
 const APP_ITEM_WIDTH = '100%';

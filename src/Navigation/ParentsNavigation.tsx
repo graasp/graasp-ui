@@ -22,26 +22,25 @@ const ParentsNavigation = ({
 }: ParentsProps): JSX.Element => (
   <Stack direction='row'>
     {parents.map(({ name, id }) => (
-      <Stack key={id}>
-        <Stack direction='row' alignItems='center' justifyContent='center'>
-          <Stack>
-            <NavigationLink
-              id={buildBreadcrumbsItemLinkId?.(id)}
-              to={buildToItemPath(id)}
-            >
-              <Typography>
-                {truncate(name, { length: ITEM_NAME_MAX_LENGTH })}
-              </Typography>
-            </NavigationLink>
-          </Stack>
-          <Stack>
-            <ItemMenu
-              useChildren={useChildren}
-              itemId={id}
-              buildToItemPath={buildToItemPath}
-            />
-          </Stack>
-        </Stack>
+      <Stack
+        key={id}
+        direction='row'
+        alignItems='center'
+        justifyContent='center'
+      >
+        <NavigationLink
+          id={buildBreadcrumbsItemLinkId?.(id)}
+          to={buildToItemPath(id)}
+        >
+          <Typography>
+            {truncate(name, { length: ITEM_NAME_MAX_LENGTH })}
+          </Typography>
+        </NavigationLink>
+        <ItemMenu
+          useChildren={useChildren}
+          itemId={id}
+          buildToItemPath={buildToItemPath}
+        />
       </Stack>
     ))}
   </Stack>
