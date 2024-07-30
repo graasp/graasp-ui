@@ -8,10 +8,11 @@ import {
   ActionButton,
   ActionButtonVariant,
   ColorVariants,
+  ColorVariantsType,
 } from '../../types.js';
 
 export type Props = {
-  color?: ColorVariants;
+  color?: ColorVariantsType;
   iconClassName?: string;
   id?: string;
   menuItemClassName?: string;
@@ -21,7 +22,7 @@ export type Props = {
 };
 
 const CopyButton = ({
-  color = 'primary',
+  color = ColorVariants.Primary,
   iconClassName,
   id = '',
   menuItemClassName,

@@ -25,6 +25,6 @@ type Story = StoryObj<typeof FilePdf>;
 
 export const Pdf: Story = {
   args: {
-    url: 'https://www.africau.edu/images/default/sample.pdf',
+    url: 'https://pdfobject.com/pdf/sample.pdf',
   },
 };

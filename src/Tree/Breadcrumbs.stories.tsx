@@ -2,8 +2,7 @@ import { expect } from '@storybook/jest';
 import { Meta, type StoryObj } from '@storybook/react';
 import { fn } from '@storybook/test';
 import { userEvent, within } from '@storybook/testing-library';
-
-import { Home } from '@mui/icons-material';
+import { Home } from 'lucide-react';
 
 import { TABLE_CATEGORIES } from '@/utils/storybook.js';
 
@@ -11,7 +10,7 @@ import Breadcrumbs from './Breadcrumbs.js';
 
 const elements = [
   {
-    icon: <Home sx={{ mr: 1 }} />,
+    icon: <Home />,
     id: 'element-1',
     name: 'element-1',
     path: 'element_1',

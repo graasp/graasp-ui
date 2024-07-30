@@ -1,12 +1,11 @@
-import {
-  Chat,
-  SpeakerNotesOff as SpeakerNotesOffIcon,
-} from '@mui/icons-material';
-import { IconButton, SvgIconOwnProps, SxProps, Tooltip } from '@mui/material';
+import { MessageSquareIcon, MessageSquareOffIcon } from 'lucide-react';
+
+import { IconButton, Tooltip } from '@mui/material';
 
 import { ActionButton, ActionButtonVariant, IconSizeVariant } from '@/types.js';
 
 import MenuItemButton from '../MenuItemButton.js';
+import { useButtonColor } from '../hooks.js';
 
 export type Props = {
   id?: string;
@@ -18,8 +17,7 @@ export type Props = {
   showChatText?: string;
   hideChatText?: string;
   type?: ActionButtonVariant;
-  color?: SvgIconOwnProps['color'];
-  sx?: SxProps;
+  color?: 'primary' | 'inherit';
 };
 
 const ChatboxButton = ({
@@ -32,13 +30,14 @@ const ChatboxButton = ({
   type,
   showChatText = 'Show Chat',
   hideChatText = 'Hide Chat',
-  color,
-  sx = {},
+  color = 'inherit',
 }: Props): JSX.Element => {
+  const { color: buttonColor } = useButtonColor(color);
+
   const icon = showChat ? (
-    <Chat color={color} sx={sx} />
+    <MessageSquareOffIcon color={buttonColor} />
   ) : (
-    <SpeakerNotesOffIcon color={color} sx={sx} />
+    <MessageSquareIcon color={buttonColor} />
   );
   const text = showChat ? hideChatText : showChatText;
 

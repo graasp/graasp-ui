@@ -1,12 +1,16 @@
-import { EyeOff, FoldVertical, Globe2, PinIcon } from 'lucide-react';
+import {
+  EyeOff,
+  FoldVertical,
+  Globe2,
+  MessageSquareTextIcon,
+  PinIcon,
+} from 'lucide-react';
 
 import { Avatar, AvatarGroup, Tooltip } from '@mui/material';
 
-import { ThumbnailSize } from '@graasp/sdk';
-
-import { ChatboxButton } from '@/buttons/index.js';
-
 import { LibraryIcon } from '../icons/index.js';
+
+const BADGE_SIZE = '18px';
 
 type ItemBadgeProps = {
   tooltip: string;
@@ -61,12 +65,12 @@ const ItemBadges = ({
     <AvatarGroup max={10}>
       {isHidden && (
         <ItemBadge backgroundColor={backgroundColor} tooltip={isHiddenTooltip}>
-          <EyeOff fontSize={ThumbnailSize.Small} />
+          <EyeOff size={BADGE_SIZE} />
         </ItemBadge>
       )}
       {isPinned && (
         <ItemBadge backgroundColor={backgroundColor} tooltip={isPinnedTooltip}>
-          <PinIcon fontSize={ThumbnailSize.Small} />
+          <PinIcon size={BADGE_SIZE} />
         </ItemBadge>
       )}
       {isPublished && (
@@ -79,7 +83,7 @@ const ItemBadges = ({
       )}
       {isPublic && (
         <ItemBadge backgroundColor={backgroundColor} tooltip={isPublicTooltip}>
-          <Globe2 fontSize={ThumbnailSize.Small} />
+          <Globe2 size={BADGE_SIZE} />
         </ItemBadge>
       )}
       {isCollapsible && (
@@ -87,7 +91,7 @@ const ItemBadges = ({
           backgroundColor={backgroundColor}
           tooltip={isCollapsibleTooltip}
         >
-          <FoldVertical fontSize={ThumbnailSize.Small} />
+          <FoldVertical size={BADGE_SIZE} />
         </ItemBadge>
       )}
       {showChatbox && (
@@ -95,17 +99,7 @@ const ItemBadges = ({
           backgroundColor={backgroundColor}
           tooltip={showChatboxTooltip}
         >
-          <ChatboxButton
-            size='small'
-            showChat
-            sx={{
-              width: 15,
-              height: 15,
-              marginLeft: '1px',
-              marginTop: '2px',
-              color: 'white',
-            }}
-          />
+          <MessageSquareTextIcon size={BADGE_SIZE} />
         </ItemBadge>
       )}
     </AvatarGroup>
