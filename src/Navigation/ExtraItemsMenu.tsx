@@ -21,7 +21,7 @@ export type ExtraItemsMenuProps = {
   name: string;
 };
 
-const Separator = <ChevronRightIcon />;
+const Separator = <ChevronRightIcon data-testid='NavigateNextIcon' />;
 
 const ExtraItemsMenu = ({
   icon = Separator,
