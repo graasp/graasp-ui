@@ -5,12 +5,12 @@ import { IconButton, ListItemIcon, MenuItem, Tooltip } from '@mui/material';
 import {
   ActionButton,
   ActionButtonVariant,
-  ColorVariants,
+  ColorVariantsType,
   IconSizeVariant,
 } from '@/types.js';
 
 type MoveButtonProps = {
-  color?: ColorVariants;
+  color?: ColorVariantsType;
   iconClassName?: string;
   id?: string;
   menuItemClassName?: string;

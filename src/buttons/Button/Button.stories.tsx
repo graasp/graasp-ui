@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
+import { ColorVariants } from '@/types.js';
+
 import { TABLE_CATEGORIES } from '../../utils/storybook.js';
 import { GraaspButton as Button } from './Button.js';
 
@@ -9,8 +11,10 @@ const meta: Meta<typeof Button> = {
 
   argTypes: {
     color: {
-      table: {
-        category: TABLE_CATEGORIES.MUI,
+      options: Object.keys(ColorVariants).map((x) => x.toLowerCase()),
+      control: {
+        type: 'radio',
+        labels: Object.keys(ColorVariants).map((x) => x.toLowerCase()),
       },
     },
     size: {

@@ -31,7 +31,7 @@ type Story = StoryObj<typeof meta>;
 export const ShowChat: Story = {
   args: {
     showChat: true,
-    color: 'error',
+    color: 'primary',
   },
 };
 

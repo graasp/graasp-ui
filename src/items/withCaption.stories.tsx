@@ -50,6 +50,6 @@ export default meta;
 type Story = StoryObj<typeof renderComponent>;
 
 export const CaptionOnImage = {} satisfies Story;
-export const CanteredCaption = {
+export const CenteredCaption = {
   args: { alignment: Alignment.Center },
 } satisfies Story;

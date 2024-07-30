@@ -7,12 +7,12 @@ import { MouseEventHandler } from 'react';
 import {
   ActionButton,
   ActionButtonVariant,
-  ColorVariants,
+  ColorVariantsType,
 } from '../../types.js';
 
 export type Props = {
   className?: string;
-  color?: ColorVariants;
+  color?: ColorVariantsType;
   id?: string;
   onClick?: MouseEventHandler<HTMLButtonElement | HTMLLIElement>;
   text?: string;

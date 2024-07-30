@@ -1,17 +1,19 @@
-import { Star, StarOff } from 'lucide-react';
+import { Heart } from 'lucide-react';
 
 import { IconButton, SxProps, Tooltip } from '@mui/material';
 
 import { MouseEventHandler } from 'react';
 
-import { ColorVariants, IconSizeVariant } from '@/types.js';
+import { ColorVariantsType, IconSizeVariant } from '@/types.js';
+
+import { useButtonColor } from '../hooks.js';
 
 export interface LikeButtonProps {
   ariaLabel: string;
   /**
    * IconButton's color
    */
-  color?: ColorVariants;
+  color?: ColorVariantsType;
   handleLike: MouseEventHandler;
   handleUnlike: MouseEventHandler;
   isLiked?: boolean;
@@ -41,6 +43,8 @@ const LikeButton = ({
   tooltipLike = 'Like',
   tooltipUnlike = 'Unlike',
 }: LikeButtonProps): JSX.Element => {
+  const { fill: fillColor } = useButtonColor(color);
+  const fill = isLiked ? fillColor : 'none';
   return (
     <Tooltip title={isLiked ? tooltipUnlike : tooltipLike}>
       <span>
@@ -50,7 +54,7 @@ const LikeButton = ({
           color={color}
           onClick={isLiked ? handleUnlike : handleLike}
         >
-          {isLiked ? <StarOff fontSize={size} /> : <Star fontSize={size} />}
+          <Heart fill={fill} fontSize={size} />
         </IconButton>
       </span>
     </Tooltip>

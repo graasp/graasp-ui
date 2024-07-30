@@ -4,6 +4,7 @@ import '@mui/material';
 import {
   AppBar,
   IconButton,
+  Stack,
   SxProps,
   Theme,
   Toolbar,
@@ -19,22 +20,6 @@ const CLOSE_DRAWER_LABEL = 'Close Drawer';
 
 export const buildHeaderGradient = (color: string): string =>
   `linear-gradient(90deg, ${PRIMARY_COLOR} 0%, ${PRIMARY_COLOR} 35%, ${color} 100%);`;
-
-type Props = {
-  context?: `${Context}` | Context;
-  centerContent?: JSX.Element;
-  handleDrawerOpen?: () => void;
-  handleDrawerClose?: () => void;
-  hasSidebar?: boolean;
-  id?: string;
-  menuButtonId?: string;
-  isSidebarOpen?: boolean;
-  leftContent?: JSX.Element;
-  openDrawerAriaLabel?: string;
-  closeDrawerAriaLabel?: string;
-  rightContent?: JSX.Element;
-  sx?: SxProps;
-};
 
 const StyledIconButton = styled(IconButton)(
   ({ theme, isSidebarOpen }: { theme: Theme; isSidebarOpen?: boolean }) => ({
@@ -53,6 +38,62 @@ const StyledToolbar = styled(Toolbar)({
   // justifyContent: 'space-between',
 });
 
+type HeaderMenuIconProps = {
+  isOpen: boolean;
+  buttonId?: string;
+  openAriaLabel: string;
+  closedAriaLabel: string;
+  handleClose?: () => void;
+  handleOpen?: () => void;
+};
+const HeaderMenuIcon = ({
+  isOpen,
+  buttonId,
+  openAriaLabel,
+  closedAriaLabel,
+  handleOpen,
+  handleClose,
+}: HeaderMenuIconProps): JSX.Element => {
+  if (isOpen) {
+    return (
+      <StyledIconButton
+        id={buttonId}
+        color='inherit'
+        aria-label={openAriaLabel}
+        onClick={handleClose}
+      >
+        <SidebarClose />
+      </StyledIconButton>
+    );
+  }
+  return (
+    <StyledIconButton
+      id={buttonId}
+      color='inherit'
+      aria-label={closedAriaLabel}
+      onClick={handleOpen}
+    >
+      <SidebarOpen />
+    </StyledIconButton>
+  );
+};
+
+type Props = {
+  context?: `${Context}` | Context;
+  centerContent?: JSX.Element;
+  handleDrawerOpen?: () => void;
+  handleDrawerClose?: () => void;
+  hasSidebar?: boolean;
+  id?: string;
+  menuButtonId?: string;
+  isSidebarOpen?: boolean;
+  leftContent?: JSX.Element;
+  openDrawerAriaLabel?: string;
+  closeDrawerAriaLabel?: string;
+  rightContent?: JSX.Element;
+  sx?: SxProps;
+};
+
 export const Header = ({
   context,
   centerContent,
@@ -68,37 +109,6 @@ export const Header = ({
   rightContent,
   sx,
 }: Props): JSX.Element => {
-  const renderMenuIcon = (): JSX.Element | null => {
-    if (!hasSidebar) {
-      return null;
-    }
-
-    if (!isSidebarOpen) {
-      return (
-        <StyledIconButton
-          sx={{ float: 'left' }}
-          id={id}
-          color='inherit'
-          aria-label={openDrawerAriaLabel}
-          onClick={handleDrawerOpen}
-        >
-          <SidebarOpen />
-        </StyledIconButton>
-      );
-    }
-    return (
-      <StyledIconButton
-        id={menuButtonId}
-        sx={{ float: 'left' }}
-        color='inherit'
-        aria-label={closeDrawerAriaLabel}
-        onClick={handleDrawerClose}
-      >
-        <SidebarClose />
-      </StyledIconButton>
-    );
-  };
-
   return (
     <>
       <AppBar
@@ -112,10 +122,26 @@ export const Header = ({
         }}
       >
         <StyledToolbar disableGutters>
-          {renderMenuIcon()}
-          {leftContent}
-          {centerContent}
-          {rightContent}
+          {hasSidebar && (
+            <HeaderMenuIcon
+              isOpen={isSidebarOpen}
+              buttonId={menuButtonId}
+              openAriaLabel={openDrawerAriaLabel}
+              closedAriaLabel={closeDrawerAriaLabel}
+              handleClose={handleDrawerClose}
+              handleOpen={handleDrawerOpen}
+            />
+          )}
+          <Stack
+            width='100%'
+            direction='row'
+            justifyContent='space-between'
+            alignItems='center'
+          >
+            {leftContent}
+            {centerContent}
+            {rightContent}
+          </Stack>
         </StyledToolbar>
       </AppBar>
       <Toolbar />

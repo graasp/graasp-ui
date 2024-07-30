@@ -17,4 +17,4 @@ export default meta;
 
 type Story = StoryObj<typeof ComponentWithResizing>;
 
-export const Authorized: Story = {};
+export const Default: Story = {};

@@ -1,5 +1,7 @@
 import { Direction } from '@mui/material';
 
+import { UnionOfConst } from '@graasp/sdk';
+
 export enum Variant {
   TEXT = 'text',
   RECT = 'rectangular',
@@ -20,14 +22,18 @@ export type TooltipPlacement =
   | 'top-start'
   | 'top';
 
-export type ColorVariants =
-  | 'inherit'
-  | 'primary'
-  | 'secondary'
-  | 'error'
-  | 'info'
-  | 'success'
-  | 'warning';
+export const ColorVariants = {
+  Inherit: 'inherit',
+  Default: 'default',
+  Primary: 'primary',
+  Secondary: 'secondary',
+  Error: 'error',
+  Info: 'info',
+  Success: 'success',
+  Warning: 'warning',
+} as const;
+
+export type ColorVariantsType = UnionOfConst<typeof ColorVariants>;
 
 export type IconSizeVariant = 'small' | 'medium' | 'large';
 

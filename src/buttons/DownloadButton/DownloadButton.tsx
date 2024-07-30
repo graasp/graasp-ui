@@ -2,6 +2,7 @@ import { DownloadIcon } from 'lucide-react';
 
 import {
   CircularProgress,
+  CircularProgressProps,
   IconButton,
   ListItemIcon,
   MenuItem,
@@ -14,7 +15,6 @@ import { DEFAULT_LOADER_SIZE } from '@/constants.js';
 import {
   ActionButton,
   ActionButtonVariant,
-  ColorVariants,
   TooltipPlacement,
 } from '@/types.js';
 
@@ -28,7 +28,7 @@ export type DownloadButtonProps = {
   /**
    * CircularProgress's color
    */
-  loaderColor: ColorVariants;
+  loaderColor: CircularProgressProps['color'];
   /**
    * CircularProgress's size
    */

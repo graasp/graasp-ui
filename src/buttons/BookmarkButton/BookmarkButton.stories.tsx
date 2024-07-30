@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { fn } from '@storybook/test';
 import { userEvent, within } from '@storybook/testing-library';
 
-import { ActionButton } from '@/types.js';
+import { ActionButton, ColorVariants } from '@/types.js';
 
 import { TABLE_CATEGORIES } from '../../utils/storybook.js';
 import BookmarkButton from './BookmarkButton.js';
@@ -23,8 +23,10 @@ const meta = {
       },
     },
     color: {
-      table: {
-        category: TABLE_CATEGORIES.MUI,
+      options: Object.keys(ColorVariants).map((x) => x.toLowerCase()),
+      control: {
+        type: 'radio',
+        labels: Object.keys(ColorVariants).map((x) => x.toLowerCase()),
       },
     },
     handleBookmark: {
