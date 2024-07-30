@@ -36,7 +36,9 @@ export { default as withCollapse } from './Collapse/withCollapse.js';
 export { default as GraaspLogo } from './GraaspLogo/GraaspLogo.js';
 
 export { default as ItemLoginAuthorization } from './itemLogin/ItemLoginAuthorization.js';
+export { default as ForbiddenContent } from './itemLogin/ForbiddenContent.js';
 
+export { default as Card } from './Card/Card.js';
 export { default as FolderCard } from './Card/FolderCard.js';
 export { default as LinkCard } from './Card/LinkCard.js';
 export { default as Thumbnail } from './Thumbnail/Thumbnail.js';
@@ -51,6 +53,7 @@ export { default as CreativeCommons } from './CreativeCommons/CreativeCommons.js
 export { default as CookiesBanner } from './CookiesBanner/CookiesBanner.js';
 
 export { default as withAuthorization } from './Authorization/withAuthorization.js';
+export { default as RedirectionContent } from './Authorization/RedirectionContent.js';
 
 export { UserSwitch } from './UserSwitch/UserSwitch.js';
 export { UserSwitchWrapper } from './UserSwitch/UserSwitchWrapper.js';
@@ -83,6 +86,7 @@ export {
   default as Breadcrumbs,
   type BreadcrumbsProps,
 } from './Tree/Breadcrumbs.js';
+export type { NavigationElement } from './Tree/types.js';
 
 export * from './ThemeContext/ThemeContext.js';
 
