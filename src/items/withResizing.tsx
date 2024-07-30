@@ -1,4 +1,4 @@
-import { Box, styled } from '@mui/material';
+import { Box } from '@mui/material';
 
 import { useEffect, useState } from 'react';
 import { Rnd } from 'react-rnd';
@@ -11,32 +11,6 @@ import {
 
 import { IFRAME_MIN_HEIGHT } from '../constants.js';
 import ResizingIcon from '../icons/ResizingIcon.js';
-import { ITEM_MAX_HEIGHT } from './constants.js';
-
-const iframeCommonStyles = {
-  // remove ugly borders
-  border: 'none',
-  width: '100%',
-};
-export const StyledIFrame = styled('iframe')<{
-  isResizable?: boolean;
-  height?: string | number;
-}>(({ isResizable, height }) => ({
-  ...iframeCommonStyles,
-  maxHeight: !isResizable ? ITEM_MAX_HEIGHT : undefined,
-  height: !isResizable ? height : '100%',
-}));
-export const AppIFrame = styled('iframe')<{
-  isResizable?: boolean;
-}>(({ isResizable }) => ({
-  ...iframeCommonStyles,
-  /**
-   * IMPORTANT to not override the height when using dynamic sizing
-   * The present styles are applied with higher specificity, so the dynamic height
-   * provided by the app using the resizing mechanism is ignored.
-   */
-  height: !isResizable ? undefined : '100%',
-}));
 
 export type WithResizingProps = {
   height: string | number;
