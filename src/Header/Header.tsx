@@ -4,7 +4,6 @@ import '@mui/material';
 import {
   AppBar,
   IconButton,
-  Stack,
   SxProps,
   Theme,
   Toolbar,
@@ -51,7 +50,7 @@ const StyledIconButton = styled(IconButton)(
 );
 
 const StyledToolbar = styled(Toolbar)({
-  justifyContent: 'space-between',
+  // justifyContent: 'space-between',
 });
 
 export const Header = ({
@@ -114,15 +113,9 @@ export const Header = ({
       >
         <StyledToolbar disableGutters>
           {renderMenuIcon()}
-          <Stack
-            direction='row'
-            justifyContent='space-between'
-            alignItems='center'
-          >
-            {leftContent}
-            {centerContent}
-            {rightContent}
-          </Stack>
+          {leftContent}
+          {centerContent}
+          {rightContent}
         </StyledToolbar>
       </AppBar>
       <Toolbar />
