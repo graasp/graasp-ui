@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { TABLE_CATEGORIES } from '../utils/storybook';
-import Avatar from './Avatar';
+import { TABLE_CATEGORIES } from '../utils/storybook.js';
+import Avatar from './Avatar.js';
 
 const meta = {
   title: 'Images/Avatar',

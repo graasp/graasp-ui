@@ -1,8 +1,9 @@
 import { Meta, StoryObj } from '@storybook/react';
 
-import { ActionButton } from '../../types';
-import { TABLE_CATEGORIES } from '../../utils/storybook';
-import MoveButton from './MoveButton';
+import { ActionButton } from '@/types.js';
+import { TABLE_CATEGORIES } from '@/utils/storybook.js';
+
+import MoveButton from './MoveButton.js';
 
 const meta: Meta<typeof MoveButton> = {
   title: 'Buttons/MoveButton',

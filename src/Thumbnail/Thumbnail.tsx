@@ -1,10 +1,9 @@
-import { SxProps } from '@mui/material';
-import Skeleton, { SkeletonProps } from '@mui/material/Skeleton';
+import { Skeleton, SkeletonProps, SxProps } from '@mui/material';
 
 import { ThumbnailSizeType } from '@graasp/sdk';
 
-import { StyledImage } from '../StyledComponents/StyledBaseComponents';
-import { Variant } from '../types';
+import { StyledImage } from '../StyledComponents/StyledBaseComponents.js';
+import { Variant } from '../types.js';
 
 type ThumbnailProps = {
   alt: string;

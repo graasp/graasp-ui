@@ -1,9 +1,10 @@
-import DragIndicatorIcon from '@mui/icons-material/DragIndicator';
+import { GripVertical } from 'lucide-react';
+
 import { Box, styled } from '@mui/material';
 
 import { FC, useEffect, useRef } from 'react';
 
-const StyledDragIndicatorIcon = styled(DragIndicatorIcon)({
+const StyledDragIndicatorIcon = styled(GripVertical)({
   '&:hover': {
     cursor: 'move',
   },

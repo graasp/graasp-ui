@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { TABLE_CATEGORIES } from '../utils/storybook';
-import PlayIcon from './PlayIcon';
+import { TABLE_CATEGORIES } from '../utils/storybook.js';
+import PlayIcon from './PlayIcon.js';
 
 const meta: Meta<typeof PlayIcon> = {
   title: 'Icons/Player',

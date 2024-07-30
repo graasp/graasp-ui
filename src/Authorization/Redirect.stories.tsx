@@ -3,8 +3,8 @@ import { expect, within } from '@storybook/test';
 
 import { BrowserRouter } from 'react-router-dom';
 
-import { BuildIcon } from '../icons';
-import withAuthorization from './withAuthorization';
+import BuildIcon from '../icons/BuildIcon.js';
+import withAuthorization from './withAuthorization.js';
 
 const ComponentWithAuthorization = withAuthorization(BuildIcon, {
   // use an empty string because we do not want to be redirected but the prop is mandatory

@@ -1,19 +1,20 @@
 import { SxProps, styled } from '@mui/material';
 
-import React, { FC, PropsWithChildren } from 'react';
+import { ReactNode } from 'react';
 
 type SVGWrapperProps = {
+  children: ReactNode;
   viewBox?: string;
   size?: number;
   sx?: SxProps;
 } & React.SVGProps<SVGElement>;
 
-const SVGWrapper: FC<PropsWithChildren<SVGWrapperProps>> = ({
+const SVGWrapper = ({
   children,
   viewBox,
   size,
   sx,
-}) => {
+}: SVGWrapperProps): JSX.Element => {
   const StyledSVG = styled('svg')({
     width: size,
     height: size,
@@ -28,7 +29,7 @@ const SVGWrapper: FC<PropsWithChildren<SVGWrapperProps>> = ({
 type SVGPathProps = {
   sx?: SxProps;
 } & React.SVGProps<SVGPathProps>;
-const SVGPath: FC<SVGPathProps> = ({ d, sx }) => {
+const SVGPath = ({ d, sx }: SVGPathProps): JSX.Element => {
   const StyledPath = styled('path')();
   return <StyledPath d={d} sx={sx} />;
 };

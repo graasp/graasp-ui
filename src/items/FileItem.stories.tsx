@@ -9,8 +9,8 @@ import {
   UnionOfConst,
 } from '@graasp/sdk';
 
-import { MOCK_MEMBER } from '../utils/fixtures';
-import FileItem from './FileItem';
+import { MOCK_MEMBER } from '../utils/fixtures.js';
+import FileItem from './FileItem.js';
 
 const meta = {
   title: 'Items/FileItem',

@@ -2,8 +2,9 @@ import { Meta, StoryObj } from '@storybook/react';
 
 import { DocumentItemExtraFlavor } from '@graasp/sdk';
 
-import { TextDisplay, withFlavor } from '..';
-import { HTML_CONTENT } from './fixtures';
+import TextDisplay from './TextDisplay.js';
+import { HTML_CONTENT } from './fixtures.js';
+import { withFlavor } from './withFlavor.js';
 
 const meta = {
   title: 'Text/withFlavor',

@@ -1,7 +1,7 @@
 import { v4 } from 'uuid';
 import { describe, expect, it } from 'vitest';
 
-import { isMemberIdValid } from './utils';
+import { isMemberIdValid } from './utils.js';
 
 describe('Validate MemberId', () => {
   it('Valid ID', () => {

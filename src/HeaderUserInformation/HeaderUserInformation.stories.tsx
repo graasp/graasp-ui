@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { TABLE_CATEGORIES } from '../utils/storybook';
-import HeaderUserInformation from './HeaderUserInformation';
+import { TABLE_CATEGORIES } from '../utils/storybook.js';
+import HeaderUserInformation from './HeaderUserInformation.js';
 
 const meta: Meta<typeof HeaderUserInformation> = {
   title: 'Common/HeaderUserInformation',

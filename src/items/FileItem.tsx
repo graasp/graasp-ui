@@ -1,8 +1,6 @@
-import { Box } from '@mui/material';
-import Alert from '@mui/material/Alert';
-import Skeleton from '@mui/material/Skeleton';
+import { Alert, Box, Skeleton } from '@mui/material';
 
-import React, { useEffect, useState } from 'react';
+import { memo, useEffect, useState } from 'react';
 
 import {
   ItemType,
@@ -13,16 +11,17 @@ import {
   getS3FileExtra,
 } from '@graasp/sdk';
 
-import withCollapse from '../Collapse/withCollapse';
-import { SCREEN_MAX_HEIGHT, UNEXPECTED_ERROR_MESSAGE } from '../constants';
-import { ERRORS } from '../enums';
-import DownloadButtonFileItem from './DownloadButtonFileItem';
-import FileAudio from './FileAudio';
-import FileImage from './FileImage';
-import FilePdf from './FilePdf';
-import FileVideo from './FileVideo';
-import { SizingWrapper } from './SizingWrapper';
-import { CaptionWrapper } from './withCaption';
+import { Errors } from '@/enums/errors.js';
+
+import withCollapse from '../Collapse/withCollapse.js';
+import { SCREEN_MAX_HEIGHT, UNEXPECTED_ERROR_MESSAGE } from '../constants.js';
+import DownloadButtonFileItem from './DownloadButtonFileItem.js';
+import FileAudio from './FileAudio.js';
+import FileImage from './FileImage.js';
+import FilePdf from './FilePdf.js';
+import FileVideo from './FileVideo.js';
+import { SizingWrapper } from './SizingWrapper.js';
+import { CaptionWrapper } from './withCaption.js';
 
 export type FileItemProps = {
   /**
@@ -74,7 +73,7 @@ const FileItem = ({
         if (urlFromContent) {
           setUrl(urlFromContent);
         } else {
-          setUrl(ERRORS.BLOB_URL);
+          setUrl(Errors.BlobURL);
         }
       }
 
@@ -97,7 +96,7 @@ const FileItem = ({
     );
   }
 
-  if (url === ERRORS.BLOB_URL) {
+  if (url === Errors.BlobURL) {
     return <Alert severity='error'>{errorMessage}</Alert>;
   }
 
@@ -170,4 +169,4 @@ const FileItem = ({
   return fileItem;
 };
 
-export default React.memo(FileItem);
+export default memo(FileItem);

@@ -4,7 +4,7 @@ import { screen, userEvent, within } from '@storybook/testing-library';
 
 import { FlagType } from '@graasp/sdk';
 
-import ItemFlagDialog from './ItemFlagDialog';
+import ItemFlagDialog from './ItemFlagDialog.js';
 
 const flags: FlagType[] = Object.values(FlagType);
 

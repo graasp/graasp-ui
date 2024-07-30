@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from '@storybook/react';
 
-import TextDisplay from './TextDisplay';
-import { HTML_CONTENT, HTML_TABLE, STYLED_HTML_TABLE } from './fixtures';
+import TextDisplay from './TextDisplay.js';
+import { HTML_CONTENT, HTML_TABLE, STYLED_HTML_TABLE } from './fixtures.js';
 
 const meta = {
   title: 'Text/TextDisplay',

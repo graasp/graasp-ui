@@ -1,20 +1,15 @@
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { SxProps, Typography, styled } from '@mui/material';
-import Accordion from '@mui/material/Accordion';
-import AccordionDetails from '@mui/material/AccordionDetails';
-import AccordionSummary from '@mui/material/AccordionSummary';
+import { ChevronDown } from 'lucide-react';
 
-import { FC, ReactElement, useState } from 'react';
+import { SxProps, Typography, styled } from '@mui/material';
+import { Accordion, AccordionDetails, AccordionSummary } from '@mui/material';
+
+import { ReactNode, useState } from 'react';
 
 const COLLAPSE_MIN_HEIGHT = 56;
 
 export type CollapseProps = {
-  children?: ReactElement;
+  children?: ReactNode;
   title: string;
-  /**
-   * @deprecated use children
-   */
-  content?: ReactElement;
   sx?: SxProps;
   onCollapse?: (c: boolean) => void;
 };
@@ -35,13 +30,12 @@ const StyledAccordionSummary = styled(AccordionSummary)(({ theme }) => ({
   '.Mui-expanded': {},
 }));
 
-const Collapse: FC<CollapseProps> = ({
+const Collapse = ({
   title,
-  content,
   sx,
   children,
   onCollapse,
-}) => {
+}: CollapseProps): JSX.Element => {
   const [expanded, setExpanded] = useState<boolean>(false);
 
   const handleChange = (expanded: boolean) => () => {
@@ -76,10 +70,10 @@ const Collapse: FC<CollapseProps> = ({
       expanded={expanded}
       onChange={handleChange(expanded)}
     >
-      <StyledAccordionSummary expandIcon={<ExpandMoreIcon />}>
+      <StyledAccordionSummary expandIcon={<ChevronDown />}>
         <Typography>{title}</Typography>
       </StyledAccordionSummary>
-      <AccordionDetails>{content ?? children}</AccordionDetails>
+      <AccordionDetails>{children}</AccordionDetails>
     </Accordion>
   );
 };

@@ -2,7 +2,8 @@ import { Box } from '@mui/material';
 
 import { DiscriminatedItem, ItemType } from '@graasp/sdk';
 
-import { ItemIcon, Thumbnail } from '..';
+import Thumbnail from '@/Thumbnail/Thumbnail.js';
+import ItemIcon from '@/icons/ItemIcon.js';
 
 export type CardThumbnailProps = {
   thumbnail?: string;

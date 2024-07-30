@@ -1,6 +1,6 @@
 import type { StoryObj } from '@storybook/react';
 
-import { SearchInput } from './SearchInput';
+import { SearchInput } from './SearchInput.js';
 
 export default {
   title: 'Common/Search',

@@ -2,9 +2,9 @@ import { expect } from '@storybook/jest';
 import type { Meta, StoryObj } from '@storybook/react';
 import { screen, userEvent, within } from '@storybook/testing-library';
 
-import Avatar from '../Avatar/Avatar';
-import { MOCK_CURRENT_MEMBER } from '../utils/fixtures';
-import UserSwitchWrapper from './UserSwitchWrapper';
+import Avatar from '../Avatar/Avatar.js';
+import { MOCK_CURRENT_MEMBER } from '../utils/fixtures.js';
+import UserSwitchWrapper from './UserSwitchWrapper.js';
 
 const meta: Meta<typeof UserSwitchWrapper> = {
   title: 'Common/UserSwitch/UserSwitchWrapper',

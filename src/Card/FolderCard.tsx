@@ -12,8 +12,9 @@ import { Link, LinkProps } from 'react-router-dom';
 
 import { ItemType } from '@graasp/sdk';
 
-import CardThumbnail from './CardThumbnail';
+import CardThumbnail from './CardThumbnail.js';
 
+// FIX: use the same constant
 export const CARD_HEIGHT = 76;
 
 type Props = {

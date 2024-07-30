@@ -3,9 +3,10 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { fn } from '@storybook/test';
 import { userEvent, within } from '@storybook/testing-library';
 
-import { ActionButton } from '../../types';
-import { TABLE_CATEGORIES } from '../../utils/storybook';
-import PinButton from './PinButton';
+import { ActionButton } from '@/types.js';
+import { TABLE_CATEGORIES } from '@/utils/storybook.js';
+
+import PinButton from './PinButton.js';
 
 const meta = {
   title: 'Buttons/PinButton',

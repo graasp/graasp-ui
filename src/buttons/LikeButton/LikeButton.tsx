@@ -1,10 +1,10 @@
-import { ColorVariants, IconSizeVariant } from '@/types';
+import { Star, StarOff } from 'lucide-react';
 
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { IconButton, SxProps, Tooltip } from '@mui/material';
 
 import { MouseEventHandler } from 'react';
+
+import { ColorVariants, IconSizeVariant } from '@/types.js';
 
 export interface LikeButtonProps {
   ariaLabel: string;
@@ -50,11 +50,7 @@ const LikeButton = ({
           color={color}
           onClick={isLiked ? handleUnlike : handleLike}
         >
-          {isLiked ? (
-            <FavoriteIcon fontSize={size} />
-          ) : (
-            <FavoriteBorderIcon fontSize={size} />
-          )}
+          {isLiked ? <StarOff fontSize={size} /> : <Star fontSize={size} />}
         </IconButton>
       </span>
     </Tooltip>

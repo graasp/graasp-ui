@@ -1,10 +1,10 @@
 import { SxProps, styled } from '@mui/material';
 
-import { FC, ReactEventHandler, useRef, useState } from 'react';
+import { ReactEventHandler, useRef, useState } from 'react';
 
-import { ITEM_MAX_HEIGHT } from './constants';
+import { ITEM_MAX_HEIGHT } from './constants.js';
 
-interface FilePdfProps {
+type FilePdfProps = {
   id?: string;
   url: string;
   height?: number | string;
@@ -14,20 +14,20 @@ interface FilePdfProps {
    * use a custom pdf reader from the link if defined
    * */
   pdfViewerLink?: string;
-}
+};
 
 const StyledEmbed = styled('embed')({
   maxHeight: ITEM_MAX_HEIGHT,
 });
 
-const FilePdf: FC<FilePdfProps> = ({
+const FilePdf = ({
   url,
   id,
   sx,
   height: defaultHeight,
   showCollapse,
   pdfViewerLink,
-}) => {
+}: FilePdfProps): JSX.Element => {
   const embedRef = useRef<HTMLEmbedElement>(null);
   const [height, setHeight] = useState<number | string>(
     defaultHeight ?? '100%',

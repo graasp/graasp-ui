@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { CSSProperties } from 'react';
 
 /**
  * @see https://etherpad.org/doc/v1.8.18/#index_embed-parameters
@@ -17,21 +17,21 @@ type EtherpadEmbedOptions = {
   '#L'?: number;
 };
 
-interface EtherpadItemProps {
+type EtherpadItemProps = {
   itemId: string;
   padUrl: string;
   iframeId?: string;
   options?: EtherpadEmbedOptions;
-  style?: React.CSSProperties;
-}
+  style?: CSSProperties;
+};
 
-const EtherpadItem: FC<EtherpadItemProps> = ({
+const EtherpadItem = ({
   itemId,
   padUrl,
   iframeId = `etherpad-container-${itemId}`,
   options,
   style,
-}) => {
+}: EtherpadItemProps): JSX.Element => {
   const src = new URL(padUrl);
   if (options) {
     Object.entries(options).forEach(([param, value]) =>

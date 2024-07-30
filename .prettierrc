@@ -6,8 +6,16 @@
   "bracketSpacing": true,
   "arrowParens": "always",
   "trailingComma": "all",
-  "importOrder": ["^@mui", "^react", "^@?graasp", "^[./]"],
+  "importOrder": [
+    "^@mui",
+    "^react",
+    "^@?graasp",
+    "^@/",
+    "^[./]"
+  ],
   "importOrderSeparation": true,
   "importOrderSortSpecifiers": true,
-  "plugins": ["@trivago/prettier-plugin-sort-imports"]
+  "plugins": [
+    "@trivago/prettier-plugin-sort-imports"
+  ]
 }

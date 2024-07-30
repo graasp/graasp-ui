@@ -1,9 +1,9 @@
 import { SxProps } from '@mui/material';
 
-import { PRIMARY_COLOR, SECONDARY_COLOR } from '../theme';
-import { SVGWrapper, StyledG } from './StyledSVGComponents';
+import { PRIMARY_COLOR, SECONDARY_COLOR } from '../theme.js';
+import { SVGWrapper, StyledG } from './StyledSVGComponents.js';
 
-export interface LibraryIconProps {
+export type LibraryIconProps = {
   disabled?: boolean;
   disabledColor?: string;
   primaryColor?: string;
@@ -15,7 +15,7 @@ export interface LibraryIconProps {
   size?: number;
   sx?: SxProps;
   disableHover?: boolean;
-}
+};
 
 const LibraryIcon = ({
   size = 50,

@@ -11,9 +11,9 @@ import { useTranslation } from 'react-i18next';
 
 import { ItemLoginSchemaType, UUID } from '@graasp/sdk';
 
-import Button from '../buttons/Button';
-import ForbiddenText from './ForbiddenText';
-import { isMemberIdValid } from './utils';
+import Button from '../buttons/Button/Button.js';
+import ForbiddenText from './ForbiddenText.js';
+import { isMemberIdValid } from './utils.js';
 
 export type SignInPropertiesType = {
   memberId?: string;

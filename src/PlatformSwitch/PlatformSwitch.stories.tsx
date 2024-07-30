@@ -3,12 +3,11 @@ import type { StoryObj } from '@storybook/react';
 import { userEvent, within } from '@storybook/testing-library';
 import type { BoundFunctions } from '@testing-library/dom';
 import { queries } from '@testing-library/dom';
+import { Snowflake } from 'lucide-react';
 
-import AcUnitIcon from '@mui/icons-material/AcUnit';
-
-import { PRIMARY_COLOR, SECONDARY_COLOR } from '../theme';
-import PlatformSwitch, { PlatformSwitchProps } from './PlatformSwitch';
-import { Platform } from './hooks';
+import { PRIMARY_COLOR, SECONDARY_COLOR } from '../theme.js';
+import PlatformSwitch, { PlatformSwitchProps } from './PlatformSwitch.js';
+import { Platform } from './hooks.js';
 
 export default {
   title: 'Main/PlatformSwitch',
@@ -169,7 +168,7 @@ export const CustomIconForMobile: Story = {
   args: {
     color: PRIMARY_COLOR,
     accentColor: SECONDARY_COLOR,
-    CustomMobileIcon: (props) => <AcUnitIcon {...props} />,
+    CustomMobileIcon: (props) => <Snowflake {...props} />,
   },
   parameters: {
     viewport: {

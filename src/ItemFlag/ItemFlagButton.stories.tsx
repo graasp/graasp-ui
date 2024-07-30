@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import ItemFlagButton from './ItemFlagButton';
+import ItemFlagButton from './ItemFlagButton.js';
 
 const meta: Meta<typeof ItemFlagButton> = {
   title: 'Actions/Flag/ItemFlagButton',

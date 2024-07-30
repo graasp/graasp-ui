@@ -1,7 +1,8 @@
 import type { StoryObj } from '@storybook/react';
 
-import { TABLE_CATEGORIES } from '../../utils/storybook';
-import LikeButton from './LikeButton';
+import { TABLE_CATEGORIES } from '@/utils/storybook.js';
+
+import LikeButton from './LikeButton.js';
 
 export default {
   title: 'Buttons/LikeButton',

@@ -6,12 +6,12 @@ import { LinkProps } from 'react-router-dom';
 
 import { DiscriminatedItem, ItemType } from '@graasp/sdk';
 
-import ItemMenu, { ItemMenuProps } from './ItemMenu';
-import CenterAlignWrapper from './common/CenterAlignWrapper';
-import NavigationLink from './common/NavigationLink';
-import { ITEM_NAME_MAX_LENGTH } from './common/constants';
+import ItemMenu, { ItemMenuProps } from './ItemMenu.js';
+import CenterAlignWrapper from './common/CenterAlignWrapper.js';
+import NavigationLink from './common/NavigationLink.js';
+import { ITEM_NAME_MAX_LENGTH } from './common/constants.js';
 
-export interface CurrentItemProps {
+export type CurrentItemProps = {
   item: DiscriminatedItem;
   buildBreadcrumbsItemLinkId?: (id: string) => string;
   buildIconId?: (id: string) => string;
@@ -20,7 +20,7 @@ export interface CurrentItemProps {
   useChildren: ItemMenuProps['useChildren'];
   buildToItemPath: (id: string) => LinkProps['to'];
   showArrow: boolean;
-}
+};
 const CurrentItemNavigation = ({
   item,
   buildBreadcrumbsItemLinkId,

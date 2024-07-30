@@ -1,4 +1,3 @@
-import { TABLE_CATEGORIES } from '@/utils/storybook';
 import { expect } from '@storybook/jest';
 import { Meta, type StoryObj } from '@storybook/react';
 import { fn } from '@storybook/test';
@@ -6,7 +5,9 @@ import { userEvent, within } from '@storybook/testing-library';
 
 import { Home } from '@mui/icons-material';
 
-import Breadcrumbs from './Breadcrumbs';
+import { TABLE_CATEGORIES } from '@/utils/storybook.js';
+
+import Breadcrumbs from './Breadcrumbs.js';
 
 const elements = [
   {

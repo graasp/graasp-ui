@@ -1,17 +1,17 @@
-import { Box, Link as MUILink, styled } from '@mui/material';
-import Alert from '@mui/material/Alert';
+import { Alert, Box, Link as MUILink, styled } from '@mui/material';
 
-import React, { Fragment, useEffect, useState } from 'react';
+import { Fragment, memo, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { LinkItemType, getLinkExtra } from '@graasp/sdk';
 
-import { LinkCard } from '..';
-import withCollapse from '../Collapse/withCollapse';
-import { DEFAULT_LINK_SHOW_BUTTON } from '../constants';
-import { ITEM_MAX_HEIGHT } from './constants';
-import withCaption from './withCaption';
-import withResizing, { StyledIFrame } from './withResizing';
+import LinkCard from '@/Card/LinkCard.js';
+
+import withCollapse from '../Collapse/withCollapse.js';
+import { DEFAULT_LINK_SHOW_BUTTON } from '../constants.js';
+import { ITEM_MAX_HEIGHT } from './constants.js';
+import withCaption from './withCaption.js';
+import withResizing, { StyledIFrame } from './withResizing.js';
 
 type LinkItemProps = {
   /**
@@ -235,4 +235,4 @@ const LinkItem = ({
   return linkItem;
 };
 
-export default React.memo(LinkItem);
+export default memo(LinkItem);

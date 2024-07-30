@@ -1,5 +1,3 @@
-import { Button } from '@/buttons';
-import { TABLE_CATEGORIES } from '@/utils/storybook';
 import { expect } from '@storybook/jest';
 import type { Meta, StoryObj } from '@storybook/react';
 import { fn } from '@storybook/test';
@@ -7,7 +5,10 @@ import { within } from '@storybook/testing-library';
 
 import { Box } from '@mui/material';
 
-import FileDropper from './FileDropper';
+import Button from '@/buttons/Button/Button.js';
+import { TABLE_CATEGORIES } from '@/utils/storybook.js';
+
+import FileDropper from './FileDropper.js';
 
 const meta = {
   title: 'upload/FileDropper',

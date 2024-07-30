@@ -14,7 +14,7 @@ import { HTML5Backend, NativeTypes } from 'react-dnd-html5-backend';
 
 import UploadFileButton, {
   UploadFileButtonProps,
-} from '../UploadFileButton/UploadFileButton';
+} from '../UploadFileButton/UploadFileButton.js';
 
 export type FileDropperProps = {
   id?: string;

@@ -4,16 +4,16 @@ import { Stack, Typography } from '@mui/material';
 
 import { DiscriminatedItem } from '@graasp/sdk';
 
-import ItemMenu, { ItemMenuProps } from './ItemMenu';
-import NavigationLink from './common/NavigationLink';
-import { ITEM_NAME_MAX_LENGTH } from './common/constants';
+import ItemMenu, { ItemMenuProps } from './ItemMenu.js';
+import NavigationLink from './common/NavigationLink.js';
+import { ITEM_NAME_MAX_LENGTH } from './common/constants.js';
 
-export interface ParentsProps {
+export type ParentsProps = {
   parents: DiscriminatedItem[];
   buildBreadcrumbsItemLinkId?: (id: string) => string;
   useChildren: ItemMenuProps['useChildren'];
   buildToItemPath: (id: string) => string;
-}
+};
 const ParentsNavigation = ({
   parents,
   useChildren,

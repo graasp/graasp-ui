@@ -1,15 +1,13 @@
 import { Box, Stack, SxProps, Tooltip, Typography } from '@mui/material';
 
-import { FC } from 'react';
-
-import { PRIMARY_COLOR } from '../theme';
-import { CCSharingVariant } from '../types';
-import By from './icons/By';
-import Cc from './icons/Cc';
-import Cc0 from './icons/Cc0';
-import Nc from './icons/Nc';
-import Nd from './icons/Nd';
-import Sa from './icons/Sa';
+import { PRIMARY_COLOR } from '../theme.js';
+import { CCSharingVariant } from '../types.js';
+import By from './icons/By.js';
+import Cc0 from './icons/Cc0.js';
+import Cc from './icons/Cc.js';
+import Nc from './icons/Nc.js';
+import Nd from './icons/Nd.js';
+import Sa from './icons/Sa.js';
 
 type CCIconProps = {
   title: string;
@@ -84,7 +82,7 @@ const getLicenseName = (
           : licenses.attrShareAlikeNC
     : licenses.cc0;
 
-const CCIcon: FC<CCIconProps> = ({ icon, title, description }) => {
+const CCIcon = ({ icon, title, description }: CCIconProps): JSX.Element => {
   const tooltip = (
     <Stack direction='column' spacing={1}>
       <Typography fontWeight='bold' variant='note'>
@@ -114,7 +112,7 @@ type CreativeCommonsProps = {
   sx?: SxProps;
 };
 
-const CreativeCommons: FC<CreativeCommonsProps> = (props) => {
+const CreativeCommons = (props: CreativeCommonsProps): JSX.Element => {
   const {
     requireAccreditation = true,
     allowCommercialUse,

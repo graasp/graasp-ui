@@ -1,4 +1,5 @@
-import OpenWith from '@mui/icons-material/OpenWith';
+import { Move } from 'lucide-react';
+
 import { IconButton, ListItemIcon, MenuItem, Tooltip } from '@mui/material';
 
 import {
@@ -6,7 +7,7 @@ import {
   ActionButtonVariant,
   ColorVariants,
   IconSizeVariant,
-} from '../../types';
+} from '@/types.js';
 
 type MoveButtonProps = {
   color?: ColorVariants;
@@ -29,7 +30,7 @@ const MoveButton = ({
   text = 'Move',
   type = ActionButton.ICON_BUTTON,
 }: MoveButtonProps): JSX.Element => {
-  const icon = <OpenWith />;
+  const icon = <Move />;
   switch (type) {
     case ActionButton.ICON:
       return icon;

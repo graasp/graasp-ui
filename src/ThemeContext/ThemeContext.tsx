@@ -3,16 +3,18 @@ import { CacheProvider, EmotionCache } from '@emotion/react';
 import { prefixer } from 'stylis';
 import rtlPlugin from 'stylis-plugin-rtl';
 
-import { Direction, SxProps } from '@mui/material';
-import { ThemeProvider as MuiThemeProvider } from '@mui/material';
-import { SelectProps as MuiSelectProps } from '@mui/material/Select';
+import {
+  Direction,
+  SelectProps as MuiSelectProps,
+  ThemeProvider as MuiThemeProvider,
+  SxProps,
+} from '@mui/material';
 
-import { useContext, useEffect, useMemo } from 'react';
-import { createContext, useState } from 'react';
+import { createContext, useContext, useEffect, useMemo, useState } from 'react';
 
-import { buildTheme } from '../theme';
-import { I18nInstance } from '../types';
-import LanguageSelect from './LanguageSelect';
+import { buildTheme } from '../theme.js';
+import { I18nInstance } from '../types.js';
+import LanguageSelect from './LanguageSelect.js';
 
 type Props = {
   children: JSX.Element | JSX.Element[];
@@ -38,7 +40,10 @@ const ThemeContext = createContext<Context>({
 const getCacheForDirection = (direction?: Direction): EmotionCache =>
   createCache({
     key: `mui-dir-${direction}`,
-    stylisPlugins: [prefixer, ...(direction === 'rtl' ? [rtlPlugin] : [])],
+    stylisPlugins: [
+      prefixer,
+      ...(direction === 'rtl' ? [rtlPlugin.default] : []),
+    ],
   });
 
 const ThemeProvider = ({

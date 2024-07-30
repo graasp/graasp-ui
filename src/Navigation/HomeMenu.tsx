@@ -1,5 +1,5 @@
-import HomeIcon from '@mui/icons-material/Home';
-import NavigateNextIcon from '@mui/icons-material/NavigateNext';
+import { ChevronRightIcon, HomeIcon } from 'lucide-react';
+
 import {
   IconButton,
   IconButtonProps,
@@ -12,9 +12,9 @@ import {
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import NavigationLink from './common/NavigationLink';
+import NavigationLink from './common/NavigationLink.js';
 
-const Separator = <NavigateNextIcon />;
+const Separator = <ChevronRightIcon />;
 
 type Props = {
   selected: { name: string; id: string; to: string };

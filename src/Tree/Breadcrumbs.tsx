@@ -2,7 +2,7 @@ import truncate from 'lodash.truncate';
 
 import { Button, Breadcrumbs as MuiBreadcrumbs, Tooltip } from '@mui/material';
 
-import type { NavigationElement } from './types';
+import type { NavigationElement } from './types.js';
 
 const DEFAULT_MAX_LENGTH = 15;
 

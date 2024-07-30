@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import EtherpadIcon from './EtherpadIcon';
+import EtherpadIcon from './EtherpadIcon.js';
 
 const meta: Meta<typeof EtherpadIcon> = {
   title: 'Icons/Etherpad',

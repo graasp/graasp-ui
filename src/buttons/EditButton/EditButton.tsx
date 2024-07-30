@@ -1,4 +1,5 @@
-import EditIcon from '@mui/icons-material/Edit';
+import { Edit2 } from 'lucide-react';
+
 import {
   IconButton,
   ListItemIcon,
@@ -9,11 +10,7 @@ import {
 
 import { MouseEventHandler } from 'react';
 
-import {
-  ActionButton,
-  ActionButtonVariant,
-  IconSizeVariant,
-} from '../../types';
+import { ActionButton, ActionButtonVariant, IconSizeVariant } from '@/types.js';
 
 export type Props = {
   id?: string;
@@ -34,7 +31,7 @@ const EditButton = ({
   size = 'small',
   type = ActionButton.ICON_BUTTON,
 }: Props): JSX.Element => {
-  const icon = <EditIcon />;
+  const icon = <Edit2 />;
   switch (type) {
     case ActionButton.ICON:
       return icon;

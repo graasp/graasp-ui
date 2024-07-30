@@ -1,11 +1,11 @@
-import Typography, { TypographyProps } from '@mui/material/Typography';
+import { Typography, TypographyProps } from '@mui/material';
 
-interface QuestionLabelProps {
+type QuestionLabelProps = {
   typographyProps?: TypographyProps;
   children: JSX.Element | JSX.Element[];
   width?: string;
   dataCy?: string;
-}
+};
 
 const QuestionLabel = ({
   typographyProps,

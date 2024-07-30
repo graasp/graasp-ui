@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { TABLE_CATEGORIES } from '../../utils/storybook';
-import { GraaspButton as Button } from './Button';
+import { TABLE_CATEGORIES } from '../../utils/storybook.js';
+import { GraaspButton as Button } from './Button.js';
 
 const meta: Meta<typeof Button> = {
   title: 'Buttons/Button',

@@ -3,9 +3,10 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { fn } from '@storybook/test';
 import { userEvent, within } from '@storybook/testing-library';
 
-import { ActionButton } from '../../types';
-import { TABLE_CATEGORIES } from '../../utils/storybook';
-import ShareButton from './ShareButton';
+import { ActionButton } from '@/types.js';
+import { TABLE_CATEGORIES } from '@/utils/storybook.js';
+
+import ShareButton from './ShareButton.js';
 
 const meta: Meta<typeof ShareButton> = {
   title: 'Buttons/ShareButton',
@@ -27,17 +28,7 @@ export default meta;
 
 type Story = StoryObj<typeof ShareButton>;
 
-export const Default: Story = {
-  args: {
-    open: false,
-  },
-};
-
-export const SharingOpen: Story = {
-  args: {
-    open: true,
-  },
-};
+export const Default: Story = {};
 
 export const MenuItem: Story = {
   args: {

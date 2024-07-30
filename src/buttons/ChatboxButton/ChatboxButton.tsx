@@ -1,10 +1,12 @@
-import { ActionButton, ActionButtonVariant, IconSizeVariant } from '@/types';
-
-import { Chat } from '@mui/icons-material';
-import SpeakerNotesOffIcon from '@mui/icons-material/SpeakerNotesOff';
+import {
+  Chat,
+  SpeakerNotesOff as SpeakerNotesOffIcon,
+} from '@mui/icons-material';
 import { IconButton, SvgIconOwnProps, SxProps, Tooltip } from '@mui/material';
 
-import MenuItemButton from '../MenuItemButton';
+import { ActionButton, ActionButtonVariant, IconSizeVariant } from '@/types.js';
+
+import MenuItemButton from '../MenuItemButton.js';
 
 export type Props = {
   id?: string;

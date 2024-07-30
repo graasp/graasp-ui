@@ -1,17 +1,15 @@
 import { SxProps, Typography, styled } from '@mui/material';
 
-import { FC } from 'react';
-
-interface Props {
+type Props = {
   emptyMessage?: string;
   sx?: SxProps;
-}
+};
 
 const EmptyText = styled(Typography)(({ theme }) => ({
   margin: theme.spacing(2, 0),
 }));
 
-const NoRowsComponent: FC<Props> = ({ emptyMessage, sx }) => {
+const NoRowsComponent = ({ emptyMessage, sx }: Props): JSX.Element => {
   return (
     <EmptyText align='center' sx={sx}>
       {emptyMessage ?? 'No rows to display'}

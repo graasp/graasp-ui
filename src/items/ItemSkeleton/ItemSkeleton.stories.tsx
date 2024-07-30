@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import { ItemType } from '@graasp/sdk';
 
-import ItemSkeleton from './ItemSkeleton';
+import ItemSkeleton from './ItemSkeleton.js';
 
 const meta: Meta<typeof ItemSkeleton> = {
   title: 'Items/ItemSkeleton',

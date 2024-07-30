@@ -1,18 +1,22 @@
-import { styled, useMediaQuery, useTheme } from '@mui/material';
-import Box from '@mui/material/Box';
-import Divider from '@mui/material/Divider';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
-import Skeleton from '@mui/material/Skeleton';
-import Tooltip from '@mui/material/Tooltip';
-import Typography from '@mui/material/Typography';
+import {
+  Box,
+  Divider,
+  Menu,
+  MenuItem,
+  Skeleton,
+  Tooltip,
+  Typography,
+  styled,
+  useMediaQuery,
+  useTheme,
+} from '@mui/material';
 
 import { MouseEventHandler, ReactElement, useState } from 'react';
 
 import { CompleteMember, Member, isPseudoMember } from '@graasp/sdk';
 
-import { SHORT_TEXT_WIDTH, SMALL_AVATAR_SIZE } from '../constants';
-import { Variant } from '../types';
+import { SHORT_TEXT_WIDTH, SMALL_AVATAR_SIZE } from '../constants.js';
+import { Variant } from '../types.js';
 
 const HEADER_USERNAME_MAX_WIDTH = 120;
 
@@ -38,7 +42,7 @@ type Props = {
   signedOutTooltipText?: string;
 };
 
-const UserSwitch = ({
+export const UserSwitch = ({
   Actions,
   ButtonContent,
   buttonId,

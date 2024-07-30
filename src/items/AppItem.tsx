@@ -1,6 +1,6 @@
-import Skeleton from '@mui/material/Skeleton';
+import { Skeleton } from '@mui/material';
 
-import React, { useMemo, useRef, useState } from 'react';
+import { memo, useMemo, useRef, useState } from 'react';
 
 import {
   AppItemType,
@@ -9,11 +9,11 @@ import {
   getAppExtra,
 } from '@graasp/sdk';
 
-import withCollapse from '../Collapse/withCollapse';
-import { SCREEN_MAX_HEIGHT } from '../constants';
-import { ContextPayload, Token, useAppCommunication } from './appItemHooks';
-import withCaption from './withCaption';
-import withResizing, { AppIFrame } from './withResizing';
+import withCollapse from '../Collapse/withCollapse.js';
+import { SCREEN_MAX_HEIGHT } from '../constants.js';
+import { ContextPayload, Token, useAppCommunication } from './appItemHooks.js';
+import withCaption from './withCaption.js';
+import withResizing, { AppIFrame } from './withResizing.js';
 
 const DEFAULT_APP_HEIGHT = 400;
 const APP_ITEM_WIDTH = '100%';
@@ -158,4 +158,4 @@ const AppItem = ({
   return component;
 };
 
-export default React.memo(AppItem);
+export default memo(AppItem);

@@ -1,13 +1,12 @@
-import Public from '@mui/icons-material/Public';
-import PushPin from '@mui/icons-material/PushPin';
-import UnfoldLess from '@mui/icons-material/UnfoldLess';
-import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import { EyeOff, FoldVertical, Globe2, PinIcon } from 'lucide-react';
+
 import { Avatar, AvatarGroup, Tooltip } from '@mui/material';
 
 import { ThumbnailSize } from '@graasp/sdk';
 
-import { ChatboxButton } from '../buttons';
-import { LibraryIcon } from '../icons';
+import { ChatboxButton } from '@/buttons/index.js';
+
+import { LibraryIcon } from '../icons/index.js';
 
 type ItemBadgeProps = {
   tooltip: string;
@@ -62,12 +61,12 @@ const ItemBadges = ({
     <AvatarGroup max={10}>
       {isHidden && (
         <ItemBadge backgroundColor={backgroundColor} tooltip={isHiddenTooltip}>
-          <VisibilityOff fontSize={ThumbnailSize.Small} />
+          <EyeOff fontSize={ThumbnailSize.Small} />
         </ItemBadge>
       )}
       {isPinned && (
         <ItemBadge backgroundColor={backgroundColor} tooltip={isPinnedTooltip}>
-          <PushPin fontSize={ThumbnailSize.Small} />
+          <PinIcon fontSize={ThumbnailSize.Small} />
         </ItemBadge>
       )}
       {isPublished && (
@@ -80,7 +79,7 @@ const ItemBadges = ({
       )}
       {isPublic && (
         <ItemBadge backgroundColor={backgroundColor} tooltip={isPublicTooltip}>
-          <Public fontSize={ThumbnailSize.Small} />
+          <Globe2 fontSize={ThumbnailSize.Small} />
         </ItemBadge>
       )}
       {isCollapsible && (
@@ -88,7 +87,7 @@ const ItemBadges = ({
           backgroundColor={backgroundColor}
           tooltip={isCollapsibleTooltip}
         >
-          <UnfoldLess fontSize={ThumbnailSize.Small} />
+          <FoldVertical fontSize={ThumbnailSize.Small} />
         </ItemBadge>
       )}
       {showChatbox && (

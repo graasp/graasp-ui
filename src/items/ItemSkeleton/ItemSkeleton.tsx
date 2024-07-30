@@ -1,15 +1,13 @@
-import Skeleton from '@mui/material/Skeleton';
-
-import React from 'react';
+import { Skeleton } from '@mui/material';
 
 import { DiscriminatedItem, ItemType, UnionOfConst } from '@graasp/sdk';
 
-import { SCREEN_MAX_HEIGHT } from '../../constants';
+import { SCREEN_MAX_HEIGHT } from '../../constants.js';
 
 const SKELETON_COLLAPSE_HEIGHT = '3.5em';
 const SKELETON_FOLDER_BUTTON_HEIGHT = '8.125em';
 
-export interface ItemSkeletonProps {
+export type ItemSkeletonProps = {
   /**
    * prevent displaying skeleton if item is a folder
    */
@@ -17,14 +15,14 @@ export interface ItemSkeletonProps {
   isCollapsible?: boolean;
   itemType: DiscriminatedItem['type'];
   screenMaxHeight?: number;
-}
+};
 
-const ItemSkeleton: React.FC<ItemSkeletonProps> = ({
+const ItemSkeleton = ({
   isChildren,
   isCollapsible,
   itemType,
   screenMaxHeight,
-}) => {
+}: ItemSkeletonProps): JSX.Element | null => {
   switch (true) {
     case isCollapsible: {
       return (

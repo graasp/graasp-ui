@@ -1,8 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { fn } from '@storybook/test';
 
-import { TABLE_CATEGORIES } from '../../utils/storybook';
-import SaveButton from './SaveButton';
+import { TABLE_CATEGORIES } from '@/utils/storybook.js';
+
+import SaveButton from './SaveButton.js';
 
 const meta: Meta<typeof SaveButton> = {
   title: 'Buttons/SaveButton',

@@ -48,8 +48,7 @@
     "node": ">=20"
   },
   "scripts": {
-    "build": "tsc --noEmit -p tsconfig.build.json && vite build",
-    "build:ts": "tsc && tsc-alias",
+    "build": "tsc -p tsconfig.build.json && tsc-alias -p tsconfig.build.json",
     "prepack": "yarn build",
     "prepare": "yarn prepack && yarn hooks:install",
     "lint": "eslint src",
@@ -177,6 +176,7 @@
     "stylis-plugin-rtl": "^2.1.1",
     "ts-jest": "29.2.3",
     "ts-node": "10.9.2",
+    "tsc-alias": "1.8.10",
     "typescript": "5.5.4",
     "vite": "5.3.4",
     "vite-plugin-dts": "3.9.1",
