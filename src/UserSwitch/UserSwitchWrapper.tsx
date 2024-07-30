@@ -6,8 +6,8 @@ import { ListItemIcon, MenuItem, Typography } from '@mui/material';
 
 import { CompleteMember, redirect } from '@graasp/sdk';
 
-import Loader from '../Loader/Loader.jsx';
-import { UserSwitch } from './UserSwitch.jsx';
+import Loader from '../Loader/Loader.js';
+import { UserSwitch } from './UserSwitch.js';
 
 type UserMenuItem = {
   icon: JSX.Element;
