@@ -14,7 +14,7 @@ import { Link, LinkProps } from 'react-router-dom';
 
 import { DiscriminatedItem } from '@graasp/sdk';
 
-export const Separator = <ChevronRightIcon />;
+export const Separator = <ChevronRightIcon data-testid='NavigateNextIcon' />;
 
 export type ItemMenuProps = {
   buildIconId?: (id: string) => string;

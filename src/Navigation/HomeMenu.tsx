@@ -14,7 +14,7 @@ import { Link } from 'react-router-dom';
 
 import NavigationLink from './common/NavigationLink.js';
 
-const Separator = <ChevronRightIcon />;
+const Separator = <ChevronRightIcon data-testid='NavigateNextIcon' />;
 
 type Props = {
   selected: { name: string; id: string; to: string };
