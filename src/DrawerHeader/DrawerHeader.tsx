@@ -37,7 +37,11 @@ export const DrawerHeader = ({
       {children}
       <StyledListItemSecondaryAction>
         <IconButton onClick={handleDrawerClose}>
-          {dir === 'ltr' ? <ChevronLeft /> : <ChevronRight />}
+          {dir === 'ltr' ? (
+            <ChevronLeft data-testid='ChevronLeftIcon' />
+          ) : (
+            <ChevronRight data-testid='ChevronRightIcon' />
+          )}
         </IconButton>
       </StyledListItemSecondaryAction>
     </StyledListItem>
