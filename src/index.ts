@@ -34,12 +34,11 @@ export * from './DynamicTreeView';
 
 export { default as withCollapse } from './Collapse/withCollapse';
 
-export { default as PermissionedComponent } from './PermissionedComponent';
-
 export { default as GraaspLogo } from './GraaspLogo';
 
 export { default as ItemLoginAuthorization } from './itemLogin';
 export * from './itemLogin';
+export { ItemLoginScreen } from './itemLogin/ItemLoginScreen';
 
 export { default as Card } from './Card';
 export { default as FolderCard } from './Card/FolderCard';

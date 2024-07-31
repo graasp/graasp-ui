@@ -49,7 +49,7 @@ export type ItemLoginScreenProps = {
   usernameInputId?: string;
 };
 
-const ItemLoginScreen = ({
+export const ItemLoginScreen = ({
   ForbiddenContent = <ForbiddenText />,
   itemId,
   itemLoginSchemaType,
