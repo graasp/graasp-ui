@@ -5,7 +5,7 @@ import {
   SxProps,
 } from '@mui/material';
 
-import Thumbnail from '../Thumbnail';
+import Thumbnail from '../Thumbnail/Thumbnail.js';
 
 type AvatarProps = {
   alt: string;

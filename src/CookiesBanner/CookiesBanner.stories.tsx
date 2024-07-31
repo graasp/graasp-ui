@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import CookiesBanner from './CookiesBanner';
+import CookiesBanner from './CookiesBanner.js';
 
 const cookieName = 'cookieName';
 

@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import CreativeCommons from '.';
-import { PRIMARY_COLOR } from '../theme';
-import { CCSharing } from '../types';
-import { TABLE_CATEGORIES } from '../utils/storybook';
+import { PRIMARY_COLOR } from '../theme.js';
+import { CCSharing } from '../types.js';
+import { TABLE_CATEGORIES } from '../utils/storybook.js';
+import CreativeCommons from './CreativeCommons.js';
 
 const TABLE_CATEGORY_LICENSE = 'License';
 const TABLE_CATEGORY_APPEARANCE = 'Appearance';

@@ -1,8 +1,6 @@
-import { FC } from 'react';
+import ForbiddenText from './ForbiddenText.js';
 
-import ForbiddenText from './ForbiddenText';
-
-export interface ForbiddenContentProps {
+export type ForbiddenContentProps = {
   /**
    * Id to put on the root component
    */
@@ -19,14 +17,14 @@ export interface ForbiddenContentProps {
    * Text to display if the member is authenticated (logged-in)
    */
   authenticatedText?: string;
-}
+};
 
-const ForbiddenContent: FC<ForbiddenContentProps> = ({
+const ForbiddenContent = ({
   id,
   memberId,
   title,
   authenticatedText,
-}) => (
+}: ForbiddenContentProps): JSX.Element => (
   <ForbiddenText
     id={id}
     title={title}

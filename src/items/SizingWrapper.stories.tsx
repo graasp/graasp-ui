@@ -4,7 +4,7 @@ import { Container } from '@mui/material';
 
 import { MaxWidth } from '@graasp/sdk';
 
-import { SizingWrapper } from './SizingWrapper';
+import { SizingWrapper } from './SizingWrapper.js';
 
 const children = <img width='100%' src='https://picsum.photos/1000' />;
 

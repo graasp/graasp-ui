@@ -1,13 +1,14 @@
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import { styled, useTheme } from '@mui/material';
-import IconButton from '@mui/material/IconButton';
-import ListItem from '@mui/material/ListItem';
-import ListItemSecondaryAction from '@mui/material/ListItemSecondaryAction';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
-import { FC } from 'react';
+import {
+  IconButton,
+  ListItem,
+  ListItemSecondaryAction,
+  styled,
+  useTheme,
+} from '@mui/material';
 
-import { DEFAULT_DIRECTION, DRAWER_HEADER_HEIGHT } from '../constants';
+import { DEFAULT_DIRECTION, DRAWER_HEADER_HEIGHT } from '../constants.js';
 
 const StyledListItem = styled(ListItem)({
   height: DRAWER_HEADER_HEIGHT,
@@ -24,11 +25,11 @@ export interface DrawerHeaderProps {
   handleDrawerClose?: () => void;
 }
 
-export const DrawerHeader: FC<DrawerHeaderProps> = ({
+export const DrawerHeader = ({
   handleDrawerClose,
   children,
   direction,
-}) => {
+}: DrawerHeaderProps): JSX.Element => {
   const theme = useTheme();
   const dir = direction ?? theme?.direction ?? DEFAULT_DIRECTION;
   return (
@@ -36,7 +37,11 @@ export const DrawerHeader: FC<DrawerHeaderProps> = ({
       {children}
       <StyledListItemSecondaryAction>
         <IconButton onClick={handleDrawerClose}>
-          {dir === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+          {dir === 'ltr' ? (
+            <ChevronLeft data-testid='ChevronLeftIcon' />
+          ) : (
+            <ChevronRight data-testid='ChevronRightIcon' />
+          )}
         </IconButton>
       </StyledListItemSecondaryAction>
     </StyledListItem>

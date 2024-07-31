@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import ResizingIcon from './ResizingIcon';
+import ResizingIcon from './ResizingIcon.js';
 
 const meta: Meta<typeof ResizingIcon> = {
   title: 'Icons/ResizingIcon',

@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { PRIMARY_COLOR } from '../theme';
-import GraaspLogo from './GraaspLogo';
+import { PRIMARY_COLOR } from '../theme.js';
+import GraaspLogo from './GraaspLogo.js';
 
 const meta: Meta<typeof GraaspLogo> = {
   title: 'Icons/Graasp',

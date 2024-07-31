@@ -1,4 +1,4 @@
-export type GraaspLogoProps = {
+type GraaspLogoProps = {
   height: number;
   /**
    * sx contains 'fill' which defines a color for the logo

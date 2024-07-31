@@ -1,12 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import Avatar from '@mui/material/Avatar';
-import Typography from '@mui/material/Typography';
+import { Avatar, Typography } from '@mui/material';
 
 import { Context } from '@graasp/sdk';
 
-import { TABLE_CATEGORIES } from '../utils/storybook';
-import Header from './Header';
+import { TABLE_CATEGORIES } from '../utils/storybook.js';
+import Header from './Header.js';
 
 const meta: Meta<typeof Header> = {
   title: 'Common/Header',

@@ -1,5 +1,3 @@
-import TextDisplay from '@/TextDisplay/TextDisplay';
-
 import { Stack } from '@mui/material';
 
 import { ReactNode } from 'react';
@@ -13,6 +11,8 @@ import {
   MimeTypes,
   getMimetype,
 } from '@graasp/sdk';
+
+import TextDisplay from '@/TextDisplay/TextDisplay.js';
 
 export const getDefaultFileAlignmentSetting = (
   mimetype?: string,

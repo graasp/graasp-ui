@@ -1,4 +1,4 @@
-import Collapse from './Collapse';
+import Collapse from './Collapse.js';
 
 const withCollapse = <T extends { name: string; displayName?: string }>({
   item,

@@ -4,7 +4,7 @@ import { Box } from '@mui/material';
 import { useDrop } from 'react-dnd';
 import { NativeTypes } from 'react-dnd-html5-backend';
 
-import type { DraggableAndDroppableProps, DroppedFile } from './types';
+import type { DraggableAndDroppableProps, DroppedFile } from './types.js';
 
 export type InBetweenProps<T> = {
   previousRow?: T;

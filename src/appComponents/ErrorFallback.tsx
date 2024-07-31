@@ -1,24 +1,26 @@
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import SendIcon from '@mui/icons-material/Send';
-import WarningIcon from '@mui/icons-material/WarningAmber';
 import {
+  ExpandMore as ExpandMoreIcon,
+  Send as SendIcon,
+  WarningAmber as WarningIcon,
+} from '@mui/icons-material';
+import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
+  Alert,
   Box,
   Button,
+  Container,
   Paper,
   Stack,
   TextField,
   Typography,
   useTheme,
 } from '@mui/material';
-import Accordion from '@mui/material/Accordion';
-import AccordionDetails from '@mui/material/AccordionDetails';
-import AccordionSummary from '@mui/material/AccordionSummary';
-import Alert from '@mui/material/Alert';
-import Container from '@mui/material/Container';
 
 import { useState } from 'react';
 
-import { UserFeedback } from './types';
+import { UserFeedback } from './types.js';
 
 // DEFAULTS
 const TITLE = 'Sorry, something went wrong with this application';
@@ -53,9 +55,9 @@ interface ErrorFallbackProps {
 }
 
 /**
- * 
+ *
  * @returns A form to submit user feedback.
- * 
+ *
  * @example
 const ErrorBoundary: FC<{ children?: ReactNode }> = ({ children }) => {
   const { t: tFallback } = useTranslation('translations', {

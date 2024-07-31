@@ -1,4 +1,5 @@
-import { NavigateNext } from '@mui/icons-material';
+import { ChevronRightIcon } from 'lucide-react';
+
 import {
   IconButton,
   IconButtonProps,
@@ -7,10 +8,10 @@ import {
   Typography,
 } from '@mui/material';
 
-import React from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import { MenuItemType } from './Navigation';
+import { MenuItemType } from './Navigation.js';
 
 export type ExtraItemsMenuProps = {
   icon?: JSX.Element;
@@ -20,7 +21,7 @@ export type ExtraItemsMenuProps = {
   name: string;
 };
 
-const Separator = <NavigateNext />;
+const Separator = <ChevronRightIcon data-testid='NavigateNextIcon' />;
 
 const ExtraItemsMenu = ({
   icon = Separator,
@@ -29,7 +30,7 @@ const ExtraItemsMenu = ({
   buildMenuId,
   name,
 }: ExtraItemsMenuProps): JSX.Element => {
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const handleClick: IconButtonProps['onClick'] = (event) => {
     setAnchorEl(event.currentTarget);

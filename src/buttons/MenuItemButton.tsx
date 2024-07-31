@@ -1,6 +1,9 @@
-import { ListItemText } from '@mui/material';
-import ListItemIcon, { ListItemIconProps } from '@mui/material/ListItemIcon';
-import MenuItem from '@mui/material/MenuItem';
+import {
+  ListItemIcon,
+  ListItemIconProps,
+  ListItemText,
+  MenuItem,
+} from '@mui/material';
 
 import { MouseEventHandler } from 'react';
 

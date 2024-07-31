@@ -5,7 +5,7 @@ import { styled } from '@mui/material';
 
 import { ChangeEventHandler } from 'react';
 
-import { GraaspButtonProps } from '../../buttons/Button/Button';
+import { GraaspButtonProps } from '@/buttons/Button/Button.js';
 
 export type UploadFileButtonProps = {
   id?: string;

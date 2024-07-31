@@ -1,4 +1,5 @@
-import SearchIcon from '@mui/icons-material/Search';
+import { SearchIcon } from 'lucide-react';
+
 import { InputAdornment, TextField, type TextFieldProps } from '@mui/material';
 
 import { ChangeEvent } from 'react';

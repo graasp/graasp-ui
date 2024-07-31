@@ -1,7 +1,7 @@
 import type { StoryObj } from '@storybook/react';
 
-import { TABLE_CATEGORIES } from '../utils/storybook';
-import LibraryIcon from './LibraryIcon';
+import { TABLE_CATEGORIES } from '../utils/storybook.js';
+import LibraryIcon from './LibraryIcon.js';
 
 export default {
   title: 'Icons/Library',

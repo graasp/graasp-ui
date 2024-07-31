@@ -1,14 +1,17 @@
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
+import {
+  ListItem,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+} from '@mui/material';
 
-import { FC, ReactElement, SyntheticEvent } from 'react';
+import { ReactElement, SyntheticEvent } from 'react';
 
-import { useMobileView } from '../../hooks';
-import { useMainMenuOpenContext } from '../hooks';
+import { useMobileView } from '@/hooks/useMobileView.js';
 
-export interface MenuItemProps {
+import { useMainMenuOpenContext } from '../hooks.js';
+
+export type MenuItemProps = {
   icon?: ReactElement;
   id?: string;
   key?: string;
@@ -16,9 +19,9 @@ export interface MenuItemProps {
   text?: string;
   disabled?: boolean;
   selected?: boolean;
-}
+};
 
-export const MenuItem: FC<MenuItemProps> = ({
+export const MenuItem = ({
   icon,
   id,
   key,
@@ -26,7 +29,7 @@ export const MenuItem: FC<MenuItemProps> = ({
   text,
   selected,
   disabled,
-}) => {
+}: MenuItemProps): JSX.Element => {
   const { setOpen } = useMainMenuOpenContext();
   const { isMobile } = useMobileView();
 

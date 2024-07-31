@@ -1,14 +1,10 @@
-import { styled } from '@mui/material';
-import Avatar from '@mui/material/Avatar';
-import Skeleton from '@mui/material/Skeleton';
-import Tooltip from '@mui/material/Tooltip';
-import Typography from '@mui/material/Typography';
+import { Avatar, Skeleton, Tooltip, Typography, styled } from '@mui/material';
 
-import { AriaAttributes, FC, MouseEventHandler } from 'react';
+import { AriaAttributes, MouseEventHandler } from 'react';
 
 import { UUID } from '@graasp/sdk';
 
-import { SHORT_TEXT_WIDTH, SMALL_AVATAR_SIZE } from '../constants';
+import { SHORT_TEXT_WIDTH, SMALL_AVATAR_SIZE } from '../constants.js';
 
 const WrapperDiv = styled('div')({
   display: 'flex',
@@ -25,7 +21,7 @@ const StyledTypography = styled(Typography)(({ theme }) => ({
   margin: theme.spacing(0, 2),
 }));
 
-export interface HeaderUserInformationProps {
+export type HeaderUserInformationProps = {
   /**
    * user avatar link
    */
@@ -42,9 +38,9 @@ export interface HeaderUserInformationProps {
   popUpType?: AriaAttributes['aria-haspopup'];
   popUpId?: string;
   role?: string;
-}
+};
 
-const HeaderUserInformation: FC<HeaderUserInformationProps> = ({
+const HeaderUserInformation = ({
   avatar,
   id,
   isLoading = false,
@@ -55,7 +51,7 @@ const HeaderUserInformation: FC<HeaderUserInformationProps> = ({
   popUpId,
   isPopUpOpen,
   role,
-}) => {
+}: HeaderUserInformationProps): JSX.Element => {
   if (isLoading) {
     return (
       <WrapperDiv>

@@ -1,6 +1,6 @@
 import { createContext, useContext, useState } from 'react';
 
-import { useMobileView } from '../hooks/useMobileView';
+import { useMobileView } from '../hooks/useMobileView.js';
 
 type MainMenuOpenContextType = {
   open: boolean;

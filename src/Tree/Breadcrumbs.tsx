@@ -1,8 +1,13 @@
 import truncate from 'lodash.truncate';
 
-import { Button, Breadcrumbs as MuiBreadcrumbs, Tooltip } from '@mui/material';
+import {
+  Button,
+  Breadcrumbs as MuiBreadcrumbs,
+  Stack,
+  Tooltip,
+} from '@mui/material';
 
-import type { NavigationElement } from './types';
+import type { NavigationElement } from './types.js';
 
 const DEFAULT_MAX_LENGTH = 15;
 
@@ -61,8 +66,10 @@ const Breadcrumbs = ({
               onSelect(ele);
             }}
           >
-            {ele.icon}
-            {truncate(ele.name, { length: maxLength })}
+            <Stack direction='row' gap={1}>
+              {ele.icon}
+              {truncate(ele.name, { length: maxLength })}
+            </Stack>
           </Button>
         </Tooltip>
       ))}

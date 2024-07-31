@@ -1,4 +1,4 @@
-export type FileImageProps = {
+type FileImageProps = {
   alt: string;
   url?: string;
   id?: string;

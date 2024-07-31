@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import withResizing from './withResizing';
+import withResizing from './withResizing.js';
 
 const ComponentWithResizing = withResizing({
   height: 100,
@@ -17,4 +17,4 @@ export default meta;
 
 type Story = StoryObj<typeof ComponentWithResizing>;
 
-export const Authorized: Story = {};
+export const Default: Story = {};

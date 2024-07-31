@@ -2,11 +2,10 @@ import { expect } from '@storybook/jest';
 import type { StoryObj } from '@storybook/react';
 import { fn } from '@storybook/test';
 import { userEvent, within } from '@storybook/testing-library';
+import { SparklesIcon } from 'lucide-react';
 
-import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
-
-import { TABLE_CATEGORIES } from '../../utils/storybook';
-import MenuItem from './MenuItem';
+import { TABLE_CATEGORIES } from '../../utils/storybook.js';
+import MenuItem from './MenuItem.js';
 
 export default {
   title: 'Main/MenuItem',
@@ -31,7 +30,7 @@ type Story = StoryObj<typeof MenuItem>;
 
 export const Example: Story = {
   args: {
-    icon: <AutoAwesomeIcon />,
+    icon: <SparklesIcon />,
     text: 'MenuItem',
   },
   play: async ({ args, canvasElement }) => {

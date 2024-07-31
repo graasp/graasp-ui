@@ -1,12 +1,17 @@
+import { MenuIcon } from 'lucide-react';
+
 import { MenuOpen } from '@mui/icons-material';
-import MenuIcon from '@mui/icons-material/Menu';
-import { AppBar, Stack } from '@mui/material';
-import Box from '@mui/material/Box';
-import CssBaseline from '@mui/material/CssBaseline';
-import Drawer from '@mui/material/Drawer';
-import IconButton from '@mui/material/IconButton';
-import Toolbar from '@mui/material/Toolbar';
-import { Theme, styled } from '@mui/material/styles';
+import {
+  AppBar,
+  Box,
+  CssBaseline,
+  Drawer,
+  IconButton,
+  Stack,
+  Theme,
+  Toolbar,
+  styled,
+} from '@mui/material';
 
 import { useEffect } from 'react';
 
@@ -15,13 +20,13 @@ import { Context } from '@graasp/sdk';
 import {
   MainMenuOpenContextProvider,
   useMainMenuOpenContext,
-} from '../MainMenu/hooks';
+} from '../MainMenu/hooks.js';
 import {
   AccentColors,
   DEFAULT_BACKGROUND_COLOR,
   PRIMARY_COLOR,
-} from '../theme';
-import LogoHeader from './LogoHeader';
+} from '../theme.js';
+import LogoHeader from './LogoHeader.js';
 
 const DRAWER_WIDTH = 240;
 

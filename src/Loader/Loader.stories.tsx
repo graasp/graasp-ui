@@ -1,6 +1,6 @@
 import { StoryObj } from '@storybook/react';
 
-import Loader from './Loader';
+import Loader from './Loader.js';
 
 export default {
   title: 'Common/Loader',

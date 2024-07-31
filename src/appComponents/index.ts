@@ -1,9 +1,9 @@
-export { default as ErrorFallback } from './ErrorFallback';
+export { default as ErrorFallback } from './ErrorFallback.js';
 
-export { default as QuestionLabel } from './QuestionLabel';
+export { default as QuestionLabel } from './QuestionLabel.js';
 
-export { default as RequiredChip } from './statusChips/RequiredChip';
-export { default as SubmittedChip } from './statusChips/SubmittedChip';
-export { default as SavedChip } from './statusChips/SavedChip';
+export { default as RequiredChip } from './statusChips/RequiredChip.js';
+export { default as SubmittedChip } from './statusChips/SubmittedChip.js';
+export { default as SavedChip } from './statusChips/SavedChip.js';
 
-export type { UserFeedback } from './types';
+export type { UserFeedback } from './types.js';

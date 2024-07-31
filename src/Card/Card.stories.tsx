@@ -1,16 +1,14 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { fn } from '@storybook/test';
+import { Grip, Snowflake } from 'lucide-react';
 
-import AcUnitIcon from '@mui/icons-material/AcUnit';
-import GrainIcon from '@mui/icons-material/Grain';
-import { Box, Stack } from '@mui/material';
-import IconButton from '@mui/material/IconButton';
+import { Box, IconButton, Stack } from '@mui/material';
 
 import { BrowserRouter } from 'react-router-dom';
 
-import ItemBadges from '../ItemBadges/ItemBadges';
-import { TABLE_CATEGORIES } from '../utils/storybook';
-import Card from './Card';
+import ItemBadges from '../ItemBadges/ItemBadges.js';
+import { TABLE_CATEGORIES } from '../utils/storybook.js';
+import Card from './Card.js';
 
 const meta = {
   title: 'Common/Card',
@@ -49,17 +47,17 @@ export const Example: Story = {
       >
         <Box>
           <IconButton>
-            <AcUnitIcon />
+            <Snowflake />
           </IconButton>
           <IconButton>
-            <AcUnitIcon />
+            <Snowflake />
           </IconButton>
           <IconButton>
-            <AcUnitIcon />
+            <Snowflake />
           </IconButton>
         </Box>
         <IconButton>
-          <GrainIcon />
+          <Grip />
         </IconButton>
       </Stack>
     ),
@@ -79,19 +77,19 @@ export const Dense: Story = {
     footer: (
       <>
         <IconButton>
-          <AcUnitIcon />
+          <Snowflake />
         </IconButton>
         <IconButton>
-          <AcUnitIcon />
+          <Snowflake />
         </IconButton>
         <IconButton>
-          <AcUnitIcon />
+          <Snowflake />
         </IconButton>
       </>
     ),
     menu: (
       <IconButton>
-        <AcUnitIcon />
+        <Snowflake />
       </IconButton>
     ),
   },
@@ -126,13 +124,13 @@ export const FullWidth = {
         <ItemBadges isHidden isPublic isPublished isPinned />
         <Box>
           <IconButton>
-            <AcUnitIcon />
+            <Snowflake />
           </IconButton>
           <IconButton>
-            <AcUnitIcon />
+            <Snowflake />
           </IconButton>
           <IconButton>
-            <AcUnitIcon />
+            <Snowflake />
           </IconButton>
         </Box>
       </Stack>
@@ -178,13 +176,13 @@ export const TallCard: Story = {
         <ItemBadges isHidden isPublic isPublished isPinned />
         <Box>
           <IconButton>
-            <AcUnitIcon />
+            <Snowflake />
           </IconButton>
           <IconButton>
-            <AcUnitIcon />
+            <Snowflake />
           </IconButton>
           <IconButton>
-            <AcUnitIcon />
+            <Snowflake />
           </IconButton>
         </Box>
       </Stack>

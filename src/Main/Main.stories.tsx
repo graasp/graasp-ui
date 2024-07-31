@@ -1,18 +1,16 @@
 import { Meta, type StoryObj, composeStories } from '@storybook/react';
+import { CirclePlusIcon, SnowflakeIcon, SparklesIcon } from 'lucide-react';
 
-import AcUnitIcon from '@mui/icons-material/AcUnit';
-import AddCircleIcon from '@mui/icons-material/AddCircle';
-import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
-import { Box, Link } from '@mui/material';
-import Avatar from '@mui/material/Avatar';
-import Typography from '@mui/material/Typography';
+import { Avatar, Box, Link, Typography } from '@mui/material';
 
 import { Context } from '@graasp/sdk';
 
-import MainMenu, { MenuItem } from '../MainMenu';
-import * as PlatformSwitchStories from '../PlatformSwitch/PlatformSwitch.stories';
-import * as UserSwitchStories from '../UserSwitch/UserSwitch.stories';
-import Main from './Main';
+import MainMenu from '@/MainMenu/MainMenu.js';
+import MenuItem from '@/MainMenu/MenuItem/MenuItem.js';
+
+import * as PlatformSwitchStories from '../PlatformSwitch/PlatformSwitch.stories.js';
+import * as UserSwitchStories from '../UserSwitch/UserSwitch.stories.js';
+import Main from './Main.js';
 
 const { SignedIn } = composeStories(UserSwitchStories);
 const { Dark } = composeStories(PlatformSwitchStories);
@@ -103,9 +101,9 @@ const defaultArgs = {
   ),
   drawerContent: (
     <MainMenu>
-      <MenuItem text='Item 1' icon={<AcUnitIcon />} />
-      <MenuItem text='Item 2' icon={<AddCircleIcon />} />
-      <MenuItem text='Item 3' icon={<AutoAwesomeIcon />} />
+      <MenuItem text='Item 1' icon={<SnowflakeIcon />} />
+      <MenuItem text='Item 2' icon={<CirclePlusIcon />} />
+      <MenuItem text='Item 3' icon={<SparklesIcon />} />
     </MainMenu>
   ),
   children: mainContent,

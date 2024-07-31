@@ -1,12 +1,18 @@
-import FilterNone from '@mui/icons-material/FilterNone';
+import { CopyIcon } from 'lucide-react';
+
 import { IconButton, ListItemIcon, MenuItem, Tooltip } from '@mui/material';
 
 import { MouseEventHandler } from 'react';
 
-import { ActionButton, ActionButtonVariant, ColorVariants } from '../../types';
+import {
+  ActionButton,
+  ActionButtonVariant,
+  ColorVariants,
+  ColorVariantsType,
+} from '../../types.js';
 
 export type Props = {
-  color?: ColorVariants;
+  color?: ColorVariantsType;
   iconClassName?: string;
   id?: string;
   menuItemClassName?: string;
@@ -16,7 +22,7 @@ export type Props = {
 };
 
 const CopyButton = ({
-  color = 'primary',
+  color = ColorVariants.Primary,
   iconClassName,
   id = '',
   menuItemClassName,
@@ -24,13 +30,12 @@ const CopyButton = ({
   text = 'Copy',
   type = ActionButton.ICON_BUTTON,
 }: Props): JSX.Element => {
+  const icon = <CopyIcon />;
   switch (type) {
     case ActionButton.MENU_ITEM:
       return (
         <MenuItem key={text} onClick={onClick} className={menuItemClassName}>
-          <ListItemIcon>
-            <FilterNone />
-          </ListItemIcon>
+          <ListItemIcon>{icon}</ListItemIcon>
           {text}
         </MenuItem>
       );
@@ -45,7 +50,7 @@ const CopyButton = ({
               aria-label={text}
               onClick={onClick}
             >
-              <FilterNone />
+              {icon}
             </IconButton>
           </span>
         </Tooltip>

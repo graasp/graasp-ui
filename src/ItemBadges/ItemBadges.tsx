@@ -1,13 +1,16 @@
-import Public from '@mui/icons-material/Public';
-import PushPin from '@mui/icons-material/PushPin';
-import UnfoldLess from '@mui/icons-material/UnfoldLess';
-import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import {
+  EyeOff,
+  FoldVertical,
+  Globe2,
+  MessageSquareTextIcon,
+  PinIcon,
+} from 'lucide-react';
+
 import { Avatar, AvatarGroup, Tooltip } from '@mui/material';
 
-import { ThumbnailSize } from '@graasp/sdk';
+import { LibraryIcon } from '../icons/index.js';
 
-import { ChatboxButton } from '../buttons';
-import { LibraryIcon } from '../icons';
+const BADGE_SIZE = '18px';
 
 type ItemBadgeProps = {
   tooltip: string;
@@ -62,12 +65,12 @@ const ItemBadges = ({
     <AvatarGroup max={10}>
       {isHidden && (
         <ItemBadge backgroundColor={backgroundColor} tooltip={isHiddenTooltip}>
-          <VisibilityOff fontSize={ThumbnailSize.Small} />
+          <EyeOff size={BADGE_SIZE} />
         </ItemBadge>
       )}
       {isPinned && (
         <ItemBadge backgroundColor={backgroundColor} tooltip={isPinnedTooltip}>
-          <PushPin fontSize={ThumbnailSize.Small} />
+          <PinIcon size={BADGE_SIZE} />
         </ItemBadge>
       )}
       {isPublished && (
@@ -80,7 +83,7 @@ const ItemBadges = ({
       )}
       {isPublic && (
         <ItemBadge backgroundColor={backgroundColor} tooltip={isPublicTooltip}>
-          <Public fontSize={ThumbnailSize.Small} />
+          <Globe2 size={BADGE_SIZE} />
         </ItemBadge>
       )}
       {isCollapsible && (
@@ -88,7 +91,7 @@ const ItemBadges = ({
           backgroundColor={backgroundColor}
           tooltip={isCollapsibleTooltip}
         >
-          <UnfoldLess fontSize={ThumbnailSize.Small} />
+          <FoldVertical size={BADGE_SIZE} />
         </ItemBadge>
       )}
       {showChatbox && (
@@ -96,17 +99,7 @@ const ItemBadges = ({
           backgroundColor={backgroundColor}
           tooltip={showChatboxTooltip}
         >
-          <ChatboxButton
-            size='small'
-            showChat
-            sx={{
-              width: 15,
-              height: 15,
-              marginLeft: '1px',
-              marginTop: '2px',
-              color: 'white',
-            }}
-          />
+          <MessageSquareTextIcon size={BADGE_SIZE} />
         </ItemBadge>
       )}
     </AvatarGroup>

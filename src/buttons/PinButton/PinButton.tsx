@@ -1,18 +1,20 @@
-import PushPinIcon from '@mui/icons-material/PushPin';
-import PushPinOutlinedIcon from '@mui/icons-material/PushPinOutlined';
-import { SvgIconOwnProps } from '@mui/material';
-import IconButton from '@mui/material/IconButton';
-import Tooltip from '@mui/material/Tooltip';
+import { Pin, PinOff } from 'lucide-react';
+
+import { IconButton, Tooltip } from '@mui/material';
 
 import {
   ActionButton,
   ActionButtonVariant,
+  ColorVariants,
+  ColorVariantsType,
   IconSizeVariant,
-} from '../../types';
-import MenuItemButton from '../MenuItemButton';
+} from '@/types.js';
+
+import MenuItemButton from '../MenuItemButton.js';
+import { useButtonColor } from '../hooks.js';
 
 export type PinButtonProps = {
-  color?: SvgIconOwnProps['color'];
+  color?: ColorVariantsType;
   iconClassName?: string;
   id?: string;
   isPinned?: boolean;
@@ -33,12 +35,13 @@ const PinButton = ({
   pinText = 'Pin',
   unPinText = 'Unpin',
   size,
-  color,
+  color = ColorVariants.Default,
 }: PinButtonProps): JSX.Element => {
+  const { color: buttonColor } = useButtonColor(color);
   const icon = isPinned ? (
-    <PushPinIcon color={color} />
+    <Pin color={buttonColor} />
   ) : (
-    <PushPinOutlinedIcon color={color} />
+    <PinOff color={buttonColor} />
   );
   const text = isPinned ? unPinText : pinText;
 

@@ -2,9 +2,9 @@ import { Meta, StoryObj, composeStories } from '@storybook/react';
 
 import { BrowserRouter } from 'react-router-dom';
 
-import { TextDisplay } from '..';
-import * as TextDisplayStories from '../TextDisplay/TextDisplay.stories';
-import FolderCard from './FolderCard';
+import TextDisplay from '../TextDisplay/TextDisplay.js';
+import * as TextDisplayStories from '../TextDisplay/TextDisplay.stories.js';
+import FolderCard from './FolderCard.js';
 
 const { SimpleText } = composeStories(TextDisplayStories);
 

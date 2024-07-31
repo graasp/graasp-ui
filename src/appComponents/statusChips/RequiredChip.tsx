@@ -1,8 +1,7 @@
-import WarningIcon from '@mui/icons-material/WarningRounded';
-import Chip from '@mui/material/Chip';
-import Tooltip from '@mui/material/Tooltip';
+import { WarningRounded as WarningIcon } from '@mui/icons-material';
+import { Chip, Tooltip } from '@mui/material';
 
-import { StatusChipProps } from './types';
+import { StatusChipProps } from './types.js';
 
 const RequiredChip = ({
   label,

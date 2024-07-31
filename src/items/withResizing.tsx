@@ -1,6 +1,6 @@
-import { Box, styled } from '@mui/material';
+import { Box } from '@mui/material';
 
-import { FC, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Rnd } from 'react-rnd';
 
 import {
@@ -9,41 +9,15 @@ import {
   setIframeResizeHeightCookie,
 } from '@graasp/sdk';
 
-import { IFRAME_MIN_HEIGHT } from '../constants';
-import ResizingIcon from '../icons/ResizingIcon';
-import { ITEM_MAX_HEIGHT } from './constants';
+import { IFRAME_MIN_HEIGHT } from '../constants.js';
+import ResizingIcon from '../icons/ResizingIcon.js';
 
-const iframeCommonStyles = {
-  // remove ugly borders
-  border: 'none',
-  width: '100%',
-};
-export const StyledIFrame = styled('iframe')<{
-  isResizable?: boolean;
-  height?: string | number;
-}>(({ isResizable, height }) => ({
-  ...iframeCommonStyles,
-  maxHeight: !isResizable ? ITEM_MAX_HEIGHT : undefined,
-  height: !isResizable ? height : '100%',
-}));
-export const AppIFrame = styled('iframe')<{
-  isResizable?: boolean;
-}>(({ isResizable }) => ({
-  ...iframeCommonStyles,
-  /**
-   * IMPORTANT to not override the height when using dynamic sizing
-   * The present styles are applied with higher specificity, so the dynamic height
-   * provided by the app using the resizing mechanism is ignored.
-   */
-  height: !isResizable ? undefined : '100%',
-}));
-
-export interface WithResizingProps {
+export type WithResizingProps = {
   height: string | number;
   component: JSX.Element;
   memberId?: UUID;
   itemId: UUID;
-}
+};
 
 const resizeHandleStyles = {
   resizeHandleComponent: {
@@ -63,7 +37,7 @@ const withResizing =
     component,
     memberId,
     itemId,
-  }: WithResizingProps): FC<P> =>
+  }: WithResizingProps): ((props: P) => JSX.Element) =>
   () => {
     const [variableHeight, setVariableHeight] = useState<number | string>(
       getIframeResizeHeightCookie({ memberId, itemId }) ?? height,

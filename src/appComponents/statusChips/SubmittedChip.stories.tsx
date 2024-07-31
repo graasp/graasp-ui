@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import SubmittedChip from './SubmittedChip';
+import SubmittedChip from './SubmittedChip.js';
 
 const meta: Meta<typeof SubmittedChip> = {
   title: 'Apps/Status chips/SubmittedChip',

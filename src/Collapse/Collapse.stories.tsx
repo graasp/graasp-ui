@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { TABLE_CATEGORIES } from '../utils/storybook';
-import Collapse from './Collapse';
+import { TABLE_CATEGORIES } from '../utils/storybook.js';
+import Collapse from './Collapse.js';
 
 const meta = {
   title: 'Common/Collapse',

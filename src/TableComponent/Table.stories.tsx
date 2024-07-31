@@ -7,9 +7,11 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { fn } from '@storybook/test';
 import { userEvent, waitFor, within } from '@storybook/testing-library';
 
-import { DeleteButton, EditButton } from '../buttons';
-import { TABLE_CATEGORIES } from '../utils/storybook';
-import Table, { TableProps } from './Table';
+import DeleteButton from '@/buttons/DeleteButton/DeleteButton.js';
+import EditButton from '@/buttons/EditButton/EditButton.js';
+
+import { TABLE_CATEGORIES } from '../utils/storybook.js';
+import Table, { TableProps } from './Table.js';
 
 const agGridCategory = 'Ag Grid';
 const rowData = [
@@ -135,6 +137,7 @@ const meta: Meta<typeof Table> = {
   },
   args: {
     onRowDataChanged: fn(),
+    onCellClicked: fn(),
   },
 };
 export default meta;
@@ -186,43 +189,42 @@ export const Simple: Story = {
     rowData,
     ToolbarActions,
   },
-};
+  play: async ({ args, canvasElement }) => {
+    const canvas = within(canvasElement);
 
-Simple.play = async ({ args, canvasElement }) => {
-  const canvas = within(canvasElement);
+    // we need to wait a lot because it is ag grid that triggers
+    await waitFor(async () => {
+      await expect(canvas.getAllByRole('row')).toBeTruthy();
+    });
 
-  // we need to wait a lot because it is ag grid that triggers
-  await waitFor(async () => {
-    await expect(canvas.getAllByRole('row')).toBeTruthy();
-  });
+    await waitFor(async () => {
+      await expect(canvas.getByText('name 1')).toBeTruthy();
+    });
+    // check mouse onclick trigger event
+    await userEvent.click(canvas.getByText('name 1'));
+    await waitFor(async () => {
+      await expect(args.onCellClicked).toHaveBeenCalledTimes(1);
+    });
 
-  await waitFor(async () => {
-    await expect(canvas.getByText('name 1')).toBeTruthy();
-  });
-  // check mouse onclick trigger event
-  await userEvent.click(canvas.getByText('name 1'));
-  await waitFor(async () => {
-    await expect(args.onCellClicked).toHaveBeenCalledTimes(1);
-  });
+    // check keyboard navigation
+    await userEvent.keyboard('{Tab}{Enter}');
+    await waitFor(async () => {
+      await expect(args.onCellClicked).toHaveBeenCalledTimes(2);
+    });
 
-  // check keyboard navigation
-  await userEvent.keyboard('{Tab}{Enter}');
-  await waitFor(async () => {
-    await expect(args.onCellClicked).toHaveBeenCalledTimes(2);
-  });
+    await userEvent.keyboard('{Tab}{Enter}');
+    await waitFor(async () => {
+      await expect(args.onCellClicked).toHaveBeenCalledTimes(3);
+    });
 
-  await userEvent.keyboard('{Tab}{Enter}');
-  await waitFor(async () => {
-    await expect(args.onCellClicked).toHaveBeenCalledTimes(3);
-  });
+    await userEvent.keyboard('{Tab}{Enter}');
+    await waitFor(async () => {
+      await expect(args.onCellClicked).toHaveBeenCalledTimes(4);
+    });
 
-  await userEvent.keyboard('{Tab}{Enter}');
-  await waitFor(async () => {
-    await expect(args.onCellClicked).toHaveBeenCalledTimes(4);
-  });
-
-  // ag grid does not simulate the tab navigation correctly
-  // so we cannot test inner navigation
+    // ag grid does not simulate the tab navigation correctly
+    // so we cannot test inner navigation
+  },
 };
 
 export const SimpleWithDrag: Story = {
