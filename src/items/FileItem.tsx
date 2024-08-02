@@ -45,6 +45,7 @@ export type FileItemProps = {
   pdfViewerLink?: string;
   showCollapse?: boolean;
   onClick?: () => void;
+  onCollapse?: () => void;
 };
 
 const FileItem = ({
@@ -59,6 +60,7 @@ const FileItem = ({
   showCollapse,
   pdfViewerLink,
   onClick,
+  onCollapse,
 }: FileItemProps): JSX.Element => {
   const [url, setUrl] = useState<string>();
 
@@ -162,7 +164,7 @@ const FileItem = ({
   fileItem = <CaptionWrapper item={item}>{fileItem}</CaptionWrapper>;
 
   if (showCollapse) {
-    fileItem = withCollapse({ item })(fileItem);
+    fileItem = withCollapse({ item, onCollapse })(fileItem);
   }
 
   return fileItem;

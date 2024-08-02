@@ -53,6 +53,7 @@ type LinkItemProps = {
   showCollapse?: boolean;
 
   onClick?: () => void;
+  onCollapse?: () => void;
 };
 
 const IFrameContainer = styled('div')(({ theme }) => ({
@@ -136,6 +137,7 @@ const LinkItem = ({
   isResizable = false,
   showCollapse = false,
   onClick,
+  onCollapse,
 }: LinkItemProps): JSX.Element => {
   const [isLoading, setIsLoading] = useState(true);
   const [height] = useState<string | number>(defaultHeight);
@@ -227,7 +229,7 @@ const LinkItem = ({
   }
 
   if (showCollapse) {
-    linkItem = withCollapse({ item: { name } })(linkItem);
+    linkItem = withCollapse({ item: { name }, onCollapse })(linkItem);
   }
 
   return linkItem;

@@ -70,6 +70,7 @@ type AppItemProps = {
    * Whether the item should be shown in a collapsible element
    */
   showCollapse?: boolean;
+  onCollapse?: () => void;
 };
 
 const AppItem = ({
@@ -82,6 +83,7 @@ const AppItem = ({
   isResizable = false,
   showCaption = true,
   showCollapse = false,
+  onCollapse,
 }: AppItemProps): JSX.Element => {
   // state
   const [isIFrameLoading, setIsIFrameLoading] = useState(true);
@@ -150,7 +152,7 @@ const AppItem = ({
   }
 
   if (showCollapse) {
-    component = withCollapse({ item })(component);
+    component = withCollapse({ item, onCollapse })(component);
   }
 
   return component;

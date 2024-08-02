@@ -14,6 +14,7 @@ interface H5PItemProps {
   integrationUrl: string;
   iframeId?: string;
   showCollapse?: boolean;
+  onCollapse?: () => void;
 }
 /**
  * The H5PItem component displays an iframe with the content of an H5P
@@ -28,6 +29,7 @@ const H5PItem: FC<H5PItemProps> = ({
   integrationUrl: integrationBase,
   iframeId = `h5p-container-${itemId}`,
   showCollapse = false,
+  onCollapse,
 }) => {
   /*
     h5p-standalone (and H5P itself) expect the integration to be done on the
@@ -111,7 +113,9 @@ const H5PItem: FC<H5PItemProps> = ({
   );
 
   if (showCollapse) {
-    iframeH5Pitem = withCollapse({ item: { name: itemName } })(iframeH5Pitem);
+    iframeH5Pitem = withCollapse({ item: { name: itemName }, onCollapse })(
+      iframeH5Pitem,
+    );
   }
 
   return iframeH5Pitem;

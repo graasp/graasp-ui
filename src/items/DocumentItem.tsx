@@ -13,6 +13,7 @@ export type DocumentItemProps = {
    * Show the item name as the Alert title
    */
   showTitle?: boolean;
+  onCollapse?: () => void;
 } & (
   | { showCollapse: true; item: DocumentItemType }
   | { showCollapse?: false; item: Pick<DocumentItemType, 'extra' | 'name'> }
@@ -25,6 +26,7 @@ const DocumentItem = ({
   showEmpty,
   showCollapse,
   showTitle,
+  onCollapse,
 }: DocumentItemProps): JSX.Element => {
   let component: JSX.Element;
   const extra = getDocumentExtra(item.extra);
@@ -47,7 +49,7 @@ const DocumentItem = ({
   }
 
   if (showCollapse) {
-    component = withCollapse({ item })(component);
+    component = withCollapse({ item, onCollapse })(component);
   }
 
   return component;
