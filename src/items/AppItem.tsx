@@ -70,7 +70,7 @@ type AppItemProps = {
    * Whether the item should be shown in a collapsible element
    */
   showCollapse?: boolean;
-  onCollapse?: () => void;
+  onCollapse?: (c: boolean) => void;
 };
 
 const AppItem = ({

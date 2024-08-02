@@ -16,7 +16,7 @@ export type CollapseProps = {
    */
   content?: ReactElement;
   sx?: SxProps;
-  onCollapse?: () => void;
+  onCollapse?: (c: boolean) => void;
 };
 
 const StyledAccordionSummary = styled(AccordionSummary)(({ theme }) => ({
@@ -46,7 +46,7 @@ const Collapse: FC<CollapseProps> = ({
 
   const handleChange = (expanded: boolean) => () => {
     setExpanded(!expanded);
-    onCollapse?.();
+    onCollapse?.(!expanded);
   };
 
   return (

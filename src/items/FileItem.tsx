@@ -45,7 +45,7 @@ export type FileItemProps = {
   pdfViewerLink?: string;
   showCollapse?: boolean;
   onClick?: () => void;
-  onCollapse?: () => void;
+  onCollapse?: (c: boolean) => void;
 };
 
 const FileItem = ({

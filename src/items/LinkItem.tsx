@@ -53,7 +53,7 @@ type LinkItemProps = {
   showCollapse?: boolean;
 
   onClick?: () => void;
-  onCollapse?: () => void;
+  onCollapse?: (c: boolean) => void;
 };
 
 const IFrameContainer = styled('div')(({ theme }) => ({

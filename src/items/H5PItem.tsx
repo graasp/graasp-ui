@@ -14,7 +14,7 @@ interface H5PItemProps {
   integrationUrl: string;
   iframeId?: string;
   showCollapse?: boolean;
-  onCollapse?: () => void;
+  onCollapse?: (c: boolean) => void;
 }
 /**
  * The H5PItem component displays an iframe with the content of an H5P

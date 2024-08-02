@@ -13,7 +13,7 @@ export type DocumentItemProps = {
    * Show the item name as the Alert title
    */
   showTitle?: boolean;
-  onCollapse?: () => void;
+  onCollapse?: (c: boolean) => void;
 } & (
   | { showCollapse: true; item: DocumentItemType }
   | { showCollapse?: false; item: Pick<DocumentItemType, 'extra' | 'name'> }

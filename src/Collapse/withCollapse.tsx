@@ -5,7 +5,7 @@ const withCollapse = <T extends { name: string; displayName?: string }>({
   onCollapse,
 }: {
   item: T;
-  onCollapse?: () => void;
+  onCollapse?: (c: boolean) => void;
 }) => {
   return (component: JSX.Element): JSX.Element => {
     return (
