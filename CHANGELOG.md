@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.24.0](https://github.com/graasp/graasp-ui/compare/v4.23.0...v4.24.0) (2024-08-05)
+
+
+### Features
+
+* add `onCollapse` handler ([#974](https://github.com/graasp/graasp-ui/issues/974)) ([e4d6e07](https://github.com/graasp/graasp-ui/commit/e4d6e07397e4272ae81e4fb9e2a491af3e6e5cda))
+
+
+### Bug Fixes
+
+* **deps:** update dependency vitest to v2.0.4 ([#950](https://github.com/graasp/graasp-ui/issues/950)) ([18f62f5](https://github.com/graasp/graasp-ui/commit/18f62f52ff787cf8be86aa418125262b09275dc2))
+* use 100% height for card thumbnail ([#964](https://github.com/graasp/graasp-ui/issues/964)) ([f42972a](https://github.com/graasp/graasp-ui/commit/f42972a7106b9ba21582cd5d93fac9fad6ea0ef1))
+
 ## [4.23.0](https://github.com/graasp/graasp-ui/compare/v4.22.0...v4.23.0) (2024-07-24)
 
 
