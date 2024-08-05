@@ -16,6 +16,7 @@ export type CollapseProps = {
    */
   content?: ReactElement;
   sx?: SxProps;
+  onCollapse?: (c: boolean) => void;
 };
 
 const StyledAccordionSummary = styled(AccordionSummary)(({ theme }) => ({
@@ -34,11 +35,18 @@ const StyledAccordionSummary = styled(AccordionSummary)(({ theme }) => ({
   '.Mui-expanded': {},
 }));
 
-const Collapse: FC<CollapseProps> = ({ title, content, sx, children }) => {
+const Collapse: FC<CollapseProps> = ({
+  title,
+  content,
+  sx,
+  children,
+  onCollapse,
+}) => {
   const [expanded, setExpanded] = useState<boolean>(false);
 
   const handleChange = (expanded: boolean) => () => {
     setExpanded(!expanded);
+    onCollapse?.(!expanded);
   };
 
   return (
