@@ -18,6 +18,7 @@ import { SCREEN_MAX_HEIGHT, UNEXPECTED_ERROR_MESSAGE } from '../constants';
 import { ERRORS } from '../enums';
 import DownloadButtonFileItem from './DownloadButtonFileItem';
 import FileAudio from './FileAudio';
+import FileDocument from './FileDocument';
 import FileImage from './FileImage';
 import FilePdf from './FilePdf';
 import FileVideo from './FileVideo';
@@ -135,6 +136,23 @@ const FileItem = ({
             showCollapse={showCollapse}
             pdfViewerLink={pdfViewerLink}
           />
+        );
+      } else if (
+        MimeTypes.isDocument(mimetype) ||
+        MimeTypes.isPresentation(mimetype) ||
+        MimeTypes.isSpreadsheet(mimetype)
+      ) {
+        return (
+          <Box flex={1} width='100%' id={id}>
+            <FileDocument uri={url} />
+            <DownloadButtonFileItem
+              id={id}
+              name={originalFileName ?? item.name}
+              url={url}
+              text={downloadText}
+              onClick={onClick}
+            />
+          </Box>
         );
       }
     }
