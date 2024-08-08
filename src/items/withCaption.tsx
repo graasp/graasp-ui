@@ -93,7 +93,13 @@ export const CaptionWrapper = <T extends WithCaptionItem>({
   const description = normalizeDescription(item.description);
 
   return (
-    <Stack direction={direction} gap={0.5} alignItems={alignItems} width='100%'>
+    <Stack
+      direction={direction}
+      gap={0.5}
+      alignItems={alignItems}
+      width='100%'
+      flex={1}
+    >
       {children}
       <TextDisplay content={description} />
     </Stack>

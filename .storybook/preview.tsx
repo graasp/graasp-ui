@@ -1,7 +1,7 @@
 import 'katex/dist/katex.min.css';
 
 import { CssBaseline } from '@mui/material';
-import { ThemeProvider } from '@mui/system';
+import ThemeProvider from '@mui/material/styles/ThemeProvider';
 
 import * as React from 'react';
 import 'react-quill/dist/quill.snow.css';
@@ -50,7 +50,7 @@ export const globalTypes = {
     },
   },
 };
-const theme = buildTheme()
+const theme = buildTheme();
 export const decorators = [
   (Story, { globals }) => {
     return (
