@@ -30,7 +30,7 @@ export const SizingWrapper = ({
 }): JSX.Element => {
   const width = getWidthFromSizing(size);
   return (
-    <Box maxWidth='100%' width={width}>
+    <Box maxWidth='100%' width={width} flex={1}>
       {children}
     </Box>
   );

@@ -143,7 +143,7 @@ const FileItem = ({
         MimeTypes.isSpreadsheet(mimetype)
       ) {
         return (
-          <Box flex={1} width='100%' id={id}>
+          <Box height='100%' width='100%' id={id}>
             <FileDocument uri={url} />
             <DownloadButtonFileItem
               id={id}
