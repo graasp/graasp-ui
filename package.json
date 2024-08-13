@@ -79,7 +79,7 @@
     "@ag-grid-community/client-side-row-model": "31.3.2",
     "@ag-grid-community/react": "^31.3.2",
     "@ag-grid-community/styles": "^31.3.2",
-    "@storybook/react-vite": "8.1.11",
+    "@storybook/react-vite": "8.2.9",
     "http-status-codes": "2.3.0",
     "interweave": "13.1.0",
     "katex": "0.16.11",
