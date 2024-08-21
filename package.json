@@ -59,7 +59,7 @@
     "analyze-bundle": "npx vite-bundle-visualizer",
     "test": "yarn test:unit-ci && yarn test:sb",
     "test:sb": "yarn storybook:build && concurrently -k -s first -n \"SB, TEST\" -c \"magenta,blue\" \"yarn storybook:preview\" \"yarn storybook:test-ci\"",
-    "test:unit": "vitest",
+    "test:unit": "vitest --passWithNoTests",
     "test:unit-ci": "vitest run",
     "test:watch": "jest src --watchAll --env=jsdom",
     "hooks:uninstall": "husky uninstall",
