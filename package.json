@@ -86,7 +86,7 @@
     "react-dnd": "16.0.1",
     "react-dnd-html5-backend": "16.0.1",
     "react-quill": "2.0.0",
-    "react-rnd": "10.4.11",
+    "react-rnd": "10.4.12",
     "uuid": "10.0.0",
     "vitest": "2.0.5"
   },
