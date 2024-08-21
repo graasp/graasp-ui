@@ -1,18 +1,17 @@
-import { SxProps, styled } from '@mui/material';
-import Drawer from '@mui/material/Drawer';
+import { Drawer, SxProps, styled } from '@mui/material';
 
-import React, { FC } from 'react';
+import React, { ReactNode } from 'react';
 
-import DrawerHeader from '../DrawerHeader';
-import { DRAWER_WIDTH } from '../constants';
+import DrawerHeader from '../DrawerHeader/DrawerHeader.js';
+import { DRAWER_WIDTH } from '../constants.js';
 
-export interface SidebarProps {
-  children?: JSX.Element;
+export type SidebarProps = {
+  children?: ReactNode;
   drawerHeaderContent?: React.ReactElement;
   handleDrawerClose?: () => void;
   isSidebarOpen?: boolean;
   sx?: SxProps;
-}
+};
 
 const StyledDrawer = styled(Drawer)<SidebarProps>(({ theme, open }) => ({
   transition: theme.transitions.create(['width'], {
@@ -32,13 +31,13 @@ const StyledDrawer = styled(Drawer)<SidebarProps>(({ theme, open }) => ({
   },
 }));
 
-export const Sidebar: FC<SidebarProps> = ({
+export const Sidebar = ({
   children,
   drawerHeaderContent,
   handleDrawerClose,
   isSidebarOpen = false,
   sx,
-}) => {
+}: SidebarProps): JSX.Element => {
   return (
     <StyledDrawer
       sx={sx}

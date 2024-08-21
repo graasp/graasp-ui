@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from '@storybook/react';
 
-import { TABLE_CATEGORIES } from '../utils/storybook';
-import AnalyticsIcon from './AnalyticsIcon';
+import { TABLE_CATEGORIES } from '../utils/storybook.js';
+import AnalyticsIcon from './AnalyticsIcon.js';
 
 const meta: Meta<typeof AnalyticsIcon> = {
   title: 'Icons/Analytics',

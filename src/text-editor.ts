@@ -1,2 +1,2 @@
-export { default } from './TextEditor';
-export { default as DocumentItem } from './items/DocumentItem';
+export { default } from './TextEditor/TextEditor.js';
+export { default as DocumentItem } from './items/DocumentItem.js';

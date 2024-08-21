@@ -1,5 +1,5 @@
-export interface StatusChipProps {
+export type StatusChipProps = {
   label: string;
   tooltip: string;
   dataCy: string;
-}
+};

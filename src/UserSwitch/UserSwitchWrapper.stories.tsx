@@ -2,9 +2,11 @@ import { expect } from '@storybook/jest';
 import type { Meta, StoryObj } from '@storybook/react';
 import { screen, userEvent, within } from '@storybook/testing-library';
 
-import Avatar from '../Avatar/Avatar';
-import { MOCK_CURRENT_MEMBER } from '../utils/fixtures';
-import UserSwitchWrapper from './UserSwitchWrapper';
+import { SMALL_AVATAR_SIZE } from '@/constants.js';
+
+import Avatar from '../Avatar/Avatar.js';
+import { MOCK_CURRENT_MEMBER } from '../utils/fixtures.js';
+import UserSwitchWrapper from './UserSwitchWrapper.js';
 
 const meta: Meta<typeof UserSwitchWrapper> = {
   title: 'Common/UserSwitch/UserSwitchWrapper',
@@ -22,6 +24,8 @@ export const SignedIn: Story = {
     signOutText: 'Sign Out',
     renderAvatar: () => (
       <Avatar
+        maxWidth={SMALL_AVATAR_SIZE}
+        maxHeight={SMALL_AVATAR_SIZE}
         url={'https://picsum.photos/100'}
         alt={`profile image ${MOCK_CURRENT_MEMBER?.name}`}
         component={'avatar'}
@@ -57,6 +61,8 @@ export const SignedOut: Story = {
     switchMemberText: 'Sign In',
     renderAvatar: () => (
       <Avatar
+        maxWidth={SMALL_AVATAR_SIZE}
+        maxHeight={SMALL_AVATAR_SIZE}
         url={'https://picsum.photos/100'}
         alt={`default profile image`}
         component={'avatar'}

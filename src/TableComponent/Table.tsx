@@ -12,18 +12,20 @@ import {
 } from '@ag-grid-community/core';
 import { AgGridReact } from '@ag-grid-community/react';
 
-import { SxProps, styled } from '@mui/material';
-import Box from '@mui/material/Box';
-import TablePagination, {
+import {
+  Box,
+  SxProps,
+  TablePagination,
   TablePaginationProps,
-} from '@mui/material/TablePagination';
+  styled,
+} from '@mui/material';
 
-import { ReactElement, useCallback, useEffect, useRef, useState } from 'react';
+import { ReactNode, useCallback, useEffect, useRef, useState } from 'react';
 
-import DragCellRenderer from './DragCellRenderer';
-import TableNoRowsContent from './TableNoRowsContent';
-import TableToolbar from './TableToolbar';
-import { suppressKeyboardEventForParentCell } from './utils';
+import DragCellRenderer from './DragCellRenderer.js';
+import TableNoRowsContent from './TableNoRowsContent.js';
+import TableToolbar from './TableToolbar.js';
+import { suppressKeyboardEventForParentCell } from './utils.js';
 
 const DRAG_COLUMN_WIDTH = 22;
 const ITEMS_DEFAULT_PAGE_SIZE = 10;
@@ -44,7 +46,7 @@ export interface TableProps<T = unknown> {
   getRowId?: (args: { data: T }) => string;
   id?: string;
   isClickable?: boolean;
-  NoRowsComponent?: ReactElement;
+  NoRowsComponent?: ReactNode;
   NoSelectionToolbar?: () => JSX.Element;
   onCellClicked?: ((event: CellClickedEvent<T, unknown>) => void) | undefined;
   onDragEnd?: (nodes: RowNode[]) => void;

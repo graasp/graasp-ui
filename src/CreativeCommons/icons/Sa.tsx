@@ -1,8 +1,6 @@
-import React from 'react';
+import { CCIconsProps } from './CCIconsProps.js';
 
-import { CCIconsProps } from './CCIconsProps';
-
-const Sa: React.FC<CCIconsProps> = ({ size }) => (
+const Sa = ({ size }: CCIconsProps): JSX.Element => (
   <svg
     xmlns='http://www.w3.org/2000/svg'
     width={size}

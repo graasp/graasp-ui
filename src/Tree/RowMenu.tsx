@@ -12,8 +12,9 @@ import { useState } from 'react';
 
 import { ItemType } from '@graasp/sdk';
 
-import { ItemIcon } from '..';
-import type { NavigationElement } from './types';
+import ItemIcon from '@/icons/ItemIcon.js';
+
+import type { NavigationElement } from './types.js';
 
 export interface RowMenuProps {
   item: NavigationElement;

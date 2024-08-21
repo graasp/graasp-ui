@@ -1,10 +1,11 @@
-import ReportIcon from '@mui/icons-material/Report';
+import { FlagIcon } from 'lucide-react';
+
 import { IconButton, Tooltip } from '@mui/material';
 
-import { ColorVariants, IconSizeVariant } from '../types';
+import { ColorVariantsType, IconSizeVariant } from '../types.js';
 
 export interface ItemFlagButtonProps {
-  buttonColor?: ColorVariants;
+  buttonColor?: ColorVariantsType;
   iconSize?: IconSizeVariant;
   setOpen: (arg: boolean) => void;
   tooltip?: string;
@@ -24,7 +25,7 @@ export const ItemFlagButton = ({
     <Tooltip title={tooltip}>
       <span>
         <IconButton color={buttonColor} onClick={openItemFlagDialog}>
-          <ReportIcon fontSize={iconSize} />
+          <FlagIcon fontSize={iconSize} />
         </IconButton>
       </span>
     </Tooltip>

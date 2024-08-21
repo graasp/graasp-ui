@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { ThemeProvider, useTheme } from './ThemeContext';
+import { ThemeProvider, useTheme } from './ThemeContext.js';
 
 const Child = (): JSX.Element => {
   const { languageSelect } = useTheme();

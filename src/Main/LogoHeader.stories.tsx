@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react';
 
-import LogoHeader from './LogoHeader';
+import LogoHeader from './LogoHeader.js';
 
 const meta = {
   title: 'Main/LogoHeader',

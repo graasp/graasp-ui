@@ -1,13 +1,13 @@
-import * as uuid from 'uuid';
+import { validate, version } from 'uuid';
 
-import { FC, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 
-import withCollapse from '../Collapse/withCollapse';
+import withCollapse from '../Collapse/withCollapse.js';
 
 /**
  * React props types for {@link H5PItem}
  */
-interface H5PItemProps {
+type H5PItemProps = {
   itemName: string;
   itemId: string;
   contentId: string;
@@ -15,14 +15,14 @@ interface H5PItemProps {
   iframeId?: string;
   showCollapse?: boolean;
   onCollapse?: (c: boolean) => void;
-}
+};
 /**
  * The H5PItem component displays an iframe with the content of an H5P
  *
  * This component bridges the gap between the procedural "h5p-standalone"
  * package and the Graasp React ecosystem
  */
-const H5PItem: FC<H5PItemProps> = ({
+const H5PItem = ({
   itemName,
   itemId,
   contentId,
@@ -30,7 +30,7 @@ const H5PItem: FC<H5PItemProps> = ({
   iframeId = `h5p-container-${itemId}`,
   showCollapse = false,
   onCollapse,
-}) => {
+}: H5PItemProps): JSX.Element => {
   /*
     h5p-standalone (and H5P itself) expect the integration to be done on the
     window global object, which does not allow multiple H5Ps to be loaded
@@ -71,8 +71,8 @@ const H5PItem: FC<H5PItemProps> = ({
       // contentId should be UUID string
       if (
         typeof event.data.contentId !== 'string' ||
-        uuid.version(event.data.contentId) !== 4 ||
-        !uuid.validate(event.data.contentId)
+        version(event.data.contentId) !== 4 ||
+        !validate(event.data.contentId)
       ) {
         return;
       }

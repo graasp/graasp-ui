@@ -13,26 +13,7 @@ export const SMALL_AVATAR_SIZE = 40;
 export const SHORT_TEXT_WIDTH = 60;
 export const IFRAME_MIN_HEIGHT = 200;
 
-// todo: factor out in graasp constants
-export const SETTINGS = {
-  ITEM_LOGIN: {
-    name: 'item-login',
-    OPTIONS: {
-      USERNAME: 'username',
-      USERNAME_AND_PASSWORD: 'username+password',
-    },
-    SIGN_IN_MODE: {
-      PSEUDONYM: 'pseudonym',
-    },
-  },
-};
-
 export const FLAG_LIST_MAX_HEIGHT = 250;
-
-export enum CCLicenseAdaption {
-  ALLOW = 'allow',
-  ALIKE = 'alike',
-}
 
 export const SCREEN_MAX_HEIGHT =
   typeof window !== 'undefined' ? window.innerHeight * 0.8 : 1000;

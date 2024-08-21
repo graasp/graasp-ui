@@ -1,1 +1,1 @@
-export { default as Table } from './TableComponent/Table';
+export { default as Table } from './TableComponent/Table.js';

@@ -7,8 +7,8 @@ import {
 
 import { Dispatch, useState } from 'react';
 
-import Select from '../Select/Select';
-import { I18nInstance } from '../types';
+import Select from '../Select/Select.js';
+import { I18nInstance } from '../types.js';
 
 const LanguageSelect = ({
   i18n,

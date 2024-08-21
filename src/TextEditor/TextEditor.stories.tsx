@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { fn } from '@storybook/test';
 
-import TextEditor from './TextEditor';
+import TextEditor from './TextEditor.js';
 
 const TEXT =
   '<p>A p paragraph. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus tristique ligula in nibh facilisis bibendum. </p>\

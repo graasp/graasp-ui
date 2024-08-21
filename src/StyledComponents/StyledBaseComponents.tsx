@@ -1,27 +1,21 @@
 import { SxProps, styled } from '@mui/material';
 
-import React, { FC } from 'react';
+import { DetailedHTMLProps, HTMLAttributes, ImgHTMLAttributes } from 'react';
 
 type ImageProps = {
   sx?: SxProps;
-} & React.DetailedHTMLProps<
-  React.ImgHTMLAttributes<HTMLImageElement>,
-  HTMLImageElement
->;
+} & DetailedHTMLProps<ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>;
 
-const StyledImage: FC<ImageProps> = (props) => {
+const StyledImage = (props: ImageProps): JSX.Element => {
   const StyledImage = styled('img')({});
   return <StyledImage {...props} />;
 };
 
 type DivProps = {
   sx?: SxProps;
-} & React.DetailedHTMLProps<
-  React.HTMLAttributes<HTMLDivElement>,
-  HTMLDivElement
->;
+} & DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>;
 
-const StyledDiv: FC<DivProps> = (props) => {
+const StyledDiv = (props: DivProps): JSX.Element => {
   const StyledDiv = styled('div')({});
   return <StyledDiv {...props} />;
 };

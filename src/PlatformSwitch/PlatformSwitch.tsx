@@ -3,14 +3,20 @@ import {
   SpeedDial,
   SpeedDialAction,
   SxProps,
+  Tooltip,
+  TooltipProps,
   useMediaQuery,
   useTheme,
 } from '@mui/material';
-import Tooltip, { TooltipProps } from '@mui/material/Tooltip';
 
-import { AnalyticsIcon, BuildIcon, LibraryIcon, PlayIcon } from '../icons';
-import { PRIMARY_COLOR, SECONDARY_COLOR } from '../theme';
-import { Platform } from './hooks';
+import {
+  AnalyticsIcon,
+  BuildIcon,
+  LibraryIcon,
+  PlayIcon,
+} from '../icons/index.js';
+import { PRIMARY_COLOR, SECONDARY_COLOR } from '../theme.js';
+import { Platform } from './hooks.js';
 
 export type PlatformSwitchProps = {
   /** Element ID of the Platform Switch */

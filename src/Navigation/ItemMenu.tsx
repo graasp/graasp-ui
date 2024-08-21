@@ -1,6 +1,6 @@
 import type { UseQueryResult } from '@tanstack/react-query';
+import { ChevronRightIcon } from 'lucide-react';
 
-import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import {
   IconButton,
   IconButtonProps,
@@ -9,12 +9,12 @@ import {
   Typography,
 } from '@mui/material';
 
-import React from 'react';
+import { useState } from 'react';
 import { Link, LinkProps } from 'react-router-dom';
 
 import { DiscriminatedItem } from '@graasp/sdk';
 
-export const Separator = <NavigateNextIcon />;
+export const Separator = <ChevronRightIcon data-testid='NavigateNextIcon' />;
 
 export type ItemMenuProps = {
   buildIconId?: (id: string) => string;
@@ -37,7 +37,7 @@ const ItemMenu = ({
   useChildren,
   renderArrow,
 }: ItemMenuProps): JSX.Element | null => {
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
   const { data: items } = useChildren(itemId);

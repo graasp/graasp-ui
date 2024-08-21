@@ -2,9 +2,11 @@ import { expect } from '@storybook/jest';
 import type { Meta, StoryObj } from '@storybook/react';
 import { screen, userEvent, within } from '@storybook/testing-library';
 
-import Avatar from '../Avatar/Avatar';
-import { MOCK_CURRENT_MEMBER } from '../utils/fixtures';
-import UserSwitch from './UserSwitch';
+import { SMALL_AVATAR_SIZE } from '@/constants.js';
+
+import Avatar from '../Avatar/Avatar.js';
+import { MOCK_CURRENT_MEMBER } from '../utils/fixtures.js';
+import { UserSwitch } from './UserSwitch.js';
 
 const meta = {
   title: 'Common/UserSwitch/UserSwitch',
@@ -20,6 +22,8 @@ export const SignedIn = {
     currentMember: MOCK_CURRENT_MEMBER,
     renderAvatar: () => (
       <Avatar
+        maxWidth={SMALL_AVATAR_SIZE}
+        maxHeight={SMALL_AVATAR_SIZE}
         url={'https://picsum.photos/100'}
         alt={`profile image ${MOCK_CURRENT_MEMBER?.name}`}
         component={'avatar'}
@@ -46,8 +50,10 @@ export const SignedOut = {
   args: {
     renderAvatar: () => (
       <Avatar
+        maxWidth={SMALL_AVATAR_SIZE}
+        maxHeight={SMALL_AVATAR_SIZE}
         url={'https://picsum.photos/100'}
-        alt={`default profile image`}
+        alt='default profile image'
         component={'avatar'}
         sx={{ mx: 1 }}
       />

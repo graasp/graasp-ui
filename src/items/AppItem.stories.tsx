@@ -9,8 +9,8 @@ import {
   PermissionLevel,
 } from '@graasp/sdk';
 
-import { MOCK_MEMBER } from '../utils/fixtures';
-import AppItem, { CURRENT_TIMESTAMP_QUERY_PARAM } from './AppItem';
+import { MOCK_MEMBER } from '../utils/fixtures.js';
+import AppItem, { CURRENT_TIMESTAMP_QUERY_PARAM } from './AppItem.js';
 
 const meta = {
   title: 'Items/AppItem',

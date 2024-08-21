@@ -1,13 +1,11 @@
-import { styled } from '@mui/material';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
+import { Toolbar, Typography, styled } from '@mui/material';
 
-interface Props {
+type Props = {
   selected: string[];
   Actions?: ({ selectedIds }: { selectedIds: string[] }) => JSX.Element;
   NoSelectionToolbar?: () => JSX.Element;
   countTextFunction?: (selection: string[]) => string;
-}
+};
 
 // casting is needed to support the `component` prop
 // see: https://mui.com/material-ui/guides/typescript/#complications-with-the-component-prop

@@ -2,8 +2,8 @@ import type { StoryObj } from '@storybook/react';
 
 import { MimeTypes } from '@graasp/sdk';
 
-import { TABLE_CATEGORIES } from '../utils/storybook';
-import FileAudio from './FileAudio';
+import { TABLE_CATEGORIES } from '../utils/storybook.js';
+import FileAudio from './FileAudio.js';
 
 export default {
   title: 'Items/FileAudio',

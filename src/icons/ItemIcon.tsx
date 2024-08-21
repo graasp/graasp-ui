@@ -24,9 +24,9 @@ import {
   getMimetype,
 } from '@graasp/sdk';
 
-import { StyledImage } from '../StyledComponents/StyledBaseComponents';
-import EtherpadIcon from './EtherpadIcon';
-import H5PIcon from './H5PIcon';
+import { StyledImage } from '../StyledComponents/StyledBaseComponents.js';
+import EtherpadIcon from './EtherpadIcon.js';
+import H5PIcon from './H5PIcon.js';
 
 const MAX_ICON_SIZE = '25px';
 

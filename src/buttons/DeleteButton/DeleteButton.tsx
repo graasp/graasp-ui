@@ -1,13 +1,18 @@
-import DeleteIcon from '@mui/icons-material/Delete';
+import { TrashIcon } from 'lucide-react';
+
 import { IconButton, ListItemIcon, MenuItem, Tooltip } from '@mui/material';
 
 import { MouseEventHandler } from 'react';
 
-import { ActionButton, ActionButtonVariant, ColorVariants } from '../../types';
+import {
+  ActionButton,
+  ActionButtonVariant,
+  ColorVariantsType,
+} from '../../types.js';
 
 export type Props = {
   className?: string;
-  color?: ColorVariants;
+  color?: ColorVariantsType;
   id?: string;
   onClick?: MouseEventHandler<HTMLButtonElement | HTMLLIElement>;
   text?: string;
@@ -22,7 +27,7 @@ const DeleteButton = ({
   text = 'Delete',
   type,
 }: Props): JSX.Element => {
-  const icon = <DeleteIcon />;
+  const icon = <TrashIcon />;
   switch (type) {
     case ActionButton.ICON:
       return icon;

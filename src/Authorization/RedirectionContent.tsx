@@ -2,14 +2,14 @@ import { Container, Typography, styled, useTheme } from '@mui/material';
 
 import { Link, LinkProps } from 'react-router-dom';
 
-import GraaspLogo from '../GraaspLogo';
+import GraaspLogo from '../GraaspLogo/GraaspLogo.js';
 
-interface Props {
+type Props = {
   link: LinkProps['to'];
   id?: string;
   redirectionLinkText?: string;
   redirectionText?: string;
-}
+};
 
 const StyledContainer = styled(Container)(() => ({
   height: '100vh',

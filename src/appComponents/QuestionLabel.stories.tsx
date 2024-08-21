@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import QuestionLabel from './QuestionLabel';
+import QuestionLabel from './QuestionLabel.js';
 
 const meta: Meta<typeof QuestionLabel> = {
   title: 'Apps/QuestionLabel',

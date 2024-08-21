@@ -3,9 +3,9 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { fn } from '@storybook/test';
 import { userEvent, within } from '@storybook/testing-library';
 
-import { ActionButton } from '../../types';
-import { TABLE_CATEGORIES } from '../../utils/storybook';
-import ChatboxButton from './ChatboxButton';
+import { ActionButton } from '../../types.js';
+import { TABLE_CATEGORIES } from '../../utils/storybook.js';
+import ChatboxButton from './ChatboxButton.js';
 
 const meta = {
   title: 'Buttons/ChatboxButton',
@@ -31,7 +31,7 @@ type Story = StoryObj<typeof meta>;
 export const ShowChat: Story = {
   args: {
     showChat: true,
-    color: 'error',
+    color: 'primary',
   },
 };
 

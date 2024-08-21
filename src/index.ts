@@ -1,96 +1,97 @@
-export * from './theme';
-export * from './constants';
+export * from './theme.js';
+export * from './constants.js';
 
-export * from './items';
-export * from './hooks';
-export * from './icons';
-export * from './buttons';
+export * from './items/index.js';
 
-export { default as Loader } from './Loader';
-export * from './Loader';
+export * from './hooks/useFullscreen.js';
+export * from './hooks/useMobileView.js';
 
-export { default as TextDisplay } from './TextDisplay/TextDisplay';
-export { withFlavor } from './TextDisplay/withFlavor';
+export * from './icons/index.js';
+export * from './buttons/index.js';
 
-export { default as Header } from './Header/Header';
+export { default as Loader } from './Loader/Loader.js';
 
-export { default as Sidebar } from './Sidebar';
-export * from './Sidebar';
+export { default as TextDisplay } from './TextDisplay/TextDisplay.js';
+export { withFlavor } from './TextDisplay/withFlavor.js';
 
-export { default as DrawerHeader } from './DrawerHeader';
-export * from './DrawerHeader';
+export { default as Header } from './Header/Header.js';
 
-export { default as MainMenu } from './MainMenu';
-export * from './MainMenu';
+export { default as Sidebar } from './Sidebar/Sidebar.js';
 
-export { default as Navigation, HomeMenu, ItemMenu } from './Navigation';
-export * from './Navigation';
+export { default as DrawerHeader } from './DrawerHeader/DrawerHeader.js';
 
-export { default as Main } from './Main';
-export * from './Main';
+export { default as MainMenu } from './MainMenu/MainMenu.js';
+export { useMainMenuOpenContext } from './MainMenu/hooks.js';
+export * from './MainMenu/MainMenu.js';
+export * from './MainMenu/MenuItem/MenuItem.js';
 
-export { default as DynamicTreeView } from './DynamicTreeView';
-export * from './DynamicTreeView';
+export { default as Navigation } from './Navigation/Navigation.js';
+export { default as HomeMenu } from './Navigation/HomeMenu.js';
+export { default as ItemMenu } from './Navigation/ItemMenu.js';
 
-export { default as withCollapse } from './Collapse/withCollapse';
+export { default as Main } from './Main/Main.js';
 
-export { default as PermissionedComponent } from './PermissionedComponent';
+export { default as withCollapse } from './Collapse/withCollapse.js';
 
-export { default as GraaspLogo } from './GraaspLogo';
+export { default as GraaspLogo } from './GraaspLogo/GraaspLogo.js';
 
-export { default as ItemLoginAuthorization } from './itemLogin';
-export * from './itemLogin';
+export { default as ItemLoginAuthorization } from './itemLogin/ItemLoginAuthorization.js';
+export { default as ForbiddenContent } from './itemLogin/ForbiddenContent.js';
 
-export { default as Card } from './Card';
-export { default as FolderCard } from './Card/FolderCard';
-export { default as LinkCard } from './Card/LinkCard';
-export { default as Thumbnail } from './Thumbnail';
-export { default as Avatar } from './Avatar/Avatar';
-export { default as ItemBadges } from './ItemBadges';
+export { default as Card } from './Card/Card.js';
+export { default as FolderCard } from './Card/FolderCard.js';
+export { default as LinkCard } from './Card/LinkCard.js';
+export { default as Thumbnail } from './Thumbnail/Thumbnail.js';
+export { default as Avatar } from './Avatar/Avatar.js';
+export { default as ItemBadges } from './ItemBadges/ItemBadges.js';
 
-export * from './ItemFlag';
+export { default as ItemFlagDialog } from './ItemFlag/ItemFlagDialog.js';
+export { default as ItemFlagButton } from './ItemFlag/ItemFlagButton.js';
 
-export { default as CreativeCommons } from './CreativeCommons';
+export { default as CreativeCommons } from './CreativeCommons/CreativeCommons.js';
 
-export { default as CookiesBanner } from './CookiesBanner';
+export { default as CookiesBanner } from './CookiesBanner/CookiesBanner.js';
 
-export * from './Authorization';
+export { default as withAuthorization } from './Authorization/withAuthorization.js';
+export { default as RedirectionContent } from './Authorization/RedirectionContent.js';
 
-export { UserSwitch, UserSwitchWrapper } from './UserSwitch';
+export { UserSwitch } from './UserSwitch/UserSwitch.js';
+export { UserSwitchWrapper } from './UserSwitch/UserSwitchWrapper.js';
 
-export { default as CustomInitialLoader } from './CustomInitialLoader';
+export { default as CustomInitialLoader } from './CustomInitialLoader/CustomInitialLoader.js';
 
-export { default as Select } from './Select/Select';
+export { default as Select } from './Select/Select.js';
 
-export { default as ItemSkeleton } from './items/ItemSkeleton';
+export { default as ItemSkeleton } from './items/ItemSkeleton/ItemSkeleton.js';
 
-export { default as SearchInput } from './SearchInput';
-export * from './SearchInput';
+export { default as SearchInput } from './SearchInput/SearchInput.js';
+export * from './SearchInput/SearchInput.js';
 
-export { default as PlatformSwitch } from './PlatformSwitch';
-export * from './PlatformSwitch';
+export { default as PlatformSwitch } from './PlatformSwitch/PlatformSwitch.js';
+export * from './PlatformSwitch/PlatformSwitch.js';
+export * from './PlatformSwitch/hooks.js';
 
 export {
   default as FileDropper,
   type FileDropperProps,
-} from './upload/FileDropper/FileDropper';
+} from './upload/FileDropper/FileDropper.js';
 export {
   default as UploadFileButton,
   type UploadFileButtonProps,
-} from './upload/UploadFileButton/UploadFileButton';
+} from './upload/UploadFileButton/UploadFileButton.js';
 
-export { default as RowMenu, type RowMenuProps } from './Tree/RowMenu';
-export { default as RowMenus, type RowMenusProps } from './Tree/RowMenus';
+export { default as RowMenu, type RowMenuProps } from './Tree/RowMenu.js';
+export { default as RowMenus, type RowMenusProps } from './Tree/RowMenus.js';
 export {
   default as Breadcrumbs,
   type BreadcrumbsProps,
-} from './Tree/Breadcrumbs';
-export * from './Tree/types';
+} from './Tree/Breadcrumbs.js';
+export type { NavigationElement } from './Tree/types.js';
 
-export * from './ThemeContext';
+export * from './ThemeContext/ThemeContext.js';
 
-export * from './types';
+export * from './types.js';
 
-export { default as DraggingWrapper } from './draggable/DraggingWrapper';
-export * from './draggable/types';
-export { default as TableToolbar } from './TableComponent/TableToolbar';
+export { default as DraggingWrapper } from './draggable/DraggingWrapper.js';
+export * from './draggable/types.js';
+export { default as TableToolbar } from './TableComponent/TableToolbar.js';

@@ -7,7 +7,7 @@ import {
   DescriptionPlacementType,
 } from '@graasp/sdk';
 
-import withCaption from './withCaption';
+import withCaption from './withCaption.js';
 
 const renderComponent = ({
   description,
@@ -50,6 +50,6 @@ export default meta;
 type Story = StoryObj<typeof renderComponent>;
 
 export const CaptionOnImage = {} satisfies Story;
-export const CanteredCaption = {
+export const CenteredCaption = {
   args: { alignment: Alignment.Center },
 } satisfies Story;

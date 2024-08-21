@@ -1,12 +1,12 @@
-import Thumbnail from '@/Thumbnail';
-import ItemIcon, { ItemIconProps } from '@/icons/ItemIcon';
-import { DEFAULT_LIGHT_PRIMARY_COLOR } from '@/theme';
-
 import { Box, useTheme } from '@mui/material';
 
 import { ItemType } from '@graasp/sdk';
 
-import { CARD_HEIGHT } from '../constants';
+import Thumbnail from '@/Thumbnail/Thumbnail.js';
+import ItemIcon, { ItemIconProps } from '@/icons/ItemIcon.js';
+import { DEFAULT_LIGHT_PRIMARY_COLOR } from '@/theme.js';
+
+import { CARD_HEIGHT } from '../constants.js';
 
 type CardThumbnailProps = {
   itemType?: ItemIconProps['type'];

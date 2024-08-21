@@ -1,16 +1,21 @@
-import { PRIMARY_COLOR } from '@/theme';
-
-import { Box, Stack, SxProps, styled } from '@mui/material';
-import MuiCard from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import Typography from '@mui/material/Typography';
-import Grid2 from '@mui/material/Unstable_Grid2';
+import {
+  Box,
+  CardActions,
+  Card as MuiCard,
+  Stack,
+  SxProps,
+  Typography,
+  styled,
+} from '@mui/material';
+import { Unstable_Grid2 as Grid2 } from '@mui/material/';
 
 import { ReactElement } from 'react';
 import { Link } from 'react-router-dom';
 
-import type { DraggableAndDroppableProps } from '../draggable/types';
-import CardThumbnail, { CardThumbnailProps } from './CardThumbnail';
+import { PRIMARY_COLOR } from '@/theme.js';
+
+import type { DraggableAndDroppableProps } from '../draggable/types.js';
+import CardThumbnail, { CardThumbnailProps } from './CardThumbnail.js';
 
 const DEFAULT_CARD_HEIGHT = 130;
 

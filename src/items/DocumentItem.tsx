@@ -2,8 +2,10 @@ import { Typography } from '@mui/material';
 
 import { DocumentItemType, getDocumentExtra } from '@graasp/sdk';
 
-import { TextDisplay, withFlavor } from '..';
-import withCollapse from '../Collapse/withCollapse';
+import TextDisplay from '@/TextDisplay/TextDisplay.js';
+import { withFlavor } from '@/TextDisplay/withFlavor.js';
+
+import withCollapse from '../Collapse/withCollapse.js';
 
 export type DocumentItemProps = {
   id?: string;

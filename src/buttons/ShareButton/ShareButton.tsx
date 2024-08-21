@@ -1,5 +1,5 @@
-import CloseIcon from '@mui/icons-material/Close';
-import Groups from '@mui/icons-material/Groups';
+import { UsersRound } from 'lucide-react';
+
 import {
   IconButton,
   IconButtonProps,
@@ -11,11 +11,10 @@ import {
 
 import { MouseEventHandler } from 'react';
 
-import { ActionButton, ActionButtonVariant } from '../../types';
+import { ActionButton, ActionButtonVariant } from '@/types.js';
 
 export type Props = {
   tooltip?: string;
-  open?: boolean;
   onClick?: MouseEventHandler;
   ariaLabel?: string;
   className?: string;
@@ -25,7 +24,6 @@ export type Props = {
 };
 
 const ShareButton = ({
-  open,
   className,
   tooltip = 'Share',
   ariaLabel,
@@ -34,7 +32,7 @@ const ShareButton = ({
   size,
   type = ActionButton.ICON_BUTTON,
 }: Props): JSX.Element => {
-  const icon = open ? <CloseIcon /> : <Groups />;
+  const icon = <UsersRound />;
   switch (type) {
     case ActionButton.ICON:
       return icon;

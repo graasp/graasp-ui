@@ -1,21 +1,26 @@
-import BookmarkIcon from '@mui/icons-material/Bookmark';
-import BookmarkBorderOutlinedIcon from '@mui/icons-material/BookmarkBorderOutlined';
-import { IconButton, SvgIconProps, Tooltip } from '@mui/material';
-import { SxProps } from '@mui/material/styles';
+import { BookmarkIcon } from 'lucide-react';
+
+import { IconButton, SvgIconProps, SxProps, Tooltip } from '@mui/material';
 
 import { MouseEventHandler } from 'react';
 
-import { ActionButton, ActionButtonVariant, ColorVariants } from '../../types';
-import MenuItemButton from '../MenuItemButton';
+import {
+  ActionButton,
+  ActionButtonVariant,
+  ColorVariantsType,
+} from '@/types.js';
+
+import MenuItemButton from '../MenuItemButton.js';
+import { useButtonColor } from '../hooks.js';
 
 const BOOKMARK_COLOR = '#ffc107';
 
-export interface BookmarkButtonProps {
+export type BookmarkButtonProps = {
   sx?: SxProps;
   /**
    * IconButton's color
    */
-  color?: ColorVariants | 'default';
+  color?: ColorVariantsType;
   handleBookmark: MouseEventHandler;
   handleUnbookmark: MouseEventHandler;
   isFavorite?: boolean;
@@ -28,7 +33,7 @@ export interface BookmarkButtonProps {
   ariaLabel?: string;
   tooltip?: string;
   text?: string;
-}
+};
 
 const BookmarkButton = ({
   ariaLabel = 'favorite',
@@ -43,16 +48,15 @@ const BookmarkButton = ({
   tooltip,
   type,
 }: BookmarkButtonProps): JSX.Element => {
-  const icon = isFavorite ? (
-    <BookmarkIcon fontSize={size} />
-  ) : (
-    <BookmarkBorderOutlinedIcon fontSize={size} />
+  const { color: buttonColor } = useButtonColor(color);
+  const icon = (
+    <BookmarkIcon fill={isFavorite ? BOOKMARK_COLOR : 'none'} fontSize={size} />
   );
 
   const tooltipText =
     tooltip ?? (isFavorite ? 'Remove from Bookmarks' : 'Add to Bookmarks');
 
-  const iconColor = isFavorite ? BOOKMARK_COLOR : color;
+  const iconColor = isFavorite ? BOOKMARK_COLOR : buttonColor;
 
   const onClick = isFavorite ? handleUnbookmark : handleBookmark;
 

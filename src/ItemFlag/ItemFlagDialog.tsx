@@ -1,17 +1,21 @@
-import { ListItemButton, ListItemText, styled } from '@mui/material';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogTitle from '@mui/material/DialogTitle';
-import List from '@mui/material/List';
-import Typography from '@mui/material/Typography';
+import {
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  List,
+  ListItemButton,
+  ListItemText,
+  Typography,
+  styled,
+} from '@mui/material';
 
-import { FC, useState } from 'react';
+import { useState } from 'react';
 
 import { FlagType } from '@graasp/sdk';
 
-import Button from '../buttons/Button';
-import { FLAG_LIST_MAX_HEIGHT } from '../constants';
+import Button from '../buttons/Button/Button.js';
+import { FLAG_LIST_MAX_HEIGHT } from '../constants.js';
 
 const ListTitle = styled(Typography)({
   fontSize: 'small',
@@ -34,7 +38,7 @@ export interface ItemFlagDialogProps {
   formatFlag?: (flag: string) => string;
 }
 
-export const ItemFlagDialog: FC<ItemFlagDialogProps> = ({
+export const ItemFlagDialog = ({
   flags,
   onFlag,
   open,
@@ -44,7 +48,7 @@ export const ItemFlagDialog: FC<ItemFlagDialogProps> = ({
   cancelButtonText = 'Cancel',
   confirmButtonText = 'Flag',
   formatFlag,
-}) => {
+}: ItemFlagDialogProps): JSX.Element => {
   const [selectedFlag, setSelectedFlag] = useState<FlagType>();
 
   const handleSelect = (flag: FlagType) => () => setSelectedFlag(flag);

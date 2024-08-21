@@ -1,10 +1,11 @@
-import { TABLE_CATEGORIES } from '@/utils/storybook';
 import { expect } from '@storybook/jest';
 import type { Meta, StoryObj } from '@storybook/react';
 import { within } from '@storybook/testing-library';
 import { FileBox } from 'lucide-react';
 
-import UploadFileButton from './UploadFileButton';
+import { TABLE_CATEGORIES } from '@/utils/storybook.js';
+
+import UploadFileButton from './UploadFileButton.js';
 
 const meta = {
   title: 'upload/UploadFileButton',

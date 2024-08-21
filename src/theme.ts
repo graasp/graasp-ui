@@ -4,7 +4,6 @@ import {
   createTheme,
   responsiveFontSizes,
 } from '@mui/material';
-import { grey } from '@mui/material/colors';
 
 import { Context } from '@graasp/sdk';
 
@@ -104,7 +103,7 @@ export const createGraaspTheme = ({
         styleOverrides: {
           root: {
             color: 'white',
-            backgroundColor: grey[400],
+            backgroundColor: '#bcbcbc',
           },
         },
       },

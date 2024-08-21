@@ -3,9 +3,10 @@ import type { StoryObj } from '@storybook/react';
 import { fn } from '@storybook/test';
 import { userEvent, within } from '@storybook/testing-library';
 
-import { ActionButton } from '../../types';
-import { TABLE_CATEGORIES } from '../../utils/storybook';
-import EditButton from './EditButton';
+import { ActionButton } from '@/types.js';
+import { TABLE_CATEGORIES } from '@/utils/storybook.js';
+
+import EditButton from './EditButton.js';
 
 export default {
   title: 'Buttons/EditButton',

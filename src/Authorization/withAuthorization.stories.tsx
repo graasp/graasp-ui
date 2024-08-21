@@ -2,8 +2,8 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import { CompleteMember } from '@graasp/sdk';
 
-import { BuildIcon } from '../icons';
-import withAuthorization from './withAuthorization';
+import BuildIcon from '../icons/BuildIcon.js';
+import withAuthorization from './withAuthorization.js';
 
 const redirectionLink = 'http://redirect.org';
 

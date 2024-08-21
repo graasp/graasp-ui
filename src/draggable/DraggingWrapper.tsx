@@ -1,12 +1,12 @@
 // we could replace dnd with this https://docs.dndkit.com
-import Grid2 from '@mui/material/Unstable_Grid2/Grid2';
+import { Unstable_Grid2 as Grid2 } from '@mui/material';
 
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 
-import DraggableElement, { DraggableElementProps } from './DraggableElement';
-import InBetween, { InBetweenProps } from './InBetween';
-import { DroppedFile } from './types';
+import DraggableElement, { DraggableElementProps } from './DraggableElement.js';
+import InBetween, { InBetweenProps } from './InBetween.js';
+import { DroppedFile } from './types.js';
 
 export type DraggingWrapperProps<T> = {
   renderComponent: DraggableElementProps<T>['renderComponent'];
