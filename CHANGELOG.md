@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.25.0](https://github.com/graasp/graasp-ui/compare/v4.24.0...v4.25.0) (2024-08-21)
+
+
+### Features
+
+* use ts build ([#970](https://github.com/graasp/graasp-ui/issues/970)) ([5f963f7](https://github.com/graasp/graasp-ui/commit/5f963f7332c14dfeb2bf761ad2f222c77c6dfe3a))
+
+
+### Bug Fixes
+
+* **deps:** update dependency react-rnd to v10.4.12 ([#982](https://github.com/graasp/graasp-ui/issues/982)) ([b07d7ce](https://github.com/graasp/graasp-ui/commit/b07d7ce0cd6395f56fce4c7b09cc510568412289))
+* **deps:** update dependency vitest to v2.0.5 ([#972](https://github.com/graasp/graasp-ui/issues/972)) ([5ed3103](https://github.com/graasp/graasp-ui/commit/5ed310324b8ffa000d78b9870c8e9448aec9dbd0))
+
 ## [4.24.0](https://github.com/graasp/graasp-ui/compare/v4.23.0...v4.24.0) (2024-08-05)
 
 
