@@ -2490,7 +2490,7 @@ __metadata:
     react-dom: "npm:18.3.1"
     react-i18next: "npm:15.0.1"
     react-quill: "npm:2.0.0"
-    react-rnd: "npm:10.4.11"
+    react-rnd: "npm:10.4.12"
     react-router-dom: "npm:6.26.1"
     react-test-renderer: "npm:18.3.1"
     sass: "npm:1.77.8"
@@ -13637,9 +13637,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-rnd@npm:10.4.11":
-  version: 10.4.11
-  resolution: "react-rnd@npm:10.4.11"
+"react-rnd@npm:10.4.12":
+  version: 10.4.12
+  resolution: "react-rnd@npm:10.4.12"
   dependencies:
     re-resizable: "npm:6.9.17"
     react-draggable: "npm:4.4.6"
@@ -13647,7 +13647,7 @@ __metadata:
   peerDependencies:
     react: ">=16.3.0"
     react-dom: ">=16.3.0"
-  checksum: 10/b1362efc490e593c336ceb8c4b19ce266976f96c7a4fcef4e06703f12a16731fbc50143f5bf6532d9262603f6ef81d740747a62c06c2ec372089947d96cd98e4
+  checksum: 10/f29429a9ceafdf19c3b50571882c36eee29430a22d526fe2aaf641e38146e1bf5a1337639e0c9eba7c6ddaa85721cff9f390cf8d807a62634a27a77e49e2653c
   languageName: node
   linkType: hard
 
