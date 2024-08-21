@@ -34,10 +34,6 @@ const StyledIconButton = styled(IconButton)(
   }),
 );
 
-const StyledToolbar = styled(Toolbar)({
-  // justifyContent: 'space-between',
-});
-
 type HeaderMenuIconProps = {
   isOpen: boolean;
   buttonId?: string;
@@ -121,7 +117,7 @@ export const Header = ({
           ...sx,
         }}
       >
-        <StyledToolbar disableGutters>
+        <Toolbar disableGutters>
           {hasSidebar && (
             <HeaderMenuIcon
               isOpen={isSidebarOpen}
@@ -142,7 +138,7 @@ export const Header = ({
             {centerContent}
             {rightContent}
           </Stack>
-        </StyledToolbar>
+        </Toolbar>
       </AppBar>
       <Toolbar />
     </>

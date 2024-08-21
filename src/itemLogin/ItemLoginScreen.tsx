@@ -13,7 +13,6 @@ import { ItemLoginSchemaType, UUID } from '@graasp/sdk';
 
 import Button from '../buttons/Button/Button.js';
 import ForbiddenText from './ForbiddenText.js';
-import { isMemberIdValid } from './utils.js';
 
 export type SignInPropertiesType = {
   memberId?: string;
@@ -115,16 +114,12 @@ const ItemLoginScreen = ({
   };
 
   const shouldSignInBeDisabled = (): boolean => {
-    const usernameError = !username?.length || isMemberIdValid(username);
+    const usernameError = !username?.length;
     const passwordError = withPassword && !password?.length;
     return usernameError || passwordError;
   };
 
-  const isMemberId = isMemberIdValid(username);
-  const error = Boolean(username?.length && isMemberId);
-  const helperText = isMemberId
-    ? t('This is a member id. You should switch the sign in mode.')
-    : null;
+  const error = Boolean(username?.length);
 
   return (
     <WrapperContainer maxWidth='xs'>
@@ -138,7 +133,6 @@ const ItemLoginScreen = ({
           variant='outlined'
           fullWidth
           type='text'
-          helperText={helperText}
           id={usernameInputId}
           value={username}
           onKeyDown={handleUsernamePressEnter}
