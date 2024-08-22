@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.26.0](https://github.com/graasp/graasp-ui/compare/v4.25.0...v4.26.0) (2024-08-22)
+
+
+### Features
+
+* update package ([#966](https://github.com/graasp/graasp-ui/issues/966)) ([0e26949](https://github.com/graasp/graasp-ui/commit/0e26949aa33487149fcff4708f99f4ce6748abf4))
+
+
+### Bug Fixes
+
+* add disabled color that does not use transparency ([#983](https://github.com/graasp/graasp-ui/issues/983)) ([c57a0e0](https://github.com/graasp/graasp-ui/commit/c57a0e025546c7fabb26b6bd70d003a7b7b3a675))
+* **deps:** update dependency @storybook/react-vite to v8.2.9 ([#981](https://github.com/graasp/graasp-ui/issues/981)) ([8d2fcee](https://github.com/graasp/graasp-ui/commit/8d2fcee69d08a3f79700d9afa61622e8b3b79bc7))
+
 ## [4.25.0](https://github.com/graasp/graasp-ui/compare/v4.24.0...v4.25.0) (2024-08-21)
 
 
