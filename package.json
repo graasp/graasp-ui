@@ -9,7 +9,8 @@
     "Abdallah Al Chami",
     "Alexandre Chau",
     "Basile Spaenlehauer",
-    "Jérémy La Scala"
+    "Jérémy La Scala",
+    "Thibault Reidy"
   ],
   "license": "AGPL-3.0-only",
   "repository": {
@@ -115,7 +116,7 @@
     "@emotion/cache": "~11.13.1",
     "@emotion/react": "11.13.3",
     "@emotion/styled": "11.13.0",
-    "@graasp/sdk": "github:graasp/graasp-sdk#568-new-membertype",
+    "@graasp/sdk": "4.26.0",
     "@mui/icons-material": "5.16.7",
     "@mui/lab": "5.0.0-alpha.173",
     "@mui/material": "5.16.7",
