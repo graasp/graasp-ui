@@ -18,6 +18,7 @@ export const SECONDARY_COLOR = '#FFFFFF';
  */
 export const DEFAULT_TEXT_PRIMARY_COLOR = '#313131';
 export const DEFAULT_TEXT_SECONDARY_COLOR = '#71717A';
+export const DEFAULT_TEXT_DISABLED_COLOR = '#c0c0c4';
 export const DEFAULT_ACTIVE_ACTION_COLOR = '#777578';
 /**
  * Color used as a light version of the primary color for button and icon backgrounds.
@@ -86,6 +87,7 @@ export const createGraaspTheme = ({
       text: {
         primary: DEFAULT_TEXT_PRIMARY_COLOR,
         secondary: DEFAULT_TEXT_SECONDARY_COLOR,
+        disabled: DEFAULT_TEXT_DISABLED_COLOR,
       },
       background: { default: DEFAULT_BACKGROUND_COLOR },
       primary: {
