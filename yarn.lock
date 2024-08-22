@@ -2505,7 +2505,7 @@ __metadata:
     vite-plugin-dts: "npm:4.0.3"
     vite-plugin-istanbul: "npm:6.0.2"
     vitest: "npm:2.0.5"
-    wait-on: "npm:7.2.0"
+    wait-on: "npm:8.0.0"
   peerDependencies:
     "@emotion/cache": ~11.10.7 || ~11.11.0 || ~11.13.0
     "@emotion/react": ~11.10.6 || ~11.11.0 || ~11.13.0
@@ -6355,6 +6355,17 @@ __metadata:
     form-data: "npm:^4.0.0"
     proxy-from-env: "npm:^1.1.0"
   checksum: 10/6ae80dda9736bb4762ce717f1a26ff997d94672d3a5799ad9941c24d4fb019c1dff45be8272f08d1975d7950bac281f3ba24aff5ecd49ef5a04d872ec428782f
+  languageName: node
+  linkType: hard
+
+"axios@npm:^1.7.4":
+  version: 1.7.4
+  resolution: "axios@npm:1.7.4"
+  dependencies:
+    follow-redirects: "npm:^1.15.6"
+    form-data: "npm:^4.0.0"
+    proxy-from-env: "npm:^1.1.0"
+  checksum: 10/7a1429be1e3d0c2e1b96d4bba4d113efbfabc7c724bed107beb535c782c7bea447ff634886b0c7c43395a264d085450d009eb1154b5f38a8bae49d469fdcbc61
   languageName: node
   linkType: hard
 
@@ -11226,7 +11237,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"joi@npm:^17.11.0":
+"joi@npm:^17.11.0, joi@npm:^17.13.3":
   version: 17.13.3
   resolution: "joi@npm:17.13.3"
   dependencies:
@@ -15964,7 +15975,22 @@ __metadata:
   languageName: node
   linkType: hard
 
-"wait-on@npm:7.2.0, wait-on@npm:^7.0.0":
+"wait-on@npm:8.0.0":
+  version: 8.0.0
+  resolution: "wait-on@npm:8.0.0"
+  dependencies:
+    axios: "npm:^1.7.4"
+    joi: "npm:^17.13.3"
+    lodash: "npm:^4.17.21"
+    minimist: "npm:^1.2.8"
+    rxjs: "npm:^7.8.1"
+  bin:
+    wait-on: bin/wait-on
+  checksum: 10/8c1ac31b74c27020678dd6ce52b4e50113fdeb188f398495255cdb3b1ac3e71cdb7a12657d4805c38a6c06ce8bc0f4fdd971347723d3d523a6891efa37b0d6da
+  languageName: node
+  linkType: hard
+
+"wait-on@npm:^7.0.0":
   version: 7.2.0
   resolution: "wait-on@npm:7.2.0"
   dependencies:
