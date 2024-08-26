@@ -13,7 +13,7 @@ type Props<T> = {
   disabled?: boolean;
   color?: MuiSelectProps['color'];
   defaultValue?: T;
-  value?: T;
+  value?: T | undefined;
   displayEmpty?: MuiSelectProps['displayEmpty'];
   id?: string;
   label?: string;
@@ -25,7 +25,7 @@ type Props<T> = {
   size?: MuiSelectProps['size'];
 };
 
-const Select = <T extends string | number | readonly string[] | undefined>({
+const Select = <T extends string | number>({
   buildOptionId,
   className,
   color,
@@ -64,12 +64,12 @@ const Select = <T extends string | number | readonly string[] | undefined>({
         color={color}
         variant={variant}
         id={id}
-        {...(value && { value })}
+        value={value}
         sx={sx}
       >
         {values.map(({ value, text, disabled }) => (
           <MenuItem
-            key={buildOptionId?.(value)}
+            key={value}
             id={buildOptionId?.(value)}
             value={value}
             disabled={Boolean(disabled)}
