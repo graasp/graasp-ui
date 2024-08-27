@@ -59,8 +59,8 @@ const ItemLoginScreen = ({
 }: ItemLoginScreenProps): JSX.Element => {
   const { t } = useTranslation();
   const passwordFieldRef = useRef<HTMLInputElement | null>(null);
-  const [password, setPassword] = useState<string>();
-  const [username, setUsername] = useState<string>();
+  const [password, setPassword] = useState<string>('');
+  const [username, setUsername] = useState<string>('');
 
   // no item login detected
   if (
@@ -119,7 +119,9 @@ const ItemLoginScreen = ({
     return usernameError || passwordError;
   };
 
-  const error = Boolean(username?.length);
+  // validation for the username is length between 3 and 50 chars
+  const error =
+    Boolean(username) && (username.length < 3 || username.length > 50);
 
   return (
     <WrapperContainer maxWidth='xs'>
