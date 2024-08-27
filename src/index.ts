@@ -36,7 +36,7 @@ export { default as withCollapse } from './Collapse/withCollapse.js';
 
 export { default as GraaspLogo } from './GraaspLogo/GraaspLogo.js';
 
-export { default as ItemLoginAuthorization } from './itemLogin/ItemLoginAuthorization.js';
+export { default as ItemLoginScreen } from './itemLogin/ItemLoginScreen.js';
 export { default as ForbiddenContent } from './itemLogin/ForbiddenContent.js';
 
 export { default as Card } from './Card/Card.js';
