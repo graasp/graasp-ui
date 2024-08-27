@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.26.1](https://github.com/graasp/graasp-ui/compare/v4.26.0...v4.26.1) (2024-08-27)
+
+
+### Bug Fixes
+
+* add buttonColor hook ([#992](https://github.com/graasp/graasp-ui/issues/992)) ([faf737b](https://github.com/graasp/graasp-ui/commit/faf737bdb093e1562bd30f6ddc0854b30d1d2b21))
+* item login screen input error ([#994](https://github.com/graasp/graasp-ui/issues/994)) ([1f4bdc3](https://github.com/graasp/graasp-ui/commit/1f4bdc3d74d23989e6f3329f35859725d80a9c00))
+* select key prop ([#1000](https://github.com/graasp/graasp-ui/issues/1000)) ([e695ce3](https://github.com/graasp/graasp-ui/commit/e695ce3fa9c8c9304f71b7fe67cb7d0aa7a7b826))
+
 ## [4.26.0](https://github.com/graasp/graasp-ui/compare/v4.25.0...v4.26.0) (2024-08-22)
 
 
