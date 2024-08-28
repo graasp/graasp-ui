@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.26.2](https://github.com/graasp/graasp-ui/compare/v4.26.1...v4.26.2) (2024-08-28)
+
+
+### Bug Fixes
+
+* use graasp version of stylis to be compatible with esm ([#1003](https://github.com/graasp/graasp-ui/issues/1003)) ([9d029e8](https://github.com/graasp/graasp-ui/commit/9d029e8f74833df9f339e042f3380741ab5aba4a))
+
 ## [4.26.1](https://github.com/graasp/graasp-ui/compare/v4.26.0...v4.26.1) (2024-08-27)
 
 
