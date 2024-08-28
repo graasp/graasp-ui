@@ -2507,7 +2507,6 @@ __metadata:
     sass: "npm:1.77.8"
     storybook: "npm:8.2.9"
     stylis: "npm:^4.3.2"
-    stylis-plugin-rtl: "npm:^2.1.1"
     ts-jest: "npm:29.2.5"
     ts-node: "npm:10.9.2"
     tsc-alias: "npm:1.8.10"
@@ -7346,13 +7345,6 @@ __metadata:
   version: 1.5.1
   resolution: "css.escape@npm:1.5.1"
   checksum: 10/f6d38088d870a961794a2580b2b2af1027731bb43261cfdce14f19238a88664b351cc8978abc20f06cc6bbde725699dec8deb6fe9816b139fc3f2af28719e774
-  languageName: node
-  linkType: hard
-
-"cssjanus@npm:^2.0.1":
-  version: 2.1.0
-  resolution: "cssjanus@npm:2.1.0"
-  checksum: 10/858ab0be770f9f898f3331dafbd8c377a8ca3c7ee88fd5b65b702c260d61ff70fe9d9c70bf343ece0594600904deead97d78ad0ede97ad55accfdc98ebe1dcf2
   languageName: node
   linkType: hard
 
@@ -14828,17 +14820,6 @@ __metadata:
   version: 3.1.1
   resolution: "strip-json-comments@npm:3.1.1"
   checksum: 10/492f73e27268f9b1c122733f28ecb0e7e8d8a531a6662efbd08e22cccb3f9475e90a1b82cab06a392f6afae6d2de636f977e231296400d0ec5304ba70f166443
-  languageName: node
-  linkType: hard
-
-"stylis-plugin-rtl@npm:^2.1.1":
-  version: 2.1.1
-  resolution: "stylis-plugin-rtl@npm:2.1.1"
-  dependencies:
-    cssjanus: "npm:^2.0.1"
-  peerDependencies:
-    stylis: 4.x
-  checksum: 10/262d2c762216556ed3dc8218ea5929ae24b4b0fae020eb41c217911e6628374009d1e1b24256ed6a2f39cbbf302a877f2efe912b628c71dd15fde90866ca54ca
   languageName: node
   linkType: hard
 
