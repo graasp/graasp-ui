@@ -2414,14 +2414,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@graasp/stylis-plugin-rtl@github:graasp/stylis-plugin-rtl":
+"@graasp/stylis-plugin-rtl@npm:2.2.0":
   version: 2.2.0
-  resolution: "@graasp/stylis-plugin-rtl@https://github.com/graasp/stylis-plugin-rtl.git#commit=ede70d4630452d93fa74ce16db2836d87c5ac36e"
+  resolution: "@graasp/stylis-plugin-rtl@npm:2.2.0"
   dependencies:
     cssjanus: "npm:^2.3.0"
   peerDependencies:
     stylis: 4.x
-  checksum: 10/6262401e5af9d08e775cb86784ce076298c4a3e602b0b08c056d814e360b59887c03c72b0fa524dc4cb1ad163589243b0199b6aaa9a49c36c29f72583ad7e2d1
+  checksum: 10/4b873aa7465c894ff5422f851522feda36bf73923f7a859befc7d5c8049e660a80a103090b977d01fad5c7d2c7ab92e313a7fa3eb263e2ce41bdb9597762edac
   languageName: node
   linkType: hard
 
@@ -2438,7 +2438,7 @@ __metadata:
     "@emotion/react": "npm:11.13.3"
     "@emotion/styled": "npm:11.13.0"
     "@graasp/sdk": "npm:4.26.0"
-    "@graasp/stylis-plugin-rtl": "github:graasp/stylis-plugin-rtl"
+    "@graasp/stylis-plugin-rtl": "npm:2.2.0"
     "@mui/icons-material": "npm:5.16.7"
     "@mui/lab": "npm:5.0.0-alpha.173"
     "@mui/material": "npm:5.16.7"
@@ -2523,7 +2523,7 @@ __metadata:
     "@emotion/react": ~11.10.6 || ~11.11.0 || ~11.13.0
     "@emotion/styled": ~11.10.6 || ~11.11.0 || ~11.13.0
     "@graasp/sdk": ^4.14.0
-    "@graasp/stylis-plugin-rtl": "*"
+    "@graasp/stylis-plugin-rtl": ^2
     "@graasp/translations": ^1.23.0
     "@mui/icons-material": ~5.14.0 || ~5.15.0 || ~5.16.0
     "@mui/lab": ~5.0.0-alpha.150
