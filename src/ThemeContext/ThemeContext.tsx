@@ -1,7 +1,6 @@
 import createCache from '@emotion/cache';
 import { CacheProvider, EmotionCache } from '@emotion/react';
 import { prefixer } from 'stylis';
-import rtlPlugin from 'stylis-plugin-rtl';
 
 import {
   Direction,
@@ -11,6 +10,8 @@ import {
 } from '@mui/material';
 
 import { createContext, useContext, useEffect, useMemo, useState } from 'react';
+
+import rtlPlugin from '@graasp/stylis-plugin-rtl';
 
 import { buildTheme } from '../theme.js';
 import { I18nInstance } from '../types.js';
@@ -40,10 +41,7 @@ const ThemeContext = createContext<Context>({
 const getCacheForDirection = (direction?: Direction): EmotionCache =>
   createCache({
     key: `mui-dir-${direction}`,
-    stylisPlugins: [
-      prefixer,
-      ...(direction === 'rtl' ? [rtlPlugin.default] : []),
-    ],
+    stylisPlugins: [prefixer, ...(direction === 'rtl' ? [rtlPlugin] : [])],
   });
 
 const ThemeProvider = ({
