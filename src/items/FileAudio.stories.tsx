@@ -5,7 +5,7 @@ import { MimeTypes } from '@graasp/sdk';
 import { TABLE_CATEGORIES } from '../utils/storybook.js';
 import FileAudio from './FileAudio.js';
 
-export default {
+const meta = {
   title: 'Items/FileAudio',
   component: FileAudio,
 
@@ -17,22 +17,53 @@ export default {
     },
   },
 };
+export default meta;
 
-type Story = StoryObj<typeof FileAudio>;
+type Story = StoryObj<typeof meta>;
 
-export const MP3Audio: Story = {
+export const MP3Audio = {
   args: {
     id: 'some-audio-file-id',
-    url: 'https://upload.wikimedia.org/wikipedia/commons/e/e1/Heart_Monitor_Beep--freesound.org.mp3',
+    url: '/test-assets/sample.mp3',
     type: MimeTypes.Audio.MP3, // should be mp3 format
   },
-};
-MP3Audio.storyName = 'MP3 Audio';
+  name: 'MP3 Audio',
+} satisfies Story;
 
-export const WAVAudio: Story = {
+export const WAVAudio = {
   args: {
     id: 'some-audio-file-id',
-    url: 'https://upload.wikimedia.org/wikipedia/commons/b/be/Bigroom_kick.wav',
+    url: '/test-assets/sample.wav',
     type: MimeTypes.Audio.WAV, // should be wav format
   },
-};
+} satisfies Story;
+
+export const M4AAudio = {
+  args: {
+    id: 'some-audio-file-id',
+    // todo: use local file
+    url: '/test-assets/sample.m4a',
+    type: MimeTypes.Audio.MP4_Apple,
+  },
+  name: 'M4A Audio',
+} satisfies Story;
+
+export const AACAudio = {
+  args: {
+    id: 'some-audio-file-id',
+    // todo: use local file
+    url: '/test-assets/sample.aac',
+    type: MimeTypes.Audio.AAC, // should be wav format
+  },
+  name: 'AAC Audio',
+} satisfies Story;
+
+export const OGGAudio = {
+  args: {
+    id: 'some-audio-file-id',
+    // todo: use local file
+    url: '/test-assets/sample.ogg',
+    type: MimeTypes.Audio.OGG, // should be wav format
+  },
+  name: 'OGG Audio',
+} satisfies Story;

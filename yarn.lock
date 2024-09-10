@@ -2399,9 +2399,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@graasp/sdk@npm:4.26.0":
+"@graasp/sdk@github:graasp/graasp-sdk#642-m4a-support":
   version: 4.26.0
-  resolution: "@graasp/sdk@npm:4.26.0"
+  resolution: "@graasp/sdk@https://github.com/graasp/graasp-sdk.git#commit=21aa97d19f736b9497cb0fafd1c5964c1f4e378b"
   dependencies:
     "@faker-js/faker": "npm:8.4.1"
     filesize: "npm:10.1.4"
@@ -2410,7 +2410,7 @@ __metadata:
   peerDependencies:
     date-fns: ^3
     uuid: ^9 || ^10
-  checksum: 10/ec6ce2780dfc25a11c90ebe90b95e34cb5026f4cab2a918960eaa465b362cb67918bbc0a7c46f5a9a3dd83c855350148ccf91e12583668ece81e7e1c1cb5b824
+  checksum: 10/9cea8679b886b743a302e28aff577eb9bc22f55ba1e6aaf950b51deda65f45caec6a7d9009891fc6f97af7107d11f0df4851edfe76c9d391ea14fc97a1b2ef15
   languageName: node
   linkType: hard
 
@@ -2437,7 +2437,7 @@ __metadata:
     "@emotion/cache": "npm:~11.13.1"
     "@emotion/react": "npm:11.13.3"
     "@emotion/styled": "npm:11.13.0"
-    "@graasp/sdk": "npm:4.26.0"
+    "@graasp/sdk": "github:graasp/graasp-sdk#642-m4a-support"
     "@graasp/stylis-plugin-rtl": "npm:2.2.0"
     "@mui/icons-material": "npm:5.16.7"
     "@mui/lab": "npm:5.0.0-alpha.173"

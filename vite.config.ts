@@ -16,6 +16,9 @@ export default (): UserConfigExport => {
         },
       ],
     },
+    optimizeDeps: {
+      exclude: ['node_modules/.cache'],
+    },
     build: {
       emptyOutDir: true,
       lib: {
