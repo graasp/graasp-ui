@@ -39,7 +39,9 @@ const FilePdf = ({
       // set pdf height -> probably very high
       const newHeight = (e.target as HTMLEmbedElement)?.offsetParent
         ?.scrollHeight;
-      newHeight && setHeight(newHeight);
+      if (newHeight) {
+        setHeight(newHeight);
+      }
     }
   };
 
