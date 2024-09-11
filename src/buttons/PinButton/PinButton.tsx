@@ -39,9 +39,9 @@ const PinButton = ({
 }: PinButtonProps): JSX.Element => {
   const { color: buttonColor } = useButtonColor(color);
   const icon = isPinned ? (
-    <Pin color={buttonColor} />
-  ) : (
     <PinOff color={buttonColor} />
+  ) : (
+    <Pin color={buttonColor} />
   );
   const text = isPinned ? unPinText : pinText;
 
