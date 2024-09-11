@@ -25,7 +25,7 @@ export const MP3Audio = {
   args: {
     id: 'some-audio-file-id',
     url: '/test-assets/sample.mp3',
-    type: MimeTypes.Audio.MP3, // should be mp3 format
+    type: MimeTypes.Audio.MP3,
   },
   name: 'MP3 Audio',
 } satisfies Story;
@@ -34,14 +34,13 @@ export const WAVAudio = {
   args: {
     id: 'some-audio-file-id',
     url: '/test-assets/sample.wav',
-    type: MimeTypes.Audio.WAV, // should be wav format
+    type: MimeTypes.Audio.WAV,
   },
 } satisfies Story;
 
 export const M4AAudio = {
   args: {
     id: 'some-audio-file-id',
-    // todo: use local file
     url: '/test-assets/sample.m4a',
     type: MimeTypes.Audio.MP4_Apple,
   },
@@ -51,9 +50,8 @@ export const M4AAudio = {
 export const AACAudio = {
   args: {
     id: 'some-audio-file-id',
-    // todo: use local file
     url: '/test-assets/sample.aac',
-    type: MimeTypes.Audio.AAC, // should be wav format
+    type: MimeTypes.Audio.AAC,
   },
   name: 'AAC Audio',
 } satisfies Story;
@@ -61,9 +59,8 @@ export const AACAudio = {
 export const OGGAudio = {
   args: {
     id: 'some-audio-file-id',
-    // todo: use local file
     url: '/test-assets/sample.ogg',
-    type: MimeTypes.Audio.OGG, // should be wav format
+    type: MimeTypes.Audio.OGG,
   },
   name: 'OGG Audio',
 } satisfies Story;
