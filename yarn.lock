@@ -2456,14 +2456,14 @@ __metadata:
     "@storybook/testing-library": "npm:0.2.2"
     "@tanstack/react-query": "npm:4.36.1"
     "@testing-library/jest-dom": "npm:6.5.0"
-    "@testing-library/react": "npm:16.0.0"
+    "@testing-library/react": "npm:16.0.1"
     "@testing-library/user-event": "npm:14.5.2"
     "@trivago/prettier-plugin-sort-imports": "npm:4.3.0"
     "@types/jest": "npm:29.5.12"
     "@types/katex": "npm:^0.16.7"
     "@types/lodash.truncate": "npm:4.4.9"
-    "@types/node": "npm:20.16.2"
-    "@types/react": "npm:18.3.4"
+    "@types/node": "npm:20.16.5"
+    "@types/react": "npm:18.3.5"
     "@types/react-dom": "npm:18.3.0"
     "@types/react-router-dom": "npm:5.3.3"
     "@types/react-text-mask": "npm:5.4.14"
@@ -2502,7 +2502,7 @@ __metadata:
     react-i18next: "npm:15.0.1"
     react-quill: "npm:2.0.0"
     react-rnd: "npm:10.4.12"
-    react-router-dom: "npm:6.26.1"
+    react-router-dom: "npm:6.26.2"
     react-test-renderer: "npm:18.3.1"
     sass: "npm:1.78.0"
     storybook: "npm:8.2.9"
@@ -2512,11 +2512,11 @@ __metadata:
     tsc-alias: "npm:1.8.10"
     typescript: "npm:5.6.2"
     uuid: "npm:10.0.0"
-    vite: "npm:5.4.2"
+    vite: "npm:5.4.4"
     vite-plugin-dts: "npm:4.2.1"
     vite-plugin-istanbul: "npm:6.0.2"
     vitest: "npm:2.0.5"
-    wait-on: "npm:8.0.0"
+    wait-on: "npm:8.0.1"
   peerDependencies:
     "@emotion/cache": ~11.10.7 || ~11.11.0 || ~11.13.0
     "@emotion/react": ~11.10.6 || ~11.11.0 || ~11.13.0
@@ -3441,10 +3441,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@remix-run/router@npm:1.19.1":
-  version: 1.19.1
-  resolution: "@remix-run/router@npm:1.19.1"
-  checksum: 10/2800c2f6567a982fe942aacc4cb5b170e7cc89bd455960e3bea2424161ff7dac32d01886322d88dd19b88d1bea711f39566d17f02b73eeb74999affb471f8f52
+"@remix-run/router@npm:1.19.2":
+  version: 1.19.2
+  resolution: "@remix-run/router@npm:1.19.2"
+  checksum: 10/31b62b66ea68bd62018189047de7b262700113438f62407df019f81a9856a08a705b2b77454be9293518e2f5f3bbf3f8b858ac19f48cb7d89f8ab56b7b630c19
   languageName: node
   linkType: hard
 
@@ -4837,9 +4837,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@testing-library/react@npm:16.0.0":
-  version: 16.0.0
-  resolution: "@testing-library/react@npm:16.0.0"
+"@testing-library/react@npm:16.0.1":
+  version: 16.0.1
+  resolution: "@testing-library/react@npm:16.0.1"
   dependencies:
     "@babel/runtime": "npm:^7.12.5"
   peerDependencies:
@@ -4853,7 +4853,7 @@ __metadata:
       optional: true
     "@types/react-dom":
       optional: true
-  checksum: 10/b32894be94e31276138decfa6bcea69dfebc0c37cf91499ff6c878f41eb1154a43a7df6eb1e72e7bede78468af6cb67ca59e4acd3206b41f3ecdae2c6efdf67e
+  checksum: 10/904b48881cf5bd208e25899e168f5c99c78ed6d77389544838d9d861a038d2c5c5385863ee9a367436770cbf7d21c5e05a991b9e24a33806e9ac985df2448185
   languageName: node
   linkType: hard
 
@@ -5244,12 +5244,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:20.16.2":
-  version: 20.16.2
-  resolution: "@types/node@npm:20.16.2"
+"@types/node@npm:20.16.5":
+  version: 20.16.5
+  resolution: "@types/node@npm:20.16.5"
   dependencies:
     undici-types: "npm:~6.19.2"
-  checksum: 10/fcae2ffaa681c2947cd3dae67a6dcf83ef666fc0994281ad881b9e3bb542fec3a9206d9ce899c20e5cdddace2b96b42e32f247864de9baf95756c07b9eff15d7
+  checksum: 10/39a8457149dc17cdea57afc90d4da53182fdb8b958d5bb065a15d123d81d4efa6b51a0de92428d05ead2e63ce07195586f71083401b99cdbcd04662344fbf7a1
   languageName: node
   linkType: hard
 
@@ -5357,13 +5357,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:18.3.4":
-  version: 18.3.4
-  resolution: "@types/react@npm:18.3.4"
+"@types/react@npm:18.3.5":
+  version: 18.3.5
+  resolution: "@types/react@npm:18.3.5"
   dependencies:
     "@types/prop-types": "npm:*"
     csstype: "npm:^3.0.2"
-  checksum: 10/359973924be42cf9e7366e1d885b28e0b3bd56d31f24458c5351af7a3f2fc070511e90d517b2195fb229146cdcb70342db6318e279c31dd5057beec1105b704e
+  checksum: 10/ba0477c5ad4a762157c6262a199af6ccf9e24576877a26a7f516d5a9ba35374a6ac7f8686a10e5e8030513214f02bcb66e8363e43905afb7cd313deaf673de05
   languageName: node
   linkType: hard
 
@@ -6355,14 +6355,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"axios@npm:^1.7.4":
-  version: 1.7.4
-  resolution: "axios@npm:1.7.4"
+"axios@npm:^1.7.7":
+  version: 1.7.7
+  resolution: "axios@npm:1.7.7"
   dependencies:
     follow-redirects: "npm:^1.15.6"
     form-data: "npm:^4.0.0"
     proxy-from-env: "npm:^1.1.0"
-  checksum: 10/7a1429be1e3d0c2e1b96d4bba4d113efbfabc7c724bed107beb535c782c7bea447ff634886b0c7c43395a264d085450d009eb1154b5f38a8bae49d469fdcbc61
+  checksum: 10/7f875ea13b9298cd7b40fd09985209f7a38d38321f1118c701520939de2f113c4ba137832fe8e3f811f99a38e12c8225481011023209a77b0c0641270e20cde1
   languageName: node
   linkType: hard
 
@@ -13084,14 +13084,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss@npm:^8.4.41":
-  version: 8.4.41
-  resolution: "postcss@npm:8.4.41"
+"postcss@npm:^8.4.43":
+  version: 8.4.45
+  resolution: "postcss@npm:8.4.45"
   dependencies:
     nanoid: "npm:^3.3.7"
     picocolors: "npm:^1.0.1"
     source-map-js: "npm:^1.2.0"
-  checksum: 10/6e6176c2407eff60493ca60a706c6b7def20a722c3adda94ea1ece38345eb99964191336fd62b62652279cec6938e79e0b1e1d477142c8d3516e7a725a74ee37
+  checksum: 10/7eaf7346d04929ee979548ece5e34d253eae6f175346e298b2c4621ad6f4ee00adfe7abe72688640e910c0361ae50537c5dda3e35fd1066491282c342b3ee5c8
   languageName: node
   linkType: hard
 
@@ -13571,27 +13571,27 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-router-dom@npm:6.26.1":
-  version: 6.26.1
-  resolution: "react-router-dom@npm:6.26.1"
+"react-router-dom@npm:6.26.2":
+  version: 6.26.2
+  resolution: "react-router-dom@npm:6.26.2"
   dependencies:
-    "@remix-run/router": "npm:1.19.1"
-    react-router: "npm:6.26.1"
+    "@remix-run/router": "npm:1.19.2"
+    react-router: "npm:6.26.2"
   peerDependencies:
     react: ">=16.8"
     react-dom: ">=16.8"
-  checksum: 10/1bd255d1ff88f477699c72656e7c07702a907e644388a1bea1c648f2df0c3c86db2e90bea945b1d43eaf84ebab194f3868f3788502965ad5f20c508c6874f1fe
+  checksum: 10/4eee37839bd1a660807c090b4d272e4aa9b95d8a9a932cdcdf7c5b10735f39b6db73bad79b08a3012386a7e225ff6bf60435e2741fb7c68e137ac5a6295d4308
   languageName: node
   linkType: hard
 
-"react-router@npm:6.26.1":
-  version: 6.26.1
-  resolution: "react-router@npm:6.26.1"
+"react-router@npm:6.26.2":
+  version: 6.26.2
+  resolution: "react-router@npm:6.26.2"
   dependencies:
-    "@remix-run/router": "npm:1.19.1"
+    "@remix-run/router": "npm:1.19.2"
   peerDependencies:
     react: ">=16.8"
-  checksum: 10/b3761515c75da65a1678f005d08a6285ceccd9df7237ae6fdd9ab2ab816ef328435b75610f705ecd9ecd41c6878fd22eb9b44c5391cdef2e1ed99ddbc78de8a4
+  checksum: 10/496e855b53e61066c1791e354f5d79eab56a128d9722fdc6486c3ecd3b3a0bf9968e927028f429893b157f3cc10fc09e890a055847723ee242663e7995fedc9d
   languageName: node
   linkType: hard
 
@@ -15798,13 +15798,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite@npm:5.4.2":
-  version: 5.4.2
-  resolution: "vite@npm:5.4.2"
+"vite@npm:5.4.4":
+  version: 5.4.4
+  resolution: "vite@npm:5.4.4"
   dependencies:
     esbuild: "npm:^0.21.3"
     fsevents: "npm:~2.3.3"
-    postcss: "npm:^8.4.41"
+    postcss: "npm:^8.4.43"
     rollup: "npm:^4.20.0"
   peerDependencies:
     "@types/node": ^18.0.0 || >=20.0.0
@@ -15837,7 +15837,7 @@ __metadata:
       optional: true
   bin:
     vite: bin/vite.js
-  checksum: 10/c449f9295060fa88c9b5cc1bd17c2de198deae596b7da1250db9662fb15e7b21e0dbe9a40a9106fb7438b1231494b169457e809ecbb65e732648d87dd284ab23
+  checksum: 10/8c2ded5cc99464362d35af6b78bd6466b9c36533a26311d360c327d0a1580d0016f4f3c4828ded5945be4adc2990f257eae85ff95b4522a6d040cdfef6e5f7b2
   languageName: node
   linkType: hard
 
@@ -15962,18 +15962,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"wait-on@npm:8.0.0":
-  version: 8.0.0
-  resolution: "wait-on@npm:8.0.0"
+"wait-on@npm:8.0.1":
+  version: 8.0.1
+  resolution: "wait-on@npm:8.0.1"
   dependencies:
-    axios: "npm:^1.7.4"
+    axios: "npm:^1.7.7"
     joi: "npm:^17.13.3"
     lodash: "npm:^4.17.21"
     minimist: "npm:^1.2.8"
     rxjs: "npm:^7.8.1"
   bin:
     wait-on: bin/wait-on
-  checksum: 10/8c1ac31b74c27020678dd6ce52b4e50113fdeb188f398495255cdb3b1ac3e71cdb7a12657d4805c38a6c06ce8bc0f4fdd971347723d3d523a6891efa37b0d6da
+  checksum: 10/41f933031b994718dfb50af35bb843f7f7017d601ef22927e92c211736fadd21808fdbf7ae367e998bcaf995cb9c05cf6160552dc655db9082aeecc346bc926d
   languageName: node
   linkType: hard
 
