@@ -116,7 +116,7 @@
     "@emotion/cache": "~11.13.1",
     "@emotion/react": "11.13.3",
     "@emotion/styled": "11.13.0",
-    "@graasp/sdk": "github:graasp/graasp-sdk#642-m4a-support",
+    "@graasp/sdk": "4.27.0",
     "@graasp/stylis-plugin-rtl": "2.2.0",
     "@mui/icons-material": "5.16.7",
     "@mui/lab": "5.0.0-alpha.173",
