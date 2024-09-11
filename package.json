@@ -175,7 +175,7 @@
     "react-router-dom": "6.26.2",
     "react-test-renderer": "18.3.1",
     "sass": "1.78.0",
-    "storybook": "8.2.9",
+    "storybook": "8.3.0",
     "stylis": "^4.3.2",
     "ts-jest": "29.2.5",
     "ts-node": "10.9.2",
