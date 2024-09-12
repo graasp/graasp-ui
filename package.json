@@ -167,7 +167,7 @@
     "jest-environment-jsdom": "29.7.0",
     "jsdom": "25.0.0",
     "katex": "0.16.11",
-    "lucide-react": "0.439.0",
+    "lucide-react": "0.441.0",
     "playwright": "1.47.0",
     "prettier": "3.3.3",
     "react": "18.3.1",
