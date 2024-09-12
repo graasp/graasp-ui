@@ -1,6 +1,5 @@
-import { expect } from '@storybook/jest';
 import type { Meta, StoryObj } from '@storybook/react';
-import { fn } from '@storybook/test';
+import { expect, fn } from '@storybook/test';
 import { within } from '@storybook/testing-library';
 
 import { Box } from '@mui/material';

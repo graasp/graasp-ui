@@ -1,5 +1,5 @@
-import { expect } from '@storybook/jest';
 import type { StoryObj } from '@storybook/react';
+import { expect } from '@storybook/test';
 import { userEvent, within } from '@storybook/testing-library';
 import type { BoundFunctions } from '@testing-library/dom';
 import { queries } from '@testing-library/dom';

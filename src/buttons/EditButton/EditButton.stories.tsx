@@ -1,6 +1,5 @@
-import { expect } from '@storybook/jest';
 import type { StoryObj } from '@storybook/react';
-import { fn } from '@storybook/test';
+import { expect, fn } from '@storybook/test';
 import { userEvent, within } from '@storybook/testing-library';
 
 import { ActionButton } from '@/types.js';

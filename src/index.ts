@@ -95,4 +95,3 @@ export * from './types.js';
 
 export { default as DraggingWrapper } from './draggable/DraggingWrapper.js';
 export * from './draggable/types.js';
-export { default as TableToolbar } from './TableComponent/TableToolbar.js';

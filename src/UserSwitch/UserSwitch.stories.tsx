@@ -1,5 +1,5 @@
-import { expect } from '@storybook/jest';
 import type { Meta, StoryObj } from '@storybook/react';
+import { expect } from '@storybook/test';
 import { screen, userEvent, within } from '@storybook/testing-library';
 
 import { SMALL_AVATAR_SIZE } from '@/constants.js';
