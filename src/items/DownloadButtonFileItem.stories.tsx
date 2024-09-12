@@ -17,6 +17,6 @@ type Story = StoryObj<typeof meta>;
 export const Button = {
   args: {
     name: 'My powerpoint presentation',
-    caption: '(50Mb - application/pdf)',
+    caption: '50Mb',
   },
 } satisfies Story;

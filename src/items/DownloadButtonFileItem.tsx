@@ -9,7 +9,7 @@ const StyledLink = styled('a')({
 type DownloadButtonFileItemProps = {
   id?: string;
   name: string;
-  caption: string;
+  caption?: string;
   url: string;
   onClick?: () => void;
 };
@@ -17,7 +17,7 @@ type DownloadButtonFileItemProps = {
 const DownloadButtonFileItem = ({
   id,
   name = 'File',
-  caption,
+  caption = '',
   url,
   onClick,
 }: DownloadButtonFileItemProps): JSX.Element => {
