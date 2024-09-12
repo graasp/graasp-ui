@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.27.0](https://github.com/graasp/graasp-ui/compare/v4.26.2...v4.27.0) (2024-09-12)
+
+
+### Features
+
+* improve audio file support (m4a, AAC, FLAC, OGG) ([#1015](https://github.com/graasp/graasp-ui/issues/1015)) ([dcaeb58](https://github.com/graasp/graasp-ui/commit/dcaeb583a87b708be956d2ca89fa749a0fee6c99))
+
+
+### Bug Fixes
+
+* reverse pin icon ([#1017](https://github.com/graasp/graasp-ui/issues/1017)) ([7fe6896](https://github.com/graasp/graasp-ui/commit/7fe68963de16fc4c9b3c93627859b1a9698c2e5c))
+* update deps ([63fb6e4](https://github.com/graasp/graasp-ui/commit/63fb6e454e3fd00b7e1df82b87af504894519678))
+
 ## [4.26.2](https://github.com/graasp/graasp-ui/compare/v4.26.1...v4.26.2) (2024-08-28)
 
 
