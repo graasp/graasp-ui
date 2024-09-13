@@ -71,7 +71,6 @@ const useAppCommunication = ({
 
         switch (type) {
           case POST_MESSAGE_KEYS.GET_AUTH_TOKEN: {
-            // eslint-disable-next-line no-unused-expressions
             port.postMessage(
               JSON.stringify({
                 type: POST_MESSAGE_KEYS.GET_AUTH_TOKEN_SUCCESS,
@@ -127,7 +126,6 @@ const useAppCommunication = ({
 
         // Transfer port2 to the iframe
         // provide port2 to app and item's data
-        // eslint-disable-next-line no-unused-expressions
         iFrameRef?.current?.contentWindow?.postMessage(
           JSON.stringify({
             type: POST_MESSAGE_KEYS.GET_CONTEXT_SUCCESS,

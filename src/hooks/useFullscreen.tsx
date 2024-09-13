@@ -16,8 +16,7 @@ export const useFullscreen = (): FullscreenHookType => {
           .requestFullscreen()
           .then(() => setIsFullscreen(true))
           .catch((err) => {
-            // eslint-disable-next-line no-console
-            console.log(
+            console.error(
               `Error attempting to enable fullscreen mode: ${err.message} (${err.name})`,
             );
           });
