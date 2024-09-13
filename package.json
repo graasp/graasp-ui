@@ -165,7 +165,7 @@
     "stylis": "^4.3.4",
     "tsc-alias": "1.8.10",
     "typescript": "5.6.2",
-    "vite": "5.4.4",
+    "vite": "5.4.5",
     "vite-plugin-dts": "4.2.1",
     "vite-plugin-istanbul": "6.0.2",
     "wait-on": "8.0.1"
