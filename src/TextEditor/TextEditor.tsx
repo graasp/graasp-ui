@@ -88,12 +88,10 @@ const TextEditor = ({
   const onTextChange = (text: string): void => {
     // keep track of the current content
     setContent(text);
-    // eslint-disable-next-line no-unused-expressions
     onChange?.(text);
   };
 
   const onCancelClick = (): void => {
-    // eslint-disable-next-line no-unused-expressions
     onCancel?.(content);
     setContent(initialValue);
   };
@@ -127,10 +125,7 @@ const TextEditor = ({
           </Button>
           <SaveButton
             id={saveButtonId}
-            onClick={() => {
-              // eslint-disable-next-line no-unused-expressions
-              onSave?.(content);
-            }}
+            onClick={() => onSave?.(content)}
             text={saveButtonText}
             savedText={savedButtonText}
             hasChanges={content !== initialValue}
