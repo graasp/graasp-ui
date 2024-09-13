@@ -29,6 +29,13 @@ const buildImageStory = (
   descriptionPlacement?: UnionOfConst<typeof DescriptionPlacement>,
 ): Story =>
   ({
+    loaders: [
+      async () => ({
+        content: await fetch('/test-assets/small_photo.jpg').then((r) =>
+          r.blob(),
+        ),
+      }),
+    ],
     args: {
       item: LocalFileItemFactory({
         id: 'my-id',
@@ -59,6 +66,11 @@ export const ImageDescriptionAbove = buildImageStory(
 );
 
 export const BigContainedImage = {
+  loaders: [
+    async () => ({
+      content: await fetch('/test-assets/big_photo.jpg').then((r) => r.blob()),
+    }),
+  ],
   args: {
     item: LocalFileItemFactory({
       id: 'my-id',
@@ -86,6 +98,13 @@ export const BigContainedImage = {
 } satisfies Story;
 
 export const SmallContainedImage = {
+  loaders: [
+    async () => ({
+      content: await fetch('/test-assets/small_photo.jpg').then((r) =>
+        r.blob(),
+      ),
+    }),
+  ],
   args: {
     item: LocalFileItemFactory({
       id: 'my-id',
@@ -113,6 +132,11 @@ export const SmallContainedImage = {
 } satisfies Story;
 
 export const ImageSVG = {
+  loaders: [
+    async () => ({
+      content: await fetch('/test-assets/test.svg').then((r) => r.blob()),
+    }),
+  ],
   args: {
     item: LocalFileItemFactory({
       id: 'my-id',
@@ -137,6 +161,11 @@ export const ImageSVG = {
 } satisfies Story;
 
 export const ImageWebP = {
+  loaders: [
+    async () => ({
+      content: await fetch('/test-assets/test.webp').then((r) => r.blob()),
+    }),
+  ],
   args: {
     item: LocalFileItemFactory({
       id: 'my-id',
@@ -161,6 +190,11 @@ export const ImageWebP = {
 } satisfies Story;
 
 export const WAVAudio = {
+  loaders: [
+    async () => ({
+      content: await fetch('/test-assets/sample.wav').then((r) => r.blob()),
+    }),
+  ],
   args: {
     item: LocalFileItemFactory({
       id: 'my-id',
