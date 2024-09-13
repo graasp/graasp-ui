@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.0.0](https://github.com/graasp/graasp-ui/compare/v4.27.0...v5.0.0) (2024-09-13)
+
+
+### ⚠ BREAKING CHANGES
+
+* remove AGGrid and Jest ([#1027](https://github.com/graasp/graasp-ui/issues/1027))
+
+### Bug Fixes
+
+* **deps:** update dependency vitest to v2.1.0 ([#1029](https://github.com/graasp/graasp-ui/issues/1029)) ([fabfb22](https://github.com/graasp/graasp-ui/commit/fabfb22fa3e142222da2d12dcb67fa7501ebe2f4))
+* remove AGGrid and Jest ([#1027](https://github.com/graasp/graasp-ui/issues/1027)) ([94a3dc8](https://github.com/graasp/graasp-ui/commit/94a3dc84fe016f595a120da5d52332b094f391b2))
+
 ## [4.27.0](https://github.com/graasp/graasp-ui/compare/v4.26.2...v4.27.0) (2024-09-12)
 
 
