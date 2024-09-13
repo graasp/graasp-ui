@@ -29,18 +29,13 @@ const buildImageStory = (
   descriptionPlacement?: UnionOfConst<typeof DescriptionPlacement>,
 ): Story =>
   ({
-    loaders: [
-      async () => ({
-        content: await fetch('https://picsum.photos/100').then((r) => r.blob()),
-      }),
-    ],
     args: {
       item: LocalFileItemFactory({
         id: 'my-id',
         name: 'my item name',
         extra: {
           [ItemType.LOCAL_FILE]: {
-            path: 'https://picsum.photos/100',
+            path: '/test-assets/small_photo.jpg',
             mimetype: MimeTypes.Image.PNG,
             name: 'original file name',
             size: 2600,
@@ -64,18 +59,13 @@ export const ImageDescriptionAbove = buildImageStory(
 );
 
 export const BigContainedImage = {
-  loaders: [
-    async () => ({
-      content: await fetch('https://picsum.photos/1000').then((r) => r.blob()),
-    }),
-  ],
   args: {
     item: LocalFileItemFactory({
       id: 'my-id',
       name: 'my item name',
       extra: {
         [ItemType.LOCAL_FILE]: {
-          path: 'https://picsum.photos/1000',
+          path: '/test-assets/big_photo.jpg',
           mimetype: MimeTypes.Image.PNG,
           name: 'original file name',
           size: 2600,
@@ -96,18 +86,13 @@ export const BigContainedImage = {
 } satisfies Story;
 
 export const SmallContainedImage = {
-  loaders: [
-    async () => ({
-      content: await fetch('https://picsum.photos/100').then((r) => r.blob()),
-    }),
-  ],
   args: {
     item: LocalFileItemFactory({
       id: 'my-id',
       name: 'my item name',
       extra: {
         [ItemType.LOCAL_FILE]: {
-          path: 'https://picsum.photos/100',
+          path: '/test-assets/small_photo.jpg',
           mimetype: MimeTypes.Image.PNG,
           name: 'original file name',
           size: 2600,
@@ -128,20 +113,13 @@ export const SmallContainedImage = {
 } satisfies Story;
 
 export const ImageSVG = {
-  loaders: [
-    async () => ({
-      content: await fetch(
-        'https://upload.wikimedia.org/wikipedia/commons/b/bd/Test.svg',
-      ).then((r) => r.blob()),
-    }),
-  ],
   args: {
     item: LocalFileItemFactory({
       id: 'my-id',
       name: 'my item name',
       extra: {
         [ItemType.LOCAL_FILE]: {
-          path: 'https://upload.wikimedia.org/wikipedia/commons/b/bd/Test.svg',
+          path: '/test-assets/test.svg',
           mimetype: MimeTypes.Image.SVG, // Should be image/svg+xml
           name: 'original file name',
           size: 2600,
@@ -159,20 +137,13 @@ export const ImageSVG = {
 } satisfies Story;
 
 export const ImageWebP = {
-  loaders: [
-    async () => ({
-      content: await fetch(
-        'https://upload.wikimedia.org/wikipedia/commons/b/b2/Vulphere_WebP_OTAGROOVE_demonstration_2.webp',
-      ).then((r) => r.blob()),
-    }),
-  ],
   args: {
     item: LocalFileItemFactory({
       id: 'my-id',
       name: 'my item name',
       extra: {
         [ItemType.LOCAL_FILE]: {
-          path: 'https://upload.wikimedia.org/wikipedia/commons/b/b2/Vulphere_WebP_OTAGROOVE_demonstration_2.webp',
+          path: '/test-assets/test.webp',
           mimetype: MimeTypes.Image.WEBP, // Should be image/svg+xml
           name: 'original file name',
           size: 2600,
@@ -190,20 +161,13 @@ export const ImageWebP = {
 } satisfies Story;
 
 export const WAVAudio = {
-  loaders: [
-    async () => ({
-      content: await fetch(
-        'https://upload.wikimedia.org/wikipedia/commons/8/8f/Bass_loop_2_%28Carrai_Pass%29.wav',
-      ).then((r) => r.blob()),
-    }),
-  ],
   args: {
     item: LocalFileItemFactory({
       id: 'my-id',
       name: 'my item name',
       extra: {
         [ItemType.LOCAL_FILE]: {
-          path: 'https://upload.wikimedia.org/wikipedia/commons/8/8f/Bass_loop_2_%28Carrai_Pass%29.wav',
+          path: '/test-assets/sample.wav',
           mimetype: MimeTypes.Audio.WAV, // Should be audio/wav
           name: 'original file name',
           size: 10000000,
