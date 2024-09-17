@@ -3,19 +3,13 @@ import { expect, within } from '@storybook/test';
 
 import { BrowserRouter } from 'react-router-dom';
 
-import BuildIcon from '../icons/BuildIcon.js';
-import withAuthorization from './withAuthorization.js';
-
-const ComponentWithAuthorization = withAuthorization(BuildIcon, {
-  // use an empty string because we do not want to be redirected but the prop is mandatory
-  redirectionLink: '',
-});
+import SignedInWrapper from './SignedInWrapper.js';
 
 // this story is separated from the others
 // because the redirection breaks a bit the navigation in storybook
-const meta: Meta<typeof ComponentWithAuthorization> = {
+const meta: Meta<typeof SignedInWrapper> = {
   title: 'Actions/Authorization/Redirect',
-  component: ComponentWithAuthorization,
+  component: SignedInWrapper,
   parameters: {
     docs: {
       source: {
@@ -24,6 +18,11 @@ const meta: Meta<typeof ComponentWithAuthorization> = {
       },
     },
   },
+  render: () => (
+    <SignedInWrapper redirectionLink=''>
+      <div />
+    </SignedInWrapper>
+  ),
   decorators: [
     (story) => {
       return <BrowserRouter>{story()}</BrowserRouter>;
@@ -32,7 +31,7 @@ const meta: Meta<typeof ComponentWithAuthorization> = {
 };
 export default meta;
 
-type Story = StoryObj<typeof ComponentWithAuthorization>;
+type Story = StoryObj<typeof SignedInWrapper>;
 
 export const Redirect = {
   play: async ({ canvasElement }) => {
