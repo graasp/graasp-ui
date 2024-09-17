@@ -70,7 +70,7 @@
     "storybook:test-ci": "wait-on http://127.0.0.1:6006 && yarn storybook:test"
   },
   "dependencies": {
-    "@storybook/react-vite": "8.3.0",
+    "@storybook/react-vite": "8.3.1",
     "http-status-codes": "2.3.0",
     "interweave": "13.1.0",
     "lodash.truncate": "4.4.2",
