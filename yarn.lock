@@ -1314,9 +1314,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@graasp/sdk@npm:4.28.0":
-  version: 4.28.0
-  resolution: "@graasp/sdk@npm:4.28.0"
+"@graasp/sdk@npm:4.29.0":
+  version: 4.29.0
+  resolution: "@graasp/sdk@npm:4.29.0"
   dependencies:
     "@faker-js/faker": "npm:9.0.0"
     filesize: "npm:10.1.6"
@@ -1325,7 +1325,7 @@ __metadata:
   peerDependencies:
     date-fns: ^3
     uuid: ^9 || ^10
-  checksum: 10/89f9c559154896637ac6d02daa710288de6ac2b753270037eef95dc32a763d6b597aeaafedab312bfd558d1b42b265d23066ffa640197acf4ef1883f4029ba48
+  checksum: 10/9801f0429172f325d14b378d4d2b2ec1ada679da736901e8ae9fca2f52f1b29b508809b686ee0b3fd8944262958a1e9c4b77936f57e5f448ad1ca8cc5632c50b
   languageName: node
   linkType: hard
 
@@ -1352,7 +1352,7 @@ __metadata:
     "@eslint/compat": "npm:1.1.1"
     "@eslint/eslintrc": "npm:3.1.0"
     "@eslint/js": "npm:9.10.0"
-    "@graasp/sdk": "npm:4.28.0"
+    "@graasp/sdk": "npm:4.29.0"
     "@graasp/stylis-plugin-rtl": "npm:2.2.0"
     "@mui/icons-material": "npm:5.16.7"
     "@mui/lab": "npm:5.0.0-alpha.173"
@@ -1430,7 +1430,7 @@ __metadata:
     "@emotion/cache": ~11.10.7 || ~11.11.0 || ~11.13.0
     "@emotion/react": ~11.10.6 || ~11.11.0 || ~11.13.0
     "@emotion/styled": ~11.10.6 || ~11.11.0 || ~11.13.0
-    "@graasp/sdk": ^4.14.0
+    "@graasp/sdk": ^4.29.0
     "@graasp/stylis-plugin-rtl": ^2
     "@graasp/translations": ^1.23.0
     "@mui/icons-material": ~5.14.0 || ~5.15.0 || ~5.16.0

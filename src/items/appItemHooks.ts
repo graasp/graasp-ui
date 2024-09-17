@@ -1,25 +1,19 @@
 import { useEffect } from 'react';
 
-import {
-  AppItemType,
-  Context,
-  DiscriminatedItem,
-  Member,
-  PermissionLevel,
-  UUID,
-} from '@graasp/sdk';
+import { DiscriminatedItem, LocalContext, UUID } from '@graasp/sdk';
 
 export type Token = string;
 
-export type ContextPayload = {
-  apiHost: string;
-  itemId: AppItemType['id'];
-  settings: AppItemType['settings'];
-  memberId?: Member['id'];
-  permission: `${PermissionLevel}` | PermissionLevel;
-  lang: string;
-  context: `${Context}` | Context;
-};
+export type ContextPayload = Pick<
+  LocalContext,
+  | 'apiHost'
+  | 'itemId'
+  | 'settings'
+  | 'permission'
+  | 'lang'
+  | 'context'
+  | 'accountId'
+>;
 
 const buildPostMessageKeys = (
   itemId: UUID,
@@ -129,7 +123,15 @@ const useAppCommunication = ({
         iFrameRef?.current?.contentWindow?.postMessage(
           JSON.stringify({
             type: POST_MESSAGE_KEYS.GET_CONTEXT_SUCCESS,
-            payload: contextPayload,
+
+            payload: {
+              /**
+               * @deprecated use accountId.
+               * Legacy for old apps or apps that does not use apps-query-client
+               */
+              memberId: contextPayload.accountId,
+              ...contextPayload,
+            },
           }),
           targetOrigin,
           [channel.port2],
