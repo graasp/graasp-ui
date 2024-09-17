@@ -28,6 +28,8 @@ export const Authorized: Story = {
       currentAccount={{ id: 'member', name: 'member' } as CompleteMember}
     >
       <BuildIcon />
+      <BuildIcon />
+      <BuildIcon />
     </SignedInWrapper>
   ),
 };

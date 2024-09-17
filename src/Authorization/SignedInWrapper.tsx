@@ -1,12 +1,14 @@
+import { ReactNode } from 'react';
+
 import { CurrentAccount, redirect } from '@graasp/sdk';
 
 import RedirectionContent from './RedirectionContent.js';
 
-export type WithAuthorizationProps = {
+export type SignedInWrapperProps = {
   redirectionLink: string;
   currentAccount?: CurrentAccount | null;
   onRedirect?: () => void;
-  children: JSX.Element;
+  children: ReactNode;
 };
 
 const SignedInWrapper = ({
@@ -14,7 +16,7 @@ const SignedInWrapper = ({
   redirectionLink,
   onRedirect,
   children,
-}: WithAuthorizationProps): JSX.Element => {
+}: SignedInWrapperProps): SignedInWrapperProps['children'] => {
   const redirectToSignIn = (): void => {
     if (!redirectionLink) {
       return console.debug('No link has been set for redirection');
