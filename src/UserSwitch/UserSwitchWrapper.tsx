@@ -35,7 +35,7 @@ interface Props {
    * @param memberId Id of the user to sign out (current user)
    * @returns Promise of void
    */
-  signOut: (memberId: string) => Promise<void>;
+  signOut: () => Promise<void>;
   signOutMenuItemId?: string;
   signOutText?: string;
   // switchMember: (args: { memberId: string; domain: string }) => Promise<void>;
@@ -95,7 +95,7 @@ export const UserSwitchWrapper = ({
 
   const handleSignOut = async (): Promise<void> => {
     if (currentMember) {
-      await signOut(currentMember.id);
+      await signOut();
     }
     // on sign out success should redirect to sign in
     redirect(window, redirectPath);
