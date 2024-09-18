@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { expect, within } from '@storybook/test';
 
 import { CompleteMember } from '@graasp/sdk';
 
@@ -15,6 +16,16 @@ const meta: Meta<typeof SignedInWrapper> = {
   argTypes: {
     onRedirect: { action: 'onRedirect' },
   },
+  args: {
+    redirectionLink,
+    children: (
+      <div data-testid='content'>
+        <BuildIcon />
+        <BuildIcon />
+        <BuildIcon />
+      </div>
+    ),
+  },
 };
 
 export default meta;
@@ -22,14 +33,19 @@ export default meta;
 type Story = StoryObj<typeof SignedInWrapper>;
 
 export const Authorized: Story = {
-  render: () => (
-    <SignedInWrapper
-      redirectionLink={redirectionLink}
-      currentAccount={{ id: 'member', name: 'member' } as CompleteMember}
-    >
-      <BuildIcon />
-      <BuildIcon />
-      <BuildIcon />
-    </SignedInWrapper>
-  ),
+  args: {
+    currentAccount: { id: 'member', name: 'member' } as CompleteMember,
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+
+    // should see content
+    await expect(canvas.getByTestId('content')).toBeVisible();
+  },
+};
+
+export const SignedOut: Story = {
+  args: {
+    currentAccount: undefined,
+  },
 };

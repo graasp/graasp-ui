@@ -9,16 +9,24 @@ import {
   Typography,
 } from '@mui/material';
 
+import { ReactNode } from 'react';
+
 import { AccountType, CurrentAccount } from '@graasp/sdk';
 
 type Props = {
-  buttonText: string;
-  children: JSX.Element;
+  buttonText?: string;
+  children?: ReactNode;
   currentAccount?: CurrentAccount | null;
+  /**
+   * Component to display on error.
+   * Overrides errorText
+   */
   error?: JSX.Element;
-  onButtonClick: () => void;
+  errorText?: string;
+  id?: string;
+  onButtonClick?: () => void;
   startIcon?: JSX.Element;
-  text: string | JSX.Element;
+  text?: string | JSX.Element;
 };
 
 const PreventGuestWrapper = ({
@@ -26,17 +34,19 @@ const PreventGuestWrapper = ({
   children,
   currentAccount,
   error,
+  id,
   onButtonClick,
   startIcon = <ClipboardPen />,
+  errorText = 'An error occured.',
   text = 'You are currently using Graasp with a guest account. In order to use all features of Graasp, you have to log out and create a Graasp account.',
-}: Props): JSX.Element => {
+}: Props): ReactNode => {
   if (currentAccount) {
     // guest - should not have access to home
     if (currentAccount.type === AccountType.Guest) {
       return (
         <Stack height='100%' justifyContent='center' alignItems='center'>
           <Container maxWidth='md'>
-            <Alert severity='info'>
+            <Alert severity='info' id={id}>
               <Typography>{text}</Typography>
               <Box mt={2} textAlign='center'>
                 <MuiButton
@@ -57,7 +67,7 @@ const PreventGuestWrapper = ({
     return children;
   }
 
-  return error ?? <Alert severity='error'>An error occured.</Alert>;
+  return error ?? <Alert severity='error'>{errorText}</Alert>;
 };
 
 export default PreventGuestWrapper;
