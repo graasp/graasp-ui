@@ -3,7 +3,7 @@ import katex from 'katex';
 
 import { Stack, styled } from '@mui/material';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import ReactQuill from 'react-quill';
 
 import Button from '../buttons/Button/Button.js';
@@ -84,6 +84,7 @@ const TextEditor = ({
 }: TextEditorProps): JSX.Element | null => {
   // keep current content
   const [content, setContent] = useState(initialValue ?? '');
+  const editorRef = useRef<ReactQuill>(null);
 
   const onTextChange = (text: string): void => {
     // keep track of the current content
@@ -101,10 +102,19 @@ const TextEditor = ({
     setContent(initialValue);
   }, [initialValue]);
 
+  // this hack is necessary because the "placeholder" prop does not update
+  // see: https://github.com/zenoamaro/react-quill/issues/340
+  useEffect(() => {
+    if (editorRef.current) {
+      editorRef.current.getEditor().root.dataset.placeholder = placeholderText;
+    }
+  }, [placeholderText]);
+
   return (
     <Stack direction='column' spacing={1} alignItems='flex-end'>
       <Div>
         <ReactQuill
+          ref={editorRef}
           id={id}
           placeholder={placeholderText}
           theme='snow'
