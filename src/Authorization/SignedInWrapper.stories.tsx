@@ -6,7 +6,7 @@ import BuildIcon from '@/icons/BuildIcon.js';
 
 import SignedInWrapper from './SignedInWrapper.js';
 
-const redirectionLink = 'http://redirect.org';
+const redirectionLink = 'https://redirect.org';
 
 const meta: Meta<typeof SignedInWrapper> = {
   title: 'Actions/SignedInWrapper',
