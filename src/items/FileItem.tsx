@@ -7,6 +7,7 @@ import {
   LocalFileItemType,
   MimeTypes,
   S3FileItemType,
+  formatFileSize,
   getFileExtra,
   getS3FileExtra,
 } from '@graasp/sdk';
@@ -33,7 +34,6 @@ export type FileItemProps = {
    * */
   fileUrl?: string;
   defaultItem?: JSX.Element;
-  downloadText?: string;
   errorMessage?: string;
   id?: string;
   item: LocalFileItemType | S3FileItemType;
@@ -51,7 +51,6 @@ const FileItem = ({
   content,
   fileUrl,
   defaultItem,
-  downloadText,
   errorMessage = UNEXPECTED_ERROR_MESSAGE,
   id,
   item,
@@ -106,11 +105,7 @@ const FileItem = ({
     const s3FileExtra =
       item.type === ItemType.S3_FILE ? getS3FileExtra(item.extra) : undefined;
 
-    const {
-      mimetype,
-      name: originalFileName,
-      altText,
-    } = { ...fileExtra, ...s3FileExtra };
+    const { mimetype, altText, size } = { ...fileExtra, ...s3FileExtra };
 
     if (mimetype) {
       if (MimeTypes.isImage(mimetype)) {
@@ -145,9 +140,9 @@ const FileItem = ({
     return (
       <DownloadButtonFileItem
         id={id}
-        name={originalFileName ?? item.name}
+        name={item.name}
+        caption={size ? formatFileSize(size) : undefined}
         url={url}
-        text={downloadText}
         onClick={onClick}
       />
     );

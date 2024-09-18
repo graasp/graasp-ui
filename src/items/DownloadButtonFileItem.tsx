@@ -1,30 +1,26 @@
-import { DownloadIcon } from 'lucide-react';
+import { DownloadIcon, FileIcon } from 'lucide-react';
 
-import { styled } from '@mui/material';
-
-import Button from '../buttons/Button/Button.js';
+import { Button, Stack, Typography, styled } from '@mui/material';
 
 const StyledLink = styled('a')({
   textDecoration: 'none',
 });
 
 type DownloadButtonFileItemProps = {
-  name?: string;
-  url?: string;
   id?: string;
-  text?: string;
+  name: string;
+  caption?: string;
+  url: string;
   onClick?: () => void;
 };
 
 const DownloadButtonFileItem = ({
   id,
   name = 'File',
+  caption = '',
   url,
-  text,
   onClick,
 }: DownloadButtonFileItemProps): JSX.Element => {
-  const buttonText = text || `Download ${name}`;
-
   return (
     <StyledLink
       id={id}
@@ -33,8 +29,20 @@ const DownloadButtonFileItem = ({
       rel='noreferrer'
       download={name}
     >
-      <Button size='large' startIcon={<DownloadIcon />} onClick={onClick}>
-        {buttonText}
+      <Button
+        size='large'
+        variant='contained'
+        startIcon={<FileIcon />}
+        onClick={onClick}
+        sx={{ textTransform: 'none' }}
+      >
+        <Stack direction='row' gap={4} alignItems='center'>
+          <Stack direction='column' alignItems='flex-start'>
+            <Typography>{name}</Typography>
+            <Typography variant='caption'>{caption}</Typography>
+          </Stack>
+          <DownloadIcon />
+        </Stack>
       </Button>
     </StyledLink>
   );
