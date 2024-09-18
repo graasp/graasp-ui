@@ -17,7 +17,6 @@ export type ItemLoginAuthorizationProps = {
   currentAccount?: CurrentAccount | null;
   item?: DiscriminatedItem;
   itemLoginSchemaType?: ItemLoginSchemaType;
-  memberIdInputId?: string;
   usernameInputId?: string;
   signInButtonId?: string;
   passwordInputId?: string;

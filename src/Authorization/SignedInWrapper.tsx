@@ -25,7 +25,7 @@ const SignedInWrapper = ({
   };
 
   // check authorization: user shouldn't be empty
-  if (currentAccount && currentAccount.id) {
+  if (currentAccount?.id) {
     return children;
   }
 

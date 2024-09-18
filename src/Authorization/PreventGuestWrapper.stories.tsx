@@ -51,7 +51,7 @@ export const Individual: Story = {
   },
 };
 
-export const Error: Story = {
+export const ShowError: Story = {
   args: {
     errorText: 'error text',
   },
@@ -59,6 +59,8 @@ export const Error: Story = {
     const canvas = within(canvasElement);
 
     // should see error message
-    await expect(canvas.getByText(args.errorText!)).toBeVisible();
+    if (args.errorText) {
+      await expect(canvas.getByText(args.errorText)).toBeVisible();
+    }
   },
 };
