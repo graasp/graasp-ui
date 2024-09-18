@@ -21,7 +21,7 @@ export type ItemLoginAuthorizationProps = {
   usernameInputId?: string;
   signInButtonId?: string;
   passwordInputId?: string;
-  children: ReactNode;
+  children?: ReactNode;
   ForbiddenContent?: ReactElement;
   isLoading?: boolean;
 };

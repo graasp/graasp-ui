@@ -8,7 +8,7 @@ export type SignedInWrapperProps = {
   redirectionLink: string;
   currentAccount?: CurrentAccount | null;
   onRedirect?: () => void;
-  children: ReactNode;
+  children?: ReactNode;
 };
 
 const SignedInWrapper = ({
