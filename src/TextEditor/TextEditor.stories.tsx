@@ -18,7 +18,6 @@ const meta = {
   args: {
     onChange: fn(),
   },
-  render: (args) => <TextEditor {...args} />,
 } satisfies Meta<typeof TextEditor>;
 export default meta;
 type Story = StoryObj<typeof meta>;
