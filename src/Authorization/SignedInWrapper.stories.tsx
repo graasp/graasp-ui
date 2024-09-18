@@ -43,9 +43,3 @@ export const Authorized: Story = {
     await expect(canvas.getByTestId('content')).toBeVisible();
   },
 };
-
-export const SignedOut: Story = {
-  args: {
-    currentAccount: undefined,
-  },
-};
