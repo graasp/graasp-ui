@@ -4,7 +4,7 @@ import {
 } from '@mui/icons-material';
 import { ListItemIcon, MenuItem, Typography } from '@mui/material';
 
-import { CompleteMember, redirect } from '@graasp/sdk';
+import { CurrentAccount, redirect } from '@graasp/sdk';
 
 import Loader from '../Loader/Loader.js';
 import { UserSwitch } from './UserSwitch.js';
@@ -19,13 +19,13 @@ interface Props {
   buildMemberMenuItemId?: (id: string) => string;
   ButtonContent?: JSX.Element;
   buttonId?: string;
-  currentMember?: CompleteMember | null;
+  currentMember?: CurrentAccount | null;
   // domain: string;
   isCurrentMemberLoading: boolean;
   // isCurrentMemberSuccess: boolean;
   profilePath: string;
   redirectPath: string;
-  renderAvatar: (member?: CompleteMember | null) => JSX.Element;
+  avatar: JSX.Element;
   seeProfileButtonId?: string;
   seeProfileText?: string;
   signedOutTooltipText?: string;
@@ -56,7 +56,7 @@ export const UserSwitchWrapper = ({
   // isCurrentMemberSuccess,
   profilePath,
   redirectPath,
-  renderAvatar,
+  avatar,
   seeProfileButtonId,
   seeProfileText = 'See Profile',
   signedOutTooltipText = 'You are not signed in.',
@@ -167,7 +167,7 @@ export const UserSwitchWrapper = ({
       signedOutTooltipText={signedOutTooltipText}
       buttonId={buttonId}
       buildMemberMenuItemId={buildMemberMenuItemId}
-      renderAvatar={renderAvatar}
+      avatar={avatar}
     />
   );
 };

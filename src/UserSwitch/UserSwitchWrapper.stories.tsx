@@ -22,7 +22,7 @@ export const SignedIn: Story = {
     currentMember: MOCK_CURRENT_MEMBER,
     seeProfileText: 'See Profile',
     signOutText: 'Sign Out',
-    renderAvatar: () => (
+    avatar: (
       <Avatar
         maxWidth={SMALL_AVATAR_SIZE}
         maxHeight={SMALL_AVATAR_SIZE}
@@ -59,7 +59,7 @@ SignedIn.play = async ({ canvasElement }) => {
 export const SignedOut: Story = {
   args: {
     switchMemberText: 'Sign In',
-    renderAvatar: () => (
+    avatar: (
       <Avatar
         maxWidth={SMALL_AVATAR_SIZE}
         maxHeight={SMALL_AVATAR_SIZE}
