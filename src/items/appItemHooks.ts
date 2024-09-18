@@ -126,7 +126,6 @@ const useAppCommunication = ({
 
             payload: {
               /**
-               * @deprecated use accountId.
                * Legacy for old apps or apps that does not use apps-query-client
                */
               memberId: contextPayload.accountId,
