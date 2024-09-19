@@ -39,7 +39,6 @@ const ItemLoginAuthorization = ({
   children,
 }: ItemLoginAuthorizationProps): ReactNode => {
   if (isLoading) {
-    // get item login if the user is not authenticated and the item is empty
     return <CustomInitialLoader />;
   }
 

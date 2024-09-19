@@ -13,7 +13,8 @@ import Card from '@/Card/Card.js';
 import ItemLoginAuthorization from './ItemLoginAuthorization.js';
 import { FORBIDDEN_TEXT } from './constants.js';
 
-const meta: Meta<typeof ItemLoginAuthorization> = {
+const item = PackedDocumentItemFactory();
+const meta = {
   title: 'Actions/ItemLoginAuthorization',
   component: ItemLoginAuthorization,
 
@@ -21,26 +22,30 @@ const meta: Meta<typeof ItemLoginAuthorization> = {
     signIn: { action: 'onRedirect' },
   },
   args: {
+    signIn: () => {},
+    itemId: item.id,
+
     children: <Card alt='card' name='card' />,
   },
-};
+} satisfies Meta<typeof ItemLoginAuthorization>;
 
 export default meta;
 
-type Story = StoryObj<typeof ItemLoginAuthorization>;
+type Story = StoryObj<typeof meta>;
 
-export const Authorized: Story = {
+export const Authorized = {
   args: {
     currentAccount: { id: 'member', name: 'member' } as CompleteMember,
-    item: PackedDocumentItemFactory(),
+    item,
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
 
     expect(canvas.getByText('card')).toBeVisible();
   },
-};
-export const LogInForm: Story = {
+} satisfies Story;
+
+export const LogInForm = {
   args: {
     itemLoginSchemaType: ItemLoginSchemaType.Username,
   },
@@ -49,9 +54,9 @@ export const LogInForm: Story = {
 
     expect(canvas.getByText('Sign In')).toBeVisible();
   },
-};
+} satisfies Story;
 
-export const Loading: Story = {
+export const Loading = {
   args: {
     isLoading: true,
   },
@@ -60,9 +65,9 @@ export const Loading: Story = {
 
     expect(canvas.getByRole('progressbar')).toBeVisible();
   },
-};
+} satisfies Story;
 
-export const Forbidden: Story = {
+export const Forbidden = {
   args: {
     currentAccount: { id: 'member', name: 'member' } as CompleteMember,
   },
@@ -71,4 +76,4 @@ export const Forbidden: Story = {
 
     expect(canvas.getByText(FORBIDDEN_TEXT)).toBeVisible();
   },
-};
+} satisfies Story;
