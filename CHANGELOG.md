@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.0.1](https://github.com/graasp/graasp-ui/compare/v5.0.0...v5.0.1) (2024-09-19)
+
+
+### Bug Fixes
+
+* **app:** use memberId for legacy apps ([#1045](https://github.com/graasp/graasp-ui/issues/1045)) ([37791ad](https://github.com/graasp/graasp-ui/commit/37791ad0b975ce7283db8627b18a9749bf3e9e3e))
+* improve downloadButton ([#1016](https://github.com/graasp/graasp-ui/issues/1016)) ([72c5c5f](https://github.com/graasp/graasp-ui/commit/72c5c5f2fc8e4c85a5badb6bb17bfb485c219715))
+* move vitest to dev dependency ([#1041](https://github.com/graasp/graasp-ui/issues/1041)) ([00b9ee8](https://github.com/graasp/graasp-ui/commit/00b9ee8fb3d63584bd4489f4b0a21265fe480acb))
+* quill placeholder does not update ([#1050](https://github.com/graasp/graasp-ui/issues/1050)) ([eea3788](https://github.com/graasp/graasp-ui/commit/eea37889b1efbef3dd3246d37fb62d7fb42e85db))
+* update eslint config to flatconfig ([#1033](https://github.com/graasp/graasp-ui/issues/1033)) ([9bff9e5](https://github.com/graasp/graasp-ui/commit/9bff9e5aa75735bb7767cc2f30a91fb6d0200244))
+* update test images to rely on local files ([#1031](https://github.com/graasp/graasp-ui/issues/1031)) ([adab85c](https://github.com/graasp/graasp-ui/commit/adab85c438235822ae10051e9274d87ac53464a0))
+
 ## [5.0.0](https://github.com/graasp/graasp-ui/compare/v4.27.0...v5.0.0) (2024-09-13)
 
 
