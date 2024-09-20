@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.1.0](https://github.com/graasp/graasp-ui/compare/v5.0.1...v5.1.0) (2024-09-20)
+
+
+### Features
+
+* refactor with authorization, change current account type ([#1046](https://github.com/graasp/graasp-ui/issues/1046)) ([bfe516f](https://github.com/graasp/graasp-ui/commit/bfe516f57051ce822e54d07cc6f3bf6dc13f6ef8))
+
 ## [5.0.1](https://github.com/graasp/graasp-ui/compare/v5.0.0...v5.0.1) (2024-09-19)
 
 
