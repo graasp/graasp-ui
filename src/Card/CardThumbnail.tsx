@@ -12,19 +12,32 @@ export type CardThumbnailProps = {
   width?: number;
   minHeight: number;
   type?: DiscriminatedItem['type'];
+  minWidth?: string;
+  height?: string;
+  maxHeight?: string;
 };
 const CardThumbnail = ({
   thumbnail,
   alt,
   width,
   minHeight,
+  minWidth,
+  height,
+  maxHeight = '100%',
   type = ItemType.FOLDER,
 }: CardThumbnailProps): JSX.Element => {
   const theme = useTheme();
 
   if (thumbnail) {
     return (
-      <Thumbnail url={thumbnail} alt={alt} maxHeight='100%' maxWidth={width} />
+      <Thumbnail
+        url={thumbnail}
+        alt={alt}
+        height={height}
+        maxHeight={maxHeight}
+        maxWidth={width}
+        minWidth={minWidth}
+      />
     );
   }
 

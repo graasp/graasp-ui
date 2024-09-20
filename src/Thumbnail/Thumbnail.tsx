@@ -14,6 +14,7 @@ type ThumbnailProps = {
   defaultComponent?: JSX.Element;
   isLoading?: boolean;
   maxWidth?: string | number;
+  height?: string | number;
   maxHeight?: string | number;
   /**
    * size of the thumbnail to fetch
@@ -28,6 +29,8 @@ type ThumbnailProps = {
    * skeleton's variant
    */
   variant?: SkeletonProps['variant'];
+  width?: string;
+  minWidth?: string;
 };
 
 const Thumbnail = ({
@@ -36,7 +39,10 @@ const Thumbnail = ({
   defaultComponent,
   alt,
   sx,
+  width,
+  minWidth,
   maxWidth = '100%',
+  height,
   maxHeight = '100%',
   variant = Variant.RECT,
   isLoading = false,
@@ -49,9 +55,10 @@ const Thumbnail = ({
         alt={alt}
         sx={[
           {
+            minWidth,
             objectFit: 'cover',
-            width: maxWidth,
-            height: maxHeight,
+            width: width ?? maxWidth,
+            height: height ?? maxHeight,
             maxWidth,
             maxHeight,
           },
@@ -67,7 +74,13 @@ const Thumbnail = ({
   }
 
   if (isLoading) {
-    return <Skeleton variant={variant} width={maxWidth} height={maxHeight} />;
+    return (
+      <Skeleton
+        variant={variant}
+        width={width ?? maxWidth}
+        height={height ?? maxHeight}
+      />
+    );
   }
 
   return null;
