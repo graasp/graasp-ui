@@ -14,7 +14,7 @@ import { ReactNode } from 'react';
 import { AccountType, CurrentAccount } from '@graasp/sdk';
 
 type Props = {
-  buttonText?: string;
+  buttonText: string;
   children?: ReactNode;
   currentAccount?: CurrentAccount | null;
   /**
@@ -22,26 +22,26 @@ type Props = {
    * Overrides errorText
    */
   error?: JSX.Element;
-  errorText?: string;
+  errorText: string;
   id?: string;
   onButtonClick?: () => void;
   startIcon?: JSX.Element;
-  text?: string | JSX.Element;
+  text: string | JSX.Element;
 };
 
 const PreventGuestWrapper = ({
-  buttonText = 'Log out and Create a Graasp account',
+  buttonText,
   children,
   currentAccount,
   error,
   id,
   onButtonClick,
   startIcon = <ClipboardPen />,
-  errorText = 'An error occured.',
-  text = 'You are currently using Graasp with a guest account. In order to use all features of Graasp, you have to log out and create a Graasp account.',
+  errorText,
+  text,
 }: Props): ReactNode => {
   if (currentAccount) {
-    // guest - should not have access to home
+    // guest - should not have access to children
     if (currentAccount.type === AccountType.Guest) {
       return (
         <Stack height='100%' justifyContent='center' alignItems='center'>

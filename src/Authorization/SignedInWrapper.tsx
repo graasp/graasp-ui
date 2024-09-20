@@ -19,7 +19,8 @@ const SignedInWrapper = ({
 }: SignedInWrapperProps): SignedInWrapperProps['children'] => {
   const redirectToSignIn = (): void => {
     if (!redirectionLink) {
-      return console.debug('No link has been set for redirection');
+      console.debug('No link has been set for redirection');
+      return;
     }
     redirect(window, redirectionLink);
   };

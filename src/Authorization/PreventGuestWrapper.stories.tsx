@@ -7,12 +7,15 @@ import BuildIcon from '@/icons/BuildIcon.js';
 
 import PreventGuestWrapper from './PreventGuestWrapper.js';
 
-const meta: Meta<typeof PreventGuestWrapper> = {
+const meta = {
   title: 'Actions/PreventGuestWrapper',
   component: PreventGuestWrapper,
 
   argTypes: {},
   args: {
+    buttonText: 'Log out and Create a Graasp account',
+    errorText: 'An error occured.',
+    text: 'You are currently using Graasp with a guest account. In order to use all features of Graasp, you have to log out and create a Graasp account.',
     children: (
       <div data-testid='content'>
         <BuildIcon />
@@ -21,13 +24,13 @@ const meta: Meta<typeof PreventGuestWrapper> = {
       </div>
     ),
   },
-};
+} satisfies Meta<typeof PreventGuestWrapper>;
 
 export default meta;
 
-type Story = StoryObj<typeof PreventGuestWrapper>;
+type Story = StoryObj<typeof meta>;
 
-export const Guest: Story = {
+export const Guest = {
   args: {
     currentAccount: { type: AccountType.Guest } as CompleteGuest,
   },
@@ -37,9 +40,9 @@ export const Guest: Story = {
     // should see message
     await expect(canvas.getByRole('alert')).toBeVisible();
   },
-};
+} satisfies Story;
 
-export const Individual: Story = {
+export const Individual = {
   args: {
     currentAccount: { id: 'member', name: 'member' } as CompleteMember,
   },
@@ -49,9 +52,9 @@ export const Individual: Story = {
     // should see content
     await expect(canvas.getByTestId('content')).toBeVisible();
   },
-};
+} satisfies Story;
 
-export const ShowError: Story = {
+export const ShowError = {
   args: {
     errorText: 'error text',
   },
@@ -63,4 +66,4 @@ export const ShowError: Story = {
       await expect(canvas.getByText(args.errorText)).toBeVisible();
     }
   },
-};
+} satisfies Story;

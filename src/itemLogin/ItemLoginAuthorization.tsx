@@ -50,7 +50,7 @@ const ItemLoginAuthorization = ({
   }
 
   // signed out but can sign in with item login
-  if ((!currentAccount || !currentAccount.id) && itemLoginSchemaType) {
+  if (!currentAccount?.id && itemLoginSchemaType) {
     return (
       <ItemLoginScreen
         itemId={itemId}
