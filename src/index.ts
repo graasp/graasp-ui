@@ -53,7 +53,8 @@ export { default as CreativeCommons } from './CreativeCommons/CreativeCommons.js
 
 export { default as CookiesBanner } from './CookiesBanner/CookiesBanner.js';
 
-export { default as withAuthorization } from './Authorization/withAuthorization.js';
+export { default as SignedInWrapper } from './Authorization/SignedInWrapper.js';
+export { default as PreventGuestWrapper } from './Authorization/PreventGuestWrapper.js';
 export { default as RedirectionContent } from './Authorization/RedirectionContent.js';
 
 export { UserSwitch } from './UserSwitch/UserSwitch.js';

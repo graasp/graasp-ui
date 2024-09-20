@@ -2,18 +2,20 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { expect, fn } from '@storybook/test';
 import { userEvent, within } from '@storybook/testing-library';
 
-import { ItemLoginSchemaType } from '@graasp/sdk';
+import { ItemLoginSchemaType, PackedDocumentItemFactory } from '@graasp/sdk';
 
 import { TABLE_CATEGORIES } from '../utils/storybook.js';
 import ItemLoginScreen from './ItemLoginScreen.js';
 import { FORBIDDEN_TEXT } from './constants.js';
 
-const meta: Meta<typeof ItemLoginScreen> = {
+const item = PackedDocumentItemFactory();
+const meta = {
   title: 'Actions/ItemLogin/ItemLoginScreen',
   component: ItemLoginScreen,
 
   args: {
     signIn: fn(),
+    itemId: item.id,
   },
   argTypes: {
     passwordInputId: {
@@ -33,11 +35,11 @@ const meta: Meta<typeof ItemLoginScreen> = {
     },
     signIn: { action: 'signin' },
   },
-};
+} satisfies Meta<typeof ItemLoginScreen>;
 
 export default meta;
 
-type Story = StoryObj<typeof ItemLoginScreen>;
+type Story = StoryObj<typeof meta>;
 
 export const ItemLoginUsernameAndPassword: Story = {
   args: {
@@ -55,7 +57,7 @@ export const ItemLoginUsernameAndPassword: Story = {
 
     expect(args.signIn).toHaveBeenCalled();
   },
-};
+} satisfies Story;
 
 export const ItemLoginUsername: Story = {
   args: {
@@ -72,13 +74,15 @@ export const ItemLoginUsername: Story = {
 
     expect(args.signIn).toHaveBeenCalled();
   },
-};
+} satisfies Story;
 
-export const Forbidden: Story = {
-  args: {},
+export const Forbidden = {
+  args: {
+    itemId: item.id,
+  },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
 
     await expect(canvas.getByText(FORBIDDEN_TEXT)).toBeInTheDocument();
   },
-};
+} satisfies Story;

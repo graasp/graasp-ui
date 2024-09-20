@@ -37,7 +37,7 @@ export type ItemLoginScreenProps = {
   /**
    * item login schema object
    */
-  itemLoginSchemaType: ItemLoginSchemaType;
+  itemLoginSchemaType?: ItemLoginSchemaType;
   signIn: (args: { itemId: string } & SignInPropertiesType) => void;
   /**
    * content to display when the user doesn't have access

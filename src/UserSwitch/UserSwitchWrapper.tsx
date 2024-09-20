@@ -4,7 +4,7 @@ import {
 } from '@mui/icons-material';
 import { ListItemIcon, MenuItem, Typography } from '@mui/material';
 
-import { CompleteMember, redirect } from '@graasp/sdk';
+import { AccountType, CurrentAccount, redirect } from '@graasp/sdk';
 
 import Loader from '../Loader/Loader.js';
 import { UserSwitch } from './UserSwitch.js';
@@ -19,13 +19,13 @@ interface Props {
   buildMemberMenuItemId?: (id: string) => string;
   ButtonContent?: JSX.Element;
   buttonId?: string;
-  currentMember?: CompleteMember | null;
+  currentMember?: CurrentAccount | null;
   // domain: string;
-  isCurrentMemberLoading: boolean;
+  isCurrentMemberLoading?: boolean;
   // isCurrentMemberSuccess: boolean;
   profilePath: string;
   redirectPath: string;
-  renderAvatar: (member?: CompleteMember | null) => JSX.Element;
+  avatar: JSX.Element;
   seeProfileButtonId?: string;
   seeProfileText?: string;
   signedOutTooltipText?: string;
@@ -35,13 +35,13 @@ interface Props {
    * @param memberId Id of the user to sign out (current user)
    * @returns Promise of void
    */
-  signOut: (memberId: string) => Promise<void>;
+  signOut: () => Promise<void>;
   signOutMenuItemId?: string;
   signOutText?: string;
   // switchMember: (args: { memberId: string; domain: string }) => Promise<void>;
   switchMemberText?: string;
 
-  userMenuItems: UserMenuItem[];
+  userMenuItems?: UserMenuItem[];
 
   // useMembers: (ids: string[]) => UseQueryResult<ResultOfRecord<Member>>;
 }
@@ -52,11 +52,11 @@ export const UserSwitchWrapper = ({
   buttonId,
   currentMember,
   // domain,
-  isCurrentMemberLoading,
+  isCurrentMemberLoading = false,
   // isCurrentMemberSuccess,
   profilePath,
   redirectPath,
-  renderAvatar,
+  avatar,
   seeProfileButtonId,
   seeProfileText = 'See Profile',
   signedOutTooltipText = 'You are not signed in.',
@@ -95,7 +95,7 @@ export const UserSwitchWrapper = ({
 
   const handleSignOut = async (): Promise<void> => {
     if (currentMember) {
-      await signOut(currentMember.id);
+      await signOut();
     }
     // on sign out success should redirect to sign in
     redirect(window, redirectPath);
@@ -107,7 +107,7 @@ export const UserSwitchWrapper = ({
     return redirect(window, redirectPath);
   };
 
-  const goToSettings = (): void => {
+  const goToProfile = (): void => {
     redirect(window, profilePath);
   };
 
@@ -127,25 +127,32 @@ export const UserSwitchWrapper = ({
     </MenuItem>
   ));
   if (currentMember && currentMember.id) {
-    Actions = [
-      <MenuItem
-        key='seeSettings'
-        onClick={goToSettings}
-        id={seeProfileButtonId}
-      >
-        <ListItemIcon>
-          <AccountCircleIcon fontSize='large' />
-        </ListItemIcon>
-        <Typography variant='subtitle2'>{seeProfileText}</Typography>
-      </MenuItem>,
-      ...MenuItems,
+    Actions =
+      currentMember.type === AccountType.Individual
+        ? [
+            <MenuItem
+              key='seeProfile'
+              onClick={goToProfile}
+              id={seeProfileButtonId}
+            >
+              <ListItemIcon>
+                <AccountCircleIcon fontSize='large' />
+              </ListItemIcon>
+              <Typography variant='subtitle2'>{seeProfileText}</Typography>
+            </MenuItem>,
+          ]
+        : [];
+
+    Actions.push(...MenuItems);
+
+    Actions.push(
       <MenuItem key='signout' onClick={handleSignOut} id={signOutMenuItemId}>
         <ListItemIcon>
           <MeetingRoomIcon fontSize='large' />
         </ListItemIcon>
         <Typography variant='subtitle2'>{signOutText}</Typography>
       </MenuItem>,
-    ];
+    );
   } else {
     Actions = [
       <MenuItem key='signin' onClick={handleSignIn} id={signInMenuItemId}>
@@ -167,7 +174,7 @@ export const UserSwitchWrapper = ({
       signedOutTooltipText={signedOutTooltipText}
       buttonId={buttonId}
       buildMemberMenuItemId={buildMemberMenuItemId}
-      renderAvatar={renderAvatar}
+      avatar={avatar}
     />
   );
 };

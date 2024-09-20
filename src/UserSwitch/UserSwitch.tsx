@@ -13,7 +13,7 @@ import {
 
 import { MouseEventHandler, ReactElement, useState } from 'react';
 
-import { CompleteMember, Member, isPseudoMember } from '@graasp/sdk';
+import { AccountType, CurrentAccount, Member } from '@graasp/sdk';
 
 import { SHORT_TEXT_WIDTH, SMALL_AVATAR_SIZE } from '../constants.js';
 import { Variant } from '../types.js';
@@ -34,11 +34,11 @@ type Props = {
   ButtonContent?: JSX.Element;
   buttonId?: string;
   isMemberLoading?: boolean;
-  currentMember?: CompleteMember | null;
+  currentMember?: CurrentAccount | null;
   members?: Member[];
   menuId?: string;
   onMemberClick?: (_id: string) => MouseEventHandler;
-  renderAvatar?: (member?: CompleteMember | null) => JSX.Element;
+  avatar?: JSX.Element;
   signedOutTooltipText?: string;
 };
 
@@ -49,7 +49,7 @@ export const UserSwitch = ({
   isMemberLoading = false,
   currentMember,
   menuId,
-  renderAvatar = () => <></>,
+  avatar,
   signedOutTooltipText = 'You are not signed in.',
 }: Props): JSX.Element => {
   const [anchorEl, setAnchorEl] = useState<(EventTarget & Element) | null>(
@@ -121,7 +121,7 @@ export const UserSwitch = ({
 
     return (
       <MenuItem>
-        {renderAvatar(currentMember)}
+        {avatar}
 
         <div>
           <Typography variant='h6' noWrap>
@@ -130,7 +130,7 @@ export const UserSwitch = ({
 
           {/* show info only for normal member */}
           {/* todo: show which item a pseudonymized member as access to */}
-          {!isPseudoMember(currentMember) && (
+          {currentMember.type === AccountType.Individual && (
             <>
               <Typography variant='subtitle2' noWrap>
                 {currentMember.email}
@@ -165,7 +165,7 @@ export const UserSwitch = ({
     return (
       <>
         <Tooltip title={memberName ?? signedOutTooltipText}>
-          <span>{renderAvatar(currentMember)}</span>
+          <span>{avatar}</span>
         </Tooltip>
         {memberName && !isMobile && (
           <Typography

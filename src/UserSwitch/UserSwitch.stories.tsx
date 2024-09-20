@@ -20,7 +20,7 @@ type Story = StoryObj<typeof meta>;
 export const SignedIn = {
   args: {
     currentMember: MOCK_CURRENT_MEMBER,
-    renderAvatar: () => (
+    avatar: (
       <Avatar
         maxWidth={SMALL_AVATAR_SIZE}
         maxHeight={SMALL_AVATAR_SIZE}
@@ -48,7 +48,7 @@ export const SignedIn = {
 
 export const SignedOut = {
   args: {
-    renderAvatar: () => (
+    avatar: (
       <Avatar
         maxWidth={SMALL_AVATAR_SIZE}
         maxHeight={SMALL_AVATAR_SIZE}
