@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.2.0](https://github.com/graasp/graasp-ui/compare/v5.1.0...v5.2.0) (2024-09-23)
+
+
+### Features
+
+* update item login wrapper with enroll mechanism ([#1060](https://github.com/graasp/graasp-ui/issues/1060)) ([f647008](https://github.com/graasp/graasp-ui/commit/f6470080fe1a2c91b083aeb67a614bee3ae75ff2))
+
 ## [5.1.0](https://github.com/graasp/graasp-ui/compare/v5.0.1...v5.1.0) (2024-09-20)
 
 
