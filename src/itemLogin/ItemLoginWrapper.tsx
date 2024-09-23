@@ -1,6 +1,7 @@
 import { ReactElement, ReactNode } from 'react';
 
 import {
+  AccountType,
   CurrentAccount,
   DiscriminatedItem,
   ItemLoginSchemaType,
@@ -21,8 +22,10 @@ export type ItemLoginAuthorizationProps = {
   signInButtonId?: string;
   passwordInputId?: string;
   children?: ReactNode;
-  ForbiddenContent?: ReactElement;
+  forbiddenContent?: ReactElement;
   isLoading?: boolean;
+  enrollContent?: ReactElement;
+  requestAccessContent?: ReactElement;
 };
 
 const ItemLoginAuthorization = ({
@@ -35,7 +38,9 @@ const ItemLoginAuthorization = ({
   usernameInputId,
   signInButtonId,
   passwordInputId,
-  ForbiddenContent = <ForbiddenText />,
+  forbiddenContent = <ForbiddenText />,
+  enrollContent,
+  requestAccessContent,
   children,
 }: ItemLoginAuthorizationProps): ReactNode => {
   if (isLoading) {
@@ -49,8 +54,22 @@ const ItemLoginAuthorization = ({
     return children;
   }
 
+  if (currentAccount) {
+    if (currentAccount.type === AccountType.Individual) {
+      // user is logged in and item login enabled - request automatic membership
+      if (itemLoginSchemaType) {
+        return enrollContent;
+      }
+
+      // user is logged in and item login disabled - request access
+      return requestAccessContent;
+    } else {
+      return forbiddenContent;
+    }
+  }
+
   // signed out but can sign in with item login
-  if (!currentAccount?.id && itemLoginSchemaType) {
+  if (itemLoginSchemaType) {
     return (
       <ItemLoginScreen
         itemId={itemId}
@@ -65,7 +84,7 @@ const ItemLoginAuthorization = ({
 
   // either the item does not allow item login
   // or the user is already signed in as normal user and hasn't the access to this item
-  return ForbiddenContent;
+  return forbiddenContent;
 };
 
 export default ItemLoginAuthorization;

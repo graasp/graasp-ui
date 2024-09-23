@@ -10,13 +10,13 @@ import {
 
 import Card from '@/Card/Card.js';
 
-import ItemLoginAuthorization from './ItemLoginAuthorization.js';
+import ItemLoginWrapper from './ItemLoginWrapper.js';
 import { FORBIDDEN_TEXT } from './constants.js';
 
 const item = PackedDocumentItemFactory();
 const meta = {
   title: 'Actions/ItemLoginAuthorization',
-  component: ItemLoginAuthorization,
+  component: ItemLoginWrapper,
 
   argTypes: {
     signIn: { action: 'onRedirect' },
@@ -27,7 +27,7 @@ const meta = {
 
     children: <Card alt='card' name='card' />,
   },
-} satisfies Meta<typeof ItemLoginAuthorization>;
+} satisfies Meta<typeof ItemLoginWrapper>;
 
 export default meta;
 
