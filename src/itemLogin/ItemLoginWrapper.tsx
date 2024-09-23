@@ -58,11 +58,11 @@ const ItemLoginAuthorization = ({
     if (currentAccount.type === AccountType.Individual) {
       // user is logged in and item login enabled - request automatic membership
       if (itemLoginSchemaType) {
-        return enrollContent;
+        return enrollContent ?? forbiddenContent;
       }
 
       // user is logged in and item login disabled - request access
-      return requestAccessContent;
+      return requestAccessContent ?? forbiddenContent;
     } else {
       return forbiddenContent;
     }
