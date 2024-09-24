@@ -206,7 +206,13 @@ const Card = ({
   }
 
   return (
-    <StyledCard isOver={isOver} id={id} sx={sx} fullWidth={fullWidth}>
+    <StyledCard
+      isOver={isOver}
+      id={id}
+      sx={sx}
+      fullWidth={fullWidth}
+      className={className}
+    >
       <Stack sx={{ height, boxSizing: 'border-box' }} direction='row' gap={2}>
         <CardThumbnail
           width={height}
