@@ -10,7 +10,10 @@ import { useMobileView } from '@/hooks/useMobileView.js';
 
 import { CollapsibleText } from '../../CollapsibleText/CollapsibleText.js';
 import CardThumbnail from '../CardThumbnail.js';
-import { LikeCounterButton } from './LikeCounterButton.js';
+import {
+  LikeCounterButton,
+  LikeCounterButtonProps,
+} from './LikeCounterButton.js';
 import { TagCarousel } from './TagCarousel.js';
 
 type CardProps = {
@@ -21,11 +24,12 @@ type CardProps = {
   type: DiscriminatedItem['type'];
   image?: string;
   height?: number;
-  description?: string;
+  description?: string | null;
   numberOfLinesToShow?: number;
   isLiked?: boolean;
   link?: string;
   creator?: { name: string; id: UUID; avatar?: string; link?: string };
+  onLikeToggle?: LikeCounterButtonProps['onClick'];
 };
 
 const LinkWrapper = ({
@@ -60,6 +64,7 @@ export const BigCard = ({
   height = 300,
   isLiked = false,
   numberOfLinesToShow = 7,
+  onLikeToggle,
 }: CardProps): JSX.Element => {
   const { isMobile } = useMobileView();
 
@@ -88,6 +93,7 @@ export const BigCard = ({
           minWidth={0}
           justifyContent='space-between'
           height='100%'
+          width='100%'
         >
           <Stack gap={1}>
             <TagCarousel tags={tags} />
@@ -117,7 +123,11 @@ export const BigCard = ({
             </Box>
           </Stack>
           <Stack direction='row' justifyContent='space-between'>
-            <LikeCounterButton likeCount={likeCount} isLiked={isLiked} />
+            <LikeCounterButton
+              likeCount={likeCount}
+              isLiked={isLiked}
+              onClick={onLikeToggle}
+            />
             {creator && (
               <LinkWrapper
                 to={creator.link}

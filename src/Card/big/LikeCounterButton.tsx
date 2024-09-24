@@ -2,12 +2,17 @@ import { Heart } from 'lucide-react';
 
 import { IconButton, Typography, useTheme } from '@mui/material';
 
-type Props = { likeCount: number; isLiked: boolean };
+export type LikeCounterButtonProps = {
+  likeCount?: number;
+  isLiked?: boolean;
+  onClick?: (currentStatus: boolean) => void;
+};
 
 export const LikeCounterButton = ({
-  likeCount,
-  isLiked,
-}: Props): JSX.Element => {
+  likeCount = 0,
+  isLiked = false,
+  onClick,
+}: LikeCounterButtonProps): JSX.Element => {
   const theme = useTheme();
   return (
     <>
@@ -18,6 +23,7 @@ export const LikeCounterButton = ({
             backgroundColor: isLiked ? theme.palette.primary.light : undefined,
           },
         }}
+        onClick={() => onClick?.(isLiked)}
       >
         <Heart
           color={
@@ -27,7 +33,7 @@ export const LikeCounterButton = ({
             isLiked ? theme.palette.secondary.main : theme.palette.primary.main
           }
         />
-        {likeCount && (
+        {likeCount ? (
           <Typography
             variant='body2'
             ml={1}
@@ -35,7 +41,7 @@ export const LikeCounterButton = ({
           >
             {likeCount}
           </Typography>
-        )}
+        ) : null}
       </IconButton>
     </>
   );

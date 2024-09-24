@@ -8,7 +8,7 @@ import { BrowserRouter } from 'react-router-dom';
 
 import { ItemType } from '@graasp/sdk';
 
-import BigCard from './BigCard.js';
+import { BigCard } from './BigCard.js';
 
 const meta = {
   title: 'Common/BigCard',
@@ -138,6 +138,7 @@ export const Empty = {
   args: {
     name: 'my card title',
     type: ItemType.DOCUMENT,
+    creator: { name: 'member name' },
   },
   play: async ({ canvasElement }) => {
     // no link
