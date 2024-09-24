@@ -40,6 +40,7 @@ export { default as ItemLoginWrapper } from './itemLogin/ItemLoginWrapper.js';
 export { default as ForbiddenContent } from './itemLogin/ForbiddenContent.js';
 
 export { default as Card } from './Card/Card.js';
+export { BigCard } from './Card/big/BigCard.js';
 export { default as FolderCard } from './Card/FolderCard.js';
 export { default as LinkCard } from './Card/LinkCard.js';
 export { default as Thumbnail } from './Thumbnail/Thumbnail.js';
@@ -96,3 +97,5 @@ export * from './types.js';
 
 export { default as DraggingWrapper } from './draggable/DraggingWrapper.js';
 export * from './draggable/types.js';
+
+export { CollapsibleText } from './CollapsibleText/CollapsibleText.js';

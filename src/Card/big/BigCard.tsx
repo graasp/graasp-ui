@@ -47,7 +47,7 @@ const LinkWrapper = ({
   return children;
 };
 
-const BigCard = ({
+export const BigCard = ({
   id,
   creator,
   name,
@@ -143,4 +143,3 @@ const BigCard = ({
     </MuiCard>
   );
 };
-export default BigCard;
