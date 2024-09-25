@@ -39,6 +39,10 @@ type CardProps = {
   name: string | JSX.Element;
   alt: string;
   id?: string;
+  /**
+   * Classname for the element.
+   * Useful for selecting many cards at the same time (eg. drag targets).
+   */
   className?: string;
   /**
    * creator name
