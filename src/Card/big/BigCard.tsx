@@ -8,7 +8,7 @@ import Avatar from '@/Avatar/Avatar.js';
 import { useMobileView } from '@/hooks/useMobileView.js';
 
 import { CollapsibleText } from '../../CollapsibleText/CollapsibleText.js';
-import CardThumbnail from '../CardThumbnail.js';
+import CardThumbnail, { CardThumbnailProps } from '../CardThumbnail.js';
 import {
   LikeCounterButton,
   LikeCounterButtonProps,
@@ -30,15 +30,11 @@ type CardProps = {
   creator?: { name: string; id: UUID; avatar?: string; link?: string };
   onLikeToggle?: LikeCounterButtonProps['onClick'];
   contentOverImage?: JSX.Element;
-  LinkComponent?: () => JSX.Element;
+  LinkComponent?: LinkWrapperProps['LinkComponent'];
+  mimetype?: CardThumbnailProps['mimetype'];
 };
 
-const LinkWrapper = ({
-  to,
-  style,
-  children,
-  LinkComponent,
-}: {
+type LinkWrapperProps = {
   children: JSX.Element;
   to?: string;
   style?: CSSProperties;
@@ -49,11 +45,18 @@ const LinkWrapper = ({
     children: JSX.Element;
     to?: string;
   }) => JSX.Element;
-}): JSX.Element => {
-  if (LinkComponent) {
-    return <LinkComponent to={to}>{children}</LinkComponent>;
-  }
+};
+
+const LinkWrapper = ({
+  to,
+  style,
+  children,
+  LinkComponent,
+}: LinkWrapperProps): JSX.Element => {
   if (to) {
+    if (LinkComponent) {
+      return <LinkComponent to={to}>{children}</LinkComponent>;
+    }
     return (
       <a href={to} style={style}>
         {children}
@@ -79,6 +82,7 @@ export const BigCard = ({
   contentOverImage,
   onLikeToggle,
   LinkComponent,
+  mimetype,
 }: CardProps): JSX.Element => {
   const { isMobile } = useMobileView();
 
@@ -102,6 +106,7 @@ export const BigCard = ({
                 thumbnail={image}
                 alt={name}
                 type={type}
+                mimetype={mimetype}
               />
             </Stack>
           </LinkWrapper>
