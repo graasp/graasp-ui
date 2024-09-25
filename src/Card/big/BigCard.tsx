@@ -38,12 +38,10 @@ type LinkWrapperProps = {
   children: JSX.Element;
   to?: string;
   style?: CSSProperties;
-  LinkComponent?: ({
-    children,
-    to,
-  }: {
+  LinkComponent?: (args: {
     children: JSX.Element;
     to: string;
+    style?: CSSProperties;
   }) => JSX.Element;
 };
 
@@ -55,7 +53,11 @@ const LinkWrapper = ({
 }: LinkWrapperProps): JSX.Element => {
   if (to) {
     if (LinkComponent) {
-      return <LinkComponent to={to}>{children}</LinkComponent>;
+      return (
+        <LinkComponent style={style} to={to}>
+          {children}
+        </LinkComponent>
+      );
     }
     return (
       <a href={to} style={style}>
