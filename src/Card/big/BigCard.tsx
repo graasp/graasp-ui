@@ -43,7 +43,7 @@ type LinkWrapperProps = {
     to,
   }: {
     children: JSX.Element;
-    to?: string;
+    to: string;
   }) => JSX.Element;
 };
 
@@ -97,7 +97,7 @@ export const BigCard = ({
           <LinkWrapper to={link} LinkComponent={LinkComponent}>
             <Stack height='100%'>
               {contentOverImage ? (
-                <Box sx={{ position: 'absolute', p: 1 }}>
+                <Box sx={{ position: 'absolute', p: 1 }} width='100%'>
                   {contentOverImage}
                 </Box>
               ) : null}
@@ -119,22 +119,17 @@ export const BigCard = ({
           height='100%'
           width='100%'
         >
-          <Stack gap={1}>
+          <Stack gap={1} height='100%'>
             <TagCarousel tags={tags} />
-
-            <Box
-              sx={{
-                textDecoration: 'unset',
-                color: 'unset',
-                '&:hover': { cursor: 'pointer' },
-              }}
-            >
+            <Stack height='100%'>
               <LinkWrapper
                 to={link}
                 style={{
                   textDecoration: 'unset',
                   color: 'unset',
                   cursor: 'pointer !important',
+                  height: '100%',
+                  display: 'block',
                 }}
                 LinkComponent={LinkComponent}
               >
@@ -145,7 +140,7 @@ export const BigCard = ({
                   style={{ cursor: 'pointer' }}
                 ></CollapsibleText>
               </LinkWrapper>
-            </Box>
+            </Stack>
           </Stack>
           <Stack direction='row' justifyContent='space-between'>
             <LikeCounterButton

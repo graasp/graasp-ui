@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { expect, userEvent, within } from '@storybook/test';
 import { v4 } from 'uuid';
 
-import { Box, Chip } from '@mui/material';
+import { Chip } from '@mui/material';
 import Grid2 from '@mui/material/Unstable_Grid2';
 
 import { BrowserRouter } from 'react-router-dom';
