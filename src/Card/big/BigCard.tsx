@@ -1,7 +1,6 @@
 import { Box, Card as MuiCard, Stack, Typography } from '@mui/material';
 
 import { CSSProperties } from 'react';
-import { Link } from 'react-router-dom';
 
 import { DiscriminatedItem, UUID } from '@graasp/sdk';
 
@@ -31,22 +30,34 @@ type CardProps = {
   creator?: { name: string; id: UUID; avatar?: string; link?: string };
   onLikeToggle?: LikeCounterButtonProps['onClick'];
   contentOverImage?: JSX.Element;
+  LinkComponent?: () => JSX.Element;
 };
 
 const LinkWrapper = ({
   to,
   style,
   children,
+  LinkComponent,
 }: {
   children: JSX.Element;
   to?: string;
   style?: CSSProperties;
+  LinkComponent?: ({
+    children,
+    to,
+  }: {
+    children: JSX.Element;
+    to?: string;
+  }) => JSX.Element;
 }): JSX.Element => {
+  if (LinkComponent) {
+    return <LinkComponent to={to}>{children}</LinkComponent>;
+  }
   if (to) {
     return (
-      <Link to={to} style={style}>
+      <a href={to} style={style}>
         {children}
-      </Link>
+      </a>
     );
   }
   return children;
@@ -67,6 +78,7 @@ export const BigCard = ({
   numberOfLinesToShow = 7,
   contentOverImage,
   onLikeToggle,
+  LinkComponent,
 }: CardProps): JSX.Element => {
   const { isMobile } = useMobileView();
 
@@ -78,7 +90,7 @@ export const BigCard = ({
     <MuiCard id={id}>
       <Stack height={height} direction='row' gap={2} alignItems='center' mr={1}>
         <Box style={{ height: '100%', minWidth: '30%' }}>
-          <LinkWrapper to={link}>
+          <LinkWrapper to={link} LinkComponent={LinkComponent}>
             <Stack height='100%'>
               {contentOverImage ? (
                 <Box sx={{ position: 'absolute', p: 1 }}>
@@ -119,6 +131,7 @@ export const BigCard = ({
                   color: 'unset',
                   cursor: 'pointer !important',
                 }}
+                LinkComponent={LinkComponent}
               >
                 <CollapsibleText
                   collapsed
@@ -142,6 +155,7 @@ export const BigCard = ({
                   textDecoration: 'unset',
                   color: 'unset',
                 }}
+                LinkComponent={LinkComponent}
               >
                 <Stack direction='row' alignItems='center' gap={1}>
                   {!isMobile && <Typography>{creator.name}</Typography>}
