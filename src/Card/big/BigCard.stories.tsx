@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { expect, userEvent, within } from '@storybook/test';
 import { v4 } from 'uuid';
 
+import { Box, Chip } from '@mui/material';
 import Grid2 from '@mui/material/Unstable_Grid2';
 
 import { BrowserRouter } from 'react-router-dom';
@@ -110,6 +111,7 @@ export const OneTag = {
       id: v4(),
       avatar: '/test-assets/small_photo.jpg',
     },
+    contentOverImage: <Chip label='mylabel' sx={{ background: 'red' }} />,
     description:
       'Tempor volutpat eget varius nisl cursus. Fusce cras commodo adipiscing dictumst gravida pharetra velit. Fusce cras commodo adipiscing dictumst gravida pharetra velit. Fusce cras commodo adipiscing dictumst gravida pharetra velit. Enim cursus ultrices in natoque. Faucibus porttitor posuere consequat congue aliquam. Sapien tempus blandit massa rhoncus',
   },

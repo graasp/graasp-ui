@@ -30,6 +30,7 @@ type CardProps = {
   link?: string;
   creator?: { name: string; id: UUID; avatar?: string; link?: string };
   onLikeToggle?: LikeCounterButtonProps['onClick'];
+  contentOverImage?: JSX.Element;
 };
 
 const LinkWrapper = ({
@@ -64,6 +65,7 @@ export const BigCard = ({
   height = 300,
   isLiked = false,
   numberOfLinesToShow = 7,
+  contentOverImage,
   onLikeToggle,
 }: CardProps): JSX.Element => {
   const { isMobile } = useMobileView();
@@ -78,6 +80,11 @@ export const BigCard = ({
         <Box style={{ height: '100%', minWidth: '30%' }}>
           <LinkWrapper to={link}>
             <Stack height='100%'>
+              {contentOverImage ? (
+                <Box sx={{ position: 'absolute', p: 1 }}>
+                  {contentOverImage}
+                </Box>
+              ) : null}
               <CardThumbnail
                 minHeight={height}
                 thumbnail={image}
