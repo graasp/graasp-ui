@@ -39,6 +39,10 @@ type CardProps = {
   name: string | JSX.Element;
   alt: string;
   id?: string;
+  /**
+   * Classname for the element.
+   * Useful for selecting many cards at the same time (eg. drag targets).
+   */
   className?: string;
   /**
    * creator name
@@ -206,7 +210,13 @@ const Card = ({
   }
 
   return (
-    <StyledCard isOver={isOver} id={id} sx={sx} fullWidth={fullWidth}>
+    <StyledCard
+      isOver={isOver}
+      id={id}
+      sx={sx}
+      fullWidth={fullWidth}
+      className={className}
+    >
       <Stack sx={{ height, boxSizing: 'border-box' }} direction='row' gap={2}>
         <CardThumbnail
           width={height}
