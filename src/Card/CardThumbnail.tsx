@@ -3,7 +3,7 @@ import { Box, useTheme } from '@mui/material';
 import { DiscriminatedItem, ItemType } from '@graasp/sdk';
 
 import Thumbnail from '@/Thumbnail/Thumbnail.js';
-import ItemIcon from '@/icons/ItemIcon.js';
+import ItemIcon, { ItemIconProps } from '@/icons/ItemIcon.js';
 import { DEFAULT_LIGHT_PRIMARY_COLOR } from '@/theme.js';
 
 export type CardThumbnailProps = {
@@ -12,19 +12,34 @@ export type CardThumbnailProps = {
   width?: number;
   minHeight: number;
   type?: DiscriminatedItem['type'];
+  minWidth?: string;
+  height?: string;
+  maxHeight?: string;
+  mimetype?: ItemIconProps['mimetype'];
 };
 const CardThumbnail = ({
   thumbnail,
   alt,
   width,
   minHeight,
+  minWidth,
+  height,
+  maxHeight = '100%',
   type = ItemType.FOLDER,
+  mimetype,
 }: CardThumbnailProps): JSX.Element => {
   const theme = useTheme();
 
   if (thumbnail) {
     return (
-      <Thumbnail url={thumbnail} alt={alt} maxHeight='100%' maxWidth={width} />
+      <Thumbnail
+        url={thumbnail}
+        alt={alt}
+        height={height}
+        maxHeight={maxHeight}
+        maxWidth={width}
+        minWidth={minWidth}
+      />
     );
   }
 
@@ -40,7 +55,12 @@ const CardThumbnail = ({
       minHeight={minHeight}
       minWidth={0}
     >
-      <ItemIcon type={type} alt={alt} color={theme.palette.primary.main} />
+      <ItemIcon
+        mimetype={mimetype}
+        type={type}
+        alt={alt}
+        color={theme.palette.primary.main}
+      />
     </Box>
   );
 };
