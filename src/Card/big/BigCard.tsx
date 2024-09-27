@@ -97,7 +97,7 @@ export const BigCard = ({
       <Stack height={height} direction='row' gap={2} alignItems='center' mr={1}>
         <Box style={{ height: '100%', minWidth: '30%' }}>
           <LinkWrapper to={link} LinkComponent={LinkComponent}>
-            <Stack height='100%'>
+            <Stack height='100%' position='relative'>
               {contentOverImage ? (
                 <Box sx={{ position: 'absolute', p: 1 }} width='100%'>
                   {contentOverImage}

@@ -161,6 +161,24 @@ export const WithLink = {
   },
 } satisfies Story;
 
+export const WithLinkComponent = {
+  args: {
+    id: 'card-id',
+    link: '/href',
+    name: 'my card title',
+    type: ItemType.DOCUMENT,
+    LinkComponent: ({ to, style, children }) => (
+      <a style={style} href={to}>
+        {children}
+      </a>
+    ),
+  },
+  play: async ({ canvasElement }) => {
+    // link exists
+    await expect(document.querySelector('#storybook-root a')).toBeVisible();
+  },
+} satisfies Story;
+
 export const Grid = {
   args: {
     name: 'my card title',
