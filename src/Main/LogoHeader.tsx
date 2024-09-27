@@ -8,14 +8,15 @@ const LogoHeader = (): JSX.Element => (
     alignItems='center'
     textTransform='none'
     color='inherit'
+    sx={{ marginRight: '8px' }}
   >
-    <GraaspLogo height={40} sx={{ fill: 'white' }} />
+    <GraaspLogo height={50} />
     <Typography
       sx={{ display: { xs: 'none', sm: 'block' } }}
       color='currentcolor'
       variant='h6'
     >
-      Graasp
+      LNCO.ai
     </Typography>
   </Stack>
 );

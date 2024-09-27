@@ -7,7 +7,7 @@ import {
 
 import { Context } from '@graasp/sdk';
 
-export const PRIMARY_COLOR = '#5050d2';
+export const PRIMARY_COLOR = '#000000';
 export const SECONDARY_COLOR = '#FFFFFF';
 
 /**
@@ -25,22 +25,22 @@ export const DEFAULT_ACTIVE_ACTION_COLOR = '#777578';
  * For example in card thumbnails.
  */
 export const DEFAULT_LIGHT_PRIMARY_COLOR = {
-  main: 'hsl(249, 100%, 94%)',
-  dark: 'hsl(249, 100%, 90%)',
+  main: '#ebeaea',
+  dark: '#cbcaca',
 } as const;
 
 /**
- * Very light purple color used as the default background color.
+ * Very light red color used as the default background color.
  * Alternative to the pure white default
  */
-export const DEFAULT_BACKGROUND_COLOR = '#fafaff';
+export const DEFAULT_BACKGROUND_COLOR = '#fffefe';
 
 export const AccentColors: { [K in Context]: string } = {
-  [Context.Builder]: '#00C38B',
-  [Context.Player]: '#56B0F8',
-  [Context.Library]: '#C658D0',
-  [Context.Analytics]: '#FA5B7D',
-  [Context.Account]: '#F2C955',
+  [Context.Builder]: '#a3a3a3',
+  [Context.Player]: '#a3a3a3',
+  [Context.Analytics]: '#a3a3a3',
+  [Context.Account]: '#a3a3a3',
+  [Context.Library]: '#a3a3a3',
   [Context.Auth]: PRIMARY_COLOR,
   [Context.Unknown]: PRIMARY_COLOR,
 } as const;
@@ -104,8 +104,8 @@ export const createGraaspTheme = ({
       MuiAvatar: {
         styleOverrides: {
           root: {
-            color: 'white',
-            backgroundColor: '#bcbcbc',
+            color: '#bcbcbc',
+            backgroundColor: 'white',
           },
         },
       },

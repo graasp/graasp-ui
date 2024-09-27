@@ -19,7 +19,7 @@ const OPEN_DRAWER_LABEL = 'Open Drawer';
 const CLOSE_DRAWER_LABEL = 'Close Drawer';
 
 export const buildHeaderGradient = (color: string): string =>
-  `linear-gradient(90deg, ${PRIMARY_COLOR} 0%, ${PRIMARY_COLOR} 35%, ${color} 100%);`;
+  `linear-gradient(90deg, #111 0%, #111 35%, ${color} 100%);`;
 
 const StyledIconButton = styled(IconButton)(
   ({ theme, isSidebarOpen }: { theme: Theme; isSidebarOpen?: boolean }) => ({
