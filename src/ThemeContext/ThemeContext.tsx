@@ -9,7 +9,14 @@ import {
   SxProps,
 } from '@mui/material';
 
-import { createContext, useContext, useEffect, useMemo, useState } from 'react';
+import {
+  ReactNode,
+  createContext,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react';
 
 import rtlPlugin from '@graasp/stylis-plugin-rtl';
 
@@ -18,7 +25,7 @@ import { I18nInstance } from '../types.js';
 import LanguageSelect from './LanguageSelect.js';
 
 type Props = {
-  children: JSX.Element | JSX.Element[];
+  children: ReactNode;
   i18n: I18nInstance;
   langs: { [key: string]: string };
   languageSelectSx: SxProps;
