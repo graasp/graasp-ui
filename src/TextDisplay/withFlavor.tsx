@@ -8,9 +8,9 @@ const Title = ({
 }: {
   title?: string;
   isAlert?: boolean;
-}): JSX.Element | false => {
+}): JSX.Element | null => {
   if (!title) {
-    return false;
+    return null;
   }
   if (isAlert) {
     return (
