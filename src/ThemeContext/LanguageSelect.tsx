@@ -15,7 +15,7 @@ const LanguageSelect = ({
   setDirection,
   languageSelectSx,
   langs,
-  label = 'Language',
+  label,
   size,
   variant,
 }: {
