@@ -47,7 +47,12 @@ const Avatar = ({
           id={id}
           alt={alt}
           src={url}
-          sx={{ width: maxWidth, height: maxHeight }}
+          sx={{
+            width: maxWidth,
+            height: maxHeight,
+            ...sx,
+          }}
+          title={alt}
         />
       );
     } else {
@@ -61,7 +66,7 @@ const Avatar = ({
           />
         );
       }
-      return <AvatarComponent />;
+      return <AvatarComponent id={id} alt={alt} sx={{ ...sx }} title={alt} />;
     }
   }
 
