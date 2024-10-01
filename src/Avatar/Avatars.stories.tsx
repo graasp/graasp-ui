@@ -2,7 +2,6 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import { Box, Stack } from '@mui/material';
 
-import Avatar from './Avatar.js';
 import { getColorFromId } from './stringToColor.js';
 
 type Props = {
@@ -31,18 +30,6 @@ const ColorGrid = ({ cols, rows, size }: Props): JSX.Element => {
               );
             })}
           </Stack>
-        );
-      })}
-    </Stack>
-  );
-};
-
-const AvatarGrid = () => {
-  return (
-    <Stack direction='row' gap={2} flexWrap='wrap'>
-      {gradientIds.map((id) => {
-        return (
-          <Avatar key={id} alt={id} sx={{ bgcolor: getColorFromId(id) }} />
         );
       })}
     </Stack>
@@ -82,10 +69,6 @@ const meta = {
 export default meta;
 
 type Story = StoryObj<typeof meta>;
-
-const gradientIds = Array.from(Array(64)).map(
-  (_, idx) => `${(idx * 4).toString(16).padStart(2, '0')}a`,
-);
 
 export const Default = {
   args: {

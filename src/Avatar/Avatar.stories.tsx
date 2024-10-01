@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { v4 } from 'uuid';
 
-import { Box, Unstable_Grid2 as Grid2, Stack } from '@mui/material';
+import { Box, Stack } from '@mui/material';
 
 import { TABLE_CATEGORIES } from '../utils/storybook.js';
 import Avatar from './Avatar.js';
@@ -74,34 +73,19 @@ export const ColoredAvatars = {
     return (
       <Stack direction='row' gap={2} flexWrap='wrap'>
         {[
-          '1',
-          '00',
-          '11',
-          '000',
-          '111',
-          '0000',
-          '1111',
-          '00000',
-          '000000',
-          '0000000',
-          '00000000',
-          '000000000',
-          '0000000000',
-          '00000000000',
-          '000000000000',
-          // 'Evelynn',
-          // 'Samuel',
-          // 'Bob',
-          // 'Natasha',
-          // 'Samantha',
-          // 'toto',
-          // '1234',
-          // 'user 007',
-          // '1237892378147532',
-          // 'west',
-          // 'alice',
-          // 'ed',
-          // 'zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz',
+          'Evelynn',
+          'Samuel',
+          'Bob',
+          'Natasha',
+          'Samantha',
+          'toto',
+          '1234',
+          'user 007',
+          '1237892378147532',
+          'west',
+          'alice',
+          'ed',
+          'zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz',
         ].map((name) => {
           return (
             <Avatar
@@ -117,7 +101,6 @@ export const ColoredAvatars = {
   },
 } satisfies Story;
 
-const ids = Array.from(Array(512)).map(() => v4());
 const gradientIds = Array.from(Array(64)).map(
   (_, idx) => `${(idx * 4).toString(16).padStart(2, '0')}a`,
 );
