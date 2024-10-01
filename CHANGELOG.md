@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.2.1](https://github.com/graasp/graasp-ui/compare/v5.2.0...v5.2.1) (2024-10-01)
+
+
+### Bug Fixes
+
+* **deps:** update dependency react-rnd to v10.4.13 ([#1059](https://github.com/graasp/graasp-ui/issues/1059)) ([baa0e4e](https://github.com/graasp/graasp-ui/commit/baa0e4ef664523a524b03ef76a58c5a3649bd86a))
+* pass classname to dense card ([#1062](https://github.com/graasp/graasp-ui/issues/1062)) ([d581f2f](https://github.com/graasp/graasp-ui/commit/d581f2fd08fdeebb2c86987cf650482e13c0f3b2))
+* remove usage of `false` in component return ([#1066](https://github.com/graasp/graasp-ui/issues/1066)) ([609ea8c](https://github.com/graasp/graasp-ui/commit/609ea8cf4f00bee631da4a3abcdecc55377f821f))
+* update ThemeProvider children type to be used with conditional rendering ([#1067](https://github.com/graasp/graasp-ui/issues/1067)) ([5794e9e](https://github.com/graasp/graasp-ui/commit/5794e9e3dd275130db3914c31199d1cfb86f26ae))
+
 ## [5.2.0](https://github.com/graasp/graasp-ui/compare/v5.1.0...v5.2.0) (2024-09-23)
 
 
