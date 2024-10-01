@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { v4 } from 'uuid';
 
-import { Box, Unstable_Grid2 as Grid2, Stack } from '@mui/material';
+import { Box, Stack } from '@mui/material';
 
 import { TABLE_CATEGORIES } from '../utils/storybook.js';
 import Avatar from './Avatar.js';
@@ -117,7 +116,6 @@ export const ColoredAvatars = {
   },
 } satisfies Story;
 
-const ids = Array.from(Array(512)).map(() => v4());
 const gradientIds = Array.from(Array(64)).map(
   (_, idx) => `${(idx * 4).toString(16).padStart(2, '0')}a`,
 );
