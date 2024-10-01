@@ -108,7 +108,7 @@
     "@eslint/compat": "1.1.1",
     "@eslint/eslintrc": "3.1.0",
     "@eslint/js": "9.10.0",
-    "@graasp/sdk": "4.29.1",
+    "@graasp/sdk": "4.31.0",
     "@graasp/stylis-plugin-rtl": "2.2.0",
     "@mui/icons-material": "5.16.7",
     "@mui/lab": "5.0.0-alpha.173",
