@@ -13,43 +13,43 @@ Packages
 ![GitHub package.json dependency version (prod) - immutable](https://img.shields.io/github/package-json/dependency-version/graasp/graasp-ui/immutable?color=plum)
 [![Mui version](https://img.shields.io/badge/mui-v5-deepskyblue?logo=mui)](https://mui.com/material-ui/getting-started/overview/)
 
-## Install
+## Adding the library to your project
 
-```bash
-npm install --save @graasp/ui
+You will have to add the library and its peer dependencies:
+
+```sh
+yarn add @graasp/ui @graasp/stylis-plugin-rtl date-fns lucide-react
 ```
-
-If you use the `Table` component, you should import it with the lines below:
-
-```js
-import { Table } from '@graasp/ui/dist/table';
-import 'ag-grid-community/dist/styles/ag-theme-material.min.css';
-````
 
 ## Usage
 
 ```tsx
-import React, { Component } from 'react'
+import { MyComponent } from '@graasp/ui'
 
-import MyComponent from '@graasp/ui'
-import '@graasp/ui/dist/index.css'
-
-class Example extends Component {
-  render() {
-    return <MyComponent />
-  }
+const Example = () => {
+  return <MyComponent />
 }
 ```
+
+### Sub packages
+
+#### Components for Graasp Apps
+
+Graasp apps can use specific components to share style without needing to import the full bundle: use import from `@graasp/ui/apps`
+
+#### Text Editor
+
+Since Quill does not play nicely with SSR frameworks (access to the document property is not gated), it is exposed in its own sub-package: `@graasp/ui/text-editor`
 
 ## ![Storybook](https://api.iconify.design/logos/storybook-icon.svg) Storybook
 
 Storybook provides a nice display of defined UI components. To open the framework, run
 
-```
+```sh
 yarn storybook
 ```
 
-To navigate the UI components click the link bellow:
+To explore the UI components and play with their props click the link bellow:
 
 <a href="https://graasp.github.io/graasp-ui/" >
 <img style="background: white; padding: 8px; border-radius: 2px; border: 1px solid lightgray" src="https://api.iconify.design/logos/storybook.svg"/>
