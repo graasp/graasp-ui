@@ -51,10 +51,12 @@ export const SearchInput = ({
       sx={{ flex: 1, width: width ?? '100%', backgroundColor: 'white' }}
       placeholder={placeholder}
       size={size}
-      inputProps={{ 'aria-label': ariaLabel }}
-      // Umami data props
-      data-umami-event={dataUmami?.event}
-      data-umami-event-page={dataUmami?.page}
+      inputProps={{
+        'aria-label': ariaLabel,
+        // Umami data props
+        'data-umami-event': dataUmami?.event,
+        'data-umami-event-page': dataUmami?.page,
+      }}
     />
   );
 };
