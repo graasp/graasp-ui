@@ -1,9 +1,9 @@
 /** Enumeration of available platforms */
 export enum Platform {
-  Builder = 'Builder',
-  Player = 'Player',
-  Library = 'Library',
-  Analytics = 'Analytics',
+  Builder = 'builder',
+  Player = 'player',
+  Library = 'library',
+  Analytics = 'analytics',
 }
 
 /** Maps each Platform to a URL generator function */

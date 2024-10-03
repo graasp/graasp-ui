@@ -88,7 +88,7 @@ export const Disabled: Story = {
     accentColor: SECONDARY_COLOR,
     selected: Platform.Builder,
     platformsProps: {
-      Analytics: {
+      analytics: {
         disabled: true,
       },
     },
@@ -117,17 +117,17 @@ export const CustomTooltips: Story = {
     accentColor: SECONDARY_COLOR,
     selected: Platform.Builder,
     platformsProps: {
-      Builder: {
+      builder: {
         tooltip: 'Platform 1',
       },
-      Player: {
+      player: {
         tooltip: 'Platform 2',
       },
-      Library: {
+      library: {
         disabled: true,
         tooltip: 'Platform 3',
       },
-      Analytics: {
+      analytics: {
         tooltip: 'Platform 4',
         placement: 'right',
       },
