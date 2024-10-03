@@ -189,7 +189,7 @@ const MainWithDrawerContent = ({
                 edge='start'
                 data-umami-event='header-drawer-toggle'
                 data-umami-event-context={context}
-                data-umami-event-state={open}
+                data-umami-event-open={open}
               >
                 {open ? <MenuOpen /> : <MenuIcon />}
               </IconButton>
