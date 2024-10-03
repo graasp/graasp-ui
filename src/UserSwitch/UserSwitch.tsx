@@ -194,6 +194,7 @@ export const UserSwitch = ({
         aria-controls={menuId}
         aria-expanded={Boolean(anchorEl)}
         tabIndex={0}
+        data-umami-event='header-avatar'
       >
         {renderButtonContent()}
       </StyledWrapper>
