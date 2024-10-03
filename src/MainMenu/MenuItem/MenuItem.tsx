@@ -46,6 +46,7 @@ export const MenuItem = ({
         onClick={onNavigate}
         disabled={disabled}
         selected={selected}
+        data-umami-event={id}
       >
         {icon && <ListItemIcon>{icon}</ListItemIcon>}
         {text && <ListItemText primary={text} />}
