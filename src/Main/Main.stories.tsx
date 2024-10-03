@@ -3,6 +3,8 @@ import { CirclePlusIcon, SnowflakeIcon, SparklesIcon } from 'lucide-react';
 
 import { Avatar, Box, Link, Typography } from '@mui/material';
 
+import { ReactNode } from 'react';
+
 import { Context } from '@graasp/sdk';
 
 import MainMenu from '@/MainMenu/MainMenu.js';
@@ -30,11 +32,7 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-const LinkComponent = ({
-  children,
-}: {
-  children: JSX.Element;
-}): JSX.Element => (
+const LinkComponent = ({ children }: { children: ReactNode }): JSX.Element => (
   <Link
     sx={{ textDecoration: 'none' }}
     color='inherit'

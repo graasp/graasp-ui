@@ -13,7 +13,7 @@ import {
   styled,
 } from '@mui/material';
 
-import { useEffect } from 'react';
+import { ReactNode, useEffect } from 'react';
 
 import { Context } from '@graasp/sdk';
 
@@ -77,24 +77,24 @@ type Props = {
   /**
    * Content to display inside the drawer / sidebar
    */
-  drawerContent: JSX.Element;
+  drawerContent: ReactNode;
   /**
    * Content to display inside the footer
    */
-  footerContent?: JSX.Element;
+  footerContent?: ReactNode;
   /**
    * Content to display inside the main area.
    * This is usually the page content
    */
-  children: JSX.Element | JSX.Element[];
+  children: ReactNode;
   /**
    * Left content presented in the header
    */
-  headerLeftContent?: JSX.Element;
+  headerLeftContent?: ReactNode;
   /**
    * Right content presented in the header
    */
-  headerRightContent?: JSX.Element;
+  headerRightContent?: ReactNode;
   /**
    * Override the state of the drawer
    * defaults to `false`
@@ -103,7 +103,7 @@ type Props = {
   /**
    * Wrapper component that supplies a link facility wrapping the logo
    */
-  LinkComponent?: (props: { children: JSX.Element }) => JSX.Element;
+  LinkComponent?: (props: { children: ReactNode }) => JSX.Element;
   /**
    * Component that should be rendered to show the platform switch
    */
@@ -187,6 +187,9 @@ const MainWithDrawerContent = ({
                 aria-label={drawerOpenAriaLabel}
                 onClick={handleDrawerToggle}
                 edge='start'
+                data-umami-event='header-drawer-toggle'
+                data-umami-event-context={context}
+                data-umami-event-open={open}
               >
                 {open ? <MenuOpen /> : <MenuIcon />}
               </IconButton>
