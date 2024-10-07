@@ -17,7 +17,7 @@ import ItemLoginScreen, { SignInPropertiesType } from './ItemLoginScreen.js';
 export type ItemLoginAuthorizationProps = {
   signIn: (args: { itemId: string } & SignInPropertiesType) => void;
   itemId: UUID;
-  itemErrorStatusCode: StatusCodes | null;
+  itemErrorStatusCode: number | null;
   currentAccount?: CurrentAccount | null;
   item?: DiscriminatedItem;
   itemLoginSchemaType?: ItemLoginSchemaType;
