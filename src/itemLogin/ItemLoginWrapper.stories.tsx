@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { expect } from '@storybook/test';
 import { within } from '@storybook/testing-library';
+import { StatusCodes } from 'http-status-codes';
 import { v4 } from 'uuid';
 
 import {
@@ -32,7 +33,7 @@ const meta = {
   args: {
     signIn: () => {},
     itemId: item.id,
-
+    itemErrorStatusCode: null,
     children: <Card alt='card' name='card' />,
   },
 } satisfies Meta<typeof ItemLoginWrapper>;
@@ -93,6 +94,7 @@ export const RequestAccess = {
   args: {
     currentAccount,
     itemId: v4(),
+    itemErrorStatusCode: StatusCodes.FORBIDDEN,
     requestAccessContent: <div data-testId='request'>Request Access</div>,
   },
   play: async ({ canvasElement }) => {
