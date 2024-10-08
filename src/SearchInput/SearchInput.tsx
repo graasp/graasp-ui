@@ -14,13 +14,9 @@ export type Props = {
   margin?: TextFieldProps['margin'];
   size?: TextFieldProps['size'];
   /**
-   * Data props to send to umami tracking service
+   * Name of the event to send to Umami for tracking user actions
    */
-  dataUmami?: {
-    event: string;
-    // send the page path name so we know where the search was used
-    page: string;
-  };
+  dataUmami?: string;
 };
 
 // todo: create minified version for small screens
@@ -54,8 +50,7 @@ export const SearchInput = ({
       inputProps={{
         'aria-label': ariaLabel,
         // Umami data props
-        'data-umami-event': dataUmami?.event,
-        'data-umami-event-page': dataUmami?.page,
+        'data-umami-event': dataUmami,
       }}
     />
   );
