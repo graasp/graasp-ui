@@ -1,4 +1,5 @@
 import { Meta, StoryObj, composeStories } from '@storybook/react';
+import { v4 } from 'uuid';
 
 import { Unstable_Grid2 as Grid2 } from '@mui/material';
 
@@ -26,6 +27,8 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+const CARD_IDS = Array.from(Array(12)).map(() => v4());
+
 export const GridOfCards = {
   args: {
     xs: 6,
@@ -33,8 +36,8 @@ export const GridOfCards = {
   render: ({ xs }) => {
     return (
       <Grid2 container spacing={2}>
-        {Array.from(Array(12)).map((_, i) => (
-          <Grid2 key={`cardno${i}`} xs={xs}>
+        {CARD_IDS.map((id) => (
+          <Grid2 key={id} xs={xs}>
             <FullWidth />
           </Grid2>
         ))}

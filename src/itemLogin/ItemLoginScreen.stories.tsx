@@ -66,10 +66,7 @@ export const ItemLoginUsername: Story = {
   play: async ({ args, canvasElement }) => {
     const canvas = within(canvasElement);
 
-    await userEvent.type(
-      canvas.getByLabelText('Pseudonym'),
-      'email@provider.com',
-    );
+    await userEvent.type(canvas.getByLabelText('Pseudonym'), 'my name');
     await userEvent.click(canvas.getByText('Sign In'));
 
     expect(args.signIn).toHaveBeenCalled();

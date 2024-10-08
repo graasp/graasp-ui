@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { expect } from '@storybook/test';
+import { expect, fn } from '@storybook/test';
 import { screen, userEvent, within } from '@storybook/testing-library';
 
 import { FlagType } from '@graasp/sdk';
@@ -19,6 +19,9 @@ const meta: Meta<typeof ItemFlagDialog> = {
     onFlag: {
       action: 'onFlag',
     },
+  },
+  args: {
+    onFlag: fn(),
   },
   render: (args) => <ItemFlagDialog {...args} flags={flags} open />,
 };

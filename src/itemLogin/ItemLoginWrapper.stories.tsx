@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { expect } from '@storybook/test';
+import { expect, fn } from '@storybook/test';
 import { within } from '@storybook/testing-library';
 import { StatusCodes } from 'http-status-codes';
 import { v4 } from 'uuid';
@@ -31,10 +31,10 @@ const meta = {
     signIn: { action: 'onRedirect' },
   },
   args: {
-    signIn: () => {},
+    signIn: fn(),
     itemId: item.id,
     itemErrorStatusCode: null,
-    children: <Card alt='card' name='card' />,
+    children: <Card alt='card' name='card' key='child' />,
   },
 } satisfies Meta<typeof ItemLoginWrapper>;
 
@@ -81,7 +81,11 @@ export const Enroll = {
     currentAccount,
     itemId: v4(),
     itemLoginSchemaType: ItemLoginSchemaType.Username,
-    enrollContent: <div data-testId='enroll'>Enroll Content</div>,
+    enrollContent: (
+      <div data-testId='enroll' key='enroll'>
+        Enroll Content
+      </div>
+    ),
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
@@ -95,7 +99,11 @@ export const RequestAccess = {
     currentAccount,
     itemId: v4(),
     itemErrorStatusCode: StatusCodes.FORBIDDEN,
-    requestAccessContent: <div data-testId='request'>Request Access</div>,
+    requestAccessContent: (
+      <div data-testId='request' key='request'>
+        Request Access
+      </div>
+    ),
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
