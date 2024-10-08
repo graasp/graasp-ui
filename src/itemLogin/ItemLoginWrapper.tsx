@@ -1,3 +1,5 @@
+import { StatusCodes } from 'http-status-codes';
+
 import { ReactElement, ReactNode } from 'react';
 
 import {
@@ -15,6 +17,7 @@ import ItemLoginScreen, { SignInPropertiesType } from './ItemLoginScreen.js';
 export type ItemLoginAuthorizationProps = {
   signIn: (args: { itemId: string } & SignInPropertiesType) => void;
   itemId: UUID;
+  itemErrorStatusCode: number | null;
   currentAccount?: CurrentAccount | null;
   item?: DiscriminatedItem;
   itemLoginSchemaType?: ItemLoginSchemaType;
@@ -31,6 +34,7 @@ export type ItemLoginAuthorizationProps = {
 const ItemLoginAuthorization = ({
   currentAccount,
   item,
+  itemErrorStatusCode,
   itemLoginSchemaType,
   itemId,
   signIn,
@@ -61,8 +65,13 @@ const ItemLoginAuthorization = ({
         return enrollContent ?? forbiddenContent;
       }
 
-      // user is logged in and item login disabled - request access
-      return requestAccessContent ?? forbiddenContent;
+      // user is logged in and item login disabled
+      // cannot access to item - request access
+      if (itemErrorStatusCode === StatusCodes.FORBIDDEN) {
+        return requestAccessContent ?? forbiddenContent;
+      }
+      // any other error return forbidden message
+      return forbiddenContent;
     } else {
       return forbiddenContent;
     }
