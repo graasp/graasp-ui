@@ -28,9 +28,6 @@ jobs:
       - name: Build # ensures type-checks and compiles
         run: yarn build
 
-      - name: Unit test
-        run: yarn test:unit
-
       - name: Get Latest playwright version
         run: echo "PLAYWRIGHT_VERSION=$(npm show playwright version)" >> $GITHUB_ENV
       - name: Cache playwright binaries
@@ -43,11 +40,15 @@ jobs:
       - name: Install playwright
         run: npx playwright install --with-deps
 
-      - name: Build storybook
-        run: yarn storybook:build --quiet
+      - name: Test
+        run: yarn test
 
-      - name: Run storybook tests
-        run: |
-          npx concurrently -k -s first -n "SB,TEST" -c "magenta,blue" \
-            "npx http-server storybook-static --port 6006 --silent" \
-            "npx wait-on http://127.0.0.1:6006 && yarn storybook:test"
+
+      # - name: Build storybook
+      #   run: yarn storybook:build --quiet
+
+      # - name: Run storybook tests
+      #   run: |
+      #     npx concurrently -k -s first -n "SB,TEST" -c "magenta,blue" \
+      #       "npx http-server storybook-static --port 6006 --silent" \
+      #       "npx wait-on http://127.0.0.1:6006 && yarn storybook:test"
