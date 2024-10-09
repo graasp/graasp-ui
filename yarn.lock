@@ -1411,7 +1411,7 @@ __metadata:
     "@storybook/react-vite": "npm:8.3.5"
     "@storybook/test-runner": "npm:0.19.1"
     "@storybook/testing-library": "npm:0.2.2"
-    "@tanstack/react-query": "npm:5.59.0"
+    "@tanstack/react-query": "npm:5.59.3"
     "@testing-library/react": "npm:16.0.1"
     "@testing-library/user-event": "npm:14.5.2"
     "@trivago/prettier-plugin-sort-imports": "npm:4.3.0"
@@ -1465,7 +1465,7 @@ __metadata:
     storybook: "npm:8.3.5"
     stylis: "npm:^4.3.4"
     tsc-alias: "npm:1.8.10"
-    typescript: "npm:5.6.2"
+    typescript: "npm:5.6.3"
     uuid: "npm:10.0.0"
     vite: "npm:5.4.8"
     vite-plugin-dts: "npm:4.2.3"
@@ -3295,14 +3295,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tanstack/react-query@npm:5.59.0":
-  version: 5.59.0
-  resolution: "@tanstack/react-query@npm:5.59.0"
+"@tanstack/react-query@npm:5.59.3":
+  version: 5.59.3
+  resolution: "@tanstack/react-query@npm:5.59.3"
   dependencies:
     "@tanstack/query-core": "npm:5.59.0"
   peerDependencies:
     react: ^18 || ^19
-  checksum: 10/48963e7d0603958390db0087c018b71e87187ad84dea03279716b4869de83509027c37f65f3c6c4a1cd7b6f9f14250afffc2aeee5d481528e2308d937422ae41
+  checksum: 10/03a001fc910153ffab20c41966aa7188442228f2003e8a04c21ad98f8eda3c8a1fa929a8cd733b5b2108b4bcc540065397cd385eff3a7c003a097125385fa09d
   languageName: node
   linkType: hard
 
@@ -12709,13 +12709,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:5.6.2":
-  version: 5.6.2
-  resolution: "typescript@npm:5.6.2"
+"typescript@npm:5.6.3":
+  version: 5.6.3
+  resolution: "typescript@npm:5.6.3"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 10/f95365d4898f357823e93d334ecda9fcade54f009b397c7d05b7621cd9e865981033cf89ccde0f3e3a7b73b1fdbae18e92bc77db237b43e912f053fef0f9a53b
+  checksum: 10/c328e418e124b500908781d9f7b9b93cf08b66bf5936d94332b463822eea2f4e62973bfb3b8a745fdc038785cb66cf59d1092bac3ec2ac6a3e5854687f7833f1
   languageName: node
   linkType: hard
 
@@ -12729,13 +12729,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@npm%3A5.6.2#optional!builtin<compat/typescript>":
-  version: 5.6.2
-  resolution: "typescript@patch:typescript@npm%3A5.6.2#optional!builtin<compat/typescript>::version=5.6.2&hash=8c6c40"
+"typescript@patch:typescript@npm%3A5.6.3#optional!builtin<compat/typescript>":
+  version: 5.6.3
+  resolution: "typescript@patch:typescript@npm%3A5.6.3#optional!builtin<compat/typescript>::version=5.6.3&hash=8c6c40"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 10/8bfc7ca0d9feca4c3fcbd6c70741abfcd714197d6448e68225ae71e462447d904d3bfba49759a8fbe4956d87f054e2d346833c8349c222daa594a2626d4e1be8
+  checksum: 10/00504c01ee42d470c23495426af07512e25e6546bce7e24572e72a9ca2e6b2e9bea63de4286c3cfea644874da1467dcfca23f4f98f7caf20f8b03c0213bb6837
   languageName: node
   linkType: hard
 
