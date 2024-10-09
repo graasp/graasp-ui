@@ -13,7 +13,7 @@ import {
 
 import { MouseEventHandler, ReactElement, useState } from 'react';
 
-import { AccountType, CurrentAccount, Member } from '@graasp/sdk';
+import { AccountType, CurrentAccount } from '@graasp/sdk';
 
 import { SHORT_TEXT_WIDTH, SMALL_AVATAR_SIZE } from '../constants.js';
 import { Variant } from '../types.js';
@@ -35,7 +35,6 @@ type Props = {
   buttonId?: string;
   isMemberLoading?: boolean;
   currentMember?: CurrentAccount | null;
-  members?: Member[];
   menuId?: string;
   onMemberClick?: (_id: string) => MouseEventHandler;
   avatar?: JSX.Element;
@@ -69,50 +68,6 @@ export const UserSwitch = ({
   const handleClose = (): void => {
     setAnchorEl(null);
   };
-
-  // disable feature: sessions shouldn't be saved in the cookies
-  // const renderStoredSessions = (): (JSX.Element | null)[] | null => {
-  //   const menuItems = members.map((m) => {
-  //     // an error happened and the member is null or is an error
-  //     if (!m || isError(m)) {
-  //       return null;
-  //     }
-
-  //     const { id, name, email } = m;
-
-  //     // do not show current member
-  //     if (id === member?.id) {
-  //       return null;
-  //     }
-
-  //     const hasExpired = isSessionExpired(id);
-
-  //     return (
-  //       <MenuItem
-  //         id={buildMemberMenuItemId?.(id)}
-  //         key={id}
-  //         onClick={onMemberClick(id)}
-  //         disabled={hasExpired}
-  //       >
-  //         <ListItemIcon>{renderAvatar(m)}</ListItemIcon>
-  //         <div>
-  //           <Typography variant='body1' noWrap>
-  //             {name}
-  //           </Typography>
-  //           {/* show info only for normal member */}
-  //           {/* todo: show which item a pseudonymized member as access to */}
-  //           {!isPseudonymizedMember(email) && (
-  //             <Typography variant='subtitle2' noWrap>
-  //               {email}
-  //             </Typography>
-  //           )}
-  //         </div>
-  //       </MenuItem>
-  //     );
-  //   });
-
-  //   return menuItems?.toJS() as (JSX.Element | null)[];
-  // };
 
   const renderCurrentMemberInfo = (): ReactElement | null => {
     if (!currentMember || !currentMember.id) {
@@ -181,8 +136,6 @@ export const UserSwitch = ({
   };
 
   const currentMemberInfo = renderCurrentMemberInfo();
-  // disable feature: sessions shouldn't be saved in the cookies
-  // const storedSessions = renderStoredSessions();
 
   return (
     <>
@@ -205,8 +158,6 @@ export const UserSwitch = ({
         onClose={handleClose}
       >
         {currentMemberInfo}
-        {/* {Boolean(currentMemberInfo && storedSessions) && <Divider />}
-        {storedSessions} */}
         {Boolean(currentMemberInfo && Actions) && <Divider />}
         {Actions}
       </Menu>

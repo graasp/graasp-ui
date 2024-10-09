@@ -1,4 +1,4 @@
-import { CompleteMember, Member, MemberFactory } from '@graasp/sdk';
+import { Member, MemberFactory } from '@graasp/sdk';
 
 export const MOCK_MEMBER: Member = {
   id: 'id',
@@ -6,4 +6,4 @@ export const MOCK_MEMBER: Member = {
   email: 'email',
 };
 
-export const MOCK_CURRENT_MEMBER: CompleteMember = MemberFactory();
+export const MOCK_CURRENT_MEMBER = MemberFactory();
