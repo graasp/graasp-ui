@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.2.2](https://github.com/graasp/graasp-ui/compare/v5.2.1...v5.2.2) (2024-10-09)
+
+
+### Bug Fixes
+
+* children type and umami-tags ([#1076](https://github.com/graasp/graasp-ui/issues/1076)) ([d16764d](https://github.com/graasp/graasp-ui/commit/d16764dd82a0fd56045ca2a49a79ceb5b5ce5d6e))
+* **deps:** update dependency react-rnd to v10.4.13 ([#1070](https://github.com/graasp/graasp-ui/issues/1070)) ([4aa23ec](https://github.com/graasp/graasp-ui/commit/4aa23ecfa9461ba2c72c477c82f0feb39b65ac43))
+* show request access on forbidden only ([#1081](https://github.com/graasp/graasp-ui/issues/1081)) ([e0bf95b](https://github.com/graasp/graasp-ui/commit/e0bf95b0dc13fa6f63ca6d76cb33a10a314a8b10))
+* **tests:** setup vitest integration with storybook ([#1082](https://github.com/graasp/graasp-ui/issues/1082)) ([d191f0e](https://github.com/graasp/graasp-ui/commit/d191f0e099bf5b837f8c598603d31ad0eca952f1))
+* update docs ([#1073](https://github.com/graasp/graasp-ui/issues/1073)) ([be300bb](https://github.com/graasp/graasp-ui/commit/be300bb2ea812f24a8135588fc6d0909d0101bd4))
+
 ## [5.2.1](https://github.com/graasp/graasp-ui/compare/v5.2.0...v5.2.1) (2024-10-01)
 
 
