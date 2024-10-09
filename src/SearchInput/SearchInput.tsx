@@ -16,7 +16,7 @@ export type Props = {
   /**
    * Name of the event to send to Umami for tracking user actions
    */
-  dataUmami?: string;
+  dataUmamiEvent?: string;
 };
 
 // todo: create minified version for small screens
@@ -29,7 +29,7 @@ export const SearchInput = ({
   width,
   margin,
   size,
-  dataUmami,
+  dataUmamiEvent,
 }: Props): JSX.Element => {
   return (
     <TextField
@@ -50,7 +50,7 @@ export const SearchInput = ({
       inputProps={{
         'aria-label': ariaLabel,
         // Umami data props
-        'data-umami-event': dataUmami,
+        'data-umami-event': dataUmamiEvent,
       }}
     />
   );

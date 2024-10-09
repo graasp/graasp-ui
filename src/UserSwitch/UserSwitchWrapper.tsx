@@ -43,7 +43,7 @@ type Props = {
   /**
    * Name of the event that will be sent to Umami for tracking user actions
    */
-  dataUmami?: string;
+  dataUmamiEvent?: string;
   userMenuItems?: UserMenuItem[];
 };
 
@@ -68,7 +68,7 @@ export const UserSwitchWrapper = ({
   // switchMember,
   switchMemberText = 'Sign in',
   userMenuItems = [],
-  dataUmami,
+  dataUmamiEvent,
 }: Props): JSX.Element => {
   // get stored sessions
   // const sessions = getStoredSessions();
@@ -175,7 +175,7 @@ export const UserSwitchWrapper = ({
       buttonId={buttonId}
       buildMemberMenuItemId={buildMemberMenuItemId}
       avatar={avatar}
-      dataUmami={dataUmami}
+      dataUmamiEvent={dataUmamiEvent}
     />
   );
 };

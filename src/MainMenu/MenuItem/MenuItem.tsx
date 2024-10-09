@@ -22,7 +22,7 @@ export type MenuItemProps = {
   /**
    * Name of the event that will be sent to Umami for tracking user actions
    */
-  dataUmami?: string;
+  dataUmamiEvent?: string;
 };
 
 export const MenuItem = ({
@@ -33,7 +33,7 @@ export const MenuItem = ({
   text,
   selected,
   disabled,
-  dataUmami,
+  dataUmamiEvent,
 }: MenuItemProps): JSX.Element => {
   const { setOpen } = useMainMenuOpenContext();
   const { isMobile } = useMobileView();
@@ -51,7 +51,7 @@ export const MenuItem = ({
         onClick={onNavigate}
         disabled={disabled}
         selected={selected}
-        data-umami-event={dataUmami}
+        data-umami-event={dataUmamiEvent}
       >
         {icon && <ListItemIcon>{icon}</ListItemIcon>}
         {text && <ListItemText primary={text} />}
