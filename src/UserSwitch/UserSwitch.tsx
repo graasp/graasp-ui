@@ -39,6 +39,7 @@ type Props = {
   onMemberClick?: (_id: string) => MouseEventHandler;
   avatar?: JSX.Element;
   signedOutTooltipText?: string;
+  dataUmamiEvent?: string;
 };
 
 export const UserSwitch = ({
@@ -49,6 +50,7 @@ export const UserSwitch = ({
   currentMember,
   menuId,
   avatar,
+  dataUmamiEvent,
   signedOutTooltipText = 'You are not signed in.',
 }: Props): JSX.Element => {
   const [anchorEl, setAnchorEl] = useState<(EventTarget & Element) | null>(
@@ -147,6 +149,7 @@ export const UserSwitch = ({
         aria-controls={menuId}
         aria-expanded={Boolean(anchorEl)}
         tabIndex={0}
+        data-umami-event={dataUmamiEvent}
       >
         {renderButtonContent()}
       </StyledWrapper>

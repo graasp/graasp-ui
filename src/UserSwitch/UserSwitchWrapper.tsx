@@ -15,7 +15,7 @@ type UserMenuItem = {
   redirect_path: string;
   id?: string;
 };
-interface Props {
+type Props = {
   buildMemberMenuItemId?: (id: string) => string;
   ButtonContent?: JSX.Element;
   buttonId?: string;
@@ -40,11 +40,12 @@ interface Props {
   signOutText?: string;
   // switchMember: (args: { memberId: string; domain: string }) => Promise<void>;
   switchMemberText?: string;
-
+  /**
+   * Name of the event that will be sent to Umami for tracking user actions
+   */
+  dataUmamiEvent?: string;
   userMenuItems?: UserMenuItem[];
-
-  // useMembers: (ids: string[]) => UseQueryResult<ResultOfRecord<Member>>;
-}
+};
 
 export const UserSwitchWrapper = ({
   buildMemberMenuItemId,
@@ -67,8 +68,7 @@ export const UserSwitchWrapper = ({
   // switchMember,
   switchMemberText = 'Sign in',
   userMenuItems = [],
-
-  // useMembers,
+  dataUmamiEvent,
 }: Props): JSX.Element => {
   // get stored sessions
   // const sessions = getStoredSessions();
@@ -175,6 +175,7 @@ export const UserSwitchWrapper = ({
       buttonId={buttonId}
       buildMemberMenuItemId={buildMemberMenuItemId}
       avatar={avatar}
+      dataUmamiEvent={dataUmamiEvent}
     />
   );
 };

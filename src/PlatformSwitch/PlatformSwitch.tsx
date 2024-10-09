@@ -118,7 +118,7 @@ export const PlatformSwitch = ({
 
     const Icon = PlatformIcons[platform];
 
-    const tooltip = platformProps?.tooltip ?? Platform[platform];
+    const tooltip = platformProps?.tooltip;
     const sxProps = { ...sx, ...(platformProps?.sx ?? {}) };
     return (
       <Tooltip
@@ -134,6 +134,7 @@ export const PlatformSwitch = ({
           data-testid={platform}
           href={(!platformProps?.disabled && platformProps?.href) || '#'}
           aria-disabled={platformProps?.disabled}
+          data-umami-event={`header-navigation-switch-${platform}`}
         >
           <Icon
             disabledColor={disabledColor}
@@ -208,7 +209,7 @@ export const PlatformSwitch = ({
                     sx={sxProps}
                   />
                 }
-                tooltipTitle={Platform[platform]}
+                tooltipTitle={platformProps?.tooltip}
                 onClick={() => {
                   if (!platformProps?.disabled && platformProps?.href) {
                     location.assign(platformProps?.href);

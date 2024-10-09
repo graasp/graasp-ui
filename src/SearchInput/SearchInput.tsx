@@ -13,6 +13,10 @@ export type Props = {
   width?: string | number;
   margin?: TextFieldProps['margin'];
   size?: TextFieldProps['size'];
+  /**
+   * Name of the event to send to Umami for tracking user actions
+   */
+  dataUmamiEvent?: string;
 };
 
 // todo: create minified version for small screens
@@ -25,6 +29,7 @@ export const SearchInput = ({
   width,
   margin,
   size,
+  dataUmamiEvent,
 }: Props): JSX.Element => {
   return (
     <TextField
@@ -42,7 +47,11 @@ export const SearchInput = ({
       sx={{ flex: 1, width: width ?? '100%', backgroundColor: 'white' }}
       placeholder={placeholder}
       size={size}
-      inputProps={{ 'aria-label': ariaLabel }}
+      inputProps={{
+        'aria-label': ariaLabel,
+        // Umami data props
+        'data-umami-event': dataUmamiEvent,
+      }}
     />
   );
 };

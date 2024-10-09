@@ -1,4 +1,4 @@
-import type { StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 import { expect } from '@storybook/test';
 import { userEvent, within } from '@storybook/testing-library';
 import type { BoundFunctions } from '@testing-library/dom';
@@ -9,25 +9,34 @@ import { PRIMARY_COLOR, SECONDARY_COLOR } from '../theme.js';
 import PlatformSwitch, { PlatformSwitchProps } from './PlatformSwitch.js';
 import { Platform } from './hooks.js';
 
-export default {
-  title: 'Main/PlatformSwitch',
-  component: PlatformSwitch,
-};
-
 const MOCK_PLATFORM_PROPS = {
   [Platform.Builder]: {
+    tooltip: 'builder',
     href: 'builder',
   },
   [Platform.Player]: {
+    tooltip: 'player',
     href: 'player',
   },
   [Platform.Library]: {
+    tooltip: 'library',
     href: 'library',
   },
   [Platform.Analytics]: {
+    tooltip: 'analytics',
     href: 'analytics',
   },
 };
+
+const meta = {
+  title: 'Main/PlatformSwitch',
+  component: PlatformSwitch,
+  args: {
+    platformsProps: MOCK_PLATFORM_PROPS,
+  },
+} satisfies Meta<typeof PlatformSwitch>;
+
+export default meta;
 
 type Story = StoryObj<typeof PlatformSwitch>;
 
@@ -88,7 +97,7 @@ export const Disabled: Story = {
     accentColor: SECONDARY_COLOR,
     selected: Platform.Builder,
     platformsProps: {
-      Analytics: {
+      analytics: {
         disabled: true,
       },
     },
@@ -117,17 +126,17 @@ export const CustomTooltips: Story = {
     accentColor: SECONDARY_COLOR,
     selected: Platform.Builder,
     platformsProps: {
-      Builder: {
+      builder: {
         tooltip: 'Platform 1',
       },
-      Player: {
+      player: {
         tooltip: 'Platform 2',
       },
-      Library: {
+      library: {
         disabled: true,
         tooltip: 'Platform 3',
       },
-      Analytics: {
+      analytics: {
         tooltip: 'Platform 4',
         placement: 'right',
       },
