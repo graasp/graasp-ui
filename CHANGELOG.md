@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.3.0](https://github.com/graasp/graasp-ui/compare/v5.2.2...v5.3.0) (2024-10-09)
+
+
+### Features
+
+* add umami for main components ([#1080](https://github.com/graasp/graasp-ui/issues/1080)) ([6e62879](https://github.com/graasp/graasp-ui/commit/6e6287944108e19c1ff0058bb249fbe183ac0b73))
+
 ## [5.2.2](https://github.com/graasp/graasp-ui/compare/v5.2.1...v5.2.2) (2024-10-09)
 
 
