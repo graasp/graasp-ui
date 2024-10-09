@@ -1409,7 +1409,7 @@ __metadata:
     "@storybook/react-vite": "npm:8.3.5"
     "@storybook/test-runner": "npm:0.19.1"
     "@storybook/testing-library": "npm:0.2.2"
-    "@tanstack/react-query": "npm:5.59.3"
+    "@tanstack/react-query": "npm:5.59.8"
     "@testing-library/react": "npm:16.0.1"
     "@testing-library/user-event": "npm:14.5.2"
     "@trivago/prettier-plugin-sort-imports": "npm:4.3.0"
@@ -1434,7 +1434,7 @@ __metadata:
     eslint-config-prettier: "npm:^9.1.0"
     eslint-plugin-import: "npm:^2.31.0"
     eslint-plugin-jsx-a11y: "npm:6.10.0"
-    eslint-plugin-n: "npm:17.11.0"
+    eslint-plugin-n: "npm:17.11.1"
     eslint-plugin-prettier: "npm:^5.2.1"
     eslint-plugin-promise: "npm:^7.1.0"
     globals: "npm:15.11.0"
@@ -3286,21 +3286,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tanstack/query-core@npm:5.59.0":
-  version: 5.59.0
-  resolution: "@tanstack/query-core@npm:5.59.0"
-  checksum: 10/2e8fd7d9bdd62cabc1a2b20b2cf0c9275174ee5550170f224bd4e30fe2d01cc8d39a0dd03caae55ddb8aea259d991966bb54b581b4046fd67c621c081f4b0ba7
+"@tanstack/query-core@npm:5.59.6":
+  version: 5.59.6
+  resolution: "@tanstack/query-core@npm:5.59.6"
+  checksum: 10/4cd634f957175dde80ed8f2b47eb14803d959073b6dccb7868f5dd6ddce26e41820b2dfc879dfc799de0726ae640201440c7d1d95113813bbcb25b03ec05949e
   languageName: node
   linkType: hard
 
-"@tanstack/react-query@npm:5.59.3":
-  version: 5.59.3
-  resolution: "@tanstack/react-query@npm:5.59.3"
+"@tanstack/react-query@npm:5.59.8":
+  version: 5.59.8
+  resolution: "@tanstack/react-query@npm:5.59.8"
   dependencies:
-    "@tanstack/query-core": "npm:5.59.0"
+    "@tanstack/query-core": "npm:5.59.6"
   peerDependencies:
     react: ^18 || ^19
-  checksum: 10/03a001fc910153ffab20c41966aa7188442228f2003e8a04c21ad98f8eda3c8a1fa929a8cd733b5b2108b4bcc540065397cd385eff3a7c003a097125385fa09d
+  checksum: 10/246cfa18e991782c97631ab30fc95987be81c7a25b057b65c3530a06f9e8acc98475ce8def29486be8d4c8f9ad391b9cfa2195b89e11dcd82f43a4ca172154f6
   languageName: node
   linkType: hard
 
@@ -6652,9 +6652,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-n@npm:17.11.0":
-  version: 17.11.0
-  resolution: "eslint-plugin-n@npm:17.11.0"
+"eslint-plugin-n@npm:17.11.1":
+  version: 17.11.1
+  resolution: "eslint-plugin-n@npm:17.11.1"
   dependencies:
     "@eslint-community/eslint-utils": "npm:^4.4.0"
     enhanced-resolve: "npm:^5.17.0"
@@ -6666,7 +6666,7 @@ __metadata:
     semver: "npm:^7.5.3"
   peerDependencies:
     eslint: ">=8.23.0"
-  checksum: 10/2522f64eaf2c8a7151e34c316242a5ade9e58f28559960223a2dafbf48fe5ebc25c40e31a36ffbc0109de321f350fb2614dd268ba352c5b02514e90e98e1539d
+  checksum: 10/f9cd02f5ab6d45448cdc66e836978590d6ab0db3a4135d1463209b04a90b5b996b097687824a6951bae0b6a63d1da6a53f6559eb26efe1d0068dc5d03f7712ce
   languageName: node
   linkType: hard
 
