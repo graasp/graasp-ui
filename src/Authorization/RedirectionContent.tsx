@@ -1,4 +1,4 @@
-import { Container, Typography, styled, useTheme } from '@mui/material';
+import { Container, Typography, styled } from '@mui/material';
 
 import { Link, LinkProps } from 'react-router-dom';
 
@@ -35,11 +35,9 @@ const RedirectionContent = ({
   redirectionLinkText,
   id,
 }: Props): JSX.Element => {
-  const theme = useTheme();
-
   return (
     <StyledContainer id={id}>
-      <GraaspLogo height={100} sx={{ fill: theme.palette.primary.main }} />
+      <GraaspLogo height={100} />
       <div>
         <StyledTypography variant='h4' align='center'>
           {redirectionText ?? 'You are being redirected…'}

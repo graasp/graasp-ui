@@ -12,6 +12,8 @@ import {
 import { DndProvider, DropTargetMonitor, useDrop } from 'react-dnd';
 import { HTML5Backend, NativeTypes } from 'react-dnd-html5-backend';
 
+import { DEFAULT_LIGHT_PRIMARY_COLOR } from '@/theme.js';
+
 import UploadFileButton, {
   UploadFileButtonProps,
 } from '../UploadFileButton/UploadFileButton.js';
@@ -95,11 +97,11 @@ const FileDropperComponent = ({
   });
 
   const isActive = canDrop && isOver;
-  let bgColor = '#eeeefa';
+  let bgColor: string = DEFAULT_LIGHT_PRIMARY_COLOR.main;
   if (isActive) {
-    bgColor = '#dcdcf6';
+    bgColor = DEFAULT_LIGHT_PRIMARY_COLOR.dark;
   } else if (!canDrop && isOver) {
-    bgColor = '#ffbaba';
+    bgColor = '#bababa';
   }
 
   return (

@@ -2,7 +2,6 @@
 export enum Platform {
   Builder = 'builder',
   Player = 'player',
-  Library = 'library',
   Analytics = 'analytics',
 }
 
@@ -34,11 +33,6 @@ export function defaultHostsMapper(
       `${origin}/items/${itemId}`,
     [Platform.Player]: (origin: string, itemId: string) =>
       `${origin}/${itemId}`,
-    [Platform.Library]: (origin: string, _itemId: string) =>
-      // for now redirect to library home
-      // in the future we may want to redirect to itemId and
-      // redirect to home only if it is not published from there
-      `${origin}`,
     [Platform.Analytics]: (origin: string, itemId: string) =>
       `${origin}/items/${itemId}`,
   };

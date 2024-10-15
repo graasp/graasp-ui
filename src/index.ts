@@ -35,6 +35,7 @@ export { default as Main } from './Main/Main.js';
 export { default as withCollapse } from './Collapse/withCollapse.js';
 
 export { default as GraaspLogo } from './GraaspLogo/GraaspLogo.js';
+export { default as EpflLogo } from './GraaspLogo/EpflLogo.js';
 
 export { default as ItemLoginWrapper } from './itemLogin/ItemLoginWrapper.js';
 export { default as ForbiddenContent } from './itemLogin/ForbiddenContent.js';
