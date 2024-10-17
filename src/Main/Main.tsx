@@ -63,7 +63,7 @@ const StyledMain = styled('main', {
     ...(open && openDrawerStyles(theme)),
   }),
 );
-const StyledFooter = styled('main', {
+const StyledFooter = styled('footer', {
   shouldForwardProp: (prop) => prop !== 'open',
 })<{ open: boolean }>(({ theme, open }) => ({
   ...(open && openDrawerStyles(theme)),
