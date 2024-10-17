@@ -134,6 +134,14 @@ export const createGraaspTheme = ({
           },
         },
       },
+      MuiOutlinedInput: {
+        // outlined inputs should have the inside white
+        styleOverrides: {
+          root: {
+            backgroundColor: 'white',
+          },
+        },
+      },
       MuiSelect: {
         styleOverrides: {
           root: {
