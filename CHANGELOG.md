@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.3.1](https://github.com/graasp/graasp-ui/compare/v5.3.0...v5.3.1) (2024-10-18)
+
+
+### Bug Fixes
+
+* add outlined input background color ([#1090](https://github.com/graasp/graasp-ui/issues/1090)) ([5edd7b8](https://github.com/graasp/graasp-ui/commit/5edd7b86169f99871cf6dcd1d98f85de4c2669c7))
+* footer should use footer html tag ([#1091](https://github.com/graasp/graasp-ui/issues/1091)) ([4fc553f](https://github.com/graasp/graasp-ui/commit/4fc553f7b9c8efe8da23057769405c8ece33d3d6))
+
 ## [5.3.0](https://github.com/graasp/graasp-ui/compare/v5.2.2...v5.3.0) (2024-10-09)
 
 
