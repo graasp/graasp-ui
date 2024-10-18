@@ -43,7 +43,10 @@ export { default as Card } from './Card/Card.js';
 export { default as FolderCard } from './Card/FolderCard.js';
 export { default as LinkCard } from './Card/LinkCard.js';
 export { default as Thumbnail } from './Thumbnail/Thumbnail.js';
+
 export { default as Avatar } from './Avatar/Avatar.js';
+export * from './Avatar/stringToColor.js';
+
 export { default as ItemBadges } from './ItemBadges/ItemBadges.js';
 
 export { default as ItemFlagDialog } from './ItemFlag/ItemFlagDialog.js';
