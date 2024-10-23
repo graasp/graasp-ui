@@ -1,7 +1,7 @@
 import {
   Box,
   CardActions,
-  Grid,
+  Grid2 as Grid,
   Card as MuiCard,
   Stack,
   SxProps,
@@ -160,9 +160,11 @@ const Card = ({
             alignItems='center'
           >
             <Grid
-              xs={9}
-              sm={5}
-              md={5}
+              size={{
+                xs: 9,
+                sm: 5,
+                md: 5,
+              }}
               justifyContent='space-between'
               // align to the top so the button does not move when there is no creator
               alignItems='start'
@@ -185,10 +187,13 @@ const Card = ({
                 </Stack>
               </Wrapper>
             </Grid>
-            <Grid sm={4} xs={0} md={5} display={{ xs: 'none', sm: 'block' }}>
+            <Grid
+              size={{ sm: 4, xs: 0, md: 5 }}
+              display={{ xs: 'none', sm: 'block' }}
+            >
               <Wrapper to={to}>{content}</Wrapper>
             </Grid>
-            <Grid xs={3} sm={3} md={2} justifyContent='flex-end'>
+            <Grid size={{ xs: 3, sm: 3, md: 2 }} justifyContent='flex-end'>
               <CardActions sx={{ p: 0, justifyContent: 'flex-end' }}>
                 <Stack
                   width='100%'

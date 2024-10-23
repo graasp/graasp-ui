@@ -1,7 +1,7 @@
 import { Meta, StoryObj, composeStories } from '@storybook/react';
 import { v4 } from 'uuid';
 
-import { Grid } from '@mui/material';
+import { Grid2 as Grid } from '@mui/material';
 
 import { PackedFolderItemFactory } from '@graasp/sdk';
 
@@ -17,7 +17,7 @@ const meta = {
   title: 'Common/Cards',
   component: Grid,
   argTypes: {
-    xs: {
+    size: {
       options: [3, 6, 12],
       control: { type: 'radio' },
     },
@@ -31,13 +31,13 @@ const CARD_IDS = Array.from(Array(12)).map(() => v4());
 
 export const GridOfCards = {
   args: {
-    xs: 6,
+    size: 6,
   },
-  render: ({ xs }) => {
+  render: ({ size }) => {
     return (
       <Grid container spacing={2}>
         {CARD_IDS.map((id) => (
-          <Grid key={id} xs={xs}>
+          <Grid key={id} size={size}>
             <FullWidth />
           </Grid>
         ))}
@@ -48,24 +48,20 @@ export const GridOfCards = {
 
 export const GridOfDenseCards = {
   args: {
-    xs: 12,
+    size: 12,
   },
-  render: ({ xs }) => {
+  render: ({ size }) => {
     return (
       <Grid container spacing={2}>
         {data.map((item) => (
-          <Grid key={item.id} xs={xs}>
+          <Grid key={item.id} size={size}>
             <Dense
               creator={item.creator?.name}
               name={item.name}
               content={
                 <Grid container columns={{ xs: 12 }}>
-                  <Grid xs={12} md={6}>
-                    {item.type}
-                  </Grid>
-                  <Grid xs={12} md={6}>
-                    {item.createdAt}
-                  </Grid>
+                  <Grid size={{ xs: 12, md: 6 }}>{item.type}</Grid>
+                  <Grid size={{ xs: 12, md: 6 }}>{item.createdAt}</Grid>
                 </Grid>
               }
               fullWidth
@@ -85,25 +81,21 @@ export const GridOfDenseCards = {
 
 export const GridOfDenseWithClickCards = {
   args: {
-    xs: 12,
+    size: 12,
   },
-  render: ({ xs }) => {
+  render: ({ size }) => {
     return (
       <Grid container spacing={2}>
         {data.map((i) => (
-          <Grid key={`cardno${i}`} xs={xs}>
+          <Grid key={`cardno${i}`} size={size}>
             <Dense
               creator={i.creator?.name}
               name={i.name}
               to={'to'}
               content={
                 <Grid container columns={{ xs: 12 }}>
-                  <Grid xs={12} md={6}>
-                    {i.type}
-                  </Grid>
-                  <Grid xs={12} md={6}>
-                    {i.createdAt}
-                  </Grid>
+                  <Grid size={{ xs: 12, md: 6 }}>{i.type}</Grid>
+                  <Grid size={{ xs: 12, md: 6 }}>{i.createdAt}</Grid>
                 </Grid>
               }
               fullWidth
