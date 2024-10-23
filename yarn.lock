@@ -1483,15 +1483,15 @@ __metadata:
     "@graasp/sdk": ^4.29.0
     "@graasp/stylis-plugin-rtl": ^2
     "@graasp/translations": ^1.23.0
-    "@mui/icons-material": ~5.14.0 || ~5.15.0 || ~5.16.0
-    "@mui/lab": ~5.0.0-alpha.150
-    "@mui/material": ~5.14.0 || ~5.15.0 || ~5.16.0
+    "@mui/icons-material": ^6
+    "@mui/lab": ^6
+    "@mui/material": ^6
     i18next: ^22.4.15 || ^23.0.0
     katex: 0.16.11
     lucide-react: ^0.417.0 || ^0.429.0 || ^0.436.0 || ^0.439.0 || ^0.441.0 || ^0.446.0 || ^0.447.0 || ^0.451.0
     react: ^18.0.0
     react-dom: ^18.0.0
-    react-i18next: ^13.0.0 || ^14.0.0 || ^15.0.0
+    react-i18next: ^15.0.0
     react-router-dom: ^6.11.0
     stylis: ^4.1.3
   languageName: unknown
