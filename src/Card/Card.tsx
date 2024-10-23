@@ -1,13 +1,13 @@
 import {
   Box,
   CardActions,
+  Grid,
   Card as MuiCard,
   Stack,
   SxProps,
   Typography,
   styled,
 } from '@mui/material';
-import { Unstable_Grid2 as Grid2 } from '@mui/material/';
 
 import { ReactElement } from 'react';
 import { Link } from 'react-router-dom';
@@ -147,7 +147,7 @@ const Card = ({
               type={type}
             />
           </Box>
-          <Grid2
+          <Grid
             container
             // necessary to respect flex layout, otherwise it does not compress
             minWidth={0}
@@ -159,7 +159,7 @@ const Card = ({
             justifyContent='space-between'
             alignItems='center'
           >
-            <Grid2
+            <Grid
               xs={9}
               sm={5}
               md={5}
@@ -184,11 +184,11 @@ const Card = ({
                   )}
                 </Stack>
               </Wrapper>
-            </Grid2>
-            <Grid2 sm={4} xs={0} md={5} display={{ xs: 'none', sm: 'block' }}>
+            </Grid>
+            <Grid sm={4} xs={0} md={5} display={{ xs: 'none', sm: 'block' }}>
               <Wrapper to={to}>{content}</Wrapper>
-            </Grid2>
-            <Grid2 xs={3} sm={3} md={2} justifyContent='flex-end'>
+            </Grid>
+            <Grid xs={3} sm={3} md={2} justifyContent='flex-end'>
               <CardActions sx={{ p: 0, justifyContent: 'flex-end' }}>
                 <Stack
                   width='100%'
@@ -202,8 +202,8 @@ const Card = ({
                 </Stack>
                 {menu}
               </CardActions>
-            </Grid2>
-          </Grid2>
+            </Grid>
+          </Grid>
         </Stack>
       </StyledCard>
     );

@@ -1,7 +1,7 @@
 import { Meta, StoryObj, composeStories } from '@storybook/react';
 import { v4 } from 'uuid';
 
-import { Unstable_Grid2 as Grid2 } from '@mui/material';
+import { Grid } from '@mui/material';
 
 import { PackedFolderItemFactory } from '@graasp/sdk';
 
@@ -15,14 +15,14 @@ const data = Array.from({ length: 12 }, () => PackedFolderItemFactory());
 
 const meta = {
   title: 'Common/Cards',
-  component: Grid2,
+  component: Grid,
   argTypes: {
     xs: {
       options: [3, 6, 12],
       control: { type: 'radio' },
     },
   },
-} satisfies Meta<typeof Grid2>;
+} satisfies Meta<typeof Grid>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -35,13 +35,13 @@ export const GridOfCards = {
   },
   render: ({ xs }) => {
     return (
-      <Grid2 container spacing={2}>
+      <Grid container spacing={2}>
         {CARD_IDS.map((id) => (
-          <Grid2 key={id} xs={xs}>
+          <Grid key={id} xs={xs}>
             <FullWidth />
-          </Grid2>
+          </Grid>
         ))}
-      </Grid2>
+      </Grid>
     );
   },
 } satisfies Story;
@@ -52,21 +52,21 @@ export const GridOfDenseCards = {
   },
   render: ({ xs }) => {
     return (
-      <Grid2 container spacing={2}>
+      <Grid container spacing={2}>
         {data.map((item) => (
-          <Grid2 key={item.id} xs={xs}>
+          <Grid key={item.id} xs={xs}>
             <Dense
               creator={item.creator?.name}
               name={item.name}
               content={
-                <Grid2 container columns={{ xs: 12 }}>
-                  <Grid2 xs={12} md={6}>
+                <Grid container columns={{ xs: 12 }}>
+                  <Grid xs={12} md={6}>
                     {item.type}
-                  </Grid2>
-                  <Grid2 xs={12} md={6}>
+                  </Grid>
+                  <Grid xs={12} md={6}>
                     {item.createdAt}
-                  </Grid2>
-                </Grid2>
+                  </Grid>
+                </Grid>
               }
               fullWidth
               footer={
@@ -76,9 +76,9 @@ export const GridOfDenseCards = {
                 />
               }
             />
-          </Grid2>
+          </Grid>
         ))}
-      </Grid2>
+      </Grid>
     );
   },
 } satisfies Story;
@@ -89,22 +89,22 @@ export const GridOfDenseWithClickCards = {
   },
   render: ({ xs }) => {
     return (
-      <Grid2 container spacing={2}>
+      <Grid container spacing={2}>
         {data.map((i) => (
-          <Grid2 key={`cardno${i}`} xs={xs}>
+          <Grid key={`cardno${i}`} xs={xs}>
             <Dense
               creator={i.creator?.name}
               name={i.name}
               to={'to'}
               content={
-                <Grid2 container columns={{ xs: 12 }}>
-                  <Grid2 xs={12} md={6}>
+                <Grid container columns={{ xs: 12 }}>
+                  <Grid xs={12} md={6}>
                     {i.type}
-                  </Grid2>
-                  <Grid2 xs={12} md={6}>
+                  </Grid>
+                  <Grid xs={12} md={6}>
                     {i.createdAt}
-                  </Grid2>
-                </Grid2>
+                  </Grid>
+                </Grid>
               }
               fullWidth
               footer={
@@ -114,9 +114,9 @@ export const GridOfDenseWithClickCards = {
                 />
               }
             />
-          </Grid2>
+          </Grid>
         ))}
-      </Grid2>
+      </Grid>
     );
   },
 } satisfies Story;
