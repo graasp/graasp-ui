@@ -40,13 +40,13 @@ export const Placeholder = {
   },
   play: async ({ canvasElement, args }) => {
     const canvas = within(canvasElement);
-    await expect(
+    expect(
       canvasElement
         .querySelector(`[id=${args.id}] .ql-editor`)
         ?.getAttribute('data-placeholder'),
     ).toEqual(args.placeholderText);
     await userEvent.click(canvas.getByTestId(BUTTON_ID));
-    await expect(
+    expect(
       canvasElement
         .querySelector(`[id=${args.id}] .ql-editor`)
         ?.getAttribute('data-placeholder'),

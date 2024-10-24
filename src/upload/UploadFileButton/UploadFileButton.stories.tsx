@@ -56,10 +56,9 @@ export const ImageMultipleOnly = {
     const canvas = within(canvasElement);
     expect(canvas.getByRole('button')).toHaveTextContent(args.text!);
     // select input
-    const input =
-      canvas.getByRole('button').firstChild?.nextSibling!.nextSibling;
-    expect(input).toHaveAttribute('multiple');
-    expect(input).toHaveAttribute('accept', args.accept);
+    const inputEl = canvasElement.querySelector('input');
+    expect(inputEl).toHaveAttribute('multiple');
+    expect(inputEl).toHaveAttribute('accept', args.accept);
   },
 } satisfies Story;
 
@@ -74,9 +73,9 @@ export const H5pOnly = {
     const canvas = within(canvasElement);
     expect(canvas.getByRole('button')).toHaveTextContent(args.text!);
     // select input
-    const input =
-      canvas.getByRole('button').firstChild?.nextSibling!.nextSibling;
-    expect(input).not.toHaveAttribute('multiple');
-    expect(input).toHaveAttribute('accept', args.accept);
+    const inputEl = canvasElement.querySelector('input');
+    expect(inputEl).toBeDefined();
+    expect(inputEl).not.toHaveAttribute('multiple');
+    expect(inputEl).toHaveAttribute('accept', args.accept);
   },
 } satisfies Story;
