@@ -1,5 +1,5 @@
 // we could replace dnd with this https://docs.dndkit.com
-import { Unstable_Grid2 as Grid2 } from '@mui/material';
+import { Grid2 as Grid } from '@mui/material';
 
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
@@ -62,16 +62,16 @@ const DraggingWrapper = <T extends object>({
     // we need context={window} to use multiple times in the document
     // https://github.com/react-dnd/react-dnd/issues/3257#issuecomment-1239254032
     <DndProvider backend={HTML5Backend} context={window}>
-      <Grid2 container id={id} width='100%'>
-        <Grid2 xs={12}>
+      <Grid container id={id} width='100%'>
+        <Grid size={12}>
           <InBetween<T>
             onDrop={onDropBetweenRow}
             enableMoveInBetween={enableMoveInBetween}
             renderComponent={renderComponent}
           />
-        </Grid2>
+        </Grid>
         {rows.map((row) => (
-          <Grid2 xs={Math.floor(12 / nbColumns)}>
+          <Grid size={Math.floor(12 / nbColumns)}>
             <DraggableElement<T>
               canDrop={canDrop}
               allowFiles={allowFiles}
@@ -88,9 +88,9 @@ const DraggingWrapper = <T extends object>({
               previousRow={row}
               onDrop={onDropBetweenRow}
             />
-          </Grid2>
+          </Grid>
         ))}
-      </Grid2>
+      </Grid>
     </DndProvider>
   );
 };

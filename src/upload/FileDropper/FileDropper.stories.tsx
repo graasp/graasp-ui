@@ -37,7 +37,7 @@ type Story = StoryObj<typeof meta>;
 export const Default = {
   play: ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    expect(canvas.getByText('Browse files')).toHaveRole('button');
+    expect(canvas.getByRole('button', { name: 'Browse files' })).toBeVisible();
     expect(canvas.getByText('Drag your files here to upload or')).toBeVisible();
   },
 } satisfies Story;
@@ -55,8 +55,11 @@ export const Container = {
   ],
   play: ({ canvasElement, args }) => {
     const canvas = within(canvasElement);
-    expect(canvas.getByText(args.buttonText!)).toHaveRole('button');
+    // expect the text label
     expect(canvas.getByText(args.message!)).toBeVisible();
+    // first button
+    expect(canvas.getByRole('button', { name: args.buttonText })).toBeVisible();
+    // other buttons passed as props can be get via their testId
     expect(canvas.getByTestId('button-test')).toHaveTextContent('my button');
   },
 } satisfies Story;
