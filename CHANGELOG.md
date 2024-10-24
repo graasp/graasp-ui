@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.4.0](https://github.com/graasp/graasp-ui/compare/v5.3.1...v5.4.0) (2024-10-24)
+
+
+### Features
+
+* add new funtion to translate a username into a unique color ([#1005](https://github.com/graasp/graasp-ui/issues/1005)) ([91e3371](https://github.com/graasp/graasp-ui/commit/91e33715797e70c95960e9284ef1e46210588e75))
+* upgrade mui v6 ([#1096](https://github.com/graasp/graasp-ui/issues/1096)) ([f5b2d10](https://github.com/graasp/graasp-ui/commit/f5b2d1021c0de09e9e4d06c1727c520c0c958a92))
+
 ## [5.3.1](https://github.com/graasp/graasp-ui/compare/v5.3.0...v5.3.1) (2024-10-18)
 
 
