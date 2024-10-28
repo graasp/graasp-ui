@@ -93,7 +93,7 @@ export {
 } from './Tree/Breadcrumbs.js';
 export type { NavigationElement } from './Tree/types.js';
 
-export * from './ThemeContext/ThemeContext.js';
+export * from './ThemeWrapper/ThemeWrapper.js';
 
 export * from './types.js';
 
