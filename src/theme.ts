@@ -8,7 +8,7 @@ import {
 import { Context } from '@graasp/sdk';
 
 export const PRIMARY_COLOR = '#5050d2';
-export const SECONDARY_COLOR = '#FFFFFF';
+export const SECONDARY_COLOR = '#CEE5FF';
 
 /**
  * Here we explicitly set primary and secondary text colors.
