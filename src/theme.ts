@@ -72,6 +72,35 @@ declare module '@mui/material/Typography' {
   }
 }
 
+// Update Typescript color palette types
+declare module '@mui/material/styles' {
+  interface Palette {
+    builder: Palette['primary'];
+    player: Palette['primary'];
+    analytics: Palette['primary'];
+    library: Palette['primary'];
+    account: Palette['primary'];
+  }
+
+  interface PaletteOptions {
+    builder?: PaletteOptions['primary'];
+    player?: PaletteOptions['primary'];
+    analytics?: PaletteOptions['primary'];
+    library?: PaletteOptions['primary'];
+    account?: PaletteOptions['primary'];
+  }
+}
+
+declare module '@mui/material/Button' {
+  interface ButtonPropsColorOverrides {
+    builder: true;
+    player: true;
+    analytics: true;
+    library: true;
+    account: true;
+  }
+}
+
 type GraaspThemeOptions = {
   fontFamily?: string;
   direction?: Direction;
