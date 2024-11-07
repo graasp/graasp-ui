@@ -241,16 +241,20 @@ export const createGraaspTheme = ({
   });
 
   const augmentedColorTheme = createTheme(baseTheme, {
-    palette: {
-      ...Object.values(AccentColors).map(([platform, color]) => ({
-        [platform]: baseTheme.palette.augmentColor({
-          color: {
-            main: color,
-          },
-          name: platform,
-        }),
-      })),
-    },
+    palette: Object.fromEntries(
+      Object.entries(AccentColors).map(([platform, color]) => {
+        return [
+          platform,
+          baseTheme.palette.augmentColor({
+            color: {
+              main: color,
+              contrastText: 'white',
+            },
+            name: platform,
+          }),
+        ];
+      }),
+    ),
   });
 
   return responsiveFontSizes(augmentedColorTheme, {
