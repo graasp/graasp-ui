@@ -36,14 +36,15 @@ export const DEFAULT_LIGHT_PRIMARY_COLOR = {
  */
 export const DEFAULT_BACKGROUND_COLOR = '#fafaff';
 
-export const AccentColors: { [K in Context]: string } = {
+export const AccentColors: {
+  [K in Exclude<Context, Context.Unknown>]: string;
+} = {
   [Context.Builder]: '#00C38B',
   [Context.Player]: '#56B0F8',
   [Context.Library]: '#C658D0',
   [Context.Analytics]: '#FA5B7D',
   [Context.Account]: '#F2C955',
   [Context.Auth]: PRIMARY_COLOR,
-  [Context.Unknown]: PRIMARY_COLOR,
 } as const;
 
 // add custom typography variants, based on the design guideline
@@ -209,7 +210,21 @@ export const createGraaspTheme = ({
       },
     },
   });
-  return responsiveFontSizes(baseTheme, {
+
+  const augmentedColorTheme = createTheme(baseTheme, {
+    palette: {
+      ...Object.values(AccentColors).map(([platform, color]) => ({
+        [platform]: baseTheme.palette.augmentColor({
+          color: {
+            main: color,
+          },
+          name: platform,
+        }),
+      })),
+    },
+  });
+
+  return responsiveFontSizes(augmentedColorTheme, {
     disableAlign: true,
     factor: 2,
     // allows to also convert non-standard typography styles like "display" that we added

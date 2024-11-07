@@ -1,6 +1,6 @@
 import { Direction } from '@mui/material';
 
-import { UnionOfConst } from '@graasp/sdk';
+import { Context, UnionOfConst } from '@graasp/sdk';
 
 export enum Variant {
   TEXT = 'text',
@@ -44,6 +44,8 @@ export enum ActionButton {
 }
 
 export type ActionButtonVariant = ActionButton | `${ActionButton}`;
+
+export type AllowedContext = Exclude<Context, Context.Unknown>;
 
 export enum CCSharing {
   YES = 'yes',

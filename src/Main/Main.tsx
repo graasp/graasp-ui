@@ -15,7 +15,7 @@ import {
 
 import { ReactNode, useEffect } from 'react';
 
-import { Context } from '@graasp/sdk';
+import { AllowedContext } from '@/types.js';
 
 import {
   MainMenuOpenContextProvider,
@@ -73,7 +73,7 @@ type Props = {
   /**
    * Platform value which defines what color to use in the header.
    */
-  context?: `${Context}` | Context;
+  context?: `${AllowedContext}` | AllowedContext;
   /**
    * Content to display inside the drawer / sidebar
    */
