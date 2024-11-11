@@ -8,7 +8,6 @@ import {
 import { Context } from '@graasp/sdk';
 
 export const PRIMARY_COLOR = '#5050d2';
-// export const SECONDARY_COLOR = '#CEE5FF';
 export const SECONDARY_COLOR = '#d4b8ff';
 
 /**
@@ -248,7 +247,7 @@ export const createGraaspTheme = ({
           baseTheme.palette.augmentColor({
             color: {
               main: color,
-              contrastText: 'white',
+              contrastText: '#fff',
             },
             name: platform,
           }),
