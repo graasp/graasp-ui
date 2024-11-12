@@ -7,6 +7,8 @@ import {
 
 import { Context } from '@graasp/sdk';
 
+import { AllowedContext } from './types.js';
+
 export const PRIMARY_COLOR = '#5050d2';
 export const SECONDARY_COLOR = '#d4b8ff';
 
@@ -36,7 +38,7 @@ export const DEFAULT_LIGHT_PRIMARY_COLOR = {
 export const DEFAULT_BACKGROUND_COLOR = '#fafaff';
 
 export const AccentColors: {
-  [K in Exclude<Context, Context.Unknown>]: string;
+  [K in AllowedContext]: string;
 } = {
   [Context.Builder]: '#00C38B',
   [Context.Player]: '#56B0F8',
