@@ -1315,10 +1315,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@faker-js/faker@npm:9.0.3":
-  version: 9.0.3
-  resolution: "@faker-js/faker@npm:9.0.3"
-  checksum: 10/60ea71c31d6bd6317184736de17daee415e229cab5e10a4146a19622f3eb22f49f42345ff339dc9261f0214ca1f9b019c63fd9aac842a2d359f135102788ec90
+"@faker-js/faker@npm:9.2.0":
+  version: 9.2.0
+  resolution: "@faker-js/faker@npm:9.2.0"
+  checksum: 10/c233aaa41ebc4f4bed36c1304c399c424b9e5abca9cb8fe54ce73d4162ec7acd66f294b90c85ed7a5df774400e44f0a10364bdd41f49e72cb519a48b5948939f
   languageName: node
   linkType: hard
 
@@ -1360,18 +1360,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@graasp/sdk@npm:4.32.1":
-  version: 4.32.1
-  resolution: "@graasp/sdk@npm:4.32.1"
+"@graasp/sdk@npm:5.2.1":
+  version: 5.2.1
+  resolution: "@graasp/sdk@npm:5.2.1"
   dependencies:
-    "@faker-js/faker": "npm:9.0.3"
+    "@faker-js/faker": "npm:9.2.0"
     filesize: "npm:10.1.6"
     js-cookie: "npm:3.0.5"
-    validator: "npm:13.12.0"
   peerDependencies:
     date-fns: ^3 || ^4.0.0
-    uuid: ^9 || ^10
-  checksum: 10/74125fa4c2aed104142cccc77e8a8a90d2ae303dcaae83e40198f7d30d6615ad3136532789b0d1c2f7034847937f238c046b9aee5fcee5d319bbe7be8cb4f257
+    uuid: ^9 || ^10 || ^11.0.0
+  checksum: 10/e86562527b4eaef61d99145d4a358911fa37f663dac7989d5de89812d04c4b6a30d33a199c07f3aee746e8b77f29d9915f235d3b89fdbade77fb199c875bdd0a
   languageName: node
   linkType: hard
 
@@ -1398,7 +1397,7 @@ __metadata:
     "@eslint/compat": "npm:1.2.0"
     "@eslint/eslintrc": "npm:3.1.0"
     "@eslint/js": "npm:9.12.0"
-    "@graasp/sdk": "npm:4.32.1"
+    "@graasp/sdk": "npm:5.2.1"
     "@graasp/stylis-plugin-rtl": "npm:2.2.0"
     "@mui/icons-material": "npm:6.1.5"
     "@mui/lab": "npm:6.0.0-beta.13"
@@ -1480,7 +1479,7 @@ __metadata:
     "@emotion/cache": ~11.10.7 || ~11.11.0 || ~11.13.0
     "@emotion/react": ~11.10.6 || ~11.11.0 || ~11.13.0
     "@emotion/styled": ~11.10.6 || ~11.11.0 || ~11.13.0
-    "@graasp/sdk": ^4.29.0
+    "@graasp/sdk": ^4.29.0 || ^5.0.0
     "@graasp/stylis-plugin-rtl": ^2
     "@graasp/translations": ^1.23.0
     "@mui/icons-material": ^6
@@ -12915,13 +12914,6 @@ __metadata:
     "@types/istanbul-lib-coverage": "npm:^2.0.1"
     convert-source-map: "npm:^2.0.0"
   checksum: 10/fb1d70f1176cb9dc46cabbb3fd5c52c8f3e8738b61877b6e7266029aed0870b04140e3f9f4550ac32aebcfe1d0f38b0bac57e1e8fb97d68fec82f2b416148166
-  languageName: node
-  linkType: hard
-
-"validator@npm:13.12.0":
-  version: 13.12.0
-  resolution: "validator@npm:13.12.0"
-  checksum: 10/db6eb0725e2b67d60d30073ae8573982713b5903195d031dc3c7db7e82df8b74e8c13baef8e2106d146d979599fd61a06cde1fec5c148e4abd53d52817ff0fd9
   languageName: node
   linkType: hard
 
