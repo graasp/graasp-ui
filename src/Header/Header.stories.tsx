@@ -30,39 +30,39 @@ export default meta;
 
 type Story = StoryObj<typeof Header>;
 
-export const Example: Story = {
+export const Example = {
   args: {
     hasSidebar: true,
     leftContent: <Typography sx={{ ml: 2 }}>Header</Typography>,
     rightContent: <Avatar sx={{ mr: 2 }}>H</Avatar>,
     centerContent: <Typography sx={{ ml: 2 }}>Title</Typography>,
   },
-};
+} satisfies Story;
 
-export const Builder: Story = {
+export const Builder = {
   args: {
     ...Example.args,
     context: Context.Builder,
   },
-};
+} satisfies Story;
 
-export const Player: Story = {
+export const Player = {
   args: {
     ...Example.args,
     context: Context.Player,
   },
-};
+} satisfies Story;
 
-export const Library: Story = {
+export const Library = {
   args: {
     ...Example.args,
     context: Context.Library,
   },
-};
+} satisfies Story;
 
-export const Analytics: Story = {
+export const Analytics = {
   args: {
     ...Example.args,
     context: Context.Analytics,
   },
-};
+} satisfies Story;
