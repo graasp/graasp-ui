@@ -7,8 +7,10 @@ import {
 
 import { Context } from '@graasp/sdk';
 
+import { AllowedContext } from './types.js';
+
 export const PRIMARY_COLOR = '#5050d2';
-export const SECONDARY_COLOR = '#FFFFFF';
+export const SECONDARY_COLOR = '#d4b8ff';
 
 /**
  * Here we explicitly set primary and secondary text colors.
@@ -35,14 +37,15 @@ export const DEFAULT_LIGHT_PRIMARY_COLOR = {
  */
 export const DEFAULT_BACKGROUND_COLOR = '#fafaff';
 
-export const AccentColors: { [K in Context]: string } = {
+export const AccentColors: {
+  [K in AllowedContext]: string;
+} = {
   [Context.Builder]: '#00C38B',
   [Context.Player]: '#56B0F8',
   [Context.Library]: '#C658D0',
   [Context.Analytics]: '#FA5B7D',
   [Context.Account]: '#F2C955',
   [Context.Auth]: PRIMARY_COLOR,
-  [Context.Unknown]: PRIMARY_COLOR,
 } as const;
 
 // add custom typography variants, based on the design guideline
@@ -67,6 +70,58 @@ declare module '@mui/material/Typography' {
     display: true;
     label: true;
     note: true;
+  }
+}
+
+// Update Typescript color palette types
+declare module '@mui/material/styles' {
+  interface Palette {
+    builder: Palette['primary'];
+    player: Palette['primary'];
+    analytics: Palette['primary'];
+    library: Palette['primary'];
+    account: Palette['primary'];
+    auth: Palette['primary'];
+  }
+
+  interface PaletteOptions {
+    builder?: PaletteOptions['primary'];
+    player?: PaletteOptions['primary'];
+    analytics?: PaletteOptions['primary'];
+    library?: PaletteOptions['primary'];
+    account?: PaletteOptions['primary'];
+    auth?: PaletteOptions['primary'];
+  }
+}
+
+declare module '@mui/material/Button' {
+  interface ButtonPropsColorOverrides {
+    builder: true;
+    player: true;
+    analytics: true;
+    library: true;
+    account: true;
+    auth: true;
+  }
+}
+declare module '@mui/material/IconButton' {
+  interface IconButtonPropsColorOverrides {
+    builder: true;
+    player: true;
+    analytics: true;
+    library: true;
+    account: true;
+    auth: true;
+  }
+}
+declare module '@mui/material/CircularProgress' {
+  interface CircularProgressPropsColorOverrides {
+    builder: true;
+    player: true;
+    analytics: true;
+    library: true;
+    account: true;
+    auth: true;
   }
 }
 
@@ -208,7 +263,25 @@ export const createGraaspTheme = ({
       },
     },
   });
-  return responsiveFontSizes(baseTheme, {
+
+  const augmentedColorTheme = createTheme(baseTheme, {
+    palette: Object.fromEntries(
+      Object.entries(AccentColors).map(([platform, color]) => {
+        return [
+          platform,
+          baseTheme.palette.augmentColor({
+            color: {
+              main: color,
+              contrastText: '#fff',
+            },
+            name: platform,
+          }),
+        ];
+      }),
+    ),
+  });
+
+  return responsiveFontSizes(augmentedColorTheme, {
     disableAlign: true,
     factor: 2,
     // allows to also convert non-standard typography styles like "display" that we added

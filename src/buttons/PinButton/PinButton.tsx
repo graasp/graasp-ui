@@ -5,7 +5,6 @@ import { IconButton, Tooltip } from '@mui/material';
 import {
   ActionButton,
   ActionButtonVariant,
-  ColorVariants,
   ColorVariantsType,
   IconSizeVariant,
 } from '@/types.js';
@@ -35,7 +34,7 @@ const PinButton = ({
   pinText = 'Pin',
   unPinText = 'Unpin',
   size,
-  color = ColorVariants.Default,
+  color,
 }: PinButtonProps): JSX.Element => {
   const { color: buttonColor } = useButtonColor(color);
   const icon = isPinned ? (

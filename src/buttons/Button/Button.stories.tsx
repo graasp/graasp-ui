@@ -11,10 +11,9 @@ const meta: Meta<typeof Button> = {
 
   argTypes: {
     color: {
-      options: Object.keys(ColorVariants).map((x) => x.toLowerCase()),
+      options: Object.values(ColorVariants),
       control: {
         type: 'radio',
-        labels: Object.keys(ColorVariants).map((x) => x.toLowerCase()),
       },
     },
     size: {
@@ -70,37 +69,44 @@ export default meta;
 
 type Story = StoryObj<typeof Button>;
 
-export const Primary: Story = {
+export const Primary = {
   args: {
     color: 'primary',
     children: 'Button',
   },
-};
+} satisfies Story;
 
-export const Secondary: Story = {
+export const Builder = {
+  args: {
+    color: 'builder',
+    children: 'Button',
+  },
+} satisfies Story;
+
+export const Secondary = {
   args: {
     color: 'secondary',
     children: 'Button',
   },
-};
+} satisfies Story;
 
-export const Large: Story = {
+export const Large = {
   args: {
     size: 'large',
     children: 'Button',
   },
-};
+} satisfies Story;
 
-export const Small: Story = {
+export const Small = {
   args: {
     size: 'small',
     children: 'Button',
   },
-};
+} satisfies Story;
 
-export const Submit: Story = {
+export const Submit = {
   args: {
     type: 'submit',
     children: 'Submit',
   },
-};
+} satisfies Story;

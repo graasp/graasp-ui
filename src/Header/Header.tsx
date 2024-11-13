@@ -11,7 +11,7 @@ import {
   styled,
 } from '@mui/material';
 
-import { Context } from '@graasp/sdk';
+import { AllowedContext } from '@/types.js';
 
 import { AccentColors, PRIMARY_COLOR } from '../theme.js';
 
@@ -75,7 +75,7 @@ const HeaderMenuIcon = ({
 };
 
 type Props = {
-  context?: `${Context}` | Context;
+  context?: `${AllowedContext}` | AllowedContext;
   centerContent?: JSX.Element;
   handleDrawerOpen?: () => void;
   handleDrawerClose?: () => void;

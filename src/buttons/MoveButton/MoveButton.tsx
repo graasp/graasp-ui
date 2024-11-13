@@ -1,13 +1,22 @@
 import { Move } from 'lucide-react';
 
-import { IconButton, ListItemIcon, MenuItem, Tooltip } from '@mui/material';
+import {
+  IconButton,
+  ListItemIcon,
+  MenuItem,
+  Tooltip,
+  Typography,
+} from '@mui/material';
 
 import {
   ActionButton,
   ActionButtonVariant,
+  ColorVariants,
   ColorVariantsType,
   IconSizeVariant,
 } from '@/types.js';
+
+import { useButtonColor } from '../hooks.js';
 
 type MoveButtonProps = {
   color?: ColorVariantsType;
@@ -21,7 +30,7 @@ type MoveButtonProps = {
 };
 
 const MoveButton = ({
-  color = 'primary',
+  color = ColorVariants.Primary,
   iconClassName,
   id,
   menuItemClassName,
@@ -30,7 +39,8 @@ const MoveButton = ({
   text = 'Move',
   type = ActionButton.ICON_BUTTON,
 }: MoveButtonProps): JSX.Element => {
-  const icon = <Move />;
+  const { color: iconColor } = useButtonColor(color);
+  const icon = <Move color={iconColor} />;
   switch (type) {
     case ActionButton.ICON:
       return icon;
@@ -38,7 +48,9 @@ const MoveButton = ({
       return (
         <MenuItem key={text} onClick={onClick} className={menuItemClassName}>
           <ListItemIcon>{icon}</ListItemIcon>
-          {text}
+          <Typography component='span' color={color}>
+            {text}
+          </Typography>
         </MenuItem>
       );
     case ActionButton.ICON_BUTTON:
