@@ -2,11 +2,11 @@ import { DownloadIcon } from 'lucide-react';
 
 import {
   CircularProgress,
-  CircularProgressProps,
   IconButton,
   ListItemIcon,
   MenuItem,
   Tooltip,
+  Typography,
 } from '@mui/material';
 
 import { MouseEventHandler } from 'react';
@@ -15,8 +15,12 @@ import { DEFAULT_LOADER_SIZE } from '@/constants.js';
 import {
   ActionButton,
   ActionButtonVariant,
+  ColorVariants,
+  ColorVariantsType,
   TooltipPlacement,
 } from '@/types.js';
+
+import { useButtonColor } from '../hooks.js';
 
 export type DownloadButtonProps = {
   ariaLabel: string;
@@ -28,7 +32,7 @@ export type DownloadButtonProps = {
   /**
    * CircularProgress's color
    */
-  loaderColor: CircularProgressProps['color'];
+  color: ColorVariantsType;
   /**
    * CircularProgress's size
    */
@@ -48,13 +52,14 @@ const DownloadButton = ({
   ariaLabel = 'download',
   handleDownload,
   isLoading = false,
-  loaderColor = 'primary',
+  color = ColorVariants.Primary,
   loaderSize = DEFAULT_LOADER_SIZE,
   title = 'Download',
   placement = 'bottom',
   type = ActionButton.ICON_BUTTON,
 }: DownloadButtonProps): JSX.Element => {
-  const icon = <DownloadIcon />;
+  const { color: iconColor } = useButtonColor(color);
+  const icon = <DownloadIcon color={iconColor} />;
   switch (type) {
     case ActionButton.ICON:
       return icon;
@@ -62,18 +67,24 @@ const DownloadButton = ({
       return (
         <MenuItem key={title} onClick={handleDownload}>
           <ListItemIcon>{icon}</ListItemIcon>
-          {title}
+          <Typography component='span' color={color}>
+            {title}
+          </Typography>
         </MenuItem>
       );
     case ActionButton.ICON_BUTTON:
     default:
       if (isLoading) {
-        return <CircularProgress color={loaderColor} size={loaderSize} />;
+        return <CircularProgress color={color} size={loaderSize} />;
       }
       return (
         <Tooltip title={title} placement={placement}>
           <span>
-            <IconButton onClick={handleDownload} aria-label={ariaLabel}>
+            <IconButton
+              color={color}
+              onClick={handleDownload}
+              aria-label={ariaLabel}
+            >
               {icon}
             </IconButton>
           </span>

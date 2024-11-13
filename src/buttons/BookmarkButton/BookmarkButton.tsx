@@ -38,7 +38,7 @@ export type BookmarkButtonProps = {
 const BookmarkButton = ({
   ariaLabel = 'favorite',
   className,
-  color = 'default',
+  color,
   handleBookmark,
   handleUnbookmark,
   isFavorite = false,

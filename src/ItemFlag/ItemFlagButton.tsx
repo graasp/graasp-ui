@@ -2,7 +2,7 @@ import { FlagIcon } from 'lucide-react';
 
 import { IconButton, Tooltip } from '@mui/material';
 
-import { ColorVariantsType, IconSizeVariant } from '../types.js';
+import { ColorVariants, ColorVariantsType, IconSizeVariant } from '../types.js';
 
 export interface ItemFlagButtonProps {
   buttonColor?: ColorVariantsType;
@@ -12,7 +12,7 @@ export interface ItemFlagButtonProps {
 }
 
 export const ItemFlagButton = ({
-  buttonColor = 'error',
+  buttonColor = ColorVariants.Error,
   iconSize = 'large',
   setOpen,
   tooltip = 'Report',

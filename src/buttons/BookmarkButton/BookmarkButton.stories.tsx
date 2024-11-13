@@ -22,10 +22,9 @@ const meta = {
       },
     },
     color: {
-      options: Object.keys(ColorVariants).map((x) => x.toLowerCase()),
+      options: Object.values(ColorVariants),
       control: {
         type: 'radio',
-        labels: Object.keys(ColorVariants).map((x) => x.toLowerCase()),
       },
     },
     handleBookmark: {

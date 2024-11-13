@@ -81,6 +81,7 @@ declare module '@mui/material/styles' {
     analytics: Palette['primary'];
     library: Palette['primary'];
     account: Palette['primary'];
+    auth: Palette['primary'];
   }
 
   interface PaletteOptions {
@@ -89,6 +90,7 @@ declare module '@mui/material/styles' {
     analytics?: PaletteOptions['primary'];
     library?: PaletteOptions['primary'];
     account?: PaletteOptions['primary'];
+    auth?: PaletteOptions['primary'];
   }
 }
 
@@ -99,6 +101,27 @@ declare module '@mui/material/Button' {
     analytics: true;
     library: true;
     account: true;
+    auth: true;
+  }
+}
+declare module '@mui/material/IconButton' {
+  interface IconButtonPropsColorOverrides {
+    builder: true;
+    player: true;
+    analytics: true;
+    library: true;
+    account: true;
+    auth: true;
+  }
+}
+declare module '@mui/material/CircularProgress' {
+  interface CircularProgressPropsColorOverrides {
+    builder: true;
+    player: true;
+    analytics: true;
+    library: true;
+    account: true;
+    auth: true;
   }
 }
 

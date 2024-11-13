@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { expect, fn } from '@storybook/test';
 import { userEvent, within } from '@storybook/testing-library';
 
-import { ActionButton } from '@/types.js';
+import { ActionButton, ColorVariants } from '@/types.js';
 import { TABLE_CATEGORIES } from '@/utils/storybook.js';
 
 import PinButton from './PinButton.js';
@@ -15,6 +15,12 @@ const meta = {
     onClick: fn(),
   },
   argTypes: {
+    color: {
+      options: Object.values(ColorVariants),
+      control: {
+        type: 'radio',
+      },
+    },
     onClick: {
       action: 'pin',
       table: {

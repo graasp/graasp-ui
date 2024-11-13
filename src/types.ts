@@ -24,13 +24,17 @@ export type TooltipPlacement =
 
 export const ColorVariants = {
   Inherit: 'inherit',
-  Default: 'default',
   Primary: 'primary',
   Secondary: 'secondary',
   Error: 'error',
   Info: 'info',
   Success: 'success',
   Warning: 'warning',
+  Builder: 'builder',
+  Player: 'player',
+  Library: 'library',
+  Analytics: 'analytics',
+  Auth: 'auth',
 } as const;
 
 export type ColorVariantsType = UnionOfConst<typeof ColorVariants>;

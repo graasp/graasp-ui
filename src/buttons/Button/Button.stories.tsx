@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { Platform } from '@/PlatformSwitch/hooks.js';
 import { ColorVariants } from '@/types.js';
 
 import { TABLE_CATEGORIES } from '../../utils/storybook.js';
@@ -12,7 +11,7 @@ const meta: Meta<typeof Button> = {
 
   argTypes: {
     color: {
-      options: [...Object.values(ColorVariants), ...Object.values(Platform)],
+      options: Object.values(ColorVariants),
       control: {
         type: 'radio',
       },

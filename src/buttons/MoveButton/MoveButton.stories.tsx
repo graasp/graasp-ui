@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react';
 
-import { ActionButton } from '@/types.js';
+import { ActionButton, ColorVariants } from '@/types.js';
 import { TABLE_CATEGORIES } from '@/utils/storybook.js';
 
 import MoveButton from './MoveButton.js';
@@ -11,8 +11,9 @@ const meta: Meta<typeof MoveButton> = {
 
   argTypes: {
     color: {
-      table: {
-        category: TABLE_CATEGORIES.MUI,
+      options: Object.values(ColorVariants),
+      control: {
+        type: 'radio',
       },
     },
     onClick: {

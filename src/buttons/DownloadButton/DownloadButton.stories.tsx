@@ -2,7 +2,7 @@ import type { StoryObj } from '@storybook/react';
 import { expect, fn } from '@storybook/test';
 import { userEvent, within } from '@storybook/testing-library';
 
-import { ActionButton } from '../../types.js';
+import { ActionButton, ColorVariants } from '../../types.js';
 import { TABLE_CATEGORIES } from '../../utils/storybook.js';
 import DownloadButton from './DownloadButton.js';
 
@@ -14,10 +14,9 @@ export default {
     handleDownload: fn(),
   },
   argTypes: {
-    loaderColor: {
-      table: {
-        category: TABLE_CATEGORIES.MUI,
-      },
+    color: {
+      options: Object.values(ColorVariants),
+      control: { type: 'radio' },
     },
     loaderSize: {
       table: {
