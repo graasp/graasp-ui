@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.4.1](https://github.com/graasp/graasp-ui/compare/v5.4.0...v5.4.1) (2024-11-14)
+
+
+### Bug Fixes
+
+* add secondary color to the theme ([#1102](https://github.com/graasp/graasp-ui/issues/1102)) ([b685ce8](https://github.com/graasp/graasp-ui/commit/b685ce88e59b007ea2c44d9c2e5c2f1f90edcabc))
+* **deps:** update dependency uuid to v11 ([#1099](https://github.com/graasp/graasp-ui/issues/1099)) ([e78f965](https://github.com/graasp/graasp-ui/commit/e78f96521abb3cc58f9de7b1aeb005e074610ae5))
+* remove interaction addon ([db531cb](https://github.com/graasp/graasp-ui/commit/db531cb9344be842d2dc7d000837231a98fd598a))
+
 ## [5.4.0](https://github.com/graasp/graasp-ui/compare/v5.3.1...v5.4.0) (2024-10-24)
 
 
