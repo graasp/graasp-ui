@@ -1420,7 +1420,6 @@ __metadata:
     "@storybook/addon-coverage": "npm:1.0.4"
     "@storybook/addon-docs": "npm:8.4.3"
     "@storybook/addon-essentials": "npm:8.4.3"
-    "@storybook/addon-interactions": "npm:8.4.3"
     "@storybook/addon-links": "npm:8.4.3"
     "@storybook/experimental-addon-test": "npm:^8.3.5"
     "@storybook/react": "npm:8.4.3"
@@ -2894,21 +2893,6 @@ __metadata:
   peerDependencies:
     storybook: ^8.4.3
   checksum: 10/fbb741f6d23874c706a56edaa23ba2876419bced0530b0a8d524ce263ffa5eb450f2e8e511123192c0eb9c4db0626988749f87107e9e93065825eefea3928346
-  languageName: node
-  linkType: hard
-
-"@storybook/addon-interactions@npm:8.4.3":
-  version: 8.4.3
-  resolution: "@storybook/addon-interactions@npm:8.4.3"
-  dependencies:
-    "@storybook/global": "npm:^5.0.0"
-    "@storybook/instrumenter": "npm:8.4.3"
-    "@storybook/test": "npm:8.4.3"
-    polished: "npm:^4.2.2"
-    ts-dedent: "npm:^2.2.0"
-  peerDependencies:
-    storybook: ^8.4.3
-  checksum: 10/c30d4f4149d5088c8764c3c95eedd7c6ef88d21ed4145882155dd7c921b713be354d17953e09bbcd5093f10b62fe6da53e1f02ecaf3e7d5c63e96b90465c662d
   languageName: node
   linkType: hard
 

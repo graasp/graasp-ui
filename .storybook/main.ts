@@ -5,12 +5,10 @@ const config: StorybookConfig = {
   addons: [
     '@storybook/addon-links',
     '@storybook/addon-essentials',
-    '@storybook/addon-interactions',
     '@storybook/addon-docs',
-    //👈 The a11y addon goes here
     '@storybook/addon-a11y',
     '@storybook/addon-coverage',
-    '@storybook/experimental-addon-test'
+    '@storybook/experimental-addon-test',
   ],
   framework: {
     name: '@storybook/react-vite',
