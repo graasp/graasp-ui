@@ -1373,9 +1373,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@graasp/sdk@github:graasp/graasp-sdk#remove-displayName":
-  version: 5.2.1
-  resolution: "@graasp/sdk@https://github.com/graasp/graasp-sdk.git#commit=e6fd144ce8a25ce197f072eca9ff46d4990a02f0"
+"@graasp/sdk@npm:5.3.1":
+  version: 5.3.1
+  resolution: "@graasp/sdk@npm:5.3.1"
   dependencies:
     "@faker-js/faker": "npm:9.2.0"
     filesize: "npm:10.1.6"
@@ -1383,7 +1383,7 @@ __metadata:
   peerDependencies:
     date-fns: ^3 || ^4.0.0
     uuid: ^9 || ^10 || ^11.0.0
-  checksum: 10/495bee7e7bf816e531841aba0f3b1bf7ee6ee8690ea851334d04245e4bb547014430b57b5867d45bff7beb19560f481f3896b084ce4662030b89199073a4cfc7
+  checksum: 10/9c414a3763c049e0360d78ce2c9f584621fdd829826e08c1c6416cdc02e1bbeefc7e55fedba6a09a86f5515a13c726d7c1b8558842e137fe04abc4ca8f172564
   languageName: node
   linkType: hard
 
@@ -1410,7 +1410,7 @@ __metadata:
     "@eslint/compat": "npm:1.2.2"
     "@eslint/eslintrc": "npm:3.1.0"
     "@eslint/js": "npm:9.14.0"
-    "@graasp/sdk": "github:graasp/graasp-sdk#remove-displayName"
+    "@graasp/sdk": "npm:5.3.1"
     "@graasp/stylis-plugin-rtl": "npm:2.2.0"
     "@mui/icons-material": "npm:6.1.7"
     "@mui/lab": "npm:6.0.0-beta.15"
