@@ -1,6 +1,6 @@
 import Collapse from './Collapse.js';
 
-const withCollapse = <T extends { name: string; displayName?: string }>({
+const withCollapse = <T extends { name: string }>({
   item,
   onCollapse,
 }: {
@@ -9,7 +9,7 @@ const withCollapse = <T extends { name: string; displayName?: string }>({
 }) => {
   return (component: JSX.Element): JSX.Element => {
     return (
-      <Collapse title={item.displayName ?? item.name} onCollapse={onCollapse}>
+      <Collapse title={item.name} onCollapse={onCollapse}>
         {component}
       </Collapse>
     );
