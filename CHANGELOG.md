@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.4.2](https://github.com/graasp/graasp-ui/compare/v5.4.1...v5.4.2) (2024-11-21)
+
+
+### Bug Fixes
+
+* remove displayName ([#1115](https://github.com/graasp/graasp-ui/issues/1115)) ([9e76de9](https://github.com/graasp/graasp-ui/commit/9e76de96fd9ccdad4c521fc234ba81e58dd41cca))
+
 ## [5.4.1](https://github.com/graasp/graasp-ui/compare/v5.4.0...v5.4.1) (2024-11-14)
 
 
