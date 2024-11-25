@@ -9,8 +9,6 @@ import {
   useTheme,
 } from '@mui/material';
 
-import { Link } from 'react-router-dom';
-
 import { ItemType } from '@graasp/sdk';
 
 import CardThumbnail from './components/CardThumbnail.js';
@@ -50,12 +48,7 @@ const FancyLink = ({
       }}
       data-testid={FANCY_LINK_CARD_TEST_ID}
     >
-      <CardActionArea
-        component={Link}
-        to={url}
-        sx={{ height: '100%' }}
-        onClick={onClick}
-      >
+      <CardActionArea href={url} sx={{ height: '100%' }} onClick={onClick}>
         <Stack direction='row' alignItems='center' height='100%' minWidth={0}>
           <CardThumbnail
             thumbnail={thumbnail}
