@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { expect, fn } from '@storybook/test';
-import { screen, userEvent, within } from '@storybook/testing-library';
+import { expect, fn, screen, userEvent, within } from '@storybook/test';
 
 import { FlagType } from '@graasp/sdk';
 

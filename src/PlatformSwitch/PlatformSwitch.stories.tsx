@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { expect } from '@storybook/test';
-import { userEvent, within } from '@storybook/testing-library';
+import { expect, userEvent, within } from '@storybook/test';
 import type { BoundFunctions } from '@testing-library/dom';
 import { queries } from '@testing-library/dom';
 import { Snowflake } from 'lucide-react';
