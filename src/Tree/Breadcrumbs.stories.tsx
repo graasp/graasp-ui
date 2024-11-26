@@ -1,6 +1,5 @@
 import { Meta, type StoryObj } from '@storybook/react';
-import { expect, fn } from '@storybook/test';
-import { userEvent, within } from '@storybook/testing-library';
+import { expect, fn, userEvent, within } from '@storybook/test';
 import { Home } from 'lucide-react';
 
 import { TABLE_CATEGORIES } from '@/utils/storybook.js';

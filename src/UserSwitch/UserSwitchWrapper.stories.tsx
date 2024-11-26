@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { expect } from '@storybook/test';
-import { screen, userEvent, within } from '@storybook/testing-library';
+import { expect, screen, userEvent, within } from '@storybook/test';
 
 import {
   GuestFactory,

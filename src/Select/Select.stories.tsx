@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { expect } from '@storybook/test';
-import { within } from '@storybook/testing-library';
+import { expect, within } from '@storybook/test';
 
 import { TABLE_CATEGORIES } from '../utils/storybook.js';
 import Select from './Select.js';

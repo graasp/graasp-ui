@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { expect, fn } from '@storybook/test';
-import { within } from '@storybook/testing-library';
+import { expect, fn, within } from '@storybook/test';
 import { StatusCodes } from 'http-status-codes';
 import { v4 } from 'uuid';
 
