@@ -17,10 +17,6 @@ type AvatarProps = {
   isLoading?: boolean;
   maxHeight?: string | number;
   maxWidth?: string | number;
-  /**
-   * thumbnail size to fetch
-   */
-  size?: string;
   sx?: SxProps;
   url?: string;
   /**
