@@ -12,33 +12,44 @@ const BUTTON_CONTAINER_CLASS_NAME = 'cookie-button-container';
 const CONTENT_CLASS_NAME = 'cookie-content';
 
 const StyledCookieConsent = styled(Box)(({ theme }) => ({
-  [`& .${CONTAINER_CLASS_NAME}`]: {
-    padding: theme.spacing(2),
-    display: 'flex',
-    gap: theme.spacing(2),
-
-    zIndex: `${(theme?.zIndex?.drawer ?? 0) + 1} !important`,
-    backgroundColor: 'rgb(255,255,255,35%) !important',
-    backdropFilter: 'blur(5px) saturate(30%) contrast(40%)',
-    color: `${theme.palette.text.primary} !important`,
+  position: 'absolute',
+  bottom: '0px',
+  left: '0px',
+  right: '0px',
+  [theme.breakpoints.up('sm')]: {
+    bottom: '10px',
+    right: '10px',
+    left: 'unset',
+    maxWidth: '500px',
+    borderRadius: theme.spacing(2),
+    overflow: 'hidden',
+    outline: '1px solid #f2f2f2',
+    boxShadow: theme.shadows[6],
+    [`& .${BUTTON_CONTAINER_CLASS_NAME}`]: {
+      width: '100%',
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+    },
   },
 
   [`& .${BUTTON_CONTAINER_CLASS_NAME}`]: {
     display: 'flex',
-    alignSelf: 'center',
-    color: 'red',
+    width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     gap: theme.spacing(1),
-    flexDirection: 'column',
-    [theme.breakpoints.down('sm')]: {
-      flexGrow: 1,
-    },
-    [theme.breakpoints.up('md')]: {
-      flexDirection: 'row',
-    },
   },
 
-  [`& .${CONTENT_CLASS_NAME}`]: {
-    margin: 'unset !important',
+  [`& .${CONTAINER_CLASS_NAME}`]: {
+    padding: theme.spacing(2),
+    display: 'flex',
+    flexDirection: 'column',
+    gap: theme.spacing(2),
+
+    zIndex: `${(theme?.zIndex?.drawer ?? 0) + 1}`,
+    backgroundColor: 'rgb(224,235,255,70%)',
+    backdropFilter: 'blur(15px) saturate(30%) ',
+    color: `${theme.palette.text.primary}`,
   },
 }));
 
@@ -88,7 +99,7 @@ const CookiesBanner = ({
       enableDeclineButton
       containerClasses={CONTAINER_CLASS_NAME}
       declineButtonId={DECLINE_BUTTON_ID}
-      // disableStyles
+      disableStyles
       disableButtonStyles
       contentClasses={CONTENT_CLASS_NAME}
       buttonClasses={BUTTON_CLASS_NAME}
