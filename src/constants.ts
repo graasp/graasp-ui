@@ -6,7 +6,6 @@ export const DRAWER_HEADER_HEIGHT = 55;
 
 export const DEFAULT_THUMBNAIL_SIZE = ThumbnailSize.Small;
 export const DEFAULT_LINK_SHOW_BUTTON = true;
-export const DEFAULT_LOADER_SIZE = 20;
 
 export const UNEXPECTED_ERROR_MESSAGE = 'An unexpected error occurred';
 export const SMALL_AVATAR_SIZE = 40;

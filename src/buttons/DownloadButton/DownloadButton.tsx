@@ -11,16 +11,16 @@ import {
 
 import { MouseEventHandler } from 'react';
 
-import { DEFAULT_LOADER_SIZE } from '@/constants.js';
 import {
   ActionButton,
   ActionButtonVariant,
-  ColorVariants,
   ColorVariantsType,
   TooltipPlacement,
 } from '@/types.js';
 
 import { useButtonColor } from '../hooks.js';
+
+export const DEFAULT_LOADER_SIZE = 24;
 
 export type DownloadButtonProps = {
   ariaLabel: string;
@@ -36,7 +36,7 @@ export type DownloadButtonProps = {
   /**
    * CircularProgress's size
    */
-  loaderSize: number;
+  loaderSize?: number;
   /**
    * Tooltip's title
    */
@@ -52,7 +52,7 @@ const DownloadButton = ({
   ariaLabel = 'download',
   handleDownload,
   isLoading = false,
-  color = ColorVariants.Primary,
+  color,
   loaderSize = DEFAULT_LOADER_SIZE,
   title = 'Download',
   placement = 'bottom',
@@ -74,18 +74,20 @@ const DownloadButton = ({
       );
     case ActionButton.ICON_BUTTON:
     default:
-      if (isLoading) {
-        return <CircularProgress color={color} size={loaderSize} />;
-      }
       return (
         <Tooltip title={title} placement={placement}>
           <span>
             <IconButton
+              disabled={isLoading}
               color={color}
               onClick={handleDownload}
               aria-label={ariaLabel}
             >
-              {icon}
+              {isLoading ? (
+                <CircularProgress color={color} size={loaderSize} />
+              ) : (
+                icon
+              )}
             </IconButton>
           </span>
         </Tooltip>
