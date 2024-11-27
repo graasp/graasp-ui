@@ -13,7 +13,8 @@ const BUTTON_CONTAINER_CLASS_NAME = 'cookie-button-container';
 const StyledCookieConsent = styled(Box)(({ theme }) => ({
   [`& .${CONTAINER_CLASS_NAME}`]: {
     zIndex: `${(theme?.zIndex?.drawer ?? 0) + 1} !important`,
-    backgroundColor: 'rgb(53,53,53,15%) !important',
+    backgroundColor: 'rgb(255,255,255,35%) !important',
+    backdropFilter: 'blur(5px) saturate(30%) contrast(40%)',
     color: `${theme.palette.text.primary} !important`,
   },
 
