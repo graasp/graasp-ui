@@ -9,9 +9,14 @@ const DECLINE_BUTTON_ID = 'decline-button-id';
 const CONTAINER_CLASS_NAME = 'cookie-container';
 const BUTTON_CLASS_NAME = 'cookie-button';
 const BUTTON_CONTAINER_CLASS_NAME = 'cookie-button-container';
+const CONTENT_CLASS_NAME = 'cookie-content';
 
 const StyledCookieConsent = styled(Box)(({ theme }) => ({
   [`& .${CONTAINER_CLASS_NAME}`]: {
+    padding: theme.spacing(2),
+    display: 'flex',
+    gap: theme.spacing(2),
+
     zIndex: `${(theme?.zIndex?.drawer ?? 0) + 1} !important`,
     backgroundColor: 'rgb(255,255,255,35%) !important',
     backdropFilter: 'blur(5px) saturate(30%) contrast(40%)',
@@ -23,7 +28,17 @@ const StyledCookieConsent = styled(Box)(({ theme }) => ({
     alignSelf: 'center',
     color: 'red',
     gap: theme.spacing(1),
-    paddingInlineEnd: theme.spacing(2),
+    flexDirection: 'column',
+    [theme.breakpoints.down('sm')]: {
+      flexGrow: 1,
+    },
+    [theme.breakpoints.up('md')]: {
+      flexDirection: 'row',
+    },
+  },
+
+  [`& .${CONTENT_CLASS_NAME}`]: {
+    margin: 'unset !important',
   },
 }));
 
@@ -38,6 +53,8 @@ const CookieButton = (props: CookieButtonProps): JSX.Element => {
   return (
     <Button
       {...props}
+      fullWidth
+      sx={{ minWidth: 'max-content' }}
       color={isDeclinedButton ? undefined : 'primary'}
       variant={isDeclinedButton ? 'outlined' : 'contained'}
     />
@@ -73,6 +90,7 @@ const CookiesBanner = ({
       declineButtonId={DECLINE_BUTTON_ID}
       // disableStyles
       disableButtonStyles
+      contentClasses={CONTENT_CLASS_NAME}
       buttonClasses={BUTTON_CLASS_NAME}
       buttonWrapperClasses={BUTTON_CONTAINER_CLASS_NAME}
       extraCookieOptions={{ domain }}
