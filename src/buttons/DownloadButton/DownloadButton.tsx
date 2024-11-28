@@ -32,7 +32,7 @@ export type DownloadButtonProps = {
   /**
    * CircularProgress's color
    */
-  color: ColorVariantsType;
+  color?: ColorVariantsType;
   /**
    * CircularProgress's size
    */
