@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.4.3](https://github.com/graasp/graasp-ui/compare/v5.4.2...v5.4.3) (2024-11-28)
+
+
+### Bug Fixes
+
+* cookie buttons ([#1125](https://github.com/graasp/graasp-ui/issues/1125)) ([67185b0](https://github.com/graasp/graasp-ui/commit/67185b0eeee3d33d40e14e43ad938a16bce2483d))
+* remove testing library addon and use unified testing package for storybook ([#1121](https://github.com/graasp/graasp-ui/issues/1121)) ([ee588d1](https://github.com/graasp/graasp-ui/commit/ee588d17d03be99ce5c00045176576267fc45592))
+* update downlaod button color ([#1126](https://github.com/graasp/graasp-ui/issues/1126)) ([31dfb78](https://github.com/graasp/graasp-ui/commit/31dfb78a1fdd0f94e54717e1c99a637b7529be8a))
+
 ## [5.4.2](https://github.com/graasp/graasp-ui/compare/v5.4.1...v5.4.2) (2024-11-21)
 
 
