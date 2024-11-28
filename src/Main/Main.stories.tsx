@@ -7,6 +7,7 @@ import { ReactNode } from 'react';
 
 import { Context } from '@graasp/sdk';
 
+import CookiesBanner from '@/CookiesBanner/CookiesBanner.js';
 import MainMenu from '@/MainMenu/MainMenu.js';
 import MenuItem from '@/MainMenu/MenuItem/MenuItem.js';
 
@@ -122,8 +123,14 @@ export const WithFooter = {
     headerRightContent: <Avatar>H</Avatar>,
     open: false,
     footerContent: (
-      <Box p={2} bgcolor='red' boxShadow='0px -2px 4px -1px rgba(0,0,0,0.2)'>
+      <Box
+        p={2}
+        bgcolor='gray'
+        height='150px'
+        boxShadow='0px -2px 4px -1px rgba(0,0,0,0.2)'
+      >
         Footer
+        <CookiesBanner cookieName='toto' />
       </Box>
     ),
   },
