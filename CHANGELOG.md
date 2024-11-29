@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.4.4](https://github.com/graasp/graasp-ui/compare/v5.4.3...v5.4.4) (2024-11-28)
+
+
+### Bug Fixes
+
+* make downloadbutton color optional ([#1129](https://github.com/graasp/graasp-ui/issues/1129)) ([8bbcd41](https://github.com/graasp/graasp-ui/commit/8bbcd41b99b360cce752ed7e95f7c98453d1dbee))
+
 ## [5.4.3](https://github.com/graasp/graasp-ui/compare/v5.4.2...v5.4.3) (2024-11-28)
 
 
