@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.4.5](https://github.com/graasp/graasp-ui/compare/v5.4.4...v5.4.5) (2024-12-09)
+
+
+### Bug Fixes
+
+* add try catch on new URL that might fail ([#1135](https://github.com/graasp/graasp-ui/issues/1135)) ([fe5ac27](https://github.com/graasp/graasp-ui/commit/fe5ac2719a4b2128318e33187c2e657b2360de25))
+
 ## [5.4.4](https://github.com/graasp/graasp-ui/compare/v5.4.3...v5.4.4) (2024-11-28)
 
 
