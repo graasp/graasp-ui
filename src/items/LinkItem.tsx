@@ -23,6 +23,14 @@ const StyledIFrame = styled('iframe')<{
   height: !isResizable ? height : '100%',
 }));
 
+function isURLExternal(url: string): boolean {
+  try {
+    return new URL(url).origin !== window.location.origin;
+  } catch {
+    return false;
+  }
+}
+
 type LinkItemProps = {
   /**
    * Id of the component used for testing
@@ -173,7 +181,7 @@ const LinkItem = ({
       return <Alert severity='error'>{errorMessage}</Alert>;
     }
 
-    const isExternal = new URL(url).origin !== window.location.origin;
+    const isExternal = isURLExternal(url);
     const linkCard = (
       <LinkCard
         id={id}
