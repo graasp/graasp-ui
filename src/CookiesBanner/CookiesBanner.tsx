@@ -12,10 +12,12 @@ const BUTTON_CONTAINER_CLASS_NAME = 'cookie-button-container';
 const CONTENT_CLASS_NAME = 'cookie-content';
 
 const StyledCookieConsent = styled(Box)(({ theme }) => ({
-  position: 'absolute',
+  zIndex: theme.zIndex.modal,
+  position: 'fixed',
   bottom: '0px',
   left: '0px',
   right: '0px',
+  width: '100%',
   [theme.breakpoints.up('sm')]: {
     bottom: '10px',
     right: '10px',
@@ -35,9 +37,12 @@ const StyledCookieConsent = styled(Box)(({ theme }) => ({
   [`& .${BUTTON_CONTAINER_CLASS_NAME}`]: {
     display: 'flex',
     width: '100%',
-    flexDirection: 'row',
+    flexDirection: 'column-reverse',
     justifyContent: 'space-between',
     gap: theme.spacing(1),
+    [theme.breakpoints.up('sm')]: {
+      flexDirection: 'row',
+    },
   },
 
   [`& .${CONTAINER_CLASS_NAME}`]: {
@@ -65,7 +70,7 @@ const CookieButton = (props: CookieButtonProps): JSX.Element => {
     <Button
       {...props}
       fullWidth
-      sx={{ minWidth: 'max-content' }}
+      sx={{ sm: { width: 'max-content' } }}
       color={isDeclinedButton ? undefined : 'primary'}
       variant={isDeclinedButton ? 'outlined' : 'contained'}
     />
