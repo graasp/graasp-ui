@@ -8,6 +8,7 @@ const meta: Meta<typeof CookiesBanner> = {
   title: 'Common/CookiesBanner',
   component: CookiesBanner,
   parameters: {
+    layout: 'fullscreen',
     docs: {
       source: {
         type: 'dynamic',
@@ -31,3 +32,15 @@ type Story = StoryObj<typeof CookiesBanner>;
 export const Banner: Story = {
   args: {},
 };
+
+export const Mobile = {
+  args: {
+    declineButtonText: 'Rejeter les cookies non-essentiels',
+    acceptText: 'Accepter tous les cookies',
+  },
+  parameters: {
+    viewport: {
+      defaultViewport: 'mobile2',
+    },
+  },
+} satisfies Story;
