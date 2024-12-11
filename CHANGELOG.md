@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.4.5](https://github.com/graasp/graasp-ui/compare/v5.4.4...v5.4.5) (2024-12-11)
+
+
+### Bug Fixes
+
+* add smooth scroll ([#1142](https://github.com/graasp/graasp-ui/issues/1142)) ([ae4e827](https://github.com/graasp/graasp-ui/commit/ae4e8275506566c7b6c754dff2625ba81043729f))
+* add try catch on new URL that might fail ([#1135](https://github.com/graasp/graasp-ui/issues/1135)) ([fe5ac27](https://github.com/graasp/graasp-ui/commit/fe5ac2719a4b2128318e33187c2e657b2360de25))
+* cookie banner ([#1139](https://github.com/graasp/graasp-ui/issues/1139)) ([3300fff](https://github.com/graasp/graasp-ui/commit/3300fffa3337ba0853ff765a583606fc5230fc00))
+
 ## [5.4.4](https://github.com/graasp/graasp-ui/compare/v5.4.3...v5.4.4) (2024-11-28)
 
 
