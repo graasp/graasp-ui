@@ -156,6 +156,13 @@ export const createGraaspTheme = ({
       drawer: 100,
     },
     components: {
+      MuiCssBaseline: {
+        styleOverrides: `
+          body {
+            scroll-behavior: smooth;
+          }
+        `,
+      },
       MuiAvatar: {
         styleOverrides: {
           root: {
