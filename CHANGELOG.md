@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.4.6](https://github.com/graasp/graasp-ui/compare/v5.4.5...v5.4.6) (2024-12-12)
+
+
+### Bug Fixes
+
+* move scroll behavior to html element ([#1143](https://github.com/graasp/graasp-ui/issues/1143)) ([a760a47](https://github.com/graasp/graasp-ui/commit/a760a47a80fe33fc279e7b26490f6b6c9e1f90f3))
+
 ## [5.4.5](https://github.com/graasp/graasp-ui/compare/v5.4.4...v5.4.5) (2024-12-11)
 
 
