@@ -158,7 +158,7 @@ export const createGraaspTheme = ({
     components: {
       MuiCssBaseline: {
         styleOverrides: `
-          body {
+          html {
             scroll-behavior: smooth;
           }
         `,
