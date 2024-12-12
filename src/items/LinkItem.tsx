@@ -1,7 +1,6 @@
 import { Alert, Box, Link as MUILink, styled } from '@mui/material';
 
 import { Fragment, memo, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 
 import { LinkItemType, getLinkExtra } from '@graasp/sdk';
 
@@ -234,7 +233,7 @@ const LinkItem = ({
     }
 
     return (
-      <MUILink component={Link} to={url} onClick={onClick}>
+      <MUILink href={url} onClick={onClick}>
         {url}
       </MUILink>
     );
