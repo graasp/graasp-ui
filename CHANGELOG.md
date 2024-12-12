@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.4.7](https://github.com/graasp/graasp-ui/compare/v5.4.6...v5.4.7) (2024-12-12)
+
+
+### Bug Fixes
+
+* removereact-reouter-dom on the link element ([#1128](https://github.com/graasp/graasp-ui/issues/1128)) ([9d1b1bc](https://github.com/graasp/graasp-ui/commit/9d1b1bcd2cdc099c60f629bcf32a05f0c43a2b9e))
+
 ## [5.4.6](https://github.com/graasp/graasp-ui/compare/v5.4.5...v5.4.6) (2024-12-12)
 
 
