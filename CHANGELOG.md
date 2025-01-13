@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.5.0](https://github.com/graasp/graasp-ui/compare/v5.4.7...v5.5.0) (2025-01-13)
+
+
+### Features
+
+* add props to Thumbnail ([#1055](https://github.com/graasp/graasp-ui/issues/1055)) ([76d2574](https://github.com/graasp/graasp-ui/commit/76d2574864d2608a5a08b30a91b80994d11ad38e))
+
+
+### Bug Fixes
+
+* library icon can be disabled ([#1156](https://github.com/graasp/graasp-ui/issues/1156)) ([a4e4f4f](https://github.com/graasp/graasp-ui/commit/a4e4f4fa32cf90205a895143bdf5c56d333da09a))
+
 ## [5.4.7](https://github.com/graasp/graasp-ui/compare/v5.4.6...v5.4.7) (2024-12-12)
 
 
