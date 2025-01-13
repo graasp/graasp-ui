@@ -28,6 +28,7 @@ const LibraryIcon = ({
   showSetting = false,
   selected,
   disableHover = true,
+  disabled,
 }: LibraryIconProps): JSX.Element => {
   return (
     <SVGWrapper sx={sx} size={size} viewBox='0 0 1080 1080'>
@@ -39,6 +40,7 @@ const LibraryIcon = ({
         selected={selected}
         disabledColor={disabledColor}
         disableHover={disableHover}
+        disabled={disabled}
       >
         <circle fill={primaryColor} cx='540' cy='540' r='540' />
 
