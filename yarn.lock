@@ -1435,9 +1435,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@graasp/sdk@npm:5.4.0":
-  version: 5.4.0
-  resolution: "@graasp/sdk@npm:5.4.0"
+"@graasp/sdk@npm:5.6.0":
+  version: 5.6.0
+  resolution: "@graasp/sdk@npm:5.6.0"
   dependencies:
     "@faker-js/faker": "npm:9.2.0"
     filesize: "npm:10.1.6"
@@ -1445,7 +1445,7 @@ __metadata:
   peerDependencies:
     date-fns: ^3 || ^4.0.0
     uuid: ^9 || ^10 || ^11.0.0
-  checksum: 10/787def776e690aa3a07438c907e6d5adb6c016db243e52fdc1511e35d057380d2d51d98d28bfef5f9f6101987f85c4cf43ba89a0d4d56f970b3801b4b8f2acd7
+  checksum: 10/212575ce29e97ce7772477c8bc55d315cbc1a1a50cbf0a184d356384f0d6ee5480750ad049afddbfc0d4fac5b0ce0913c02bf3c81e9c4dd4051e7914f9358d0d
   languageName: node
   linkType: hard
 
@@ -1472,7 +1472,7 @@ __metadata:
     "@eslint/compat": "npm:1.2.4"
     "@eslint/eslintrc": "npm:3.2.0"
     "@eslint/js": "npm:9.16.0"
-    "@graasp/sdk": "npm:5.4.0"
+    "@graasp/sdk": "npm:5.6.0"
     "@graasp/stylis-plugin-rtl": "npm:2.2.0"
     "@mui/icons-material": "npm:6.2.0"
     "@mui/lab": "npm:6.0.0-beta.19"
