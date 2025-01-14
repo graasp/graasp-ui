@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.5.1](https://github.com/graasp/graasp-ui/compare/v5.5.0...v5.5.1) (2025-01-14)
+
+
+### Miscellaneous Chores
+
+* release 5.5.1 ([67b2edf](https://github.com/graasp/graasp-ui/commit/67b2edf222132158f5c7738d7a9de5697720bfaf))
+
 ## [5.5.0](https://github.com/graasp/graasp-ui/compare/v5.4.7...v5.5.0) (2025-01-13)
 
 
