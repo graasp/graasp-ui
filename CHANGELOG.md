@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.5.2](https://github.com/graasp/graasp-ui/compare/v5.5.1...v5.5.2) (2025-06-02)
+
+
+### Bug Fixes
+
+* **deps:** update dependency react-rnd to v10.4.14 ([#1152](https://github.com/graasp/graasp-ui/issues/1152)) ([ffe45a5](https://github.com/graasp/graasp-ui/commit/ffe45a5c01b2d0d275cd0045af2d03a8aaf0533b))
+* **deps:** update dependency uuid to v11.0.5 ([#1158](https://github.com/graasp/graasp-ui/issues/1158)) ([c9a6782](https://github.com/graasp/graasp-ui/commit/c9a67824d8e9364149ac7535f4b88974d84ece7d))
+
 ## [5.5.1](https://github.com/graasp/graasp-ui/compare/v5.5.0...v5.5.1) (2025-01-14)
 
 
