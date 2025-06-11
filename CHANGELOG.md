@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.5.3](https://github.com/graasp/graasp-ui/compare/v5.5.2...v5.5.3) (2025-06-11)
+
+
+### Bug Fixes
+
+* add useFullscreen hook in apps bundle ([#1166](https://github.com/graasp/graasp-ui/issues/1166)) ([99ab371](https://github.com/graasp/graasp-ui/commit/99ab3710ed3d22b1a8db01c6234bdd81e0cfbdaf))
+
 ## [5.5.2](https://github.com/graasp/graasp-ui/compare/v5.5.1...v5.5.2) (2025-06-02)
 
 
