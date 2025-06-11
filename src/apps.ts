@@ -6,3 +6,4 @@ export {
   RequiredChip,
   type UserFeedback,
 } from './appComponents/index.js';
+export * from './hooks/useFullscreen.js';
