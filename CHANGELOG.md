@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.5.4](https://github.com/graasp/graasp-ui/compare/v5.5.3...v5.5.4) (2025-06-16)
+
+
+### Bug Fixes
+
+* export string-to-color for apps ([#1168](https://github.com/graasp/graasp-ui/issues/1168)) ([71c3a64](https://github.com/graasp/graasp-ui/commit/71c3a64150b829308c13f332e8a3881cb8f7f941))
+
 ## [5.5.3](https://github.com/graasp/graasp-ui/compare/v5.5.2...v5.5.3) (2025-06-11)
 
 
