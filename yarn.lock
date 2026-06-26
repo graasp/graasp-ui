@@ -1676,10 +1676,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@faker-js/faker@npm:9.2.0":
-  version: 9.2.0
-  resolution: "@faker-js/faker@npm:9.2.0"
-  checksum: 10/c233aaa41ebc4f4bed36c1304c399c424b9e5abca9cb8fe54ce73d4162ec7acd66f294b90c85ed7a5df774400e44f0a10364bdd41f49e72cb519a48b5948939f
+"@faker-js/faker@npm:9.9.0":
+  version: 9.9.0
+  resolution: "@faker-js/faker@npm:9.9.0"
+  checksum: 10/b24b1be0fb3090d54abaaa3a814f37d1a7551f1207dcd330a1af2c70f6312a8b95ebb82653577757dd62f4cbbb56caa3c83513053253654dc3e286a05040ecbe
   languageName: node
   linkType: hard
 
@@ -1721,17 +1721,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@graasp/sdk@npm:5.6.0":
-  version: 5.6.0
-  resolution: "@graasp/sdk@npm:5.6.0"
+"@graasp/sdk@npm:5.18.2":
+  version: 5.18.2
+  resolution: "@graasp/sdk@npm:5.18.2"
   dependencies:
-    "@faker-js/faker": "npm:9.2.0"
+    "@faker-js/faker": "npm:9.9.0"
     filesize: "npm:10.1.6"
     js-cookie: "npm:3.0.5"
   peerDependencies:
-    date-fns: ^3 || ^4.0.0
-    uuid: ^9 || ^10 || ^11.0.0
-  checksum: 10/212575ce29e97ce7772477c8bc55d315cbc1a1a50cbf0a184d356384f0d6ee5480750ad049afddbfc0d4fac5b0ce0913c02bf3c81e9c4dd4051e7914f9358d0d
+    date-fns: ^4.0.0
+    uuid: ^11.0.0
+  checksum: 10/aa975d2e3f4ba2c4cba6b0f37c5258a7f375f2ef5f8d0d540ce9c6b7393e8bc586c5c3377be10dd0e83b1c9412c249e3334bcb7739613f258a6115c46ecdf76f
   languageName: node
   linkType: hard
 
@@ -1758,7 +1758,7 @@ __metadata:
     "@eslint/compat": "npm:1.2.9"
     "@eslint/eslintrc": "npm:3.2.0"
     "@eslint/js": "npm:9.16.0"
-    "@graasp/sdk": "npm:5.6.0"
+    "@graasp/sdk": "npm:5.18.2"
     "@graasp/stylis-plugin-rtl": "npm:2.2.0"
     "@mui/icons-material": "npm:6.4.12"
     "@mui/lab": "npm:6.0.0-dev.240424162023-9968b4889d"
