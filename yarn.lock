@@ -1806,7 +1806,7 @@ __metadata:
     http-server: "npm:14.1.1"
     http-status-codes: "npm:2.3.0"
     husky: "npm:9.1.7"
-    interweave: "npm:13.1.0"
+    interweave: "npm:13.1.1"
     jsdom: "npm:25.0.1"
     katex: "npm:0.16.22"
     lodash.truncate: "npm:4.4.2"
@@ -8277,14 +8277,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"interweave@npm:13.1.0":
-  version: 13.1.0
-  resolution: "interweave@npm:13.1.0"
+"interweave@npm:13.1.1":
+  version: 13.1.1
+  resolution: "interweave@npm:13.1.1"
   dependencies:
     escape-html: "npm:^1.0.3"
   peerDependencies:
-    react: ^16.8.0 || ^17.0.0 || ^18.0.0
-  checksum: 10/46ac44f1f58f9808a08738d4151ba57dd5270bdd834adc83781da7c5f6f9b5c1536ca0c7c54203724eaeef7130e41169ea9f2af1ec2f503ead822e16e3e03573
+    react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+  checksum: 10/d58f7897cf7d777b6ee43136cf0888fea2e7cf02d8058df866d2703ca774d4ed0c2ca5aac17c72e7ace99730f9e51ab90d7b98b69b9f3e8aeaff958c62ae27af
   languageName: node
   linkType: hard
 
